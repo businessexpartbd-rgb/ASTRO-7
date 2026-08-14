@@ -1,0 +1,76 @@
+// ============================================
+// ASTRO-7 / UNION GLOBAL — Main SCSS Entry
+// ============================================
+
+@import "tailwindcss";
+
+@use 'base/variables' as *;
+@use 'base/mixins' as *;
+@use 'components/glass';
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: $gold $deep-indigo;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: $deep-indigo; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, $gold, $gold-dark);
+  border-radius: 10px;
+}
+
+::selection {
+  background: rgba($gold, 0.35);
+  color: #fff;
+}
+
+body {
+  font-family: $font-body;
+  background: $navy;
+  color: $text-primary;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.font-display { font-family: $font-display; }
+.font-heading { font-family: $font-heading; }
+.font-body { font-family: $font-body; }
+
+.text-gradient {
+  background: linear-gradient(135deg, $gold-light 0%, $gold 40%, #F5E6C8 75%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-navy {
+  background: linear-gradient(180deg, $navy 0%, $deep-indigo 100%);
+}
+.section-indigo {
+  background: 
+    radial-gradient(ellipse at 10% 50%, rgba($violet, 0.12) 0%, transparent 50%),
+    linear-gradient(180deg, $deep-indigo 0%, $midnight 100%);
+}
+.section-emerald {
+  background: 
+    radial-gradient(ellipse at 90% 30%, rgba($emerald-soft, 0.1) 0%, transparent 50%),
+    linear-gradient(180deg, #0A1F1A 0%, $deep-indigo 100%);
+}
+.section-gold {
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba($gold, 0.1) 0%, transparent 50%),
+    linear-gradient(180deg, #15120A 0%, $deep-indigo 100%);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s $ease-out-expo;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
