@@ -1,0 +1,42 @@
+// ============================================
+// Glass Components (using SCSS mixins)
+// ============================================
+
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+.glass {
+  @include glass;
+  border-radius: $radius-md;
+}
+
+.glass-card {
+  @include glass-card;
+}
+
+.glass-strong {
+  @include glass(28px, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.14));
+}
+
+.glass-gold {
+  border-color: rgba(201, 162, 39, 0.25);
+  box-shadow: $shadow-glass, 0 0 30px rgba(201, 162, 39, 0.08);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  color: $text-dark;
+}
+
+.glass-float {
+  @include glass-card;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(0.5deg); }
+}
