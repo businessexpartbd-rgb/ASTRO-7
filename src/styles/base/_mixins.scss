@@ -1,0 +1,74 @@
+// ============================================
+// ASTRO-7 — SCSS Mixins
+// ============================================
+
+@use 'variables' as *;
+
+// Glassmorphism mixin
+@mixin glass($blur: $glass-blur, $bg: $glass-bg, $border: $glass-border) {
+  background: $bg;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid $border;
+  box-shadow: $shadow-glass;
+}
+
+// Glass card with hover
+@mixin glass-card {
+  @include glass;
+  border-radius: $radius-lg;
+  padding: 2rem 1.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: 
+    transform $duration-normal $ease-out-expo,
+    border-color $duration-normal ease,
+    box-shadow $duration-normal ease,
+    background $duration-normal ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, rgba(255,255,255,0.06) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  &:hover {
+    transform: translateY(-10px);
+    background: $glass-bg-hover;
+    border-color: $glass-border-hover;
+    box-shadow: $shadow-glass-hover;
+  }
+}
+
+// Responsive breakpoint
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: 640px) { @content; }
+  } @else if $breakpoint == md {
+    @media (min-width: 768px) { @content; }
+  } @else if $breakpoint == lg {
+    @media (min-width: 1024px) { @content; }
+  } @else if $breakpoint == xl {
+    @media (min-width: 1280px) { @content; }
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
