@@ -1,32 +1,76 @@
 # ASTRO-7 / Union Global
 
-Premium $100k-level website for **Union Global** — Global Trade & Business Solutions.
+Premium **$100k-level** website built with **Astro + Tailwind CSS + SCSS + Glassmorphism**.
 
-## Live Structure (Current)
+## Tech Stack
 
-| Page | Status | Unique Hero |
-|------|--------|-------------|
-| Home (`index.html`) | ✅ Complete | Connecting Markets with Integrity & Innovation |
-| About | ✅ Ready | Built on Trust. Driven by Global Ambition. |
-| Services | ✅ Ready | End-to-End Solutions for International Growth |
-| Global Network | ✅ Complete | Strategic Hubs. Global Coordination. |
-| Insights | ✅ Complete | Intelligence That Moves Markets |
-| Careers | ✅ Complete | Build Careers That Cross Continents |
-| Contact | ✅ Ready | Start a Conversation That Opens Markets |
+| Layer | Technology |
+|-------|------------|
+| Framework | **Astro 7** |
+| Styling | **Tailwind CSS v4** + **SCSS** |
+| Components | Astro Components (`GlassCard` etc.) |
+| Animations | Custom CSS + Intersection Observer |
+| Design System | Multi-color sections, Glassmorphism, Premium fonts |
 
-## Design System
-- Multi-color section themes (Navy / Indigo / Emerald / Gold)
-- Glassmorphism cards with hover lift
-- Premium fonts: Outfit + Playfair Display + Inter
-- Living animations (entrance, float, pulse, ring, glow)
-- Fully responsive + SEO meta on every page
+## Project Structure
 
-## Tech
-- Pure HTML / CSS / Vanilla JS
-- No frameworks
+```
+├── astro.config.mjs
+├── package.json
+├── src/
+│   ├── components/
+│   │   └── GlassCard.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   ├── pages/
+│   │   └── index.astro
+│   └── styles/
+│       ├── base/
+│       │   ├── _variables.scss
+│       │   └── _mixins.scss
+│       ├── components/
+│       │   └── _glass.scss
+│       └── main.scss
+└── pages/                  (legacy static HTML pages)
+    ├── network.html
+    ├── insights.html
+    └── careers.html
+```
 
-## How to View
-Clone or download the repo and open `index.html` in a browser, or serve with any static server.
+## Features
+
+- ✅ Premium Glassmorphism system (`.glass-card`, variants)
+- ✅ SCSS Design Tokens + Mixins
+- ✅ Tailwind CSS integration
+- ✅ Unique multi-color section themes
+- ✅ Living animations (float, reveal, pulse, glow)
+- ✅ Fully responsive
+- ✅ SEO-ready Layout
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
+```
+
+## Glass Card Usage
+
+```astro
+---
+import GlassCard from '../components/GlassCard.astro';
+---
+
+<GlassCard>
+  <h3>Title</h3>
+  <p>Content</p>
+</GlassCard>
+
+<GlassCard variant="strong">...</GlassCard>
+<GlassCard variant="gold">...</GlassCard>
+<GlassCard variant="light">...</GlassCard>
+```
 
 ---
-Built for a global brand.
+
+Built for **Union Global** — Connecting Markets with Integrity & Innovation.
