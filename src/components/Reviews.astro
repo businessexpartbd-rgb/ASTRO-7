@@ -9,19 +9,15 @@
     </div>
 
     <div class="reviews-layout reveal">
-      <!-- Summary (Play Store style) -->
       <div class="reviews-summary glass-card">
         <div class="rating-score">
           <div class="score-num" id="avg-score">0.0</div>
           <div class="score-stars" id="avg-stars" aria-hidden="true"></div>
           <div class="score-count" id="rating-count">0 ratings</div>
         </div>
-        <div class="rating-bars" id="rating-bars">
-          <!-- filled by JS -->
-        </div>
+        <div class="rating-bars" id="rating-bars"></div>
       </div>
 
-      <!-- List + form -->
       <div class="reviews-main">
         <div class="reviews-list" id="reviews-list">
           <div class="reviews-empty" id="reviews-empty">
@@ -64,10 +60,10 @@
     </div>
   </div>
 
-  <!-- All reviews modal -->
-  <div class="reviews-modal" id="reviews-modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <!-- Modal: hidden by default — only opens via See more -->
+  <div class="reviews-modal" id="reviews-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-backdrop" id="modal-backdrop"></div>
-    <div class="modal-panel">
+    <div class="modal-panel" role="document">
       <div class="modal-head">
         <h3 id="modal-title">All reviews</h3>
         <button type="button" class="modal-close" id="modal-close" aria-label="Close">×</button>
@@ -185,6 +181,7 @@
     background: #fff; font-family: var(--font-h); font-weight: 600; font-size: 0.9rem;
     color: var(--text); cursor: pointer; transition: border-color .2s, color .2s;
   }
+  .btn-see-more[hidden] { display: none !important; }
   .btn-see-more:hover { border-color: var(--primary); color: var(--primary); }
 
   .review-form-card { margin-top: 1.5rem; padding: 1.5rem !important; }
@@ -226,17 +223,29 @@
   .form-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
   .form-msg { font-size: 0.85rem; margin-top: 0.75rem; color: var(--emerald); }
   .form-msg.err { color: var(--rose); }
+  .review-form[hidden], #review-form[hidden] { display: none !important; }
 
+  /* CRITICAL FIX: modal must stay closed until .is-open */
   .reviews-modal {
-    position: fixed; inset: 0; z-index: 10000;
-    display: flex; align-items: flex-end; justify-content: center;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .reviews-modal.is-open {
+    display: flex;
+    pointer-events: auto;
   }
   @media (min-width: 640px) {
-    .reviews-modal { align-items: center; }
+    .reviews-modal.is-open { align-items: center; }
   }
   .modal-backdrop {
     position: absolute; inset: 0; background: rgba(15,23,42,.45);
     backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
   .modal-panel {
     position: relative; z-index: 1;
@@ -256,23 +265,28 @@
   .modal-head {
     display: flex; align-items: center; justify-content: space-between;
     padding: 1.15rem 1.35rem; border-bottom: 1px solid rgba(15,23,42,.06);
+    flex-shrink: 0;
   }
   .modal-head h3 { font-size: 1.1rem; margin: 0; }
   .modal-close {
-    width: 36px; height: 36px; border: none; border-radius: 10px;
-    background: rgba(15,23,42,.05); font-size: 1.4rem; cursor: pointer; line-height: 1;
+    width: 40px; height: 40px; border: none; border-radius: 10px;
+    background: rgba(15,23,42,.06); font-size: 1.5rem; cursor: pointer; line-height: 1;
+    color: var(--text); display: flex; align-items: center; justify-content: center;
   }
+  .modal-close:hover { background: rgba(15,23,42,.1); }
   .modal-body {
     padding: 1.15rem 1.35rem 1.5rem; overflow-y: auto;
     display: flex; flex-direction: column; gap: 1rem;
+    -webkit-overflow-scrolling: touch;
   }
 </style>
 
 <script is:inline>
 (function () {
+  'use strict';
+  try {
   var STORAGE_KEY = 'creavix_reviews_v1';
   var USER_KEY = 'creavix_review_user';
-  /* Set your Google OAuth Web Client ID here (Google Cloud Console → Credentials) */
   var GOOGLE_CLIENT_ID = '';
 
   var starLabels = ['', 'Poor', 'Fair', 'Good', 'Very good', 'Excellent'];
@@ -403,7 +417,7 @@
 
   function renderModal(list) {
     var body = document.getElementById('modal-body');
-    if (body) body.innerHTML = list.map(reviewCard).join('') || '<p>No reviews</p>';
+    if (body) body.innerHTML = list.map(reviewCard).join('') || '<p style="color:#64748B;text-align:center;padding:1rem">No reviews yet</p>';
   }
 
   function refresh() {
@@ -445,7 +459,6 @@
     return 'r_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
   }
 
-  /* Google Identity Services */
   function initGoogle() {
     var btn = document.getElementById('btn-google');
     var hint = document.getElementById('auth-hint');
@@ -454,11 +467,14 @@
       if (hint) {
         hint.innerHTML = 'Google Client ID not set yet. <button type="button" id="btn-dev-login" class="btn-google" style="margin-top:0.75rem;max-width:100%">Continue as guest (temp)</button><br><span style="display:block;margin-top:0.5rem;font-size:0.75rem">Production: add Google OAuth Client ID for real Google login.</span>';
       }
-      document.getElementById('btn-dev-login') && document.getElementById('btn-dev-login').addEventListener('click', function () {
-        currentUser = { id: 'guest_' + Date.now(), name: 'Guest User', email: '', picture: '' };
-        saveUser(currentUser);
-        showAuthUI();
-      });
+      var devBtn = document.getElementById('btn-dev-login');
+      if (devBtn) {
+        devBtn.addEventListener('click', function () {
+          currentUser = { id: 'guest_' + Date.now(), name: 'Guest User', email: '', picture: '' };
+          saveUser(currentUser);
+          showAuthUI();
+        });
+      }
       return;
     }
 
@@ -480,9 +496,7 @@
             };
             saveUser(currentUser);
             showAuthUI();
-          } catch (e) {
-            alert('Google sign-in failed. Please try again.');
-          }
+          } catch (e) {}
         }
       });
       if (btn) {
@@ -503,79 +517,109 @@
     } catch (e) { return []; }
   }
 
+  var modal = document.getElementById('reviews-modal');
+
+  function openModal() {
+    if (!modal) return;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  /* Always force closed on load */
+  closeModal();
+
   async function boot() {
+    closeModal();
     currentUser = loadUser();
     var server = await loadServer();
     var local = loadLocal();
-    /* Only keep local reviews that are not fake seeds — merge real data */
     reviews = mergeReviews(server, local);
     refresh();
     showAuthUI();
     initGoogle();
+    closeModal();
   }
 
-  document.getElementById('star-picker') && document.getElementById('star-picker').addEventListener('click', function (e) {
-    var t = e.target.closest('.star-btn');
-    if (!t) return;
-    setStars(parseInt(t.getAttribute('data-star'), 10));
-  });
-
-  document.getElementById('review-form') && document.getElementById('review-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var msg = document.getElementById('form-msg');
-    if (!currentUser) return;
-    if (!selectedStars) {
-      if (msg) { msg.hidden = false; msg.className = 'form-msg err'; msg.textContent = 'Please select a star rating.'; }
-      return;
-    }
-    var text = (document.getElementById('review-text').value || '').trim();
-    if (text.length < 3) {
-      if (msg) { msg.hidden = false; msg.className = 'form-msg err'; msg.textContent = 'Please write a short comment.'; }
-      return;
-    }
-    /* One review per Google account (update if exists) */
-    reviews = reviews.filter(function (r) { return r.userId !== currentUser.id; });
-    var entry = {
-      id: uid(),
-      userId: currentUser.id,
-      name: currentUser.name,
-      email: currentUser.email || '',
-      picture: currentUser.picture || '',
-      stars: selectedStars,
-      text: text,
-      createdAt: new Date().toISOString()
-    };
-    reviews.unshift(entry);
-    saveLocal(reviews);
-    refresh();
-    document.getElementById('review-text').value = '';
-    setStars(0);
-    if (msg) { msg.hidden = false; msg.className = 'form-msg'; msg.textContent = 'Review posted. Thank you!'; }
-  });
-
-  document.getElementById('btn-signout') && document.getElementById('btn-signout').addEventListener('click', function () {
-    currentUser = null;
-    saveUser(null);
-    showAuthUI();
-  });
-
-  var modal = document.getElementById('reviews-modal');
-  function openModal() {
-    if (!modal) return;
-    modal.hidden = false;
-    document.body.style.overflow = 'hidden';
+  var starPicker = document.getElementById('star-picker');
+  if (starPicker) {
+    starPicker.addEventListener('click', function (e) {
+      var t = e.target.closest('.star-btn');
+      if (!t) return;
+      setStars(parseInt(t.getAttribute('data-star'), 10));
+    });
   }
-  function closeModal() {
-    if (!modal) return;
-    modal.hidden = true;
-    document.body.style.overflow = '';
+
+  var reviewForm = document.getElementById('review-form');
+  if (reviewForm) {
+    reviewForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var msg = document.getElementById('form-msg');
+      if (!currentUser) return;
+      if (!selectedStars) {
+        if (msg) { msg.hidden = false; msg.className = 'form-msg err'; msg.textContent = 'Please select a star rating.'; }
+        return;
+      }
+      var text = (document.getElementById('review-text').value || '').trim();
+      if (text.length < 3) {
+        if (msg) { msg.hidden = false; msg.className = 'form-msg err'; msg.textContent = 'Please write a short comment.'; }
+        return;
+      }
+      reviews = reviews.filter(function (r) { return r.userId !== currentUser.id; });
+      var entry = {
+        id: uid(),
+        userId: currentUser.id,
+        name: currentUser.name,
+        email: currentUser.email || '',
+        picture: currentUser.picture || '',
+        stars: selectedStars,
+        text: text,
+        createdAt: new Date().toISOString()
+      };
+      reviews.unshift(entry);
+      saveLocal(reviews);
+      refresh();
+      document.getElementById('review-text').value = '';
+      setStars(0);
+      if (msg) { msg.hidden = false; msg.className = 'form-msg'; msg.textContent = 'Review posted. Thank you!'; }
+    });
   }
-  document.getElementById('btn-see-more') && document.getElementById('btn-see-more').addEventListener('click', openModal);
-  document.getElementById('modal-close') && document.getElementById('modal-close').addEventListener('click', closeModal);
-  document.getElementById('modal-backdrop') && document.getElementById('modal-backdrop').addEventListener('click', closeModal);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+  var signout = document.getElementById('btn-signout');
+  if (signout) {
+    signout.addEventListener('click', function () {
+      currentUser = null;
+      saveUser(null);
+      showAuthUI();
+    });
+  }
+
+  var seeMore = document.getElementById('btn-see-more');
+  if (seeMore) seeMore.addEventListener('click', openModal);
+  var modalClose = document.getElementById('modal-close');
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  var modalBackdrop = document.getElementById('modal-backdrop');
+  if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeModal();
+  });
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
+  } catch (err) {
+    var m = document.getElementById('reviews-modal');
+    if (m) {
+      m.classList.remove('is-open');
+      m.setAttribute('aria-hidden', 'true');
+    }
+    document.body.style.overflow = '';
+  }
 })();
 </script>
