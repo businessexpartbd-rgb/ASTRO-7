@@ -1,0 +1,11 @@
+# Creavix iT — Cloudflare config
+# After creating D1, put database_id here OR bind via Dashboard (Settings → Bindings)
+name = "creavix"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "dist"
+
+# Uncomment after: npx wrangler d1 create creavix-reviews
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "creavix-reviews"
+# database_id = "PASTE_YOUR_DATABASE_ID"
