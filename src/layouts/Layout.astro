@@ -19,6 +19,10 @@ const {
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://creavixit.com" />
+    <!-- Cache control -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,7 +30,6 @@ const {
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>" />
 
-    <!-- ALL CRITICAL STYLES INLINE — works even if external CSS fails -->
     <style is:global>
       :root {
         --primary: #4F46E5;
@@ -474,64 +477,74 @@ const {
   <body>
     <slot />
 
-    <script>
-      // Reveal on scroll
-      const reveals = document.querySelectorAll('.reveal');
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            io.unobserve(e.target);
+    <script is:inline>
+      (function() {
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              io.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        reveals.forEach(el => io.observe(el));
+
+        // Navbar scroll
+        const nav = document.getElementById('navbar');
+        const onScroll = () => {
+          if (window.scrollY > 20) nav?.classList.add('scrolled');
+          else nav?.classList.remove('scrolled');
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        // ========== TYPING EFFECT ==========
+        function startTyping() {
+          const typingEl = document.getElementById('typing-text');
+          if (!typingEl) return;
+
+          const words = ['Convert & Inspire', 'Scale Fast', 'Drive Results', 'Build Brands'];
+          let wordIndex = 0;
+          let charIndex = 0;
+          let isDeleting = false;
+          let typingSpeed = 90;
+
+          function type() {
+            const currentWord = words[wordIndex];
+
+            if (isDeleting) {
+              typingEl.textContent = currentWord.substring(0, charIndex - 1);
+              charIndex--;
+              typingSpeed = 45;
+            } else {
+              typingEl.textContent = currentWord.substring(0, charIndex + 1);
+              charIndex++;
+              typingSpeed = 90;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+              typingSpeed = 1800;
+              isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+              isDeleting = false;
+              wordIndex = (wordIndex + 1) % words.length;
+              typingSpeed = 400;
+            }
+
+            setTimeout(type, typingSpeed);
           }
-        });
-      }, { threshold: 0.12 });
-      reveals.forEach(el => io.observe(el));
 
-      // Navbar scroll
-      const nav = document.getElementById('navbar');
-      const onScroll = () => {
-        if (window.scrollY > 20) nav?.classList.add('scrolled');
-        else nav?.classList.remove('scrolled');
-      };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-
-      // ========== TYPING EFFECT ==========
-      const typingEl = document.getElementById('typing-text');
-      if (typingEl) {
-        const words = ['Convert & Inspire', 'Scale Fast', 'Drive Results', 'Build Brands'];
-        let wordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typingSpeed = 90;
-
-        function type() {
-          const currentWord = words[wordIndex];
-
-          if (isDeleting) {
-            typingEl.textContent = currentWord.substring(0, charIndex - 1);
-            charIndex--;
-            typingSpeed = 45;
-          } else {
-            typingEl.textContent = currentWord.substring(0, charIndex + 1);
-            charIndex++;
-            typingSpeed = 90;
-          }
-
-          if (!isDeleting && charIndex === currentWord.length) {
-            typingSpeed = 1800;
-            isDeleting = true;
-          } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            wordIndex = (wordIndex + 1) % words.length;
-            typingSpeed = 400;
-          }
-
-          setTimeout(type, typingSpeed);
+          type();
         }
 
-        setTimeout(type, 600);
-      }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', startTyping);
+        } else {
+          startTyping();
+        }
+      })();
     </script>
   </body>
 </html>
