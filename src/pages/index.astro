@@ -1,42 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 ---
-
-<Layout title="Creavix iT Solution — Creative Digital & AI Services">
-  <nav class="navbar" id="navbar">
-    <div class="nav-inner">
-      <a href="/" class="logo">
-        <img src="/logo.png" alt="Creavix iT Solution" class="logo-img" width="40" height="40" />
-        Creavix <span>iT</span> Solution
-      </a>
-      <ul class="nav-links">
-        <li><a href="#home" class="active">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <a href="#contact" class="btn btn-primary nav-cta">Get Started</a>
-    </div>
-  </nav>
-
+<Layout title="Creavix iT Solution — Creative Digital & AI Services" description="Premium video editing, AI video marketing, web & app development and Facebook marketing by Creavix iT Solution.">
+  <Nav active="home" />
   <section id="home" class="hero-premium">
-    <div class="hero-bg">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="orb orb-3"></div>
-      <div class="grid-overlay"></div>
-    </div>
+    <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div><div class="grid-overlay"></div></div>
     <div class="container hero-grid">
       <div class="hero-content reveal">
         <div class="eyebrow"><span class="dot"></span> Creative Digital & AI Solutions</div>
-        <h1 class="hero-title">
-          We Build Digital<br />Experiences That<br />
-          <span class="text-gradient" id="typing-text">Convert & Inspire</span><span class="typing-cursor">|</span>
-        </h1>
+        <h1 class="hero-title">We Build Digital<br />Experiences That<br /><span class="text-gradient" id="typing-text">Convert & Inspire</span><span class="typing-cursor">|</span></h1>
         <p class="hero-lead">From AI-powered video marketing to high-performance web & app development — Creavix iT Solution delivers premium digital services that drive real results.</p>
         <div class="flex-btns">
           <a href="#services" class="btn btn-primary">Explore Services</a>
-          <a href="#contact" class="btn btn-outline">Talk to Us</a>
+          <a href="/contact" class="btn btn-outline">Talk to Us</a>
         </div>
         <div class="trust-row">
           <div class="trust-item"><strong>100+</strong><span>Projects</span></div>
@@ -63,64 +41,26 @@ import Layout from '../layouts/Layout.astro';
     </div>
     <div class="scroll-indicator"><span>Scroll</span><div class="scroll-line"></div></div>
   </section>
-
   <section id="services" class="section-soft">
     <div class="container">
       <div class="text-center mb-8 reveal">
         <p class="eyebrow" style="margin:0 auto 1rem">Our Services</p>
         <h2 class="mb-4">Everything You Need to Grow Digitally</h2>
-        <p style="max-width:36rem; margin:0 auto">High-quality creative and technical services designed for modern businesses.</p>
+        <p style="max-width:36rem;margin:0 auto">High-quality creative and technical services designed for modern businesses.</p>
       </div>
       <div class="grid-3">
-        <a href="/services/video-editing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block">
-          <div class="icon-box" style="background:rgba(244,63,94,.1)">🎬</div>
-          <h3 class="mb-4">Video Editing</h3>
-          <p style="font-size:.9rem">Professional video editing for ads, social media, YouTube and brand storytelling.</p>
-        </a>
-        <a href="/services/ai-video-marketing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block">
-          <div class="icon-box" style="background:rgba(124,58,237,.1)">🤖</div>
-          <h3 class="mb-4">AI Video Marketing</h3>
-          <p style="font-size:.9rem">AI-powered video content creation and marketing campaigns that scale fast.</p>
-        </a>
-        <a href="/services/human-like-content" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block">
-          <div class="icon-box" style="background:rgba(245,158,11,.1)">👤</div>
-          <h3 class="mb-4">Authentic Human-like Content</h3>
-          <p style="font-size:.9rem">Realistic AI human & product visuals that feel genuine and conversion-focused.</p>
-        </a>
-        <a href="/services/web-development" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block">
-          <div class="icon-box" style="background:rgba(79,70,229,.1)">💻</div>
-          <h3 class="mb-4">Web Development</h3>
-          <p style="font-size:.9rem">Modern, fast and SEO-friendly websites built with the latest technologies.</p>
-        </a>
-        <a href="/services/application-build" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block">
-          <div class="icon-box" style="background:rgba(6,182,212,.1)">📱</div>
-          <h3 class="mb-4">Application Build</h3>
-          <p style="font-size:.9rem">Custom web & mobile applications designed for performance and scalability.</p>
-        </a>
-        <a href="/services/authentication" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block">
-          <div class="icon-box" style="background:rgba(16,185,129,.1)">🔐</div>
-          <h3 class="mb-4">Authentication Systems</h3>
-          <p style="font-size:.9rem">Secure login, signup, role-based access and authentication solutions.</p>
-        </a>
-        <a href="/services/facebook-page" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block">
-          <div class="icon-box" style="background:rgba(79,70,229,.1)">📘</div>
-          <h3 class="mb-4">Facebook Page Services</h3>
-          <p style="font-size:.9rem">Page setup, Business Page creation and Blue Verification support.</p>
-        </a>
-        <a href="/services/boosting" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block">
-          <div class="icon-box" style="background:rgba(244,63,94,.1)">📈</div>
-          <h3 class="mb-4">Boosting Service</h3>
-          <p style="font-size:.9rem">Targeted Facebook & Instagram boosting to reach the right audience.</p>
-        </a>
-        <a href="/services/campaign" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block">
-          <div class="icon-box" style="background:rgba(124,58,237,.1)">🎯</div>
-          <h3 class="mb-4">Campaign Service</h3>
-          <p style="font-size:.9rem">Full campaign planning, creative strategy and performance management.</p>
-        </a>
+        <a href="/services/video-editing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(244,63,94,.1)">🎬</div><h3 class="mb-4">Video Editing</h3><p style="font-size:.9rem">Professional video editing for ads, social media, YouTube and brand storytelling.</p></a>
+        <a href="/services/ai-video-marketing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(124,58,237,.1)">🤖</div><h3 class="mb-4">AI Video Marketing</h3><p style="font-size:.9rem">AI-powered video content creation and marketing campaigns that scale fast.</p></a>
+        <a href="/services/human-like-content" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(245,158,11,.1)">👤</div><h3 class="mb-4">Authentic Human-like Content</h3><p style="font-size:.9rem">Realistic AI human & product visuals that feel genuine and conversion-focused.</p></a>
+        <a href="/services/web-development" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(79,70,229,.1)">💻</div><h3 class="mb-4">Web Development</h3><p style="font-size:.9rem">Modern, fast and SEO-friendly websites built with the latest technologies.</p></a>
+        <a href="/services/application-build" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(6,182,212,.1)">📱</div><h3 class="mb-4">Application Build</h3><p style="font-size:.9rem">Custom web & mobile applications designed for performance and scalability.</p></a>
+        <a href="/services/authentication" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(16,185,129,.1)">🔐</div><h3 class="mb-4">Authentication Systems</h3><p style="font-size:.9rem">Secure login, signup, role-based access and authentication solutions.</p></a>
+        <a href="/services/facebook-page" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(79,70,229,.1)">📘</div><h3 class="mb-4">Facebook Page Services</h3><p style="font-size:.9rem">Page setup, Business Page creation and Blue Verification support.</p></a>
+        <a href="/services/boosting" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(244,63,94,.1)">📈</div><h3 class="mb-4">Boosting Service</h3><p style="font-size:.9rem">Targeted Facebook & Instagram boosting to reach the right audience.</p></a>
+        <a href="/services/campaign" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(124,58,237,.1)">🎯</div><h3 class="mb-4">Campaign Service</h3><p style="font-size:.9rem">Full campaign planning, creative strategy and performance management.</p></a>
       </div>
     </div>
   </section>
-
   <section id="about" class="section-violet">
     <div class="container grid-2">
       <div class="reveal">
@@ -147,52 +87,12 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </section>
-
   <section id="contact" class="section-warm">
     <div class="container text-center reveal" style="max-width:40rem">
       <h2 class="mb-4">Ready to Elevate Your Digital Presence?</h2>
       <p class="mb-8" style="font-size:1.1rem">Tell us about your project. We’ll recommend the best solution and get started quickly.</p>
-      <a href="mailto:hello@creavixit.com" class="btn btn-primary" style="padding:.9rem 2rem;font-size:1rem">Contact Creavix iT</a>
+      <a href="/contact" class="btn btn-primary" style="padding:.9rem 2rem;font-size:1rem">Contact Creavix iT</a>
     </div>
   </section>
-
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="/" class="logo footer-logo"><img src="/logo.png" alt="Creavix iT Solution" class="logo-img" width="36" height="36" /> Creavix <span>iT</span> Solution</a>
-        <p class="footer-desc">Premium digital agency delivering AI video marketing, web development and growth solutions.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="/services/video-editing">Video Editing</a></li>
-          <li><a href="/services/ai-video-marketing">AI Video Marketing</a></li>
-          <li><a href="/services/web-development">Web Development</a></li>
-          <li><a href="/services/application-build">Application Build</a></li>
-          <li><a href="/services/campaign">Campaign</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#services">Our Work</a></li>
-          <li><a href="mailto:hello@creavixit.com">Support</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="mailto:hello@creavixit.com">hello@creavixit.com</a></li>
-          <li><a href="https://creavixit.com">creavixit.com</a></li>
-          <li>Bangladesh</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div>© 2026 Creavix iT Solution. All rights reserved.</div>
-      <div class="footer-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
-    </div>
-  </footer>
+  <Footer />
 </Layout>
