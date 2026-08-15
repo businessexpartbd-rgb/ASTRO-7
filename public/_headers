@@ -1,0 +1,21 @@
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+  CDN-Cache-Control: public, max-age=0, must-revalidate
+
+/services/*
+  Cache-Control: public, max-age=0, must-revalidate
+  CDN-Cache-Control: public, max-age=0, must-revalidate
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/logo.png
+  Cache-Control: public, max-age=86400
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
