@@ -16,43 +16,92 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </nav>
 
-  <section id="home" class="section-indigo">
-    <div class="container grid-2">
-      <div class="reveal">
-        <div class="eyebrow"><span class="dot"></span> Creative Digital & AI Solutions</div>
-        <h1 class="mb-6">
-          We Build Digital<br />Experiences That<br />
+  <!-- ========== PREMIUM HERO SECTION ========== -->
+  <section id="home" class="hero-premium">
+    <!-- Animated Background Layers -->
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="grid-overlay"></div>
+    </div>
+
+    <div class="container hero-grid">
+      <!-- Left Content -->
+      <div class="hero-content reveal">
+        <div class="eyebrow">
+          <span class="dot"></span>
+          Creative Digital & AI Solutions
+        </div>
+
+        <h1 class="hero-title">
+          We Build Digital<br />
+          Experiences That<br />
           <span class="text-gradient">Convert & Inspire</span>
         </h1>
-        <p class="lead mb-8">
+
+        <p class="hero-lead">
           From AI-powered video marketing to high-performance web & app development — Creavix iT Solution delivers premium digital services that drive real results.
         </p>
+
         <div class="flex-btns">
           <a href="#services" class="btn btn-primary">Explore Services</a>
           <a href="#contact" class="btn btn-outline">Talk to Us</a>
         </div>
-      </div>
 
-      <div class="reveal hidden-mobile">
-        <div class="glass-card" style="text-align:center; padding:2.2rem">
-          <div style="font-size:3rem; margin-bottom:1rem">🚀</div>
-          <h3 class="mb-4">Premium Digital Agency</h3>
-          <p style="font-size:.9rem; color:var(--text-3); margin-bottom:1.25rem">Video · AI · Web · App · Marketing</p>
-          <div class="stat-grid">
-            <div class="stat-box">
-              <strong style="color:var(--primary)">100+</strong>
-              <span>Projects Delivered</span>
-            </div>
-            <div class="stat-box">
-              <strong style="color:var(--violet)">24/7</strong>
-              <span>Support Ready</span>
-            </div>
+        <!-- Trust indicators -->
+        <div class="trust-row">
+          <div class="trust-item">
+            <strong>100+</strong>
+            <span>Projects</span>
+          </div>
+          <div class="trust-divider"></div>
+          <div class="trust-item">
+            <strong>24/7</strong>
+            <span>Support</span>
+          </div>
+          <div class="trust-divider"></div>
+          <div class="trust-item">
+            <strong>AI</strong>
+            <span>Powered</span>
           </div>
         </div>
       </div>
+
+      <!-- Right Side - Floating Visual -->
+      <div class="hero-visual reveal">
+        <div class="visual-card glass-card animate-float">
+          <div class="visual-icon">🚀</div>
+          <h3>Premium Digital Agency</h3>
+          <p class="visual-tags">Video · AI · Web · App · Marketing</p>
+
+          <div class="stat-grid">
+            <div class="stat-box">
+              <strong class="text-primary">100+</strong>
+              <span>Projects Delivered</span>
+            </div>
+            <div class="stat-box">
+              <strong class="text-violet">24/7</strong>
+              <span>Support Ready</span>
+            </div>
+          </div>
+
+          <!-- Floating mini badges -->
+          <div class="float-badge badge-1">🎬 Video</div>
+          <div class="float-badge badge-2">🤖 AI</div>
+          <div class="float-badge badge-3">💻 Web</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
     </div>
   </section>
 
+  <!-- ========== SERVICES ========== -->
   <section id="services" class="section-soft">
     <div class="container">
       <div class="text-center mb-8 reveal">
