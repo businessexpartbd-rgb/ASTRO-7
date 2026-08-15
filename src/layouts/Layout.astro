@@ -7,8 +7,8 @@ interface Props {
 }
 
 const { 
-  title = 'Creavixit | Connecting Markets with Integrity & Innovation',
-  description = 'Premier international trade and business solutions company.'
+  title = 'Creavixit | Union Global — Connecting Markets with Integrity & Innovation',
+  description = 'Premier international trade and business solutions company. Local expertise, global coordination.'
 } = Astro.props;
 ---
 
@@ -20,6 +20,7 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://creavixit.com" />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,18 +31,5 @@ const {
   </head>
   <body class="bg-navy text-white font-body antialiased">
     <slot />
-    
-    <script>
-      const reveals = document.querySelectorAll('.reveal');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => entry.target.classList.add('visible'), i * 60);
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-      reveals.forEach(el => observer.observe(el));
-    </script>
   </body>
 </html>

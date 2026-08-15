@@ -1,11 +1,35 @@
 /* ============================================
-   ASTRO-7 / CREAVIXIT — Global Styles
-   Reliable CSS for Cloudflare Pages
+   ASTRO-7 / CREAVIXIT — Global Styles (Fixed)
+   Tailwind v4 + Design Tokens + Glass System
+   Reliable for Cloudflare Pages
    ============================================ */
 
 @import "tailwindcss";
 
-/* Design Tokens */
+/* Register design tokens so Tailwind utilities work */
+@theme {
+  --color-navy: #050B16;
+  --color-deep-indigo: #0A1222;
+  --color-midnight: #0F172A;
+  --color-gold: #C9A227;
+  --color-gold-light: #E8D48B;
+  --color-gold-dark: #A67C00;
+  --color-emerald: #059669;
+  --color-emerald-soft: #10B981;
+  --color-violet: #7C3AED;
+  --color-slate-400: #94A3B8;
+  --color-slate-300: #CBD5E1;
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-heading: "Outfit", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --radius-md: 18px;
+  --radius-lg: 26px;
+  --radius-xl: 36px;
+}
+
+/* CSS Variables (for custom classes) */
 :root {
   --navy: #050B16;
   --deep-indigo: #0A1222;
@@ -55,6 +79,8 @@ body {
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  margin: 0;
+  min-height: 100vh;
 }
 
 /* Typography helpers */
@@ -109,7 +135,7 @@ body {
 }
 
 .glass-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-8px);
   background: var(--glass-bg-hover);
   border-color: var(--glass-border-hover);
   box-shadow: 0 24px 56px rgba(0, 0, 0, 0.38),
@@ -125,8 +151,8 @@ body {
 }
 
 .glass-gold {
-  border-color: rgba(201, 162, 39, 0.25);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.22), 0 0 30px rgba(201, 162, 39, 0.08);
+  border-color: rgba(201, 162, 39, 0.28);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22), 0 0 30px rgba(201, 162, 39, 0.1);
 }
 
 .glass-light {
@@ -154,10 +180,102 @@ body {
               linear-gradient(180deg, #15120A 0%, var(--deep-indigo) 100%);
 }
 
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 1rem 0;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+.navbar.scrolled {
+  background: rgba(5, 11, 22, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-decoration: none;
+}
+.logo span {
+  color: var(--gold-light);
+}
+
+.nav-links {
+  display: none;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+@media (min-width: 768px) {
+  .nav-links { display: flex; }
+}
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--gold-light);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  color: #0A1222;
+  box-shadow: 0 4px 20px rgba(201, 162, 39, 0.3);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(201, 162, 39, 0.45);
+}
+.btn-outline {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+}
+.btn-outline:hover {
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+
 /* Reveal animation */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(36px);
   transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.visible {
@@ -166,9 +284,14 @@ body {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-12px) rotate(0.5deg); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
+
+/* Utility helpers that must work even if Tailwind fails */
+.bg-navy { background-color: var(--navy); }
+.text-gold-light { color: var(--gold-light); }
+.text-slate-400 { color: var(--text-secondary); }
