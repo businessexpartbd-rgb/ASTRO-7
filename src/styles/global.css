@@ -134,6 +134,24 @@ body {
 .text-primary { color: var(--primary); }
 .text-violet { color: var(--violet); }
 
+/* ========== TYPING EFFECT ========== */
+.typing-text {
+  display: inline;
+}
+
+.typing-cursor {
+  display: inline-block;
+  color: var(--primary);
+  font-weight: 300;
+  margin-left: 2px;
+  animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 /* ========== GLASS SYSTEM (Light) ========== */
 .glass {
   background: var(--glass-bg);

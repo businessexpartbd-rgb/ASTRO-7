@@ -1,15 +1,61 @@
-// UNION GLOBAL — Premium Interactions
+// CREAVIX iT SOLUTION — Premium Interactions
 
 document.addEventListener('DOMContentLoaded', () => {
+  // ========== TYPING EFFECT ==========
+  const typingEl = document.getElementById('typing-text');
+  if (typingEl) {
+    const words = [
+      'Convert & Inspire',
+      'Scale Fast',
+      'Drive Results',
+      'Build Brands'
+    ];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 90;
+
+    function type() {
+      const currentWord = words[wordIndex];
+
+      if (isDeleting) {
+        typingEl.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+        typingSpeed = 45;
+      } else {
+        typingEl.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+        typingSpeed = 90;
+      }
+
+      if (!isDeleting && charIndex === currentWord.length) {
+        // Pause at end of word
+        typingSpeed = 1800;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        typingSpeed = 400;
+      }
+
+      setTimeout(type, typingSpeed);
+    }
+
+    // Start after a short delay
+    setTimeout(type, 600);
+  }
+
   // Navbar scroll effect
   const navbar = document.querySelector('.navbar');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  }
 
   // Reveal on scroll
   const reveals = document.querySelectorAll('.reveal');
@@ -56,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mobile menu (basic)
   const toggle = document.querySelector('.mobile-toggle');
   const navLinks = document.querySelector('.nav-links');
-  if (toggle) {
+  if (toggle && navLinks) {
     toggle.addEventListener('click', () => {
       navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
       navLinks.style.flexDirection = 'column';
