@@ -1,16 +1,7 @@
 ---
 /**
- * GlassCard — Reusable premium glassmorphism card
- * Usage:
- *   <GlassCard>
- *     <h3>Title</h3>
- *     <p>Content</p>
- *   </GlassCard>
- *
- * Props:
- *   - variant: "default" | "strong" | "gold" | "light"
- *   - class: extra Tailwind / custom classes
- *   - hover: boolean (default true)
+ * GlassCard — Premium glassmorphism component
+ * Variants: default | strong | gold | light
  */
 interface Props {
   variant?: 'default' | 'strong' | 'gold' | 'light';
@@ -32,6 +23,6 @@ const variantClass = {
 }[variant];
 ---
 
-<div class:list={[variantClass, hover && 'group', className]}>
+<div class:list={[variantClass, className]}>
   <slot />
 </div>

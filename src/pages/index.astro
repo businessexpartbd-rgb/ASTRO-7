@@ -4,10 +4,12 @@ import GlassCard from '../components/GlassCard.astro';
 ---
 
 <Layout title="Creavixit | Union Global — Connecting Markets with Integrity">
-  <!-- Navbar -->
-  <nav class="navbar scrolled" id="navbar">
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
     <div class="nav-inner">
-      <a href="/" class="logo">CREAVIXIT <span>×</span> UNION GLOBAL</a>
+      <a href="/" class="logo">
+        CREAVIXIT <span>×</span> UNION GLOBAL
+      </a>
       <ul class="nav-links">
         <li><a href="#home" class="active">Home</a></li>
         <li><a href="#services">Services</a></li>
@@ -15,47 +17,69 @@ import GlassCard from '../components/GlassCard.astro';
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <a href="#contact" class="btn btn-primary" style="display:none;" id="nav-cta">Partner With Us</a>
+      <a href="#contact" class="btn btn-primary hidden md:inline-flex text-sm">Partner With Us</a>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section id="home" class="section-navy min-h-screen flex items-center pt-24 pb-20 px-6">
-    <div class="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
+  <!-- ========== HERO ========== -->
+  <section id="home" class="section-navy min-h-screen flex items-center pt-28 pb-24 px-6 relative overflow-hidden">
+    <!-- subtle ambient glow -->
+    <div class="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-violet/10 blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full bg-gold/8 blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto w-full grid lg:grid-cols-2 gap-14 items-center relative z-10">
       <div class="reveal">
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold/30 bg-gold/10 text-gold-light text-sm font-medium mb-6">
-          <span class="w-2 h-2 rounded-full bg-emerald-soft animate-pulse"></span>
+        <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-gold/25 bg-gold/8 text-gold-light text-sm font-medium mb-8">
+          <span class="w-2 h-2 rounded-full bg-emerald-soft animate-pulse-soft"></span>
           International Trade & Business Solutions
         </div>
 
-        <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+        <h1 class="font-heading text-4xl sm:text-5xl lg:text-[3.4rem] font-extrabold leading-[1.12] tracking-tight mb-6">
           Connecting Markets<br />
           with <span class="font-display italic text-gradient">Integrity</span>
         </h1>
 
-        <p class="text-slate-400 text-lg mb-8 max-w-lg leading-relaxed">
-          Premier international trade company bridging continents. Local expertise, global coordination, and transparent partnerships that deliver results.
+        <p class="text-slate-400 text-lg leading-relaxed mb-10 max-w-md">
+          Premier international trade company bridging continents. Local expertise, global coordination, and transparent partnerships that deliver lasting results.
         </p>
 
         <div class="flex flex-wrap gap-4">
           <a href="#contact" class="btn btn-primary">Start a Conversation</a>
           <a href="#services" class="btn btn-outline">Explore Services</a>
         </div>
+
+        <div class="mt-14 flex items-center gap-8 text-sm text-slate-400">
+          <div>
+            <div class="text-2xl font-heading font-bold text-gold-light">40+</div>
+            <div class="mt-0.5">Markets</div>
+          </div>
+          <div class="w-px h-10 bg-white/10"></div>
+          <div>
+            <div class="text-2xl font-heading font-bold text-emerald-soft">4</div>
+            <div class="mt-0.5">Continents</div>
+          </div>
+          <div class="w-px h-10 bg-white/10"></div>
+          <div>
+            <div class="text-2xl font-heading font-bold text-gold-light">24/7</div>
+            <div class="mt-0.5">Coordination</div>
+          </div>
+        </div>
       </div>
 
-      <div class="reveal hidden md:block">
-        <div class="glass-card glass-gold p-8 text-center animate-float">
-          <div class="text-6xl mb-4">🌐</div>
+      <div class="reveal hidden lg:block">
+        <div class="glass-card glass-gold p-9 text-center animate-float">
+          <div class="text-6xl mb-5">🌐</div>
           <h3 class="font-heading text-xl font-semibold mb-2">Global Reach</h3>
-          <p class="text-slate-400 text-sm">Canada · USA · UAE · Asia</p>
-          <div class="mt-6 grid grid-cols-2 gap-4 text-left">
-            <div>
+          <p class="text-slate-400 text-sm mb-7">Canada · USA · UAE · Asia</p>
+
+          <div class="grid grid-cols-2 gap-5 text-left">
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/8">
               <div class="text-2xl font-bold text-gold-light">40+</div>
-              <div class="text-xs text-slate-400">Markets</div>
+              <div class="text-xs text-slate-400 mt-1">Active Markets</div>
             </div>
-            <div>
-              <div class="text-2xl font-bold text-emerald-soft">4</div>
-              <div class="text-xs text-slate-400">Continents</div>
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/8">
+              <div class="text-2xl font-bold text-emerald-soft">12</div>
+              <div class="text-xs text-slate-400 mt-1">Languages</div>
             </div>
           </div>
         </div>
@@ -63,124 +87,147 @@ import GlassCard from '../components/GlassCard.astro';
     </div>
   </section>
 
-  <!-- Services -->
-  <section id="services" class="section-indigo py-24 px-6">
+  <!-- ========== SERVICES ========== -->
+  <section id="services" class="section-indigo py-28 px-6">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16 reveal">
-        <span class="text-gold-light text-sm font-medium tracking-wider uppercase">What We Do</span>
-        <h2 class="font-heading text-3xl md:text-4xl font-bold mt-3 mb-4">End-to-End Trade Solutions</h2>
-        <p class="text-slate-400 max-w-2xl mx-auto">From market entry to logistics and compliance — we handle the complexity so you can focus on growth.</p>
+      <div class="text-center mb-18 reveal">
+        <span class="text-gold-light text-sm font-medium tracking-[0.15em] uppercase">What We Do</span>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold mt-4 mb-5 tracking-tight">End-to-End Trade Solutions</h2>
+        <p class="text-slate-400 max-w-xl mx-auto text-lg leading-relaxed">
+          From market entry to logistics and compliance — we handle the complexity so you can focus on growth.
+        </p>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <GlassCard class="reveal">
-          <div class="text-3xl mb-4">📦</div>
-          <h3 class="font-heading font-semibold text-lg mb-2">Trade & Sourcing</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">Strategic sourcing, supplier management and quality control across Asia and beyond.</p>
+          <div class="text-3xl mb-5">📦</div>
+          <h3 class="font-heading font-semibold text-lg mb-2.5">Trade & Sourcing</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Strategic sourcing, supplier management and rigorous quality control across Asia and key manufacturing hubs.</p>
         </GlassCard>
 
         <GlassCard class="reveal" variant="gold">
-          <div class="text-3xl mb-4">🚢</div>
-          <h3 class="font-heading font-semibold text-lg mb-2">Logistics & Supply Chain</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">End-to-end coordination, freight, warehousing and last-mile solutions.</p>
+          <div class="text-3xl mb-5">🚢</div>
+          <h3 class="font-heading font-semibold text-lg mb-2.5">Logistics & Supply Chain</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">End-to-end coordination covering freight, warehousing, customs and reliable last-mile delivery.</p>
         </GlassCard>
 
         <GlassCard class="reveal">
-          <div class="text-3xl mb-4">🤝</div>
-          <h3 class="font-heading font-semibold text-lg mb-2">Market Entry</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">Local partnerships, regulatory navigation and commercial representation.</p>
+          <div class="text-3xl mb-5">🤝</div>
+          <h3 class="font-heading font-semibold text-lg mb-2.5">Market Entry</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Local partnerships, regulatory navigation and full commercial representation in new markets.</p>
         </GlassCard>
 
         <GlassCard class="reveal">
-          <div class="text-3xl mb-4">📋</div>
-          <h3 class="font-heading font-semibold text-lg mb-2">Compliance & Advisory</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">Trade compliance, documentation and risk management support.</p>
+          <div class="text-3xl mb-5">📋</div>
+          <h3 class="font-heading font-semibold text-lg mb-2.5">Compliance & Advisory</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Trade compliance, documentation excellence and proactive risk management support.</p>
         </GlassCard>
 
         <GlassCard class="reveal">
-          <div class="text-3xl mb-4">🌍</div>
-          <h3 class="font-heading font-semibold text-lg mb-2">Global Network</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">On-ground teams in key hubs ensuring cultural fluency and speed.</p>
+          <div class="text-3xl mb-5">🌍</div>
+          <h3 class="font-heading font-semibold text-lg mb-2.5">Global Network</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">On-ground teams in strategic hubs delivering cultural fluency and real-time responsiveness.</p>
         </GlassCard>
 
         <GlassCard class="reveal" variant="gold">
-          <div class="text-3xl mb-4">💼</div>
-          <h3 class="font-heading font-semibold text-lg mb-2">Strategic Partnerships</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">Long-term alliances built on trust, transparency and shared success.</p>
+          <div class="text-3xl mb-5">💼</div>
+          <h3 class="font-heading font-semibold text-lg mb-2.5">Strategic Partnerships</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Long-term alliances built on trust, radical transparency and shared commercial success.</p>
         </GlassCard>
       </div>
     </div>
   </section>
 
-  <!-- Network -->
-  <section id="network" class="section-navy py-24 px-6">
+  <!-- ========== NETWORK ========== -->
+  <section id="network" class="section-navy py-28 px-6">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16 reveal">
-        <span class="text-gold-light text-sm font-medium tracking-wider uppercase">Our Presence</span>
-        <h2 class="font-heading text-3xl md:text-4xl font-bold mt-3 mb-4">Strategic Hubs Across Continents</h2>
-        <p class="text-slate-400 max-w-2xl mx-auto">Local teams with deep market knowledge, connected through one commercial vision.</p>
+      <div class="text-center mb-18 reveal">
+        <span class="text-gold-light text-sm font-medium tracking-[0.15em] uppercase">Our Presence</span>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold mt-4 mb-5 tracking-tight">Strategic Hubs Across Continents</h2>
+        <p class="text-slate-400 max-w-xl mx-auto text-lg leading-relaxed">
+          Local teams with deep market knowledge, connected through one commercial vision.
+        </p>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
         <GlassCard class="text-center reveal">
-          <div class="text-4xl mb-3">🇨🇦</div>
-          <h3 class="font-heading font-semibold mb-1">Canada</h3>
-          <p class="text-slate-400 text-sm">Vancouver Hub<br/>North American Gateway</p>
+          <div class="text-4xl mb-4">🇨🇦</div>
+          <h3 class="font-heading font-semibold text-lg mb-1.5">Canada</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Vancouver Hub<br/>North American Gateway</p>
         </GlassCard>
+
         <GlassCard class="text-center reveal">
-          <div class="text-4xl mb-3">🇺🇸</div>
-          <h3 class="font-heading font-semibold mb-1">United States</h3>
-          <p class="text-slate-400 text-sm">East & West Coast<br/>Market Entry & Accounts</p>
+          <div class="text-4xl mb-4">🇺🇸</div>
+          <h3 class="font-heading font-semibold text-lg mb-1.5">United States</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">East & West Coast<br/>Market Entry & Accounts</p>
         </GlassCard>
+
         <GlassCard class="text-center reveal" variant="gold">
-          <div class="text-4xl mb-3">🇦🇪</div>
-          <h3 class="font-heading font-semibold mb-1">UAE</h3>
-          <p class="text-slate-400 text-sm">Dubai Hub<br/>MENA Gateway</p>
+          <div class="text-4xl mb-4">🇦🇪</div>
+          <h3 class="font-heading font-semibold text-lg mb-1.5">United Arab Emirates</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Dubai Hub<br/>MENA Gateway</p>
         </GlassCard>
+
         <GlassCard class="text-center reveal">
-          <div class="text-4xl mb-3">🇵🇰</div>
-          <h3 class="font-heading font-semibold mb-1">Asia</h3>
-          <p class="text-slate-400 text-sm">Pakistan & Beyond<br/>Sourcing Network</p>
+          <div class="text-4xl mb-4">🇵🇰</div>
+          <h3 class="font-heading font-semibold text-lg mb-1.5">Asia</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Pakistan & Beyond<br/>Sourcing Network</p>
         </GlassCard>
       </div>
     </div>
   </section>
 
-  <!-- About / Why Us -->
-  <section id="about" class="section-emerald py-24 px-6">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+  <!-- ========== ABOUT ========== -->
+  <section id="about" class="section-emerald py-28 px-6">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
       <div class="reveal">
-        <span class="text-gold-light text-sm font-medium tracking-wider uppercase">Why Creavixit</span>
-        <h2 class="font-heading text-3xl md:text-4xl font-bold mt-3 mb-6">Local Depth.<br/>Global Alignment.</h2>
-        <p class="text-slate-400 mb-6 leading-relaxed">
+        <span class="text-gold-light text-sm font-medium tracking-[0.15em] uppercase">Why Creavixit</span>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold mt-4 mb-7 tracking-tight leading-tight">
+          Local Depth.<br/>Global Alignment.
+        </h2>
+        <p class="text-slate-400 text-lg leading-relaxed mb-8">
           Every hub operates with shared processes and commercial playbooks. This ensures consistency while giving local teams the freedom to act with speed and cultural intelligence.
         </p>
-        <ul class="space-y-3 text-slate-300">
-          <li class="flex items-start gap-3"><span class="text-emerald-soft mt-1">✓</span> Unified systems & performance dashboards</li>
-          <li class="flex items-start gap-3"><span class="text-emerald-soft mt-1">✓</span> Cross-hub commercial coordination</li>
-          <li class="flex items-start gap-3"><span class="text-emerald-soft mt-1">✓</span> Shared compliance frameworks</li>
-          <li class="flex items-start gap-3"><span class="text-emerald-soft mt-1">✓</span> Local language & relationship ownership</li>
+
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3.5 text-slate-300">
+            <span class="text-emerald-soft mt-0.5 text-lg">✓</span>
+            <span>Unified systems & real-time performance dashboards</span>
+          </li>
+          <li class="flex items-start gap-3.5 text-slate-300">
+            <span class="text-emerald-soft mt-0.5 text-lg">✓</span>
+            <span>Weekly cross-hub commercial coordination</span>
+          </li>
+          <li class="flex items-start gap-3.5 text-slate-300">
+            <span class="text-emerald-soft mt-0.5 text-lg">✓</span>
+            <span>Shared pricing and compliance frameworks</span>
+          </li>
+          <li class="flex items-start gap-3.5 text-slate-300">
+            <span class="text-emerald-soft mt-0.5 text-lg">✓</span>
+            <span>Local language & relationship ownership</span>
+          </li>
         </ul>
       </div>
+
       <div class="reveal">
         <GlassCard class="p-10">
-          <h3 class="font-heading text-xl font-semibold mb-6">At a Glance</h3>
+          <h3 class="font-heading text-xl font-semibold mb-8">At a Glance</h3>
           <div class="grid grid-cols-2 gap-8">
             <div>
-              <div class="text-3xl font-bold text-gold-light">40+</div>
-              <div class="text-sm text-slate-400 mt-1">Active Markets</div>
+              <div class="text-4xl font-heading font-bold text-gold-light">40+</div>
+              <div class="text-sm text-slate-400 mt-2">Active Markets</div>
             </div>
             <div>
-              <div class="text-3xl font-bold text-emerald-soft">4</div>
-              <div class="text-sm text-slate-400 mt-1">Continents</div>
+              <div class="text-4xl font-heading font-bold text-emerald-soft">4</div>
+              <div class="text-sm text-slate-400 mt-2">Continents</div>
             </div>
             <div>
-              <div class="text-3xl font-bold text-gold-light">12</div>
-              <div class="text-sm text-slate-400 mt-1">Languages</div>
+              <div class="text-4xl font-heading font-bold text-gold-light">12</div>
+              <div class="text-sm text-slate-400 mt-2">Languages</div>
             </div>
             <div>
-              <div class="text-3xl font-bold text-emerald-soft">24/7</div>
-              <div class="text-sm text-slate-400 mt-1">Coordination</div>
+              <div class="text-4xl font-heading font-bold text-emerald-soft">24/7</div>
+              <div class="text-sm text-slate-400 mt-2">Coordination</div>
             </div>
           </div>
         </GlassCard>
@@ -188,20 +235,26 @@ import GlassCard from '../components/GlassCard.astro';
     </div>
   </section>
 
-  <!-- CTA -->
-  <section id="contact" class="section-gold py-24 px-6">
-    <div class="max-w-3xl mx-auto text-center reveal">
-      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4">Ready to Expand Your Reach?</h2>
-      <p class="text-slate-400 text-lg mb-8">Tell us where you want to grow. We’ll map the right hub and team for your goals.</p>
-      <a href="mailto:hello@creavixit.com" class="btn btn-primary text-base px-8 py-3">Talk to Our Team</a>
+  <!-- ========== CTA ========== -->
+  <section id="contact" class="section-gold py-28 px-6">
+    <div class="max-w-2xl mx-auto text-center reveal">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-5 tracking-tight">Ready to Expand Your Reach?</h2>
+      <p class="text-slate-400 text-lg leading-relaxed mb-10">
+        Tell us where you want to grow. We’ll map the right hub and team for your goals.
+      </p>
+      <a href="mailto:hello@creavixit.com" class="btn btn-primary text-base px-9 py-3.5">Talk to Our Team</a>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="border-t border-white/5 py-10 px-6">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400">
-      <div class="font-heading font-semibold text-white">CREAVIXIT <span class="text-gold-light">×</span> UNION GLOBAL</div>
-      <div>© 2026 Creavixit / Union Global. All rights reserved.</div>
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-white/5 py-12 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5">
+      <div class="font-heading font-semibold text-white tracking-wide">
+        CREAVIXIT <span class="text-gold-light">×</span> UNION GLOBAL
+      </div>
+      <div class="text-sm text-slate-400">
+        © 2026 Creavixit / Union Global. All rights reserved.
+      </div>
     </div>
   </footer>
 
@@ -209,20 +262,22 @@ import GlassCard from '../components/GlassCard.astro';
     // Reveal on scroll
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 50);
+          entry.target.classList.add('visible');
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => observer.observe(el));
 
-    // Navbar scroll effect
+    // Navbar scroll state
     const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 40) nav?.classList.add('scrolled');
+    const onScroll = () => {
+      if (window.scrollY > 30) nav?.classList.add('scrolled');
       else nav?.classList.remove('scrolled');
-    });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   </script>
 </Layout>
