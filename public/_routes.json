@@ -1,5 +1,5 @@
 {
   "version": 1,
   "include": ["/api/*"],
-  "exclude": []
+  "exclude": ["/", "/about", "/contact", "/services/*", "/data/*", "/js/*", "/logo.png", "/config.json"]
 }
