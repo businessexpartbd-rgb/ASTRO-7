@@ -1,0 +1,581 @@
+---
+---
+<section id="reviews" class="section-reviews">
+  <div class="container">
+    <div class="text-center mb-8 reveal">
+      <p class="eyebrow" style="margin:0 auto 1rem">Client Reviews</p>
+      <h2 class="mb-4">Ratings & Reviews</h2>
+      <p style="max-width:36rem;margin:0 auto">Real feedback only — no fake reviews. Sign in with Google to rate and comment in Bangla or English.</p>
+    </div>
+
+    <div class="reviews-layout reveal">
+      <!-- Summary (Play Store style) -->
+      <div class="reviews-summary glass-card">
+        <div class="rating-score">
+          <div class="score-num" id="avg-score">0.0</div>
+          <div class="score-stars" id="avg-stars" aria-hidden="true"></div>
+          <div class="score-count" id="rating-count">0 ratings</div>
+        </div>
+        <div class="rating-bars" id="rating-bars">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <!-- List + form -->
+      <div class="reviews-main">
+        <div class="reviews-list" id="reviews-list">
+          <div class="reviews-empty" id="reviews-empty">
+            <div class="empty-icon">⭐</div>
+            <p><strong>No reviews yet</strong></p>
+            <p class="empty-sub">Be the first to leave an honest rating.</p>
+          </div>
+        </div>
+        <button type="button" class="btn-see-more" id="btn-see-more" hidden>See all reviews</button>
+
+        <div class="review-form-card glass-card" id="review-form-card">
+          <h3 class="form-heading">Write a review</h3>
+          <div id="google-auth-area" class="google-auth-area">
+            <button type="button" id="btn-google" class="btn-google">
+              <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+              Continue with Google
+            </button>
+            <p class="auth-hint" id="auth-hint">Google login required — only real accounts can post.</p>
+          </div>
+
+          <form id="review-form" class="review-form" hidden>
+            <div class="user-chip" id="user-chip"></div>
+            <div class="star-picker" id="star-picker" role="radiogroup" aria-label="Your rating">
+              <button type="button" data-star="1" class="star-btn" aria-label="1 star">★</button>
+              <button type="button" data-star="2" class="star-btn" aria-label="2 stars">★</button>
+              <button type="button" data-star="3" class="star-btn" aria-label="3 stars">★</button>
+              <button type="button" data-star="4" class="star-btn" aria-label="4 stars">★</button>
+              <button type="button" data-star="5" class="star-btn" aria-label="5 stars">★</button>
+            </div>
+            <p class="star-label" id="star-label">Tap to rate</p>
+            <textarea id="review-text" class="review-textarea" rows="3" maxlength="600" placeholder="Write in Bangla or English… আপনার মতামত লিখুন" required></textarea>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="btn-submit-review">Post review</button>
+              <button type="button" class="btn btn-outline" id="btn-signout">Sign out</button>
+            </div>
+            <p class="form-msg" id="form-msg" hidden></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- All reviews modal -->
+  <div class="reviews-modal" id="reviews-modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-panel">
+      <div class="modal-head">
+        <h3 id="modal-title">All reviews</h3>
+        <button type="button" class="modal-close" id="modal-close" aria-label="Close">×</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .section-reviews {
+    padding: 4.5rem 1.25rem;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 0%, rgba(79,70,229,.07), transparent 55%),
+      radial-gradient(ellipse 50% 40% at 90% 100%, rgba(245,158,11,.06), transparent 50%),
+      #F8FAFC;
+  }
+  .reviews-layout {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  @media (min-width: 800px) {
+    .reviews-layout { grid-template-columns: 280px 1fr; align-items: start; gap: 2rem; }
+  }
+
+  .reviews-summary {
+    padding: 1.5rem !important;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .rating-score { text-align: center; }
+  .score-num {
+    font-family: var(--font-h);
+    font-size: 3.25rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text);
+    letter-spacing: -0.03em;
+  }
+  .score-stars {
+    margin: 0.4rem 0 0.35rem;
+    font-size: 1.15rem;
+    letter-spacing: 2px;
+    color: #F59E0B;
+  }
+  .score-count { font-size: 0.85rem; color: var(--text-3); }
+
+  .rating-bars { display: flex; flex-direction: column; gap: 0.4rem; }
+  .bar-row {
+    display: grid;
+    grid-template-columns: 12px 1fr 28px;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-3);
+  }
+  .bar-track {
+    height: 8px;
+    border-radius: 99px;
+    background: rgba(15,23,42,.06);
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #F59E0B, #FBBF24);
+    width: 0%;
+    transition: width 0.6s cubic-bezier(.22,1,.36,1);
+  }
+
+  .reviews-list { display: flex; flex-direction: column; gap: 1rem; }
+  .reviews-empty {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--text-2);
+  }
+  .empty-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .empty-sub { font-size: 0.9rem; color: var(--text-3); margin-top: 0.25rem; }
+
+  .review-item {
+    background: rgba(255,255,255,.75);
+    border: 1px solid rgba(255,255,255,.9);
+    border-radius: 18px;
+    padding: 1.15rem 1.25rem;
+    box-shadow: 0 4px 20px rgba(15,23,42,.04);
+  }
+  .review-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.55rem;
+  }
+  .review-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    object-fit: cover; background: #E2E8F0;
+  }
+  .review-avatar-fallback {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.9rem; color: #fff;
+    background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  }
+  .review-name { font-weight: 600; font-size: 0.95rem; color: var(--text); }
+  .review-meta { font-size: 0.75rem; color: var(--text-3); }
+  .review-stars { color: #F59E0B; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 0.4rem; }
+  .review-body { font-size: 0.9rem; line-height: 1.6; color: var(--text-2); white-space: pre-wrap; }
+
+  .btn-see-more {
+    display: block; width: 100%; margin: 1rem 0 0;
+    padding: 0.75rem; border-radius: 14px;
+    border: 1.5px solid rgba(15,23,42,.1);
+    background: #fff; font-family: var(--font-h); font-weight: 600; font-size: 0.9rem;
+    color: var(--text); cursor: pointer; transition: border-color .2s, color .2s;
+  }
+  .btn-see-more:hover { border-color: var(--primary); color: var(--primary); }
+
+  .review-form-card { margin-top: 1.5rem; padding: 1.5rem !important; }
+  .form-heading { font-size: 1.1rem; margin-bottom: 1rem; }
+  .google-auth-area { text-align: center; }
+  .btn-google {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.65rem;
+    width: 100%; max-width: 280px; padding: 0.75rem 1.25rem;
+    border-radius: 9999px; border: 1px solid rgba(15,23,42,.12);
+    background: #fff; font-family: var(--font-h); font-weight: 600; font-size: 0.9rem;
+    color: var(--text); cursor: pointer; transition: box-shadow .2s, transform .2s;
+  }
+  .btn-google:hover { box-shadow: 0 4px 16px rgba(15,23,42,.1); transform: translateY(-1px); }
+  .auth-hint { font-size: 0.8rem; color: var(--text-3); margin-top: 0.75rem; }
+
+  .user-chip {
+    display: flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 1rem; font-size: 0.9rem; font-weight: 500;
+  }
+  .user-chip img { width: 32px; height: 32px; border-radius: 50%; }
+
+  .star-picker { display: flex; gap: 0.35rem; margin-bottom: 0.35rem; }
+  .star-btn {
+    background: none; border: none; cursor: pointer;
+    font-size: 1.75rem; color: #CBD5E1; line-height: 1;
+    transition: color .15s, transform .15s; padding: 0.15rem;
+  }
+  .star-btn:hover, .star-btn.on { color: #F59E0B; }
+  .star-btn:active { transform: scale(1.15); }
+  .star-label { font-size: 0.8rem; color: var(--text-3); margin-bottom: 0.85rem; }
+
+  .review-textarea {
+    width: 100%; padding: 0.85rem 1rem; border-radius: 14px;
+    border: 1.5px solid rgba(15,23,42,.1); background: #fff;
+    font-family: var(--font-b); font-size: 0.95rem; resize: vertical;
+    margin-bottom: 1rem; outline: none; transition: border-color .2s;
+  }
+  .review-textarea:focus { border-color: var(--primary); }
+  .form-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+  .form-msg { font-size: 0.85rem; margin-top: 0.75rem; color: var(--emerald); }
+  .form-msg.err { color: var(--rose); }
+
+  .reviews-modal {
+    position: fixed; inset: 0; z-index: 10000;
+    display: flex; align-items: flex-end; justify-content: center;
+  }
+  @media (min-width: 640px) {
+    .reviews-modal { align-items: center; }
+  }
+  .modal-backdrop {
+    position: absolute; inset: 0; background: rgba(15,23,42,.45);
+    backdrop-filter: blur(4px);
+  }
+  .modal-panel {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 520px; max-height: 85vh;
+    background: #fff; border-radius: 24px 24px 0 0;
+    box-shadow: 0 -8px 40px rgba(15,23,42,.15);
+    display: flex; flex-direction: column;
+    animation: modal-up .35s cubic-bezier(.22,1,.36,1);
+  }
+  @media (min-width: 640px) {
+    .modal-panel { border-radius: 24px; max-height: 80vh; }
+  }
+  @keyframes modal-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .modal-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.15rem 1.35rem; border-bottom: 1px solid rgba(15,23,42,.06);
+  }
+  .modal-head h3 { font-size: 1.1rem; margin: 0; }
+  .modal-close {
+    width: 36px; height: 36px; border: none; border-radius: 10px;
+    background: rgba(15,23,42,.05); font-size: 1.4rem; cursor: pointer; line-height: 1;
+  }
+  .modal-body {
+    padding: 1.15rem 1.35rem 1.5rem; overflow-y: auto;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+</style>
+
+<script is:inline>
+(function () {
+  var STORAGE_KEY = 'creavix_reviews_v1';
+  var USER_KEY = 'creavix_review_user';
+  /* Set your Google OAuth Web Client ID here (Google Cloud Console → Credentials) */
+  var GOOGLE_CLIENT_ID = '';
+
+  var starLabels = ['', 'Poor', 'Fair', 'Good', 'Very good', 'Excellent'];
+  var reviews = [];
+  var selectedStars = 0;
+  var currentUser = null;
+
+  function starsHtml(n) {
+    var s = '';
+    for (var i = 1; i <= 5; i++) s += i <= n ? '★' : '☆';
+    return s;
+  }
+
+  function loadLocal() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) { return []; }
+  }
+
+  function saveLocal(list) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch (e) {}
+  }
+
+  function loadUser() {
+    try {
+      var raw = localStorage.getItem(USER_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  }
+
+  function saveUser(u) {
+    try {
+      if (u) localStorage.setItem(USER_KEY, JSON.stringify(u));
+      else localStorage.removeItem(USER_KEY);
+    } catch (e) {}
+  }
+
+  function mergeReviews(serverList, localList) {
+    var map = {};
+    (serverList || []).concat(localList || []).forEach(function (r) {
+      if (!r || !r.id) return;
+      map[r.id] = r;
+    });
+    return Object.keys(map).map(function (k) { return map[k]; })
+      .sort(function (a, b) { return new Date(b.createdAt) - new Date(a.createdAt); });
+  }
+
+  function stats(list) {
+    var counts = [0, 0, 0, 0, 0, 0];
+    var sum = 0;
+    list.forEach(function (r) {
+      var s = Math.min(5, Math.max(1, parseInt(r.stars, 10) || 0));
+      counts[s]++;
+      sum += s;
+    });
+    var n = list.length;
+    return { counts: counts, total: n, avg: n ? (sum / n) : 0 };
+  }
+
+  function renderSummary(list) {
+    var st = stats(list);
+    var avgEl = document.getElementById('avg-score');
+    var starsEl = document.getElementById('avg-stars');
+    var countEl = document.getElementById('rating-count');
+    var barsEl = document.getElementById('rating-bars');
+    if (avgEl) avgEl.textContent = st.total ? st.avg.toFixed(1) : '0.0';
+    if (starsEl) starsEl.textContent = starsHtml(Math.round(st.avg));
+    if (countEl) countEl.textContent = st.total + (st.total === 1 ? ' rating' : ' ratings');
+    if (!barsEl) return;
+    var html = '';
+    for (var i = 5; i >= 1; i--) {
+      var pct = st.total ? Math.round((st.counts[i] / st.total) * 100) : 0;
+      html += '<div class="bar-row"><span>' + i + '</span><div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"></div></div><span>' + pct + '%</span></div>';
+    }
+    barsEl.innerHTML = html;
+  }
+
+  function reviewCard(r) {
+    var initial = (r.name || 'U').charAt(0).toUpperCase();
+    var avatar = r.picture
+      ? '<img class="review-avatar" src="' + r.picture + '" alt="" width="40" height="40" />'
+      : '<div class="review-avatar-fallback">' + initial + '</div>';
+    var date = r.createdAt ? new Date(r.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) : '';
+    return (
+      '<article class="review-item">' +
+        '<div class="review-top">' + avatar +
+          '<div><div class="review-name">' + escapeHtml(r.name || 'User') + '</div>' +
+          '<div class="review-meta">' + date + '</div></div></div>' +
+        '<div class="review-stars">' + starsHtml(r.stars) + '</div>' +
+        '<div class="review-body">' + escapeHtml(r.text || '') + '</div>' +
+      '</article>'
+    );
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function renderList(list) {
+    var listEl = document.getElementById('reviews-list');
+    var emptyEl = document.getElementById('reviews-empty');
+    var moreBtn = document.getElementById('btn-see-more');
+    if (!listEl) return;
+
+    var visible = list.slice(0, 3);
+    if (list.length === 0) {
+      listEl.innerHTML = '';
+      if (emptyEl) {
+        listEl.appendChild(emptyEl);
+        emptyEl.hidden = false;
+      }
+      if (moreBtn) moreBtn.hidden = true;
+      return;
+    }
+
+    if (emptyEl) emptyEl.hidden = true;
+    listEl.innerHTML = visible.map(reviewCard).join('');
+    if (moreBtn) {
+      moreBtn.hidden = list.length <= 3;
+      moreBtn.textContent = 'See all ' + list.length + ' reviews';
+    }
+  }
+
+  function renderModal(list) {
+    var body = document.getElementById('modal-body');
+    if (body) body.innerHTML = list.map(reviewCard).join('') || '<p>No reviews</p>';
+  }
+
+  function refresh() {
+    renderSummary(reviews);
+    renderList(reviews);
+    renderModal(reviews);
+  }
+
+  function showAuthUI() {
+    var form = document.getElementById('review-form');
+    var auth = document.getElementById('google-auth-area');
+    var chip = document.getElementById('user-chip');
+    if (currentUser) {
+      if (auth) auth.hidden = true;
+      if (form) form.hidden = false;
+      if (chip) {
+        var img = currentUser.picture
+          ? '<img src="' + currentUser.picture + '" alt="" width="32" height="32" />'
+          : '';
+        chip.innerHTML = img + '<span>' + escapeHtml(currentUser.name || currentUser.email) + '</span>';
+      }
+    } else {
+      if (auth) auth.hidden = false;
+      if (form) form.hidden = true;
+    }
+  }
+
+  function setStars(n) {
+    selectedStars = n;
+    document.querySelectorAll('#star-picker .star-btn').forEach(function (btn) {
+      var v = parseInt(btn.getAttribute('data-star'), 10);
+      btn.classList.toggle('on', v <= n);
+    });
+    var label = document.getElementById('star-label');
+    if (label) label.textContent = n ? (n + ' · ' + starLabels[n]) : 'Tap to rate';
+  }
+
+  function uid() {
+    return 'r_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+  }
+
+  /* Google Identity Services */
+  function initGoogle() {
+    var btn = document.getElementById('btn-google');
+    var hint = document.getElementById('auth-hint');
+
+    if (!GOOGLE_CLIENT_ID) {
+      if (hint) {
+        hint.innerHTML = 'Google Client ID not set yet. <button type="button" id="btn-dev-login" class="btn-google" style="margin-top:0.75rem;max-width:100%">Continue as guest (temp)</button><br><span style="display:block;margin-top:0.5rem;font-size:0.75rem">Production: add Google OAuth Client ID for real Google login.</span>';
+      }
+      document.getElementById('btn-dev-login') && document.getElementById('btn-dev-login').addEventListener('click', function () {
+        currentUser = { id: 'guest_' + Date.now(), name: 'Guest User', email: '', picture: '' };
+        saveUser(currentUser);
+        showAuthUI();
+      });
+      return;
+    }
+
+    var s = document.createElement('script');
+    s.src = 'https://accounts.google.com/gsi/client';
+    s.async = true;
+    s.onload = function () {
+      if (!window.google || !google.accounts) return;
+      google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: function (resp) {
+          try {
+            var payload = JSON.parse(atob(resp.credential.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+            currentUser = {
+              id: payload.sub,
+              name: payload.name || payload.email,
+              email: payload.email || '',
+              picture: payload.picture || ''
+            };
+            saveUser(currentUser);
+            showAuthUI();
+          } catch (e) {
+            alert('Google sign-in failed. Please try again.');
+          }
+        }
+      });
+      if (btn) {
+        btn.addEventListener('click', function () {
+          google.accounts.id.prompt();
+        });
+      }
+    };
+    document.head.appendChild(s);
+  }
+
+  async function loadServer() {
+    try {
+      var res = await fetch('/data/reviews.json?t=' + Date.now(), { cache: 'no-store' });
+      if (!res.ok) return [];
+      var data = await res.json();
+      return Array.isArray(data) ? data : [];
+    } catch (e) { return []; }
+  }
+
+  async function boot() {
+    currentUser = loadUser();
+    var server = await loadServer();
+    var local = loadLocal();
+    /* Only keep local reviews that are not fake seeds — merge real data */
+    reviews = mergeReviews(server, local);
+    refresh();
+    showAuthUI();
+    initGoogle();
+  }
+
+  document.getElementById('star-picker') && document.getElementById('star-picker').addEventListener('click', function (e) {
+    var t = e.target.closest('.star-btn');
+    if (!t) return;
+    setStars(parseInt(t.getAttribute('data-star'), 10));
+  });
+
+  document.getElementById('review-form') && document.getElementById('review-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var msg = document.getElementById('form-msg');
+    if (!currentUser) return;
+    if (!selectedStars) {
+      if (msg) { msg.hidden = false; msg.className = 'form-msg err'; msg.textContent = 'Please select a star rating.'; }
+      return;
+    }
+    var text = (document.getElementById('review-text').value || '').trim();
+    if (text.length < 3) {
+      if (msg) { msg.hidden = false; msg.className = 'form-msg err'; msg.textContent = 'Please write a short comment.'; }
+      return;
+    }
+    /* One review per Google account (update if exists) */
+    reviews = reviews.filter(function (r) { return r.userId !== currentUser.id; });
+    var entry = {
+      id: uid(),
+      userId: currentUser.id,
+      name: currentUser.name,
+      email: currentUser.email || '',
+      picture: currentUser.picture || '',
+      stars: selectedStars,
+      text: text,
+      createdAt: new Date().toISOString()
+    };
+    reviews.unshift(entry);
+    saveLocal(reviews);
+    refresh();
+    document.getElementById('review-text').value = '';
+    setStars(0);
+    if (msg) { msg.hidden = false; msg.className = 'form-msg'; msg.textContent = 'Review posted. Thank you!'; }
+  });
+
+  document.getElementById('btn-signout') && document.getElementById('btn-signout').addEventListener('click', function () {
+    currentUser = null;
+    saveUser(null);
+    showAuthUI();
+  });
+
+  var modal = document.getElementById('reviews-modal');
+  function openModal() {
+    if (!modal) return;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    if (!modal) return;
+    modal.hidden = true;
+    document.body.style.overflow = '';
+  }
+  document.getElementById('btn-see-more') && document.getElementById('btn-see-more').addEventListener('click', openModal);
+  document.getElementById('modal-close') && document.getElementById('modal-close').addEventListener('click', closeModal);
+  document.getElementById('modal-backdrop') && document.getElementById('modal-backdrop').addEventListener('click', closeModal);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>
