@@ -1,6 +1,5 @@
 ---
-// CSS Preprocessor: SCSS
-import '../styles/main.scss';
+import '../styles/global.css';
 
 interface Props {
   title?: string;
@@ -8,7 +7,7 @@ interface Props {
 }
 
 const { 
-  title = 'Union Global | Connecting Markets with Integrity & Innovation',
+  title = 'Creavixit | Connecting Markets with Integrity & Innovation',
   description = 'Premier international trade and business solutions company.'
 } = Astro.props;
 ---
@@ -33,7 +32,6 @@ const {
     <slot />
     
     <script>
-      // Reveal on scroll
       const reveals = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry, i) => {
