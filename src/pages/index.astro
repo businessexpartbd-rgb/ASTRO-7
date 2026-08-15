@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GlassCard from '../components/GlassCard.astro';
+---
+
+<Layout title="Creavixit | Union Global">
+  <section class="min-h-screen flex items-center justify-center section-navy px-6">
+    <div class="text-center max-w-3xl">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/25 text-gold-light text-sm font-medium mb-8">
+        <span class="w-2 h-2 rounded-full bg-emerald-soft animate-pulse"></span>
+        Successfully Deployed
+      </div>
+
+      <h1 class="font-heading text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+        Welcome to<br />
+        <span class="font-display italic text-gold-light">Creavixit</span>
+      </h1>
+
+      <p class="text-slate-400 text-lg mb-10 max-w-xl mx-auto">
+        Your Astro + Cloudflare Pages site is now live. Glassmorphism, Tailwind and SCSS system are ready.
+      </p>
+
+      <div class="grid sm:grid-cols-3 gap-5 mt-12">
+        <GlassCard class="text-center">
+          <div class="text-3xl mb-3">⚡</div>
+          <h3 class="font-heading font-semibold mb-1">Fast</h3>
+          <p class="text-slate-400 text-sm">Cloudflare Edge</p>
+        </GlassCard>
+        <GlassCard class="text-center" variant="gold">
+          <div class="text-3xl mb-3">✨</div>
+          <h3 class="font-heading font-semibold mb-1">Glass</h3>
+          <p class="text-slate-400 text-sm">Premium UI</p>
+        </GlassCard>
+        <GlassCard class="text-center">
+          <div class="text-3xl mb-3">🚀</div>
+          <h3 class="font-heading font-semibold mb-1">Astro</h3>
+          <p class="text-slate-400 text-sm">Modern Stack</p>
+        </GlassCard>
+      </div>
+    </div>
+  </section>
+</Layout>
