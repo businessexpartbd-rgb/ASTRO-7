@@ -14,7 +14,15 @@ const {
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Mobile: zoom locked. Desktop / desktop-mode (≥768px): zoom allowed. Updated by /js/perf.js -->
+    <meta
+      id="viewport-meta"
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#F8FAFC" />
+    <meta name="color-scheme" content="light" />
+    <meta name="format-detection" content="telephone=no" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
@@ -22,10 +30,16 @@ const {
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    </noscript>
     <link rel="icon" type="image/png" href="/logo.png" />
+    <script src="/js/perf.js" defer></script>
     <style is:global>
       :root {
         --primary: #4F46E5; --primary-light: #818CF8; --violet: #7C3AED; --accent: #06B6D4;
@@ -34,10 +48,54 @@ const {
         --radius: 24px; --font-h: "Outfit", system-ui, sans-serif; --font-b: "Inter", system-ui, sans-serif;
       }
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      html { scroll-behavior: smooth; }
-      body { font-family: var(--font-b); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; line-height: 1.6; overflow-x: hidden; }
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+        touch-action: manipulation;
+      }
+      body {
+        font-family: var(--font-b);
+        background: var(--bg);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        line-height: 1.6;
+        overflow-x: hidden;
+        touch-action: manipulation;
+        overscroll-behavior-y: none;
+      }
+      a, button, input, textarea, select { touch-action: manipulation; }
       a { color: inherit; text-decoration: none; }
-      img { max-width: 100%; display: block; }
+      img { max-width: 100%; height: auto; display: block; }
+
+      /* Crash / jank prevention: cut motion when OS asks */
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* Mobile: lighter GPU (blur is expensive, causes freezes on low-end) */
+      @media (max-width: 767px) {
+        .orb { filter: blur(40px) !important; opacity: 0.32 !important; }
+        .navbar.scrolled {
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+        }
+        .glass-card {
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+        }
+        .nav-panel {
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+        }
+      }
+
       .text-gradient { background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #06B6D4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
       .text-primary { color: var(--primary); }
       .text-violet { color: var(--violet); }
@@ -80,6 +138,7 @@ const {
         display: flex; flex-direction: column; gap: 1.25rem;
         padding: 5.5rem 1.75rem 2.5rem;
         height: 100%; overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
         transform: translateY(18px) scale(.98); opacity: 0;
         transition: transform .45s cubic-bezier(.22,1,.36,1), opacity .4s ease;
       }
@@ -193,8 +252,8 @@ const {
       .glass-card:hover { transform: translateY(-8px); box-shadow: 0 20px 48px rgba(15,23,42,.1); }
 
       .hero-premium { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 7rem 1.5rem 5rem; overflow: hidden; background: #F8FAFC; }
-      .hero-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-      .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5; animation: orb-float 18s ease-in-out infinite; }
+      .hero-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; contain: strict; }
+      .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5; animation: orb-float 18s ease-in-out infinite; will-change: transform; }
       .orb-1 { width: 420px; height: 420px; background: radial-gradient(circle, rgba(79,70,229,.4) 0%, transparent 70%); top: -10%; left: -8%; }
       .orb-2 { width: 380px; height: 380px; background: radial-gradient(circle, rgba(6,182,212,.35) 0%, transparent 70%); bottom: -5%; right: -5%; animation-delay: -6s; }
       .orb-3 { width: 280px; height: 280px; background: radial-gradient(circle, rgba(124,58,237,.32) 0%, transparent 70%); top: 40%; left: 50%; animation-delay: -12s; }
@@ -266,7 +325,7 @@ const {
       .footer-links { display: flex; gap: 1.25rem; }
       .footer-links a:hover { color: #fff; }
 
-      .reveal { opacity: 0; transform: translateY(28px); transition: all .8s cubic-bezier(.16,1,.3,1); }
+      .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
       .reveal.visible { opacity: 1; transform: translateY(0); }
       @media (max-width: 899px) {
         .hero-premium { padding: 5.5rem 1.25rem 3.5rem; min-height: auto; }
@@ -280,33 +339,88 @@ const {
     <slot />
     <CookieBanner />
     <script is:inline>
-      (function() {
-        const reveals = document.querySelectorAll('.reveal');
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-        }, { threshold: 0.12 });
-        reveals.forEach(el => io.observe(el));
-        const nav = document.getElementById('navbar');
-        const onScroll = () => { if (window.scrollY > 20) nav?.classList.add('scrolled'); else nav?.classList.remove('scrolled'); };
-        window.addEventListener('scroll', onScroll, { passive: true });
-        onScroll();
-        function startTyping() {
-          const typingEl = document.getElementById('typing-text');
-          if (!typingEl) return;
-          const words = ['Convert & Inspire', 'Scale Fast', 'Drive Results', 'Build Brands'];
-          let wordIndex = 0, charIndex = 0, isDeleting = false, typingSpeed = 90;
-          function type() {
-            const currentWord = words[wordIndex];
-            if (isDeleting) { typingEl.textContent = currentWord.substring(0, charIndex - 1); charIndex--; typingSpeed = 45; }
-            else { typingEl.textContent = currentWord.substring(0, charIndex + 1); charIndex++; typingSpeed = 90; }
-            if (!isDeleting && charIndex === currentWord.length) { typingSpeed = 1800; isDeleting = true; }
-            else if (isDeleting && charIndex === 0) { isDeleting = false; wordIndex = (wordIndex + 1) % words.length; typingSpeed = 400; }
-            setTimeout(type, typingSpeed);
+      (function () {
+        'use strict';
+        try {
+          var reveals = document.querySelectorAll('.reveal');
+          if (reveals.length && 'IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (entries) {
+              entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                  e.target.classList.add('visible');
+                  io.unobserve(e.target);
+                }
+              });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            reveals.forEach(function (el) { io.observe(el); });
+          } else {
+            reveals.forEach(function (el) { el.classList.add('visible'); });
           }
-          type();
+
+          var nav = document.getElementById('navbar');
+          var ticking = false;
+          function onScroll() {
+            if (!nav) return;
+            if (window.scrollY > 20) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+            ticking = false;
+          }
+          window.addEventListener('scroll', function () {
+            if (!ticking) {
+              ticking = true;
+              requestAnimationFrame(onScroll);
+            }
+          }, { passive: true });
+          onScroll();
+
+          function startTyping() {
+            try {
+              var typingEl = document.getElementById('typing-text');
+              if (!typingEl) return;
+              if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                typingEl.textContent = 'Convert & Inspire';
+                return;
+              }
+              var words = ['Convert & Inspire', 'Scale Fast', 'Drive Results', 'Build Brands'];
+              var wordIndex = 0, charIndex = 0, isDeleting = false, typingSpeed = 90;
+              var timer = null;
+              function type() {
+                var currentWord = words[wordIndex];
+                if (isDeleting) {
+                  typingEl.textContent = currentWord.substring(0, charIndex - 1);
+                  charIndex--;
+                  typingSpeed = 45;
+                } else {
+                  typingEl.textContent = currentWord.substring(0, charIndex + 1);
+                  charIndex++;
+                  typingSpeed = 90;
+                }
+                if (!isDeleting && charIndex === currentWord.length) {
+                  typingSpeed = 1800;
+                  isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                  isDeleting = false;
+                  wordIndex = (wordIndex + 1) % words.length;
+                  typingSpeed = 400;
+                }
+                timer = setTimeout(type, typingSpeed);
+              }
+              type();
+              document.addEventListener('visibilitychange', function () {
+                if (document.hidden && timer) {
+                  clearTimeout(timer);
+                  timer = null;
+                } else if (!document.hidden && !timer) {
+                  type();
+                }
+              });
+            } catch (e) {}
+          }
+          if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startTyping);
+          else startTyping();
+        } catch (err) {
+          /* never block or crash the page */
         }
-        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startTyping);
-        else startTyping();
       })();
     </script>
   </body>
