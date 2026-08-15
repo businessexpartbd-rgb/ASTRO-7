@@ -1,22 +1,11 @@
 ---
 interface Props {
-  variant?: 'default' | 'strong' | 'gold' | 'light';
   class?: string;
 }
 
-const { 
-  variant = 'default', 
-  class: className = ''
-} = Astro.props;
-
-const variantClass = {
-  default: 'glass-card',
-  strong: 'glass-card glass-strong',
-  gold: 'glass-card glass-gold',
-  light: 'glass-card glass-light'
-}[variant];
+const { class: className = '' } = Astro.props;
 ---
 
-<div class:list={[variantClass, className]}>
+<div class:list={['glass-card', className]}>
   <slot />
 </div>

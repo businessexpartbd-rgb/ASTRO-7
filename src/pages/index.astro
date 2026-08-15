@@ -3,42 +3,239 @@ import Layout from '../layouts/Layout.astro';
 import GlassCard from '../components/GlassCard.astro';
 ---
 
-<Layout title="Creavixit | Union Global">
-  <section class="min-h-screen flex items-center justify-center section-navy px-6">
-    <div class="text-center max-w-3xl">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/25 text-gold-light text-sm font-medium mb-8">
-        <span class="w-2 h-2 rounded-full bg-emerald-soft animate-pulse"></span>
-        Successfully Deployed
+<Layout title="Creavix iT Solution — Creative Digital & AI Services">
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="logo">
+        Creavix <span>iT</span> Solution
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-primary hidden md:inline-flex text-sm">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="section-indigo min-h-screen flex items-center pt-28 pb-20 px-6 relative overflow-hidden">
+    <div class="absolute top-20 right-10 w-72 h-72 rounded-full bg-primary/10 blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-20 left-10 w-64 h-64 rounded-full bg-accent/10 blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto w-full grid lg:grid-cols-2 gap-14 items-center relative z-10">
+      <div class="reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-primary/15 text-primary text-sm font-medium mb-7 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-emerald animate-pulse-soft"></span>
+          Creative Digital & AI Solutions
+        </div>
+
+        <h1 class="font-heading text-4xl sm:text-5xl lg:text-[3.25rem] font-extrabold leading-[1.15] tracking-tight mb-6 text-slate-900">
+          We Build Digital<br />
+          Experiences That<br />
+          <span class="text-gradient">Convert & Inspire</span>
+        </h1>
+
+        <p class="text-slate-600 text-lg leading-relaxed mb-9 max-w-md">
+          From AI-powered video marketing to high-performance web & app development — Creavix iT Solution delivers premium digital services that drive real results.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="#services" class="btn btn-primary">Explore Services</a>
+          <a href="#contact" class="btn btn-outline">Talk to Us</a>
+        </div>
       </div>
 
-      <h1 class="font-heading text-5xl md:text-6xl font-extrabold leading-tight mb-6">
-        Welcome to<br />
-        <span class="font-display italic text-gold-light">Creavixit</span>
-      </h1>
+      <div class="reveal hidden lg:block">
+        <div class="glass-card glass-float p-8 text-center">
+          <div class="text-5xl mb-4">🚀</div>
+          <h3 class="font-heading text-xl font-semibold text-slate-800 mb-2">Premium Digital Agency</h3>
+          <p class="text-slate-500 text-sm mb-6">Video · AI · Web · App · Marketing</p>
+          <div class="grid grid-cols-2 gap-4 text-left">
+            <div class="p-3.5 rounded-2xl bg-white/70 border border-slate-200/60">
+              <div class="text-xl font-bold text-primary">100+</div>
+              <div class="text-xs text-slate-500 mt-0.5">Projects Delivered</div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-white/70 border border-slate-200/60">
+              <div class="text-xl font-bold text-violet">24/7</div>
+              <div class="text-xs text-slate-500 mt-0.5">Support Ready</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <p class="text-slate-400 text-lg mb-10 max-w-xl mx-auto">
-        Your Astro + Cloudflare Pages site is now live. Glassmorphism, Tailwind and SCSS system are ready.
-      </p>
+  <!-- SERVICES -->
+  <section id="services" class="section-soft py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 reveal">
+        <span class="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold mt-3 mb-4 text-slate-900 tracking-tight">
+          Everything You Need to Grow Digitally
+        </h2>
+        <p class="text-slate-500 max-w-xl mx-auto text-lg">
+          High-quality creative and technical services designed for modern businesses.
+        </p>
+      </div>
 
-      <div class="grid sm:grid-cols-3 gap-5 mt-12">
-        <GlassCard class="text-center">
-          <div class="text-3xl mb-3">⚡</div>
-          <h3 class="font-heading font-semibold mb-1">Fast</h3>
-          <p class="text-slate-400 text-sm">Cloudflare Edge</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Video Editing -->
+        <GlassCard class="reveal">
+          <div class="w-12 h-12 rounded-2xl bg-rose/10 flex items-center justify-center text-2xl mb-4">🎬</div>
+          <h3 class="font-heading font-semibold text-lg text-slate-800 mb-2">Video Editing</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Professional video editing for ads, social media, YouTube and brand storytelling.</p>
         </GlassCard>
 
-        <GlassCard class="text-center" variant="gold">
-          <div class="text-3xl mb-3">✨</div>
-          <h3 class="font-heading font-semibold mb-1">Glass</h3>
-          <p class="text-slate-400 text-sm">Premium UI</p>
+        <!-- AI Video Marketing -->
+        <GlassCard class="reveal">
+          <div class="w-12 h-12 rounded-2xl bg-violet/10 flex items-center justify-center text-2xl mb-4">🤖</div>
+          <h3 class="font-heading font-semibold text-lg text-slate-800 mb-2">AI Video Marketing</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">AI-powered video content creation and marketing campaigns that scale fast.</p>
         </GlassCard>
 
-        <GlassCard class="text-center">
-          <div class="text-3xl mb-3">🚀</div>
-          <h3 class="font-heading font-semibold mb-1">Astro</h3>
-          <p class="text-slate-400 text-sm">Modern Stack</p>
+        <!-- Authentic Human-like -->
+        <GlassCard class="reveal">
+          <div class="w-12 h-12 rounded-2xl bg-amber/10 flex items-center justify-center text-2xl mb-4">👤</div>
+          <h3 class="font-heading font-semibold text-lg text-slate-800 mb-2">Authentic Human-like Content</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Realistic AI human & product visuals that feel genuine and conversion-focused.</p>
+        </GlassCard>
+
+        <!-- Web Development -->
+        <GlassCard class="reveal">
+          <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-2xl mb-4">💻</div>
+          <h3 class="font-heading font-semibold text-lg text-slate-800 mb-2">Web Development</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Modern, fast and SEO-friendly websites built with the latest technologies.</p>
+        </GlassCard>
+
+        <!-- App Build -->
+        <GlassCard class="reveal">
+          <div class="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-2xl mb-4">📱</div>
+          <h3 class="font-heading font-semibold text-lg text-slate-800 mb-2">Application Build</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Custom web & mobile applications designed for performance and scalability.</p>
+        </GlassCard>
+
+        <!-- Authentication -->
+        <GlassCard class="reveal">
+          <div class="w-12 h-12 rounded-2xl bg-emerald/10 flex items-center justify-center text-2xl mb-4">🔐</div>
+          <h3 class="font-heading font-semibold text-lg text-slate-800 mb-2">Authentication Systems</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Secure login, signup, role-based access and authentication solutions.</p>
+        </GlassCard>
+
+        <!-- Facebook Page Services -->
+        <GlassCard class="reveal">
+          <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-2xl mb-4">📘</div>
+          <h3 class="font-heading font-semibold text-lg text-slate-800 mb-2">Facebook Page Services</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Page setup, Business Page creation and Blue Verification support.</p>
+        </GlassCard>
+
+        <!-- Boosting -->
+        <GlassCard class="reveal">
+          <div class="w-12 h-12 rounded-2xl bg-rose/10 flex items-center justify-center text-2xl mb-4">📈</div>
+          <h3 class="font-heading font-semibold text-lg text-slate-800 mb-2">Boosting Service</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Targeted Facebook & Instagram boosting to reach the right audience.</p>
+        </GlassCard>
+
+        <!-- Campaign -->
+        <GlassCard class="reveal">
+          <div class="w-12 h-12 rounded-2xl bg-violet/10 flex items-center justify-center text-2xl mb-4">🎯</div>
+          <h3 class="font-heading font-semibold text-lg text-slate-800 mb-2">Campaign Service</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Full campaign planning, creative strategy and performance management.</p>
         </GlassCard>
       </div>
     </div>
   </section>
+
+  <!-- ABOUT / WHY US -->
+  <section id="about" class="section-violet py-24 px-6">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
+      <div class="reveal">
+        <span class="text-primary text-sm font-semibold tracking-wider uppercase">Why Creavix iT</span>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold mt-3 mb-6 text-slate-900 tracking-tight leading-tight">
+          Creative Power Meets<br />Technical Excellence
+        </h2>
+        <p class="text-slate-600 text-lg leading-relaxed mb-8">
+          We combine high-end creative production with solid engineering. Whether you need AI video, a custom web app, or full Facebook marketing — we deliver with quality and speed.
+        </p>
+        <ul class="space-y-3.5 text-slate-600">
+          <li class="flex items-start gap-3"><span class="text-primary font-bold">✓</span> Premium quality creative output</li>
+          <li class="flex items-start gap-3"><span class="text-primary font-bold">✓</span> Modern tech stack & fast delivery</li>
+          <li class="flex items-start gap-3"><span class="text-primary font-bold">✓</span> Transparent process & clear communication</li>
+          <li class="flex items-start gap-3"><span class="text-primary font-bold">✓</span> Results-focused approach</li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <div class="glass-card p-9">
+          <h3 class="font-heading text-xl font-semibold text-slate-800 mb-7">What We Deliver</h3>
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <div class="text-3xl font-heading font-bold text-primary">Video</div>
+              <div class="text-sm text-slate-500 mt-1">Editing & AI Marketing</div>
+            </div>
+            <div>
+              <div class="text-3xl font-heading font-bold text-violet">Web</div>
+              <div class="text-sm text-slate-500 mt-1">& App Development</div>
+            </div>
+            <div>
+              <div class="text-3xl font-heading font-bold text-accent">Auth</div>
+              <div class="text-sm text-slate-500 mt-1">Secure Systems</div>
+            </div>
+            <div>
+              <div class="text-3xl font-heading font-bold text-rose">Ads</div>
+              <div class="text-sm text-slate-500 mt-1">Boost & Campaigns</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="section-warm py-24 px-6">
+    <div class="max-w-2xl mx-auto text-center reveal">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-5 text-slate-900 tracking-tight">
+        Ready to Elevate Your Digital Presence?
+      </h2>
+      <p class="text-slate-600 text-lg leading-relaxed mb-9">
+        Tell us about your project. We’ll recommend the best solution and get started quickly.
+      </p>
+      <a href="mailto:hello@creavixit.com" class="btn btn-primary text-base px-8 py-3.5">Contact Creavix iT</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200/80 py-10 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="font-heading font-semibold text-slate-800">
+        Creavix <span class="text-primary">iT</span> Solution
+      </div>
+      <div class="text-sm text-slate-500">
+        © 2026 Creavix iT Solution. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    const nav = document.getElementById('navbar');
+    const onScroll = () => {
+      if (window.scrollY > 20) nav?.classList.add('scrolled');
+      else nav?.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  </script>
 </Layout>
