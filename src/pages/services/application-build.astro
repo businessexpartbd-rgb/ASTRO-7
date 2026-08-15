@@ -1,21 +1,12 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
 const title = "Application Build Services | Creavix iT Solution";
-const description = "Custom web and mobile applications designed for performance and scalability. Application development by Creavix iT Solution.";
+const description = "Custom web and mobile applications for performance and scalability. Creavix iT Solution.";
 ---
 <Layout title={title} description={description}>
-  <nav class="navbar" id="navbar">
-    <div class="nav-inner">
-      <a href="/" class="logo"><img src="/logo.png" alt="Creavix iT Solution" class="logo-img" width="40" height="40" /> Creavix <span>iT</span> Solution</a>
-      <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/#services" class="active">Services</a></li>
-        <li><a href="/#about">About</a></li>
-        <li><a href="/#contact">Contact</a></li>
-      </ul>
-      <a href="/#contact" class="btn btn-primary nav-cta">Get Started</a>
-    </div>
-  </nav>
+  <Nav active="services" />
   <section class="hero-premium service-hero">
     <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
     <div class="container hero-grid">
@@ -23,67 +14,18 @@ const description = "Custom web and mobile applications designed for performance
         <div class="eyebrow"><span class="dot"></span> App Development</div>
         <h1 class="hero-title">Custom<br /><span class="text-gradient">Application Build</span></h1>
         <p class="hero-lead">Web and mobile applications designed for performance, scalability and real business workflows.</p>
-        <div class="flex-btns">
-          <a href="/#contact" class="btn btn-primary">Start Your Project</a>
-          <a href="/#services" class="btn btn-outline">All Services</a>
-        </div>
+        <div class="flex-btns"><a href="/contact" class="btn btn-primary">Start Your Project</a><a href="/#services" class="btn btn-outline">All Services</a></div>
       </div>
       <div class="hero-visual reveal">
         <div class="visual-card glass-card animate-float">
-          <div class="visual-icon">📱</div>
-          <h3>Application Build</h3>
-          <p class="visual-tags">Web App · Mobile · API</p>
-          <div class="stat-grid">
-            <div class="stat-box"><strong class="text-primary">Scale</strong><span>Ready</span></div>
-            <div class="stat-box"><strong class="text-violet">Secure</strong><span>By Design</span></div>
-          </div>
+          <div class="visual-icon">📱</div><h3>Application Build</h3><p class="visual-tags">Web App · Mobile · API</p>
         </div>
       </div>
     </div>
   </section>
-  <section class="section-soft">
-    <div class="container">
-      <div class="text-center mb-8 reveal">
-        <p class="eyebrow" style="margin:0 auto 1rem">What You Get</p>
-        <h2 class="mb-4">Apps Built for Growth</h2>
-      </div>
-      <div class="grid-3">
-        <div class="glass-card reveal"><div class="icon-box" style="background:rgba(6,182,212,.1)">🌐</div><h3 class="mb-4">Web Apps</h3><p style="font-size:.9rem">Dashboards, portals and SaaS-style applications.</p></div>
-        <div class="glass-card reveal"><div class="icon-box" style="background:rgba(79,70,229,.1)">📲</div><h3 class="mb-4">Mobile Ready</h3><p style="font-size:.9rem">Responsive and mobile-first experiences.</p></div>
-        <div class="glass-card reveal"><div class="icon-box" style="background:rgba(16,185,129,.1)">🔌</div><h3 class="mb-4">APIs & Backend</h3><p style="font-size:.9rem">Secure APIs and integrations for your systems.</p></div>
-      </div>
-    </div>
-  </section>
-  <section class="section-warm">
-    <div class="container text-center reveal" style="max-width:40rem">
-      <h2 class="mb-4">Have an App Idea?</h2>
-      <p class="mb-8" style="font-size:1.1rem">Describe your workflow. We scope and build a production-ready app.</p>
-      <a href="mailto:hello@creavixit.com" class="btn btn-primary" style="padding:.9rem 2rem; font-size:1rem">Contact Creavix iT</a>
-    </div>
-  </section>
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="/" class="logo footer-logo"><img src="/logo.png" alt="Creavix iT Solution" class="logo-img" width="36" height="36" /> Creavix <span>iT</span> Solution</a>
-        <p class="footer-desc">Premium digital agency delivering AI video marketing, web development and growth solutions.</p>
-      </div>
-      <div class="footer-col"><h4>Services</h4><ul>
-        <li><a href="/services/web-development">Web Development</a></li>
-        <li><a href="/services/application-build">Application Build</a></li>
-        <li><a href="/services/authentication">Authentication</a></li>
-        <li><a href="/services/video-editing">Video Editing</a></li>
-      </ul></div>
-      <div class="footer-col"><h4>Company</h4><ul>
-        <li><a href="/#about">About Us</a></li>
-        <li><a href="/#contact">Contact</a></li>
-        <li><a href="mailto:hello@creavixit.com">Support</a></li>
-      </ul></div>
-      <div class="footer-col"><h4>Contact</h4><ul>
-        <li><a href="mailto:hello@creavixit.com">hello@creavixit.com</a></li>
-        <li><a href="https://creavixit.com">creavixit.com</a></li>
-        <li>Bangladesh</li>
-      </ul></div>
-    </div>
-    <div class="footer-bottom"><div>© 2026 Creavix iT Solution. All rights reserved.</div></div>
-  </footer>
+  <section class="section-warm"><div class="container text-center reveal" style="max-width:40rem">
+    <h2 class="mb-4">Have an App Idea?</h2>
+    <a href="mailto:hello@creavixit.com" class="btn btn-primary">Contact Creavix iT</a>
+  </div></section>
+  <Footer />
 </Layout>

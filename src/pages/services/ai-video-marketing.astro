@@ -1,195 +1,40 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
 const title = "AI Video Marketing Services | Creavix iT Solution";
-const description = "AI-powered video content creation and marketing campaigns that scale fast. Cinematic ads, product videos and social creatives by Creavix iT Solution.";
+const description = "AI-powered video content and marketing campaigns that scale fast. Creavix iT Solution.";
 ---
-
 <Layout title={title} description={description}>
-  <nav class="navbar" id="navbar">
-    <div class="nav-inner">
-      <a href="/" class="logo">
-        <img src="/logo.png" alt="Creavix iT Solution" class="logo-img" width="40" height="40" />
-        Creavix <span>iT</span> Solution
-      </a>
-      <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/#services" class="active">Services</a></li>
-        <li><a href="/#about">About</a></li>
-        <li><a href="/#contact">Contact</a></li>
-      </ul>
-      <a href="/#contact" class="btn btn-primary nav-cta">Get Started</a>
-    </div>
-  </nav>
-
+  <Nav active="services" />
   <section class="hero-premium service-hero">
-    <div class="hero-bg">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="grid-overlay"></div>
-    </div>
-
+    <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
     <div class="container hero-grid">
       <div class="hero-content reveal">
-        <div class="eyebrow">
-          <span class="dot"></span>
-          AI-Powered Marketing
-        </div>
-
-        <h1 class="hero-title">
-          AI Video Marketing<br />
-          That <span class="text-gradient">Scales Fast</span>
-        </h1>
-
-        <p class="hero-lead">
-          AI-led video content and campaigns built for Meta, YouTube and TikTok — faster production, consistent quality and conversion-focused storytelling.
-        </p>
-
-        <div class="flex-btns">
-          <a href="/#contact" class="btn btn-primary">Start Your Campaign</a>
-          <a href="/#services" class="btn btn-outline">All Services</a>
-        </div>
+        <div class="eyebrow"><span class="dot"></span> AI-Powered Marketing</div>
+        <h1 class="hero-title">AI Video Marketing<br />That <span class="text-gradient">Scales Fast</span></h1>
+        <p class="hero-lead">AI-led video content and campaigns for Meta, YouTube and TikTok — faster production and conversion-focused storytelling.</p>
+        <div class="flex-btns"><a href="/contact" class="btn btn-primary">Start Your Campaign</a><a href="/#services" class="btn btn-outline">All Services</a></div>
       </div>
-
       <div class="hero-visual reveal">
         <div class="visual-card glass-card animate-float">
-          <div class="visual-icon">🤖</div>
-          <h3>AI Video Marketing</h3>
-          <p class="visual-tags">Meta · YouTube · TikTok · Scale</p>
-          <div class="stat-grid">
-            <div class="stat-box">
-              <strong class="text-primary">Fast</strong>
-              <span>Production</span>
-            </div>
-            <div class="stat-box">
-              <strong class="text-violet">High</strong>
-              <span>Conversion</span>
-            </div>
-          </div>
+          <div class="visual-icon">🤖</div><h3>AI Video Marketing</h3><p class="visual-tags">Meta · YouTube · TikTok · Scale</p>
+          <div class="stat-grid"><div class="stat-box"><strong class="text-primary">Fast</strong><span>Production</span></div><div class="stat-box"><strong class="text-violet">High</strong><span>Conversion</span></div></div>
         </div>
       </div>
     </div>
   </section>
-
-  <section class="section-soft">
-    <div class="container">
-      <div class="text-center mb-8 reveal">
-        <p class="eyebrow" style="margin:0 auto 1rem">What You Get</p>
-        <h2 class="mb-4">AI Video Built for Growth</h2>
-        <p style="max-width:36rem; margin:0 auto">From concept to final ad — AI tools plus human creative direction for speed and quality.</p>
-      </div>
-
-      <div class="grid-3">
-        <div class="glass-card reveal">
-          <div class="icon-box" style="background:rgba(124,58,237,.1)">🎬</div>
-          <h3 class="mb-4">AI Ad Creatives</h3>
-          <p style="font-size:.9rem">High-performing short ads generated and refined for paid social.</p>
-        </div>
-        <div class="glass-card reveal">
-          <div class="icon-box" style="background:rgba(244,63,94,.1)">📦</div>
-          <h3 class="mb-4">Product Videos</h3>
-          <p style="font-size:.9rem">Product showcases and demos that look real and convert.</p>
-        </div>
-        <div class="glass-card reveal">
-          <div class="icon-box" style="background:rgba(6,182,212,.1)">📈</div>
-          <h3 class="mb-4">Campaign Creatives</h3>
-          <p style="font-size:.9rem">Batch creatives for testing and scaling winning ads.</p>
-        </div>
-        <div class="glass-card reveal">
-          <div class="icon-box" style="background:rgba(245,158,11,.1)">🗣️</div>
-          <h3 class="mb-4">Script & Voice</h3>
-          <p style="font-size:.9rem">Scripts and voiceovers tuned for your audience and platform.</p>
-        </div>
-        <div class="glass-card reveal">
-          <div class="icon-box" style="background:rgba(16,185,129,.1)">⚡</div>
-          <h3 class="mb-4">Rapid Iteration</h3>
-          <p style="font-size:.9rem">Quick variations so you can test and find winners faster.</p>
-        </div>
-        <div class="glass-card reveal">
-          <div class="icon-box" style="background:rgba(79,70,229,.1)">🎯</div>
-          <h3 class="mb-4">Platform Ready</h3>
-          <p style="font-size:.9rem">Formats and lengths optimized for Meta, YouTube and TikTok.</p>
-        </div>
-      </div>
+  <section class="section-soft"><div class="container">
+    <div class="text-center mb-8 reveal"><p class="eyebrow" style="margin:0 auto 1rem">What You Get</p><h2 class="mb-4">AI Video Built for Growth</h2></div>
+    <div class="grid-3">
+      <div class="glass-card reveal"><div class="icon-box" style="background:rgba(124,58,237,.1)">🎬</div><h3 class="mb-4">AI Ad Creatives</h3><p style="font-size:.9rem">High-performing short ads for paid social.</p></div>
+      <div class="glass-card reveal"><div class="icon-box" style="background:rgba(244,63,94,.1)">📦</div><h3 class="mb-4">Product Videos</h3><p style="font-size:.9rem">Product showcases that look real and convert.</p></div>
+      <div class="glass-card reveal"><div class="icon-box" style="background:rgba(6,182,212,.1)">📈</div><h3 class="mb-4">Campaign Creatives</h3><p style="font-size:.9rem">Batch creatives for testing and scaling.</p></div>
     </div>
-  </section>
-
-  <section class="section-violet">
-    <div class="container">
-      <div class="text-center mb-8 reveal">
-        <p class="eyebrow" style="margin:0 auto 1rem">How It Works</p>
-        <h2 class="mb-4">From Brief to Live Ads</h2>
-      </div>
-      <div class="grid-3">
-        <div class="glass-card reveal text-center">
-          <div style="font-size:2rem; font-weight:800; color:var(--primary); margin-bottom:0.75rem">01</div>
-          <h3 class="mb-4">Goal & Offer</h3>
-          <p style="font-size:.9rem">We define audience, offer and the message that must convert.</p>
-        </div>
-        <div class="glass-card reveal text-center">
-          <div style="font-size:2rem; font-weight:800; color:var(--violet); margin-bottom:0.75rem">02</div>
-          <h3 class="mb-4">Create & Refine</h3>
-          <p style="font-size:.9rem">AI production plus human edit for quality and brand fit.</p>
-        </div>
-        <div class="glass-card reveal text-center">
-          <div style="font-size:2rem; font-weight:800; color:var(--accent); margin-bottom:0.75rem">03</div>
-          <h3 class="mb-4">Launch & Scale</h3>
-          <p style="font-size:.9rem">You get ready-to-run creatives and optional campaign support.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-warm">
-    <div class="container text-center reveal" style="max-width:40rem">
-      <h2 class="mb-4">Ready to Scale with AI Video?</h2>
-      <p class="mb-8" style="font-size:1.1rem">Tell us your product and goal. We will propose the best AI video approach.</p>
-      <a href="mailto:hello@creavixit.com" class="btn btn-primary" style="padding:.9rem 2rem; font-size:1rem">Contact Creavix iT</a>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="/" class="logo footer-logo">
-          <img src="/logo.png" alt="Creavix iT Solution" class="logo-img" width="36" height="36" />
-          Creavix <span>iT</span> Solution
-        </a>
-        <p class="footer-desc">Premium digital agency delivering AI video marketing, web development and growth solutions.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="/services/video-editing">Video Editing</a></li>
-          <li><a href="/services/ai-video-marketing">AI Video Marketing</a></li>
-          <li><a href="/#services">Web Development</a></li>
-          <li><a href="/#services">Application Build</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="/#about">About Us</a></li>
-          <li><a href="/#contact">Contact</a></li>
-          <li><a href="/#services">Our Work</a></li>
-          <li><a href="mailto:hello@creavixit.com">Support</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="mailto:hello@creavixit.com">hello@creavixit.com</a></li>
-          <li><a href="https://creavixit.com">creavixit.com</a></li>
-          <li>Bangladesh</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div>© 2026 Creavix iT Solution. All rights reserved.</div>
-      <div class="footer-links">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-      </div>
-    </div>
-  </footer>
+  </div></section>
+  <section class="section-warm"><div class="container text-center reveal" style="max-width:40rem">
+    <h2 class="mb-4">Ready to Scale with AI Video?</h2>
+    <a href="mailto:hello@creavixit.com" class="btn btn-primary">Contact Creavix iT</a>
+  </div></section>
+  <Footer />
 </Layout>

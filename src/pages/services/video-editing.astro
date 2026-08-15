@@ -1,201 +1,41 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
 const title = "Professional Video Editing Services | Creavix iT Solution";
-const description = "Premium video editing for ads, social media, YouTube and brand storytelling. Fast delivery, cinematic quality and conversion-focused edits by Creavix iT Solution.";
+const description = "Premium video editing for ads, social media, YouTube and brand storytelling. Fast delivery by Creavix iT Solution.";
 ---
-
 <Layout title={title} description={description}>
-  <nav class="navbar" id="navbar">
-    <div class="nav-inner">
-      <a href="/" class="logo">
-        <img src="/logo.png" alt="Creavix iT Solution" class="logo-img" width="40" height="40" />
-        Creavix <span>iT</span> Solution
-      </a>
-      <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/#services" class="active">Services</a></li>
-        <li><a href="/#about">About</a></li>
-        <li><a href="/#contact">Contact</a></li>
-      </ul>
-      <a href="/#contact" class="btn btn-primary nav-cta">Get Started</a>
-    </div>
-  </nav>
-
-  <!-- Service Hero -->
+  <Nav active="services" />
   <section class="hero-premium service-hero">
-    <div class="hero-bg">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="grid-overlay"></div>
-    </div>
-
+    <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
     <div class="container hero-grid">
       <div class="hero-content reveal">
-        <div class="eyebrow">
-          <span class="dot"></span>
-          Video Production
-        </div>
-
-        <h1 class="hero-title">
-          Professional<br />
-          <span class="text-gradient">Video Editing</span><br />
-          That Converts
-        </h1>
-
-        <p class="hero-lead">
-          Cinematic ads, social reels, YouTube content and brand films — edited for maximum engagement and clear storytelling.
-        </p>
-
-        <div class="flex-btns">
-          <a href="/#contact" class="btn btn-primary">Start Your Project</a>
-          <a href="/#services" class="btn btn-outline">All Services</a>
-        </div>
+        <div class="eyebrow"><span class="dot"></span> Video Production</div>
+        <h1 class="hero-title">Professional<br /><span class="text-gradient">Video Editing</span><br />That Converts</h1>
+        <p class="hero-lead">Cinematic ads, social reels, YouTube content and brand films — edited for maximum engagement and clear storytelling.</p>
+        <div class="flex-btns"><a href="/contact" class="btn btn-primary">Start Your Project</a><a href="/#services" class="btn btn-outline">All Services</a></div>
       </div>
-
       <div class="hero-visual reveal">
         <div class="visual-card glass-card animate-float">
-          <div class="visual-icon">🎬</div>
-          <h3>Video Editing</h3>
-          <p class="visual-tags">Ads · Reels · YouTube · Brand Films</p>
-          <div class="stat-grid">
-            <div class="stat-box">
-              <strong class="text-primary">24–48h</strong>
-              <span>Typical Delivery</span>
-            </div>
-            <div class="stat-box">
-              <strong class="text-violet">100+</strong>
-              <span>Projects Done</span>
-            </div>
-          </div>
+          <div class="visual-icon">🎬</div><h3>Video Editing</h3><p class="visual-tags">Ads · Reels · YouTube · Brand Films</p>
+          <div class="stat-grid"><div class="stat-box"><strong class="text-primary">24–48h</strong><span>Typical Delivery</span></div><div class="stat-box"><strong class="text-violet">100+</strong><span>Projects Done</span></div></div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- What We Offer -->
-  <section class="section-soft">
-    <div class="container">
-      <div class="text-center mb-8 reveal">
-        <p class="eyebrow" style="margin:0 auto 1rem">What You Get</p>
-        <h2 class="mb-4">Editing Built for Results</h2>
-        <p style="max-width:36rem; margin:0 auto">Every cut, transition and sound design is chosen to hold attention and drive action.</p>
-      </div>
-
-      <div class="grid-3">
-        <div class="glass-card reveal">
-          <div class="icon-box" style="background:rgba(244,63,94,.1)">📱</div>
-          <h3 class="mb-4">Social Media Ads</h3>
-          <p style="font-size:.9rem">Short-form ads optimized for Facebook, Instagram, TikTok and YouTube Shorts.</p>
-        </div>
-        <div class="glass-card reveal">
-          <div class="icon-box" style="background:rgba(124,58,237,.1)">🎥</div>
-          <h3 class="mb-4">YouTube & Long-form</h3>
-          <p style="font-size:.9rem">Full video editing with pacing, B-roll, captions and end screens.</p>
-        </div>
-        <div class="glass-card reveal">
-          <div class="icon-box" style="background:rgba(6,182,212,.1)">✨</div>
-          <h3 class="mb-4">Brand Storytelling</h3>
-          <p style="font-size:.9rem">Cinematic brand films and product videos that feel premium.</p>
-        </div>
-        <div class="glass-card reveal">
-          <div class="icon-box" style="background:rgba(245,158,11,.1)">🔊</div>
-          <h3 class="mb-4">Sound & Music</h3>
-          <p style="font-size:.9rem">Clean audio, licensed music and sound design that matches your brand.</p>
-        </div>
-        <div class="glass-card reveal">
-          <div class="icon-box" style="background:rgba(16,185,129,.1)">📝</div>
-          <h3 class="mb-4">Captions & Subtitles</h3>
-          <p style="font-size:.9rem">Burned-in or optional captions for higher watch time on silent feeds.</p>
-        </div>
-        <div class="glass-card reveal">
-          <div class="icon-box" style="background:rgba(79,70,229,.1)">⚡</div>
-          <h3 class="mb-4">Fast Turnaround</h3>
-          <p style="font-size:.9rem">Most projects delivered in 24–48 hours without cutting quality.</p>
-        </div>
-      </div>
+  <section class="section-soft"><div class="container">
+    <div class="text-center mb-8 reveal"><p class="eyebrow" style="margin:0 auto 1rem">What You Get</p><h2 class="mb-4">Editing Built for Results</h2></div>
+    <div class="grid-3">
+      <div class="glass-card reveal"><div class="icon-box" style="background:rgba(244,63,94,.1)">📱</div><h3 class="mb-4">Social Media Ads</h3><p style="font-size:.9rem">Short-form ads for Facebook, Instagram, TikTok and YouTube Shorts.</p></div>
+      <div class="glass-card reveal"><div class="icon-box" style="background:rgba(124,58,237,.1)">🎥</div><h3 class="mb-4">YouTube & Long-form</h3><p style="font-size:.9rem">Full video editing with pacing, B-roll, captions and end screens.</p></div>
+      <div class="glass-card reveal"><div class="icon-box" style="background:rgba(6,182,212,.1)">✨</div><h3 class="mb-4">Brand Storytelling</h3><p style="font-size:.9rem">Cinematic brand films and product videos that feel premium.</p></div>
     </div>
-  </section>
-
-  <!-- Process -->
-  <section class="section-violet">
-    <div class="container">
-      <div class="text-center mb-8 reveal">
-        <p class="eyebrow" style="margin:0 auto 1rem">How It Works</p>
-        <h2 class="mb-4">Simple, Transparent Process</h2>
-      </div>
-      <div class="grid-3">
-        <div class="glass-card reveal text-center">
-          <div style="font-size:2rem; font-weight:800; color:var(--primary); margin-bottom:0.75rem">01</div>
-          <h3 class="mb-4">Brief & Assets</h3>
-          <p style="font-size:.9rem">Share your footage, goal and preferred style. We clarify scope and timeline.</p>
-        </div>
-        <div class="glass-card reveal text-center">
-          <div style="font-size:2rem; font-weight:800; color:var(--violet); margin-bottom:0.75rem">02</div>
-          <h3 class="mb-4">Edit & Review</h3>
-          <p style="font-size:.9rem">We edit, then send a draft. You give feedback and we refine until it is right.</p>
-        </div>
-        <div class="glass-card reveal text-center">
-          <div style="font-size:2rem; font-weight:800; color:var(--accent); margin-bottom:0.75rem">03</div>
-          <h3 class="mb-4">Final Delivery</h3>
-          <p style="font-size:.9rem">You receive final files in the formats you need — ready to post or run ads.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section-warm">
-    <div class="container text-center reveal" style="max-width:40rem">
-      <h2 class="mb-4">Ready for Video That Performs?</h2>
-      <p class="mb-8" style="font-size:1.1rem">Tell us about your project. We will recommend the best edit style and get started quickly.</p>
-      <a href="mailto:hello@creavixit.com" class="btn btn-primary" style="padding:.9rem 2rem; font-size:1rem">Contact Creavix iT</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="/" class="logo footer-logo">
-          <img src="/logo.png" alt="Creavix iT Solution" class="logo-img" width="36" height="36" />
-          Creavix <span>iT</span> Solution
-        </a>
-        <p class="footer-desc">Premium digital agency delivering AI video marketing, web development and growth solutions.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="/services/video-editing">Video Editing</a></li>
-          <li><a href="/#services">AI Video Marketing</a></li>
-          <li><a href="/#services">Web Development</a></li>
-          <li><a href="/#services">Application Build</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="/#about">About Us</a></li>
-          <li><a href="/#contact">Contact</a></li>
-          <li><a href="/#services">Our Work</a></li>
-          <li><a href="mailto:hello@creavixit.com">Support</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="mailto:hello@creavixit.com">hello@creavixit.com</a></li>
-          <li><a href="https://creavixit.com">creavixit.com</a></li>
-          <li>Bangladesh</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div>© 2026 Creavix iT Solution. All rights reserved.</div>
-      <div class="footer-links">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-      </div>
-    </div>
-  </footer>
+  </div></section>
+  <section class="section-warm"><div class="container text-center reveal" style="max-width:40rem">
+    <h2 class="mb-4">Ready for Video That Performs?</h2>
+    <p class="mb-8">Tell us about your project. We will recommend the best edit style.</p>
+    <a href="mailto:hello@creavixit.com" class="btn btn-primary">Contact Creavix iT</a>
+  </div></section>
+  <Footer />
 </Layout>
