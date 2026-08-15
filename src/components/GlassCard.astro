@@ -1,18 +1,12 @@
 ---
-/**
- * GlassCard — Premium glassmorphism component
- * Variants: default | strong | gold | light
- */
 interface Props {
   variant?: 'default' | 'strong' | 'gold' | 'light';
   class?: string;
-  hover?: boolean;
 }
 
 const { 
   variant = 'default', 
-  class: className = '', 
-  hover = true 
+  class: className = ''
 } = Astro.props;
 
 const variantClass = {
