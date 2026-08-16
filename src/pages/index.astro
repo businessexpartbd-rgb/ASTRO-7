@@ -9,15 +9,15 @@ import ServiceIcons from '../components/icons/ServiceIcons.astro';
 import { SITE } from '../data/site';
 
 const services = [
-  { href: '/services/web-development', name: 'web' as const, title: 'Web Development', desc: 'Fast, SEO-friendly websites and landing pages built for ranking and conversion.', tone: 'rgba(13,148,136,.12)' },
-  { href: '/services/application-build', name: 'app' as const, title: 'Application Build', desc: 'Custom web & mobile applications designed for performance and scale.', tone: 'rgba(245,158,11,.12)' },
-  { href: '/services/authentication', name: 'auth' as const, title: 'Authentication Systems', desc: 'Secure login, signup, roles and access control for your products.', tone: 'rgba(5,150,105,.12)' },
-  { href: '/services/ai-video-marketing', name: 'ai' as const, title: 'AI Video Marketing', desc: 'AI-powered video ads for Meta, YouTube and TikTok that convert.', tone: 'rgba(234,88,12,.12)' },
-  { href: '/services/video-editing', name: 'video' as const, title: 'Video Editing', desc: 'Professional editing for ads, social, YouTube and brand films.', tone: 'rgba(225,29,72,.1)' },
-  { href: '/services/human-like-content', name: 'human' as const, title: 'Human-like Content', desc: 'Authentic AI human & product visuals for campaigns.', tone: 'rgba(217,119,6,.12)' },
-  { href: '/services/facebook-page', name: 'facebook' as const, title: 'Facebook Page Services', desc: 'Business page setup and verification support.', tone: 'rgba(13,148,136,.12)' },
-  { href: '/services/boosting', name: 'boost' as const, title: 'Boosting Service', desc: 'Targeted Meta boosting to reach the right audience.', tone: 'rgba(225,29,72,.1)' },
-  { href: '/services/campaign', name: 'campaign' as const, title: 'Campaign Service', desc: 'End-to-end campaign planning and performance management.', tone: 'rgba(234,88,12,.12)' },
+  { href: '/services/web-development', name: 'web', title: 'Web Development', desc: 'Fast, SEO-friendly websites and landing pages built for ranking and conversion.', tone: 'rgba(13,148,136,.12)' },
+  { href: '/services/application-build', name: 'app', title: 'Application Build', desc: 'Custom web & mobile applications designed for performance and scale.', tone: 'rgba(245,158,11,.12)' },
+  { href: '/services/authentication', name: 'auth', title: 'Authentication Systems', desc: 'Secure login, signup, roles and access control for your products.', tone: 'rgba(5,150,105,.12)' },
+  { href: '/services/ai-video-marketing', name: 'ai', title: 'AI Video Marketing', desc: 'AI-powered video ads for Meta, YouTube and TikTok that convert.', tone: 'rgba(234,88,12,.12)' },
+  { href: '/services/video-editing', name: 'video', title: 'Video Editing', desc: 'Professional editing for ads, social, YouTube and brand films.', tone: 'rgba(225,29,72,.1)' },
+  { href: '/services/human-like-content', name: 'human', title: 'Human-like Content', desc: 'Authentic AI human & product visuals for campaigns.', tone: 'rgba(217,119,6,.12)' },
+  { href: '/services/facebook-page', name: 'facebook', title: 'Facebook Page Services', desc: 'Business page setup and verification support.', tone: 'rgba(13,148,136,.12)' },
+  { href: '/services/boosting', name: 'boost', title: 'Boosting Service', desc: 'Targeted Meta boosting to reach the right audience.', tone: 'rgba(225,29,72,.1)' },
+  { href: '/services/campaign', name: 'campaign', title: 'Campaign Service', desc: 'End-to-end campaign planning and performance management.', tone: 'rgba(234,88,12,.12)' },
 ];
 ---
 <Layout title={SITE.seoTitle} description={SITE.seoDescription}>
@@ -52,9 +52,9 @@ const services = [
             <div class="stat-box"><strong class="text-primary count-up" data-count="4300+">0</strong><span>Projects</span></div>
             <div class="stat-box"><strong class="text-violet count-up" data-count="24h">0</strong><span>Fast delivery</span></div>
           </div>
-          <div class="float-badge badge-1"><ServiceIcons name="web" size={14} /> Web</div>
-          <div class="float-badge badge-2"><ServiceIcons name="ai" size={14} /> AI</div>
-          <div class="float-badge badge-3"><ServiceIcons name="app" size={14} /> App</div>
+          <div class="float-badge badge-1">Web</div>
+          <div class="float-badge badge-2">AI</div>
+          <div class="float-badge badge-3">App</div>
         </div>
       </div>
     </div>
@@ -64,20 +64,18 @@ const services = [
   <section id="services" class="section-soft">
     <div class="container">
       <div class="text-center mb-8 reveal">
-        <p class="eyebrow" style="margin:0 auto 1rem">IT & Digital Services</p>
+        <p class="eyebrow" style="margin:0 auto 1rem">IT &amp; Digital Services</p>
         <h2 class="mb-4">Everything Your Business Needs Online</h2>
         <p style="max-width:40rem;margin:0 auto">Website development, applications, authentication, AI video production, Facebook growth and full campaign management — one agency.</p>
       </div>
       <div class="grid-3">
-        {
-          services.map((s) => (
-            <a href={s.href} class="glass-card reveal" style="text-decoration:none;color:inherit;display:block">
-              <IconBox name={s.name} tone={s.tone} size={44} />
-              <h3 class="mb-4">{s.title}</h3>
-              <p style="font-size:.9rem">{s.desc}</p>
-            </a>
-          ))
-        }
+        {services.map((s) => (
+          <a href={s.href} class="glass-card reveal" style="text-decoration:none;color:inherit;display:block">
+            <IconBox name={s.name} tone={s.tone} size={44} />
+            <h3 class="mb-4">{s.title}</h3>
+            <p style="font-size:.9rem">{s.desc}</p>
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -91,9 +89,9 @@ const services = [
         <h2 class="mb-6">IT Solution Agency · Since {SITE.servingSince}</h2>
         <p class="lead mb-8">{SITE.shortDesc}</p>
         <ul class="about-checks">
-          <li><ServiceIcons name="check" size={22} /><span>Web, app & authentication engineering</span></li>
+          <li><ServiceIcons name="check" size={22} /><span>Web, app &amp; authentication engineering</span></li>
           <li><ServiceIcons name="check" size={22} /><span>AI video + classic video production</span></li>
-          <li><ServiceIcons name="check" size={22} /><span>Facebook page, boost & campaigns</span></li>
+          <li><ServiceIcons name="check" size={22} /><span>Facebook page, boost &amp; campaigns</span></li>
           <li><ServiceIcons name="check" size={22} /><span>Studio: {SITE.addressBn} · Founder {SITE.founder.name}</span></li>
         </ul>
       </div>
@@ -138,17 +136,14 @@ const services = [
     background: rgba(13, 148, 136, 0.1);
     border: 1px solid rgba(13, 148, 136, 0.15);
   }
-  .float-badge {
-    display: inline-flex !important;
-    align-items: center;
-    gap: 0.35rem;
-  }
   .about-checks {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
     color: var(--text-2);
+    padding: 0;
+    margin: 0;
   }
   .about-checks li {
     display: flex;
