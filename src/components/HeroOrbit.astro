@@ -1,272 +1,252 @@
 ---
-/** Premium digital IT hero visual — pure CSS, GPU transform only */
-const nodesOuter = [
-  { label: 'Web', angle: 0 },
-  { label: 'App', angle: 60 },
-  { label: 'Auth', angle: 120 },
-  { label: 'AI', angle: 180 },
-  { label: 'Video', angle: 240 },
-  { label: 'Ads', angle: 300 },
+/**
+ * Premium 3D iconic hero — services readable by icon only (no label chips).
+ * CSS 3D + transform only for speed.
+ */
+import ServiceIcons from './icons/ServiceIcons.astro';
+
+const outer = [
+  { name: 'web', title: 'Web Development' },
+  { name: 'app', title: 'Application Build' },
+  { name: 'auth', title: 'Authentication' },
+  { name: 'ai', title: 'AI Video Marketing' },
+  { name: 'video', title: 'Video Editing' },
+  { name: 'boost', title: 'Boosting' },
 ];
-const nodesInner = [
-  { label: 'SEO', angle: 30 },
-  { label: 'API', angle: 150 },
-  { label: 'Meta', angle: 270 },
+const inner = [
+  { name: 'campaign', title: 'Campaign' },
+  { name: 'facebook', title: 'Facebook Page' },
+  { name: 'human', title: 'Human-like Content' },
 ];
 ---
-<div class="hero-orbit" aria-hidden="true">
-  <div class="ho-glow"></div>
+<div class="ho3" role="img" aria-label="Creavix IT digital services visualization">
+  <div class="ho3-stage">
+    <div class="ho3-glow"></div>
+    <div class="ho3-floor"></div>
 
-  <div class="ho-ring ho-ring-outer">
-    {nodesOuter.map((n) => (
-      <span class="ho-node ho-node-out" style={`--a:${n.angle}deg`}>
-        <span class="ho-chip">{n.label}</span>
-      </span>
-    ))}
-  </div>
+    <!-- Outer orbit -->
+    <div class="ho3-orbit ho3-orbit-a">
+      {outer.map((item, i) => (
+        <div
+          class="ho3-slot"
+          style={`--i:${i}; --n:${outer.length}`}
+          title={item.title}
+        >
+          <div class="ho3-icon" style={`--spin: ${outer.length}`}>
+            <ServiceIcons name={item.name} size={28} />
+          </div>
+        </div>
+      ))}
+    </div>
 
-  <div class="ho-ring ho-ring-inner">
-    {nodesInner.map((n) => (
-      <span class="ho-node ho-node-in" style={`--a:${n.angle}deg`}>
-        <span class="ho-dot"></span>
-        <span class="ho-chip ho-chip-sm">{n.label}</span>
-      </span>
-    ))}
-  </div>
+    <!-- Inner orbit (counter) -->
+    <div class="ho3-orbit ho3-orbit-b">
+      {inner.map((item, i) => (
+        <div
+          class="ho3-slot ho3-slot-sm"
+          style={`--i:${i}; --n:${inner.length}`}
+          title={item.title}
+        >
+          <div class="ho3-icon ho3-icon-sm" style={`--spin: ${inner.length}`}>
+            <ServiceIcons name={item.name} size={22} />
+          </div>
+        </div>
+      ))}
+    </div>
 
-  <div class="ho-core">
-    <div class="ho-core-ring"></div>
-    <div class="ho-core-ring ho-core-ring-2"></div>
-    <div class="ho-core-body">
-      <svg class="ho-logo" viewBox="0 0 48 48" width="36" height="36" fill="none" aria-hidden="true">
-        <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2" opacity="0.35"></circle>
-        <path d="M16 30V18l8-4 8 4v12l-8 4-8-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
-        <circle cx="24" cy="24" r="3" fill="currentColor"></circle>
-      </svg>
-      <strong class="ho-brand">Creavix</strong>
-      <span class="ho-sub">IT · Digital</span>
+    <!-- Center hub -->
+    <div class="ho3-hub">
+      <div class="ho3-hub-ring"></div>
+      <div class="ho3-hub-ring ho3-hub-ring2"></div>
+      <div class="ho3-hub-core">
+        <ServiceIcons name="rocket" size={40} />
+      </div>
     </div>
   </div>
-
-  <div class="ho-pulse"></div>
 </div>
 
 <style>
-  .hero-orbit {
-    position: relative;
-    width: min(100%, 380px);
-    aspect-ratio: 1;
+  .ho3 {
+    width: min(100%, 400px);
     margin: 0 auto;
-    display: grid;
-    place-items: center;
+    perspective: 900px;
+    perspective-origin: 50% 45%;
   }
 
-  .ho-glow {
+  .ho3-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    transform-style: preserve-3d;
+    transform: rotateX(18deg);
+  }
+
+  .ho3-glow {
     position: absolute;
-    inset: 12%;
+    inset: 18%;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(13, 148, 136, 0.18) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(13, 148, 136, 0.22) 0%,
+      rgba(217, 119, 6, 0.08) 45%,
+      transparent 70%
+    );
     pointer-events: none;
   }
 
-  .ho-ring {
+  .ho3-floor {
     position: absolute;
-    border-radius: 50%;
-    border: 1px dashed rgba(13, 148, 136, 0.22);
-    top: 50%;
     left: 50%;
-    translate: -50% -50%;
-  }
-
-  .ho-ring-outer {
-    width: 92%;
-    height: 92%;
-    animation: ho-spin 42s linear infinite;
-  }
-  .ho-ring-inner {
-    width: 62%;
-    height: 62%;
-    border-style: solid;
-    border-color: rgba(217, 119, 6, 0.18);
-    animation: ho-spin-rev 28s linear infinite;
-  }
-
-  .ho-node {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    /* place on ring edge */
-    transform:
-      rotate(var(--a))
-      translateY(calc(-1 * var(--r)))
-      rotate(calc(-1 * var(--a)));
-  }
-  .ho-node-out { --r: 46%; }
-  .ho-node-in { --r: 31%; }
-
-  /* counter-rotate chips so text stays upright relative to ring spin */
-  .ho-ring-outer .ho-chip {
-    animation: ho-spin-rev 42s linear infinite;
-  }
-  .ho-ring-inner .ho-chip,
-  .ho-ring-inner .ho-dot {
-    animation: ho-spin 28s linear infinite;
-  }
-
-  .ho-chip {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.35rem 0.65rem;
-    border-radius: 999px;
-    font-family: var(--font-h), system-ui, sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: #0F172A;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(13, 148, 136, 0.2);
-    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
-    white-space: nowrap;
-  }
-  .ho-chip-sm {
-    font-size: 0.65rem;
-    padding: 0.28rem 0.5rem;
-    color: #0F766E;
-    border-color: rgba(217, 119, 6, 0.25);
-  }
-  .ho-dot {
-    display: block;
-    width: 8px;
-    height: 8px;
+    bottom: 6%;
+    width: 70%;
+    height: 12%;
+    translate: -50% 0;
     border-radius: 50%;
-    background: #D97706;
-    margin: 0 auto 0.2rem;
-    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.2);
+    background: radial-gradient(ellipse, rgba(15, 23, 42, 0.12), transparent 70%);
+    filter: blur(2px);
+    pointer-events: none;
   }
 
-  .ho-core {
-    position: relative;
-    z-index: 2;
-    width: 42%;
-    aspect-ratio: 1;
-    display: grid;
-    place-items: center;
-  }
-  .ho-core-ring,
-  .ho-core-ring-2 {
+  .ho3-orbit {
     position: absolute;
     inset: 0;
-    border-radius: 50%;
-    border: 2px solid rgba(13, 148, 136, 0.25);
-  }
-  .ho-core-ring {
-    animation: ho-pulse-ring 3.2s ease-out infinite;
-  }
-  .ho-core-ring-2 {
-    inset: -10%;
-    border-color: rgba(217, 119, 6, 0.2);
-    animation: ho-pulse-ring 3.2s ease-out infinite 1.1s;
-  }
-  .ho-core-body {
-    position: relative;
-    z-index: 1;
-    width: 88%;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.15rem;
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.75));
-    border: 1px solid rgba(255, 255, 255, 0.9);
-    box-shadow:
-      0 12px 36px rgba(13, 148, 136, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 1);
-    color: #0D9488;
-  }
-  .ho-brand {
-    font-family: var(--font-h), system-ui, sans-serif;
-    font-size: clamp(0.85rem, 2.8vw, 1rem);
-    font-weight: 800;
-    color: #0F172A;
-    line-height: 1.1;
-  }
-  .ho-sub {
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #0D9488;
+    transform-style: preserve-3d;
   }
 
-  .ho-pulse {
+  .ho3-orbit-a {
+    animation: ho3-yaw 36s linear infinite;
+  }
+  .ho3-orbit-b {
+    animation: ho3-yaw-rev 24s linear infinite;
+  }
+
+  .ho3-slot {
     position: absolute;
-    inset: 8%;
-    border-radius: 50%;
-    border: 1px solid rgba(13, 148, 136, 0.12);
-    pointer-events: none;
-    animation: ho-breathe 4s ease-in-out infinite;
+    top: 50%;
+    left: 50%;
+    width: 56px;
+    height: 56px;
+    margin: -28px 0 0 -28px;
+    transform-style: preserve-3d;
+    /* evenly space on circle */
+    transform: rotateY(calc(var(--i) * 360deg / var(--n))) translateZ(148px);
+  }
+  .ho3-slot-sm {
+    width: 48px;
+    height: 48px;
+    margin: -24px 0 0 -24px;
+    transform: rotateY(calc(var(--i) * 360deg / var(--n) + 20deg)) translateZ(96px);
   }
 
-  @keyframes ho-spin {
-    to { transform: translate(-50%, -50%) rotate(360deg); }
+  .ho3-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.95),
+      rgba(255, 255, 255, 0.7)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    box-shadow:
+      0 10px 28px rgba(13, 148, 136, 0.16),
+      0 4px 12px rgba(15, 23, 42, 0.08),
+      inset 0 1px 0 #fff;
+    color: #0D9488;
+    /* keep face toward camera while parent yaws */
+    animation: ho3-face 36s linear infinite;
   }
-  @keyframes ho-spin-rev {
-    to { transform: translate(-50%, -50%) rotate(-360deg); }
+  .ho3-orbit-b .ho3-icon {
+    animation-name: ho3-face-rev;
+    animation-duration: 24s;
+    border-radius: 16px;
+    box-shadow:
+      0 8px 22px rgba(217, 119, 6, 0.14),
+      0 3px 10px rgba(15, 23, 42, 0.06),
+      inset 0 1px 0 #fff;
   }
-  /* chips start without translate -50; fix ring transform base */
-  .ho-ring-outer,
-  .ho-ring-inner {
-    transform: translate(-50%, -50%);
-  }
-  @keyframes ho-pulse-ring {
-    0% { transform: scale(1); opacity: 0.7; }
-    70% { transform: scale(1.12); opacity: 0; }
-    100% { transform: scale(1.12); opacity: 0; }
-  }
-  @keyframes ho-breathe {
-    0%, 100% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(1.03); opacity: 1; }
+  .ho3-icon-sm {
+    border-radius: 14px;
   }
 
-  /* Chip counter-rotate must match parent spin direction */
-  .ho-ring-outer .ho-chip {
-    animation-name: ho-counter-out;
+  .ho3-hub {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    transform-style: preserve-3d;
+    z-index: 2;
   }
-  .ho-ring-inner .ho-chip,
-  .ho-ring-inner .ho-dot {
-    animation-name: ho-counter-in;
+  .ho3-hub-core {
+    width: 96px;
+    height: 96px;
+    border-radius: 28px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(145deg, #0D9488, #0F766E);
+    color: #fff;
+    box-shadow:
+      0 16px 40px rgba(13, 148, 136, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    transform: translateZ(20px);
   }
-  @keyframes ho-counter-out {
-    to { transform: rotate(-360deg); }
+  .ho3-hub-core :global(.live-icon) {
+    color: #fff !important;
   }
-  @keyframes ho-counter-in {
-    to { transform: rotate(360deg); }
+  .ho3-hub-ring,
+  .ho3-hub-ring2 {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 32px;
+    border: 2px solid rgba(13, 148, 136, 0.28);
+    animation: ho3-pulse 2.8s ease-out infinite;
+  }
+  .ho3-hub-ring2 {
+    width: 140px;
+    height: 140px;
+    border-color: rgba(217, 119, 6, 0.22);
+    animation-delay: 0.9s;
+  }
+
+  @keyframes ho3-yaw {
+    to { transform: rotateY(360deg); }
+  }
+  @keyframes ho3-yaw-rev {
+    to { transform: rotateY(-360deg); }
+  }
+  @keyframes ho3-face {
+    to { transform: rotateY(-360deg); }
+  }
+  @keyframes ho3-face-rev {
+    to { transform: rotateY(360deg); }
+  }
+  @keyframes ho3-pulse {
+    0% { transform: scale(1); opacity: 0.65; }
+    70% { transform: scale(1.18); opacity: 0; }
+    100% { opacity: 0; }
   }
 
   @media (max-width: 767px) {
-    .hero-orbit {
-      width: min(100%, 300px);
-    }
-    .ho-chip {
-      font-size: 0.65rem;
-      padding: 0.28rem 0.5rem;
-    }
-    /* slightly slower on mobile for battery */
-    .ho-ring-outer { animation-duration: 48s; }
-    .ho-ring-inner { animation-duration: 34s; }
+    .ho3 { width: min(100%, 320px); }
+    .ho3-stage { transform: rotateX(14deg); }
+    .ho3-slot { transform: rotateY(calc(var(--i) * 360deg / var(--n))) translateZ(118px); }
+    .ho3-slot-sm { transform: rotateY(calc(var(--i) * 360deg / var(--n) + 20deg)) translateZ(78px); }
+    .ho3-hub-core { width: 84px; height: 84px; border-radius: 24px; }
+    .ho3-orbit-a { animation-duration: 42s; }
+    .ho3-orbit-b { animation-duration: 30s; }
+    .ho3-icon { animation-duration: 42s; }
+    .ho3-orbit-b .ho3-icon { animation-duration: 30s; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .ho-ring-outer,
-    .ho-ring-inner,
-    .ho-core-ring,
-    .ho-core-ring-2,
-    .ho-pulse,
-    .ho-chip,
-    .ho-dot {
+    .ho3-orbit-a,
+    .ho3-orbit-b,
+    .ho3-icon,
+    .ho3-hub-ring,
+    .ho3-hub-ring2 {
       animation: none !important;
     }
   }
