@@ -6,6 +6,7 @@ import Reviews from '../components/Reviews.astro';
 import VideoGallery from '../components/VideoGallery.astro';
 import IconBox from '../components/IconBox.astro';
 import ServiceIcons from '../components/icons/ServiceIcons.astro';
+import HeroOrbit from '../components/HeroOrbit.astro';
 import { SITE } from '../data/site';
 
 const services = [
@@ -24,7 +25,7 @@ const services = [
   <Nav active="home" />
   <section id="home" class="hero-premium">
     <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div><div class="grid-overlay"></div></div>
-    <div class="container hero-grid">
+    <div class="container hero-grid hero-grid-orbit">
       <div class="hero-content reveal">
         <div class="eyebrow"><span class="dot"></span> {SITE.tagline}</div>
         <h1 class="hero-title">Full-Service IT &amp;<br />Digital Solutions That<br /><span class="text-gradient" id="typing-text">Grow Your Business</span><span class="typing-cursor">|</span></h1>
@@ -42,20 +43,8 @@ const services = [
         </div>
       </div>
       <div class="hero-visual reveal">
-        <div class="visual-card glass-card animate-float">
-          <div class="visual-icon-live">
-            <ServiceIcons name="rocket" size={56} />
-          </div>
-          <h3>{SITE.brand}</h3>
-          <p class="visual-tags">Web · App · AI Video · Auth · Marketing</p>
-          <div class="stat-grid">
-            <div class="stat-box"><strong class="text-primary count-up" data-count="4300+">0</strong><span>Projects</span></div>
-            <div class="stat-box"><strong class="text-violet count-up" data-count="24h">0</strong><span>Fast delivery</span></div>
-          </div>
-          <div class="float-badge badge-1">Web</div>
-          <div class="float-badge badge-2">AI</div>
-          <div class="float-badge badge-3">App</div>
-        </div>
+        <HeroOrbit />
+        <p class="hero-orbit-caption">Web · App · Auth · AI Video · Marketing</p>
       </div>
     </div>
     <div class="scroll-indicator"><span>Scroll</span><div class="scroll-line"></div></div>
@@ -125,16 +114,36 @@ const services = [
 </Layout>
 
 <style>
-  .visual-icon-live {
-    width: 88px;
-    height: 88px;
-    margin: 0 auto 1rem;
-    border-radius: 24px;
-    display: flex;
+  /* Mobile: orbit on top | Desktop: orbit on right */
+  .hero-grid-orbit {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
     align-items: center;
-    justify-content: center;
-    background: rgba(13, 148, 136, 0.1);
-    border: 1px solid rgba(13, 148, 136, 0.15);
+  }
+  .hero-visual {
+    order: -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-content { order: 1; }
+  @media (min-width: 900px) {
+    .hero-grid-orbit {
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 3rem;
+    }
+    .hero-content { order: 1; }
+    .hero-visual { order: 2; }
+  }
+  .hero-orbit-caption {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-3, #64748B);
+    text-align: center;
   }
   .about-checks {
     list-style: none;

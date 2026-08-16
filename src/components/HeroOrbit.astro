@@ -1,0 +1,273 @@
+---
+/** Premium digital IT hero visual — pure CSS, GPU transform only */
+const nodesOuter = [
+  { label: 'Web', angle: 0 },
+  { label: 'App', angle: 60 },
+  { label: 'Auth', angle: 120 },
+  { label: 'AI', angle: 180 },
+  { label: 'Video', angle: 240 },
+  { label: 'Ads', angle: 300 },
+];
+const nodesInner = [
+  { label: 'SEO', angle: 30 },
+  { label: 'API', angle: 150 },
+  { label: 'Meta', angle: 270 },
+];
+---
+<div class="hero-orbit" aria-hidden="true">
+  <div class="ho-glow"></div>
+
+  <div class="ho-ring ho-ring-outer">
+    {nodesOuter.map((n) => (
+      <span class="ho-node ho-node-out" style={`--a:${n.angle}deg`}>
+        <span class="ho-chip">{n.label}</span>
+      </span>
+    ))}
+  </div>
+
+  <div class="ho-ring ho-ring-inner">
+    {nodesInner.map((n) => (
+      <span class="ho-node ho-node-in" style={`--a:${n.angle}deg`}>
+        <span class="ho-dot"></span>
+        <span class="ho-chip ho-chip-sm">{n.label}</span>
+      </span>
+    ))}
+  </div>
+
+  <div class="ho-core">
+    <div class="ho-core-ring"></div>
+    <div class="ho-core-ring ho-core-ring-2"></div>
+    <div class="ho-core-body">
+      <svg class="ho-logo" viewBox="0 0 48 48" width="36" height="36" fill="none" aria-hidden="true">
+        <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2" opacity="0.35"></circle>
+        <path d="M16 30V18l8-4 8 4v12l-8 4-8-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+        <circle cx="24" cy="24" r="3" fill="currentColor"></circle>
+      </svg>
+      <strong class="ho-brand">Creavix</strong>
+      <span class="ho-sub">IT · Digital</span>
+    </div>
+  </div>
+
+  <div class="ho-pulse"></div>
+</div>
+
+<style>
+  .hero-orbit {
+    position: relative;
+    width: min(100%, 380px);
+    aspect-ratio: 1;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+  }
+
+  .ho-glow {
+    position: absolute;
+    inset: 12%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(13, 148, 136, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .ho-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px dashed rgba(13, 148, 136, 0.22);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+  }
+
+  .ho-ring-outer {
+    width: 92%;
+    height: 92%;
+    animation: ho-spin 42s linear infinite;
+  }
+  .ho-ring-inner {
+    width: 62%;
+    height: 62%;
+    border-style: solid;
+    border-color: rgba(217, 119, 6, 0.18);
+    animation: ho-spin-rev 28s linear infinite;
+  }
+
+  .ho-node {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* place on ring edge */
+    transform:
+      rotate(var(--a))
+      translateY(calc(-1 * var(--r)))
+      rotate(calc(-1 * var(--a)));
+  }
+  .ho-node-out { --r: 46%; }
+  .ho-node-in { --r: 31%; }
+
+  /* counter-rotate chips so text stays upright relative to ring spin */
+  .ho-ring-outer .ho-chip {
+    animation: ho-spin-rev 42s linear infinite;
+  }
+  .ho-ring-inner .ho-chip,
+  .ho-ring-inner .ho-dot {
+    animation: ho-spin 28s linear infinite;
+  }
+
+  .ho-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #0F172A;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(13, 148, 136, 0.2);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+    white-space: nowrap;
+  }
+  .ho-chip-sm {
+    font-size: 0.65rem;
+    padding: 0.28rem 0.5rem;
+    color: #0F766E;
+    border-color: rgba(217, 119, 6, 0.25);
+  }
+  .ho-dot {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #D97706;
+    margin: 0 auto 0.2rem;
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.2);
+  }
+
+  .ho-core {
+    position: relative;
+    z-index: 2;
+    width: 42%;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+  }
+  .ho-core-ring,
+  .ho-core-ring-2 {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(13, 148, 136, 0.25);
+  }
+  .ho-core-ring {
+    animation: ho-pulse-ring 3.2s ease-out infinite;
+  }
+  .ho-core-ring-2 {
+    inset: -10%;
+    border-color: rgba(217, 119, 6, 0.2);
+    animation: ho-pulse-ring 3.2s ease-out infinite 1.1s;
+  }
+  .ho-core-body {
+    position: relative;
+    z-index: 1;
+    width: 88%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.75));
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow:
+      0 12px 36px rgba(13, 148, 136, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 1);
+    color: #0D9488;
+  }
+  .ho-brand {
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-size: clamp(0.85rem, 2.8vw, 1rem);
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.1;
+  }
+  .ho-sub {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #0D9488;
+  }
+
+  .ho-pulse {
+    position: absolute;
+    inset: 8%;
+    border-radius: 50%;
+    border: 1px solid rgba(13, 148, 136, 0.12);
+    pointer-events: none;
+    animation: ho-breathe 4s ease-in-out infinite;
+  }
+
+  @keyframes ho-spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  @keyframes ho-spin-rev {
+    to { transform: translate(-50%, -50%) rotate(-360deg); }
+  }
+  /* chips start without translate -50; fix ring transform base */
+  .ho-ring-outer,
+  .ho-ring-inner {
+    transform: translate(-50%, -50%);
+  }
+  @keyframes ho-pulse-ring {
+    0% { transform: scale(1); opacity: 0.7; }
+    70% { transform: scale(1.12); opacity: 0; }
+    100% { transform: scale(1.12); opacity: 0; }
+  }
+  @keyframes ho-breathe {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.03); opacity: 1; }
+  }
+
+  /* Chip counter-rotate must match parent spin direction */
+  .ho-ring-outer .ho-chip {
+    animation-name: ho-counter-out;
+  }
+  .ho-ring-inner .ho-chip,
+  .ho-ring-inner .ho-dot {
+    animation-name: ho-counter-in;
+  }
+  @keyframes ho-counter-out {
+    to { transform: rotate(-360deg); }
+  }
+  @keyframes ho-counter-in {
+    to { transform: rotate(360deg); }
+  }
+
+  @media (max-width: 767px) {
+    .hero-orbit {
+      width: min(100%, 300px);
+    }
+    .ho-chip {
+      font-size: 0.65rem;
+      padding: 0.28rem 0.5rem;
+    }
+    /* slightly slower on mobile for battery */
+    .ho-ring-outer { animation-duration: 48s; }
+    .ho-ring-inner { animation-duration: 34s; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ho-ring-outer,
+    .ho-ring-inner,
+    .ho-core-ring,
+    .ho-core-ring-2,
+    .ho-pulse,
+    .ho-chip,
+    .ho-dot {
+      animation: none !important;
+    }
+  }
+</style>
