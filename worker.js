@@ -1,6 +1,8 @@
-/** Serve Astro static build from Workers Assets */
 export default {
   async fetch(request, env) {
-    return env.ASSETS.fetch(request);
+    if (env.ASSETS) {
+      return env.ASSETS.fetch(request);
+    }
+    return new Response("Assets binding missing", { status: 500 });
   },
 };
