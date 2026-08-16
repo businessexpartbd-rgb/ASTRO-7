@@ -1,13 +1,3 @@
 {
-  "googleClientId": "",
-  "firebase": {
-    "apiKey": "AIzaSyAys-V5ZZ90VVB1duob6f5hf_uSi1-ImPI",
-    "authDomain": "creavix-bbfeb.firebaseapp.com",
-    "projectId": "creavix-bbfeb",
-    "storageBucket": "creavix-bbfeb.firebasestorage.app",
-    "messagingSenderId": "933391199778",
-    "appId": "1:933391199778:web:2ccd03b6625a5787e0247b",
-    "measurementId": "G-EZHEQK4WRL"
-  },
-  "deployStamp": "2026-08-16-firebase-v2"
+  "turnstileSiteKey": "1x00000000000000000000AA"
 }

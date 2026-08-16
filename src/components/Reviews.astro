@@ -5,7 +5,7 @@
     <div class="text-center mb-8 reveal">
       <p class="eyebrow" style="margin:0 auto 1rem">Client Reviews</p>
       <h2 class="mb-4">Ratings & Reviews</h2>
-      <p style="max-width:36rem;margin:0 auto">Verified Google reviews · Bangla or English · Saved in cloud database</p>
+      <p style="max-width:36rem;margin:0 auto">Share your experience in Bangla or English. Protected by Cloudflare Turnstile.</p>
     </div>
 
     <div class="reviews-layout reveal">
@@ -23,22 +23,14 @@
           <div class="reviews-empty" id="reviews-empty">
             <div class="empty-icon">⭐</div>
             <p><strong>No reviews yet</strong></p>
-            <p class="empty-sub">Be the first to leave a verified review.</p>
+            <p class="empty-sub">Be the first to leave an honest rating.</p>
           </div>
         </div>
         <button type="button" class="btn-see-more" id="btn-see-more" hidden>See all reviews</button>
 
         <div class="review-form-card glass-card" id="review-form-card">
           <h3 class="form-heading">Write a review</h3>
-          <div id="google-auth-area" class="google-auth-area">
-            <button type="button" id="btn-google" class="btn-google">
-              <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-              <span id="btn-google-label">Continue with Google</span>
-            </button>
-            <p class="auth-hint" id="auth-hint">Tap to choose a Google account on your device and leave a verified review.</p>
-          </div>
-          <form id="review-form" class="review-form" hidden>
-            <div class="user-chip" id="user-chip"></div>
+          <form id="review-form" class="review-form">
             <div class="star-picker" id="star-picker" role="radiogroup" aria-label="Your rating">
               <button type="button" data-star="1" class="star-btn" aria-label="1 star">★</button>
               <button type="button" data-star="2" class="star-btn" aria-label="2 stars">★</button>
@@ -47,10 +39,19 @@
               <button type="button" data-star="5" class="star-btn" aria-label="5 stars">★</button>
             </div>
             <p class="star-label" id="star-label">Tap to rate</p>
+
+            <input type="text" id="review-name" class="review-input" maxlength="60" placeholder="Your name / আপনার নাম" required autocomplete="name" />
             <textarea id="review-text" class="review-textarea" rows="3" maxlength="600" placeholder="Write in Bangla or English… আপনার মতামত লিখুন" required></textarea>
+
+            <!-- Honeypot (bots) -->
+            <input type="text" id="review-company" name="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <div class="cf-turnstile-wrap" id="turnstile-wrap">
+              <div id="turnstile-widget"></div>
+            </div>
+
             <div class="form-actions">
               <button type="submit" class="btn btn-primary" id="btn-submit-review">Post review</button>
-              <button type="button" class="btn btn-outline" id="btn-signout">Sign out</button>
             </div>
             <p class="form-msg" id="form-msg" hidden></p>
           </form>
@@ -98,7 +99,6 @@
   .empty-sub { font-size: 0.9rem; color: var(--text-3); margin-top: 0.25rem; }
   .review-item { background: rgba(255,255,255,.75); border: 1px solid rgba(255,255,255,.9); border-radius: 18px; padding: 1.15rem 1.25rem; box-shadow: 0 4px 20px rgba(15,23,42,.04); }
   .review-top { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.55rem; }
-  .review-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; background: #E2E8F0; }
   .review-avatar-fallback { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; color: #fff; background: linear-gradient(135deg, #4F46E5, #7C3AED); }
   .review-name { font-weight: 600; font-size: 0.95rem; color: var(--text); }
   .review-meta { font-size: 0.75rem; color: var(--text-3); }
@@ -109,22 +109,28 @@
   .btn-see-more:hover { border-color: var(--primary); color: var(--primary); }
   .review-form-card { margin-top: 1.5rem; padding: 1.5rem !important; }
   .form-heading { font-size: 1.1rem; margin-bottom: 1rem; }
-  .google-auth-area { text-align: center; }
-  .btn-google { display: inline-flex; align-items: center; justify-content: center; gap: 0.65rem; width: 100%; max-width: 280px; padding: 0.75rem 1.25rem; border-radius: 9999px; border: 1px solid rgba(15,23,42,.12); background: #fff; font-family: var(--font-h); font-weight: 600; font-size: 0.9rem; color: var(--text); cursor: pointer; }
-  .btn-google:hover { box-shadow: 0 4px 16px rgba(15,23,42,.1); }
-  .auth-hint { font-size: 0.8rem; color: var(--text-3); margin-top: 0.75rem; line-height: 1.5; }
-  .user-chip { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; font-size: 0.9rem; font-weight: 500; }
-  .user-chip img { width: 32px; height: 32px; border-radius: 50%; }
   .star-picker { display: flex; gap: 0.35rem; margin-bottom: 0.35rem; }
   .star-btn { background: none; border: none; cursor: pointer; font-size: 1.75rem; color: #CBD5E1; line-height: 1; padding: 0.15rem; }
   .star-btn:hover, .star-btn.on { color: #F59E0B; }
   .star-label { font-size: 0.8rem; color: var(--text-3); margin-bottom: 0.85rem; }
-  .review-textarea { width: 100%; padding: 0.85rem 1rem; border-radius: 14px; border: 1.5px solid rgba(15,23,42,.1); background: #fff; font-family: var(--font-b); font-size: 0.95rem; resize: vertical; margin-bottom: 1rem; outline: none; }
+  .review-input {
+    width: 100%; padding: 0.75rem 1rem; border-radius: 14px;
+    border: 1.5px solid rgba(15,23,42,.1); background: #fff;
+    font-family: var(--font-b); font-size: 0.95rem; margin-bottom: 0.75rem; outline: none;
+  }
+  .review-input:focus { border-color: var(--primary); }
+  .review-textarea {
+    width: 100%; padding: 0.85rem 1rem; border-radius: 14px;
+    border: 1.5px solid rgba(15,23,42,.1); background: #fff;
+    font-family: var(--font-b); font-size: 0.95rem; resize: vertical;
+    margin-bottom: 1rem; outline: none;
+  }
   .review-textarea:focus { border-color: var(--primary); }
+  .hp-field { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
+  .cf-turnstile-wrap { margin-bottom: 1rem; min-height: 65px; display: flex; justify-content: flex-start; }
   .form-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
   .form-msg { font-size: 0.85rem; margin-top: 0.75rem; color: var(--emerald); }
   .form-msg.err { color: var(--rose); }
-  .review-form[hidden] { display: none !important; }
   .reviews-modal { position: fixed; inset: 0; z-index: 10000; display: none; align-items: flex-end; justify-content: center; pointer-events: none; }
   .reviews-modal.is-open { display: flex; pointer-events: auto; }
   @media (min-width: 640px) { .reviews-modal.is-open { align-items: center; } }
@@ -137,228 +143,275 @@
   .modal-body { padding: 1.15rem 1.35rem 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
 </style>
 
-<script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js';
-import {
-  getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect,
-  getRedirectResult, onAuthStateChanged, signOut
-} from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
-import {
-  getFirestore, collection, doc, setDoc, getDocs, query, orderBy, limit, serverTimestamp
-} from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js';
-
-const FIREBASE_CONFIG = {
-  apiKey: 'AIzaSyAys-V5ZZ90VVB1duob6f5hf_uSi1-ImPI',
-  authDomain: 'creavix-bbfeb.firebaseapp.com',
-  projectId: 'creavix-bbfeb',
-  storageBucket: 'creavix-bbfeb.firebasestorage.app',
-  messagingSenderId: '933391199778',
-  appId: '1:933391199778:web:2ccd03b6625a5787e0247b',
-  measurementId: 'G-EZHEQK4WRL'
-};
-
-const starLabels = ['', 'Poor', 'Fair', 'Good', 'Very good', 'Excellent'];
-let auth, db, currentUser = null, selectedStars = 0, reviews = [];
-
-const $ = (id) => document.getElementById(id);
-const escapeHtml = (s) => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-const starsHtml = (n) => { let s=''; for (let i=1;i<=5;i++) s += i<=n?'★':'☆'; return s; };
-
-function stats(list) {
-  const counts = [0,0,0,0,0,0]; let sum = 0;
-  list.forEach(r => { const s = Math.min(5, Math.max(1, +r.stars||0)); counts[s]++; sum += s; });
-  const n = list.length;
-  return { counts, total: n, avg: n ? sum/n : 0 };
-}
-
-function renderSummary(list) {
-  const st = stats(list);
-  if ($('avg-score')) $('avg-score').textContent = st.total ? st.avg.toFixed(1) : '0.0';
-  if ($('avg-stars')) $('avg-stars').textContent = starsHtml(Math.round(st.avg));
-  if ($('rating-count')) $('rating-count').textContent = st.total + (st.total===1?' rating':' ratings');
-  const bars = $('rating-bars');
-  if (!bars) return;
-  let html = '';
-  for (let i=5;i>=1;i--) {
-    const pct = st.total ? Math.round((st.counts[i]/st.total)*100) : 0;
-    html += `<div class="bar-row"><span>${i}</span><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div><span>${pct}%</span></div>`;
-  }
-  bars.innerHTML = html;
-}
-
-function reviewCard(r) {
-  const initial = (r.name||'U').charAt(0).toUpperCase();
-  const avatar = r.picture
-    ? `<img class="review-avatar" src="${escapeHtml(r.picture)}" alt="" width="40" height="40" />`
-    : `<div class="review-avatar-fallback">${initial}</div>`;
-  let date = '';
+<script is:inline>
+(function () {
+  'use strict';
   try {
-    if (r.createdAt?.toDate) date = r.createdAt.toDate().toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
-    else if (r.createdAt) date = new Date(r.createdAt).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
-  } catch(_){}
-  return `<article class="review-item"><div class="review-top">${avatar}<div><div class="review-name">${escapeHtml(r.name||'User')}</div><div class="review-meta">${date} · Verified Google</div></div></div><div class="review-stars">${starsHtml(r.stars)}</div><div class="review-body">${escapeHtml(r.text||'')}</div></article>`;
-}
+  var STORAGE_KEY = 'creavix_reviews_v3';
+  var starLabels = ['', 'Poor', 'Fair', 'Good', 'Very good', 'Excellent'];
+  var reviews = [];
+  var selectedStars = 0;
+  var turnstileToken = '';
+  var turnstileWidgetId = null;
+  var siteKey = '1x00000000000000000000AA';
 
-function renderList(list) {
-  const listEl = $('reviews-list'), emptyEl = $('reviews-empty'), moreBtn = $('btn-see-more');
-  if (!listEl) return;
-  if (!list.length) {
-    listEl.innerHTML = '';
-    if (emptyEl) { listEl.appendChild(emptyEl); emptyEl.hidden = false; }
-    if (moreBtn) moreBtn.hidden = true;
-    return;
-  }
-  if (emptyEl) emptyEl.hidden = true;
-  listEl.innerHTML = list.slice(0,3).map(reviewCard).join('');
-  if (moreBtn) { moreBtn.hidden = list.length <= 3; moreBtn.textContent = 'See all ' + list.length + ' reviews'; }
-}
+  function $(id) { return document.getElementById(id); }
 
-function renderModal(list) {
-  const body = $('modal-body');
-  if (body) body.innerHTML = list.map(reviewCard).join('') || '<p style="color:#64748B;text-align:center;padding:1rem">No reviews yet</p>';
-}
-
-function refresh() { renderSummary(reviews); renderList(reviews); renderModal(reviews); }
-
-function showAuthUI() {
-  const form = $('review-form'), authArea = $('google-auth-area'), chip = $('user-chip');
-  if (currentUser) {
-    if (authArea) authArea.hidden = true;
-    if (form) form.hidden = false;
-    if (chip) {
-      const img = currentUser.picture ? `<img src="${escapeHtml(currentUser.picture)}" alt="" width="32" height="32" />` : '';
-      chip.innerHTML = img + `<span>${escapeHtml(currentUser.name||currentUser.email||'User')} · Verified</span>`;
-    }
-  } else {
-    if (authArea) authArea.hidden = false;
-    if (form) form.hidden = true;
-  }
-}
-
-function setStars(n) {
-  selectedStars = n;
-  document.querySelectorAll('#star-picker .star-btn').forEach(btn => {
-    btn.classList.toggle('on', parseInt(btn.getAttribute('data-star'),10) <= n);
-  });
-  if ($('star-label')) $('star-label').textContent = n ? n + ' · ' + starLabels[n] : 'Tap to rate';
-}
-
-async function loadReviews() {
-  if (!db) return [];
-  try {
-    const q = query(collection(db, 'reviews'), orderBy('createdAt', 'desc'), limit(200));
-    const snap = await getDocs(q);
-    return snap.docs.map(d => {
-      const data = d.data();
-      return { id: d.id, userId: data.userId||d.id, name: data.name||'User', email: data.email||'', picture: data.picture||'', stars: data.stars||0, text: data.text||'', createdAt: data.createdAt||null, verified: true };
-    });
-  } catch (e) { console.warn(e); return []; }
-}
-
-async function saveReview(text) {
-  await setDoc(doc(db, 'reviews', currentUser.uid), {
-    userId: currentUser.uid,
-    name: currentUser.name,
-    email: currentUser.email||'',
-    picture: currentUser.picture||'',
-    stars: selectedStars,
-    text,
-    createdAt: serverTimestamp(),
-    updatedAt: serverTimestamp()
-  }, { merge: true });
-}
-
-function closeModal() {
-  const m = $('reviews-modal');
-  if (!m) return;
-  m.classList.remove('is-open');
-  m.setAttribute('aria-hidden','true');
-  document.body.style.overflow = '';
-}
-function openModal() {
-  const m = $('reviews-modal');
-  if (!m) return;
-  m.classList.add('is-open');
-  m.setAttribute('aria-hidden','false');
-  document.body.style.overflow = 'hidden';
-}
-
-async function googleSignIn() {
-  const provider = new GoogleAuthProvider();
-  provider.setCustomParameters({ prompt: 'select_account' });
-  try {
-    await signInWithPopup(auth, provider);
-  } catch (err) {
-    if (err?.code === 'auth/popup-blocked') {
-      try { await signInWithRedirect(auth, provider); } catch(_) { alert('Sign-in failed. Allow popups or try again.'); }
-    } else if (err?.code !== 'auth/popup-closed-by-user') {
-      console.warn(err);
-      alert('Google sign-in failed. Enable Google provider in Firebase + add creavixit.com to Authorized domains.');
-    }
-  }
-}
-
-async function boot() {
-  closeModal();
-  try {
-    const app = initializeApp(FIREBASE_CONFIG);
-    auth = getAuth(app);
-    db = getFirestore(app);
-  } catch (e) {
-    console.error(e);
-    if ($('auth-hint')) $('auth-hint').textContent = 'Firebase failed to start.';
-    return;
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
   }
 
-  try { await getRedirectResult(auth); } catch(_){}
+  function starsHtml(n) {
+    var s = '';
+    for (var i = 1; i <= 5; i++) s += i <= n ? '★' : '☆';
+    return s;
+  }
 
-  onAuthStateChanged(auth, (user) => {
-    currentUser = user ? {
-      uid: user.uid,
-      name: user.displayName || user.email || 'User',
-      email: user.email || '',
-      picture: user.photoURL || ''
-    } : null;
-    showAuthUI();
-  });
-
-  reviews = await loadReviews();
-  refresh();
-
-  $('btn-google')?.addEventListener('click', googleSignIn);
-  $('star-picker')?.addEventListener('click', (e) => {
-    const t = e.target.closest('.star-btn');
-    if (t) setStars(parseInt(t.getAttribute('data-star'),10));
-  });
-
-  $('review-form')?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const msg = $('form-msg'), btn = $('btn-submit-review');
-    if (!currentUser) return;
-    if (!selectedStars) { if (msg){ msg.hidden=false; msg.className='form-msg err'; msg.textContent='Please select a star rating.'; } return; }
-    const text = ($('review-text')?.value||'').trim();
-    if (text.length < 3) { if (msg){ msg.hidden=false; msg.className='form-msg err'; msg.textContent='Please write a short comment.'; } return; }
-    if (btn) btn.disabled = true;
+  function loadLocal() {
     try {
-      await saveReview(text);
-      reviews = await loadReviews();
-      refresh();
-      if ($('review-text')) $('review-text').value = '';
-      setStars(0);
-      if (msg){ msg.hidden=false; msg.className='form-msg'; msg.textContent='Review saved permanently. Thank you!'; }
-    } catch (err) {
-      console.error(err);
-      if (msg){ msg.hidden=false; msg.className='form-msg err'; msg.textContent='Could not save. Check Firestore rules in Firebase Console.'; }
-    } finally { if (btn) btn.disabled = false; }
-  });
+      var raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) { return []; }
+  }
 
-  $('btn-signout')?.addEventListener('click', async () => { try { await signOut(auth); } catch(_){} });
-  $('btn-see-more')?.addEventListener('click', openModal);
-  $('modal-close')?.addEventListener('click', closeModal);
-  $('modal-backdrop')?.addEventListener('click', closeModal);
-  document.addEventListener('keydown', (e) => { if (e.key==='Escape') closeModal(); });
-}
+  function saveLocal(list) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch (e) {}
+  }
 
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
-else boot();
+  function stats(list) {
+    var counts = [0, 0, 0, 0, 0, 0];
+    var sum = 0;
+    list.forEach(function (r) {
+      var s = Math.min(5, Math.max(1, parseInt(r.stars, 10) || 0));
+      counts[s]++;
+      sum += s;
+    });
+    var n = list.length;
+    return { counts: counts, total: n, avg: n ? sum / n : 0 };
+  }
+
+  function renderSummary(list) {
+    var st = stats(list);
+    if ($('avg-score')) $('avg-score').textContent = st.total ? st.avg.toFixed(1) : '0.0';
+    if ($('avg-stars')) $('avg-stars').textContent = starsHtml(Math.round(st.avg));
+    if ($('rating-count')) $('rating-count').textContent = st.total + (st.total === 1 ? ' rating' : ' ratings');
+    var bars = $('rating-bars');
+    if (!bars) return;
+    var html = '';
+    for (var i = 5; i >= 1; i--) {
+      var pct = st.total ? Math.round((st.counts[i] / st.total) * 100) : 0;
+      html += '<div class="bar-row"><span>' + i + '</span><div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"></div></div><span>' + pct + '%</span></div>';
+    }
+    bars.innerHTML = html;
+  }
+
+  function reviewCard(r) {
+    var initial = (r.name || 'U').charAt(0).toUpperCase();
+    var date = r.createdAt
+      ? new Date(r.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+      : '';
+    return (
+      '<article class="review-item">' +
+        '<div class="review-top">' +
+          '<div class="review-avatar-fallback">' + initial + '</div>' +
+          '<div><div class="review-name">' + escapeHtml(r.name || 'User') + '</div>' +
+          '<div class="review-meta">' + date + '</div></div></div>' +
+        '<div class="review-stars">' + starsHtml(r.stars) + '</div>' +
+        '<div class="review-body">' + escapeHtml(r.text || '') + '</div>' +
+      '</article>'
+    );
+  }
+
+  function renderList(list) {
+    var listEl = $('reviews-list');
+    var emptyEl = $('reviews-empty');
+    var moreBtn = $('btn-see-more');
+    if (!listEl) return;
+    if (!list.length) {
+      listEl.innerHTML = '';
+      if (emptyEl) { listEl.appendChild(emptyEl); emptyEl.hidden = false; }
+      if (moreBtn) moreBtn.hidden = true;
+      return;
+    }
+    if (emptyEl) emptyEl.hidden = true;
+    listEl.innerHTML = list.slice(0, 3).map(reviewCard).join('');
+    if (moreBtn) {
+      moreBtn.hidden = list.length <= 3;
+      moreBtn.textContent = 'See all ' + list.length + ' reviews';
+    }
+  }
+
+  function renderModal(list) {
+    var body = $('modal-body');
+    if (body) {
+      body.innerHTML = list.map(reviewCard).join('') ||
+        '<p style="color:#64748B;text-align:center;padding:1rem">No reviews yet</p>';
+    }
+  }
+
+  function refresh() {
+    renderSummary(reviews);
+    renderList(reviews);
+    renderModal(reviews);
+  }
+
+  function setStars(n) {
+    selectedStars = n;
+    document.querySelectorAll('#star-picker .star-btn').forEach(function (btn) {
+      var v = parseInt(btn.getAttribute('data-star'), 10);
+      btn.classList.toggle('on', v <= n);
+    });
+    if ($('star-label')) $('star-label').textContent = n ? n + ' · ' + starLabels[n] : 'Tap to rate';
+  }
+
+  function closeModal() {
+    var m = $('reviews-modal');
+    if (!m) return;
+    m.classList.remove('is-open');
+    m.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function openModal() {
+    var m = $('reviews-modal');
+    if (!m) return;
+    m.classList.add('is-open');
+    m.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function loadTurnstile(key) {
+    siteKey = key || siteKey;
+    var s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+    s.async = true;
+    s.onload = function () {
+      if (!window.turnstile || !$('turnstile-widget')) return;
+      try {
+        turnstileWidgetId = window.turnstile.render('#turnstile-widget', {
+          sitekey: siteKey,
+          theme: 'light',
+          callback: function (token) { turnstileToken = token || ''; },
+          'error-callback': function () { turnstileToken = ''; },
+          'expired-callback': function () { turnstileToken = ''; },
+        });
+      } catch (e) {
+        console.warn('Turnstile render failed', e);
+      }
+    };
+    document.head.appendChild(s);
+  }
+
+  function resetTurnstile() {
+    turnstileToken = '';
+    try {
+      if (window.turnstile && turnstileWidgetId !== null) {
+        window.turnstile.reset(turnstileWidgetId);
+      }
+    } catch (e) {}
+  }
+
+  async function boot() {
+    closeModal();
+    try {
+      var res = await fetch('/config.json?t=' + Date.now(), { cache: 'no-store' });
+      if (res.ok) {
+        var cfg = await res.json();
+        if (cfg && cfg.turnstileSiteKey) siteKey = cfg.turnstileSiteKey;
+      }
+    } catch (e) {}
+
+    reviews = loadLocal();
+    refresh();
+    loadTurnstile(siteKey);
+
+    var starPicker = $('star-picker');
+    if (starPicker) {
+      starPicker.addEventListener('click', function (e) {
+        var t = e.target.closest('.star-btn');
+        if (t) setStars(parseInt(t.getAttribute('data-star'), 10));
+      });
+    }
+
+    var form = $('review-form');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var msg = $('form-msg');
+        var btn = $('btn-submit-review');
+
+        // Honeypot
+        if (($('review-company') && $('review-company').value || '').trim()) return;
+
+        if (!selectedStars) {
+          if (msg) { msg.hidden = false; msg.className = 'form-msg err'; msg.textContent = 'Please select a star rating.'; }
+          return;
+        }
+        var name = (($('review-name') && $('review-name').value) || '').trim();
+        if (name.length < 2) {
+          if (msg) { msg.hidden = false; msg.className = 'form-msg err'; msg.textContent = 'Please enter your name.'; }
+          return;
+        }
+        var text = (($('review-text') && $('review-text').value) || '').trim();
+        if (text.length < 3) {
+          if (msg) { msg.hidden = false; msg.className = 'form-msg err'; msg.textContent = 'Please write a short comment.'; }
+          return;
+        }
+        if (!turnstileToken) {
+          if (msg) { msg.hidden = false; msg.className = 'form-msg err'; msg.textContent = 'Please complete the human verification.'; }
+          return;
+        }
+
+        if (btn) btn.disabled = true;
+
+        var entry = {
+          id: 'r_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8),
+          name: name,
+          stars: selectedStars,
+          text: text,
+          createdAt: new Date().toISOString(),
+        };
+
+        reviews.unshift(entry);
+        if (reviews.length > 200) reviews = reviews.slice(0, 200);
+        saveLocal(reviews);
+        refresh();
+
+        if ($('review-name')) $('review-name').value = '';
+        if ($('review-text')) $('review-text').value = '';
+        setStars(0);
+        resetTurnstile();
+
+        if (msg) {
+          msg.hidden = false;
+          msg.className = 'form-msg';
+          msg.textContent = 'Thank you! Your review has been posted.';
+        }
+        if (btn) btn.disabled = false;
+      });
+    }
+
+    if ($('btn-see-more')) $('btn-see-more').addEventListener('click', openModal);
+    if ($('modal-close')) $('modal-close').addEventListener('click', closeModal);
+    if ($('modal-backdrop')) $('modal-backdrop').addEventListener('click', closeModal);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeModal();
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+  } catch (err) {
+    var m = document.getElementById('reviews-modal');
+    if (m) {
+      m.classList.remove('is-open');
+      m.setAttribute('aria-hidden', 'true');
+    }
+    document.body.style.overflow = '';
+  }
+})();
 </script>
