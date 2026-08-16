@@ -4,7 +4,21 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import Reviews from '../components/Reviews.astro';
 import VideoGallery from '../components/VideoGallery.astro';
-import { SITE, STATS } from '../data/site';
+import IconBox from '../components/IconBox.astro';
+import ServiceIcons from '../components/icons/ServiceIcons.astro';
+import { SITE } from '../data/site';
+
+const services = [
+  { href: '/services/web-development', name: 'web' as const, title: 'Web Development', desc: 'Fast, SEO-friendly websites and landing pages built for ranking and conversion.', tone: 'rgba(13,148,136,.12)' },
+  { href: '/services/application-build', name: 'app' as const, title: 'Application Build', desc: 'Custom web & mobile applications designed for performance and scale.', tone: 'rgba(245,158,11,.12)' },
+  { href: '/services/authentication', name: 'auth' as const, title: 'Authentication Systems', desc: 'Secure login, signup, roles and access control for your products.', tone: 'rgba(5,150,105,.12)' },
+  { href: '/services/ai-video-marketing', name: 'ai' as const, title: 'AI Video Marketing', desc: 'AI-powered video ads for Meta, YouTube and TikTok that convert.', tone: 'rgba(234,88,12,.12)' },
+  { href: '/services/video-editing', name: 'video' as const, title: 'Video Editing', desc: 'Professional editing for ads, social, YouTube and brand films.', tone: 'rgba(225,29,72,.1)' },
+  { href: '/services/human-like-content', name: 'human' as const, title: 'Human-like Content', desc: 'Authentic AI human & product visuals for campaigns.', tone: 'rgba(217,119,6,.12)' },
+  { href: '/services/facebook-page', name: 'facebook' as const, title: 'Facebook Page Services', desc: 'Business page setup and verification support.', tone: 'rgba(13,148,136,.12)' },
+  { href: '/services/boosting', name: 'boost' as const, title: 'Boosting Service', desc: 'Targeted Meta boosting to reach the right audience.', tone: 'rgba(225,29,72,.1)' },
+  { href: '/services/campaign', name: 'campaign' as const, title: 'Campaign Service', desc: 'End-to-end campaign planning and performance management.', tone: 'rgba(234,88,12,.12)' },
+];
 ---
 <Layout title={SITE.seoTitle} description={SITE.seoDescription}>
   <Nav active="home" />
@@ -29,16 +43,18 @@ import { SITE, STATS } from '../data/site';
       </div>
       <div class="hero-visual reveal">
         <div class="visual-card glass-card animate-float">
-          <div class="visual-icon">💼</div>
+          <div class="visual-icon-live">
+            <ServiceIcons name="rocket" size={56} />
+          </div>
           <h3>{SITE.brand}</h3>
           <p class="visual-tags">Web · App · AI Video · Auth · Marketing</p>
           <div class="stat-grid">
             <div class="stat-box"><strong class="text-primary count-up" data-count="4300+">0</strong><span>Projects</span></div>
             <div class="stat-box"><strong class="text-violet count-up" data-count="24h">0</strong><span>Fast delivery</span></div>
           </div>
-          <div class="float-badge badge-1">💻 Web</div>
-          <div class="float-badge badge-2">🤖 AI</div>
-          <div class="float-badge badge-3">📱 App</div>
+          <div class="float-badge badge-1"><ServiceIcons name="web" size={14} /> Web</div>
+          <div class="float-badge badge-2"><ServiceIcons name="ai" size={14} /> AI</div>
+          <div class="float-badge badge-3"><ServiceIcons name="app" size={14} /> App</div>
         </div>
       </div>
     </div>
@@ -53,15 +69,15 @@ import { SITE, STATS } from '../data/site';
         <p style="max-width:40rem;margin:0 auto">Website development, applications, authentication, AI video production, Facebook growth and full campaign management — one agency.</p>
       </div>
       <div class="grid-3">
-        <a href="/services/web-development" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(13,148,136,.12)">💻</div><h3 class="mb-4">Web Development</h3><p style="font-size:.9rem">Fast, SEO-friendly websites and landing pages built for ranking and conversion.</p></a>
-        <a href="/services/application-build" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(245,158,11,.12)">📱</div><h3 class="mb-4">Application Build</h3><p style="font-size:.9rem">Custom web & mobile applications designed for performance and scale.</p></a>
-        <a href="/services/authentication" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(5,150,105,.12)">🔐</div><h3 class="mb-4">Authentication Systems</h3><p style="font-size:.9rem">Secure login, signup, roles and access control for your products.</p></a>
-        <a href="/services/ai-video-marketing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(234,88,12,.12)">🤖</div><h3 class="mb-4">AI Video Marketing</h3><p style="font-size:.9rem">AI-powered video ads for Meta, YouTube and TikTok that convert.</p></a>
-        <a href="/services/video-editing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(225,29,72,.1)">🎬</div><h3 class="mb-4">Video Editing</h3><p style="font-size:.9rem">Professional editing for ads, social, YouTube and brand films.</p></a>
-        <a href="/services/human-like-content" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(217,119,6,.12)">👤</div><h3 class="mb-4">Human-like Content</h3><p style="font-size:.9rem">Authentic AI human & product visuals for campaigns.</p></a>
-        <a href="/services/facebook-page" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(13,148,136,.12)">📘</div><h3 class="mb-4">Facebook Page Services</h3><p style="font-size:.9rem">Business page setup and verification support.</p></a>
-        <a href="/services/boosting" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(225,29,72,.1)">📈</div><h3 class="mb-4">Boosting Service</h3><p style="font-size:.9rem">Targeted Meta boosting to reach the right audience.</p></a>
-        <a href="/services/campaign" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(234,88,12,.12)">🎯</div><h3 class="mb-4">Campaign Service</h3><p style="font-size:.9rem">End-to-end campaign planning and performance management.</p></a>
+        {
+          services.map((s) => (
+            <a href={s.href} class="glass-card reveal" style="text-decoration:none;color:inherit;display:block">
+              <IconBox name={s.name} tone={s.tone} size={44} />
+              <h3 class="mb-4">{s.title}</h3>
+              <p style="font-size:.9rem">{s.desc}</p>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -74,26 +90,21 @@ import { SITE, STATS } from '../data/site';
         <p class="eyebrow">Why {SITE.name}</p>
         <h2 class="mb-6">IT Solution Agency · Since {SITE.servingSince}</h2>
         <p class="lead mb-8">{SITE.shortDesc}</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:.85rem;color:var(--text-2)">
-          <li>✓ Web, app & authentication engineering</li>
-          <li>✓ AI video + classic video production</li>
-          <li>✓ Facebook page, boost & campaigns</li>
-          <li>✓ Studio: {SITE.addressBn} · Founder {SITE.founder.name}</li>
+        <ul class="about-checks">
+          <li><ServiceIcons name="check" size={22} /><span>Web, app & authentication engineering</span></li>
+          <li><ServiceIcons name="check" size={22} /><span>AI video + classic video production</span></li>
+          <li><ServiceIcons name="check" size={22} /><span>Facebook page, boost & campaigns</span></li>
+          <li><ServiceIcons name="check" size={22} /><span>Studio: {SITE.addressBn} · Founder {SITE.founder.name}</span></li>
         </ul>
       </div>
       <div class="reveal">
         <div class="glass-card" style="padding:2.2rem">
           <h3 class="mb-6">At a glance</h3>
           <div class="stat-grid">
-            {
-              STATS.map((s) => (
-                <div>
-                  <strong class="count-up" data-count={s.value} style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong>
-                  <br />
-                  <span style="font-size:.8rem;color:var(--text-3)">{s.label}</span>
-                </div>
-              ))
-            }
+            <div><strong class="count-up" data-count="10+" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Years</span></div>
+            <div><strong class="count-up" data-count="4300+" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Projects</span></div>
+            <div><strong class="count-up" data-count="4.8" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Avg rating</span></div>
+            <div><strong class="count-up" data-count="24h" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Delivery</span></div>
           </div>
         </div>
       </div>
@@ -114,3 +125,34 @@ import { SITE, STATS } from '../data/site';
   </section>
   <Footer />
 </Layout>
+
+<style>
+  .visual-icon-live {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 1rem;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(13, 148, 136, 0.1);
+    border: 1px solid rgba(13, 148, 136, 0.15);
+  }
+  .float-badge {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .about-checks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    color: var(--text-2);
+  }
+  .about-checks li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+</style>

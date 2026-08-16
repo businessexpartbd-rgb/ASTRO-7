@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from './Nav.astro';
 import Footer from './Footer.astro';
+import IconBox from './IconBox.astro';
+import ServiceIcons, { type IconName } from './icons/ServiceIcons.astro';
 import { SITE } from '../data/site';
 
 interface Demo {
@@ -13,7 +15,7 @@ interface Props {
   title: string;
   seoTitle: string;
   seoDescription: string;
-  icon: string;
+  icon: IconName;
   lead: string;
   bullets: string[];
   demos: Demo[];
@@ -27,7 +29,10 @@ const { title, seoTitle, seoDescription, icon, lead, bullets, demos } = Astro.pr
     <div class="container" style="position:relative;z-index:2;max-width:720px">
       <div class="reveal">
         <div class="eyebrow"><span class="dot"></span> Service</div>
-        <h1 class="hero-title title-anim">{icon} {title}</h1>
+        <div class="svc-hero-icon">
+          <ServiceIcons name={icon} size={56} />
+        </div>
+        <h1 class="hero-title title-anim">{title}</h1>
         <p class="hero-lead">{lead}</p>
         <div class="flex-btns">
           <a href={SITE.whatsappLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Order on WhatsApp</a>
@@ -41,12 +46,22 @@ const { title, seoTitle, seoDescription, icon, lead, bullets, demos } = Astro.pr
     <div class="container grid-2">
       <div class="reveal">
         <h2 class="mb-6 title-anim">What’s included</h2>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:.85rem;color:var(--text-2)">
-          {bullets.map((b) => <li>✓ {b}</li>)}
+        <ul class="svc-bullets">
+          {
+            bullets.map((b) => (
+              <li>
+                <ServiceIcons name="check" size={22} />
+                <span>{b}</span>
+              </li>
+            ))
+          }
         </ul>
       </div>
       <div class="reveal">
         <div class="glass-card" style="padding:1.75rem">
+          <div style="margin-bottom:0.75rem">
+            <ServiceIcons name="spark" size={36} />
+          </div>
           <h3 class="mb-4">Why Creavix</h3>
           <p style="font-size:.95rem;margin-bottom:1rem">Premium delivery, clear process, SEO-aware builds and campaign-ready creative from one IT solution partner.</p>
           <a href={SITE.whatsappLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Get a quote</a>
@@ -66,6 +81,9 @@ const { title, seoTitle, seoDescription, icon, lead, bullets, demos } = Astro.pr
         {
           demos.map((d) => (
             <div class="glass-card reveal">
+              <div style="margin-bottom:0.5rem">
+                <ServiceIcons name={icon} size={32} />
+              </div>
               {d.tag && <span class="demo-tag">{d.tag}</span>}
               <h3 class="mb-4" style="margin-top:.5rem">{d.title}</h3>
               <p style="font-size:.9rem">{d.desc}</p>
@@ -87,6 +105,31 @@ const { title, seoTitle, seoDescription, icon, lead, bullets, demos } = Astro.pr
 </Layout>
 
 <style>
+  .svc-hero-icon {
+    width: 88px;
+    height: 88px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    background: rgba(13, 148, 136, 0.1);
+    border: 1px solid rgba(13, 148, 136, 0.15);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  }
+  .svc-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    color: var(--text-2);
+  }
+  .svc-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+  .svc-bullets li span { padding-top: 0.1rem; }
   .demo-tag {
     display: inline-block;
     font-size: 0.7rem;
