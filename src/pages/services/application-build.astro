@@ -1,31 +1,16 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Nav from '../../components/Nav.astro';
-import Footer from '../../components/Footer.astro';
-const title = "Application Build Services | Creavix iT Solution";
-const description = "Custom web and mobile applications for performance and scalability. Creavix iT Solution.";
+import ServiceShell from '../../components/ServiceShell.astro';
 ---
-<Layout title={title} description={description}>
-  <Nav active="services" />
-  <section class="hero-premium service-hero">
-    <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
-    <div class="container hero-grid">
-      <div class="hero-content reveal">
-        <div class="eyebrow"><span class="dot"></span> App Development</div>
-        <h1 class="hero-title">Custom<br /><span class="text-gradient">Application Build</span></h1>
-        <p class="hero-lead">Web and mobile applications designed for performance, scalability and real business workflows.</p>
-        <div class="flex-btns"><a href="/contact" class="btn btn-primary">Start Your Project</a><a href="/#services" class="btn btn-outline">All Services</a></div>
-      </div>
-      <div class="hero-visual reveal">
-        <div class="visual-card glass-card animate-float">
-          <div class="visual-icon">📱</div><h3>Application Build</h3><p class="visual-tags">Web App · Mobile · API</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="section-warm"><div class="container text-center reveal" style="max-width:40rem">
-    <h2 class="mb-4">Have an App Idea?</h2>
-    <a href="mailto:hello@creavixit.com" class="btn btn-primary">Contact Creavix iT</a>
-  </div></section>
-  <Footer />
-</Layout>
+<ServiceShell
+  title="Application Build"
+  seoTitle="Custom App Development Bangladesh | Web & Mobile Apps — Creavix iT"
+  seoDescription="Custom web and mobile application development by Creavix iT Solution — dashboards, SaaS MVPs and business apps."
+  icon="📱"
+  lead="Custom web & mobile applications designed for performance, scale and real business workflows."
+  bullets={['Web apps & admin dashboards', 'Mobile-friendly progressive apps', 'API integration & databases', 'Role-based access ready', 'Staging + production deploy']}
+  demos={[
+    { tag: 'Demo', title: 'Client dashboard', desc: 'Order tracking dashboard with status filters, charts and export — sample UI concept.' },
+    { tag: 'Demo', title: 'Booking app flow', desc: 'Service booking screens: calendar, packages and WhatsApp confirmation.' },
+    { tag: 'Demo', title: 'SaaS MVP shell', desc: 'Auth + billing-ready app shell with sidebar navigation and empty states.' },
+  ]}
+/>

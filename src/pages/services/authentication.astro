@@ -1,29 +1,16 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Nav from '../../components/Nav.astro';
-import Footer from '../../components/Footer.astro';
-const title = "Authentication Systems | Creavix iT Solution";
-const description = "Secure login, signup and role-based access. Authentication solutions by Creavix iT Solution.";
+import ServiceShell from '../../components/ServiceShell.astro';
 ---
-<Layout title={title} description={description}>
-  <Nav active="services" />
-  <section class="hero-premium service-hero">
-    <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
-    <div class="container hero-grid">
-      <div class="hero-content reveal">
-        <div class="eyebrow"><span class="dot"></span> Security</div>
-        <h1 class="hero-title">Secure<br /><span class="text-gradient">Authentication Systems</span></h1>
-        <p class="hero-lead">Login, signup, role-based access and secure session management for your apps.</p>
-        <div class="flex-btns"><a href="/contact" class="btn btn-primary">Start Your Project</a><a href="/#services" class="btn btn-outline">All Services</a></div>
-      </div>
-      <div class="hero-visual reveal">
-        <div class="visual-card glass-card animate-float"><div class="visual-icon">🔐</div><h3>Authentication</h3><p class="visual-tags">Login · Roles · SSO · Security</p></div>
-      </div>
-    </div>
-  </section>
-  <section class="section-warm"><div class="container text-center reveal" style="max-width:40rem">
-    <h2 class="mb-4">Need Secure Auth?</h2>
-    <a href="mailto:hello@creavixit.com" class="btn btn-primary">Contact Creavix iT</a>
-  </div></section>
-  <Footer />
-</Layout>
+<ServiceShell
+  title="Authentication Systems"
+  seoTitle="Secure Authentication Systems | Login & Roles — Creavix iT"
+  seoDescription="Secure login, signup, OTP and role-based authentication systems for websites and apps by Creavix iT Solution."
+  icon="🔐"
+  lead="Secure login, signup, role-based access and session systems that protect your product and users."
+  bullets={['Email / phone auth flows', 'Role-based permissions', 'Session & token security', 'Password reset & verification', 'Admin access controls']}
+  demos={[
+    { tag: 'Demo', title: 'Login + OTP screen', desc: 'Clean auth UI with email/OTP toggle and error states.' },
+    { tag: 'Demo', title: 'Role matrix', desc: 'Admin / editor / viewer permission cards for product planning.' },
+    { tag: 'Demo', title: 'Secure session panel', desc: 'Active devices list and force-logout concept for user security.' },
+  ]}
+/>

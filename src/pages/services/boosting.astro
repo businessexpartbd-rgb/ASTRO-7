@@ -1,29 +1,16 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Nav from '../../components/Nav.astro';
-import Footer from '../../components/Footer.astro';
-const title = "Facebook & Instagram Boosting | Creavix iT Solution";
-const description = "Targeted Facebook and Instagram boosting. Creavix iT Solution.";
+import ServiceShell from '../../components/ServiceShell.astro';
 ---
-<Layout title={title} description={description}>
-  <Nav active="services" />
-  <section class="hero-premium service-hero">
-    <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
-    <div class="container hero-grid">
-      <div class="hero-content reveal">
-        <div class="eyebrow"><span class="dot"></span> Paid Reach</div>
-        <h1 class="hero-title">Facebook & Instagram<br /><span class="text-gradient">Boosting Service</span></h1>
-        <p class="hero-lead">Targeted boosting that reaches the right audience — optimized for engagement and sales.</p>
-        <div class="flex-btns"><a href="/contact" class="btn btn-primary">Start Boosting</a><a href="/#services" class="btn btn-outline">All Services</a></div>
-      </div>
-      <div class="hero-visual reveal">
-        <div class="visual-card glass-card animate-float"><div class="visual-icon">📈</div><h3>Boosting Service</h3><p class="visual-tags">Facebook · Instagram · Target</p></div>
-      </div>
-    </div>
-  </section>
-  <section class="section-warm"><div class="container text-center reveal" style="max-width:40rem">
-    <h2 class="mb-4">Ready to Boost Your Reach?</h2>
-    <a href="mailto:hello@creavixit.com" class="btn btn-primary">Contact Creavix iT</a>
-  </div></section>
-  <Footer />
-</Layout>
+<ServiceShell
+  title="Boosting Service"
+  seoTitle="Facebook & Instagram Boosting Service Bangladesh — Creavix iT"
+  seoDescription="Targeted Facebook and Instagram boosting to reach the right audience — Creavix iT Solution."
+  icon="📈"
+  lead="Targeted Meta boosting with clear audience, creative testing and daily monitoring."
+  bullets={['Audience research', 'Creative A/B testing', 'Budget pacing', 'Retargeting basics', 'Performance summary']}
+  demos={[
+    { tag: 'Demo', title: 'Audience map', desc: 'Interest + location + lookalike planning sheet concept.' },
+    { tag: 'Demo', title: 'Creative test grid', desc: '3 hooks × 2 visuals testing board for boosts.' },
+    { tag: 'Demo', title: 'Weekly report card', desc: 'Spend, reach, CTR and leads summary sample.' },
+  ]}
+/>

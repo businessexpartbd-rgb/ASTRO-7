@@ -1,40 +1,16 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Nav from '../../components/Nav.astro';
-import Footer from '../../components/Footer.astro';
-const title = "Web Development Services | Creavix iT Solution";
-const description = "Modern, fast and SEO-friendly websites. Premium web development by Creavix iT Solution.";
+import ServiceShell from '../../components/ServiceShell.astro';
 ---
-<Layout title={title} description={description}>
-  <Nav active="services" />
-  <section class="hero-premium service-hero">
-    <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
-    <div class="container hero-grid">
-      <div class="hero-content reveal">
-        <div class="eyebrow"><span class="dot"></span> Web Engineering</div>
-        <h1 class="hero-title">Modern<br /><span class="text-gradient">Web Development</span></h1>
-        <p class="hero-lead">Fast, SEO-friendly and conversion-focused websites — from landing pages to full business sites.</p>
-        <div class="flex-btns"><a href="/contact" class="btn btn-primary">Start Your Project</a><a href="/#services" class="btn btn-outline">All Services</a></div>
-      </div>
-      <div class="hero-visual reveal">
-        <div class="visual-card glass-card animate-float">
-          <div class="visual-icon">💻</div><h3>Web Development</h3><p class="visual-tags">Astro · React · SEO · Speed</p>
-          <div class="stat-grid"><div class="stat-box"><strong class="text-primary">Fast</strong><span>Performance</span></div><div class="stat-box"><strong class="text-violet">SEO</strong><span>Ready</span></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="section-soft"><div class="container">
-    <div class="text-center mb-8 reveal"><p class="eyebrow" style="margin:0 auto 1rem">What You Get</p><h2 class="mb-4">Websites Built to Perform</h2></div>
-    <div class="grid-3">
-      <div class="glass-card reveal"><div class="icon-box" style="background:rgba(79,70,229,.1)">⚡</div><h3 class="mb-4">High Speed</h3><p style="font-size:.9rem">Optimized for Core Web Vitals.</p></div>
-      <div class="glass-card reveal"><div class="icon-box" style="background:rgba(6,182,212,.1)">🔍</div><h3 class="mb-4">SEO First</h3><p style="font-size:.9rem">On-page SEO and clean structure.</p></div>
-      <div class="glass-card reveal"><div class="icon-box" style="background:rgba(16,185,129,.1)">📱</div><h3 class="mb-4">Responsive</h3><p style="font-size:.9rem">Perfect on mobile and desktop.</p></div>
-    </div>
-  </div></section>
-  <section class="section-warm"><div class="container text-center reveal" style="max-width:40rem">
-    <h2 class="mb-4">Ready for a Premium Website?</h2>
-    <a href="mailto:hello@creavixit.com" class="btn btn-primary">Contact Creavix iT</a>
-  </div></section>
-  <Footer />
-</Layout>
+<ServiceShell
+  title="Web Development"
+  seoTitle="Web Development Agency Bangladesh | SEO-Ready Websites — Creavix iT"
+  seoDescription="Custom website development in Bangladesh: fast, SEO-friendly sites, landing pages and business portals by Creavix iT Solution."
+  icon="💻"
+  lead="Modern, fast and SEO-friendly websites engineered to rank, load in milliseconds and convert visitors into customers."
+  bullets={['Responsive design (mobile + desktop)', 'On-page SEO structure & speed optimization', 'CMS or static Astro/Next builds', 'Secure hosting-ready delivery', 'Analytics & conversion tracking setup']}
+  demos={[
+    { tag: 'Demo', title: 'Local business site', desc: 'Multi-page corporate site with service pages, contact forms and map embed — built for local SEO.' },
+    { tag: 'Demo', title: 'High-converting landing', desc: 'Single-offer landing with sticky CTA, social proof and WhatsApp click-to-chat.' },
+    { tag: 'Demo', title: 'Agency portfolio', desc: 'Glass UI portfolio with project filters, case studies and fast image loading.' },
+  ]}
+/>

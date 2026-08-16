@@ -1,0 +1,85 @@
+/* Premium palette: teal + amber (no heavy blue) */
+:root {
+  --primary: #0D9488 !important;
+  --primary-light: #2DD4BF !important;
+  --violet: #EA580C !important;
+  --accent: #F59E0B !important;
+  --rose: #E11D48 !important;
+  --amber: #D97706 !important;
+  --emerald: #059669 !important;
+  --text: #0C1222 !important;
+  --text-2: #475569 !important;
+  --text-3: #64748B !important;
+  --bg: #FAFAF9 !important;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #0D9488, #0F766E) !important;
+  box-shadow: 0 6px 24px rgba(13, 148, 136, 0.32) !important;
+}
+.btn-primary:hover {
+  box-shadow: 0 10px 32px rgba(13, 148, 136, 0.42) !important;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #0D9488 0%, #0F766E 45%, #D97706 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.logo-text span,
+.footer-brand .logo span,
+.footer-brand .logo-text span {
+  background: linear-gradient(135deg, #2DD4BF, #0D9488) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.eyebrow { color: #0D9488 !important; border-color: rgba(13, 148, 136, 0.2) !important; }
+.nav-links a:hover,
+.nav-links a.active,
+.nav-drop-btn:hover,
+.nav-drop-btn.active { color: #0D9488 !important; }
+
+.orb-1 { background: radial-gradient(circle, rgba(13,148,136,.38) 0%, transparent 70%) !important; }
+.orb-2 { background: radial-gradient(circle, rgba(217,119,6,.28) 0%, transparent 70%) !important; }
+.orb-3 { background: radial-gradient(circle, rgba(45,212,191,.28) 0%, transparent 70%) !important; }
+
+/* Magnetic reveal — bottom → up */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 48px, 0) scale(0.98);
+  transition:
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: opacity, transform;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.title-anim.visible {
+  animation: titleRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes titleRise {
+  from { opacity: 0; transform: translateY(28px); letter-spacing: 0.04em; }
+  to { opacity: 1; transform: translateY(0); letter-spacing: -0.02em; }
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.72) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  box-shadow:
+    0 4px 24px rgba(12, 18, 34, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+.glass-card:hover {
+  transform: translateY(-10px) !important;
+  box-shadow: 0 22px 50px rgba(12, 18, 34, 0.1) !important;
+}
+
+/* Count-up numbers */
+.count-up { font-variant-numeric: tabular-nums; }

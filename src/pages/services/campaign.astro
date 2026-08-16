@@ -1,29 +1,16 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Nav from '../../components/Nav.astro';
-import Footer from '../../components/Footer.astro';
-const title = "Campaign Service | Creavix iT Solution";
-const description = "Full campaign planning, creative strategy and performance management. Creavix iT Solution.";
+import ServiceShell from '../../components/ServiceShell.astro';
 ---
-<Layout title={title} description={description}>
-  <Nav active="services" />
-  <section class="hero-premium service-hero">
-    <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
-    <div class="container hero-grid">
-      <div class="hero-content reveal">
-        <div class="eyebrow"><span class="dot"></span> Full Campaigns</div>
-        <h1 class="hero-title">Campaign Service<br /><span class="text-gradient">End to End</span></h1>
-        <p class="hero-lead">Full campaign planning, creative strategy and performance management — from idea to results.</p>
-        <div class="flex-btns"><a href="/contact" class="btn btn-primary">Plan Your Campaign</a><a href="/#services" class="btn btn-outline">All Services</a></div>
-      </div>
-      <div class="hero-visual reveal">
-        <div class="visual-card glass-card animate-float"><div class="visual-icon">🎯</div><h3>Campaign Service</h3><p class="visual-tags">Strategy · Creative · Optimize</p></div>
-      </div>
-    </div>
-  </section>
-  <section class="section-warm"><div class="container text-center reveal" style="max-width:40rem">
-    <h2 class="mb-4">Ready to Run a Campaign?</h2>
-    <a href="mailto:hello@creavixit.com" class="btn btn-primary">Contact Creavix iT</a>
-  </div></section>
-  <Footer />
-</Layout>
+<ServiceShell
+  title="Campaign Service"
+  seoTitle="Digital Campaign Management Agency Bangladesh — Creavix iT"
+  seoDescription="End-to-end digital campaign planning, creative and performance management by Creavix iT Solution."
+  icon="🎯"
+  lead="Full campaign planning — strategy, creative, media and optimization under one roof."
+  bullets={['Strategy & messaging', 'Creative production', 'Media plan', 'Weekly optimization', 'Transparent reporting']}
+  demos={[
+    { tag: 'Demo', title: 'Launch roadmap', desc: '4-week launch calendar with assets and KPIs.' },
+    { tag: 'Demo', title: 'Funnel map', desc: 'Awareness → consideration → conversion creative map.' },
+    { tag: 'Demo', title: 'KPI dashboard', desc: 'Sample campaign KPI cards: CPL, ROAS, CTR.' },
+  ]}
+/>

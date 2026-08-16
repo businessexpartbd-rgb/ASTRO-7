@@ -1,41 +1,16 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Nav from '../../components/Nav.astro';
-import Footer from '../../components/Footer.astro';
-const title = "Professional Video Editing Services | Creavix iT Solution";
-const description = "Premium video editing for ads, social media, YouTube and brand storytelling. Fast delivery by Creavix iT Solution.";
+import ServiceShell from '../../components/ServiceShell.astro';
 ---
-<Layout title={title} description={description}>
-  <Nav active="services" />
-  <section class="hero-premium service-hero">
-    <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
-    <div class="container hero-grid">
-      <div class="hero-content reveal">
-        <div class="eyebrow"><span class="dot"></span> Video Production</div>
-        <h1 class="hero-title">Professional<br /><span class="text-gradient">Video Editing</span><br />That Converts</h1>
-        <p class="hero-lead">Cinematic ads, social reels, YouTube content and brand films — edited for maximum engagement and clear storytelling.</p>
-        <div class="flex-btns"><a href="/contact" class="btn btn-primary">Start Your Project</a><a href="/#services" class="btn btn-outline">All Services</a></div>
-      </div>
-      <div class="hero-visual reveal">
-        <div class="visual-card glass-card animate-float">
-          <div class="visual-icon">🎬</div><h3>Video Editing</h3><p class="visual-tags">Ads · Reels · YouTube · Brand Films</p>
-          <div class="stat-grid"><div class="stat-box"><strong class="text-primary">24–48h</strong><span>Typical Delivery</span></div><div class="stat-box"><strong class="text-violet">100+</strong><span>Projects Done</span></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="section-soft"><div class="container">
-    <div class="text-center mb-8 reveal"><p class="eyebrow" style="margin:0 auto 1rem">What You Get</p><h2 class="mb-4">Editing Built for Results</h2></div>
-    <div class="grid-3">
-      <div class="glass-card reveal"><div class="icon-box" style="background:rgba(244,63,94,.1)">📱</div><h3 class="mb-4">Social Media Ads</h3><p style="font-size:.9rem">Short-form ads for Facebook, Instagram, TikTok and YouTube Shorts.</p></div>
-      <div class="glass-card reveal"><div class="icon-box" style="background:rgba(124,58,237,.1)">🎥</div><h3 class="mb-4">YouTube & Long-form</h3><p style="font-size:.9rem">Full video editing with pacing, B-roll, captions and end screens.</p></div>
-      <div class="glass-card reveal"><div class="icon-box" style="background:rgba(6,182,212,.1)">✨</div><h3 class="mb-4">Brand Storytelling</h3><p style="font-size:.9rem">Cinematic brand films and product videos that feel premium.</p></div>
-    </div>
-  </div></section>
-  <section class="section-warm"><div class="container text-center reveal" style="max-width:40rem">
-    <h2 class="mb-4">Ready for Video That Performs?</h2>
-    <p class="mb-8">Tell us about your project. We will recommend the best edit style.</p>
-    <a href="mailto:hello@creavixit.com" class="btn btn-primary">Contact Creavix iT</a>
-  </div></section>
-  <Footer />
-</Layout>
+<ServiceShell
+  title="Video Editing"
+  seoTitle="Professional Video Editing Bangladesh | Ads & Brand Films — Creavix iT"
+  seoDescription="Professional video editing for ads, YouTube, social and brand storytelling by Creavix iT Solution."
+  icon="🎬"
+  lead="Cinematic pacing, color, sound and subtitles — polished edits for ads, YouTube and brand films."
+  bullets={['Color grading & sound design', 'Subtitles BN/EN', 'Platform-ready exports', '2–4 revision rounds', 'Fast turnaround options']}
+  demos={[
+    { tag: 'Demo', title: 'YouTube intro pack', desc: 'Branded intro/outro + lower-thirds package sample.' },
+    { tag: 'Demo', title: 'Reels cut style', desc: 'Fast-cut vertical edit with beat sync markers.' },
+    { tag: 'Demo', title: 'Brand film grade', desc: 'Before/after color grade concept for cinematic look.' },
+  ]}
+/>

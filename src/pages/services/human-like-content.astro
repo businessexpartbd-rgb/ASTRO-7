@@ -1,29 +1,16 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Nav from '../../components/Nav.astro';
-import Footer from '../../components/Footer.astro';
-const title = "Authentic Human-like AI Content | Creavix iT Solution";
-const description = "Realistic AI human and product visuals. Authentic content by Creavix iT Solution.";
+import ServiceShell from '../../components/ServiceShell.astro';
 ---
-<Layout title={title} description={description}>
-  <Nav active="services" />
-  <section class="hero-premium service-hero">
-    <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
-    <div class="container hero-grid">
-      <div class="hero-content reveal">
-        <div class="eyebrow"><span class="dot"></span> Authentic Visuals</div>
-        <h1 class="hero-title">Authentic<br /><span class="text-gradient">Human-like Content</span></h1>
-        <p class="hero-lead">Realistic AI human and product visuals that feel genuine and convert.</p>
-        <div class="flex-btns"><a href="/contact" class="btn btn-primary">Start Your Project</a><a href="/#services" class="btn btn-outline">All Services</a></div>
-      </div>
-      <div class="hero-visual reveal">
-        <div class="visual-card glass-card animate-float"><div class="visual-icon">👤</div><h3>Human-like Content</h3><p class="visual-tags">AI Humans · Products · Brand</p></div>
-      </div>
-    </div>
-  </section>
-  <section class="section-warm"><div class="container text-center reveal" style="max-width:40rem">
-    <h2 class="mb-4">Need Authentic Content?</h2>
-    <a href="mailto:hello@creavixit.com" class="btn btn-primary">Contact Creavix iT</a>
-  </div></section>
-  <Footer />
-</Layout>
+<ServiceShell
+  title="Human-like Content"
+  seoTitle="AI Human-like Content & Product Visuals — Creavix iT Solution"
+  seoDescription="Authentic AI human and product visuals for ads and brand campaigns by Creavix iT Solution."
+  icon="👤"
+  lead="Realistic AI human and product visuals that feel genuine — built for conversion, not uncanny results."
+  bullets={['Product hero visuals', 'Lifestyle scenes', 'Campaign-ready framing', 'Consistent brand look', 'Export for ads & web']}
+  demos={[
+    { tag: 'Demo', title: 'Product on model', desc: 'Natural pose product placement concept for e-commerce.' },
+    { tag: 'Demo', title: 'Studio packshot', desc: 'Clean background packshot series for catalogs.' },
+    { tag: 'Demo', title: 'Lifestyle set', desc: 'Three-scene lifestyle narrative for brand ads.' },
+  ]}
+/>

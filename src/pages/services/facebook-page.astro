@@ -1,29 +1,16 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Nav from '../../components/Nav.astro';
-import Footer from '../../components/Footer.astro';
-const title = "Facebook Page Services | Creavix iT Solution";
-const description = "Facebook page setup, Business Page and Blue Verification support. Creavix iT Solution.";
+import ServiceShell from '../../components/ServiceShell.astro';
 ---
-<Layout title={title} description={description}>
-  <Nav active="services" />
-  <section class="hero-premium service-hero">
-    <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
-    <div class="container hero-grid">
-      <div class="hero-content reveal">
-        <div class="eyebrow"><span class="dot"></span> Facebook Growth</div>
-        <h1 class="hero-title">Facebook Page<br /><span class="text-gradient">Setup & Services</span></h1>
-        <p class="hero-lead">Page setup, Business Page creation and Blue Verification support.</p>
-        <div class="flex-btns"><a href="/contact" class="btn btn-primary">Start Your Project</a><a href="/#services" class="btn btn-outline">All Services</a></div>
-      </div>
-      <div class="hero-visual reveal">
-        <div class="visual-card glass-card animate-float"><div class="visual-icon">📘</div><h3>Facebook Page Services</h3><p class="visual-tags">Setup · Business · Verification</p></div>
-      </div>
-    </div>
-  </section>
-  <section class="section-warm"><div class="container text-center reveal" style="max-width:40rem">
-    <h2 class="mb-4">Need a Professional Facebook Page?</h2>
-    <a href="mailto:hello@creavixit.com" class="btn btn-primary">Contact Creavix iT</a>
-  </div></section>
-  <Footer />
-</Layout>
+<ServiceShell
+  title="Facebook Page Services"
+  seoTitle="Facebook Business Page Setup & Verification Help — Creavix iT"
+  seoDescription="Facebook business page setup, optimization and verification support by Creavix iT Solution."
+  icon="📘"
+  lead="Business page setup, optimization and verification guidance so your brand looks trusted on Meta."
+  bullets={['Page creation & branding', 'About, CTA & shop setup', 'Cover & highlight structure', 'Verification process guidance', 'Content starter plan']}
+  demos={[
+    { tag: 'Demo', title: 'Page kit', desc: 'Cover, profile, about text and CTA button layout sample.' },
+    { tag: 'Demo', title: 'Highlight tabs', desc: 'Services / offers / reviews highlight structure.' },
+    { tag: 'Demo', title: 'Trust checklist', desc: 'Verification-ready checklist clients can follow.' },
+  ]}
+/>
