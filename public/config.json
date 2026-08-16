@@ -1,11 +1,12 @@
 {
   "googleClientId": "",
   "firebase": {
-    "apiKey": "",
-    "authDomain": "",
-    "projectId": "",
-    "storageBucket": "",
-    "messagingSenderId": "",
-    "appId": ""
+    "apiKey": "AIzaSyAys-V5ZZ90VVB1duob6f5hf_uSi1-ImPI",
+    "authDomain": "creavix-bbfeb.firebaseapp.com",
+    "projectId": "creavix-bbfeb",
+    "storageBucket": "creavix-bbfeb.firebasestorage.app",
+    "messagingSenderId": "933391199778",
+    "appId": "1:933391199778:web:2ccd03b6625a5787e0247b",
+    "measurementId": "G-EZHEQK4WRL"
   }
 }
