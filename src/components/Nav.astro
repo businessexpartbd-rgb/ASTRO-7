@@ -1,10 +1,12 @@
 ---
 import SocialIcons from './SocialIcons.astro';
+import ThemeAssets from './ThemeAssets.astro';
 interface Props {
   active?: string;
 }
 const { active = '' } = Astro.props;
 ---
+<ThemeAssets />
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="/" class="logo">
@@ -12,7 +14,6 @@ const { active = '' } = Astro.props;
       <span class="logo-text">Creavix <span>iT</span> Solution</span>
     </a>
 
-    <!-- Always visible socials (mobile + desktop) — client request -->
     <div class="nav-social-bar">
       <SocialIcons size="xs" compact={true} />
     </div>
@@ -74,7 +75,6 @@ const { active = '' } = Astro.props;
     .nav-panel { order: 1; flex: 1; }
     .nav-toggle { order: 3; }
   }
-  /* Mobile services menu: fixed layout, no overflow break */
   @media (max-width: 767px) {
     .nav-dropdown-menu {
       max-height: min(55vh, 420px);
