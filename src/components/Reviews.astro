@@ -4,12 +4,12 @@
   <div class="container">
     <div class="text-center mb-8 reveal">
       <p class="eyebrow" style="margin:0 auto 1rem">Client Reviews</p>
-      <h2 class="mb-4">Ratings & Reviews</h2>
+      <h2 class="mb-4">Ratings &amp; Reviews</h2>
       <p style="max-width:36rem;margin:0 auto">Share your experience in Bangla or English. Protected by Cloudflare Turnstile.</p>
     </div>
 
-    <div class="reviews-layout reveal">
-      <div class="reviews-summary glass-card">
+    <div class="reviews-layout mag-grid">
+      <div class="reviews-summary glass-card mag-card mag-left">
         <div class="rating-score">
           <div class="score-num" id="avg-score">0.0</div>
           <div class="score-stars" id="avg-stars" aria-hidden="true"></div>
@@ -28,7 +28,7 @@
         </div>
         <button type="button" class="btn-see-more" id="btn-see-more" hidden>See all reviews</button>
 
-        <div class="review-form-card glass-card" id="review-form-card">
+        <div class="review-form-card glass-card mag-card mag-right" id="review-form-card">
           <h3 class="form-heading">Write a review</h3>
           <form id="review-form" class="review-form">
             <div class="star-picker" id="star-picker" role="radiogroup" aria-label="Your rating">
@@ -43,7 +43,6 @@
             <input type="text" id="review-name" class="review-input" maxlength="60" placeholder="Your name / আপনার নাম" required autocomplete="name" />
             <textarea id="review-text" class="review-textarea" rows="3" maxlength="600" placeholder="Write in Bangla or English… আপনার মতামত লিখুন" required></textarea>
 
-            <!-- Honeypot (bots) -->
             <input type="text" id="review-company" name="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
             <div class="cf-turnstile-wrap" id="turnstile-wrap">
@@ -72,12 +71,12 @@
   </div>
 </section>
 
-<style is:global>
+<style>
   .section-reviews {
     padding: 4.5rem 1.25rem;
     background:
-      radial-gradient(ellipse 60% 40% at 20% 0%, rgba(79,70,229,.07), transparent 55%),
-      radial-gradient(ellipse 50% 40% at 90% 100%, rgba(245,158,11,.06), transparent 50%),
+      radial-gradient(ellipse 60% 40% at 20% 0%, rgba(13,148,136,.06), transparent 55%),
+      radial-gradient(ellipse 50% 40% at 90% 100%, rgba(245,158,11,.05), transparent 50%),
       #F8FAFC;
   }
   .reviews-layout { display: grid; gap: 1.5rem; max-width: 960px; margin: 0 auto; }
@@ -92,55 +91,48 @@
   .rating-bars { display: flex; flex-direction: column; gap: 0.4rem; }
   .bar-row { display: grid; grid-template-columns: 12px 1fr 28px; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--text-3); }
   .bar-track { height: 8px; border-radius: 99px; background: rgba(15,23,42,.06); overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #F59E0B, #FBBF24); width: 0%; transition: width 0.6s cubic-bezier(.22,1,.36,1); }
+  .bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #F59E0B, #FBBF24); width: 0%; transition: width 0.5s ease-out; }
   .reviews-list { display: flex; flex-direction: column; gap: 1rem; }
   .reviews-empty { text-align: center; padding: 2rem 1rem; color: var(--text-2); }
   .empty-icon { font-size: 2rem; margin-bottom: 0.5rem; }
   .empty-sub { font-size: 0.9rem; color: var(--text-3); margin-top: 0.25rem; }
-  .review-item { background: rgba(255,255,255,.75); border: 1px solid rgba(255,255,255,.9); border-radius: 18px; padding: 1.15rem 1.25rem; box-shadow: 0 4px 20px rgba(15,23,42,.04); }
+  .review-item { background: rgba(255,255,255,.85); border: 1px solid rgba(255,255,255,.9); border-radius: 18px; padding: 1.15rem 1.25rem; box-shadow: 0 6px 18px rgba(15,23,42,.05); }
   .review-top { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.55rem; }
-  .review-avatar-fallback { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; color: #fff; background: linear-gradient(135deg, #4F46E5, #7C3AED); }
+  .review-avatar-fallback { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; color: #fff; background: linear-gradient(135deg, #0D9488, #0F766E); }
   .review-name { font-weight: 600; font-size: 0.95rem; color: var(--text); }
   .review-meta { font-size: 0.75rem; color: var(--text-3); }
   .review-stars { color: #F59E0B; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 0.4rem; }
   .review-body { font-size: 0.9rem; line-height: 1.6; color: var(--text-2); white-space: pre-wrap; }
   .btn-see-more { display: block; width: 100%; margin: 1rem 0 0; padding: 0.75rem; border-radius: 14px; border: 1.5px solid rgba(15,23,42,.1); background: #fff; font-family: var(--font-h); font-weight: 600; font-size: 0.9rem; color: var(--text); cursor: pointer; }
   .btn-see-more[hidden] { display: none !important; }
-  .btn-see-more:hover { border-color: var(--primary); color: var(--primary); }
   .review-form-card { margin-top: 1.5rem; padding: 1.5rem !important; }
   .form-heading { font-size: 1.1rem; margin-bottom: 1rem; }
   .star-picker { display: flex; gap: 0.35rem; margin-bottom: 0.35rem; }
   .star-btn { background: none; border: none; cursor: pointer; font-size: 1.75rem; color: #CBD5E1; line-height: 1; padding: 0.15rem; }
   .star-btn:hover, .star-btn.on { color: #F59E0B; }
   .star-label { font-size: 0.8rem; color: var(--text-3); margin-bottom: 0.85rem; }
-  .review-input {
+  .review-input, .review-textarea {
     width: 100%; padding: 0.75rem 1rem; border-radius: 14px;
     border: 1.5px solid rgba(15,23,42,.1); background: #fff;
     font-family: var(--font-b); font-size: 0.95rem; margin-bottom: 0.75rem; outline: none;
   }
-  .review-input:focus { border-color: var(--primary); }
-  .review-textarea {
-    width: 100%; padding: 0.85rem 1rem; border-radius: 14px;
-    border: 1.5px solid rgba(15,23,42,.1); background: #fff;
-    font-family: var(--font-b); font-size: 0.95rem; resize: vertical;
-    margin-bottom: 1rem; outline: none;
-  }
-  .review-textarea:focus { border-color: var(--primary); }
+  .review-textarea { resize: vertical; margin-bottom: 1rem; }
+  .review-input:focus, .review-textarea:focus { border-color: var(--primary); }
   .hp-field { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
-  .cf-turnstile-wrap { margin-bottom: 1rem; min-height: 65px; display: flex; justify-content: flex-start; }
+  .cf-turnstile-wrap { margin-bottom: 1rem; min-height: 65px; }
   .form-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
-  .form-msg { font-size: 0.85rem; margin-top: 0.75rem; color: var(--emerald); }
-  .form-msg.err { color: var(--rose); }
+  .form-msg { font-size: 0.85rem; margin-top: 0.75rem; color: var(--emerald, #059669); }
+  .form-msg.err { color: var(--rose, #e11d48); }
   .reviews-modal { position: fixed; inset: 0; z-index: 10000; display: none; align-items: flex-end; justify-content: center; pointer-events: none; }
   .reviews-modal.is-open { display: flex; pointer-events: auto; }
   @media (min-width: 640px) { .reviews-modal.is-open { align-items: center; } }
-  .modal-backdrop { position: absolute; inset: 0; background: rgba(15,23,42,.45); backdrop-filter: blur(4px); }
+  .modal-backdrop { position: absolute; inset: 0; background: rgba(15,23,42,.45); }
   .modal-panel { position: relative; z-index: 1; width: 100%; max-width: 520px; max-height: 85vh; background: #fff; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 40px rgba(15,23,42,.15); display: flex; flex-direction: column; }
   @media (min-width: 640px) { .modal-panel { border-radius: 24px; max-height: 80vh; } }
   .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 1.15rem 1.35rem; border-bottom: 1px solid rgba(15,23,42,.06); }
   .modal-head h3 { font-size: 1.1rem; margin: 0; }
-  .modal-close { width: 40px; height: 40px; border: none; border-radius: 10px; background: rgba(15,23,42,.06); font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-  .modal-body { padding: 1.15rem 1.35rem 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+  .modal-close { width: 40px; height: 40px; border: none; border-radius: 10px; background: rgba(15,23,42,.06); font-size: 1.5rem; cursor: pointer; }
+  .modal-body { padding: 1.15rem 1.35rem 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; -webkit-overflow-scrolling: touch; }
 </style>
 
 <script is:inline>
@@ -299,9 +291,7 @@
           'error-callback': function () { turnstileToken = ''; },
           'expired-callback': function () { turnstileToken = ''; },
         });
-      } catch (e) {
-        console.warn('Turnstile render failed', e);
-      }
+      } catch (e) {}
     };
     document.head.appendChild(s);
   }
@@ -343,10 +333,7 @@
         e.preventDefault();
         var msg = $('form-msg');
         var btn = $('btn-submit-review');
-
-        // Honeypot
         if (($('review-company') && $('review-company').value || '').trim()) return;
-
         if (!selectedStars) {
           if (msg) { msg.hidden = false; msg.className = 'form-msg err'; msg.textContent = 'Please select a star rating.'; }
           return;
@@ -365,9 +352,7 @@
           if (msg) { msg.hidden = false; msg.className = 'form-msg err'; msg.textContent = 'Please complete the human verification.'; }
           return;
         }
-
         if (btn) btn.disabled = true;
-
         var entry = {
           id: 'r_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8),
           name: name,
@@ -375,17 +360,14 @@
           text: text,
           createdAt: new Date().toISOString(),
         };
-
         reviews.unshift(entry);
         if (reviews.length > 200) reviews = reviews.slice(0, 200);
         saveLocal(reviews);
         refresh();
-
         if ($('review-name')) $('review-name').value = '';
         if ($('review-text')) $('review-text').value = '';
         setStars(0);
         resetTurnstile();
-
         if (msg) {
           msg.hidden = false;
           msg.className = 'form-msg';

@@ -1,31 +1,38 @@
-/* Living SVG icons — global, no Tailwind */
+/* Living icons — desktop subtle motion; mobile static (GPU save) */
 .live-icon{display:inline-flex;align-items:center;justify-content:center;color:var(--primary,#0D9488);flex-shrink:0;line-height:0}
 .live-icon svg{display:block;overflow:visible}
-.live-icon .li-ring{transform-origin:24px 24px;animation:li-spin 12s linear infinite}
-.live-icon .li-orbit{transform-origin:24px 24px;animation:li-spin 8s linear infinite}
-.live-icon .li-orbit-2{animation-direction:reverse;animation-duration:10s}
-.live-icon .li-pulse{transform-origin:24px 24px;animation:li-pulse 2.2s ease-out infinite}
-.live-icon .li-dot{animation:li-breathe 2s ease-in-out infinite}
-.live-icon .li-spokes{transform-origin:24px 24px;animation:li-spin 14s linear infinite}
-.live-icon .li-core{transform-origin:24px 24px;animation:li-breathe 2.4s ease-in-out infinite}
-.live-icon .li-phone,.live-icon .li-lock,.live-icon .li-cam,.live-icon .li-page,.live-icon .li-rocket{animation:li-float 3.2s ease-in-out infinite}
-.live-icon .li-screen,.live-icon .li-body{animation:li-fade 2.8s ease-in-out infinite}
-.live-icon .li-wave{stroke-dasharray:24;animation:li-dash 2.5s ease-in-out infinite}
-.live-icon .li-shackle,.live-icon .li-key,.live-icon .li-lens,.live-icon .li-arrow{animation:li-bob 2.2s ease-in-out infinite}
-.live-icon .li-rec,.live-icon .li-flame{animation:li-blink 1.2s step-end infinite}
-.live-icon .li-head{transform-origin:24px 16px;animation:li-breathe 2.5s ease-in-out infinite}
-.live-icon .li-line{stroke-dasharray:48;stroke-dashoffset:48;animation:li-draw 2.8s ease-in-out infinite}
-.live-icon .li-target{transform-origin:24px 24px;animation:li-pulse-soft 2.6s ease-out infinite}
-.live-icon .li-check{stroke-dasharray:36;stroke-dashoffset:36;animation:li-draw 2.2s ease-in-out infinite}
-.live-icon .li-star{transform-origin:24px 24px;animation:li-spin 8s linear infinite}
+
+@media (min-width:768px) and (prefers-reduced-motion:no-preference){
+  .live-icon .li-ring{transform-origin:24px 24px;animation:li-spin 14s linear infinite}
+  .live-icon .li-orbit{transform-origin:24px 24px;animation:li-spin 10s linear infinite}
+  .live-icon .li-orbit-2{animation-direction:reverse;animation-duration:12s}
+  .live-icon .li-pulse{transform-origin:24px 24px;animation:li-pulse 2.8s ease-out infinite}
+  .live-icon .li-dot{animation:li-breathe 2.4s ease-in-out infinite}
+  .live-icon .li-spokes{transform-origin:24px 24px;animation:li-spin 16s linear infinite}
+  .live-icon .li-core{transform-origin:24px 24px;animation:li-breathe 2.8s ease-in-out infinite}
+  .live-icon .li-phone,.live-icon .li-lock,.live-icon .li-cam,.live-icon .li-page,.live-icon .li-rocket{animation:li-float 3.6s ease-in-out infinite}
+  .live-icon .li-screen,.live-icon .li-body{animation:li-fade 3s ease-in-out infinite}
+  .live-icon .li-wave{stroke-dasharray:24;animation:li-dash 3s ease-in-out infinite}
+  .live-icon .li-shackle,.live-icon .li-key,.live-icon .li-lens,.live-icon .li-arrow{animation:li-bob 2.6s ease-in-out infinite}
+  .live-icon .li-rec,.live-icon .li-flame{animation:li-blink 1.4s step-end infinite}
+  .live-icon .li-head{transform-origin:24px 16px;animation:li-breathe 2.8s ease-in-out infinite}
+  .live-icon .li-line{stroke-dasharray:48;stroke-dashoffset:48;animation:li-draw 3s ease-in-out infinite}
+  .live-icon .li-target{transform-origin:24px 24px;animation:li-pulse-soft 3s ease-out infinite}
+  .live-icon .li-check{stroke-dasharray:36;stroke-dashoffset:36;animation:li-draw 2.5s ease-in-out infinite}
+  .live-icon .li-star{transform-origin:24px 24px;animation:li-spin 10s linear infinite}
+}
+
 @keyframes li-spin{to{transform:rotate(360deg)}}
-@keyframes li-pulse{0%{opacity:.7;transform:scale(.85)}70%{opacity:0;transform:scale(1.35)}100%{opacity:0;transform:scale(1.35)}}
+@keyframes li-pulse{0%{opacity:.7;transform:scale(.85)}70%{opacity:0;transform:scale(1.3)}100%{opacity:0}}
 @keyframes li-pulse-soft{0%,100%{opacity:.55}50%{opacity:1}}
-@keyframes li-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@keyframes li-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 @keyframes li-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
-@keyframes li-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.5px)}}
-@keyframes li-fade{0%,100%{opacity:.35}50%{opacity:.85}}
+@keyframes li-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-1px)}}
+@keyframes li-fade{0%,100%{opacity:.4}50%{opacity:.85}}
 @keyframes li-dash{0%{stroke-dashoffset:24;opacity:.4}50%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:-24;opacity:.4}}
 @keyframes li-draw{0%{stroke-dashoffset:48}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:-4}}
-@keyframes li-blink{0%,100%{opacity:1}50%{opacity:.15}}
-@media (prefers-reduced-motion:reduce){.live-icon *{animation:none!important}}
+@keyframes li-blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+@media (prefers-reduced-motion:reduce){
+  .live-icon *{animation:none!important}
+}

@@ -1,4 +1,4 @@
-/* Premium: teal + amber (replaces heavy blue) */
+/* Premium: teal + amber — light paint cost */
 :root {
   --primary: #0D9488 !important;
   --primary-light: #2DD4BF !important;
@@ -8,10 +8,10 @@
 }
 .btn-primary {
   background: linear-gradient(135deg, #0D9488, #0F766E) !important;
-  box-shadow: 0 6px 24px rgba(13, 148, 136, 0.32) !important;
+  box-shadow: 0 6px 20px rgba(13, 148, 136, 0.28) !important;
 }
 .btn-primary:hover {
-  box-shadow: 0 12px 36px rgba(13, 148, 136, 0.42) !important;
+  box-shadow: 0 10px 28px rgba(13, 148, 136, 0.36) !important;
 }
 .text-gradient {
   background: linear-gradient(135deg, #0D9488 0%, #0F766E 40%, #D97706 100%) !important;
@@ -27,9 +27,7 @@
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
-.nav-cta { box-shadow: 0 8px 28px rgba(13, 148, 136, 0.35) !important; }
-.nav-toggle:hover { background: rgba(13, 148, 136, 0.1) !important; }
-.nav-dropdown-menu.open { border-left-color: rgba(13, 148, 136, 0.3) !important; }
+.nav-cta { box-shadow: 0 6px 20px rgba(13, 148, 136, 0.3) !important; }
 .nav-dropdown-menu a:hover {
   background: rgba(13, 148, 136, 0.1) !important;
   color: #0D9488 !important;
@@ -39,46 +37,39 @@
   color: #0D9488 !important;
   background: rgba(13, 148, 136, 0.06) !important;
 }
-.orb-1 { background: radial-gradient(circle, rgba(13,148,136,.4) 0%, transparent 70%) !important; }
-.orb-2 { background: radial-gradient(circle, rgba(217,119,6,.3) 0%, transparent 70%) !important; }
-.orb-3 { background: radial-gradient(circle, rgba(45,212,191,.3) 0%, transparent 70%) !important; }
+.orb-1 { background: radial-gradient(circle, rgba(13,148,136,.32) 0%, transparent 70%) !important; }
+.orb-2 { background: radial-gradient(circle, rgba(217,119,6,.24) 0%, transparent 70%) !important; }
+.orb-3 { background: radial-gradient(circle, rgba(45,212,191,.22) 0%, transparent 70%) !important; }
 .grid-overlay {
   background-image:
-    linear-gradient(rgba(13,148,136,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(13,148,136,.05) 1px, transparent 1px) !important;
+    linear-gradient(rgba(13,148,136,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13,148,136,.04) 1px, transparent 1px) !important;
 }
 .section-violet {
   background:
-    radial-gradient(ellipse 70% 50% at 80% 30%, rgba(13,148,136,.08), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 80% 30%, rgba(13,148,136,.06), transparent 50%),
     #FAFAF9 !important;
 }
 .eyebrow {
   color: #0D9488 !important;
   border-color: rgba(13, 148, 136, 0.2) !important;
 }
-.reveal {
-  opacity: 0;
-  transform: translate3d(0, 52px, 0);
-  transition:
-    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
 .glass-card {
-  background: rgba(255, 255, 255, 0.75) !important;
-  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.92) !important;
   box-shadow:
-    0 4px 24px rgba(12, 18, 34, 0.05),
+    0 8px 24px rgba(12, 18, 34, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
 }
-.glass-card:hover {
-  transform: translateY(-10px) !important;
-  box-shadow: 0 24px 56px rgba(12, 18, 34, 0.1) !important;
+@media (hover: hover) and (pointer: fine) {
+  .glass-card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 18px 40px rgba(12, 18, 34, 0.09) !important;
+  }
 }
 @media (max-width: 767px) {
   .logo-text { font-size: 0.92rem; }
   .nav-social-bar .si { width: 26px; height: 26px; }
+  .glass-card:hover { transform: none !important; }
+  .orb-1, .orb-2, .orb-3 { opacity: 0.55; }
 }
