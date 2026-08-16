@@ -2,8 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { SITE, STATS, SOCIAL_LINKS } from '../data/site';
 ---
-<Layout title="About Creavix iT Solution | Creative Digital & AI Agency" description="Learn about Creavix iT Solution — premium digital agency for AI video marketing, web development and growth services.">
+<Layout title={`About ${SITE.brand} | ${SITE.tagline}`} description={SITE.shortDesc}>
   <Nav active="about" />
   <section class="hero-premium" style="min-height:auto;padding-top:8rem;padding-bottom:4rem">
     <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
@@ -11,35 +12,67 @@ import Footer from '../components/Footer.astro';
       <div class="reveal">
         <div class="eyebrow"><span class="dot"></span> About Us</div>
         <h1 class="hero-title">Creative Power Meets<br /><span class="text-gradient">Technical Excellence</span></h1>
-        <p class="hero-lead">Creavix iT Solution is a premium digital agency delivering AI video marketing, web & app development, authentication systems and Facebook growth services.</p>
+        <p class="hero-lead">{SITE.shortDesc}</p>
       </div>
     </div>
   </section>
+
   <section class="section-soft">
     <div class="container grid-2">
       <div class="reveal">
         <h2 class="mb-6">Who We Are</h2>
-        <p class="mb-4">We combine high-end creative production with solid engineering. Our team builds campaigns, websites and systems that look premium and perform in the market.</p>
-        <p>From AI-powered video ads to secure authentication and full Facebook campaigns — we focus on quality, speed and measurable results.</p>
+        <p class="mb-4">
+          {SITE.brand} is Bangladesh’s AI-powered video marketing studio — cinematic ads for Meta, YouTube and TikTok,
+          storytelling films and bilingual brand campaigns.
+        </p>
+        <p class="mb-4">
+          Founded by <strong>{SITE.founder.name}</strong> ({SITE.founder.role}). Serving clients since {SITE.servingSince}
+          from our studio in {SITE.address}.
+        </p>
+        <p>We combine high-end creative production with solid delivery — quality, speed and measurable results.</p>
       </div>
       <div class="reveal">
         <div class="glass-card" style="padding:2rem">
-          <h3 class="mb-6">Our Focus</h3>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:.85rem;color:var(--text-2)">
-            <li>✓ Premium creative output</li>
-            <li>✓ Modern tech & fast delivery</li>
-            <li>✓ Clear communication</li>
-            <li>✓ Results-focused work</li>
-          </ul>
+          <h3 class="mb-6">By the numbers</h3>
+          <div class="stat-grid">
+            {
+              STATS.map((s) => (
+                <div>
+                  <strong style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">{s.value}</strong>
+                  <br />
+                  <span style="font-size:.8rem;color:var(--text-3)">{s.label}</span>
+                </div>
+              ))
+            }
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <section class="section-violet">
+    <div class="container reveal" style="max-width:40rem">
+      <h2 class="mb-4">Connect with us</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:.65rem">
+        {
+          SOCIAL_LINKS.map((s) => (
+            <a href={s.url} target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:.55rem 1rem;font-size:.85rem">
+              {s.name}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
   <section class="section-warm">
     <div class="container text-center reveal" style="max-width:40rem">
       <h2 class="mb-4">Work With Us</h2>
-      <p class="mb-8">Ready to grow with Creavix iT? Tell us about your project.</p>
-      <a href="/contact" class="btn btn-primary">Contact Us</a>
+      <p class="mb-8">Ready to grow with Creavix? Message us on WhatsApp or email.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center">
+        <a href={SITE.whatsappLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="/contact" class="btn btn-outline">Contact page</a>
+      </div>
     </div>
   </section>
   <Footer />

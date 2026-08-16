@@ -3,86 +3,100 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import Reviews from '../components/Reviews.astro';
+import VideoGallery from '../components/VideoGallery.astro';
+import { SITE, STATS } from '../data/site';
 ---
-<Layout title="Creavix iT Solution — Creative Digital & AI Services" description="Premium video editing, AI video marketing, web & app development and Facebook marketing by Creavix iT Solution.">
+<Layout title={`${SITE.brand} — ${SITE.tagline}`} description={SITE.shortDesc}>
   <Nav active="home" />
   <section id="home" class="hero-premium">
     <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div><div class="grid-overlay"></div></div>
     <div class="container hero-grid">
       <div class="hero-content reveal">
-        <div class="eyebrow"><span class="dot"></span> Creative Digital & AI Solutions</div>
+        <div class="eyebrow"><span class="dot"></span> {SITE.tagline}</div>
         <h1 class="hero-title">We Build Digital<br />Experiences That<br /><span class="text-gradient" id="typing-text">Convert & Inspire</span><span class="typing-cursor">|</span></h1>
-        <p class="hero-lead">From AI-powered video marketing to high-performance web & app development — Creavix iT Solution delivers premium digital services that drive real results.</p>
+        <p class="hero-lead">{SITE.shortDesc}</p>
         <div class="flex-btns">
           <a href="#services" class="btn btn-primary">Explore Services</a>
-          <a href="/contact" class="btn btn-outline">Talk to Us</a>
+          <a href={SITE.whatsappLink} class="btn btn-outline" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
         </div>
         <div class="trust-row">
-          <div class="trust-item"><strong>100+</strong><span>Projects</span></div>
-          <div class="trust-divider"></div>
-          <div class="trust-item"><strong>24/7</strong><span>Support</span></div>
-          <div class="trust-divider"></div>
-          <div class="trust-item"><strong>AI</strong><span>Powered</span></div>
+          {
+            STATS.slice(0, 3).map((s, i) => (
+              <>
+                {i > 0 && <div class="trust-divider" />}
+                <div class="trust-item"><strong>{s.value}</strong><span>{s.label}</span></div>
+              </>
+            ))
+          }
         </div>
       </div>
       <div class="hero-visual reveal">
         <div class="visual-card glass-card animate-float">
-          <div class="visual-icon">🚀</div>
-          <h3>Premium Digital Agency</h3>
-          <p class="visual-tags">Video · AI · Web · App · Marketing</p>
+          <div class="visual-icon">🎬</div>
+          <h3>{SITE.brand}</h3>
+          <p class="visual-tags">AI Video · Cinematic · Meta · YouTube · TikTok</p>
           <div class="stat-grid">
-            <div class="stat-box"><strong class="text-primary">100+</strong><span>Projects Delivered</span></div>
-            <div class="stat-box"><strong class="text-violet">24/7</strong><span>Support Ready</span></div>
+            <div class="stat-box"><strong class="text-primary">4,300+</strong><span>Projects</span></div>
+            <div class="stat-box"><strong class="text-violet">24h</strong><span>Fast delivery</span></div>
           </div>
           <div class="float-badge badge-1">🎬 Video</div>
           <div class="float-badge badge-2">🤖 AI</div>
-          <div class="float-badge badge-3">💻 Web</div>
+          <div class="float-badge badge-3">📈 Ads</div>
         </div>
       </div>
     </div>
     <div class="scroll-indicator"><span>Scroll</span><div class="scroll-line"></div></div>
   </section>
+
   <section id="services" class="section-soft">
     <div class="container">
       <div class="text-center mb-8 reveal">
         <p class="eyebrow" style="margin:0 auto 1rem">Our Services</p>
         <h2 class="mb-4">Everything You Need to Grow Digitally</h2>
-        <p style="max-width:36rem;margin:0 auto">High-quality creative and technical services designed for modern businesses.</p>
+        <p style="max-width:36rem;margin:0 auto">AI video ads, cinematic films, web & app development and full growth campaigns.</p>
       </div>
       <div class="grid-3">
-        <a href="/services/video-editing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(244,63,94,.1)">🎬</div><h3 class="mb-4">Video Editing</h3><p style="font-size:.9rem">Professional video editing for ads, social media, YouTube and brand storytelling.</p></a>
-        <a href="/services/ai-video-marketing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(124,58,237,.1)">🤖</div><h3 class="mb-4">AI Video Marketing</h3><p style="font-size:.9rem">AI-powered video content creation and marketing campaigns that scale fast.</p></a>
-        <a href="/services/human-like-content" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(245,158,11,.1)">👤</div><h3 class="mb-4">Authentic Human-like Content</h3><p style="font-size:.9rem">Realistic AI human & product visuals that feel genuine and conversion-focused.</p></a>
-        <a href="/services/web-development" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(79,70,229,.1)">💻</div><h3 class="mb-4">Web Development</h3><p style="font-size:.9rem">Modern, fast and SEO-friendly websites built with the latest technologies.</p></a>
-        <a href="/services/application-build" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(6,182,212,.1)">📱</div><h3 class="mb-4">Application Build</h3><p style="font-size:.9rem">Custom web & mobile applications designed for performance and scalability.</p></a>
-        <a href="/services/authentication" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(16,185,129,.1)">🔐</div><h3 class="mb-4">Authentication Systems</h3><p style="font-size:.9rem">Secure login, signup, role-based access and authentication solutions.</p></a>
-        <a href="/services/facebook-page" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(79,70,229,.1)">📘</div><h3 class="mb-4">Facebook Page Services</h3><p style="font-size:.9rem">Page setup, Business Page creation and Blue Verification support.</p></a>
-        <a href="/services/boosting" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(244,63,94,.1)">📈</div><h3 class="mb-4">Boosting Service</h3><p style="font-size:.9rem">Targeted Facebook & Instagram boosting to reach the right audience.</p></a>
-        <a href="/services/campaign" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(124,58,237,.1)">🎯</div><h3 class="mb-4">Campaign Service</h3><p style="font-size:.9rem">Full campaign planning, creative strategy and performance management.</p></a>
+        <a href="/services/video-editing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(244,63,94,.1)">🎬</div><h3 class="mb-4">Video Editing</h3><p style="font-size:.9rem">Professional editing for ads, social, YouTube and brand storytelling.</p></a>
+        <a href="/services/ai-video-marketing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(124,58,237,.1)">🤖</div><h3 class="mb-4">AI Video Marketing</h3><p style="font-size:.9rem">AI-powered video ads engineered to convert on Meta, YouTube & TikTok.</p></a>
+        <a href="/services/human-like-content" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(245,158,11,.1)">👤</div><h3 class="mb-4">Authentic Human-like Content</h3><p style="font-size:.9rem">Realistic AI human & product visuals that feel genuine.</p></a>
+        <a href="/services/web-development" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(79,70,229,.1)">💻</div><h3 class="mb-4">Web Development</h3><p style="font-size:.9rem">Modern, fast and SEO-friendly websites.</p></a>
+        <a href="/services/application-build" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(6,182,212,.1)">📱</div><h3 class="mb-4">Application Build</h3><p style="font-size:.9rem">Custom web & mobile apps built for performance.</p></a>
+        <a href="/services/authentication" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(16,185,129,.1)">🔐</div><h3 class="mb-4">Authentication Systems</h3><p style="font-size:.9rem">Secure login, roles and access control.</p></a>
+        <a href="/services/facebook-page" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(79,70,229,.1)">📘</div><h3 class="mb-4">Facebook Page Services</h3><p style="font-size:.9rem">Page setup, business page & verification support.</p></a>
+        <a href="/services/boosting" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(244,63,94,.1)">📈</div><h3 class="mb-4">Boosting Service</h3><p style="font-size:.9rem">Targeted Meta boosting to the right audience.</p></a>
+        <a href="/services/campaign" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(124,58,237,.1)">🎯</div><h3 class="mb-4">Campaign Service</h3><p style="font-size:.9rem">Full campaign planning and performance management.</p></a>
       </div>
     </div>
   </section>
+
+  <VideoGallery />
+
   <section id="about" class="section-violet">
     <div class="container grid-2">
       <div class="reveal">
-        <p class="eyebrow">Why Creavix iT</p>
-        <h2 class="mb-6">Creative Power Meets<br />Technical Excellence</h2>
-        <p class="lead mb-8">We combine high-end creative production with solid engineering. Whether you need AI video, a custom web app, or full Facebook marketing — we deliver with quality and speed.</p>
+        <p class="eyebrow">Why {SITE.name}</p>
+        <h2 class="mb-6">Studio in Savar · Since {SITE.servingSince}</h2>
+        <p class="lead mb-8">{SITE.shortDesc}</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:.85rem;color:var(--text-2)">
-          <li>✓ Premium quality creative output</li>
-          <li>✓ Modern tech stack & fast delivery</li>
-          <li>✓ Transparent process & clear communication</li>
-          <li>✓ Results-focused approach</li>
+          <li>✓ Founder-led creative direction — {SITE.founder.name}</li>
+          <li>✓ 24–48h delivery on short videos</li>
+          <li>✓ Bilingual BN/EN campaigns</li>
+          <li>✓ Real studio: {SITE.addressBn}</li>
         </ul>
       </div>
       <div class="reveal">
         <div class="glass-card" style="padding:2.2rem">
-          <h3 class="mb-6">What We Deliver</h3>
+          <h3 class="mb-6">At a glance</h3>
           <div class="stat-grid">
-            <div><strong style="font-size:1.75rem;color:var(--primary);font-family:var(--font-h)">Video</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Editing & AI Marketing</span></div>
-            <div><strong style="font-size:1.75rem;color:var(--violet);font-family:var(--font-h)">Web</strong><br /><span style="font-size:.8rem;color:var(--text-3)">& App Development</span></div>
-            <div><strong style="font-size:1.75rem;color:var(--accent);font-family:var(--font-h)">Auth</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Secure Systems</span></div>
-            <div><strong style="font-size:1.75rem;color:var(--rose);font-family:var(--font-h)">Ads</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Boost & Campaigns</span></div>
+            {
+              STATS.map((s) => (
+                <div>
+                  <strong style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">{s.value}</strong>
+                  <br />
+                  <span style="font-size:.8rem;color:var(--text-3)">{s.label}</span>
+                </div>
+              ))
+            }
           </div>
         </div>
       </div>
@@ -94,8 +108,11 @@ import Reviews from '../components/Reviews.astro';
   <section id="contact" class="section-warm">
     <div class="container text-center reveal" style="max-width:40rem">
       <h2 class="mb-4">Ready to Elevate Your Digital Presence?</h2>
-      <p class="mb-8" style="font-size:1.1rem">Tell us about your project. We’ll recommend the best solution and get started quickly.</p>
-      <a href="/contact" class="btn btn-primary" style="padding:.9rem 2rem;font-size:1rem">Contact Creavix iT</a>
+      <p class="mb-8" style="font-size:1.1rem">WhatsApp {SITE.whatsapp} · {SITE.email1} · {SITE.hotline}</p>
+      <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center">
+        <a href={SITE.whatsappLink} class="btn btn-primary" style="padding:.9rem 2rem;font-size:1rem" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="/contact" class="btn btn-outline" style="padding:.9rem 2rem;font-size:1rem">Contact page</a>
+      </div>
     </div>
   </section>
   <Footer />

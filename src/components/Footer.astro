@@ -1,13 +1,23 @@
 ---
+import { SITE, SOCIAL_LINKS } from '../data/site';
 ---
 <footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
       <a href="/" class="logo footer-logo">
-        <img src="/logo.png" alt="Creavix iT Solution" class="logo-img" width="36" height="36" />
+        <img src="/logo.png" alt={SITE.brand} class="logo-img" width="36" height="36" />
         Creavix <span>iT</span> Solution
       </a>
-      <p class="footer-desc">Premium digital agency delivering AI video marketing, web development and growth solutions.</p>
+      <p class="footer-desc">{SITE.shortDesc}</p>
+      <div class="footer-social">
+        {
+          SOCIAL_LINKS.map((s) => (
+            <a href={s.url} target="_blank" rel="noopener noreferrer" class="social-link" aria-label={s.name}>
+              {s.name}
+            </a>
+          ))
+        }
+      </div>
     </div>
     <div class="footer-col">
       <h4>Services</h4>
@@ -20,29 +30,50 @@
       </ul>
     </div>
     <div class="footer-col">
-      <h4>More Services</h4>
-      <ul>
-        <li><a href="/services/human-like-content">Human-like Content</a></li>
-        <li><a href="/services/authentication">Authentication</a></li>
-        <li><a href="/services/facebook-page">Facebook Page</a></li>
-        <li><a href="/services/boosting">Boosting</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
       <h4>Company</h4>
       <ul>
         <li><a href="/about">About Us</a></li>
+        <li><a href="/#portfolio">Portfolio</a></li>
         <li><a href="/contact">Contact</a></li>
-        <li><a href="mailto:hello@creavixit.com">Support</a></li>
-        <li><a href="https://creavixit.com">creavixit.com</a></li>
+        <li><a href="/#reviews">Reviews</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href={`tel:${SITE.hotline.replace(/\s/g, '')}`}>{SITE.hotline}</a></li>
+        <li><a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp {SITE.whatsapp}</a></li>
+        <li><a href={`mailto:${SITE.email1}`}>{SITE.email1}</a></li>
+        <li><a href={`mailto:${SITE.email2}`}>{SITE.email2}</a></li>
+        <li><span style="color:var(--text-3);font-size:.85rem">{SITE.address}</span></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <div>© 2026 Creavix iT Solution. All rights reserved.</div>
+    <div>© {new Date().getFullYear()} {SITE.brand}. All rights reserved.</div>
     <div class="footer-links">
-      <a href="/contact">Contact</a>
-      <a href="mailto:hello@creavixit.com">hello@creavixit.com</a>
+      <a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <a href={`mailto:${SITE.email1}`}>{SITE.email1}</a>
     </div>
   </div>
 </footer>
+
+<style>
+  .footer-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .social-link {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: inherit;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .social-link:hover { background: rgba(255, 255, 255, 0.14); }
+</style>

@@ -1,0 +1,207 @@
+---
+import { SHOWCASES, ytThumb } from '../data/site';
+---
+<section id="portfolio" class="section-gallery">
+  <div class="container">
+    <div class="text-center mb-10 reveal">
+      <p class="eyebrow" style="margin:0 auto 1rem">Video Portfolio</p>
+      <h2 class="mb-4">Work That Converts</h2>
+      <p style="max-width:36rem;margin:0 auto">Cinematic storytelling, AI product ads, financial campaigns and custom projects — real client work.</p>
+    </div>
+
+    {
+      SHOWCASES.map((group) => (
+        <div class="gallery-block reveal" id={group.id}>
+          <div class="gallery-head">
+            <h3 class="gallery-title">{group.title}</h3>
+            <p class="gallery-sub">{group.sub}</p>
+            <p class="gallery-bn">{group.titleBn}</p>
+          </div>
+          <div class="video-grid">
+            {
+              group.ids.map((vid) => (
+                <button
+                  type="button"
+                  class="video-card"
+                  data-yt={vid}
+                  aria-label={`Play video ${vid}`}
+                >
+                  <img
+                    src={ytThumb(vid)}
+                    alt=""
+                    width="480"
+                    height="270"
+                    loading="lazy"
+                    decoding="async"
+                    class="video-thumb"
+                  />
+                  <span class="play-btn" aria-hidden="true">▶</span>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="yt-modal" id="yt-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="yt-backdrop" id="yt-backdrop"></div>
+    <div class="yt-panel">
+      <button type="button" class="yt-close" id="yt-close" aria-label="Close">×</button>
+      <div class="yt-frame-wrap" id="yt-frame-wrap"></div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .section-gallery {
+    padding: 4.5rem 1.25rem;
+    background: #F8FAFC;
+  }
+  .gallery-block { margin-bottom: 3.5rem; }
+  .gallery-block:last-child { margin-bottom: 0; }
+  .gallery-head { margin-bottom: 1.25rem; }
+  .gallery-title {
+    font-family: var(--font-h);
+    font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 0.35rem;
+  }
+  .gallery-sub { color: var(--text-2); font-size: 0.95rem; margin: 0 0 0.25rem; max-width: 40rem; }
+  .gallery-bn { color: var(--text-3); font-size: 0.85rem; margin: 0; }
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+  @media (min-width: 720px) {
+    .video-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  }
+  .video-card {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #0f172a;
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .video-card:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(15, 23, 42, 0.14); }
+  .video-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .play-btn {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    color: #4F46E5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+  }
+  .yt-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10050;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .yt-modal.is-open { display: flex; }
+  .yt-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(6px);
+  }
+  .yt-panel {
+    position: relative;
+    z-index: 1;
+    width: min(960px, 100%);
+    border-radius: 16px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+  }
+  .yt-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .yt-frame-wrap { position: relative; padding-top: 56.25%; }
+  .yt-frame-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>
+
+<script is:inline>
+(function () {
+  var modal = document.getElementById('yt-modal');
+  var wrap = document.getElementById('yt-frame-wrap');
+  var closeBtn = document.getElementById('yt-close');
+  var backdrop = document.getElementById('yt-backdrop');
+
+  function openYt(id) {
+    if (!modal || !wrap) return;
+    wrap.innerHTML =
+      '<iframe src="https://www.youtube-nocookie.com/embed/' +
+      id +
+      '?autoplay=1&rel=0" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>';
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeYt() {
+    if (!modal || !wrap) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    wrap.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.video-card[data-yt]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var id = btn.getAttribute('data-yt');
+      if (id) openYt(id);
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeYt);
+  if (backdrop) backdrop.addEventListener('click', closeYt);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeYt();
+  });
+})();
+</script>
