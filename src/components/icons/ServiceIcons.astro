@@ -1,0 +1,245 @@
+---
+/** Premium living SVG icons — CSS-only, GPU-friendly, reduced-motion safe */
+export type IconName =
+  | 'web'
+  | 'app'
+  | 'auth'
+  | 'ai'
+  | 'video'
+  | 'human'
+  | 'facebook'
+  | 'boost'
+  | 'campaign'
+  | 'rocket'
+  | 'check'
+  | 'spark';
+
+interface Props {
+  name: IconName;
+  size?: number;
+  class?: string;
+}
+const { name, size = 40, class: className = '' } = Astro.props;
+---
+<span class={`live-icon li-${name} ${className}`} style={`--sz:${size}px`} aria-hidden="true">
+  {
+    name === 'web' && (
+      <svg viewBox="0 0 48 48" width={size} height={size} fill="none">
+        <circle class="li-ring" cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2" />
+        <ellipse class="li-orbit" cx="24" cy="24" rx="18" ry="8" stroke="currentColor" stroke-width="1.5" opacity="0.7" />
+        <ellipse class="li-orbit li-orbit-2" cx="24" cy="24" rx="8" ry="18" stroke="currentColor" stroke-width="1.5" opacity="0.7" />
+        <circle class="li-dot" cx="24" cy="24" r="3" fill="currentColor" />
+        <circle class="li-pulse" cx="24" cy="24" r="6" stroke="currentColor" stroke-width="1.2" fill="none" />
+      </svg>
+    )
+  }
+  {
+    name === 'app' && (
+      <svg viewBox="0 0 48 48" width={size} height={size} fill="none">
+        <rect class="li-phone" x="14" y="6" width="20" height="36" rx="4" stroke="currentColor" stroke-width="2" />
+        <rect class="li-screen" x="17" y="11" width="14" height="24" rx="1.5" fill="currentColor" opacity="0.12" />
+        <circle class="li-dot" cx="24" cy="38" r="1.8" fill="currentColor" />
+        <path class="li-wave" d="M20 18h8M20 23h8M20 28h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </svg>
+    )
+  }
+  {
+    name === 'auth' && (
+      <svg viewBox="0 0 48 48" width={size} height={size} fill="none">
+        <rect class="li-lock" x="12" y="20" width="24" height="18" rx="3" stroke="currentColor" stroke-width="2" />
+        <path class="li-shackle" d="M17 20v-5a7 7 0 0 1 14 0v5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        <circle class="li-dot" cx="24" cy="29" r="2.5" fill="currentColor" />
+        <path class="li-key" d="M24 31.5v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    )
+  }
+  {
+    name === 'ai' && (
+      <svg viewBox="0 0 48 48" width={size} height={size} fill="none">
+        <circle class="li-core" cx="24" cy="24" r="8" stroke="currentColor" stroke-width="2" />
+        <circle class="li-dot" cx="24" cy="24" r="3" fill="currentColor" />
+        <g class="li-spokes">
+          <path d="M24 6v6M24 36v6M6 24h6M36 24h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <path d="M11 11l4.2 4.2M32.8 32.8L37 37M37 11l-4.2 4.2M15.2 32.8L11 37" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.75" />
+        </g>
+        <circle class="li-pulse" cx="24" cy="24" r="12" stroke="currentColor" stroke-width="1" fill="none" />
+      </svg>
+    )
+  }
+  {
+    name === 'video' && (
+      <svg viewBox="0 0 48 48" width={size} height={size} fill="none">
+        <rect class="li-cam" x="6" y="14" width="26" height="20" rx="3" stroke="currentColor" stroke-width="2" />
+        <path class="li-lens" d="M32 20l10-5v18l-10-5V20z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+        <circle class="li-rec" cx="14" cy="20" r="2.2" fill="currentColor" />
+        <path class="li-wave" d="M12 30h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.6" />
+      </svg>
+    )
+  }
+  {
+    name === 'human' && (
+      <svg viewBox="0 0 48 48" width={size} height={size} fill="none">
+        <circle class="li-head" cx="24" cy="16" r="7" stroke="currentColor" stroke-width="2" />
+        <path class="li-body" d="M12 40c2-8 8-12 12-12s10 4 12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        <circle class="li-pulse" cx="24" cy="16" r="10" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5" />
+      </svg>
+    )
+  }
+  {
+    name === 'facebook' && (
+      <svg viewBox="0 0 48 48" width={size} height={size} fill="none">
+        <rect class="li-page" x="10" y="8" width="28" height="32" rx="4" stroke="currentColor" stroke-width="2" />
+        <circle class="li-dot" cx="24" cy="18" r="5" stroke="currentColor" stroke-width="1.8" />
+        <path class="li-wave" d="M16 30h16M18 35h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </svg>
+    )
+  }
+  {
+    name === 'boost' && (
+      <svg viewBox="0 0 48 48" width={size} height={size} fill="none">
+        <path class="li-chart" d="M8 36V12M8 36h32" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        <path class="li-line" d="M12 28l8-10 6 6 10-14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+        <circle class="li-dot" cx="36" cy="10" r="3" fill="currentColor" />
+        <path class="li-arrow" d="M32 10h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    )
+  }
+  {
+    name === 'campaign' && (
+      <svg viewBox="0 0 48 48" width={size} height={size} fill="none">
+        <circle class="li-target" cx="24" cy="24" r="16" stroke="currentColor" stroke-width="2" />
+        <circle class="li-target li-t2" cx="24" cy="24" r="10" stroke="currentColor" stroke-width="1.6" opacity="0.75" />
+        <circle class="li-dot" cx="24" cy="24" r="3.5" fill="currentColor" />
+        <path class="li-arrow" d="M34 14l4-4M34 14h5M34 14v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </svg>
+    )
+  }
+  {
+    name === 'rocket' && (
+      <svg viewBox="0 0 48 48" width={size} height={size} fill="none">
+        <path class="li-rocket" d="M24 6c6 6 8 14 8 20l-5 2-3-3-3 3-5-2c0-6 2-14 8-20z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+        <circle class="li-dot" cx="24" cy="18" r="2.5" fill="currentColor" />
+        <path class="li-flame" d="M20 36c1.5 4 4 6 4 6s2.5-2 4-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    )
+  }
+  {
+    name === 'check' && (
+      <svg viewBox="0 0 48 48" width={size} height={size} fill="none">
+        <circle class="li-ring" cx="24" cy="24" r="16" stroke="currentColor" stroke-width="2" />
+        <path class="li-check" d="M15 24l6 6 12-13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    )
+  }
+  {
+    name === 'spark' && (
+      <svg viewBox="0 0 48 48" width={size} height={size} fill="none">
+        <path class="li-star" d="M24 6l3.5 12.5H40l-10 7.5 3.8 12L24 30.5 14.2 38l3.8-12-10-7.5h12.5L24 6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+      </svg>
+    )
+  }
+</span>
+
+<style>
+  .live-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--sz, 40px);
+    height: var(--sz, 40px);
+    color: var(--primary, #0D9488);
+    flex-shrink: 0;
+  }
+  .live-icon svg { display: block; overflow: visible; }
+
+  /* Core living motions */
+  .li-ring { transform-origin: 24px 24px; animation: li-spin 12s linear infinite; }
+  .li-orbit { transform-origin: 24px 24px; animation: li-spin 8s linear infinite; }
+  .li-orbit-2 { animation-direction: reverse; animation-duration: 10s; }
+  .li-pulse { transform-origin: 24px 24px; animation: li-pulse 2.2s ease-out infinite; }
+  .li-dot { transform-origin: center; animation: li-breathe 2s ease-in-out infinite; }
+  .li-spokes { transform-origin: 24px 24px; animation: li-spin 14s linear infinite; }
+  .li-core { animation: li-breathe 2.4s ease-in-out infinite; transform-origin: 24px 24px; }
+  .li-phone { animation: li-float 3.5s ease-in-out infinite; transform-origin: 24px 24px; }
+  .li-screen { animation: li-fade 2.8s ease-in-out infinite; }
+  .li-wave { stroke-dasharray: 24; animation: li-dash 2.5s ease-in-out infinite; }
+  .li-lock { animation: li-float 3s ease-in-out infinite; transform-origin: 24px 29px; }
+  .li-shackle { animation: li-bob 2.2s ease-in-out infinite; transform-origin: 24px 15px; }
+  .li-key { animation: li-bob 2.2s ease-in-out infinite 0.15s; }
+  .li-cam { animation: li-float 3.2s ease-in-out infinite; }
+  .li-lens { animation: li-bob 2.6s ease-in-out infinite; transform-origin: 32px 24px; }
+  .li-rec { animation: li-blink 1.4s step-end infinite; }
+  .li-head { animation: li-breathe 2.5s ease-in-out infinite; transform-origin: 24px 16px; }
+  .li-body { animation: li-fade 3s ease-in-out infinite; }
+  .li-page { animation: li-float 3.4s ease-in-out infinite; }
+  .li-chart { opacity: 0.85; }
+  .li-line {
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: li-draw 2.8s ease-in-out infinite;
+  }
+  .li-arrow { animation: li-bob 1.8s ease-in-out infinite; }
+  .li-target { transform-origin: 24px 24px; animation: li-pulse-soft 2.6s ease-out infinite; }
+  .li-t2 { animation-delay: 0.4s; }
+  .li-rocket { animation: li-float 2.8s ease-in-out infinite; transform-origin: 24px 24px; }
+  .li-flame { animation: li-blink 0.9s ease-in-out infinite; }
+  .li-check {
+    stroke-dasharray: 36;
+    stroke-dashoffset: 36;
+    animation: li-draw 2.2s ease-in-out infinite;
+  }
+  .li-star { transform-origin: 24px 24px; animation: li-spin-slow 8s linear infinite; }
+
+  @keyframes li-spin {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes li-spin-slow {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes li-pulse {
+    0% { opacity: 0.7; transform: scale(0.85); }
+    70% { opacity: 0; transform: scale(1.35); }
+    100% { opacity: 0; transform: scale(1.35); }
+  }
+  @keyframes li-pulse-soft {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+  }
+  @keyframes li-breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+  }
+  @keyframes li-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+  }
+  @keyframes li-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-1.5px); }
+  }
+  @keyframes li-fade {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.85; }
+  }
+  @keyframes li-dash {
+    0% { stroke-dashoffset: 24; opacity: 0.4; }
+    50% { stroke-dashoffset: 0; opacity: 1; }
+    100% { stroke-dashoffset: -24; opacity: 0.4; }
+  }
+  @keyframes li-draw {
+    0% { stroke-dashoffset: 48; }
+    40% { stroke-dashoffset: 0; }
+    70% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -4; }
+  }
+  @keyframes li-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.15; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .live-icon * {
+      animation: none !important;
+    }
+  }
+</style>
