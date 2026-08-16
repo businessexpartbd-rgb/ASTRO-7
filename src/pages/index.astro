@@ -20,14 +20,11 @@ import { SITE, STATS } from '../data/site';
           <a href={SITE.whatsappLink} class="btn btn-outline" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
         </div>
         <div class="trust-row">
-          {
-            STATS.slice(0, 3).map((s, i) => (
-              <>
-                {i > 0 && <div class="trust-divider" />}
-                <div class="trust-item"><strong>{s.value}</strong><span>{s.label}</span></div>
-              </>
-            ))
-          }
+          <div class="trust-item"><strong class="count-up" data-count="10+">0</strong><span>Years</span></div>
+          <div class="trust-divider"></div>
+          <div class="trust-item"><strong class="count-up" data-count="4300+">0</strong><span>Projects</span></div>
+          <div class="trust-divider"></div>
+          <div class="trust-item"><strong class="count-up" data-count="4.8">0</strong><span>Avg rating</span></div>
         </div>
       </div>
       <div class="hero-visual reveal">
@@ -36,8 +33,8 @@ import { SITE, STATS } from '../data/site';
           <h3>{SITE.brand}</h3>
           <p class="visual-tags">Web · App · AI Video · Auth · Marketing</p>
           <div class="stat-grid">
-            <div class="stat-box"><strong class="text-primary">4,300+</strong><span>Projects</span></div>
-            <div class="stat-box"><strong class="text-violet">IT+</strong><span>Full solutions</span></div>
+            <div class="stat-box"><strong class="text-primary count-up" data-count="4300+">0</strong><span>Projects</span></div>
+            <div class="stat-box"><strong class="text-violet count-up" data-count="24h">0</strong><span>Fast delivery</span></div>
           </div>
           <div class="float-badge badge-1">💻 Web</div>
           <div class="float-badge badge-2">🤖 AI</div>
@@ -56,15 +53,15 @@ import { SITE, STATS } from '../data/site';
         <p style="max-width:40rem;margin:0 auto">Website development, applications, authentication, AI video production, Facebook growth and full campaign management — one agency.</p>
       </div>
       <div class="grid-3">
-        <a href="/services/web-development" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(79,70,229,.1)">💻</div><h3 class="mb-4">Web Development</h3><p style="font-size:.9rem">Fast, SEO-friendly websites and landing pages built for ranking and conversion.</p></a>
-        <a href="/services/application-build" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(6,182,212,.1)">📱</div><h3 class="mb-4">Application Build</h3><p style="font-size:.9rem">Custom web & mobile applications designed for performance and scale.</p></a>
-        <a href="/services/authentication" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(16,185,129,.1)">🔐</div><h3 class="mb-4">Authentication Systems</h3><p style="font-size:.9rem">Secure login, signup, roles and access control for your products.</p></a>
-        <a href="/services/ai-video-marketing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(124,58,237,.1)">🤖</div><h3 class="mb-4">AI Video Marketing</h3><p style="font-size:.9rem">AI-powered video ads for Meta, YouTube and TikTok that convert.</p></a>
-        <a href="/services/video-editing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(244,63,94,.1)">🎬</div><h3 class="mb-4">Video Editing</h3><p style="font-size:.9rem">Professional editing for ads, social, YouTube and brand films.</p></a>
-        <a href="/services/human-like-content" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(245,158,11,.1)">👤</div><h3 class="mb-4">Human-like Content</h3><p style="font-size:.9rem">Authentic AI human & product visuals for campaigns.</p></a>
-        <a href="/services/facebook-page" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(79,70,229,.1)">📘</div><h3 class="mb-4">Facebook Page Services</h3><p style="font-size:.9rem">Business page setup and verification support.</p></a>
-        <a href="/services/boosting" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(244,63,94,.1)">📈</div><h3 class="mb-4">Boosting Service</h3><p style="font-size:.9rem">Targeted Meta boosting to reach the right audience.</p></a>
-        <a href="/services/campaign" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(124,58,237,.1)">🎯</div><h3 class="mb-4">Campaign Service</h3><p style="font-size:.9rem">End-to-end campaign planning and performance management.</p></a>
+        <a href="/services/web-development" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(13,148,136,.12)">💻</div><h3 class="mb-4">Web Development</h3><p style="font-size:.9rem">Fast, SEO-friendly websites and landing pages built for ranking and conversion.</p></a>
+        <a href="/services/application-build" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(245,158,11,.12)">📱</div><h3 class="mb-4">Application Build</h3><p style="font-size:.9rem">Custom web & mobile applications designed for performance and scale.</p></a>
+        <a href="/services/authentication" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(5,150,105,.12)">🔐</div><h3 class="mb-4">Authentication Systems</h3><p style="font-size:.9rem">Secure login, signup, roles and access control for your products.</p></a>
+        <a href="/services/ai-video-marketing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(234,88,12,.12)">🤖</div><h3 class="mb-4">AI Video Marketing</h3><p style="font-size:.9rem">AI-powered video ads for Meta, YouTube and TikTok that convert.</p></a>
+        <a href="/services/video-editing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(225,29,72,.1)">🎬</div><h3 class="mb-4">Video Editing</h3><p style="font-size:.9rem">Professional editing for ads, social, YouTube and brand films.</p></a>
+        <a href="/services/human-like-content" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(217,119,6,.12)">👤</div><h3 class="mb-4">Human-like Content</h3><p style="font-size:.9rem">Authentic AI human & product visuals for campaigns.</p></a>
+        <a href="/services/facebook-page" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(13,148,136,.12)">📘</div><h3 class="mb-4">Facebook Page Services</h3><p style="font-size:.9rem">Business page setup and verification support.</p></a>
+        <a href="/services/boosting" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(225,29,72,.1)">📈</div><h3 class="mb-4">Boosting Service</h3><p style="font-size:.9rem">Targeted Meta boosting to reach the right audience.</p></a>
+        <a href="/services/campaign" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(234,88,12,.12)">🎯</div><h3 class="mb-4">Campaign Service</h3><p style="font-size:.9rem">End-to-end campaign planning and performance management.</p></a>
       </div>
     </div>
   </section>
@@ -91,7 +88,7 @@ import { SITE, STATS } from '../data/site';
             {
               STATS.map((s) => (
                 <div>
-                  <strong style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">{s.value}</strong>
+                  <strong class="count-up" data-count={s.value} style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong>
                   <br />
                   <span style="font-size:.8rem;color:var(--text-3)">{s.label}</span>
                 </div>
