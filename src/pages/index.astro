@@ -6,14 +6,14 @@ import Reviews from '../components/Reviews.astro';
 import VideoGallery from '../components/VideoGallery.astro';
 import { SITE, STATS } from '../data/site';
 ---
-<Layout title={`${SITE.brand} — ${SITE.tagline}`} description={SITE.shortDesc}>
+<Layout title={SITE.seoTitle} description={SITE.seoDescription}>
   <Nav active="home" />
   <section id="home" class="hero-premium">
     <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div><div class="grid-overlay"></div></div>
     <div class="container hero-grid">
       <div class="hero-content reveal">
         <div class="eyebrow"><span class="dot"></span> {SITE.tagline}</div>
-        <h1 class="hero-title">We Build Digital<br />Experiences That<br /><span class="text-gradient" id="typing-text">Convert & Inspire</span><span class="typing-cursor">|</span></h1>
+        <h1 class="hero-title">Full-Service IT &amp;<br />Digital Solutions That<br /><span class="text-gradient" id="typing-text">Grow Your Business</span><span class="typing-cursor">|</span></h1>
         <p class="hero-lead">{SITE.shortDesc}</p>
         <div class="flex-btns">
           <a href="#services" class="btn btn-primary">Explore Services</a>
@@ -32,16 +32,16 @@ import { SITE, STATS } from '../data/site';
       </div>
       <div class="hero-visual reveal">
         <div class="visual-card glass-card animate-float">
-          <div class="visual-icon">🎬</div>
+          <div class="visual-icon">💼</div>
           <h3>{SITE.brand}</h3>
-          <p class="visual-tags">AI Video · Cinematic · Meta · YouTube · TikTok</p>
+          <p class="visual-tags">Web · App · AI Video · Auth · Marketing</p>
           <div class="stat-grid">
             <div class="stat-box"><strong class="text-primary">4,300+</strong><span>Projects</span></div>
-            <div class="stat-box"><strong class="text-violet">24h</strong><span>Fast delivery</span></div>
+            <div class="stat-box"><strong class="text-violet">IT+</strong><span>Full solutions</span></div>
           </div>
-          <div class="float-badge badge-1">🎬 Video</div>
+          <div class="float-badge badge-1">💻 Web</div>
           <div class="float-badge badge-2">🤖 AI</div>
-          <div class="float-badge badge-3">📈 Ads</div>
+          <div class="float-badge badge-3">📱 App</div>
         </div>
       </div>
     </div>
@@ -51,20 +51,20 @@ import { SITE, STATS } from '../data/site';
   <section id="services" class="section-soft">
     <div class="container">
       <div class="text-center mb-8 reveal">
-        <p class="eyebrow" style="margin:0 auto 1rem">Our Services</p>
-        <h2 class="mb-4">Everything You Need to Grow Digitally</h2>
-        <p style="max-width:36rem;margin:0 auto">AI video ads, cinematic films, web & app development and full growth campaigns.</p>
+        <p class="eyebrow" style="margin:0 auto 1rem">IT & Digital Services</p>
+        <h2 class="mb-4">Everything Your Business Needs Online</h2>
+        <p style="max-width:40rem;margin:0 auto">Website development, applications, authentication, AI video production, Facebook growth and full campaign management — one agency.</p>
       </div>
       <div class="grid-3">
-        <a href="/services/video-editing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(244,63,94,.1)">🎬</div><h3 class="mb-4">Video Editing</h3><p style="font-size:.9rem">Professional editing for ads, social, YouTube and brand storytelling.</p></a>
-        <a href="/services/ai-video-marketing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(124,58,237,.1)">🤖</div><h3 class="mb-4">AI Video Marketing</h3><p style="font-size:.9rem">AI-powered video ads engineered to convert on Meta, YouTube & TikTok.</p></a>
-        <a href="/services/human-like-content" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(245,158,11,.1)">👤</div><h3 class="mb-4">Authentic Human-like Content</h3><p style="font-size:.9rem">Realistic AI human & product visuals that feel genuine.</p></a>
-        <a href="/services/web-development" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(79,70,229,.1)">💻</div><h3 class="mb-4">Web Development</h3><p style="font-size:.9rem">Modern, fast and SEO-friendly websites.</p></a>
-        <a href="/services/application-build" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(6,182,212,.1)">📱</div><h3 class="mb-4">Application Build</h3><p style="font-size:.9rem">Custom web & mobile apps built for performance.</p></a>
-        <a href="/services/authentication" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(16,185,129,.1)">🔐</div><h3 class="mb-4">Authentication Systems</h3><p style="font-size:.9rem">Secure login, roles and access control.</p></a>
-        <a href="/services/facebook-page" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(79,70,229,.1)">📘</div><h3 class="mb-4">Facebook Page Services</h3><p style="font-size:.9rem">Page setup, business page & verification support.</p></a>
-        <a href="/services/boosting" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(244,63,94,.1)">📈</div><h3 class="mb-4">Boosting Service</h3><p style="font-size:.9rem">Targeted Meta boosting to the right audience.</p></a>
-        <a href="/services/campaign" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(124,58,237,.1)">🎯</div><h3 class="mb-4">Campaign Service</h3><p style="font-size:.9rem">Full campaign planning and performance management.</p></a>
+        <a href="/services/web-development" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(79,70,229,.1)">💻</div><h3 class="mb-4">Web Development</h3><p style="font-size:.9rem">Fast, SEO-friendly websites and landing pages built for ranking and conversion.</p></a>
+        <a href="/services/application-build" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(6,182,212,.1)">📱</div><h3 class="mb-4">Application Build</h3><p style="font-size:.9rem">Custom web & mobile applications designed for performance and scale.</p></a>
+        <a href="/services/authentication" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(16,185,129,.1)">🔐</div><h3 class="mb-4">Authentication Systems</h3><p style="font-size:.9rem">Secure login, signup, roles and access control for your products.</p></a>
+        <a href="/services/ai-video-marketing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(124,58,237,.1)">🤖</div><h3 class="mb-4">AI Video Marketing</h3><p style="font-size:.9rem">AI-powered video ads for Meta, YouTube and TikTok that convert.</p></a>
+        <a href="/services/video-editing" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(244,63,94,.1)">🎬</div><h3 class="mb-4">Video Editing</h3><p style="font-size:.9rem">Professional editing for ads, social, YouTube and brand films.</p></a>
+        <a href="/services/human-like-content" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(245,158,11,.1)">👤</div><h3 class="mb-4">Human-like Content</h3><p style="font-size:.9rem">Authentic AI human & product visuals for campaigns.</p></a>
+        <a href="/services/facebook-page" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(79,70,229,.1)">📘</div><h3 class="mb-4">Facebook Page Services</h3><p style="font-size:.9rem">Business page setup and verification support.</p></a>
+        <a href="/services/boosting" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(244,63,94,.1)">📈</div><h3 class="mb-4">Boosting Service</h3><p style="font-size:.9rem">Targeted Meta boosting to reach the right audience.</p></a>
+        <a href="/services/campaign" class="glass-card reveal" style="text-decoration:none;color:inherit;display:block"><div class="icon-box" style="background:rgba(124,58,237,.1)">🎯</div><h3 class="mb-4">Campaign Service</h3><p style="font-size:.9rem">End-to-end campaign planning and performance management.</p></a>
       </div>
     </div>
   </section>
@@ -75,13 +75,13 @@ import { SITE, STATS } from '../data/site';
     <div class="container grid-2">
       <div class="reveal">
         <p class="eyebrow">Why {SITE.name}</p>
-        <h2 class="mb-6">Studio in Savar · Since {SITE.servingSince}</h2>
+        <h2 class="mb-6">IT Solution Agency · Since {SITE.servingSince}</h2>
         <p class="lead mb-8">{SITE.shortDesc}</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:.85rem;color:var(--text-2)">
-          <li>✓ Founder-led creative direction — {SITE.founder.name}</li>
-          <li>✓ 24–48h delivery on short videos</li>
-          <li>✓ Bilingual BN/EN campaigns</li>
-          <li>✓ Real studio: {SITE.addressBn}</li>
+          <li>✓ Web, app & authentication engineering</li>
+          <li>✓ AI video + classic video production</li>
+          <li>✓ Facebook page, boost & campaigns</li>
+          <li>✓ Studio: {SITE.addressBn} · Founder {SITE.founder.name}</li>
         </ul>
       </div>
       <div class="reveal">
@@ -107,7 +107,7 @@ import { SITE, STATS } from '../data/site';
 
   <section id="contact" class="section-warm">
     <div class="container text-center reveal" style="max-width:40rem">
-      <h2 class="mb-4">Ready to Elevate Your Digital Presence?</h2>
+      <h2 class="mb-4">Ready to Grow With a Full IT Partner?</h2>
       <p class="mb-8" style="font-size:1.1rem">WhatsApp {SITE.whatsapp} · {SITE.email1} · {SITE.hotline}</p>
       <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center">
         <a href={SITE.whatsappLink} class="btn btn-primary" style="padding:.9rem 2rem;font-size:1rem" target="_blank" rel="noopener noreferrer">WhatsApp</a>

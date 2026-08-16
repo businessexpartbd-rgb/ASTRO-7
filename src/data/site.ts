@@ -1,11 +1,17 @@
-/** Brand & content from creavix-next-live */
+/** Brand & content — full IT Solution agency (not video-only) */
 
 export const SITE = {
   name: 'Creavix',
   brand: 'Creavix iT Solution',
-  tagline: 'AI Video Marketing Agency',
+  tagline: 'Full-Service IT & Digital Growth Agency',
   shortDesc:
-    "Bangladesh's premier AI-powered video marketing studio. Cinematic ads for Meta, YouTube and TikTok, storytelling films and bilingual brand campaigns.",
+    'Creavix iT Solution is a full-service IT and digital agency in Bangladesh — web development, mobile apps, authentication systems, AI video marketing, professional video editing, Facebook page setup, boosting and end-to-end digital campaigns.',
+  seoTitle:
+    'Creavix iT Solution | Web Development, App, AI Video & Digital Marketing Agency Bangladesh',
+  seoDescription:
+    'Creavix iT Solution — IT agency in Bangladesh for website development, application build, secure authentication, AI video marketing, video editing, Facebook page & blue verification, boosting and campaign management. Fast delivery, SEO-ready results.',
+  seoKeywords:
+    'IT solution Bangladesh, web development Dhaka, app development, AI video marketing, video editing agency, Facebook boosting, digital marketing agency Savar, authentication system, Creavix iT',
   url: 'https://www.creavixit.com',
   hotline: '+880 9611-132835',
   whatsapp: '+8801890484355',
@@ -22,51 +28,15 @@ export const SITE = {
 } as const;
 
 export const SOCIAL_LINKS = [
-  {
-    key: 'facebook',
-    name: 'Facebook',
-    url: 'https://www.facebook.com/CreavixITSolution',
-    color: '#1877F2',
-  },
-  {
-    key: 'instagram',
-    name: 'Instagram',
-    url: 'https://www.instagram.com/creavixitsolution',
-    color: '#E4405F',
-  },
-  {
-    key: 'youtube',
-    name: 'YouTube',
-    url: 'https://www.youtube.com/@CreavixiTsolution',
-    color: '#FF0000',
-  },
-  {
-    key: 'tiktok',
-    name: 'TikTok',
-    url: 'https://www.tiktok.com/@creavixitsolution',
-    color: '#010101',
-  },
-  {
-    key: 'linkedin',
-    name: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/creavix-it-solution',
-    color: '#0A66C2',
-  },
-  {
-    key: 'x',
-    name: 'X',
-    url: 'https://x.com/creavixit',
-    color: '#000000',
-  },
-  {
-    key: 'whatsapp',
-    name: 'WhatsApp',
-    url: 'https://wa.me/8801890484355',
-    color: '#25D366',
-  },
+  { key: 'facebook', name: 'Facebook', url: 'https://www.facebook.com/CreavixITSolution', color: '#1877F2' },
+  { key: 'instagram', name: 'Instagram', url: 'https://www.instagram.com/creavixitsolution', color: '#E4405F' },
+  { key: 'youtube', name: 'YouTube', url: 'https://www.youtube.com/@CreavixiTsolution', color: '#FF0000' },
+  { key: 'tiktok', name: 'TikTok', url: 'https://www.tiktok.com/@creavixitsolution', color: '#010101' },
+  { key: 'linkedin', name: 'LinkedIn', url: 'https://www.linkedin.com/in/creavix-it-solution', color: '#0A66C2' },
+  { key: 'x', name: 'X', url: 'https://x.com/creavixit', color: '#000000' },
+  { key: 'whatsapp', name: 'WhatsApp', url: 'https://wa.me/8801890484355', color: '#25D366' },
 ] as const;
 
-/** format: landscape = 16:9 YouTube · short = 9:16 vertical */
 export const SHOWCASES = [
   {
     id: 'cinematic',
