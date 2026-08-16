@@ -1,6 +1,7 @@
 ---
 import { SITE } from '../data/site';
 const wa = SITE.whatsappLink || 'https://wa.me/8801890484355';
+const waDisplay = '01890-484355';
 ---
 <button type="button" class="back-top" id="back-top" aria-label="Back to top" hidden>
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
@@ -25,7 +26,10 @@ const wa = SITE.whatsappLink || 'https://wa.me/8801890484355';
       <button type="button" class="support-close" id="support-close" aria-label="Close">×</button>
     </div>
     <div class="support-body" id="support-body">
-      <div class="support-msg bot">Hello! Welcome to <b>Creavix iT Solution</b> support. Ask about services, pricing, delivery or contact — or tap a quick question below.</div>
+      <div class="support-msg bot">
+        Hello! Welcome to <b>Creavix iT Solution</b> support. Ask about services, pricing or delivery — or message us on
+        <a class="wa-inline" href={wa} target="_blank" rel="noopener noreferrer">WhatsApp {waDisplay}</a>.
+      </div>
       <div class="support-quick" id="support-quick">
         <button type="button" data-q="What services do you offer?">Services</button>
         <button type="button" data-q="How can I contact you?">Contact</button>
@@ -43,6 +47,8 @@ const wa = SITE.whatsappLink || 'https://wa.me/8801890484355';
 
 <script is:inline>
 (function () {
+  var WA = 'https://wa.me/8801890484355';
+  var WA_LABEL = '01890-484355';
   var openBtn = document.getElementById('support-open');
   var closeBtn = document.getElementById('support-close');
   var panel = document.getElementById('support-panel');
@@ -52,45 +58,61 @@ const wa = SITE.whatsappLink || 'https://wa.me/8801890484355';
   var typing = document.getElementById('support-typing');
   var backTop = document.getElementById('back-top');
 
+  function waHtml() {
+    return '<a class="wa-inline" href="' + WA + '" target="_blank" rel="noopener noreferrer">WhatsApp ' + WA_LABEL + '</a>';
+  }
+
   var replies = [
-    { keys: ['service', 'offer', 'what do you'], text: 'Creavix iT Solution offers Web Development, Application Build, Authentication, AI Video Marketing, Video Editing, Human-like content, Facebook Page setup, Boosting and Campaign management.' },
-    { keys: ['contact', 'phone', 'email', 'whatsapp'], text: 'WhatsApp 01890-484355 · info@creavixit.com · Studio: Hemayetpur, Savar, Dhaka.' },
-    { keys: ['price', 'cost', 'budget'], text: 'Pricing depends on scope. Share your requirement on WhatsApp for a clear quote.' },
-    { keys: ['deliver', 'fast', 'time'], text: 'Short videos often target 24–48h. Websites and apps follow an agreed timeline.' },
-    { keys: ['web', 'website'], text: 'Yes — we build fast, SEO-ready websites and landing pages.' },
-    { keys: ['app', 'application'], text: 'We build custom web apps, dashboards and mobile-friendly applications.' },
-    { keys: ['video', 'ai', 'edit'], text: 'We produce AI video marketing and professional editing for Meta, YouTube and TikTok.' },
-    { keys: ['hello', 'hi', 'hey'], text: 'Hello! How can Creavix help — website, app, video or marketing?' },
+    { keys: ['service', 'offer', 'what do you'], text: 'Creavix offers Web Development, Apps, Authentication, AI Video Marketing, Video Editing, Facebook Page, Boosting and Campaigns. Chat on ' },
+    { keys: ['contact', 'phone', 'email', 'whatsapp', 'number'], text: 'Tap to message us now: ' },
+    { keys: ['price', 'cost', 'budget'], text: 'Pricing depends on scope. Get a quote on ' },
+    { keys: ['deliver', 'fast', 'time'], text: 'Short videos often 24–48h. Websites follow an agreed timeline. Ask details on ' },
+    { keys: ['web', 'website'], text: 'Yes — SEO-ready websites and landing pages. Start on ' },
+    { keys: ['app', 'application'], text: 'We build custom apps and dashboards. Talk on ' },
+    { keys: ['video', 'ai', 'edit', 'gallery'], text: 'AI video & editing live in our Video Gallery. Order via ' },
+    { keys: ['hello', 'hi', 'hey'], text: 'Hello! How can Creavix help? Message ' },
   ];
 
-  function addMsg(text, who) {
+  function addMsg(text, who, html) {
     if (!body) return;
     var div = document.createElement('div');
     div.className = 'support-msg ' + who;
-    div.textContent = text;
+    if (html) div.innerHTML = text;
+    else div.textContent = text;
     body.appendChild(div);
     body.scrollTop = body.scrollHeight;
   }
+
   function answer(q) {
     var lower = (q || '').toLowerCase();
     for (var i = 0; i < replies.length; i++) {
       for (var k = 0; k < replies[i].keys.length; k++) {
-        if (lower.indexOf(replies[i].keys[k]) !== -1) return replies[i].text;
+        if (lower.indexOf(replies[i].keys[k]) !== -1) {
+          return replies[i].text + waHtml();
+        }
       }
     }
-    return 'Thanks! For a precise answer, WhatsApp 01890-484355 — our team replies quickly.';
+    return 'Thanks! For a fast reply, open ' + waHtml() + ' — our team is available.';
   }
+
   function respond(q) {
     if (!q) return;
-    addMsg(q, 'user');
+    addMsg(q, 'user', false);
     if (typing) typing.hidden = false;
     setTimeout(function () {
       if (typing) typing.hidden = true;
-      addMsg(answer(q), 'bot');
-    }, 700 + Math.min(1200, q.length * 18));
+      addMsg(answer(q), 'bot', true);
+    }, 650 + Math.min(1000, q.length * 15));
   }
-  if (openBtn && panel) openBtn.addEventListener('click', function () { panel.hidden = false; panel.setAttribute('aria-hidden', 'false'); });
-  if (closeBtn && panel) closeBtn.addEventListener('click', function () { panel.hidden = true; panel.setAttribute('aria-hidden', 'true'); });
+
+  if (openBtn && panel) openBtn.addEventListener('click', function () {
+    panel.hidden = false;
+    panel.setAttribute('aria-hidden', 'false');
+  });
+  if (closeBtn && panel) closeBtn.addEventListener('click', function () {
+    panel.hidden = true;
+    panel.setAttribute('aria-hidden', 'true');
+  });
   if (form && input) form.addEventListener('submit', function (e) {
     e.preventDefault();
     var q = (input.value || '').trim();
