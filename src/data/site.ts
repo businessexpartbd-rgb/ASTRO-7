@@ -1,17 +1,17 @@
-/** Brand & content — full IT Solution agency (not video-only) */
+/** Brand & content — video-first IT & digital agency */
 
 export const SITE = {
   name: 'Creavix',
   brand: 'Creavix iT Solution',
-  tagline: 'Full-Service IT & Digital Growth Agency',
+  tagline: 'Video Editing Agency in Bangladesh',
   shortDesc:
-    'Creavix iT Solution is a full-service IT and digital agency in Bangladesh — web development, mobile apps, authentication systems, AI video marketing, professional video editing, Facebook page setup, boosting and end-to-end digital campaigns.',
+    'Cinematic Human-like AI Videos, Professional Video Editing & Full Digital Solutions | 24-48 Hours Delivery',
   seoTitle:
-    'Creavix iT Solution | Web Development, App, AI Video & Digital Marketing Agency Bangladesh',
+    'Video Editing Agency in Bangladesh | Creavix iT Solution — AI Video, Editing & Digital Solutions',
   seoDescription:
-    'Creavix iT Solution — IT agency in Bangladesh for website development, application build, secure authentication, AI video marketing, video editing, Facebook page & blue verification, boosting and campaign management. Fast delivery, SEO-ready results.',
+    'Cinematic human-like AI videos, professional video editing and full digital solutions from Creavix iT Solution. Video editing agency in Bangladesh with 24–48 hours delivery. Web, app, AI video marketing, boosting and campaigns.',
   seoKeywords:
-    'IT solution Bangladesh, web development Dhaka, app development, AI video marketing, video editing agency, Facebook boosting, digital marketing agency Savar, authentication system, Creavix iT',
+    'video editing agency Bangladesh, AI video Bangladesh, human-like AI video, professional video editing Dhaka, Creavix iT, video marketing agency, 24 hour video delivery, web development, digital marketing Savar',
   url: 'https://www.creavixit.com',
   hotline: '+880 9611-132835',
   whatsapp: '+8801890484355',
@@ -84,7 +84,7 @@ export const STATS = [
   { value: '10+', label: 'Years in business', sub: 'Since 2014' },
   { value: '4,300+', label: 'Projects', sub: 'Multi-industry' },
   { value: '4.8/5', label: 'Avg rating', sub: 'Verified clients' },
-  { value: '24h', label: 'Delivery target', sub: 'Short videos' },
+  { value: '24-48h', label: 'Delivery', sub: 'Fast turnaround' },
 ] as const;
 
 export const ytThumb = (id: string) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;

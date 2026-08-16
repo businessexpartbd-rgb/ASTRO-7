@@ -27,9 +27,15 @@ const services = [
     <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div><div class="grid-overlay"></div></div>
     <div class="container hero-grid hero-grid-orbit">
       <div class="hero-content reveal">
-        <div class="eyebrow"><span class="dot"></span> {SITE.tagline}</div>
-        <h1 class="hero-title">Full-Service IT &amp;<br />Digital Solutions That<br /><span class="text-gradient" id="typing-text">Grow Your Business</span><span class="typing-cursor">|</span></h1>
-        <p class="hero-lead">{SITE.shortDesc}</p>
+        <div class="eyebrow"><span class="dot"></span> Creavix iT Solution</div>
+        <h1 class="hero-title">
+          Video Editing Agency<br />in <span class="text-gradient">Bangladesh</span>
+        </h1>
+        <p class="hero-lead">
+          Cinematic Human-like AI Videos, Professional Video Editing &amp; Full Digital Solutions
+          <span class="hero-lead-sep">|</span>
+          <strong class="hero-delivery">24-48 Hours Delivery</strong>
+        </p>
         <div class="flex-btns">
           <a href="#services" class="btn btn-primary">Explore Services</a>
           <a href={SITE.whatsappLink} class="btn btn-outline" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
@@ -90,7 +96,7 @@ const services = [
             <div><strong class="count-up" data-count="10+" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Years</span></div>
             <div><strong class="count-up" data-count="4300+" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Projects</span></div>
             <div><strong class="count-up" data-count="4.8" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Avg rating</span></div>
-            <div><strong class="count-up" data-count="24h" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Delivery</span></div>
+            <div><strong style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">24-48h</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Delivery</span></div>
           </div>
         </div>
       </div>
@@ -132,6 +138,17 @@ const services = [
     }
     .hero-content { order: 1; }
     .hero-visual { order: 2; }
+  }
+  .hero-lead-sep {
+    display: inline-block;
+    margin: 0 0.4rem;
+    color: var(--text-3, #64748B);
+    font-weight: 400;
+  }
+  .hero-delivery {
+    color: var(--primary, #0D9488);
+    font-weight: 700;
+    white-space: nowrap;
   }
   .about-checks {
     list-style: none;
