@@ -1,0 +1,242 @@
+---
+import { SITE } from '../data/site';
+const wa = SITE.whatsappLink || 'https://wa.me/8801890484355';
+---
+<!-- Back to top -->
+<button type="button" class="back-top" id="back-top" aria-label="Back to top" hidden>
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<!-- WhatsApp FAB -->
+<a class="wa-fab" href={wa} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Creavix">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.2 17.7L2 22l4.4-1.15A11 11 0 1 0 20.5 3.5zM12 19.5a7.5 7.5 0 0 1-3.82-1.04l-.27-.16-2.85.75.76-2.78-.18-.29A7.5 7.5 0 1 1 12 19.5z"/></svg>
+</a>
+
+<!-- Live Support (FAQ assistant — not a full AI chatbot) -->
+<div class="support-root" id="support-root">
+  <button type="button" class="support-fab" id="support-open" aria-label="Open live support">
+    <span class="support-live-dot" aria-hidden="true"></span>
+    <span class="support-fab-text">Support</span>
+  </button>
+
+  <div class="support-panel" id="support-panel" hidden aria-hidden="true">
+    <div class="support-head">
+      <div class="support-brand">
+        <strong>Creavix Support</strong>
+        <span class="support-status"><span class="support-live-dot"></span> 24/7 Live</span>
+      </div>
+      <button type="button" class="support-close" id="support-close" aria-label="Close">×</button>
+    </div>
+    <div class="support-body" id="support-body">
+      <div class="support-msg bot">Hello! Welcome to <b>Creavix iT Solution</b> support. Ask about services, pricing, delivery or contact — or tap a quick question below.</div>
+      <div class="support-quick" id="support-quick">
+        <button type="button" data-q="What services do you offer?">Services</button>
+        <button type="button" data-q="How can I contact you?">Contact</button>
+        <button type="button" data-q="How fast is delivery?">Delivery</button>
+        <button type="button" data-q="Do you build websites?">Websites</button>
+      </div>
+    </div>
+    <div class="support-typing" id="support-typing" hidden>Creavix is typing…</div>
+    <form class="support-form" id="support-form">
+      <input type="text" id="support-input" placeholder="Ask a question…" maxlength="200" autocomplete="off" />
+      <button type="submit" aria-label="Send">➤</button>
+    </form>
+  </div>
+</div>
+
+<style is:global>
+  .back-top {
+    position: fixed; right: 1rem; bottom: 6.5rem; z-index: 9000;
+    width: 44px; height: 44px; border-radius: 14px; border: none;
+    background: rgba(255,255,255,.92); color: #0F172A;
+    box-shadow: 0 8px 24px rgba(15,23,42,.12);
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    backdrop-filter: blur(10px);
+  }
+  .back-top[hidden] { display: none !important; }
+  .wa-fab {
+    position: fixed; right: 1rem; bottom: 1rem; z-index: 9000;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25D366; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 28px rgba(37,211,102,.4);
+    text-decoration: none;
+  }
+  .wa-fab:hover { transform: scale(1.05); }
+
+  .support-fab {
+    position: fixed; left: 1rem; bottom: 1rem; z-index: 9000;
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    padding: 0.7rem 1rem; border-radius: 999px; border: none; cursor: pointer;
+    background: linear-gradient(135deg, #0D9488, #0F766E); color: #fff;
+    font-family: var(--font-h, Outfit, system-ui, sans-serif); font-weight: 600; font-size: 0.85rem;
+    box-shadow: 0 10px 28px rgba(13,148,136,.35);
+  }
+  .support-live-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #4ADE80;
+    box-shadow: 0 0 0 0 rgba(74,222,128,.6);
+    animation: live-pulse 1.6s ease-out infinite;
+  }
+  @keyframes live-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(74,222,128,.55); }
+    70% { box-shadow: 0 0 0 8px rgba(74,222,128,0); }
+    100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+  }
+  .support-panel {
+    position: fixed; z-index: 9001;
+    left: 1rem; bottom: 4.25rem;
+    width: min(360px, calc(100vw - 2rem));
+    max-height: min(70vh, 520px);
+    display: flex; flex-direction: column;
+    background: rgba(255,255,255,.96);
+    border: 1px solid rgba(15,23,42,.08);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(15,23,42,.18);
+    backdrop-filter: blur(16px);
+    overflow: hidden;
+  }
+  .support-panel[hidden] { display: none !important; }
+  .support-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.9rem 1rem; border-bottom: 1px solid rgba(15,23,42,.06);
+    background: linear-gradient(135deg, rgba(13,148,136,.08), rgba(245,158,11,.05));
+  }
+  .support-brand strong { display: block; font-size: 0.95rem; color: #0F172A; }
+  .support-status {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.72rem; color: #059669; font-weight: 600;
+  }
+  .support-close {
+    width: 36px; height: 36px; border: none; border-radius: 10px;
+    background: rgba(15,23,42,.06); font-size: 1.35rem; cursor: pointer;
+  }
+  .support-body {
+    flex: 1; overflow-y: auto; padding: 0.9rem 1rem;
+    display: flex; flex-direction: column; gap: 0.65rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .support-msg {
+    max-width: 92%; padding: 0.7rem 0.85rem; border-radius: 14px;
+    font-size: 0.88rem; line-height: 1.45; color: #334155;
+  }
+  .support-msg.bot { background: #F1F5F9; align-self: flex-start; border-bottom-left-radius: 4px; }
+  .support-msg.user { background: rgba(13,148,136,.12); color: #0F766E; align-self: flex-end; border-bottom-right-radius: 4px; }
+  .support-quick { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.25rem; }
+  .support-quick button {
+    border: 1px solid rgba(13,148,136,.25); background: #fff; color: #0D9488;
+    border-radius: 999px; padding: 0.35rem 0.7rem; font-size: 0.75rem; font-weight: 600; cursor: pointer;
+  }
+  .support-typing {
+    padding: 0 1rem 0.35rem; font-size: 0.75rem; color: #64748B; font-style: italic;
+  }
+  .support-form {
+    display: flex; gap: 0.4rem; padding: 0.75rem;
+    border-top: 1px solid rgba(15,23,42,.06);
+  }
+  .support-form input {
+    flex: 1; border: 1.5px solid rgba(15,23,42,.1); border-radius: 12px;
+    padding: 0.65rem 0.8rem; font-size: 0.9rem; outline: none;
+  }
+  .support-form input:focus { border-color: #0D9488; }
+  .support-form button {
+    width: 42px; border: none; border-radius: 12px; cursor: pointer;
+    background: #0D9488; color: #fff; font-size: 1rem;
+  }
+  @media (min-width: 768px) {
+    .support-panel { width: 380px; }
+    .back-top { bottom: 7rem; right: 1.25rem; }
+    .wa-fab { right: 1.25rem; bottom: 1.25rem; }
+    .support-fab { left: 1.25rem; bottom: 1.25rem; }
+  }
+</style>
+
+<script is:inline>
+(function () {
+  var openBtn = document.getElementById('support-open');
+  var closeBtn = document.getElementById('support-close');
+  var panel = document.getElementById('support-panel');
+  var body = document.getElementById('support-body');
+  var form = document.getElementById('support-form');
+  var input = document.getElementById('support-input');
+  var typing = document.getElementById('support-typing');
+  var backTop = document.getElementById('back-top');
+  var wa = 'https://wa.me/8801890484355';
+
+  var replies = [
+    { keys: ['service', 'offer', 'what do you', 'কি সেবা'], text: 'Creavix iT Solution offers Web Development, Application Build, Authentication systems, AI Video Marketing, Video Editing, Human-like content, Facebook Page setup, Boosting and full Campaign management.' },
+    { keys: ['contact', 'phone', 'email', 'whatsapp', 'যোগাযোগ'], text: 'You can reach us on WhatsApp 01890-484355, email info@creavixit.com, or the Contact page. Studio: Hemayetpur, Savar, Dhaka.' },
+    { keys: ['price', 'cost', 'budget', 'মূল্য', 'দাম'], text: 'Pricing depends on project scope. Share your requirement on WhatsApp and our team will send a clear quote.' },
+    { keys: ['deliver', 'fast', 'time', 'কত দিন'], text: 'Many short video projects target 24–48h delivery. Websites and apps follow an agreed timeline after briefing.' },
+    { keys: ['web', 'website', 'সাইট'], text: 'Yes — we build fast, SEO-ready websites and landing pages for businesses in Bangladesh and beyond.' },
+    { keys: ['app', 'application'], text: 'We build custom web apps, dashboards and mobile-friendly applications tailored to your workflow.' },
+    { keys: ['video', 'ai', 'edit'], text: 'We produce AI video marketing creatives and professional video editing for Meta, YouTube and TikTok.' },
+    { keys: ['hello', 'hi', 'hey', 'salam', 'হ্যালো'], text: 'Hello! How can Creavix help you today — website, app, video or marketing?' },
+  ];
+
+  function addMsg(text, who) {
+    if (!body) return;
+    var div = document.createElement('div');
+    div.className = 'support-msg ' + who;
+    div.textContent = text;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function answer(q) {
+    var lower = (q || '').toLowerCase();
+    for (var i = 0; i < replies.length; i++) {
+      for (var k = 0; k < replies[i].keys.length; k++) {
+        if (lower.indexOf(replies[i].keys[k]) !== -1) return replies[i].text;
+      }
+    }
+    return 'Thanks for your question. For a precise answer, message us on WhatsApp 01890-484355 — our team replies quickly. You can also open the Contact page.';
+  }
+
+  function respond(q) {
+    if (!q) return;
+    addMsg(q, 'user');
+    if (typing) typing.hidden = false;
+    setTimeout(function () {
+      if (typing) typing.hidden = true;
+      addMsg(answer(q), 'bot');
+    }, 700 + Math.min(1200, q.length * 18));
+  }
+
+  if (openBtn && panel) {
+    openBtn.addEventListener('click', function () {
+      panel.hidden = false;
+      panel.setAttribute('aria-hidden', 'false');
+    });
+  }
+  if (closeBtn && panel) {
+    closeBtn.addEventListener('click', function () {
+      panel.hidden = true;
+      panel.setAttribute('aria-hidden', 'true');
+    });
+  }
+  if (form && input) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var q = (input.value || '').trim();
+      if (!q) return;
+      input.value = '';
+      respond(q);
+    });
+  }
+  document.querySelectorAll('#support-quick [data-q]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      respond(b.getAttribute('data-q') || '');
+    });
+  });
+
+  if (backTop) {
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 400) backTop.hidden = false;
+      else backTop.hidden = true;
+    }, { passive: true });
+    backTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+})();
+</script>

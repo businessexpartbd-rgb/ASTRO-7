@@ -1,15 +1,13 @@
 ---
 import SocialIcons from './SocialIcons.astro';
 import ThemeAssets from './ThemeAssets.astro';
-interface Props {
-  active?: string;
-}
+interface Props { active?: string; }
 const { active = '' } = Astro.props;
 ---
 <ThemeAssets />
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
-    <a href="/" class="logo">
+    <a href="/" class="logo" aria-label="Creavix iT Solution Home">
       <img src="/logo.png" alt="Creavix iT Solution" class="logo-img" width="40" height="40" />
       <span class="logo-text">Creavix <span>iT</span> Solution</span>
     </a>
@@ -18,29 +16,31 @@ const { active = '' } = Astro.props;
       <SocialIcons size="xs" compact={true} />
     </div>
 
-    <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
-      <span class="hamburger" aria-hidden="true"></span>
+    <!-- Premium text menu button (no broken 3-line hamburger layout) -->
+    <button type="button" class="nav-menu-btn" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="nav-menu-label" id="nav-menu-label">Menu</span>
     </button>
 
     <div class="nav-panel" id="nav-panel" aria-hidden="true">
       <div class="nav-panel-inner">
+        <p class="nav-panel-title">Navigate</p>
         <ul class="nav-links">
           <li style="--i:0"><a href="/" class={active === 'home' ? 'active' : ''}>Home</a></li>
           <li class="nav-dropdown" style="--i:1">
-            <button type="button" class={`nav-drop-btn ${active === 'services' ? 'active' : ''}`} id="services-btn" aria-expanded="false" aria-haspopup="true">
+            <button type="button" class={'nav-drop-btn' + (active === 'services' ? ' active' : '')} id="services-btn" aria-expanded="false" aria-haspopup="true">
               Services
               <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
             <div class="nav-dropdown-menu" id="services-menu" role="menu">
-              <a href="/services/web-development" role="menuitem">💻 Web Development</a>
-              <a href="/services/application-build" role="menuitem">📱 Application Build</a>
-              <a href="/services/authentication" role="menuitem">🔐 Authentication</a>
-              <a href="/services/ai-video-marketing" role="menuitem">🤖 AI Video Marketing</a>
-              <a href="/services/video-editing" role="menuitem">🎬 Video Editing</a>
-              <a href="/services/human-like-content" role="menuitem">👤 Human-like Content</a>
-              <a href="/services/facebook-page" role="menuitem">📘 Facebook Page</a>
-              <a href="/services/boosting" role="menuitem">📈 Boosting</a>
-              <a href="/services/campaign" role="menuitem">🎯 Campaign</a>
+              <a href="/services/web-development" role="menuitem">Web Development</a>
+              <a href="/services/application-build" role="menuitem">Application Build</a>
+              <a href="/services/authentication" role="menuitem">Authentication</a>
+              <a href="/services/ai-video-marketing" role="menuitem">AI Video Marketing</a>
+              <a href="/services/video-editing" role="menuitem">Video Editing</a>
+              <a href="/services/human-like-content" role="menuitem">Human-like Content</a>
+              <a href="/services/facebook-page" role="menuitem">Facebook Page</a>
+              <a href="/services/boosting" role="menuitem">Boosting</a>
+              <a href="/services/campaign" role="menuitem">Campaign</a>
             </div>
           </li>
           <li style="--i:2"><a href="/#portfolio">Portfolio</a></li>
@@ -54,104 +54,133 @@ const { active = '' } = Astro.props;
 </nav>
 
 <style>
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
+  .nav-inner { display: flex; align-items: center; gap: 0.5rem; }
   .nav-social-bar {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    margin-right: 0.15rem;
-    flex-shrink: 0;
-    z-index: 102;
+    display: flex; align-items: center; margin-left: auto; margin-right: 0.25rem;
+    flex-shrink: 0; z-index: 102;
+  }
+  .nav-menu-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    z-index: 102; border: 1.5px solid rgba(15,23,42,.12);
+    background: rgba(255,255,255,.9); color: var(--text, #0F172A);
+    font-family: var(--font-h, Outfit, system-ui, sans-serif);
+    font-weight: 600; font-size: 0.85rem;
+    padding: 0.55rem 0.95rem; border-radius: 999px; cursor: pointer;
+    transition: background .2s, border-color .2s, color .2s;
+  }
+  .nav-menu-btn:hover, .nav-menu-btn.open {
+    border-color: var(--primary, #0D9488);
+    color: var(--primary, #0D9488);
+    background: rgba(13,148,136,.08);
   }
   @media (min-width: 768px) {
-    .nav-social-bar {
-      order: 2;
-      margin-right: 0.5rem;
-    }
+    .nav-menu-btn { display: none; }
+    .nav-social-bar { order: 2; margin-right: 0.5rem; }
     .nav-panel { order: 1; flex: 1; }
-    .nav-toggle { order: 3; }
+  }
+  .nav-panel-title {
+    display: none; font-size: 0.75rem; font-weight: 600; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--text-3, #64748B); margin: 0 0 0.75rem;
   }
   @media (max-width: 767px) {
+    .nav-panel-title { display: block; }
     .nav-dropdown-menu {
-      max-height: min(55vh, 420px);
+      max-height: min(50vh, 360px);
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
     }
     .nav-dropdown-menu a {
       font-size: 0.95rem !important;
-      padding: 0.65rem 0.75rem !important;
+      padding: 0.7rem 0.75rem !important;
       white-space: normal;
       line-height: 1.35;
     }
+    /* Critical: full-viewport fixed panel — no layout break on scroll */
+    .nav-panel {
+      position: fixed !important;
+      inset: 0 !important;
+      height: 100dvh !important;
+      max-height: 100dvh !important;
+      overflow: hidden !important;
+    }
+    .nav-panel-inner {
+      height: 100% !important;
+      max-height: 100dvh !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 3rem !important;
+    }
+  }
+  body.nav-locked {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+    left: 0; right: 0;
   }
 </style>
 
 <script is:inline>
-  (function() {
-    var toggle = document.getElementById('nav-toggle');
-    var panel = document.getElementById('nav-panel');
-    var btn = document.getElementById('services-btn');
-    var menu = document.getElementById('services-menu');
-    var drop = btn && btn.closest('.nav-dropdown');
+(function () {
+  var toggle = document.getElementById('nav-toggle');
+  var panel = document.getElementById('nav-panel');
+  var label = document.getElementById('nav-menu-label');
+  var btn = document.getElementById('services-btn');
+  var menu = document.getElementById('services-menu');
+  var drop = btn && btn.closest('.nav-dropdown');
+  var lockY = 0;
 
-    function closePanel() {
-      if (!panel || !toggle) return;
-      panel.classList.remove('open');
-      toggle.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Open menu');
-      panel.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      if (menu && btn) {
-        menu.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-      }
+  function lockBody() {
+    lockY = window.scrollY || window.pageYOffset || 0;
+    document.body.classList.add('nav-locked');
+    document.body.style.top = '-' + lockY + 'px';
+  }
+  function unlockBody() {
+    document.body.classList.remove('nav-locked');
+    document.body.style.top = '';
+    window.scrollTo(0, lockY);
+  }
+  function closePanel() {
+    if (!panel || !toggle) return;
+    panel.classList.remove('open');
+    toggle.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
+    panel.setAttribute('aria-hidden', 'true');
+    if (label) label.textContent = 'Menu';
+    unlockBody();
+    if (menu && btn) {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
     }
-
-    function openPanel() {
-      if (!panel || !toggle) return;
-      panel.classList.add('open');
-      toggle.classList.add('open');
-      toggle.setAttribute('aria-expanded', 'true');
-      toggle.setAttribute('aria-label', 'Close menu');
-      panel.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
-
-    if (toggle && panel) {
-      toggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        panel.classList.contains('open') ? closePanel() : openPanel();
-      });
-      document.addEventListener('click', function(e) {
-        if (panel.classList.contains('open') && !panel.contains(e.target) && !toggle.contains(e.target)) {
-          closePanel();
-        }
-      });
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closePanel();
-      });
-      panel.querySelectorAll('a').forEach(function(link) {
-        link.addEventListener('click', function() { closePanel(); });
-      });
-    }
-
-    if (btn && menu && drop) {
-      btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var isOpen = menu.classList.toggle('open');
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      });
-      document.addEventListener('click', function(e) {
-        if (!drop.contains(e.target)) {
-          menu.classList.remove('open');
-          btn.setAttribute('aria-expanded', 'false');
-        }
-      });
-    }
-  })();
+  }
+  function openPanel() {
+    if (!panel || !toggle) return;
+    panel.classList.add('open');
+    toggle.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Close menu');
+    panel.setAttribute('aria-hidden', 'false');
+    if (label) label.textContent = 'Close';
+    lockBody();
+  }
+  if (toggle && panel) {
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      panel.classList.contains('open') ? closePanel() : openPanel();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closePanel();
+    });
+    panel.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { closePanel(); });
+    });
+  }
+  if (btn && menu && drop) {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  }
+})();
 </script>
