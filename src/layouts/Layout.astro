@@ -1,20 +1,50 @@
 ---
 import CookieBanner from '../components/CookieBanner.astro';
+import { SITE } from '../data/site';
 
 interface Props {
   title?: string;
   description?: string;
 }
 const {
-  title = 'Creavix iT Solution — Creative Digital & AI Services',
-  description = 'Premium video editing, AI video marketing, web & app development, authentication systems and Facebook marketing services.'
+  title = SITE.seoTitle,
+  description = SITE.seoDescription,
 } = Astro.props;
+
+const canonical = Astro.url.href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE.brand,
+  url: SITE.url,
+  logo: `${SITE.url}/logo.png`,
+  description: SITE.seoDescription,
+  email: SITE.email1,
+  telephone: SITE.hotline,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Hemayetpur',
+    addressLocality: 'Savar',
+    addressRegion: 'Dhaka',
+    postalCode: '1340',
+    addressCountry: 'BD',
+  },
+  sameAs: [
+    'https://www.facebook.com/CreavixITSolution',
+    'https://www.instagram.com/creavixitsolution',
+    'https://www.youtube.com/@CreavixiTsolution',
+    'https://www.tiktok.com/@creavixitsolution',
+    'https://www.linkedin.com/in/creavix-it-solution',
+    'https://x.com/creavixit',
+  ],
+  foundingDate: String(SITE.servingSince),
+  founder: { '@type': 'Person', name: SITE.founder.name },
+};
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Mobile: zoom locked. Desktop / desktop-mode (≥768px): zoom allowed. Updated by /js/perf.js -->
     <meta
       id="viewport-meta"
       name="viewport"
@@ -25,11 +55,31 @@ const {
     <meta name="format-detection" content="telephone=no" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href={Astro.url.href} />
+    <meta name="keywords" content={SITE.seoKeywords} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content={SITE.brand} />
+    <meta name="geo.region" content="BD-13" />
+    <meta name="geo.placename" content="Savar, Dhaka" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.brand} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${SITE.url}/logo.png`} />
+    <meta property="og:locale" content="en_BD" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
+
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -39,6 +89,7 @@ const {
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
     </noscript>
     <link rel="icon" type="image/png" href="/logo.png" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script src="/js/perf.js" defer></script>
     <style is:global>
       :root {
@@ -69,7 +120,6 @@ const {
       a { color: inherit; text-decoration: none; }
       img { max-width: 100%; height: auto; display: block; }
 
-      /* Crash / jank prevention: cut motion when OS asks */
       @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto; }
         *, *::before, *::after {
@@ -79,7 +129,6 @@ const {
         }
       }
 
-      /* Mobile: lighter GPU (blur is expensive, causes freezes on low-end) */
       @media (max-width: 767px) {
         .orb { filter: blur(40px) !important; opacity: 0.32 !important; }
         .navbar.scrolled {
@@ -144,12 +193,12 @@ const {
       }
       .nav-panel.open .nav-panel-inner { transform: translateY(0) scale(1); opacity: 1; }
 
-      .nav-panel .nav-links > li, .nav-panel .nav-cta {
+      .nav-panel .nav-links > li, .nav-panel .nav-cta, .nav-panel .nav-social-mobile {
         opacity: 0; transform: translateX(-16px);
         transition: opacity .4s cubic-bezier(.22,1,.36,1), transform .45s cubic-bezier(.22,1,.36,1);
         transition-delay: 0s;
       }
-      .nav-panel.open .nav-links > li, .nav-panel.open .nav-cta {
+      .nav-panel.open .nav-links > li, .nav-panel.open .nav-cta, .nav-panel.open .nav-social-mobile {
         opacity: 1; transform: translateX(0);
         transition-delay: calc(0.08s + var(--i, 0) * 0.06s);
       }
@@ -161,15 +210,15 @@ const {
           display: flex; flex: 1; justify-content: flex-end;
         }
         .nav-panel-inner {
-          flex-direction: row; align-items: center; gap: 1.5rem;
+          flex-direction: row; align-items: center; gap: 1.25rem;
           padding: 0; height: auto; overflow: visible;
           transform: none; opacity: 1; transition: none;
         }
-        .nav-panel .nav-links > li, .nav-panel .nav-cta { opacity: 1; transform: none; transition: none; }
+        .nav-panel .nav-links > li, .nav-panel .nav-cta, .nav-panel .nav-social-mobile { opacity: 1; transform: none; transition: none; }
       }
 
       .nav-links { list-style: none; display: flex; flex-direction: column; gap: .15rem; width: 100%; }
-      @media (min-width: 768px) { .nav-links { flex-direction: row; align-items: center; gap: 1.5rem; width: auto; } }
+      @media (min-width: 768px) { .nav-links { flex-direction: row; align-items: center; gap: 1.25rem; width: auto; } }
 
       .nav-links > li > a, .nav-drop-btn {
         color: var(--text); font-size: 1.35rem; font-weight: 600; font-family: var(--font-h);
@@ -378,10 +427,10 @@ const {
               var typingEl = document.getElementById('typing-text');
               if (!typingEl) return;
               if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                typingEl.textContent = 'Convert & Inspire';
+                typingEl.textContent = 'Grow Your Business';
                 return;
               }
-              var words = ['Convert & Inspire', 'Scale Fast', 'Drive Results', 'Build Brands'];
+              var words = ['Grow Your Business', 'Rank & Convert', 'Scale Digitally', 'Build & Market'];
               var wordIndex = 0, charIndex = 0, isDeleting = false, typingSpeed = 90;
               var timer = null;
               function type() {
@@ -418,9 +467,7 @@ const {
           }
           if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startTyping);
           else startTyping();
-        } catch (err) {
-          /* never block or crash the page */
-        }
+        } catch (err) {}
       })();
     </script>
   </body>

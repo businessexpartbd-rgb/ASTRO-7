@@ -4,14 +4,17 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { SITE, STATS, SOCIAL_LINKS } from '../data/site';
 ---
-<Layout title={`About ${SITE.brand} | ${SITE.tagline}`} description={SITE.shortDesc}>
+<Layout
+  title={`About ${SITE.brand} | IT Solution & Digital Agency Bangladesh`}
+  description={`About ${SITE.brand} — full-service IT agency in Savar, Dhaka. Web development, apps, authentication, AI video marketing, video editing and Facebook growth since ${SITE.servingSince}. Founder ${SITE.founder.name}.`}
+>
   <Nav active="about" />
   <section class="hero-premium" style="min-height:auto;padding-top:8rem;padding-bottom:4rem">
     <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
     <div class="container" style="position:relative;z-index:2;max-width:720px">
       <div class="reveal">
         <div class="eyebrow"><span class="dot"></span> About Us</div>
-        <h1 class="hero-title">Creative Power Meets<br /><span class="text-gradient">Technical Excellence</span></h1>
+        <h1 class="hero-title">Full-Service IT Agency<br /><span class="text-gradient">Built for Growth</span></h1>
         <p class="hero-lead">{SITE.shortDesc}</p>
       </div>
     </div>
@@ -22,14 +25,14 @@ import { SITE, STATS, SOCIAL_LINKS } from '../data/site';
       <div class="reveal">
         <h2 class="mb-6">Who We Are</h2>
         <p class="mb-4">
-          {SITE.brand} is Bangladesh’s AI-powered video marketing studio — cinematic ads for Meta, YouTube and TikTok,
-          storytelling films and bilingual brand campaigns.
+          {SITE.brand} delivers website development, application build, secure authentication, AI video marketing,
+          professional video editing, Facebook page services, boosting and complete digital campaigns.
         </p>
         <p class="mb-4">
           Founded by <strong>{SITE.founder.name}</strong> ({SITE.founder.role}). Serving clients since {SITE.servingSince}
           from our studio in {SITE.address}.
         </p>
-        <p>We combine high-end creative production with solid delivery — quality, speed and measurable results.</p>
+        <p>We focus on quality delivery, SEO-ready builds and measurable business results — not video-only work.</p>
       </div>
       <div class="reveal">
         <div class="glass-card" style="padding:2rem">
@@ -68,7 +71,7 @@ import { SITE, STATS, SOCIAL_LINKS } from '../data/site';
   <section class="section-warm">
     <div class="container text-center reveal" style="max-width:40rem">
       <h2 class="mb-4">Work With Us</h2>
-      <p class="mb-8">Ready to grow with Creavix? Message us on WhatsApp or email.</p>
+      <p class="mb-8">Need a website, app, auth system or full digital campaign? Message us.</p>
       <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center">
         <a href={SITE.whatsappLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         <a href="/contact" class="btn btn-outline">Contact page</a>
