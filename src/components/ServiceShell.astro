@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import Nav from './Nav.astro';
 import Footer from './Footer.astro';
 import ServiceIcons from './icons/ServiceIcons.astro';
-import type { IconName } from './icons/types';
 import { SITE } from '../data/site';
 
 interface Demo {
@@ -15,7 +14,7 @@ interface Props {
   title: string;
   seoTitle: string;
   seoDescription: string;
-  icon: IconName;
+  icon: string;
   lead: string;
   bullets: string[];
   demos: Demo[];
@@ -32,7 +31,7 @@ const { title, seoTitle, seoDescription, icon, lead, bullets, demos } = Astro.pr
         <div class="svc-hero-icon">
           <ServiceIcons name={icon} size={56} />
         </div>
-        <h1 class="hero-title title-anim">{title}</h1>
+        <h1 class="hero-title">{title}</h1>
         <p class="hero-lead">{lead}</p>
         <div class="flex-btns">
           <a href={SITE.whatsappLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Order on WhatsApp</a>
@@ -45,16 +44,14 @@ const { title, seoTitle, seoDescription, icon, lead, bullets, demos } = Astro.pr
   <section class="section-soft">
     <div class="container grid-2">
       <div class="reveal">
-        <h2 class="mb-6 title-anim">What’s included</h2>
+        <h2 class="mb-6">What is included</h2>
         <ul class="svc-bullets">
-          {
-            bullets.map((b) => (
-              <li>
-                <ServiceIcons name="check" size={22} />
-                <span>{b}</span>
-              </li>
-            ))
-          }
+          {bullets.map((b) => (
+            <li>
+              <ServiceIcons name="check" size={22} />
+              <span>{b}</span>
+            </li>
+          ))}
         </ul>
       </div>
       <div class="reveal">
@@ -74,29 +71,27 @@ const { title, seoTitle, seoDescription, icon, lead, bullets, demos } = Astro.pr
     <div class="container">
       <div class="text-center mb-8 reveal">
         <p class="eyebrow" style="margin:0 auto 1rem">Demo samples</p>
-        <h2 class="mb-4 title-anim">See how this service looks in practice</h2>
+        <h2 class="mb-4">See how this service looks in practice</h2>
         <p style="max-width:36rem;margin:0 auto">Unique sample concepts for this page — replace with your real client work anytime.</p>
       </div>
       <div class="grid-3">
-        {
-          demos.map((d) => (
-            <div class="glass-card reveal">
-              <div style="margin-bottom:0.5rem">
-                <ServiceIcons name={icon} size={32} />
-              </div>
-              {d.tag && <span class="demo-tag">{d.tag}</span>}
-              <h3 class="mb-4" style="margin-top:.5rem">{d.title}</h3>
-              <p style="font-size:.9rem">{d.desc}</p>
+        {demos.map((d) => (
+          <div class="glass-card reveal">
+            <div style="margin-bottom:0.5rem">
+              <ServiceIcons name={icon} size={32} />
             </div>
-          ))
-        }
+            {d.tag && <span class="demo-tag">{d.tag}</span>}
+            <h3 class="mb-4" style="margin-top:.5rem">{d.title}</h3>
+            <p style="font-size:.9rem">{d.desc}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
   <section class="section-warm">
     <div class="container text-center reveal" style="max-width:40rem">
-      <h2 class="mb-4 title-anim">Ready to start?</h2>
+      <h2 class="mb-4">Ready to start?</h2>
       <p class="mb-8">WhatsApp {SITE.whatsapp} · {SITE.email1}</p>
       <a href={SITE.whatsappLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Chat now</a>
     </div>
@@ -123,6 +118,8 @@ const { title, seoTitle, seoDescription, icon, lead, bullets, demos } = Astro.pr
     flex-direction: column;
     gap: 0.9rem;
     color: var(--text-2);
+    padding: 0;
+    margin: 0;
   }
   .svc-bullets li {
     display: flex;

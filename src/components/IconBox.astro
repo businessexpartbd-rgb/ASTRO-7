@@ -1,47 +1,37 @@
 ---
 import ServiceIcons from './icons/ServiceIcons.astro';
-import type { IconName } from './icons/types';
 
 interface Props {
-  name: IconName;
+  name: string;
   tone?: string;
   size?: number;
 }
 const { name, tone = 'rgba(13,148,136,.12)', size = 44 } = Astro.props;
 ---
-<div class="icon-box live-icon-box" style={`background:${tone}`}>
+<div class="live-icon-box" style={`background:${tone}`}>
   <ServiceIcons name={name} size={size} />
 </div>
 
 <style>
   .live-icon-box {
-    width: 72px !important;
-    height: 72px !important;
-    border-radius: 20px !important;
-    display: flex !important;
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.1rem !important;
-    font-size: inherit !important;
+    margin-bottom: 1.1rem;
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.7),
       0 8px 24px rgba(12, 18, 34, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
-  }
-  .glass-card:hover .live-icon-box {
-    transform: scale(1.06) translateY(-2px);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.85),
-      0 12px 28px rgba(13, 148, 136, 0.15);
   }
   @media (max-width: 639px) {
     .live-icon-box {
-      width: 64px !important;
-      height: 64px !important;
-      border-radius: 18px !important;
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
     }
   }
 </style>
