@@ -21,15 +21,20 @@
     right: 0;
     bottom: 0;
     padding: 0.65rem 1rem;
-    background: rgba(255, 255, 255, 0.72);
-    backdrop-filter: blur(14px) saturate(1.15);
-    -webkit-backdrop-filter: blur(14px) saturate(1.15);
+    background: rgba(255, 255, 255, 0.94);
     border-top: 1px solid rgba(13, 148, 136, 0.15);
-    box-shadow: 0 -8px 28px rgba(15, 23, 42, 0.06);
+    box-shadow: 0 -6px 20px rgba(15, 23, 42, 0.06);
     opacity: 0;
     transform: translateY(100%);
-    transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     pointer-events: none;
+  }
+  @media (min-width: 768px) {
+    .cookie-bar {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
   }
   .cookie-bar.visible {
     opacity: 1;
@@ -74,22 +79,16 @@
     border-radius: 999px;
     border: none;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   }
   .c-accept {
     background: linear-gradient(135deg, #0D9488, #0F766E);
     color: #fff;
     box-shadow: 0 4px 12px rgba(13, 148, 136, 0.28);
   }
-  .c-accept:hover { box-shadow: 0 6px 16px rgba(13, 148, 136, 0.36); }
   .c-decline {
     background: rgba(15, 23, 42, 0.05);
     color: #475569;
     border: 1px solid rgba(15, 23, 42, 0.1);
-  }
-  .c-decline:hover {
-    background: rgba(15, 23, 42, 0.08);
-    color: #0F172A;
   }
 </style>
 
@@ -98,7 +97,6 @@
   var KEY = 'creavix_cookie_consent';
   var banner = document.getElementById('cookie-banner');
   if (!banner) return;
-
   function getConsent() {
     try {
       var raw = localStorage.getItem(KEY);
@@ -116,7 +114,7 @@
     setTimeout(function () {
       banner.hidden = true;
       banner.classList.remove('hiding');
-    }, 380);
+    }, 320);
   }
   function showBanner() {
     banner.hidden = false;
@@ -126,23 +124,15 @@
       });
     });
   }
-
   var existing = getConsent();
   if (existing && (existing.status === 'accepted' || existing.status === 'declined')) {
     banner.hidden = true;
     return;
   }
   showBanner();
-
   var acceptBtn = document.getElementById('cookie-accept');
   var declineBtn = document.getElementById('cookie-decline');
-  if (acceptBtn) acceptBtn.addEventListener('click', function () {
-    setConsent('accepted');
-    hideBanner();
-  });
-  if (declineBtn) declineBtn.addEventListener('click', function () {
-    setConsent('declined');
-    hideBanner();
-  });
+  if (acceptBtn) acceptBtn.addEventListener('click', function () { setConsent('accepted'); hideBanner(); });
+  if (declineBtn) declineBtn.addEventListener('click', function () { setConsent('declined'); hideBanner(); });
 })();
 </script>
