@@ -5,48 +5,28 @@ import { SHOWCASES, ytThumb } from '../data/site';
   <div class="container">
     <div class="text-center mb-10 reveal">
       <p class="eyebrow" style="margin:0 auto 1rem">Video Portfolio</p>
-      <h2 class="mb-4 title-anim">Work That Converts</h2>
+      <h2 class="mb-4">Work That Converts</h2>
       <p style="max-width:36rem;margin:0 auto">Cinematic films, AI product ads, financial campaigns and custom projects — same premium frame size.</p>
     </div>
-
-    {
-      SHOWCASES.map((group) => (
-        <div class="gallery-block reveal" id={group.id}>
-          <div class="gallery-head">
-            <h3 class="gallery-title">{group.title}</h3>
-            <p class="gallery-sub">{group.sub}</p>
-            <p class="gallery-bn">{group.titleBn}</p>
-          </div>
-          {/* Uniform 16:9 grid for all — equal visual size */}
-          <div class="video-grid">
-            {
-              group.ids.map((vid) => (
-                <button
-                  type="button"
-                  class="video-card"
-                  data-yt={vid}
-                  data-format={group.format}
-                  aria-label="Play video"
-                >
-                  <img
-                    src={ytThumb(vid)}
-                    alt=""
-                    width="480"
-                    height="270"
-                    loading="lazy"
-                    decoding="async"
-                    class="video-thumb"
-                  />
-                  <span class="play-glass" aria-hidden="true">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                  </span>
-                </button>
-              ))
-            }
-          </div>
+    {SHOWCASES.map((group) => (
+      <div class="gallery-block reveal" id={group.id}>
+        <div class="gallery-head">
+          <h3 class="gallery-title">{group.title}</h3>
+          <p class="gallery-sub">{group.sub}</p>
+          <p class="gallery-bn">{group.titleBn}</p>
         </div>
-      ))
-    }
+        <div class="video-grid">
+          {group.ids.map((vid) => (
+            <button type="button" class="video-card" data-yt={vid} data-format={group.format} aria-label="Play video">
+              <img src={ytThumb(vid)} alt="" width="480" height="270" loading="lazy" decoding="async" class="video-thumb" />
+              <span class="play-glass" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+    ))}
   </div>
 
   <div class="yt-modal" id="yt-modal" aria-hidden="true" role="dialog" aria-modal="true">
@@ -58,109 +38,31 @@ import { SHOWCASES, ytThumb } from '../data/site';
   </div>
 </section>
 
-<style is:global>
+<style>
   .section-gallery { padding: 4.5rem 1.25rem; background: #FAFAF9; }
   .gallery-block { margin-bottom: 3.25rem; }
   .gallery-block:last-child { margin-bottom: 0; }
   .gallery-head { margin-bottom: 1.15rem; }
-  .gallery-title {
-    font-family: var(--font-h);
-    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
-    font-weight: 700;
-    color: var(--text);
-    margin: 0 0 0.35rem;
-  }
+  .gallery-title { font-family: var(--font-h); font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: 700; color: var(--text); margin: 0 0 0.35rem; }
   .gallery-sub { color: var(--text-2); font-size: 0.95rem; margin: 0 0 0.25rem; max-width: 40rem; }
   .gallery-bn { color: var(--text-3); font-size: 0.85rem; margin: 0; }
-
-  .video-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
-  @media (min-width: 640px) {
-    .video-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-  }
-
-  .video-card {
-    position: relative;
-    display: block;
-    width: 100%;
-    padding: 0;
-    border: none;
-    border-radius: 16px;
-    overflow: hidden;
-    cursor: pointer;
-    background: #0f172a;
-    aspect-ratio: 16 / 9;
-    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
-    transition: transform 0.28s cubic-bezier(.22,1,.36,1), box-shadow 0.28s ease;
-  }
-  .video-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.14);
-  }
-  .video-card:hover .play-glass {
-    transform: translate(-50%, -50%) scale(1.08);
-    background: rgba(255,255,255,0.42);
-  }
-  .video-thumb {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .play-glass {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.26);
-    border: 1px solid rgba(255, 255, 255, 0.42);
-    backdrop-filter: blur(14px) saturate(1.25);
-    -webkit-backdrop-filter: blur(14px) saturate(1.25);
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
-    pointer-events: none;
-    transition: transform 0.25s ease, background 0.25s ease;
-  }
-  .play-glass svg { margin-left: 2px; filter: drop-shadow(0 1px 2px rgba(0,0,0,.3)); }
-
-  .yt-modal {
-    position: fixed; inset: 0; z-index: 10050;
-    display: none; align-items: center; justify-content: center; padding: 1rem;
-  }
+  .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  @media (min-width: 640px) { .video-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; } }
+  .video-card { position: relative; display: block; width: 100%; padding: 0; border: none; border-radius: 16px; overflow: hidden; cursor: pointer; background: #0f172a; aspect-ratio: 16 / 9; box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08); }
+  .video-card:hover { transform: translateY(-4px); }
+  .video-thumb { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .play-glass { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; background: rgba(255, 255, 255, 0.26); border: 1px solid rgba(255, 255, 255, 0.42); backdrop-filter: blur(14px); pointer-events: none; }
+  .yt-modal { position: fixed; inset: 0; z-index: 10050; display: none; align-items: center; justify-content: center; padding: 1rem; }
   .yt-modal.is-open { display: flex; }
-  .yt-backdrop {
-    position: absolute; inset: 0;
-    background: rgba(15, 23, 42, 0.8);
-    backdrop-filter: blur(8px);
-  }
-  .yt-panel {
-    position: relative; z-index: 1;
-    border-radius: 18px; overflow: hidden; background: #000;
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
-  }
+  .yt-backdrop { position: absolute; inset: 0; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(8px); }
+  .yt-panel { position: relative; z-index: 1; border-radius: 18px; overflow: hidden; background: #000; }
   .yt-panel.landscape { width: min(960px, 100%); }
   .yt-panel.short { width: min(400px, 92vw); max-height: 90vh; }
-  .yt-close {
-    position: absolute; top: 10px; right: 10px; z-index: 2;
-    width: 40px; height: 40px; border: none; border-radius: 12px;
-    background: rgba(255, 255, 255, 0.18); backdrop-filter: blur(8px);
-    color: #fff; font-size: 1.5rem; cursor: pointer;
-  }
+  .yt-close { position: absolute; top: 10px; right: 10px; z-index: 2; width: 40px; height: 40px; border: none; border-radius: 12px; background: rgba(255, 255, 255, 0.18); color: #fff; font-size: 1.5rem; cursor: pointer; }
   .yt-frame-wrap { position: relative; width: 100%; }
   .yt-panel.landscape .yt-frame-wrap { padding-top: 56.25%; }
   .yt-panel.short .yt-frame-wrap { padding-top: 177.78%; }
-  .yt-frame-wrap iframe {
-    position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
-  }
+  .yt-frame-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 </style>
 
 <script is:inline>
@@ -170,20 +72,15 @@ import { SHOWCASES, ytThumb } from '../data/site';
   var wrap = document.getElementById('yt-frame-wrap');
   var closeBtn = document.getElementById('yt-close');
   var backdrop = document.getElementById('yt-backdrop');
-
   function openYt(id, format) {
     if (!modal || !wrap || !panel) return;
     panel.classList.remove('landscape', 'short');
     panel.classList.add(format === 'short' ? 'short' : 'landscape');
-    wrap.innerHTML =
-      '<iframe src="https://www.youtube-nocookie.com/embed/' +
-      id +
-      '?autoplay=1&rel=0&playsinline=1" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="eager"></iframe>';
+    wrap.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="eager"></iframe>';
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   }
-
   function closeYt() {
     if (!modal || !wrap) return;
     modal.classList.remove('is-open');
@@ -191,7 +88,6 @@ import { SHOWCASES, ytThumb } from '../data/site';
     wrap.innerHTML = '';
     document.body.style.overflow = '';
   }
-
   document.querySelectorAll('.video-card[data-yt]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var id = btn.getAttribute('data-yt');
@@ -199,11 +95,8 @@ import { SHOWCASES, ytThumb } from '../data/site';
       if (id) openYt(id, format);
     });
   });
-
   if (closeBtn) closeBtn.addEventListener('click', closeYt);
   if (backdrop) backdrop.addEventListener('click', closeYt);
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeYt();
-  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeYt(); });
 })();
 </script>

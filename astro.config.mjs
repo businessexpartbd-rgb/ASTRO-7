@@ -1,11 +1,7 @@
 import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
 
-// Static site. API lives in /functions (Cloudflare Pages Functions).
-// D1 binding name: DB
+// Static site for Cloudflare Workers assets.
+// Tailwind plugin removed: it crashes Astro builds on <style is:global> blocks.
 export default defineConfig({
   output: 'static',
-  vite: {
-    plugins: [tailwindcss()],
-  },
 });
