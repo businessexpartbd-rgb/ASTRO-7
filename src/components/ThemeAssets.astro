@@ -1,9 +1,10 @@
 ---
-/** Global CSS/JS assets — every page */
+/** Cache-bust query so browsers never keep stale theme after deploy */
+const v = '20260817a';
 ---
-<link rel="stylesheet" href="/theme-premium.css" />
-<link rel="stylesheet" href="/live-icons.css" />
-<link rel="stylesheet" href="/site-chrome.css" />
-<link rel="stylesheet" href="/motion.css" />
-<script src="/js/premium.js" defer></script>
-<script src="/js/motion.js" defer></script>
+<link rel="stylesheet" href={`/theme-premium.css?v=${v}`} />
+<link rel="stylesheet" href={`/live-icons.css?v=${v}`} />
+<link rel="stylesheet" href={`/site-chrome.css?v=${v}`} />
+<link rel="stylesheet" href={`/motion.css?v=${v}`} />
+<script src={`/js/premium.js?v=${v}`} defer></script>
+<script src={`/js/motion.js?v=${v}`} defer></script>
