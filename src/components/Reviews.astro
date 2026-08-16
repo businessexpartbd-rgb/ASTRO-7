@@ -5,7 +5,7 @@
     <div class="text-center mb-8 reveal">
       <p class="eyebrow" style="margin:0 auto 1rem">Client Reviews</p>
       <h2 class="mb-4">Ratings & Reviews</h2>
-      <p style="max-width:36rem;margin:0 auto">Verified Google reviews · Bangla or English · Stored securely in the cloud</p>
+      <p style="max-width:36rem;margin:0 auto">Verified Google reviews · Bangla or English · Saved in cloud database</p>
     </div>
 
     <div class="reviews-layout reveal">
@@ -30,15 +30,13 @@
 
         <div class="review-form-card glass-card" id="review-form-card">
           <h3 class="form-heading">Write a review</h3>
-
           <div id="google-auth-area" class="google-auth-area">
             <button type="button" id="btn-google" class="btn-google">
               <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
               <span id="btn-google-label">Continue with Google</span>
             </button>
-            <p class="auth-hint" id="auth-hint">Choose any Google account on your device to verify and rate.</p>
+            <p class="auth-hint" id="auth-hint">Tap to choose a Google account on your device and leave a verified review.</p>
           </div>
-
           <form id="review-form" class="review-form" hidden>
             <div class="user-chip" id="user-chip"></div>
             <div class="star-picker" id="star-picker" role="radiogroup" aria-label="Your rating">
@@ -81,161 +79,286 @@
       radial-gradient(ellipse 50% 40% at 90% 100%, rgba(245,158,11,.06), transparent 50%),
       #F8FAFC;
   }
-  .reviews-layout {
-    display: grid;
-    gap: 1.5rem;
-    max-width: 960px;
-    margin: 0 auto;
-  }
+  .reviews-layout { display: grid; gap: 1.5rem; max-width: 960px; margin: 0 auto; }
   @media (min-width: 800px) {
     .reviews-layout { grid-template-columns: 280px 1fr; align-items: start; gap: 2rem; }
   }
-  .reviews-summary {
-    padding: 1.5rem !important;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
+  .reviews-summary { padding: 1.5rem !important; display: flex; flex-direction: column; gap: 1.25rem; }
   .rating-score { text-align: center; }
-  .score-num {
-    font-family: var(--font-h);
-    font-size: 3.25rem;
-    font-weight: 800;
-    line-height: 1;
-    color: var(--text);
-    letter-spacing: -0.03em;
-  }
-  .score-stars {
-    margin: 0.4rem 0 0.35rem;
-    font-size: 1.15rem;
-    letter-spacing: 2px;
-    color: #F59E0B;
-  }
+  .score-num { font-family: var(--font-h); font-size: 3.25rem; font-weight: 800; line-height: 1; color: var(--text); letter-spacing: -0.03em; }
+  .score-stars { margin: 0.4rem 0 0.35rem; font-size: 1.15rem; letter-spacing: 2px; color: #F59E0B; }
   .score-count { font-size: 0.85rem; color: var(--text-3); }
   .rating-bars { display: flex; flex-direction: column; gap: 0.4rem; }
-  .bar-row {
-    display: grid;
-    grid-template-columns: 12px 1fr 28px;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.75rem;
-    color: var(--text-3);
-  }
-  .bar-track {
-    height: 8px;
-    border-radius: 99px;
-    background: rgba(15,23,42,.06);
-    overflow: hidden;
-  }
-  .bar-fill {
-    height: 100%;
-    border-radius: 99px;
-    background: linear-gradient(90deg, #F59E0B, #FBBF24);
-    width: 0%;
-    transition: width 0.6s cubic-bezier(.22,1,.36,1);
-  }
+  .bar-row { display: grid; grid-template-columns: 12px 1fr 28px; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--text-3); }
+  .bar-track { height: 8px; border-radius: 99px; background: rgba(15,23,42,.06); overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #F59E0B, #FBBF24); width: 0%; transition: width 0.6s cubic-bezier(.22,1,.36,1); }
   .reviews-list { display: flex; flex-direction: column; gap: 1rem; }
   .reviews-empty { text-align: center; padding: 2rem 1rem; color: var(--text-2); }
   .empty-icon { font-size: 2rem; margin-bottom: 0.5rem; }
   .empty-sub { font-size: 0.9rem; color: var(--text-3); margin-top: 0.25rem; }
-  .review-item {
-    background: rgba(255,255,255,.75);
-    border: 1px solid rgba(255,255,255,.9);
-    border-radius: 18px;
-    padding: 1.15rem 1.25rem;
-    box-shadow: 0 4px 20px rgba(15,23,42,.04);
-  }
+  .review-item { background: rgba(255,255,255,.75); border: 1px solid rgba(255,255,255,.9); border-radius: 18px; padding: 1.15rem 1.25rem; box-shadow: 0 4px 20px rgba(15,23,42,.04); }
   .review-top { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.55rem; }
   .review-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; background: #E2E8F0; }
-  .review-avatar-fallback {
-    width: 40px; height: 40px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 0.9rem; color: #fff;
-    background: linear-gradient(135deg, #4F46E5, #7C3AED);
-  }
+  .review-avatar-fallback { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; color: #fff; background: linear-gradient(135deg, #4F46E5, #7C3AED); }
   .review-name { font-weight: 600; font-size: 0.95rem; color: var(--text); }
   .review-meta { font-size: 0.75rem; color: var(--text-3); }
   .review-stars { color: #F59E0B; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 0.4rem; }
   .review-body { font-size: 0.9rem; line-height: 1.6; color: var(--text-2); white-space: pre-wrap; }
-  .btn-see-more {
-    display: block; width: 100%; margin: 1rem 0 0;
-    padding: 0.75rem; border-radius: 14px;
-    border: 1.5px solid rgba(15,23,42,.1);
-    background: #fff; font-family: var(--font-h); font-weight: 600; font-size: 0.9rem;
-    color: var(--text); cursor: pointer;
-  }
+  .btn-see-more { display: block; width: 100%; margin: 1rem 0 0; padding: 0.75rem; border-radius: 14px; border: 1.5px solid rgba(15,23,42,.1); background: #fff; font-family: var(--font-h); font-weight: 600; font-size: 0.9rem; color: var(--text); cursor: pointer; }
   .btn-see-more[hidden] { display: none !important; }
   .btn-see-more:hover { border-color: var(--primary); color: var(--primary); }
   .review-form-card { margin-top: 1.5rem; padding: 1.5rem !important; }
   .form-heading { font-size: 1.1rem; margin-bottom: 1rem; }
   .google-auth-area { text-align: center; }
-  .btn-google {
-    display: inline-flex; align-items: center; justify-content: center; gap: 0.65rem;
-    width: 100%; max-width: 280px; padding: 0.75rem 1.25rem;
-    border-radius: 9999px; border: 1px solid rgba(15,23,42,.12);
-    background: #fff; font-family: var(--font-h); font-weight: 600; font-size: 0.9rem;
-    color: var(--text); cursor: pointer;
-    transition: box-shadow .2s, transform .2s;
-  }
-  .btn-google:hover { box-shadow: 0 4px 16px rgba(15,23,42,.1); transform: translateY(-1px); }
+  .btn-google { display: inline-flex; align-items: center; justify-content: center; gap: 0.65rem; width: 100%; max-width: 280px; padding: 0.75rem 1.25rem; border-radius: 9999px; border: 1px solid rgba(15,23,42,.12); background: #fff; font-family: var(--font-h); font-weight: 600; font-size: 0.9rem; color: var(--text); cursor: pointer; }
+  .btn-google:hover { box-shadow: 0 4px 16px rgba(15,23,42,.1); }
   .auth-hint { font-size: 0.8rem; color: var(--text-3); margin-top: 0.75rem; line-height: 1.5; }
   .user-chip { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; font-size: 0.9rem; font-weight: 500; }
   .user-chip img { width: 32px; height: 32px; border-radius: 50%; }
   .star-picker { display: flex; gap: 0.35rem; margin-bottom: 0.35rem; }
-  .star-btn {
-    background: none; border: none; cursor: pointer;
-    font-size: 1.75rem; color: #CBD5E1; line-height: 1; padding: 0.15rem;
-  }
+  .star-btn { background: none; border: none; cursor: pointer; font-size: 1.75rem; color: #CBD5E1; line-height: 1; padding: 0.15rem; }
   .star-btn:hover, .star-btn.on { color: #F59E0B; }
   .star-label { font-size: 0.8rem; color: var(--text-3); margin-bottom: 0.85rem; }
-  .review-textarea {
-    width: 100%; padding: 0.85rem 1rem; border-radius: 14px;
-    border: 1.5px solid rgba(15,23,42,.1); background: #fff;
-    font-family: var(--font-b); font-size: 0.95rem; resize: vertical;
-    margin-bottom: 1rem; outline: none;
-  }
+  .review-textarea { width: 100%; padding: 0.85rem 1rem; border-radius: 14px; border: 1.5px solid rgba(15,23,42,.1); background: #fff; font-family: var(--font-b); font-size: 0.95rem; resize: vertical; margin-bottom: 1rem; outline: none; }
   .review-textarea:focus { border-color: var(--primary); }
   .form-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
   .form-msg { font-size: 0.85rem; margin-top: 0.75rem; color: var(--emerald); }
   .form-msg.err { color: var(--rose); }
   .review-form[hidden] { display: none !important; }
-  .reviews-modal {
-    position: fixed; inset: 0; z-index: 10000;
-    display: none; align-items: flex-end; justify-content: center;
-    pointer-events: none;
-  }
+  .reviews-modal { position: fixed; inset: 0; z-index: 10000; display: none; align-items: flex-end; justify-content: center; pointer-events: none; }
   .reviews-modal.is-open { display: flex; pointer-events: auto; }
-  @media (min-width: 640px) {
-    .reviews-modal.is-open { align-items: center; }
-  }
-  .modal-backdrop {
-    position: absolute; inset: 0; background: rgba(15,23,42,.45);
-    backdrop-filter: blur(4px);
-  }
-  .modal-panel {
-    position: relative; z-index: 1;
-    width: 100%; max-width: 520px; max-height: 85vh;
-    background: #fff; border-radius: 24px 24px 0 0;
-    box-shadow: 0 -8px 40px rgba(15,23,42,.15);
-    display: flex; flex-direction: column;
-  }
-  @media (min-width: 640px) {
-    .modal-panel { border-radius: 24px; max-height: 80vh; }
-  }
-  .modal-head {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.15rem 1.35rem; border-bottom: 1px solid rgba(15,23,42,.06);
-  }
+  @media (min-width: 640px) { .reviews-modal.is-open { align-items: center; } }
+  .modal-backdrop { position: absolute; inset: 0; background: rgba(15,23,42,.45); backdrop-filter: blur(4px); }
+  .modal-panel { position: relative; z-index: 1; width: 100%; max-width: 520px; max-height: 85vh; background: #fff; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 40px rgba(15,23,42,.15); display: flex; flex-direction: column; }
+  @media (min-width: 640px) { .modal-panel { border-radius: 24px; max-height: 80vh; } }
+  .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 1.15rem 1.35rem; border-bottom: 1px solid rgba(15,23,42,.06); }
   .modal-head h3 { font-size: 1.1rem; margin: 0; }
-  .modal-close {
-    width: 40px; height: 40px; border: none; border-radius: 10px;
-    background: rgba(15,23,42,.06); font-size: 1.5rem; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .modal-body {
-    padding: 1.15rem 1.35rem 1.5rem; overflow-y: auto;
-    display: flex; flex-direction: column; gap: 1rem;
-  }
+  .modal-close { width: 40px; height: 40px; border: none; border-radius: 10px; background: rgba(15,23,42,.06); font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .modal-body { padding: 1.15rem 1.35rem 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
 </style>
 
-<script type="module" src="/js/reviews-firebase.js"></script>
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js';
+import {
+  getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect,
+  getRedirectResult, onAuthStateChanged, signOut
+} from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
+import {
+  getFirestore, collection, doc, setDoc, getDocs, query, orderBy, limit, serverTimestamp
+} from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js';
+
+const FIREBASE_CONFIG = {
+  apiKey: 'AIzaSyAys-V5ZZ90VVB1duob6f5hf_uSi1-ImPI',
+  authDomain: 'creavix-bbfeb.firebaseapp.com',
+  projectId: 'creavix-bbfeb',
+  storageBucket: 'creavix-bbfeb.firebasestorage.app',
+  messagingSenderId: '933391199778',
+  appId: '1:933391199778:web:2ccd03b6625a5787e0247b',
+  measurementId: 'G-EZHEQK4WRL'
+};
+
+const starLabels = ['', 'Poor', 'Fair', 'Good', 'Very good', 'Excellent'];
+let auth, db, currentUser = null, selectedStars = 0, reviews = [];
+
+const $ = (id) => document.getElementById(id);
+const escapeHtml = (s) => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const starsHtml = (n) => { let s=''; for (let i=1;i<=5;i++) s += i<=n?'★':'☆'; return s; };
+
+function stats(list) {
+  const counts = [0,0,0,0,0,0]; let sum = 0;
+  list.forEach(r => { const s = Math.min(5, Math.max(1, +r.stars||0)); counts[s]++; sum += s; });
+  const n = list.length;
+  return { counts, total: n, avg: n ? sum/n : 0 };
+}
+
+function renderSummary(list) {
+  const st = stats(list);
+  if ($('avg-score')) $('avg-score').textContent = st.total ? st.avg.toFixed(1) : '0.0';
+  if ($('avg-stars')) $('avg-stars').textContent = starsHtml(Math.round(st.avg));
+  if ($('rating-count')) $('rating-count').textContent = st.total + (st.total===1?' rating':' ratings');
+  const bars = $('rating-bars');
+  if (!bars) return;
+  let html = '';
+  for (let i=5;i>=1;i--) {
+    const pct = st.total ? Math.round((st.counts[i]/st.total)*100) : 0;
+    html += `<div class="bar-row"><span>${i}</span><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div><span>${pct}%</span></div>`;
+  }
+  bars.innerHTML = html;
+}
+
+function reviewCard(r) {
+  const initial = (r.name||'U').charAt(0).toUpperCase();
+  const avatar = r.picture
+    ? `<img class="review-avatar" src="${escapeHtml(r.picture)}" alt="" width="40" height="40" />`
+    : `<div class="review-avatar-fallback">${initial}</div>`;
+  let date = '';
+  try {
+    if (r.createdAt?.toDate) date = r.createdAt.toDate().toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
+    else if (r.createdAt) date = new Date(r.createdAt).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
+  } catch(_){}
+  return `<article class="review-item"><div class="review-top">${avatar}<div><div class="review-name">${escapeHtml(r.name||'User')}</div><div class="review-meta">${date} · Verified Google</div></div></div><div class="review-stars">${starsHtml(r.stars)}</div><div class="review-body">${escapeHtml(r.text||'')}</div></article>`;
+}
+
+function renderList(list) {
+  const listEl = $('reviews-list'), emptyEl = $('reviews-empty'), moreBtn = $('btn-see-more');
+  if (!listEl) return;
+  if (!list.length) {
+    listEl.innerHTML = '';
+    if (emptyEl) { listEl.appendChild(emptyEl); emptyEl.hidden = false; }
+    if (moreBtn) moreBtn.hidden = true;
+    return;
+  }
+  if (emptyEl) emptyEl.hidden = true;
+  listEl.innerHTML = list.slice(0,3).map(reviewCard).join('');
+  if (moreBtn) { moreBtn.hidden = list.length <= 3; moreBtn.textContent = 'See all ' + list.length + ' reviews'; }
+}
+
+function renderModal(list) {
+  const body = $('modal-body');
+  if (body) body.innerHTML = list.map(reviewCard).join('') || '<p style="color:#64748B;text-align:center;padding:1rem">No reviews yet</p>';
+}
+
+function refresh() { renderSummary(reviews); renderList(reviews); renderModal(reviews); }
+
+function showAuthUI() {
+  const form = $('review-form'), authArea = $('google-auth-area'), chip = $('user-chip');
+  if (currentUser) {
+    if (authArea) authArea.hidden = true;
+    if (form) form.hidden = false;
+    if (chip) {
+      const img = currentUser.picture ? `<img src="${escapeHtml(currentUser.picture)}" alt="" width="32" height="32" />` : '';
+      chip.innerHTML = img + `<span>${escapeHtml(currentUser.name||currentUser.email||'User')} · Verified</span>`;
+    }
+  } else {
+    if (authArea) authArea.hidden = false;
+    if (form) form.hidden = true;
+  }
+}
+
+function setStars(n) {
+  selectedStars = n;
+  document.querySelectorAll('#star-picker .star-btn').forEach(btn => {
+    btn.classList.toggle('on', parseInt(btn.getAttribute('data-star'),10) <= n);
+  });
+  if ($('star-label')) $('star-label').textContent = n ? n + ' · ' + starLabels[n] : 'Tap to rate';
+}
+
+async function loadReviews() {
+  if (!db) return [];
+  try {
+    const q = query(collection(db, 'reviews'), orderBy('createdAt', 'desc'), limit(200));
+    const snap = await getDocs(q);
+    return snap.docs.map(d => {
+      const data = d.data();
+      return { id: d.id, userId: data.userId||d.id, name: data.name||'User', email: data.email||'', picture: data.picture||'', stars: data.stars||0, text: data.text||'', createdAt: data.createdAt||null, verified: true };
+    });
+  } catch (e) { console.warn(e); return []; }
+}
+
+async function saveReview(text) {
+  await setDoc(doc(db, 'reviews', currentUser.uid), {
+    userId: currentUser.uid,
+    name: currentUser.name,
+    email: currentUser.email||'',
+    picture: currentUser.picture||'',
+    stars: selectedStars,
+    text,
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp()
+  }, { merge: true });
+}
+
+function closeModal() {
+  const m = $('reviews-modal');
+  if (!m) return;
+  m.classList.remove('is-open');
+  m.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+function openModal() {
+  const m = $('reviews-modal');
+  if (!m) return;
+  m.classList.add('is-open');
+  m.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+
+async function googleSignIn() {
+  const provider = new GoogleAuthProvider();
+  provider.setCustomParameters({ prompt: 'select_account' });
+  try {
+    await signInWithPopup(auth, provider);
+  } catch (err) {
+    if (err?.code === 'auth/popup-blocked') {
+      try { await signInWithRedirect(auth, provider); } catch(_) { alert('Sign-in failed. Allow popups or try again.'); }
+    } else if (err?.code !== 'auth/popup-closed-by-user') {
+      console.warn(err);
+      alert('Google sign-in failed. Enable Google provider in Firebase + add creavixit.com to Authorized domains.');
+    }
+  }
+}
+
+async function boot() {
+  closeModal();
+  try {
+    const app = initializeApp(FIREBASE_CONFIG);
+    auth = getAuth(app);
+    db = getFirestore(app);
+  } catch (e) {
+    console.error(e);
+    if ($('auth-hint')) $('auth-hint').textContent = 'Firebase failed to start.';
+    return;
+  }
+
+  try { await getRedirectResult(auth); } catch(_){}
+
+  onAuthStateChanged(auth, (user) => {
+    currentUser = user ? {
+      uid: user.uid,
+      name: user.displayName || user.email || 'User',
+      email: user.email || '',
+      picture: user.photoURL || ''
+    } : null;
+    showAuthUI();
+  });
+
+  reviews = await loadReviews();
+  refresh();
+
+  $('btn-google')?.addEventListener('click', googleSignIn);
+  $('star-picker')?.addEventListener('click', (e) => {
+    const t = e.target.closest('.star-btn');
+    if (t) setStars(parseInt(t.getAttribute('data-star'),10));
+  });
+
+  $('review-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const msg = $('form-msg'), btn = $('btn-submit-review');
+    if (!currentUser) return;
+    if (!selectedStars) { if (msg){ msg.hidden=false; msg.className='form-msg err'; msg.textContent='Please select a star rating.'; } return; }
+    const text = ($('review-text')?.value||'').trim();
+    if (text.length < 3) { if (msg){ msg.hidden=false; msg.className='form-msg err'; msg.textContent='Please write a short comment.'; } return; }
+    if (btn) btn.disabled = true;
+    try {
+      await saveReview(text);
+      reviews = await loadReviews();
+      refresh();
+      if ($('review-text')) $('review-text').value = '';
+      setStars(0);
+      if (msg){ msg.hidden=false; msg.className='form-msg'; msg.textContent='Review saved permanently. Thank you!'; }
+    } catch (err) {
+      console.error(err);
+      if (msg){ msg.hidden=false; msg.className='form-msg err'; msg.textContent='Could not save. Check Firestore rules in Firebase Console.'; }
+    } finally { if (btn) btn.disabled = false; }
+  });
+
+  $('btn-signout')?.addEventListener('click', async () => { try { await signOut(auth); } catch(_){} });
+  $('btn-see-more')?.addEventListener('click', openModal);
+  $('modal-close')?.addEventListener('click', closeModal);
+  $('modal-backdrop')?.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => { if (e.key==='Escape') closeModal(); });
+}
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+else boot();
+</script>
