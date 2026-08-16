@@ -1,9 +1,9 @@
-/* GPU-light motion — no filter:blur (main mobile jank source) */
+/* GPU-light motion + book-flip video cards */
 
 .title-rise {
   opacity: 0;
-  transform: translate3d(0, 18px, 0);
-  transition: opacity 0.45s ease-out, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, 16px, 0);
+  transition: opacity 0.4s ease-out, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .title-rise.is-in {
   opacity: 1;
@@ -12,43 +12,32 @@
 
 .mag-card {
   opacity: 0;
-  transform: translate3d(0, 36px, 0) scale(0.96);
-  transition:
-    opacity 0.4s ease-out,
-    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, 28px, 0) scale(0.97);
+  transition: opacity 0.4s ease-out, transform 0.48s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: var(--mag-delay, 0ms);
 }
-.mag-card.mag-left {
-  transform: translate3d(-28px, 32px, 0) scale(0.96);
-}
-.mag-card.mag-right {
-  transform: translate3d(28px, 32px, 0) scale(0.96);
-}
+.mag-card.mag-left { transform: translate3d(-24px, 28px, 0) scale(0.97); }
+.mag-card.mag-right { transform: translate3d(24px, 28px, 0) scale(0.97); }
 .mag-card.is-in {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
 }
 
-/* Elevation without multi-layer paint thrash */
 .glass-card {
   box-shadow:
-    0 8px 24px rgba(12, 18, 34, 0.07),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+    0 8px 28px rgba(12, 18, 34, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85) !important;
 }
 @media (hover: hover) and (pointer: fine) {
-  .glass-card.is-in:hover,
   .mag-card.glass-card.is-in:hover {
-    transform: translate3d(0, -8px, 0) !important;
-    box-shadow:
-      0 16px 40px rgba(12, 18, 34, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+    transform: translate3d(0, -6px, 0) !important;
   }
 }
 
 .reveal {
   opacity: 0;
-  transform: translate3d(0, 28px, 0);
-  transition: opacity 0.45s ease-out, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, 24px, 0);
+  transition: opacity 0.4s ease-out, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.visible,
 .reveal.is-in {
@@ -56,49 +45,66 @@
   transform: translate3d(0, 0, 0);
 }
 
-/* Reviews specific */
+/* Book / card flip for video grid */
+.video-card {
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  opacity: 0;
+  transform: perspective(900px) rotateX(72deg) translate3d(0, 28px, 0);
+  transition:
+    opacity 0.45s ease-out,
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--flip-delay, 0ms);
+}
+.video-card.flip-in {
+  opacity: 1;
+  transform: perspective(900px) rotateX(0deg) translate3d(0, 0, 0);
+}
+.video-card.flip-out {
+  opacity: 0;
+  transform: perspective(900px) rotateX(-55deg) translate3d(0, -18px, 0);
+  transition-duration: 0.4s;
+}
+
 .section-reviews .reviews-summary,
 .section-reviews .review-form-card {
   opacity: 0;
-  transform: translate3d(0, 28px, 0);
-  transition: opacity 0.45s ease-out, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, 24px, 0);
+  transition: opacity 0.4s ease-out, transform 0.45s ease-out;
 }
 .section-reviews .reviews-summary.is-in,
-.section-reviews .review-form-card.is-in,
-.section-reviews .reviews-summary.mag-card.is-in,
-.section-reviews .review-form-card.mag-card.is-in {
+.section-reviews .review-form-card.is-in {
   opacity: 1;
-  transform: translate3d(0, 0, 0);
+  transform: none;
 }
 .review-item {
   opacity: 0;
-  transform: translate3d(0, 16px, 0);
-  animation: review-in 0.4s ease-out forwards;
+  animation: review-in 0.35s ease-out forwards;
 }
-.review-item:nth-child(1) { animation-delay: 0.05s; }
-.review-item:nth-child(2) { animation-delay: 0.12s; }
-.review-item:nth-child(3) { animation-delay: 0.18s; }
 @keyframes review-in {
-  to { opacity: 1; transform: translate3d(0, 0, 0); }
+  to { opacity: 1; }
 }
 
-/* Skip paint for off-screen sections */
 .section-reviews,
 .section-gallery,
 .section-soft,
 .section-violet,
 .section-warm {
   content-visibility: auto;
-  contain-intrinsic-size: auto 600px;
+  contain-intrinsic-size: auto 560px;
 }
 
 @media (max-width: 767px) {
   .mag-card.mag-left,
   .mag-card.mag-right {
-    transform: translate3d(0, 24px, 0) scale(0.98);
+    transform: translate3d(0, 20px, 0) scale(0.98);
   }
-  .glass-card:hover {
-    transform: none !important;
+  .video-card {
+    transform: perspective(700px) rotateX(48deg) translate3d(0, 16px, 0);
+  }
+  .video-card.flip-in {
+    transform: perspective(700px) rotateX(0) translate3d(0, 0, 0);
   }
 }
 
@@ -106,6 +112,7 @@
   .mag-card,
   .title-rise,
   .reveal,
+  .video-card,
   .section-reviews .reviews-summary,
   .section-reviews .review-form-card,
   .review-item {
