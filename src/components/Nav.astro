@@ -1,4 +1,5 @@
 ---
+import SocialIcons from './SocialIcons.astro';
 interface Props {
   active?: string;
 }
@@ -10,6 +11,10 @@ const { active = '' } = Astro.props;
       <img src="/logo.png" alt="Creavix iT Solution" class="logo-img" width="40" height="40" />
       <span class="logo-text">Creavix <span>iT</span> Solution</span>
     </a>
+
+    <div class="nav-social-desktop">
+      <SocialIcons size="sm" />
+    </div>
 
     <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
       <span class="hamburger" aria-hidden="true"></span>
@@ -36,14 +41,38 @@ const { active = '' } = Astro.props;
               <a href="/services/campaign" role="menuitem">🎯 Campaign</a>
             </div>
           </li>
-          <li style="--i:2"><a href="/about" class={active === 'about' ? 'active' : ''}>About</a></li>
-          <li style="--i:3"><a href="/contact" class={active === 'contact' ? 'active' : ''}>Contact</a></li>
+          <li style="--i:2"><a href="/#portfolio">Portfolio</a></li>
+          <li style="--i:3"><a href="/about" class={active === 'about' ? 'active' : ''}>About</a></li>
+          <li style="--i:4"><a href="/contact" class={active === 'contact' ? 'active' : ''}>Contact</a></li>
         </ul>
-        <a href="/contact" class="btn btn-primary nav-cta" style="--i:4">Get Started</a>
+        <div class="nav-social-mobile" style="--i:5">
+          <SocialIcons size="md" />
+        </div>
+        <a href="/contact" class="btn btn-primary nav-cta" style="--i:6">Get Started</a>
       </div>
     </div>
   </div>
 </nav>
+
+<style>
+  .nav-social-desktop {
+    display: none;
+    margin-left: auto;
+    margin-right: 0.75rem;
+  }
+  @media (min-width: 1024px) {
+    .nav-social-desktop { display: flex; align-items: center; }
+  }
+  .nav-social-mobile {
+    display: flex;
+    justify-content: center;
+    padding: 0.75rem 0 0.25rem;
+  }
+  @media (min-width: 1024px) {
+    .nav-social-mobile { display: none; }
+  }
+</style>
+
 <script is:inline>
   (function() {
     var toggle = document.getElementById('nav-toggle');

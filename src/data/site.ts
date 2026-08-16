@@ -1,4 +1,4 @@
-/** Brand & content from creavix-next-live (site-data.ts) */
+/** Brand & content from creavix-next-live */
 
 export const SITE = {
   name: 'Creavix',
@@ -22,21 +22,58 @@ export const SITE = {
 } as const;
 
 export const SOCIAL_LINKS = [
-  { key: 'facebook', name: 'Facebook', url: 'https://www.facebook.com/CreavixITSolution' },
-  { key: 'instagram', name: 'Instagram', url: 'https://www.instagram.com/creavixitsolution' },
-  { key: 'youtube', name: 'YouTube', url: 'https://www.youtube.com/@CreavixiTsolution' },
-  { key: 'tiktok', name: 'TikTok', url: 'https://www.tiktok.com/@creavixitsolution' },
-  { key: 'linkedin', name: 'LinkedIn', url: 'https://www.linkedin.com/in/creavix-it-solution' },
-  { key: 'x', name: 'X', url: 'https://x.com/creavixit' },
-  { key: 'whatsapp', name: 'WhatsApp', url: 'https://wa.me/8801890484355' },
+  {
+    key: 'facebook',
+    name: 'Facebook',
+    url: 'https://www.facebook.com/CreavixITSolution',
+    color: '#1877F2',
+  },
+  {
+    key: 'instagram',
+    name: 'Instagram',
+    url: 'https://www.instagram.com/creavixitsolution',
+    color: '#E4405F',
+  },
+  {
+    key: 'youtube',
+    name: 'YouTube',
+    url: 'https://www.youtube.com/@CreavixiTsolution',
+    color: '#FF0000',
+  },
+  {
+    key: 'tiktok',
+    name: 'TikTok',
+    url: 'https://www.tiktok.com/@creavixitsolution',
+    color: '#010101',
+  },
+  {
+    key: 'linkedin',
+    name: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/creavix-it-solution',
+    color: '#0A66C2',
+  },
+  {
+    key: 'x',
+    name: 'X',
+    url: 'https://x.com/creavixit',
+    color: '#000000',
+  },
+  {
+    key: 'whatsapp',
+    name: 'WhatsApp',
+    url: 'https://wa.me/8801890484355',
+    color: '#25D366',
+  },
 ] as const;
 
+/** format: landscape = 16:9 YouTube · short = 9:16 vertical */
 export const SHOWCASES = [
   {
     id: 'cinematic',
     title: 'Cinematic Storytelling',
     titleBn: 'সিনেম্যাটিক স্টোরিটেলিং',
     sub: 'Story-driven brand films that move audiences and build emotional trust.',
+    format: 'landscape' as const,
     ids: ['Tu9qAT9c2Ek', 'rlY4Ih68DHM', 'FvWyFDNAAPY', '6RaKnCSXZhM', '4ryJaLx6o0k', 'UlNoCAs69vg'],
   },
   {
@@ -44,6 +81,7 @@ export const SHOWCASES = [
     title: 'Product AI Promotional Ads',
     titleBn: 'এআই প্রোডাক্ট প্রমোশনাল অ্যাড',
     sub: 'AI-powered product promos engineered for conversion across paid social.',
+    format: 'short' as const,
     ids: ['rQk_sPwkDwU', '3U3-3IgbPQc', 'zaFsO8fv2iA', 'KU7j0JhzJKI', 'tooCPxc0pnY', 'DO-SisqDTY4'],
   },
   {
@@ -51,6 +89,7 @@ export const SHOWCASES = [
     title: 'Financial Video Ads',
     titleBn: 'ফাইন্যান্সিয়াল ভিডিও অ্যাড',
     sub: 'Trust-first ads for banks, MFS, insurance and fintech brands.',
+    format: 'short' as const,
     ids: ['Q67-Nq-fPe0', '0baTxFVpSyo', '7knZkqenPII', 'dM6YLCGOOX4', '6n2y_nrRahM', 'QdPW3bDFc5I'],
   },
   {
@@ -58,6 +97,7 @@ export const SHOWCASES = [
     title: 'Product & Brand Ads',
     titleBn: 'প্রোডাক্ট ও ব্র্যান্ড অ্যাড',
     sub: 'High-impact creatives for product launches and brand campaigns.',
+    format: 'short' as const,
     ids: ['xwGjL_XnzDU', 'boFvTomIRrQ', 'xxXjRLIL7Xc', '6EKnfroWXQE', 'h0cnhVfsXhU', 'MtgdKWMRAPI'],
   },
   {
@@ -65,6 +105,7 @@ export const SHOWCASES = [
     title: 'Custom Projects',
     titleBn: 'কাস্টম ভিডিও প্রজেক্ট',
     sub: 'Tailored campaigns for unique client requests, formats and industries.',
+    format: 'landscape' as const,
     ids: ['HOnXRgkC-2Q', 'DjXhq-ScyE8', '7iJumW6HROQ', 'eEqeRIsI9oQ', 'KxFQv4M-bow', 'Szel9WlwaS8'],
   },
 ] as const;
