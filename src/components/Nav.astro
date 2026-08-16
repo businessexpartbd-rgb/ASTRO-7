@@ -12,8 +12,9 @@ const { active = '' } = Astro.props;
       <span class="logo-text">Creavix <span>iT</span> Solution</span>
     </a>
 
-    <div class="nav-social-desktop">
-      <SocialIcons size="sm" />
+    <!-- Always visible socials (mobile + desktop) — client request -->
+    <div class="nav-social-bar">
+      <SocialIcons size="xs" compact={true} />
     </div>
 
     <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
@@ -45,41 +46,47 @@ const { active = '' } = Astro.props;
           <li style="--i:3"><a href="/about" class={active === 'about' ? 'active' : ''}>About</a></li>
           <li style="--i:4"><a href="/contact" class={active === 'contact' ? 'active' : ''}>Contact</a></li>
         </ul>
-        <div class="nav-social-mobile" style="--i:5">
-          <SocialIcons size="md" />
-        </div>
-        <a href="/contact" class="btn btn-primary nav-cta" style="--i:6">Get Started</a>
+        <a href="/contact" class="btn btn-primary nav-cta" style="--i:5">Get Started</a>
       </div>
     </div>
   </div>
 </nav>
 
 <style>
-  .nav-social-desktop {
-    display: none;
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .nav-social-bar {
+    display: flex;
+    align-items: center;
     margin-left: auto;
-    margin-right: 0.5rem;
+    margin-right: 0.15rem;
     flex-shrink: 0;
+    z-index: 102;
   }
   @media (min-width: 768px) {
-    .nav-social-desktop {
-      display: flex;
-      align-items: center;
+    .nav-social-bar {
       order: 2;
+      margin-right: 0.5rem;
     }
-    .nav-panel { order: 1; }
+    .nav-panel { order: 1; flex: 1; }
     .nav-toggle { order: 3; }
   }
-  @media (min-width: 1100px) {
-    .nav-social-desktop { margin-right: 0.75rem; }
-  }
-  .nav-social-mobile {
-    display: flex;
-    justify-content: center;
-    padding: 0.75rem 0 0.25rem;
-  }
-  @media (min-width: 768px) {
-    .nav-social-mobile { display: none; }
+  /* Mobile services menu: fixed layout, no overflow break */
+  @media (max-width: 767px) {
+    .nav-dropdown-menu {
+      max-height: min(55vh, 420px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav-dropdown-menu a {
+      font-size: 0.95rem !important;
+      padding: 0.65rem 0.75rem !important;
+      white-space: normal;
+      line-height: 1.35;
+    }
   }
 </style>
 

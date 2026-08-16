@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import { SITE } from '../data/site';
+
+interface Demo {
+  title: string;
+  desc: string;
+  tag?: string;
+}
+interface Props {
+  title: string;
+  seoTitle: string;
+  seoDescription: string;
+  icon: string;
+  lead: string;
+  bullets: string[];
+  demos: Demo[];
+}
+const { title, seoTitle, seoDescription, icon, lead, bullets, demos } = Astro.props;
+---
+<Layout title={seoTitle} description={seoDescription}>
+  <Nav active="services" />
+  <section class="hero-premium" style="min-height:auto;padding-top:7.5rem;padding-bottom:3.5rem">
+    <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
+    <div class="container" style="position:relative;z-index:2;max-width:720px">
+      <div class="reveal">
+        <div class="eyebrow"><span class="dot"></span> Service</div>
+        <h1 class="hero-title title-anim">{icon} {title}</h1>
+        <p class="hero-lead">{lead}</p>
+        <div class="flex-btns">
+          <a href={SITE.whatsappLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Order on WhatsApp</a>
+          <a href="/contact" class="btn btn-outline">Contact</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-soft">
+    <div class="container grid-2">
+      <div class="reveal">
+        <h2 class="mb-6 title-anim">What’s included</h2>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.85rem;color:var(--text-2)">
+          {bullets.map((b) => <li>✓ {b}</li>)}
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="glass-card" style="padding:1.75rem">
+          <h3 class="mb-4">Why Creavix</h3>
+          <p style="font-size:.95rem;margin-bottom:1rem">Premium delivery, clear process, SEO-aware builds and campaign-ready creative from one IT solution partner.</p>
+          <a href={SITE.whatsappLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Get a quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-violet">
+    <div class="container">
+      <div class="text-center mb-8 reveal">
+        <p class="eyebrow" style="margin:0 auto 1rem">Demo samples</p>
+        <h2 class="mb-4 title-anim">See how this service looks in practice</h2>
+        <p style="max-width:36rem;margin:0 auto">Unique sample concepts for this page — replace with your real client work anytime.</p>
+      </div>
+      <div class="grid-3">
+        {
+          demos.map((d) => (
+            <div class="glass-card reveal">
+              {d.tag && <span class="demo-tag">{d.tag}</span>}
+              <h3 class="mb-4" style="margin-top:.5rem">{d.title}</h3>
+              <p style="font-size:.9rem">{d.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-warm">
+    <div class="container text-center reveal" style="max-width:40rem">
+      <h2 class="mb-4 title-anim">Ready to start?</h2>
+      <p class="mb-8">WhatsApp {SITE.whatsapp} · {SITE.email1}</p>
+      <a href={SITE.whatsappLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Chat now</a>
+    </div>
+  </section>
+  <Footer />
+</Layout>
+
+<style>
+  .demo-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--primary);
+    background: rgba(13, 148, 136, 0.1);
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+  }
+</style>

@@ -1,33 +1,31 @@
 ---
-/** Unique brand SVG icons — Facebook, Instagram, YouTube, TikTok, LinkedIn, X, WhatsApp */
 import { SOCIAL_LINKS } from '../data/site';
 
 interface Props {
-  size?: 'sm' | 'md';
+  size?: 'sm' | 'md' | 'xs';
   class?: string;
+  compact?: boolean;
 }
-const { size = 'sm', class: className = '' } = Astro.props;
-const px = size === 'sm' ? 18 : 22;
+const { size = 'sm', class: className = '', compact = false } = Astro.props;
+const px = size === 'xs' ? 15 : size === 'sm' ? 17 : 20;
 
 const paths: Record<string, string> = {
-  facebook:
-    'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z',
-  instagram:
-    'M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z M17.5 6.5h.01 M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2z',
-  youtube:
-    'M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.5C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z M9.75 15.02V8.98L15.5 12l-5.75 3.02z',
-  tiktok:
-    'M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5',
-  linkedin:
-    'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z',
+  facebook: 'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z',
+  instagram: 'M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z M17.5 6.5h.01 M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2z',
+  youtube: 'M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.5C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z M9.75 15.02V8.98L15.5 12l-5.75 3.02z',
+  tiktok: 'M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5',
+  linkedin: 'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z',
   x: 'M4 4l11.733 16h4.267l-11.733-16z M4 20l6.768-6.768 M20 4l-6.768 6.768',
-  whatsapp:
-    'M20.5 3.5A11 11 0 0 0 3.2 17.7L2 22l4.4-1.15A11 11 0 1 0 20.5 3.5z M12 19.5a7.5 7.5 0 0 1-3.82-1.04l-.27-.16-2.85.75.76-2.78-.18-.29A7.5 7.5 0 1 1 12 19.5z M16.2 13.9c-.22-.11-1.3-.64-1.5-.71s-.35-.11-.5.11-.57.71-.7.86-.26.16-.48.05a6.1 6.1 0 0 1-1.8-1.11 6.8 6.8 0 0 1-1.25-1.56c-.13-.22 0-.34.1-.45s.22-.26.33-.39.15-.22.22-.37.04-.28-.02-.39-.5-1.2-.68-1.64c-.18-.43-.36-.37-.5-.38h-.42c-.15 0-.39.05-.59.28s-.78.76-.78 1.86.8 2.16.91 2.31 1.57 2.4 3.8 3.36a12.9 12.9 0 0 0 1.28.47 3.1 3.1 0 0 0 1.42.09c.43-.06 1.3-.53 1.48-1.04s.18-.95.13-1.04-.2-.16-.42-.28z',
+  whatsapp: 'M20.5 3.5A11 11 0 0 0 3.2 17.7L2 22l4.4-1.15A11 11 0 1 0 20.5 3.5z M12 19.5a7.5 7.5 0 0 1-3.82-1.04l-.27-.16-2.85.75.76-2.78-.18-.29A7.5 7.5 0 1 1 12 19.5z',
 };
+
+const list = compact
+  ? SOCIAL_LINKS.filter((s) => ['facebook', 'instagram', 'youtube', 'whatsapp'].includes(s.key))
+  : SOCIAL_LINKS;
 ---
 <div class={`social-icons ${size} ${className}`}>
   {
-    SOCIAL_LINKS.map((s) => (
+    list.map((s) => (
       <a
         href={s.url}
         target="_blank"
@@ -49,30 +47,30 @@ const paths: Record<string, string> = {
   .social-icons {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    flex-wrap: wrap;
+    gap: 0.3rem;
+    flex-wrap: nowrap;
   }
   .si {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
     border-radius: 10px;
     color: var(--si-color, #64748b);
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.72);
     border: 1px solid rgba(15, 23, 42, 0.08);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     text-decoration: none;
+    flex-shrink: 0;
   }
   .si:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.05);
     background: #fff;
     box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
-    color: var(--si-color);
   }
-  .social-icons.sm .si { width: 32px; height: 32px; border-radius: 9px; }
-  .social-icons.md .si { width: 40px; height: 40px; border-radius: 12px; }
+  .social-icons.xs .si { width: 28px; height: 28px; border-radius: 8px; }
+  .social-icons.md .si { width: 38px; height: 38px; border-radius: 12px; }
 </style>
