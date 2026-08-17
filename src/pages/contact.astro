@@ -1,22 +1,30 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import TopBar from '../components/TopBar.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import ServiceIcons from '../components/icons/ServiceIcons.astro';
 import { SITE, SOCIAL_LINKS } from '../data/site';
 ---
 <Layout
-  title={`Contact ${SITE.brand} | Web, App, AI Video & Marketing Quote`}
-  description={`Contact ${SITE.brand} for web development, apps, authentication, AI video marketing and Facebook campaigns. Hotline ${SITE.hotline}, WhatsApp ${SITE.whatsapp}, ${SITE.email1}. ${SITE.address}.`}
+  title={`Contact ${SITE.brand} | Video, AI & Digital Quote`}
+  description={`Contact ${SITE.brand} for video editing, AI video marketing, web development and campaigns. Hotline ${SITE.hotline}, WhatsApp ${SITE.whatsapp}, ${SITE.email1}. ${SITE.address}.`}
 >
+  <TopBar />
   <Nav active="contact" />
-  <section class="hero-premium" style="min-height:auto;padding-top:8rem;padding-bottom:4rem">
-    <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
-    <div class="container" style="position:relative;z-index:2;max-width:640px;text-align:center">
+
+  <section class="page-hero page-hero-center">
+    <div class="container" style="max-width:640px;text-align:center">
       <div class="reveal">
-        <div class="eyebrow" style="margin-left:auto;margin-right:auto"><span class="dot"></span> Contact</div>
-        <h1 class="hero-title">Talk to an IT Partner<br /><span class="text-gradient">That Delivers</span></h1>
+        <div class="rating-pill" style="margin-left:auto;margin-right:auto">
+          <span class="rating-score">Contact</span>
+          <span class="rating-label">Usually reply within hours</span>
+        </div>
+        <h1 class="hero-title">
+          Talk to a Partner<br /><span class="text-gradient">That Delivers</span>
+        </h1>
         <p class="hero-lead" style="margin-left:auto;margin-right:auto">
-          Websites, apps, authentication, AI video or full campaigns — tell us what you need. We usually reply within a few hours.
+          Video editing, AI creatives, websites or full campaigns — tell us what you need.
         </p>
       </div>
     </div>
@@ -25,28 +33,22 @@ import { SITE, SOCIAL_LINKS } from '../data/site';
   <section class="section-soft">
     <div class="container">
       <div class="grid-3">
-        <div class="glass-card reveal text-center">
-          <div class="icon-box" style="background:rgba(16,185,129,.1);margin:0 auto 1rem">💬</div>
+        <a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer" class="glass-card reveal text-center contact-card">
+          <div class="contact-icon"><ServiceIcons name="boost" size={28} /></div>
           <h3 class="mb-4">WhatsApp</h3>
-          <p style="font-size:.9rem">
-            <a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer" style="color:var(--primary)">{SITE.whatsapp}</a>
-          </p>
-        </div>
-        <div class="glass-card reveal text-center">
-          <div class="icon-box" style="background:rgba(79,70,229,.1);margin:0 auto 1rem">☎️</div>
+          <p style="font-size:.9rem;color:var(--primary)">{SITE.whatsapp}</p>
+        </a>
+        <a href={`tel:${SITE.hotline.replace(/\s/g, '')}`} class="glass-card reveal text-center contact-card">
+          <div class="contact-icon"><ServiceIcons name="campaign" size={28} /></div>
           <h3 class="mb-4">Hotline</h3>
-          <p style="font-size:.9rem">
-            <a href={`tel:${SITE.hotline.replace(/\s/g, '')}`} style="color:var(--primary)">{SITE.hotline}</a>
-          </p>
-        </div>
-        <div class="glass-card reveal text-center">
-          <div class="icon-box" style="background:rgba(6,182,212,.1);margin:0 auto 1rem">✉️</div>
+          <p style="font-size:.9rem;color:var(--primary)">{SITE.hotline}</p>
+        </a>
+        <a href={`mailto:${SITE.email1}`} class="glass-card reveal text-center contact-card">
+          <div class="contact-icon"><ServiceIcons name="web" size={28} /></div>
           <h3 class="mb-4">Email</h3>
-          <p style="font-size:.9rem">
-            <a href={`mailto:${SITE.email1}`} style="color:var(--primary)">{SITE.email1}</a><br />
-            <a href={`mailto:${SITE.email2}`} style="color:var(--text-2)">{SITE.email2}</a>
-          </p>
-        </div>
+          <p style="font-size:.9rem;color:var(--primary)">{SITE.email1}</p>
+          <p style="font-size:.8rem;color:var(--text-3)">{SITE.email2}</p>
+        </a>
       </div>
 
       <div class="glass-card reveal" style="margin-top:2rem;padding:1.75rem;text-align:center">
@@ -59,13 +61,11 @@ import { SITE, SOCIAL_LINKS } from '../data/site';
       <div class="text-center reveal" style="margin-top:2.5rem">
         <h3 class="mb-4">Social</h3>
         <div style="display:flex;flex-wrap:wrap;gap:.65rem;justify-content:center">
-          {
-            SOCIAL_LINKS.map((s) => (
-              <a href={s.url} target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:.5rem 1rem;font-size:.85rem">
-                {s.name}
-              </a>
-            ))
-          }
+          {SOCIAL_LINKS.map((s) => (
+            <a href={s.url} target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:.5rem 1rem;font-size:.85rem">
+              {s.name}
+            </a>
+          ))}
         </div>
       </div>
 
@@ -78,3 +78,42 @@ import { SITE, SOCIAL_LINKS } from '../data/site';
   </section>
   <Footer />
 </Layout>
+
+<style>
+  .page-hero {
+    padding: 5.5rem 1.25rem 3.25rem;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(13, 148, 136, 0.08), transparent 55%),
+      linear-gradient(180deg, #fff, #F7F8FA);
+  }
+  .rating-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    margin-bottom: 1.15rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .rating-score { color: #0D9488; }
+  .rating-label { color: #64748B; font-weight: 500; }
+  .contact-card {
+    text-decoration: none;
+    color: inherit;
+  }
+  .contact-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 1rem;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(13, 148, 136, 0.08);
+    border: 1px solid rgba(13, 148, 136, 0.12);
+  }
+</style>

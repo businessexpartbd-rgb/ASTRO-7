@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import TopBar from './TopBar.astro';
 import Nav from './Nav.astro';
 import Footer from './Footer.astro';
 import ServiceIcons from './icons/ServiceIcons.astro';
@@ -20,16 +21,26 @@ interface Props {
   demos: Demo[];
 }
 const { title, seoTitle, seoDescription, icon, lead, bullets, demos } = Astro.props;
+
+const steps = [
+  { n: '01', t: 'Brief', d: 'Share goals, references and deadline on WhatsApp.' },
+  { n: '02', t: 'Produce', d: 'We craft, edit and optimize for your platforms.' },
+  { n: '03', t: 'Deliver', d: 'Revisions included — ready files in 24–48h when scoped.' },
+];
 ---
 <Layout title={seoTitle} description={seoDescription}>
+  <TopBar />
   <Nav active="services" />
-  <section class="hero-premium" style="min-height:auto;padding-top:7.5rem;padding-bottom:3.5rem">
-    <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
-    <div class="container" style="position:relative;z-index:2;max-width:720px">
+
+  <section class="svc-hero">
+    <div class="container svc-hero-inner">
       <div class="reveal">
-        <div class="eyebrow"><span class="dot"></span> Service</div>
+        <div class="rating-pill">
+          <span class="rating-score">Service</span>
+          <span class="rating-label">{SITE.brand}</span>
+        </div>
         <div class="svc-hero-icon">
-          <ServiceIcons name={icon} size={56} />
+          <ServiceIcons name={icon} size={48} />
         </div>
         <h1 class="hero-title">{title}</h1>
         <p class="hero-lead">{lead}</p>
@@ -42,6 +53,24 @@ const { title, seoTitle, seoDescription, icon, lead, bullets, demos } = Astro.pr
   </section>
 
   <section class="section-soft">
+    <div class="container">
+      <div class="text-center mb-8 reveal">
+        <p class="eyebrow" style="margin:0 auto 1rem">How it works</p>
+        <h2 class="mb-4">Simple. Fast. Professional.</h2>
+      </div>
+      <div class="grid-3 steps-grid">
+        {steps.map((s) => (
+          <div class="glass-card reveal step-card">
+            <span class="step-n">{s.n}</span>
+            <h3 class="mb-4">{s.t}</h3>
+            <p style="font-size:.9rem">{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-violet">
     <div class="container grid-2">
       <div class="reveal">
         <h2 class="mb-6">What is included</h2>
@@ -60,19 +89,21 @@ const { title, seoTitle, seoDescription, icon, lead, bullets, demos } = Astro.pr
             <ServiceIcons name="spark" size={36} />
           </div>
           <h3 class="mb-4">Why Creavix</h3>
-          <p style="font-size:.95rem;margin-bottom:1rem">Premium delivery, clear process, SEO-aware builds and campaign-ready creative from one IT solution partner.</p>
+          <p style="font-size:.95rem;margin-bottom:1rem">
+            Clear process, SEO-aware builds and campaign-ready creative from one IT &amp; video partner in Bangladesh.
+          </p>
           <a href={SITE.whatsappLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Get a quote</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section-violet">
+  <section class="section-soft">
     <div class="container">
       <div class="text-center mb-8 reveal">
         <p class="eyebrow" style="margin:0 auto 1rem">Demo samples</p>
-        <h2 class="mb-4">See how this service looks in practice</h2>
-        <p style="max-width:36rem;margin:0 auto">Unique sample concepts for this page — replace with your real client work anytime.</p>
+        <h2 class="mb-4">How this service looks in practice</h2>
+        <p style="max-width:36rem;margin:0 auto">Concept samples for this page — swap with live client work anytime.</p>
       </div>
       <div class="grid-3">
         {demos.map((d) => (
@@ -100,17 +131,48 @@ const { title, seoTitle, seoDescription, icon, lead, bullets, demos } = Astro.pr
 </Layout>
 
 <style>
+  .svc-hero {
+    padding: 5.5rem 1.25rem 3.25rem;
+    background:
+      radial-gradient(ellipse 60% 50% at 90% 20%, rgba(13, 148, 136, 0.08), transparent 55%),
+      linear-gradient(180deg, #fff, #F7F8FA);
+  }
+  .svc-hero-inner { max-width: 720px; }
+  .rating-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    margin-bottom: 1.1rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .rating-score { color: #0D9488; }
+  .rating-label { color: #64748B; font-weight: 500; }
   .svc-hero-icon {
-    width: 88px;
-    height: 88px;
-    border-radius: 24px;
+    width: 80px;
+    height: 80px;
+    border-radius: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.25rem;
-    background: rgba(13, 148, 136, 0.1);
-    border: 1px solid rgba(13, 148, 136, 0.15);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    margin-bottom: 1.1rem;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 10px 28px rgba(13, 148, 136, 0.1);
+  }
+  .step-n {
+    display: block;
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: #0D9488;
+    margin-bottom: 0.5rem;
   }
   .svc-bullets {
     list-style: none;
@@ -137,5 +199,8 @@ const { title, seoTitle, seoDescription, icon, lead, bullets, demos } = Astro.pr
     background: rgba(13, 148, 136, 0.1);
     padding: 0.25rem 0.6rem;
     border-radius: 999px;
+  }
+  @media (max-width: 767px) {
+    .svc-hero { padding-top: 4.75rem; }
   }
 </style>

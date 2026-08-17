@@ -1,69 +1,98 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import TopBar from '../components/TopBar.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import ServiceIcons from '../components/icons/ServiceIcons.astro';
 import { SITE, STATS, SOCIAL_LINKS } from '../data/site';
+
+const pillars = [
+  { icon: 'video', title: 'Video & AI', desc: 'Cinematic edits and human-like AI videos built for ads and social.' },
+  { icon: 'web', title: 'Web & Apps', desc: 'SEO-ready websites and applications engineered for speed and scale.' },
+  { icon: 'campaign', title: 'Growth', desc: 'Facebook pages, boosting and campaigns that drive measurable results.' },
+];
 ---
 <Layout
-  title={`About ${SITE.brand} | IT Solution & Digital Agency Bangladesh`}
-  description={`About ${SITE.brand} — full-service IT agency in Savar, Dhaka. Web development, apps, authentication, AI video marketing, video editing and Facebook growth since ${SITE.servingSince}. Founder ${SITE.founder.name}.`}
+  title={`About ${SITE.brand} | Video Editing & IT Agency Bangladesh`}
+  description={`About ${SITE.brand} — video editing agency and full IT partner in Savar, Dhaka. AI video, professional editing, web, apps and Meta growth since ${SITE.servingSince}. Founder ${SITE.founder.name}.`}
 >
+  <TopBar />
   <Nav active="about" />
-  <section class="hero-premium" style="min-height:auto;padding-top:8rem;padding-bottom:4rem">
-    <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
-    <div class="container" style="position:relative;z-index:2;max-width:720px">
+
+  <section class="page-hero">
+    <div class="container page-hero-inner">
       <div class="reveal">
-        <div class="eyebrow"><span class="dot"></span> About Us</div>
-        <h1 class="hero-title">Full-Service IT Agency<br /><span class="text-gradient">Built for Growth</span></h1>
+        <div class="rating-pill">
+          <span class="rating-score">4.8</span>
+          <span class="rating-stars">★★★★★</span>
+          <span class="rating-label">Since {SITE.servingSince}</span>
+        </div>
+        <h1 class="hero-title">
+          Video &amp; IT Agency<br /><span class="text-gradient">Built for Growth</span>
+        </h1>
         <p class="hero-lead">{SITE.shortDesc}</p>
       </div>
     </div>
   </section>
 
   <section class="section-soft">
+    <div class="container">
+      <div class="text-center mb-8 reveal">
+        <p class="eyebrow" style="margin:0 auto 1rem">What we stand for</p>
+        <h2 class="mb-4">One partner. Full digital stack.</h2>
+      </div>
+      <div class="grid-3">
+        {pillars.map((p) => (
+          <div class="glass-card reveal">
+            <div style="margin-bottom:0.75rem"><ServiceIcons name={p.icon} size={36} /></div>
+            <h3 class="mb-4">{p.title}</h3>
+            <p style="font-size:.9rem">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-violet">
     <div class="container grid-2">
       <div class="reveal">
         <h2 class="mb-6">Who We Are</h2>
         <p class="mb-4">
-          {SITE.brand} delivers website development, application build, secure authentication, AI video marketing,
-          professional video editing, Facebook page services, boosting and complete digital campaigns.
+          {SITE.brand} delivers professional video editing, human-like AI video marketing, website development,
+          application build, secure authentication, Facebook page services, boosting and full campaigns.
         </p>
         <p class="mb-4">
           Founded by <strong>{SITE.founder.name}</strong> ({SITE.founder.role}). Serving clients since {SITE.servingSince}
           from our studio in {SITE.address}.
         </p>
-        <p>We focus on quality delivery, SEO-ready builds and measurable business results — not video-only work.</p>
+        <p>We focus on quality delivery, fast turnaround and measurable business results.</p>
       </div>
       <div class="reveal">
         <div class="glass-card" style="padding:2rem">
           <h3 class="mb-6">By the numbers</h3>
           <div class="stat-grid">
-            {
-              STATS.map((s) => (
-                <div>
-                  <strong style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">{s.value}</strong>
-                  <br />
-                  <span style="font-size:.8rem;color:var(--text-3)">{s.label}</span>
-                </div>
-              ))
-            }
+            {STATS.map((s) => (
+              <div>
+                <strong style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">{s.value}</strong>
+                <br />
+                <span style="font-size:.8rem;color:var(--text-3)">{s.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section-violet">
+  <section class="section-soft">
     <div class="container reveal" style="max-width:40rem">
       <h2 class="mb-4">Connect with us</h2>
       <div style="display:flex;flex-wrap:wrap;gap:.65rem">
-        {
-          SOCIAL_LINKS.map((s) => (
-            <a href={s.url} target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:.55rem 1rem;font-size:.85rem">
-              {s.name}
-            </a>
-          ))
-        }
+        {SOCIAL_LINKS.map((s) => (
+          <a href={s.url} target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:.55rem 1rem;font-size:.85rem">
+            {s.name}
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -71,7 +100,7 @@ import { SITE, STATS, SOCIAL_LINKS } from '../data/site';
   <section class="section-warm">
     <div class="container text-center reveal" style="max-width:40rem">
       <h2 class="mb-4">Work With Us</h2>
-      <p class="mb-8">Need a website, app, auth system or full digital campaign? Message us.</p>
+      <p class="mb-8">Need video, AI creatives, a website or a full digital campaign? Message us.</p>
       <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center">
         <a href={SITE.whatsappLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         <a href="/contact" class="btn btn-outline">Contact page</a>
@@ -80,3 +109,29 @@ import { SITE, STATS, SOCIAL_LINKS } from '../data/site';
   </section>
   <Footer />
 </Layout>
+
+<style>
+  .page-hero {
+    padding: 5.5rem 1.25rem 3.25rem;
+    background:
+      radial-gradient(ellipse 60% 50% at 85% 30%, rgba(13, 148, 136, 0.08), transparent 55%),
+      linear-gradient(180deg, #fff, #F7F8FA);
+  }
+  .page-hero-inner { max-width: 720px; }
+  .rating-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    margin-bottom: 1.15rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .rating-score { color: #0B1220; }
+  .rating-stars { color: #F59E0B; font-size: 0.75rem; letter-spacing: 1px; }
+  .rating-label { color: #64748B; font-weight: 500; }
+</style>
