@@ -21,7 +21,7 @@ const platformsMore = [
   { name: 'Webflow', href: 'https://webflow.com/', desc: 'No-code design', icon: 'https://cdn.simpleicons.org/webflow/4353FF' },
 ];
 
-/** Domain registrars — Hostinger first, then Namecheap, Cloudflare, others */
+/** Domain registrars — real brand logos (Hostinger first) */
 const domains = [
   {
     name: 'Hostinger',
@@ -33,8 +33,7 @@ const domains = [
     name: 'Namecheap',
     href: 'https://www.namecheap.com/domains/',
     desc: 'Affordable domains · free WHOIS',
-    letter: 'NC',
-    color: '#FF6C2C',
+    icon: 'https://logo.clearbit.com/namecheap.com',
   },
   {
     name: 'Cloudflare',
@@ -46,22 +45,19 @@ const domains = [
     name: 'GoDaddy',
     href: 'https://www.godaddy.com/domains',
     desc: 'Global domain marketplace',
-    letter: 'GD',
-    color: '#1BDBDB',
+    icon: 'https://logo.clearbit.com/godaddy.com',
   },
   {
     name: 'Porkbun',
     href: 'https://porkbun.com/',
     desc: 'Cheap domains · free privacy',
-    letter: 'PB',
-    color: '#F7931A',
+    icon: 'https://logo.clearbit.com/porkbun.com',
   },
   {
     name: 'Name.com',
     href: 'https://www.name.com/domain/search',
     desc: 'Simple domain management',
-    letter: 'N.',
-    color: '#1A73E8',
+    icon: 'https://logo.clearbit.com/name.com',
   },
 ];
 
@@ -142,7 +138,6 @@ const floatIcons = [
           ))}
         </div>
 
-        <!-- Single morphing device: phone → tablet → laptop (same website) -->
         <div class="wd-device" data-device-cycle data-mode="phone">
           <div class="morph" data-morph>
             <div class="bezel">
@@ -301,16 +296,23 @@ const floatIcons = [
       <div class="wd-center">
         <p class="wd-eyebrow">Domain &amp; DNS</p>
         <h2 class="wd-h2">Trusted places to buy domains</h2>
-        <p class="wd-sub">Hostinger first · official links to purchase &amp; connect</p>
+        <p class="wd-sub">Hostinger first · official logos &amp; purchase links</p>
       </div>
       <div class="plat-grid more domain-grid">
         {domains.map((d) => (
           <a class="plat-card domain" href={d.href} target="_blank" rel="noopener noreferrer">
-            {d.icon ? (
-              <img class="plat-img" src={d.icon} alt="" width="36" height="36" loading="lazy" />
-            ) : (
-              <span class="plat-letter" style={`--c:${d.color}`}>{d.letter}</span>
-            )}
+            <span class="plat-logo-wrap">
+              <img
+                class="plat-img"
+                src={d.icon}
+                alt={`${d.name} logo`}
+                width="36"
+                height="36"
+                loading="lazy"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+              />
+              <span class="plat-letter fallback" style="display:none">{d.name.charAt(0)}</span>
+            </span>
             <div>
               <strong>{d.name}</strong>
               <span>{d.desc}</span>
@@ -460,7 +462,6 @@ const floatIcons = [
     50% { transform: translateY(-7px); }
   }
 
-  /* Morphing device */
   .wd-device {
     position: relative; z-index: 1;
     width: min(420px, 100%); height: 360px;
@@ -692,16 +693,30 @@ const floatIcons = [
     transform: translateY(-2px);
   }
   .plat-card.top { padding: 1.15rem 1.2rem; }
-  .plat-img { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
+  .plat-logo-wrap {
+    width: 40px; height: 40px; flex-shrink: 0;
+    display: grid; place-items: center;
+    border-radius: 10px;
+    background: #F8FAFC;
+    border: 1px solid rgba(15,23,42,.06);
+    overflow: hidden;
+  }
+  .plat-img {
+    width: 28px; height: 28px; object-fit: contain; flex-shrink: 0;
+  }
+  .plat-card.domain .plat-img { width: 28px; height: 28px; }
   .plat-img.sm { width: 28px; height: 28px; }
   .plat-letter {
     width: 36px; height: 36px; border-radius: 10px;
     display: grid; place-items: center;
-    font-weight: 800; font-size: 0.72rem; color: #fff;
-    background: var(--c, #2563EB); flex-shrink: 0;
+    font-weight: 800; font-size: 0.85rem; color: #64748B;
+    background: #F1F5F9; flex-shrink: 0;
+  }
+  .plat-letter.fallback {
+    width: 100%; height: 100%; border-radius: 0; background: #EEF2FF; color: #2563EB;
   }
   .plat-card strong { display: block; font-size: 0.92rem; color: #0F172A; }
-  .plat-card span:not(.plat-go):not(.plat-letter) {
+  .plat-card span:not(.plat-go):not(.plat-letter):not(.plat-logo-wrap) {
     display: block; font-size: 0.75rem; color: #64748B; margin-top: 0.15rem;
   }
   .plat-go { margin-left: auto; color: #94A3B8; font-size: 0.95rem; }
