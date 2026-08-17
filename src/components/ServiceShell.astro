@@ -4,7 +4,7 @@ import TopBar from './TopBar.astro';
 import Nav from './Nav.astro';
 import Footer from './Footer.astro';
 import ServiceIcons from './icons/ServiceIcons.astro';
-import { SITE } from '../data/site';
+import { SITE, ytThumb } from '../data/site';
 
 interface Demo {
   title: string;
@@ -19,14 +19,27 @@ interface Props {
   lead: string;
   bullets: string[];
   demos: Demo[];
+  videoIds?: string[];
+  videoFormat?: 'landscape' | 'short';
 }
-const { title, seoTitle, seoDescription, icon, lead, bullets, demos } = Astro.props;
+const {
+  title,
+  seoTitle,
+  seoDescription,
+  icon,
+  lead,
+  bullets,
+  demos,
+  videoIds = [],
+  videoFormat = 'landscape',
+} = Astro.props;
 
 const steps = [
   { n: '01', t: 'Brief', d: 'Share goals, references and deadline on WhatsApp.' },
   { n: '02', t: 'Produce', d: 'We craft, edit and optimize for your platforms.' },
   { n: '03', t: 'Deliver', d: 'Revisions included — ready files in 24–48h when scoped.' },
 ];
+const showVideos = videoIds.length > 0;
 ---
 <Layout title={seoTitle} description={seoDescription}>
   <TopBar />
@@ -58,9 +71,9 @@ const steps = [
         <p class="eyebrow" style="margin:0 auto 1rem">How it works</p>
         <h2 class="mb-4">Simple. Fast. Professional.</h2>
       </div>
-      <div class="grid-3 steps-grid">
+      <div class="grid-3">
         {steps.map((s) => (
-          <div class="glass-card reveal step-card">
+          <div class="glass-card reveal">
             <span class="step-n">{s.n}</span>
             <h3 class="mb-4">{s.t}</h3>
             <p style="font-size:.9rem">{s.d}</p>
@@ -70,7 +83,38 @@ const steps = [
     </div>
   </section>
 
-  <section class="section-violet">
+  {showVideos && (
+    <section class="section-violet">
+      <div class="container">
+        <div class="text-center mb-8 reveal">
+          <p class="eyebrow" style="margin:0 auto 1rem">Real portfolio</p>
+          <h2 class="mb-4">Sample work for this service</h2>
+          <p style="max-width:36rem;margin:0 auto">Tap any video to play. Full gallery on the homepage.</p>
+        </div>
+        <div class="svc-video-grid">
+          {videoIds.map((vid) => (
+            <button
+              type="button"
+              class="svc-video-card"
+              data-yt={vid}
+              data-format={videoFormat}
+              aria-label="Play portfolio video"
+            >
+              <img src={ytThumb(vid)} alt="" width="480" height="270" loading="lazy" decoding="async" class="svc-video-thumb" />
+              <span class="svc-play" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+              </span>
+            </button>
+          ))}
+        </div>
+        <p class="text-center" style="margin-top:1.25rem">
+          <a href="/#portfolio" style="color:var(--primary);font-weight:600;font-size:.9rem">View full portfolio →</a>
+        </p>
+      </div>
+    </section>
+  )}
+
+  <section class={showVideos ? 'section-soft' : 'section-violet'}>
     <div class="container grid-2">
       <div class="reveal">
         <h2 class="mb-6">What is included</h2>
@@ -90,7 +134,7 @@ const steps = [
           </div>
           <h3 class="mb-4">Why Creavix</h3>
           <p style="font-size:.95rem;margin-bottom:1rem">
-            Clear process, SEO-aware builds and campaign-ready creative from one IT &amp; video partner in Bangladesh.
+            Clear process, fast delivery and campaign-ready creative from one IT &amp; video partner in Bangladesh.
           </p>
           <a href={SITE.whatsappLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Get a quote</a>
         </div>
@@ -101,9 +145,8 @@ const steps = [
   <section class="section-soft">
     <div class="container">
       <div class="text-center mb-8 reveal">
-        <p class="eyebrow" style="margin:0 auto 1rem">Demo samples</p>
+        <p class="eyebrow" style="margin:0 auto 1rem">Concepts</p>
         <h2 class="mb-4">How this service looks in practice</h2>
-        <p style="max-width:36rem;margin:0 auto">Concept samples for this page — swap with live client work anytime.</p>
       </div>
       <div class="grid-3">
         {demos.map((d) => (
@@ -129,6 +172,16 @@ const steps = [
   </section>
   <Footer />
 </Layout>
+
+{showVideos && (
+  <div class="yt-modal" id="svc-yt-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="yt-backdrop" id="svc-yt-backdrop"></div>
+    <div class="yt-panel landscape" id="svc-yt-panel">
+      <button type="button" class="yt-close" id="svc-yt-close" aria-label="Close">×</button>
+      <div class="yt-frame-wrap" id="svc-yt-wrap"></div>
+    </div>
+  </div>
+)}
 
 <style>
   .svc-hero {
@@ -188,7 +241,6 @@ const steps = [
     align-items: flex-start;
     gap: 0.65rem;
   }
-  .svc-bullets li span { padding-top: 0.1rem; }
   .demo-tag {
     display: inline-block;
     font-size: 0.7rem;
@@ -200,7 +252,121 @@ const steps = [
     padding: 0.25rem 0.6rem;
     border-radius: 999px;
   }
+  .svc-video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  @media (min-width: 640px) {
+    .svc-video-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  }
+  .svc-video-card {
+    position: relative;
+    padding: 0;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #0f172a;
+    aspect-ratio: 16 / 9;
+  }
+  .svc-video-thumb { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .svc-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: rgba(13, 148, 136, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+  }
+  .yt-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10050;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .yt-modal.is-open { display: flex; }
+  .yt-backdrop { position: absolute; inset: 0; background: rgba(15, 23, 42, 0.82); }
+  .yt-panel {
+    position: relative;
+    z-index: 1;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #000;
+  }
+  .yt-panel.landscape { width: min(960px, 100%); }
+  .yt-panel.short { width: min(400px, 92vw); }
+  .yt-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .yt-frame-wrap { position: relative; width: 100%; }
+  .yt-panel.landscape .yt-frame-wrap { padding-top: 56.25%; }
+  .yt-panel.short .yt-frame-wrap { padding-top: 177.78%; }
+  .yt-frame-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
   @media (max-width: 767px) {
     .svc-hero { padding-top: 4.75rem; }
   }
 </style>
+
+{showVideos && (
+  <script is:inline>
+  (function () {
+    var modal = document.getElementById('svc-yt-modal');
+    var panel = document.getElementById('svc-yt-panel');
+    var wrap = document.getElementById('svc-yt-wrap');
+    var closeBtn = document.getElementById('svc-yt-close');
+    var backdrop = document.getElementById('svc-yt-backdrop');
+    function openYt(id, format) {
+      if (!modal || !wrap || !panel) return;
+      panel.classList.remove('landscape', 'short');
+      panel.classList.add(format === 'short' ? 'short' : 'landscape');
+      wrap.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeYt() {
+      if (!modal || !wrap) return;
+      modal.classList.remove('is-open');
+      wrap.innerHTML = '';
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.svc-video-card[data-yt]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var id = btn.getAttribute('data-yt');
+        var format = btn.getAttribute('data-format') || 'landscape';
+        if (id) openYt(id, format);
+      });
+    });
+    if (closeBtn) closeBtn.addEventListener('click', closeYt);
+    if (backdrop) backdrop.addEventListener('click', closeYt);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeYt(); });
+  })();
+  </script>
+)}

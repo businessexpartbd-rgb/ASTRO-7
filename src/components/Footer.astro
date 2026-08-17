@@ -11,7 +11,7 @@ import SiteChrome from './SiteChrome.astro';
         Creavix <span>iT</span> Solution
       </a>
       <p class="footer-desc">{SITE.shortDesc}</p>
-      <div style="margin-top:1rem">
+      <div style="margin-top:1.15rem">
         <SocialIcons size="md" />
       </div>
     </div>
@@ -20,18 +20,21 @@ import SiteChrome from './SiteChrome.astro';
       <ul>
         <li><a href="/services/video-editing">Video Editing</a></li>
         <li><a href="/services/ai-video-marketing">AI Video Marketing</a></li>
+        <li><a href="/services/human-like-content">Human-like Content</a></li>
         <li><a href="/services/web-development">Web Development</a></li>
         <li><a href="/services/application-build">Application Build</a></li>
+        <li><a href="/services/boosting">Boosting</a></li>
         <li><a href="/services/campaign">Campaign</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Company</h4>
       <ul>
+        <li><a href="/">Home</a></li>
         <li><a href="/about">About Us</a></li>
         <li><a href="/#portfolio">Portfolio</a></li>
-        <li><a href="/contact">Contact</a></li>
         <li><a href="/#reviews">Reviews</a></li>
+        <li><a href="/contact">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -41,7 +44,7 @@ import SiteChrome from './SiteChrome.astro';
         <li><a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp {SITE.whatsapp}</a></li>
         <li><a href={`mailto:${SITE.email1}`}>{SITE.email1}</a></li>
         <li><a href={`mailto:${SITE.email2}`}>{SITE.email2}</a></li>
-        <li><span style="color:var(--text-3);font-size:.85rem">{SITE.address}</span></li>
+        <li><span class="footer-address">{SITE.address}</span></li>
       </ul>
     </div>
   </div>
@@ -49,8 +52,20 @@ import SiteChrome from './SiteChrome.astro';
     <div>© {new Date().getFullYear()} {SITE.brand}. All rights reserved.</div>
     <div class="footer-links">
       <a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
-      <a href={`mailto:${SITE.email1}`}>{SITE.email1}</a>
+      <a href="/contact">Contact</a>
+      <a href="/#portfolio">Portfolio</a>
     </div>
   </div>
 </footer>
 <SiteChrome />
+
+<style>
+  .footer-address {
+    color: #64748B;
+    font-size: 0.85rem;
+    line-height: 1.45;
+  }
+  .footer-logo {
+    margin-bottom: 0.85rem;
+  }
+</style>

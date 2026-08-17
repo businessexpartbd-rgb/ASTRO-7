@@ -1,6 +1,5 @@
 /* =========================================================
-   Creavix × professional agency system (ViserX-inspired layout)
-   Clean white · bold type · teal brand · fast paint
+   Creavix Phase 3 — agency system (ViserX-inspired)
    ========================================================= */
 :root {
   --brand-teal: #0D9488;
@@ -28,7 +27,6 @@ body {
   color: var(--brand-ink) !important;
 }
 
-/* Soft agency hero atmosphere (like ViserX white depth) */
 .hero-premium {
   background:
     radial-gradient(ellipse 70% 55% at 85% 40%, rgba(13, 148, 136, 0.07), transparent 60%),
@@ -39,17 +37,16 @@ body {
   padding-bottom: 3.5rem !important;
 }
 
-.section-soft {
-  background: #F7F8FA !important;
-}
-.section-violet {
-  background: #FFFFFF !important;
-}
+.section-soft { background: #F7F8FA !important; }
+.section-violet { background: #FFFFFF !important; }
 .section-warm {
   background: linear-gradient(180deg, #F7F8FA, #FFFFFF) !important;
 }
-.section-gallery {
-  background: #FFFFFF !important;
+.section-gallery { background: #FFFFFF !important; }
+.section-reviews {
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 0%, rgba(13,148,136,.05), transparent 55%),
+    #F7F8FA !important;
 }
 
 .grid-overlay {
@@ -61,9 +58,7 @@ body {
   mask-image: radial-gradient(ellipse 80% 70% at 70% 45%, black 10%, transparent 70%) !important;
 }
 
-.orb-1, .orb-2, .orb-3 {
-  opacity: 0.22 !important;
-}
+.orb-1, .orb-2, .orb-3 { opacity: 0.2 !important; }
 .orb-1 {
   background: radial-gradient(circle, rgba(13, 148, 136, 0.35) 0%, transparent 70%) !important;
 }
@@ -74,7 +69,6 @@ body {
   background: radial-gradient(circle, rgba(20, 184, 166, 0.25) 0%, transparent 70%) !important;
 }
 
-/* Typography — bold agency headlines */
 h1, .hero-title {
   color: var(--brand-ink) !important;
   font-weight: 800 !important;
@@ -85,9 +79,7 @@ h2 {
   color: var(--brand-ink) !important;
   letter-spacing: -0.03em !important;
 }
-p, .hero-lead, .lead {
-  color: #64748B !important;
-}
+p, .hero-lead, .lead { color: #64748B !important; }
 
 .eyebrow {
   color: var(--brand-ink) !important;
@@ -113,7 +105,6 @@ p, .hero-lead, .lead {
   -webkit-text-fill-color: transparent !important;
 }
 
-/* Clean cards — soft border, light elevation (agency style) */
 .glass-card {
   background: #FFFFFF !important;
   border: 1px solid var(--brand-line) !important;
@@ -136,7 +127,6 @@ p, .hero-lead, .lead {
   border: 1px solid var(--brand-line) !important;
 }
 
-/* Buttons — ViserX dual pill pattern */
 .btn-primary {
   background: #0D9488 !important;
   color: #fff !important;
@@ -147,8 +137,7 @@ p, .hero-lead, .lead {
   background: #0F766E !important;
   box-shadow: 0 10px 26px rgba(13, 148, 136, 0.35) !important;
 }
-.btn-outline,
-.btn-dark {
+.btn-outline {
   background: #0B1220 !important;
   color: #fff !important;
   border: none !important;
@@ -160,7 +149,7 @@ p, .hero-lead, .lead {
 }
 
 .navbar.scrolled {
-  background: rgba(255, 255, 255, 0.94) !important;
+  background: rgba(255, 255, 255, 0.96) !important;
   backdrop-filter: blur(var(--blur-nav)) !important;
   -webkit-backdrop-filter: blur(var(--blur-nav)) !important;
   border-bottom: 1px solid var(--brand-line);
@@ -174,13 +163,26 @@ p, .hero-lead, .lead {
   color: #0D9488 !important;
 }
 
+/* Reviews polish */
+.review-item {
+  background: #FFFFFF !important;
+  border: 1px solid var(--brand-line) !important;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04) !important;
+}
+.review-form-card {
+  border: 1px solid var(--brand-line) !important;
+}
+
+/* Footer agency depth */
+.site-footer {
+  background: #0B1220 !important;
+}
+
 @media (max-width: 767px) {
-  .hero-premium {
-    padding-top: 4.5rem !important;
-  }
+  .hero-premium { padding-top: 4.5rem !important; }
   .orb {
     filter: blur(28px) !important;
-    opacity: 0.18 !important;
+    opacity: 0.16 !important;
     animation: none !important;
   }
 }
