@@ -1,70 +1,90 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import TopBar from '../components/TopBar.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import Reviews from '../components/Reviews.astro';
 import VideoGallery from '../components/VideoGallery.astro';
+import BrandStrip from '../components/BrandStrip.astro';
 import IconBox from '../components/IconBox.astro';
 import ServiceIcons from '../components/icons/ServiceIcons.astro';
 import HeroOrbit from '../components/HeroOrbit.astro';
 import { SITE } from '../data/site';
 
 const services = [
-  { href: '/services/web-development', name: 'web', title: 'Web Development', desc: 'Fast, SEO-friendly websites and landing pages built for ranking and conversion.', tone: 'rgba(13,148,136,.12)' },
-  { href: '/services/application-build', name: 'app', title: 'Application Build', desc: 'Custom web & mobile applications designed for performance and scale.', tone: 'rgba(245,158,11,.12)' },
-  { href: '/services/authentication', name: 'auth', title: 'Authentication Systems', desc: 'Secure login, signup, roles and access control for your products.', tone: 'rgba(5,150,105,.12)' },
-  { href: '/services/ai-video-marketing', name: 'ai', title: 'AI Video Marketing', desc: 'AI-powered video ads for Meta, YouTube and TikTok that convert.', tone: 'rgba(234,88,12,.12)' },
-  { href: '/services/video-editing', name: 'video', title: 'Video Editing', desc: 'Professional editing for ads, social, YouTube and brand films.', tone: 'rgba(225,29,72,.1)' },
-  { href: '/services/human-like-content', name: 'human', title: 'Human-like Content', desc: 'Authentic AI human & product visuals for campaigns.', tone: 'rgba(217,119,6,.12)' },
-  { href: '/services/facebook-page', name: 'facebook', title: 'Facebook Page Services', desc: 'Business page setup and verification support.', tone: 'rgba(13,148,136,.12)' },
-  { href: '/services/boosting', name: 'boost', title: 'Boosting Service', desc: 'Targeted Meta boosting to reach the right audience.', tone: 'rgba(225,29,72,.1)' },
-  { href: '/services/campaign', name: 'campaign', title: 'Campaign Service', desc: 'End-to-end campaign planning and performance management.', tone: 'rgba(234,88,12,.12)' },
+  { href: '/services/video-editing', name: 'video', title: 'Video Editing', desc: 'Professional editing for ads, social, YouTube and brand films — cinematic grade.', tone: 'rgba(13,148,136,.1)' },
+  { href: '/services/ai-video-marketing', name: 'ai', title: 'AI Video Marketing', desc: 'Human-like AI video ads engineered for Meta, YouTube and TikTok conversion.', tone: 'rgba(15,23,42,.06)' },
+  { href: '/services/human-like-content', name: 'human', title: 'Human-like Content', desc: 'Authentic AI human & product visuals that feel real and convert.', tone: 'rgba(13,148,136,.1)' },
+  { href: '/services/web-development', name: 'web', title: 'Web Development', desc: 'Fast, SEO-ready websites and landing pages built for ranking and growth.', tone: 'rgba(15,23,42,.06)' },
+  { href: '/services/application-build', name: 'app', title: 'Application Build', desc: 'Custom web & mobile applications designed for performance and scale.', tone: 'rgba(13,148,136,.1)' },
+  { href: '/services/authentication', name: 'auth', title: 'Authentication Systems', desc: 'Secure login, roles and access control for modern products.', tone: 'rgba(15,23,42,.06)' },
+  { href: '/services/facebook-page', name: 'facebook', title: 'Facebook Page Services', desc: 'Business page setup and verification support for brands.', tone: 'rgba(13,148,136,.1)' },
+  { href: '/services/boosting', name: 'boost', title: 'Boosting Service', desc: 'Targeted Meta boosting to reach the right audience with ROI focus.', tone: 'rgba(15,23,42,.06)' },
+  { href: '/services/campaign', name: 'campaign', title: 'Campaign Service', desc: 'End-to-end campaign planning and performance management.', tone: 'rgba(13,148,136,.1)' },
 ];
 ---
 <Layout title={SITE.seoTitle} description={SITE.seoDescription}>
+  <TopBar />
   <Nav active="home" />
+
+  <!-- HERO — ViserX-style curriculum, Creavix content -->
   <section id="home" class="hero-premium">
-    <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div><div class="grid-overlay"></div></div>
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="grid-overlay"></div>
+    </div>
     <div class="container hero-grid hero-grid-orbit">
       <div class="hero-content reveal">
-        <div class="eyebrow"><span class="dot"></span> Creavix iT Solution</div>
+        <div class="rating-pill">
+          <span class="rating-score">4.8</span>
+          <span class="rating-stars" aria-hidden="true">★★★★★</span>
+          <span class="rating-label">Client Rated</span>
+        </div>
+
         <h1 class="hero-title">
           Video Editing Agency<br />in <span class="text-gradient">Bangladesh</span>
         </h1>
+
         <p class="hero-lead">
-          Cinematic Human-like AI Videos, Professional Video Editing &amp; Full Digital Solutions
-          <span class="hero-lead-sep">|</span>
-          <strong class="hero-delivery">24-48 Hours Delivery</strong>
+          Cinematic Human-like AI Videos, Professional Video Editing &amp; Full Digital Solutions —
+          <strong class="hero-delivery">24–48 Hours Delivery</strong>
         </p>
+
         <div class="flex-btns">
           <a href="#services" class="btn btn-primary">Explore Services</a>
-          <a href={SITE.whatsappLink} class="btn btn-outline" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
+          <a href={SITE.whatsappLink} class="btn btn-outline" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
+
         <div class="trust-row">
           <div class="trust-item"><strong class="count-up" data-count="10+">0</strong><span>Years</span></div>
           <div class="trust-divider"></div>
           <div class="trust-item"><strong class="count-up" data-count="4300+">0</strong><span>Projects</span></div>
           <div class="trust-divider"></div>
-          <div class="trust-item"><strong class="count-up" data-count="4.8">0</strong><span>Avg rating</span></div>
+          <div class="trust-item"><strong>24–48h</strong><span>Delivery</span></div>
         </div>
       </div>
+
       <div class="hero-visual reveal">
-        <HeroOrbit />
+        <div class="hero-visual-frame">
+          <HeroOrbit />
+        </div>
       </div>
     </div>
-    <div class="scroll-indicator"><span>Scroll</span><div class="scroll-line"></div></div>
   </section>
+
+  <BrandStrip />
 
   <section id="services" class="section-soft">
     <div class="container">
       <div class="text-center mb-8 reveal">
-        <p class="eyebrow" style="margin:0 auto 1rem">IT &amp; Digital Services</p>
-        <h2 class="mb-4">Everything Your Business Needs Online</h2>
-        <p style="max-width:40rem;margin:0 auto">Website development, applications, authentication, AI video production, Facebook growth and full campaign management — one agency.</p>
+        <p class="eyebrow" style="margin:0 auto 1rem">Full Digital Curriculum</p>
+        <h2 class="mb-4">Everything Your Brand Needs to Grow</h2>
+        <p style="max-width:40rem;margin:0 auto">Video production, AI marketing, web &amp; apps, authentication and Meta growth — one professional partner.</p>
       </div>
       <div class="grid-3">
         {services.map((s) => (
-          <a href={s.href} class="glass-card reveal" style="text-decoration:none;color:inherit;display:block">
+          <a href={s.href} class="glass-card reveal svc-card" style="text-decoration:none;color:inherit;display:block">
             <IconBox name={s.name} tone={s.tone} size={44} />
             <h3 class="mb-4">{s.title}</h3>
             <p style="font-size:.9rem">{s.desc}</p>
@@ -79,14 +99,14 @@ const services = [
   <section id="about" class="section-violet">
     <div class="container grid-2">
       <div class="reveal">
-        <p class="eyebrow">Why {SITE.name}</p>
-        <h2 class="mb-6">IT Solution Agency · Since {SITE.servingSince}</h2>
+        <p class="eyebrow">Why Creavix</p>
+        <h2 class="mb-6">IT &amp; Video Agency · Since {SITE.servingSince}</h2>
         <p class="lead mb-8">{SITE.shortDesc}</p>
         <ul class="about-checks">
+          <li><ServiceIcons name="check" size={22} /><span>Cinematic &amp; AI video production</span></li>
           <li><ServiceIcons name="check" size={22} /><span>Web, app &amp; authentication engineering</span></li>
-          <li><ServiceIcons name="check" size={22} /><span>AI video + classic video production</span></li>
           <li><ServiceIcons name="check" size={22} /><span>Facebook page, boost &amp; campaigns</span></li>
-          <li><ServiceIcons name="check" size={22} /><span>Studio: {SITE.addressBn} · Founder {SITE.founder.name}</span></li>
+          <li><ServiceIcons name="check" size={22} /><span>Studio: {SITE.addressBn} · {SITE.founder.name}</span></li>
         </ul>
       </div>
       <div class="reveal">
@@ -96,7 +116,7 @@ const services = [
             <div><strong class="count-up" data-count="10+" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Years</span></div>
             <div><strong class="count-up" data-count="4300+" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Projects</span></div>
             <div><strong class="count-up" data-count="4.8" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Avg rating</span></div>
-            <div><strong style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">24-48h</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Delivery</span></div>
+            <div><strong style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">24–48h</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Delivery</span></div>
           </div>
         </div>
       </div>
@@ -107,7 +127,7 @@ const services = [
 
   <section id="contact" class="section-warm">
     <div class="container text-center reveal" style="max-width:40rem">
-      <h2 class="mb-4">Ready to Grow With a Full IT Partner?</h2>
+      <h2 class="mb-4">Ready to Grow With Creavix?</h2>
       <p class="mb-8" style="font-size:1.1rem">WhatsApp {SITE.whatsapp} · {SITE.email1} · {SITE.hotline}</p>
       <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center">
         <a href={SITE.whatsappLink} class="btn btn-primary" style="padding:.9rem 2rem;font-size:1rem" target="_blank" rel="noopener noreferrer">WhatsApp</a>
@@ -122,7 +142,7 @@ const services = [
   .hero-grid-orbit {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.75rem;
+    gap: 2rem;
     align-items: center;
   }
   .hero-visual {
@@ -130,26 +150,44 @@ const services = [
     display: flex;
     justify-content: center;
   }
-  .hero-content { order: 1; }
+  .hero-content { order: 1; max-width: 560px; }
   @media (min-width: 900px) {
     .hero-grid-orbit {
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 2.5rem;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
     }
     .hero-content { order: 1; }
     .hero-visual { order: 2; }
   }
-  .hero-lead-sep {
-    display: inline-block;
-    margin: 0 0.4rem;
-    color: var(--text-3, #64748B);
-    font-weight: 400;
+
+  .rating-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+    margin-bottom: 1.25rem;
+    font-size: 0.8rem;
+    font-weight: 600;
   }
+  .rating-score { color: #0B1220; }
+  .rating-stars { color: #F59E0B; letter-spacing: 1px; font-size: 0.75rem; }
+  .rating-label { color: #64748B; font-weight: 500; }
+
   .hero-delivery {
-    color: var(--primary, #0D9488);
+    color: #0D9488;
     font-weight: 700;
-    white-space: nowrap;
   }
+
+  .hero-visual-frame {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+  }
+
   .about-checks {
     list-style: none;
     display: flex;
@@ -163,5 +201,9 @@ const services = [
     display: flex;
     align-items: flex-start;
     gap: 0.6rem;
+  }
+
+  .svc-card h3 {
+    font-size: 1.05rem;
   }
 </style>

@@ -1,93 +1,109 @@
 /* =========================================================
-   Creavix brand + glass blur optimization
-   Rule: blur only where needed; mobile = no backdrop-filter
+   Creavix × professional agency system (ViserX-inspired layout)
+   Clean white · bold type · teal brand · fast paint
    ========================================================= */
 :root {
   --brand-teal: #0D9488;
-  --brand-amber: #D97706;
-  --brand-ink: #0F172A;
-  --brand-mist: #EEF2F6;
-  --brand-glass: rgba(255, 255, 255, 0.55);
-
-  /* blur tokens — keep values low for GPU */
-  --blur-nav: 8px;
-  --blur-card: 10px;
-  --blur-chip: 6px;
+  --brand-teal-dark: #0F766E;
+  --brand-ink: #0B1220;
+  --brand-mist: #F7F8FA;
+  --brand-line: rgba(15, 23, 42, 0.08);
 
   --primary: #0D9488 !important;
   --primary-light: #14B8A6 !important;
-  --violet: #D97706 !important;
+  --violet: #0F766E !important;
   --accent: #F59E0B !important;
-  --rose: #E11D48;
-  --emerald: #059669;
-  --text: #0F172A !important;
-  --text-2: #334155 !important;
+  --text: #0B1220 !important;
+  --text-2: #475569 !important;
   --text-3: #64748B !important;
-  --bg: #EEF2F6 !important;
+  --bg: #FFFFFF !important;
   --white: #FFFFFF;
+
+  --blur-nav: 8px;
+  --blur-card: 8px;
 }
 
 body {
-  background:
-    radial-gradient(ellipse 90% 60% at 10% -10%, rgba(13, 148, 136, 0.12), transparent 55%),
-    radial-gradient(ellipse 70% 50% at 95% 15%, rgba(217, 119, 6, 0.09), transparent 50%),
-    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(13, 148, 136, 0.07), transparent 55%),
-    var(--brand-mist) !important;
+  background: #FFFFFF !important;
   color: var(--brand-ink) !important;
 }
 
-.hero-premium { background: transparent !important; }
+/* Soft agency hero atmosphere (like ViserX white depth) */
+.hero-premium {
+  background:
+    radial-gradient(ellipse 70% 55% at 85% 40%, rgba(13, 148, 136, 0.07), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 10% 80%, rgba(15, 23, 42, 0.03), transparent 55%),
+    linear-gradient(180deg, #FFFFFF 0%, #F7F8FA 100%) !important;
+  min-height: auto !important;
+  padding-top: 5.5rem !important;
+  padding-bottom: 3.5rem !important;
+}
+
 .section-soft {
-  background: linear-gradient(180deg, rgba(238, 242, 246, 0.55), rgba(226, 232, 240, 0.88)) !important;
+  background: #F7F8FA !important;
 }
 .section-violet {
-  background:
-    radial-gradient(ellipse 70% 50% at 85% 20%, rgba(13, 148, 136, 0.1), transparent 55%),
-    rgba(238, 242, 246, 0.65) !important;
+  background: #FFFFFF !important;
 }
 .section-warm {
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(217, 119, 6, 0.09), transparent 55%),
-    rgba(255, 255, 255, 0.4) !important;
+  background: linear-gradient(180deg, #F7F8FA, #FFFFFF) !important;
 }
 .section-gallery {
-  background: linear-gradient(180deg, rgba(238, 242, 246, 0.45), rgba(226, 232, 240, 0.8)) !important;
+  background: #FFFFFF !important;
 }
 
 .grid-overlay {
   background-image:
-    linear-gradient(rgba(13, 148, 136, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(13, 148, 136, 0.08) 1px, transparent 1px) !important;
-  background-size: 36px 36px !important;
-  mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, black 15%, transparent 72%) !important;
+    linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px) !important;
+  background-size: 48px 48px !important;
+  opacity: 0.7 !important;
+  mask-image: radial-gradient(ellipse 80% 70% at 70% 45%, black 10%, transparent 70%) !important;
+}
+
+.orb-1, .orb-2, .orb-3 {
+  opacity: 0.22 !important;
 }
 .orb-1 {
-  background: radial-gradient(circle, rgba(13, 148, 136, 0.4) 0%, transparent 70%) !important;
-  opacity: 0.5 !important;
+  background: radial-gradient(circle, rgba(13, 148, 136, 0.35) 0%, transparent 70%) !important;
 }
 .orb-2 {
-  background: radial-gradient(circle, rgba(217, 119, 6, 0.32) 0%, transparent 70%) !important;
-  opacity: 0.45 !important;
+  background: radial-gradient(circle, rgba(15, 23, 42, 0.12) 0%, transparent 70%) !important;
 }
 .orb-3 {
-  background: radial-gradient(circle, rgba(20, 184, 166, 0.3) 0%, transparent 70%) !important;
-  opacity: 0.4 !important;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.25) 0%, transparent 70%) !important;
 }
 
-h1, h2, h3, .hero-title { color: var(--brand-ink) !important; }
-p, .hero-lead, .lead { color: #334155 !important; }
+/* Typography — bold agency headlines */
+h1, .hero-title {
+  color: var(--brand-ink) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1.05 !important;
+}
+h2 {
+  color: var(--brand-ink) !important;
+  letter-spacing: -0.03em !important;
+}
+p, .hero-lead, .lead {
+  color: #64748B !important;
+}
 
 .eyebrow {
-  color: var(--brand-teal) !important;
-  background: rgba(255, 255, 255, 0.72) !important;
-  border: 1px solid rgba(13, 148, 136, 0.2) !important;
+  color: var(--brand-ink) !important;
+  background: #FFFFFF !important;
+  border: 1px solid var(--brand-line) !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+  backdrop-filter: none !important;
 }
+
 .text-gradient {
-  background: linear-gradient(135deg, #0D9488 0%, #0F766E 45%, #D97706 100%) !important;
+  background: linear-gradient(135deg, #0D9488 0%, #0F766E 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
+
 .logo-text span,
 .footer-brand .logo span,
 .footer-brand .logo-text span {
@@ -97,121 +113,74 @@ p, .hero-lead, .lead { color: #334155 !important; }
   -webkit-text-fill-color: transparent !important;
 }
 
-/* ---- Glass cards: cheap look, limited blur ---- */
+/* Clean cards — soft border, light elevation (agency style) */
 .glass-card {
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.72) 0%,
-    rgba(255, 255, 255, 0.48) 100%
-  ) !important;
-  border: 1px solid rgba(255, 255, 255, 0.7) !important;
-  box-shadow:
-    0 8px 28px rgba(15, 23, 42, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
-  /* isolation limits backdrop sampling region */
+  background: #FFFFFF !important;
+  border: 1px solid var(--brand-line) !important;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   isolation: isolate;
   contain: layout paint;
 }
-
-/* Desktop only: real frosted glass (low px, no saturate) */
 @media (min-width: 768px) and (hover: hover) {
-  .glass-card {
-    backdrop-filter: blur(var(--blur-card)) !important;
-    -webkit-backdrop-filter: blur(var(--blur-card)) !important;
-    background: linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.58) 0%,
-      rgba(255, 255, 255, 0.36) 100%
-    ) !important;
-  }
-  .navbar.scrolled {
-    backdrop-filter: blur(var(--blur-nav)) !important;
-    -webkit-backdrop-filter: blur(var(--blur-nav)) !important;
-  }
-  .eyebrow {
-    backdrop-filter: blur(var(--blur-chip));
-    -webkit-backdrop-filter: blur(var(--blur-chip));
+  .glass-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08) !important;
+    border-color: rgba(13, 148, 136, 0.2) !important;
   }
 }
 
 .stat-box {
-  background: rgba(255, 255, 255, 0.62) !important;
-  border: 1px solid rgba(255, 255, 255, 0.75) !important;
+  background: #F8FAFC !important;
+  border: 1px solid var(--brand-line) !important;
 }
 
+/* Buttons — ViserX dual pill pattern */
 .btn-primary {
-  background: linear-gradient(135deg, #0D9488, #0F766E) !important;
+  background: #0D9488 !important;
   color: #fff !important;
-  box-shadow: 0 6px 20px rgba(13, 148, 136, 0.3) !important;
+  box-shadow: 0 6px 20px rgba(13, 148, 136, 0.28) !important;
+  border-radius: 999px !important;
 }
 .btn-primary:hover {
-  box-shadow: 0 10px 26px rgba(13, 148, 136, 0.38) !important;
+  background: #0F766E !important;
+  box-shadow: 0 10px 26px rgba(13, 148, 136, 0.35) !important;
 }
-.btn-outline {
-  background: rgba(255, 255, 255, 0.55) !important;
-  border: 1.5px solid rgba(15, 23, 42, 0.12) !important;
-  color: var(--brand-ink) !important;
+.btn-outline,
+.btn-dark {
+  background: #0B1220 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 999px !important;
 }
 .btn-outline:hover {
-  border-color: #0D9488 !important;
-  color: #0D9488 !important;
-  background: rgba(13, 148, 136, 0.08) !important;
+  background: #1e293b !important;
+  color: #fff !important;
 }
-.nav-cta { box-shadow: 0 6px 18px rgba(13, 148, 136, 0.28) !important; }
+
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(var(--blur-nav)) !important;
+  -webkit-backdrop-filter: blur(var(--blur-nav)) !important;
+  border-bottom: 1px solid var(--brand-line);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04) !important;
+}
+
 .nav-links a:hover,
 .nav-links a.active,
 .nav-drop-btn:hover,
-.nav-drop-btn.active { color: #0D9488 !important; }
-.nav-dropdown-menu a:hover {
-  background: rgba(13, 148, 136, 0.1) !important;
+.nav-drop-btn.active {
   color: #0D9488 !important;
 }
-.navbar.scrolled {
-  background: rgba(255, 255, 255, 0.88) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.55);
-}
 
-/* Mobile: ZERO backdrop-filter on cards — solid glass look, no GPU thrash */
 @media (max-width: 767px) {
-  .glass-card {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    background: rgba(255, 255, 255, 0.88) !important;
-  }
-  .navbar.scrolled {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    background: rgba(255, 255, 255, 0.96) !important;
-  }
-  .eyebrow {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    background: rgba(255, 255, 255, 0.92) !important;
+  .hero-premium {
+    padding-top: 4.5rem !important;
   }
   .orb {
-    filter: blur(32px) !important;
-    opacity: 0.28 !important;
-    will-change: auto !important;
+    filter: blur(28px) !important;
+    opacity: 0.18 !important;
     animation: none !important;
-  }
-  .orb-1, .orb-2, .orb-3 {
-    opacity: 0.28 !important;
-  }
-  .logo-text { font-size: 0.92rem; }
-}
-
-/* Prefer reduced motion / data-saver: kill all glass blur */
-@media (prefers-reduced-motion: reduce) {
-  .glass-card,
-  .navbar.scrolled,
-  .eyebrow {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-}
-
-@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .glass-card {
-    background: rgba(255, 255, 255, 0.92) !important;
   }
 }

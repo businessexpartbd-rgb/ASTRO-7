@@ -1,0 +1,70 @@
+---
+import { SITE } from '../data/site';
+---
+<div class="topbar" role="banner">
+  <div class="topbar-inner">
+    <p class="topbar-left">
+      <span class="topbar-label">PROJECTS DELIVERED FOR OUR CLIENTS</span>
+      <strong class="topbar-stat" data-count="4300+">4,300+</strong>
+    </p>
+    <p class="topbar-right">
+      <a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer" class="topbar-link">WhatsApp {SITE.whatsapp}</a>
+      <span class="topbar-sep">·</span>
+      <a href={`tel:${SITE.hotline.replace(/\s/g, '')}`} class="topbar-link">{SITE.hotline}</a>
+    </p>
+  </div>
+</div>
+
+<style>
+  .topbar {
+    background: #0D9488;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .topbar-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0.45rem 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.35rem 1rem;
+  }
+  .topbar-left {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .topbar-label {
+    opacity: 0.9;
+    text-transform: uppercase;
+    font-size: 0.65rem;
+  }
+  .topbar-stat {
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+  }
+  .topbar-right {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .topbar-link {
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.95;
+  }
+  .topbar-link:hover { text-decoration: underline; }
+  .topbar-sep { opacity: 0.5; }
+  @media (max-width: 640px) {
+    .topbar-label { display: none; }
+    .topbar-inner { justify-content: center; text-align: center; }
+  }
+</style>
