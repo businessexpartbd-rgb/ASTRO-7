@@ -1,73 +1,68 @@
 ---
-import { SITE } from '../data/site';
+/** Top bar — phone, email, social placeholders */
 ---
-<div class="topbar" role="banner">
-  <div class="topbar-inner">
-    <p class="topbar-left">
-      <span class="topbar-label">PROJECTS DELIVERED FOR OUR CLIENTS</span>
-      <strong class="topbar-stat">4,300+</strong>
-    </p>
-    <p class="topbar-right">
-      <a href="/contact" class="topbar-link">CONTACT NOW</a>
-      <span class="topbar-sep">·</span>
-      <a href={`tel:${SITE.hotline.replace(/\s/g, '')}`} class="topbar-link">{SITE.hotline}</a>
-    </p>
+<div class="topbar" role="region" aria-label="Contact bar">
+  <div class="container topbar-inner">
+    <div class="topbar-left">
+      <a href="tel:+8800000000000" class="topbar-link">📞 +880 0000-000000</a>
+      <a href="mailto:info@creavixit.com" class="topbar-link">✉️ info@creavixit.com</a>
+    </div>
+    <div class="topbar-social" aria-label="Social media">
+      <a href="#" aria-label="Facebook" class="soc">f</a>
+      <a href="#" aria-label="Instagram" class="soc">ig</a>
+      <a href="#" aria-label="LinkedIn" class="soc">in</a>
+      <a href="#" aria-label="YouTube" class="soc">yt</a>
+      <a href="#" aria-label="X" class="soc">x</a>
+    </div>
   </div>
 </div>
 
 <style>
   .topbar {
-    background: #2563EB;
-    color: #fff;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
+    background: #0B0F19;
+    color: #E2E8F0;
+    font-family: var(--font-b);
+    font-size: 0.8rem;
     position: relative;
     z-index: 110;
   }
   .topbar-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0.5rem 1.25rem;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 0.35rem 1rem;
+    gap: 1rem;
+    min-height: 36px;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
   }
   .topbar-left {
-    margin: 0;
     display: flex;
-    align-items: center;
-    gap: 0.55rem;
     flex-wrap: wrap;
-  }
-  .topbar-label {
-    opacity: 0.95;
-    text-transform: uppercase;
-    font-size: 0.65rem;
-    letter-spacing: 0.06em;
-  }
-  .topbar-stat {
-    font-family: var(--font-h), system-ui, sans-serif;
-    font-size: 0.9rem;
-    font-weight: 800;
-  }
-  .topbar-right {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
+    gap: 1rem;
   }
   .topbar-link {
-    color: #fff;
+    color: #CBD5E1;
     text-decoration: none;
-    opacity: 0.98;
   }
-  .topbar-link:hover { text-decoration: underline; }
-  .topbar-sep { opacity: 0.55; }
+  .topbar-link:hover { color: #fff; }
+  .topbar-social {
+    display: flex;
+    gap: 0.45rem;
+  }
+  .soc {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    color: #E2E8F0;
+    display: grid;
+    place-items: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: lowercase;
+  }
+  .soc:hover { background: #2563EB; color: #fff; }
   @media (max-width: 640px) {
-    .topbar-label { display: none; }
-    .topbar-inner { justify-content: center; text-align: center; }
+    .topbar-inner { flex-direction: column; align-items: flex-start; gap: 0.35rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }
   }
 </style>
