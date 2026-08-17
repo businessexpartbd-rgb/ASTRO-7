@@ -5,10 +5,10 @@ import { SITE } from '../data/site';
   <div class="topbar-inner">
     <p class="topbar-left">
       <span class="topbar-label">PROJECTS DELIVERED FOR OUR CLIENTS</span>
-      <strong class="topbar-stat" data-count="4300+">4,300+</strong>
+      <strong class="topbar-stat">4,300+</strong>
     </p>
     <p class="topbar-right">
-      <a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer" class="topbar-link">WhatsApp {SITE.whatsapp}</a>
+      <a href="/contact" class="topbar-link">CONTACT NOW</a>
       <span class="topbar-sep">·</span>
       <a href={`tel:${SITE.hotline.replace(/\s/g, '')}`} class="topbar-link">{SITE.hotline}</a>
     </p>
@@ -17,16 +17,18 @@ import { SITE } from '../data/site';
 
 <style>
   .topbar {
-    background: #0D9488;
+    background: #2563EB;
     color: #fff;
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.04em;
+    position: relative;
+    z-index: 110;
   }
   .topbar-inner {
-    max-width: 1140px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0.45rem 1.25rem;
+    padding: 0.5rem 1.25rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -37,32 +39,33 @@ import { SITE } from '../data/site';
     margin: 0;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.55rem;
     flex-wrap: wrap;
   }
   .topbar-label {
-    opacity: 0.9;
+    opacity: 0.95;
     text-transform: uppercase;
     font-size: 0.65rem;
+    letter-spacing: 0.06em;
   }
   .topbar-stat {
     font-family: var(--font-h), system-ui, sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 800;
   }
   .topbar-right {
     margin: 0;
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.45rem;
   }
   .topbar-link {
     color: #fff;
     text-decoration: none;
-    opacity: 0.95;
+    opacity: 0.98;
   }
   .topbar-link:hover { text-decoration: underline; }
-  .topbar-sep { opacity: 0.5; }
+  .topbar-sep { opacity: 0.55; }
   @media (max-width: 640px) {
     .topbar-label { display: none; }
     .topbar-inner { justify-content: center; text-align: center; }
