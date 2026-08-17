@@ -7,6 +7,7 @@ import Reviews from '../components/Reviews.astro';
 import VideoGallery from '../components/VideoGallery.astro';
 import BrandStrip from '../components/BrandStrip.astro';
 import FAQ from '../components/FAQ.astro';
+import ProcessFlow from '../components/ProcessFlow.astro';
 import IconBox from '../components/IconBox.astro';
 import ServiceIcons from '../components/icons/ServiceIcons.astro';
 import HeroOrbit from '../components/HeroOrbit.astro';
@@ -94,6 +95,9 @@ const services = [
     </div>
   </section>
 
+  <!-- Best placement: after services — shows HOW the agency works -->
+  <ProcessFlow />
+
   <VideoGallery />
 
   <section id="about" class="section-violet">
@@ -124,8 +128,6 @@ const services = [
   </section>
 
   <Reviews />
-
-  <!-- Best placement: after social proof, before final CTA -->
   <FAQ />
 
   <section id="contact" class="section-warm">

@@ -1,0 +1,443 @@
+---
+/** Interactive process map — visual curriculum matched to reference sample */
+const steps = [
+  {
+    id: '01',
+    title: 'Understanding Client Requirements & Goals',
+    chips: ['Growth Strategy', 'Identifying Brand'],
+  },
+  {
+    id: '02',
+    title: 'Conducting Market Research & Planning Strategy',
+    chips: ['Audience Map', 'Channel Plan'],
+  },
+  {
+    id: '03',
+    title: 'Campaign Setup & Content Creation',
+    chips: ['Captivating Visuals', 'Compelling Copywriting'],
+  },
+  {
+    id: '04',
+    title: 'Executing Campaigns, AI Integration & Promotion',
+    chips: ['Performance Driven SEO', 'Targeted Media Buying'],
+  },
+  {
+    id: '05',
+    title: 'Monitoring, Optimization & Improvement',
+    chips: ['Live Tracking', 'A/B Optimize'],
+  },
+  {
+    id: '06',
+    title: 'Reporting Results & Client Support',
+    chips: ['Final Output', 'Unstoppable Growth'],
+  },
+];
+---
+<section id="process" class="pf-section" aria-labelledby="pf-heading">
+  <div class="pf-bg" aria-hidden="true">
+    <div class="pf-grid"></div>
+    <div class="pf-glow"></div>
+  </div>
+
+  <div class="pf-container">
+    <header class="pf-head reveal">
+      <h2 id="pf-heading" class="pf-title">
+        Transforming Brands with<br />Strategy, AI &amp; Creative Excellence
+      </h2>
+      <p class="pf-sub">
+        We unleash the power of strategy, design, SEO, ads, content, AI, and
+        development to create unstoppable campaigns.
+      </p>
+    </header>
+
+    <div class="pf-stage" data-process-stage>
+      <!-- Desktop connectors -->
+      <svg class="pf-lines" viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <path class="pf-line" d="M210 140 C 320 140, 380 220, 500 280" />
+        <path class="pf-line" d="M500 120 C 500 180, 500 220, 500 280" />
+        <path class="pf-line" d="M790 140 C 680 140, 620 220, 500 280" />
+        <path class="pf-line" d="M210 420 C 320 420, 380 340, 500 280" />
+        <path class="pf-line" d="M500 440 C 500 400, 500 340, 500 280" />
+        <path class="pf-line" d="M790 420 C 680 420, 620 340, 500 280" />
+      </svg>
+
+      <!-- Center hub -->
+      <div class="pf-hub" aria-hidden="true">
+        <div class="pf-hub-ring pf-hub-ring-outer"></div>
+        <div class="pf-hub-ring pf-hub-ring-mid"></div>
+        <div class="pf-hub-core">
+          <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+            <path d="M8 8 L20 20 L8 32" stroke="#60A5FA" stroke-width="3.2" stroke-linecap="round"/>
+            <path d="M32 8 L20 20 L32 32" stroke="#3B82F6" stroke-width="3.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Steps -->
+      {steps.map((s, i) => (
+        <article
+          class={`pf-card pf-card-${s.id}`}
+          data-step={s.id}
+          style={`--i:${i}`}
+        >
+          <p class="pf-step-label">Step - {s.id}</p>
+          <h3 class="pf-card-title">{s.title}</h3>
+          <div class="pf-chip-rail" data-chip-rail>
+            {s.chips.map((c, ci) => (
+              <span class={`pf-chip ${ci === 0 ? 'is-active' : ''}`} data-chip>{c}</span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <nav class="pf-dock reveal" aria-label="Quick actions">
+      <a href="/">Home</a>
+      <a href="#services">Services</a>
+      <a class="pf-dock-primary" href="/contact">Start Project</a>
+      <a href="/video-gallery">Projects</a>
+      <a href="#faq">More</a>
+    </nav>
+  </div>
+</section>
+
+<style>
+  .pf-section {
+    position: relative;
+    padding: 4.5rem 1rem 5rem;
+    background: #070B16;
+    color: #E8EEF9;
+    overflow: hidden;
+  }
+  .pf-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .pf-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(59, 130, 246, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 20%, transparent 75%);
+  }
+  .pf-glow {
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    left: 50%;
+    top: 48%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.22), transparent 68%);
+    filter: blur(20px);
+  }
+
+  .pf-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .pf-head {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .pf-title {
+    margin: 0 0 1rem;
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-size: clamp(1.65rem, 4.2vw, 2.65rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: #FFFFFF;
+  }
+  .pf-sub {
+    margin: 0;
+    color: #94A3B8;
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
+    line-height: 1.65;
+  }
+
+  /* Stage layout */
+  .pf-stage {
+    position: relative;
+    min-height: 560px;
+    margin: 0 auto 2rem;
+  }
+
+  .pf-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.55;
+  }
+  .pf-line {
+    fill: none;
+    stroke: #22D3EE;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-dasharray: 4 6;
+    animation: pf-dash 18s linear infinite;
+  }
+  @keyframes pf-dash {
+    to { stroke-dashoffset: -200; }
+  }
+
+  .pf-hub {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    z-index: 5;
+  }
+  .pf-hub-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(59, 130, 246, 0.35);
+  }
+  .pf-hub-ring-outer {
+    animation: pf-spin 22s linear infinite;
+    border-style: dashed;
+    border-color: rgba(34, 211, 238, 0.35);
+  }
+  .pf-hub-ring-mid {
+    inset: 12px;
+    border-color: rgba(59, 130, 246, 0.45);
+    animation: pf-spin-rev 16s linear infinite;
+  }
+  .pf-hub-core {
+    position: absolute;
+    inset: 26px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #1E3A8A, #0B1224 70%);
+    border: 1px solid rgba(96, 165, 250, 0.55);
+    box-shadow:
+      0 0 0 8px rgba(37, 99, 235, 0.12),
+      0 0 40px rgba(37, 99, 235, 0.45),
+      inset 0 0 20px rgba(59, 130, 246, 0.25);
+    display: grid;
+    place-items: center;
+  }
+  @keyframes pf-spin { to { transform: rotate(360deg); } }
+  @keyframes pf-spin-rev { to { transform: rotate(-360deg); } }
+
+  .pf-card {
+    position: absolute;
+    width: min(280px, 30%);
+    padding: 1.1rem 1.15rem 1rem;
+    border-radius: 18px;
+    background: linear-gradient(165deg, rgba(30, 41, 59, 0.92), rgba(15, 23, 42, 0.88));
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: 4;
+  }
+  .pf-card:hover,
+  .pf-card.is-focus {
+    transform: translateY(-4px) scale(1.02);
+    border-color: rgba(59, 130, 246, 0.55);
+    box-shadow: 0 20px 48px rgba(37, 99, 235, 0.22);
+  }
+
+  .pf-card-01 { left: 0; top: 6%; }
+  .pf-card-02 { left: 50%; top: 0; transform: translateX(-50%); }
+  .pf-card-03 { right: 0; top: 6%; }
+  .pf-card-04 { left: 0; bottom: 4%; }
+  .pf-card-05 { left: 50%; bottom: 0; transform: translateX(-50%); }
+  .pf-card-06 { right: 0; bottom: 4%; }
+
+  .pf-card-02:hover,
+  .pf-card-02.is-focus,
+  .pf-card-05:hover,
+  .pf-card-05.is-focus {
+    transform: translateX(-50%) translateY(-4px) scale(1.02);
+  }
+
+  .pf-step-label {
+    margin: 0 0 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #64748B;
+  }
+  .pf-card-title {
+    margin: 0 0 0.85rem;
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #F1F5F9;
+  }
+
+  .pf-chip-rail {
+    position: relative;
+    min-height: 34px;
+  }
+  .pf-chip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.22), rgba(37, 99, 235, 0.18));
+    border: 1px solid rgba(96, 165, 250, 0.35);
+    color: #DBEAFE;
+    font-size: 0.72rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+  }
+  .pf-chip.is-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .pf-chip::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #60A5FA;
+    box-shadow: 0 0 8px rgba(96, 165, 250, 0.8);
+  }
+
+  /* Bottom dock */
+  .pf-dock {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    margin: 1.5rem auto 0;
+    padding: 0.4rem;
+    width: fit-content;
+    max-width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 999px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  }
+  .pf-dock a {
+    padding: 0.55rem 0.95rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #334155;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .pf-dock a:hover {
+    background: #F1F5F9;
+    color: #0F172A;
+  }
+  .pf-dock-primary {
+    background: #2563EB !important;
+    color: #fff !important;
+  }
+  .pf-dock-primary:hover {
+    background: #1D4ED8 !important;
+  }
+
+  /* Mobile / tablet: stack cards */
+  @media (max-width: 900px) {
+    .pf-stage {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
+    .pf-lines,
+    .pf-hub {
+      display: none;
+    }
+    .pf-card {
+      position: relative !important;
+      left: auto !important;
+      right: auto !important;
+      top: auto !important;
+      bottom: auto !important;
+      width: 100% !important;
+      transform: none !important;
+    }
+    .pf-card:hover,
+    .pf-card.is-focus {
+      transform: translateY(-2px) !important;
+    }
+    .pf-chip {
+      position: static;
+      opacity: 1;
+      transform: none;
+      margin-right: 0.4rem;
+      margin-bottom: 0.35rem;
+    }
+    .pf-chip-rail {
+      display: flex;
+      flex-wrap: wrap;
+      min-height: 0;
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 900px) {
+    .pf-stage {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pf-line,
+    .pf-hub-ring-outer,
+    .pf-hub-ring-mid {
+      animation: none !important;
+    }
+  }
+</style>
+
+<script is:inline>
+(function () {
+  var stage = document.querySelector('[data-process-stage]');
+  if (!stage) return;
+
+  // Cycle chips inside each card
+  stage.querySelectorAll('[data-chip-rail]').forEach(function (rail) {
+    var chips = rail.querySelectorAll('[data-chip]');
+    if (chips.length < 2) return;
+    var idx = 0;
+    setInterval(function () {
+      chips[idx].classList.remove('is-active');
+      idx = (idx + 1) % chips.length;
+      chips[idx].classList.add('is-active');
+    }, 2600 + Math.random() * 800);
+  });
+
+  // Hover focus highlight
+  stage.querySelectorAll('.pf-card').forEach(function (card) {
+    card.addEventListener('mouseenter', function () {
+      stage.querySelectorAll('.pf-card').forEach(function (c) {
+        c.classList.remove('is-focus');
+      });
+      card.classList.add('is-focus');
+    });
+    card.addEventListener('mouseleave', function () {
+      card.classList.remove('is-focus');
+    });
+  });
+})();
+</script>
