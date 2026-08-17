@@ -1,0 +1,84 @@
+/* Web Development hero: smaller device on desktop, text not crushed on mobile */
+@media (max-width: 959px) {
+  .wd-hero .wd-hero-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+  }
+  .wd-hero .wd-hero-copy {
+    order: 1 !important;
+  }
+  .wd-hero .wd-device-wrap {
+    order: 0 !important;
+    margin-bottom: 0.25rem !important;
+  }
+  .wd-hero .wd-device {
+    height: 220px !important;
+    width: min(220px, 80vw) !important;
+  }
+  .wd-hero .wd-device[data-mode="phone"] .morph { width: 110px !important; }
+  .wd-hero .wd-device[data-mode="tablet"] .morph { width: 155px !important; }
+  .wd-hero .wd-device[data-mode="laptop"] .morph { width: 200px !important; }
+  .wd-hero .screen.dual { min-height: 150px !important; }
+  .wd-hero .wd-device[data-mode="tablet"] .screen.dual { min-height: 170px !important; }
+  .wd-hero .wd-device[data-mode="laptop"] .screen.dual { min-height: 120px !important; }
+  .wd-hero .wd-title { font-size: 1.5rem !important; line-height: 1.2 !important; }
+  .wd-hero .wd-lead { font-size: 0.95rem !important; margin-bottom: 1rem !important; }
+  .wd-hero .wd-device-label { margin-top: 0.45rem !important; font-size: 0.72rem !important; }
+  .wd-hero { padding-top: 4.25rem !important; padding-bottom: 2rem !important; }
+}
+@media (min-width: 960px) {
+  .wd-hero .wd-device {
+    width: min(300px, 100%) !important;
+    height: 280px !important;
+  }
+  .wd-hero .wd-device[data-mode="phone"] .morph { width: 120px !important; }
+  .wd-hero .wd-device[data-mode="tablet"] .morph { width: 180px !important; }
+  .wd-hero .wd-device[data-mode="laptop"] .morph { width: 260px !important; }
+}
+
+/* Application Build: official Android / Apple logos */
+.plat-art.android .android-bot,
+.plat-art.ios .ios-badge,
+.plat-art.cross .cross-icons .ci {
+  display: none !important;
+}
+.plat-art.android::before {
+  content: "";
+  display: block;
+  width: 140px;
+  height: 140px;
+  background: url("/logos/android.svg") center / contain no-repeat;
+}
+.plat-art.ios::before {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 120px;
+  border-radius: 28px;
+  background: #f5f5f7 url("/logos/apple.svg") center / 56px no-repeat;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+}
+.plat-art.cross::before {
+  content: "";
+  display: flex;
+  width: 200px;
+  height: 90px;
+  background:
+    url("/logos/android.svg") left center / 72px no-repeat,
+    url("/logos/apple.svg") right center / 56px no-repeat;
+}
+
+/* Hero phone animation boost */
+.app-hero .phone {
+  animation: appPhoneFloat 3.2s ease-in-out infinite;
+}
+.app-hero .phone.p2 {
+  animation-delay: 0.45s;
+}
+@keyframes appPhoneFloat {
+  0%, 100% { transform: translateY(0) rotate(var(--r, -8deg)); }
+  50% { transform: translateY(-10px) rotate(var(--r, -8deg)); }
+}
+.app-hero .phone.p1 { --r: -8deg; }
+.app-hero .phone.p2 { --r: 8deg; }
