@@ -1,0 +1,191 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TopBar from '../../components/TopBar.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE } from '../../data/site';
+
+const pillars = [
+  {
+    title: 'SEO Services',
+    desc: 'Rankings, local search, e-commerce SEO, audits, Google Business Profile and ASO — full organic growth stack.',
+    href: '/services/seo',
+    tag: 'Core',
+  },
+  {
+    title: 'Social & Boosting',
+    desc: 'Facebook page setup, Meta boosting and campaign management that reaches the right audience.',
+    href: '/services/boosting',
+    tag: 'Paid + Social',
+  },
+  {
+    title: 'Campaigns',
+    desc: 'Structured campaign planning, creative testing and performance reporting.',
+    href: '/services/campaign',
+    tag: 'Growth',
+  },
+  {
+    title: 'AI Video Marketing',
+    desc: 'Human-like AI video ads and promotional content engineered for paid social.',
+    href: '/services/ai-video-marketing',
+    tag: 'Creative',
+  },
+];
+---
+<Layout
+  title="Digital Marketing Services Bangladesh — Creavix iT"
+  description="Digital marketing by Creavix iT Solution — SEO, local SEO, boosting, campaigns and AI video marketing for businesses in Bangladesh."
+>
+  <TopBar />
+  <Nav active="services" />
+
+  <section class="dm-hero">
+    <div class="container dm-hero-inner">
+      <p class="dm-eye">Digital Marketing</p>
+      <h1>Grow visibility, traffic &amp; leads with Creavix iT</h1>
+      <p class="dm-lead">
+        SEO, local search, paid social and creative — one team focused on measurable results
+        for your brand.
+      </p>
+      <div class="dm-actions">
+        <a class="btn btn-primary" href="/services/seo">Explore SEO Services</a>
+        <a class="btn btn-outline" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="dm-sec">
+    <div class="container">
+      <div class="dm-grid">
+        {pillars.map((p) => (
+          <a class="dm-card" href={p.href}>
+            <span class="dm-tag">{p.tag}</span>
+            <h2>{p.title}</h2>
+            <p>{p.desc}</p>
+            <span class="dm-go">See details →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="dm-cta">
+    <div class="container dm-cta-inner">
+      <div>
+        <p class="dm-eye light">Book a free consultation</p>
+        <h2>Let’s plan your next growth channel</h2>
+        <p>WhatsApp {SITE.whatsapp} · {SITE.email1}</p>
+      </div>
+      <a class="btn btn-light" href="/contact">Contact Us</a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .dm-hero {
+    padding: 5rem 1.25rem 3.5rem;
+    background:
+      radial-gradient(ellipse 50% 40% at 80% 10%, rgba(37,99,235,.12), transparent 60%),
+      linear-gradient(180deg, #fff, #F8FAFC);
+  }
+  .dm-hero-inner { max-width: 40rem; }
+  .dm-eye {
+    margin: 0 0 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #2563EB;
+  }
+  .dm-eye.light { color: #93C5FD; }
+  .dm-hero h1 {
+    margin: 0 0 0.85rem;
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-size: clamp(1.85rem, 4vw, 2.6rem);
+    font-weight: 800;
+    color: #0F172A;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+  .dm-lead {
+    margin: 0 0 1.5rem;
+    color: #475569;
+    line-height: 1.65;
+    font-size: 1.05rem;
+  }
+  .dm-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+
+  .dm-sec { padding: 3rem 1.25rem 3.5rem; background: #fff; }
+  .dm-grid {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 700px) {
+    .dm-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .dm-card {
+    display: block;
+    padding: 1.5rem 1.4rem;
+    border-radius: 18px;
+    background: #F8FAFC;
+    border: 1px solid rgba(15,23,42,.07);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .2s, box-shadow .2s, transform .2s;
+  }
+  .dm-card:hover {
+    border-color: rgba(37,99,235,.35);
+    box-shadow: 0 14px 32px rgba(37,99,235,.1);
+    transform: translateY(-2px);
+  }
+  .dm-tag {
+    display: inline-block;
+    margin-bottom: 0.65rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: #EFF6FF;
+    color: #1D4ED8;
+  }
+  .dm-card h2 {
+    margin: 0 0 0.45rem;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0F172A;
+  }
+  .dm-card p {
+    margin: 0 0 0.85rem;
+    color: #64748B;
+    line-height: 1.55;
+    font-size: 0.92rem;
+  }
+  .dm-go {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #2563EB;
+  }
+
+  .dm-cta {
+    padding: 3rem 1.25rem;
+    background: linear-gradient(135deg, #1E3A8A, #2563EB 55%, #0EA5E9);
+    color: #fff;
+  }
+  .dm-cta-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .dm-cta h2 {
+    margin: 0 0 0.4rem;
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-size: clamp(1.4rem, 3vw, 1.85rem);
+    font-weight: 800;
+  }
+  .dm-cta p { margin: 0; opacity: 0.95; }
+  .btn-light { background: #fff; color: #1E40AF; border: none; }
+</style>
