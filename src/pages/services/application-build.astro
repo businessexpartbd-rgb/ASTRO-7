@@ -1,16 +1,651 @@
 ---
-import ServiceShell from '../../components/ServiceShell.astro';
+import Layout from '../../layouts/Layout.astro';
+import TopBar from '../../components/TopBar.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE } from '../../data/site';
+
+const tech = [
+  { name: 'WordPress', icon: 'https://cdn.simpleicons.org/wordpress/21759B' },
+  { name: 'Shopify', icon: 'https://cdn.simpleicons.org/shopify/7AB55C' },
+  { name: 'PHP', icon: 'https://cdn.simpleicons.org/php/777BB4' },
+  { name: 'Laravel', icon: 'https://cdn.simpleicons.org/laravel/FF2D20' },
+  { name: 'JavaScript', icon: 'https://cdn.simpleicons.org/javascript/F7DF1E' },
+  { name: 'React', icon: 'https://cdn.simpleicons.org/react/61DAFB' },
+  { name: 'Next.js', icon: 'https://cdn.simpleicons.org/nextdotjs/000000' },
+  { name: 'Vue', icon: 'https://cdn.simpleicons.org/vuedotjs/4FC08D' },
+  { name: 'Python', icon: 'https://cdn.simpleicons.org/python/3776AB' },
+  { name: 'Firebase', icon: 'https://cdn.simpleicons.org/firebase/FFCA28' },
+  { name: 'AWS', icon: 'https://cdn.simpleicons.org/amazonaws/232F3E' },
+  { name: 'Docker', icon: 'https://cdn.simpleicons.org/docker/2496ED' },
+  { name: 'Flutter', icon: 'https://cdn.simpleicons.org/flutter/02569B' },
+  { name: 'Node.js', icon: 'https://cdn.simpleicons.org/nodedotjs/339933' },
+  { name: 'MySQL', icon: 'https://cdn.simpleicons.org/mysql/4479A1' },
+  { name: 'PostgreSQL', icon: 'https://cdn.simpleicons.org/postgresql/4169E1' },
+];
+
+const solutions = [
+  {
+    title: 'Business Dashboard',
+    desc: 'Role-based admin panels with analytics, orders and team workflows.',
+    tone: 'violet',
+  },
+  {
+    title: 'Booking & CRM Apps',
+    desc: 'Appointment, lead and customer pipelines built for real teams.',
+    tone: 'pink',
+  },
+  {
+    title: 'E-commerce Apps',
+    desc: 'Catalog, cart, payments and order tracking for mobile-first shops.',
+    tone: 'blue',
+  },
+];
+
+const featured = [
+  {
+    title: 'CRM Apps',
+    desc: 'Build and nurture customer relationships with pipelines, notes and follow-ups designed for your sales process.',
+    tone: 'violet',
+  },
+  {
+    title: 'HR & Team Tools',
+    desc: 'Attendance, leave, payroll-ready modules and internal tools that streamline operations.',
+    tone: 'pink',
+  },
+  {
+    title: 'Accounting & Finance',
+    desc: 'Invoicing, expense tracking and reporting interfaces that keep financial ops clear and fast.',
+    tone: 'blue',
+  },
+];
+
+const faqs = [
+  {
+    q: 'What is a mobile app, and how does it differ from a website?',
+    a: 'A mobile app is installed on a phone or tablet and can use device features (camera, notifications, offline mode). A website runs in the browser. Many products need both — a responsive web presence plus a dedicated app for heavier use.',
+  },
+  {
+    q: 'How are mobile apps developed, and which stacks do you use?',
+    a: 'We scope requirements, design UI/UX, then build with React Native, Flutter, or native Android/iOS when needed. Backends often use Node, Laravel or Firebase depending on scale and budget.',
+  },
+  {
+    q: 'What is the difference between native and hybrid (cross-platform) apps?',
+    a: 'Native apps are built separately for iOS and Android for maximum performance. Cross-platform (React Native / Flutter) shares one codebase for faster delivery and lower cost while still feeling native.',
+  },
+  {
+    q: 'How do users download and install apps?',
+    a: 'Through the Apple App Store and Google Play Store after review, or via internal enterprise distribution for private company apps.',
+  },
+  {
+    q: 'Are apps compatible with all devices?',
+    a: 'We target modern Android and iOS versions used by your audience. During discovery we define device and OS support so testing stays focused.',
+  },
+  {
+    q: 'Are mobile apps safe, and how is data protected?',
+    a: 'We follow secure auth, encrypted transport (HTTPS), least-privilege APIs and store guidelines. Sensitive data handling is designed with your compliance needs in mind.',
+  },
+  {
+    q: 'Can apps work offline?',
+    a: 'Yes — when scoped. We can add offline caching and sync so core flows work without a constant connection.',
+  },
+  {
+    q: 'How often should apps be updated?',
+    a: 'Regular updates fix bugs, support new OS versions and ship improvements. We recommend a maintenance plan after launch.',
+  },
+];
 ---
-<ServiceShell
-  title="Application Build"
-  seoTitle="Custom App Development Bangladesh | Web & Mobile Apps — Creavix iT"
-  seoDescription="Custom web and mobile application development by Creavix iT Solution — dashboards, SaaS MVPs and business apps."
-  icon="app"
-  lead="Custom web & mobile applications designed for performance, scale and real business workflows."
-  bullets={['Web apps & admin dashboards', 'Mobile-friendly progressive apps', 'API integration & databases', 'Role-based access ready', 'Staging + production deploy']}
-  demos={[
-    { tag: 'Demo', title: 'Client dashboard', desc: 'Order tracking dashboard with status filters, charts and export — sample UI concept.' },
-    { tag: 'Demo', title: 'Booking app flow', desc: 'Service booking screens: calendar, packages and WhatsApp confirmation.' },
-    { tag: 'Demo', title: 'SaaS MVP shell', desc: 'Auth + billing-ready app shell with sidebar navigation and empty states.' },
-  ]}
-/>
+<Layout
+  title="Mobile & Application Development Bangladesh — Creavix iT"
+  description="Custom mobile and web application development by Creavix iT Solution — Android, iOS, cross-platform apps, dashboards and business software."
+>
+  <TopBar />
+  <Nav active="services" />
+
+  <!-- HERO -->
+  <section class="app-hero">
+    <div class="container app-hero-grid">
+      <div class="app-hero-copy">
+        <h1>Share Ultimate Productivity with Mobile App</h1>
+        <p>
+          Stay connected with real-time information, collaborate on projects
+          effortlessly, and share files efficiently. This tool amplifies your
+          workflow for maximum efficiency — whether you’re managing tasks or
+          communicating with your team.
+        </p>
+        <div class="app-hero-actions">
+          <a class="btn btn-wa" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn btn-assess" href="/contact">Get Free Assessment</a>
+        </div>
+      </div>
+      <div class="app-hero-visual" aria-hidden="true">
+        <div class="phone-stack">
+          <div class="phone p1">
+            <div class="phone-screen">
+              <div class="ui-bar"></div>
+              <div class="ui-card"></div>
+              <div class="ui-row"><i></i><i></i></div>
+              <div class="ui-cta"></div>
+            </div>
+          </div>
+          <div class="phone p2">
+            <div class="phone-screen dark">
+              <div class="ui-bar light"></div>
+              <div class="ui-stat">$10,315</div>
+              <div class="ui-chart"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Maximum Reach -->
+  <section class="app-sec">
+    <div class="container app-split">
+      <div>
+        <h2>Maximum Reach with Mobile App</h2>
+        <p>
+          Get your app in front of as many people as possible with the help of our
+          professional app designers. A mobile app can reach a huge audience
+          because of the widespread use of smartphones. Harness the vast potential
+          of app stores to connect with customers all around the globe. Our
+          customized solutions optimize accessibility for varied demographics by
+          ensuring broad compatibility, whether it’s iOS or Android.
+        </p>
+        <p>
+          Incorporate social media, use push notifications, and make the interface
+          easy to use to increase involvement. Raise awareness of your brand, make
+          your services easy to use, and lead your industry. Take advantage of the
+          widespread availability and ease of use of purpose-built mobile apps to
+          expand your influence and accomplish more.
+        </p>
+        <a class="link-arrow" href="/contact">Contact Us <span>→</span></a>
+      </div>
+      <div class="reach-visual" aria-hidden="true">
+        <div class="reach-card">
+          <div class="reach-phone">
+            <div class="rp-top">Transaction</div>
+            <div class="rp-amt">$853.48</div>
+            <div class="rp-row"></div>
+            <div class="rp-row short"></div>
+          </div>
+          <div class="reach-phone alt">
+            <div class="rp-top">Wallet</div>
+            <div class="rp-amt">Balance</div>
+            <div class="rp-row"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase band -->
+  <section class="app-showcase">
+    <div class="container">
+      <div class="showcase-frame" aria-hidden="true">
+        <div class="sc-phone">
+          <div class="sc-label">Manage Your Finances</div>
+          <div class="sc-bars"><i></i><i></i><i></i></div>
+        </div>
+        <div class="sc-phone mid">
+          <div class="sc-amt">$ 10,315.51</div>
+          <div class="sc-grid"><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="sc-phone">
+          <div class="sc-label">Insights</div>
+          <div class="sc-chart"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technologies -->
+  <section class="app-sec alt">
+    <div class="container">
+      <div class="sec-head">
+        <h2>Technologies We Use</h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="tech-grid">
+        {tech.map((t) => (
+          <div class="tech-item">
+            <img src={t.icon} alt="" width="36" height="36" loading="lazy" />
+            <span>{t.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Android -->
+  <section class="app-sec">
+    <div class="container app-split platform">
+      <div class="plat-art android" aria-hidden="true">
+        <div class="android-bot">
+          <div class="ab-head"></div>
+          <div class="ab-body"></div>
+          <div class="ab-arm l"></div>
+          <div class="ab-arm r"></div>
+          <div class="ab-leg l"></div>
+          <div class="ab-leg r"></div>
+        </div>
+      </div>
+      <div>
+        <h2>Android</h2>
+        <p>
+          Creavix iT provides animated technology solutions by utilizing Android.
+          Our business develops innovative mobile apps and hardware that re-imagine
+          the user experience by capitalizing on the extensive capabilities of the
+          Android platform. The innovative solutions produced by Creavix iT are designed
+          to satisfy the unique needs of our clients through seamless integration and
+          customization.
+        </p>
+        <p>
+          Thanks to our dedication to quality, Android can support strong, easy-to-use,
+          and prepared products for the future. Android opens the door to
+          revolutionary solutions, breaking down barriers and opening up new
+          dimensions of digital advancement. Embrace the boundless potential of
+          technology with Creavix iT.
+        </p>
+        <a class="link-arrow" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Craft Your App <span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- iOS -->
+  <section class="app-sec alt">
+    <div class="container app-split platform reverse">
+      <div>
+        <h2>iOS</h2>
+        <p>
+          Creavix iT, at the forefront of innovation, harnesses the power of iOS to
+          redefine digital experiences. Our company crafts exquisite, high-performance
+          applications and devices, leveraging the seamless integration capabilities of
+          the iOS ecosystem. With a focus on user-centric design and cutting-edge
+          technology, Creavix iT creates bespoke solutions that resonate with Apple’s
+          commitment to excellence.
+        </p>
+        <p>
+          The iOS platform serves as the canvas for our groundbreaking products,
+          ensuring a harmonious blend of functionality and aesthetics. Join us in
+          exploring the pinnacle of digital sophistication, where Creavix iT transforms
+          iOS into a gateway for unparalleled technological excellence and user
+          delight.
+        </p>
+        <a class="link-arrow" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Grab Your App <span>→</span></a>
+      </div>
+      <div class="plat-art ios" aria-hidden="true">
+        <div class="ios-badge">iOS</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cross Platform -->
+  <section class="app-sec">
+    <div class="container app-split platform">
+      <div class="plat-art cross" aria-hidden="true">
+        <div class="cross-icons">
+          <span class="ci android-c">A</span>
+          <span class="ci ios-c">iOS</span>
+        </div>
+      </div>
+      <div>
+        <h2>Cross Platform</h2>
+        <p>
+          Creavix iT pioneers cross-platform solutions, unifying technology to deliver
+          versatile and efficient products. Our expertise lies in seamlessly bridging
+          platforms, ensuring our clients’ applications perform optimally across
+          diverse ecosystems. Leveraging frameworks like React Native and Flutter,
+          Creavix iT streamlines code reuse, reducing development time and costs.
+        </p>
+        <p>
+          Our cross-platform approach guarantees a consistent and delightful user
+          experience, whether on iOS or Android. Creavix iT thrives on innovation,
+          utilizing the best of both worlds to create applications that transcend
+          boundaries and provide unparalleled accessibility. Elevate your digital
+          presence with Creavix iT, where cross-platform development becomes a
+          cornerstone for unparalleled technological synergy.
+        </p>
+        <a class="link-arrow" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Grab Your App <span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions we build -->
+  <section class="app-sec alt">
+    <div class="container">
+      <div class="sec-head">
+        <h2>Solutions We Build</h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="sol-grid">
+        {solutions.map((s) => (
+          <article class={`sol-card tone-${s.tone}`}>
+            <div class="sol-illu" aria-hidden="true"></div>
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+            <a href="/contact">Explore More →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured -->
+  <section class="app-sec">
+    <div class="container">
+      <div class="sec-head">
+        <h2>Featured Service</h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="feat-grid">
+        {featured.map((f) => (
+          <article class={`feat-card tone-${f.tone}`}>
+            <div class="feat-illu" aria-hidden="true"></div>
+            <h3>{f.title}</h3>
+            <p>{f.desc}</p>
+            <a href="/contact">See Details →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="app-faq">
+    <div class="container">
+      <div class="sec-head light">
+        <h2>Frequently Asked Questions</h2>
+        <div class="sec-line light"></div>
+      </div>
+      <div class="faq-list">
+        {faqs.map((f, i) => (
+          <details class="faq-item" open={i === 0}>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="app-cta">
+    <div class="container app-cta-grid">
+      <div>
+        <p class="cta-eye">Book a Free Consultation</p>
+        <h2>Let’s Talk</h2>
+        <p>Tell us about your app idea — Android, iOS or cross-platform. We’ll map scope, timeline and stack.</p>
+        <a class="btn btn-assess" href="/contact">Contact Us</a>
+      </div>
+      <div class="cta-visual" aria-hidden="true">
+        <div class="cta-box">
+          <span class="cta-dot"></span>
+          <span class="cta-line"></span>
+          <span class="cta-line short"></span>
+          <span class="cta-pill">App Strategy</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .app-hero {
+    padding: 5rem 1.25rem 3.5rem;
+    background: linear-gradient(180deg, #FFF5F7, #FFF9F0 50%, #fff);
+  }
+  .app-hero-grid {
+    display: grid; gap: 2.5rem; align-items: center;
+  }
+  @media (min-width: 900px) {
+    .app-hero-grid { grid-template-columns: 1.1fr 0.9fr; }
+  }
+  .app-hero-copy h1 {
+    margin: 0 0 1rem;
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
+    font-weight: 800; line-height: 1.15; letter-spacing: -0.03em; color: #0F172A;
+  }
+  .app-hero-copy p {
+    margin: 0 0 1.5rem; color: #475569; line-height: 1.7; font-size: 1.05rem; max-width: 34rem;
+  }
+  .app-hero-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+  .btn-wa {
+    background: #22C55E; color: #fff; border: none; border-radius: 999px;
+    padding: 0.75rem 1.35rem; font-weight: 700; text-decoration: none;
+  }
+  .btn-wa:hover { background: #16A34A; }
+  .btn-assess {
+    background: #2563EB; color: #fff; border: none; border-radius: 999px;
+    padding: 0.75rem 1.35rem; font-weight: 700; text-decoration: none;
+  }
+  .btn-assess:hover { background: #1D4ED8; }
+
+  .phone-stack { position: relative; height: 320px; display: grid; place-items: center; }
+  .phone {
+    position: absolute; width: 150px; height: 280px; border-radius: 28px;
+    background: #0F172A; padding: 10px; box-shadow: 0 24px 50px rgba(15,23,42,.25);
+  }
+  .phone.p1 { left: 12%; transform: rotate(-8deg); }
+  .phone.p2 { right: 12%; transform: rotate(8deg); background: #1E293B; }
+  .phone-screen {
+    height: 100%; border-radius: 20px; background: linear-gradient(160deg, #EFF6FF, #F8FAFC);
+    padding: 12px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .phone-screen.dark { background: linear-gradient(160deg, #0F172A, #1E3A8A); }
+  .ui-bar { height: 10px; border-radius: 6px; background: rgba(37,99,235,.2); }
+  .ui-bar.light { background: rgba(255,255,255,.2); }
+  .ui-card { height: 70px; border-radius: 12px; background: #fff; border: 1px solid rgba(15,23,42,.06); }
+  .ui-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ui-row i { display: block; height: 40px; border-radius: 8px; background: #fff; border: 1px solid rgba(15,23,42,.06); }
+  .ui-cta { margin-top: auto; height: 28px; border-radius: 999px; background: #2563EB; width: 70%; }
+  .ui-stat { color: #fff; font-weight: 800; font-size: 1.1rem; margin-top: 1rem; }
+  .ui-chart { flex: 1; margin-top: 1rem; border-radius: 12px; background: linear-gradient(180deg, rgba(96,165,250,.4), transparent); }
+
+  .app-sec { padding: 3.5rem 1.25rem; background: #fff; }
+  .app-sec.alt { background: #F8FAFC; }
+  .app-split {
+    display: grid; gap: 2rem; align-items: center;
+  }
+  @media (min-width: 900px) {
+    .app-split { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .app-split.reverse > :first-child { order: 2; }
+    .app-split.reverse > :last-child { order: 1; }
+  }
+  .app-split h2, .sec-head h2 {
+    margin: 0 0 1rem;
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; color: #0F172A;
+  }
+  .app-split p { margin: 0 0 1rem; color: #475569; line-height: 1.7; }
+  .link-arrow {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-weight: 700; color: #2563EB; text-decoration: none;
+  }
+  .link-arrow span {
+    display: inline-grid; place-items: center; width: 26px; height: 26px;
+    border-radius: 50%; border: 1.5px solid currentColor; font-size: 0.8rem;
+  }
+
+  .reach-card { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .reach-phone {
+    width: 160px; border-radius: 20px; padding: 1rem;
+    background: #0F172A; color: #fff; box-shadow: 0 16px 40px rgba(15,23,42,.2);
+  }
+  .reach-phone.alt { background: #1E3A8A; }
+  .rp-top { font-size: 0.75rem; opacity: .7; }
+  .rp-amt { font-size: 1.25rem; font-weight: 800; margin: 0.5rem 0 1rem; }
+  .rp-row { height: 10px; border-radius: 6px; background: rgba(255,255,255,.15); margin-bottom: 8px; }
+  .rp-row.short { width: 60%; }
+
+  .app-showcase {
+    padding: 2rem 1.25rem 3rem;
+    background: #0B1220;
+  }
+  .showcase-frame {
+    display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+  }
+  .sc-phone {
+    width: 160px; min-height: 220px; border-radius: 24px; padding: 1.1rem;
+    background: #111827; border: 1px solid rgba(255,255,255,.08);
+    color: #E2E8F0;
+  }
+  .sc-phone.mid {
+    width: 180px; min-height: 260px; background: linear-gradient(160deg, #0F172A, #1E3A8A);
+    transform: translateY(-12px);
+  }
+  .sc-label { font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem; }
+  .sc-amt { font-size: 1.35rem; font-weight: 800; margin: 1rem 0; }
+  .sc-bars { display: flex; flex-direction: column; gap: 8px; }
+  .sc-bars i { display: block; height: 12px; border-radius: 6px; background: rgba(255,255,255,.12); }
+  .sc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .sc-grid i { display: block; height: 40px; border-radius: 10px; background: rgba(255,255,255,.1); }
+  .sc-chart { height: 80px; margin-top: 1rem; border-radius: 12px; background: linear-gradient(180deg, rgba(96,165,250,.35), transparent); }
+
+  .sec-head {
+    text-align: center; margin-bottom: 2rem;
+  }
+  .sec-head.light h2 { color: #fff; }
+  .sec-line {
+    width: 80px; height: 3px; margin: 0.75rem auto 0;
+    background: linear-gradient(90deg, #2563EB, #6366F1); border-radius: 999px;
+  }
+  .sec-line.light { background: linear-gradient(90deg, #93C5FD, #C4B5FD); }
+
+  .tech-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem;
+  }
+  @media (min-width: 520px) { .tech-grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 900px) { .tech-grid { grid-template-columns: repeat(8, 1fr); } }
+  .tech-item {
+    background: #fff; border: 1px solid rgba(15,23,42,.07); border-radius: 14px;
+    padding: 1rem 0.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    text-align: center;
+  }
+  .tech-item img { width: 32px; height: 32px; object-fit: contain; }
+  .tech-item span { font-size: 0.72rem; font-weight: 600; color: #334155; }
+
+  .plat-art { display: grid; place-items: center; min-height: 220px; }
+  .android-bot { position: relative; width: 140px; height: 160px; }
+  .ab-head {
+    width: 90px; height: 50px; margin: 0 auto; border-radius: 40px 40px 8px 8px;
+    background: #3DDC84;
+  }
+  .ab-body {
+    width: 100px; height: 70px; margin: 8px auto 0; border-radius: 12px; background: #3DDC84;
+  }
+  .ab-arm {
+    position: absolute; top: 60px; width: 18px; height: 55px; border-radius: 10px; background: #3DDC84;
+  }
+  .ab-arm.l { left: 0; }
+  .ab-arm.r { right: 0; }
+  .ab-leg {
+    position: absolute; bottom: 0; width: 22px; height: 35px; border-radius: 0 0 10px 10px; background: #3DDC84;
+  }
+  .ab-leg.l { left: 40px; }
+  .ab-leg.r { right: 40px; }
+  .ios-badge {
+    width: 160px; height: 160px; border-radius: 36px;
+    background: linear-gradient(145deg, #FF2D55, #AF52DE 50%, #5856D6);
+    display: grid; place-items: center;
+    color: #fff; font-size: 2.5rem; font-weight: 800;
+    box-shadow: 0 24px 50px rgba(175,82,222,.35);
+  }
+  .cross-icons { display: flex; gap: 1rem; align-items: center; }
+  .ci {
+    width: 90px; height: 90px; border-radius: 24px; display: grid; place-items: center;
+    font-weight: 800; font-size: 1.25rem; color: #fff;
+  }
+  .ci.android-c { background: #3DDC84; color: #0F172A; }
+  .ci.ios-c { background: linear-gradient(145deg, #FF2D55, #5856D6); }
+
+  .sol-grid, .feat-grid {
+    display: grid; gap: 1rem;
+  }
+  @media (min-width: 700px) {
+    .sol-grid, .feat-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .sol-card, .feat-card {
+    border-radius: 20px; padding: 1.5rem; background: #F8FAFC;
+    border: 1px solid rgba(15,23,42,.06);
+  }
+  .sol-card.tone-violet, .feat-card.tone-violet { background: #F3E8FF; }
+  .sol-card.tone-pink, .feat-card.tone-pink { background: #FCE7F3; }
+  .sol-card.tone-blue, .feat-card.tone-blue { background: #DBEAFE; }
+  .sol-illu, .feat-illu {
+    height: 100px; border-radius: 14px; margin-bottom: 1rem;
+    background: linear-gradient(135deg, rgba(255,255,255,.8), rgba(255,255,255,.3));
+  }
+  .sol-card h3, .feat-card h3 {
+    margin: 0 0 0.5rem; font-size: 1.1rem; font-weight: 800; color: #0F172A;
+  }
+  .sol-card p, .feat-card p {
+    margin: 0 0 1rem; color: #475569; line-height: 1.55; font-size: 0.92rem;
+  }
+  .sol-card a, .feat-card a {
+    font-weight: 700; color: #2563EB; text-decoration: none; font-size: 0.9rem;
+  }
+
+  .app-faq {
+    padding: 3.5rem 1.25rem;
+    background: linear-gradient(180deg, #0F172A, #1E3A8A);
+    color: #fff;
+  }
+  .faq-list { max-width: 800px; margin: 0 auto; display: grid; gap: 0.65rem; }
+  .faq-item {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 14px;
+    padding: 0.85rem 1.1rem;
+  }
+  .faq-item summary {
+    cursor: pointer; font-weight: 600; list-style: none;
+    display: flex; justify-content: space-between; gap: 1rem; align-items: center;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; font-size: 1.25rem; opacity: .8; }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p {
+    margin: 0.75rem 0 0.25rem; color: #CBD5E1; line-height: 1.6; font-size: 0.95rem;
+  }
+
+  .app-cta {
+    padding: 3.5rem 1.25rem;
+    background: linear-gradient(135deg, #EEF2FF, #DBEAFE);
+  }
+  .app-cta-grid {
+    display: grid; gap: 2rem; align-items: center;
+  }
+  @media (min-width: 800px) {
+    .app-cta-grid { grid-template-columns: 1.1fr 0.9fr; }
+  }
+  .cta-eye { margin: 0 0 0.35rem; font-weight: 600; color: #334155; }
+  .app-cta h2 {
+    margin: 0 0 0.65rem;
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 800; color: #0F172A;
+  }
+  .app-cta p { margin: 0 0 1.25rem; color: #475569; max-width: 28rem; line-height: 1.6; }
+  .cta-visual { display: grid; place-items: center; }
+  .cta-box {
+    width: min(280px, 100%); background: #fff; border-radius: 20px; padding: 1.5rem;
+    box-shadow: 0 20px 50px rgba(15,23,42,.12); display: grid; gap: 0.65rem;
+  }
+  .cta-dot { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #3B82F6, #6366F1); }
+  .cta-line { height: 10px; border-radius: 6px; background: #E2E8F0; }
+  .cta-line.short { width: 55%; }
+  .cta-pill {
+    width: fit-content; padding: 0.35rem 0.75rem; border-radius: 999px;
+    background: #EFF6FF; color: #1D4ED8; font-size: 0.75rem; font-weight: 700;
+  }
+
+  @media (max-width: 640px) {
+    .phone.p1 { left: 0; }
+    .phone.p2 { right: 0; }
+    .phone-stack { height: 280px; }
+  }
+</style>

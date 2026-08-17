@@ -1,71 +1,213 @@
 ---
-import { SITE } from '../data/site';
+import { SITE, SOCIAL_LINKS } from '../data/site';
 import SocialIcons from './SocialIcons.astro';
 import SiteChrome from './SiteChrome.astro';
+
+const serviceLinks = [
+  { href: '/services/video-editing', label: 'Video Editing' },
+  { href: '/services/ai-video-marketing', label: 'AI Video Marketing' },
+  { href: '/services/web-development', label: 'Web Development' },
+  { href: '/services/application-build', label: 'Application Build' },
+  { href: '/services/digital-marketing', label: 'Digital Marketing' },
+  { href: '/services/seo', label: 'SEO' },
+  { href: '/services/boosting', label: 'Boosting' },
+  { href: '/services/campaign', label: 'Campaign' },
+];
+
+const companyLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/#portfolio', label: 'Portfolio' },
+  { href: '/contact', label: 'Contact' },
+  { href: '/#reviews', label: 'Reviews' },
+];
 ---
-<footer class="site-footer">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a href="/" class="logo footer-logo">
-        <img src="/logo.png" alt={SITE.brand} class="logo-img" width="36" height="36" />
-        Creavix <span>iT</span> Solution
-      </a>
-      <p class="footer-desc">{SITE.shortDesc}</p>
-      <div style="margin-top:1.15rem">
+<footer class="vx-footer">
+  <!-- Mid band: brand blurb + social + subscribe -->
+  <div class="vx-mid">
+    <div class="container vx-mid-inner">
+      <p class="vx-mid-text">
+        Empower digital presence and achieve business goals with {SITE.brand}.
+        Video, AI, web &amp; app development solutions.
+      </p>
+      <div class="vx-social">
         <SocialIcons size="md" />
       </div>
-    </div>
-    <div class="footer-col">
-      <h4>Services</h4>
-      <ul>
-        <li><a href="/services/video-editing">Video Editing</a></li>
-        <li><a href="/services/ai-video-marketing">AI Video Marketing</a></li>
-        <li><a href="/services/human-like-content">Human-like Content</a></li>
-        <li><a href="/services/web-development">Web Development</a></li>
-        <li><a href="/services/application-build">Application Build</a></li>
-        <li><a href="/services/boosting">Boosting</a></li>
-        <li><a href="/services/campaign">Campaign</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About Us</a></li>
-        <li><a href="/#portfolio">Portfolio</a></li>
-        <li><a href="/#reviews">Reviews</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href={`tel:${SITE.hotline.replace(/\s/g, '')}`}>{SITE.hotline}</a></li>
-        <li><a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp {SITE.whatsapp}</a></li>
-        <li><a href={`mailto:${SITE.email1}`}>{SITE.email1}</a></li>
-        <li><a href={`mailto:${SITE.email2}`}>{SITE.email2}</a></li>
-        <li><span class="footer-address">{SITE.address}</span></li>
-      </ul>
+      <form class="vx-sub" action="/contact" method="get">
+        <input type="email" name="email" placeholder="Enter Your Email" aria-label="Email" />
+        <button type="submit">Subscribe</button>
+      </form>
     </div>
   </div>
-  <div class="footer-bottom">
-    <div>© {new Date().getFullYear()} {SITE.brand}. All rights reserved.</div>
-    <div class="footer-links">
-      <a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
-      <a href="/contact">Contact</a>
-      <a href="/#portfolio">Portfolio</a>
+
+  <!-- Main dark footer -->
+  <div class="vx-main">
+    <div class="container vx-grid">
+      <div class="vx-brand">
+        <a href="/" class="vx-logo">
+          <img src="/logo.png" alt="" width="40" height="40" />
+          <span>CREAVIX <em>iT</em></span>
+        </a>
+        <p>
+          Empower digital presence and achieve business goals with Creavix iT
+          Digital Marketing, Video and Software Development solutions.
+        </p>
+        <a class="vx-mail" href={`mailto:${SITE.email1}`}>{SITE.email1}</a>
+        <p class="vx-addr">{SITE.address}</p>
+      </div>
+
+      <div class="vx-col">
+        <h4>Services</h4>
+        <ul>
+          {serviceLinks.map((l) => (
+            <li><a href={l.href}>{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="vx-col">
+        <h4>Company</h4>
+        <ul>
+          {companyLinks.map((l) => (
+            <li><a href={l.href}>{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="vx-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href={`tel:${SITE.hotline.replace(/\s/g, '')}`}>{SITE.hotline}</a></li>
+          <li><a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp {SITE.whatsapp}</a></li>
+          <li><a href={`mailto:${SITE.email2}`}>{SITE.email2}</a></li>
+        </ul>
+      </div>
     </div>
+
+    <div class="container vx-bottom">
+      <div class="vx-copy">© {new Date().getFullYear()} {SITE.brand}. All rights reserved.</div>
+      <div class="vx-bottom-links">
+        <a href="/contact">Contact</a>
+        <a href="/about">About</a>
+        <a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- Large brand mark like ViserX -->
+    <div class="vx-watermark" aria-hidden="true">CREAVIX iT</div>
   </div>
 </footer>
 <SiteChrome />
 
 <style>
-  .footer-address {
-    color: #64748B;
-    font-size: 0.85rem;
-    line-height: 1.45;
+  .vx-footer { margin-top: 0; }
+
+  .vx-mid {
+    background: #F1F5F9;
+    padding: 2.5rem 1.25rem;
+    text-align: center;
   }
-  .footer-logo {
-    margin-bottom: 0.85rem;
+  .vx-mid-inner { max-width: 640px; margin: 0 auto; }
+  .vx-mid-text {
+    margin: 0 0 1.25rem;
+    color: #475569;
+    line-height: 1.6;
+    font-size: 0.98rem;
+  }
+  .vx-social { display: flex; justify-content: center; margin-bottom: 1.25rem; }
+  .vx-sub {
+    display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;
+  }
+  .vx-sub input {
+    flex: 1; min-width: 200px; max-width: 280px;
+    padding: 0.7rem 1rem; border-radius: 999px;
+    border: 1px solid rgba(15,23,42,.12); background: #fff;
+    font-size: 0.9rem;
+  }
+  .vx-sub button {
+    padding: 0.7rem 1.35rem; border-radius: 999px; border: none;
+    background: #2563EB; color: #fff; font-weight: 700; cursor: pointer;
+  }
+  .vx-sub button:hover { background: #1D4ED8; }
+
+  .vx-main {
+    position: relative;
+    background: #0B1220;
+    color: #E2E8F0;
+    padding: 3.5rem 1.25rem 2rem;
+    overflow: hidden;
+  }
+  .vx-grid {
+    display: grid;
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  @media (min-width: 768px) {
+    .vx-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 1.5rem; }
+  }
+
+  .vx-logo {
+    display: inline-flex; align-items: center; gap: 0.65rem;
+    text-decoration: none; color: #fff; margin-bottom: 1rem;
+  }
+  .vx-logo img { border-radius: 8px; }
+  .vx-logo span {
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-weight: 800; font-size: 1.15rem; letter-spacing: 0.04em;
+  }
+  .vx-logo em { font-style: normal; color: #60A5FA; }
+  .vx-brand p {
+    margin: 0 0 0.75rem; color: #94A3B8; line-height: 1.6; font-size: 0.9rem; max-width: 280px;
+  }
+  .vx-mail {
+    display: inline-block; color: #93C5FD; text-decoration: none; font-size: 0.9rem; margin-bottom: 0.5rem;
+  }
+  .vx-mail:hover { color: #BFDBFE; }
+  .vx-addr { font-size: 0.85rem !important; color: #64748B !important; }
+
+  .vx-col h4 {
+    margin: 0 0 1rem;
+    font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.04em; text-transform: uppercase; color: #fff;
+  }
+  .vx-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+  .vx-col a {
+    color: #94A3B8; text-decoration: none; font-size: 0.9rem;
+  }
+  .vx-col a:hover { color: #E2E8F0; }
+
+  .vx-bottom {
+    position: relative; z-index: 1;
+    margin-top: 2.5rem; padding-top: 1.5rem;
+    border-top: 1px solid rgba(148,163,184,.15);
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    justify-content: space-between; align-items: center;
+  }
+  .vx-copy { font-size: 0.82rem; color: #64748B; }
+  .vx-bottom-links { display: flex; gap: 1.25rem; }
+  .vx-bottom-links a {
+    font-size: 0.82rem; color: #94A3B8; text-decoration: none;
+  }
+  .vx-bottom-links a:hover { color: #E2E8F0; }
+
+  .vx-watermark {
+    position: absolute;
+    left: 50%; bottom: -0.15em;
+    transform: translateX(-50%);
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-size: clamp(3.5rem, 14vw, 9rem);
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    color: rgba(148, 163, 184, 0.07);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    line-height: 0.85;
+    z-index: 0;
+  }
+
+  @media (max-width: 640px) {
+    .vx-main { padding-bottom: 3.5rem; }
   }
 </style>
