@@ -1,0 +1,237 @@
+---
+/** FAQ accordion — ViserX-style curriculum, Creavix answers */
+const faqs = [
+  {
+    q: 'What services does Creavix offer?',
+    a: 'Creavix iT Solution is a full digital partner: professional video editing, human-like AI video marketing, web development, application build, authentication systems, Facebook page setup, Meta boosting and end-to-end campaigns — from one studio in Bangladesh.',
+  },
+  {
+    q: 'How fast is delivery for video projects?',
+    a: 'Most short-form and ad videos can be delivered in 24–48 hours once the brief, assets and scope are confirmed. Larger brand films and multi-video packs follow an agreed timeline shared on WhatsApp before work starts.',
+  },
+  {
+    q: 'Do you create AI human-like videos?',
+    a: 'Yes. We produce cinematic, human-like AI video ads and product promos designed for Meta, YouTube and TikTok — built to look authentic and convert, not just look experimental.',
+  },
+  {
+    q: 'Can you edit my existing footage?',
+    a: 'Absolutely. Send your raw clips, brand guidelines and references. We handle pacing, color, sound, subtitles (Bangla/English) and platform-ready exports for ads, Reels, YouTube and brand films.',
+  },
+  {
+    q: 'Do you build websites and apps too?',
+    a: 'Yes. Beyond video, we build SEO-ready websites, landing pages, custom applications and secure authentication systems — so your digital presence and product can grow together.',
+  },
+  {
+    q: 'How do I get a quote or start a project?',
+    a: 'Message us on WhatsApp with your goal, deadline and any references. We reply with scope, timeline and pricing. You can also use the Contact page or call our hotline for faster guidance.',
+  },
+  {
+    q: 'Do you handle Facebook page setup and boosting?',
+    a: 'Yes. We help with business page setup, page structure and Meta boosting / campaign management so your creatives reach the right audience with measurable results.',
+  },
+  {
+    q: 'Where is your studio located?',
+    a: 'Our studio is in Hemayetpur, Savar, Dhaka, Bangladesh. We work with local and remote clients across the country and abroad via WhatsApp and email.',
+  },
+];
+---
+<section id="faq" class="section-faq" aria-labelledby="faq-heading">
+  <div class="container faq-wrap">
+    <div class="faq-intro reveal">
+      <p class="eyebrow">Help center</p>
+      <h2 id="faq-heading" class="mb-4">Frequently asked questions</h2>
+      <p class="faq-lead">
+        Quick answers about video, AI creatives, web, apps and campaigns. Still stuck? Message us on WhatsApp.
+      </p>
+    </div>
+
+    <div class="faq-list" data-faq-root>
+      {faqs.map((item, i) => (
+        <div class="faq-item reveal" style={`--i:${i}`}>
+          <button
+            type="button"
+            class="faq-trigger"
+            id={`faq-btn-${i}`}
+            aria-expanded="false"
+            aria-controls={`faq-panel-${i}`}
+          >
+            <span class="faq-q">{item.q}</span>
+            <span class="faq-icon" aria-hidden="true">
+              <svg class="icon-plus" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              <svg class="icon-minus" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14"/></svg>
+            </span>
+          </button>
+          <div
+            class="faq-panel"
+            id={`faq-panel-${i}`}
+            role="region"
+            aria-labelledby={`faq-btn-${i}`}
+            hidden
+          >
+            <div class="faq-panel-inner">
+              <p>{item.a}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-faq {
+    padding: 4.5rem 1.25rem;
+    background: #FFFFFF;
+  }
+  .faq-wrap {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .faq-intro {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .faq-lead {
+    max-width: 36rem;
+    margin: 0 auto;
+    color: #64748B;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .faq-item {
+    background: #FFFFFF;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+    overflow: hidden;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .faq-item.is-open {
+    border-color: rgba(37, 99, 235, 0.22);
+    box-shadow: 0 10px 28px rgba(37, 99, 235, 0.08);
+  }
+  .faq-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.15rem 1.25rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-h), system-ui, sans-serif;
+    color: #0B0F19;
+  }
+  .faq-trigger:hover .faq-q {
+    color: #2563EB;
+  }
+  .faq-q {
+    font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    transition: color 0.2s ease;
+  }
+  .faq-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #F8FAFC;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    color: #2563EB;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+  .faq-item.is-open .faq-icon {
+    background: #2563EB;
+    border-color: #2563EB;
+    color: #fff;
+  }
+  .icon-minus { display: none; }
+  .faq-item.is-open .icon-plus { display: none; }
+  .faq-item.is-open .icon-minus { display: block; }
+
+  .faq-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .faq-item.is-open .faq-panel {
+    grid-template-rows: 1fr;
+  }
+  .faq-panel[hidden] {
+    display: grid !important;
+  }
+  .faq-panel-inner {
+    overflow: hidden;
+  }
+  .faq-panel-inner p {
+    margin: 0;
+    padding: 0 1.25rem 1.2rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #64748B;
+  }
+
+  @media (max-width: 640px) {
+    .faq-trigger {
+      padding: 1rem 1.05rem;
+      gap: 0.75rem;
+    }
+    .faq-icon {
+      width: 32px;
+      height: 32px;
+    }
+    .faq-panel-inner p {
+      padding: 0 1.05rem 1.05rem;
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+<script is:inline>
+(function () {
+  var root = document.querySelector('[data-faq-root]');
+  if (!root) return;
+
+  root.addEventListener('click', function (e) {
+    var btn = e.target.closest('.faq-trigger');
+    if (!btn || !root.contains(btn)) return;
+
+    var item = btn.closest('.faq-item');
+    if (!item) return;
+
+    var panel = item.querySelector('.faq-panel');
+    var open = item.classList.contains('is-open');
+
+    // accordion: close others
+    root.querySelectorAll('.faq-item.is-open').forEach(function (el) {
+      if (el === item) return;
+      el.classList.remove('is-open');
+      var b = el.querySelector('.faq-trigger');
+      var p = el.querySelector('.faq-panel');
+      if (b) b.setAttribute('aria-expanded', 'false');
+      if (p) p.hidden = true;
+    });
+
+    if (open) {
+      item.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      if (panel) panel.hidden = true;
+    } else {
+      item.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+      if (panel) panel.hidden = false;
+    }
+  });
+})();
+</script>

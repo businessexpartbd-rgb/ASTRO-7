@@ -6,6 +6,7 @@ import Footer from '../components/Footer.astro';
 import Reviews from '../components/Reviews.astro';
 import VideoGallery from '../components/VideoGallery.astro';
 import BrandStrip from '../components/BrandStrip.astro';
+import FAQ from '../components/FAQ.astro';
 import IconBox from '../components/IconBox.astro';
 import ServiceIcons from '../components/icons/ServiceIcons.astro';
 import HeroOrbit from '../components/HeroOrbit.astro';
@@ -123,6 +124,9 @@ const services = [
   </section>
 
   <Reviews />
+
+  <!-- Best placement: after social proof, before final CTA -->
+  <FAQ />
 
   <section id="contact" class="section-warm">
     <div class="container text-center reveal" style="max-width:40rem">
