@@ -1,16 +1,787 @@
 ---
-import ServiceShell from '../../components/ServiceShell.astro';
+import Layout from '../../layouts/Layout.astro';
+import TopBar from '../../components/TopBar.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE } from '../../data/site';
+
+const platformsTop = [
+  { name: 'WordPress', href: 'https://wordpress.org/', desc: 'CMS & business sites', color: '#21759B' },
+  { name: 'Next.js', href: 'https://nextjs.org/', desc: 'React full-stack apps', color: '#000000' },
+  { name: 'Astro', href: 'https://astro.build/', desc: 'Ultra-fast static sites', color: '#BC52EE' },
+  { name: 'Cloudflare', href: 'https://www.cloudflare.com/', desc: 'Workers, Pages & CDN', color: '#F38020' },
+];
+
+const platformsMore = [
+  { name: 'React', href: 'https://react.dev/', desc: 'UI library' },
+  { name: 'Vue.js', href: 'https://vuejs.org/', desc: 'Progressive framework' },
+  { name: 'Tailwind CSS', href: 'https://tailwindcss.com/', desc: 'Utility-first CSS' },
+  { name: 'Node.js', href: 'https://nodejs.org/', desc: 'Server runtime' },
+  { name: 'Shopify', href: 'https://www.shopify.com/', desc: 'E-commerce' },
+  { name: 'Webflow', href: 'https://webflow.com/', desc: 'No-code design' },
+];
+
+const domains = [
+  { name: 'Cloudflare Registrar', href: 'https://www.cloudflare.com/products/registrar/', desc: 'At-cost domains + DNS' },
+  { name: 'Namecheap', href: 'https://www.namecheap.com/', desc: 'Popular & affordable' },
+  { name: 'GoDaddy', href: 'https://www.godaddy.com/', desc: 'Global domain leader' },
+  { name: 'Google Domains → Squarespace', href: 'https://domains.google/', desc: 'Simple managed domains' },
+  { name: 'Porkbun', href: 'https://porkbun.com/', desc: 'Cheap + free WHOIS' },
+  { name: 'Name.com', href: 'https://www.name.com/', desc: 'Easy management' },
+];
+
+const challenges = [
+  'Building sites that stay fast under real traffic and Core Web Vitals pressure',
+  'Keeping design premium while remaining fully mobile-responsive',
+  'Structuring content and metadata for sustainable SEO growth',
+  'Secure forms, auth flows and third-party integrations without bloat',
+];
+
+const problems = [
+  'Slow shared hosting and unoptimized images killing conversions',
+  'Template sites that look the same as every competitor',
+  'No clear information architecture or conversion path',
+  'Missing analytics, tracking and post-launch support',
+];
+
+const workflow = [
+  { t: 'Discovery', d: 'Goals, audience, competitors, brand assets and technical constraints mapped in a short kickoff.' },
+  { t: 'Architecture', d: 'Sitemap, wireframes, stack choice (Astro / Next / WordPress) and hosting plan locked.' },
+  { t: 'Design & Build', d: 'UI system, responsive pages, CMS/content model, forms and performance budget applied.' },
+  { t: 'QA & Launch', d: 'Cross-device tests, SEO checks, analytics, SSL, DNS and production deploy.' },
+  { t: 'Optimize', d: 'Speed tuning, search console, conversion tweaks and optional ongoing care.' },
+];
+
+const solutions = [
+  { t: 'Performance-first builds', d: 'Static where possible, edge delivery via Cloudflare, image optimization and clean code.' },
+  { t: 'Conversion-focused UI', d: 'Clear hierarchy, trust signals, sticky CTAs and WhatsApp/contact paths that convert.' },
+  { t: 'SEO foundations', d: 'Semantic HTML, meta, schema, sitemap, robots and Core Web Vitals friendly structure.' },
+  { t: 'Maintainable stack', d: 'Documented components, easy content updates and scalable hosting choices.' },
+];
 ---
-<ServiceShell
-  title="Web Development"
-  seoTitle="Web Development Agency Bangladesh | SEO-Ready Websites — Creavix iT"
-  seoDescription="Custom website development in Bangladesh: fast, SEO-friendly sites, landing pages and business portals by Creavix iT Solution."
-  icon="web"
-  lead="Modern, fast and SEO-friendly websites engineered to rank, load in milliseconds and convert visitors into customers."
-  bullets={['Responsive design (mobile + desktop)', 'On-page SEO structure & speed optimization', 'CMS or static Astro/Next builds', 'Secure hosting-ready delivery', 'Analytics & conversion tracking setup']}
-  demos={[
-    { tag: 'Demo', title: 'Local business site', desc: 'Multi-page corporate site with service pages, contact forms and map embed — built for local SEO.' },
-    { tag: 'Demo', title: 'High-converting landing', desc: 'Single-offer landing with sticky CTA, social proof and WhatsApp click-to-chat.' },
-    { tag: 'Demo', title: 'Agency portfolio', desc: 'Glass UI portfolio with project filters, case studies and fast image loading.' },
-  ]}
-/>
+<Layout
+  title="Web Development Agency Bangladesh | Premium Sites — Creavix iT"
+  description="Professional website development in Bangladesh by Creavix iT Solution — fast Astro, Next.js & WordPress builds, SEO-ready, mobile-first and conversion focused."
+>
+  <TopBar />
+  <Nav active="services" />
+
+  <!-- HERO: text + cycling device mockup -->
+  <section class="wd-hero">
+    <div class="container wd-hero-grid">
+      <div class="wd-hero-copy">
+        <div class="wd-badge">
+          <span class="wd-badge-dot"></span>
+          Web Development · Creavix iT
+        </div>
+        <h1 class="wd-title">
+          High-Performance Websites Built to Rank, Load Fast &amp; Convert
+        </h1>
+        <p class="wd-lead">
+          From brand sites and landing pages to business portals — we design and ship modern,
+          SEO-ready websites with premium UI, mobile-first layouts and edge-speed delivery.
+        </p>
+        <div class="wd-meta">
+          <div><span>Focus</span>Business &amp; Agency Sites</div>
+          <div><span>Stack</span>Astro · Next · WordPress</div>
+          <div><span>Delivery</span>Staging + Production</div>
+        </div>
+        <div class="wd-actions">
+          <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Start on WhatsApp</a>
+          <a class="btn btn-outline" href="/contact">Request a quote</a>
+        </div>
+      </div>
+
+      <div class="wd-device-wrap" aria-hidden="true">
+        <div class="wd-device" data-device-cycle>
+          <!-- Laptop -->
+          <div class="frame frame-laptop is-active" data-frame="laptop">
+            <div class="bezel">
+              <div class="chrome">
+                <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+                <div class="url">demo.creavixit.com</div>
+              </div>
+              <div class="screen">
+                <div class="mini-nav"></div>
+                <div class="mini-hero"></div>
+                <div class="mini-row"></div>
+                <div class="mini-cards"><i></i><i></i><i></i></div>
+              </div>
+            </div>
+            <div class="base"></div>
+          </div>
+
+          <!-- Tablet -->
+          <div class="frame frame-tablet" data-frame="tablet">
+            <div class="bezel">
+              <div class="chrome">
+                <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+                <div class="url">demo · tablet</div>
+              </div>
+              <div class="screen">
+                <div class="mini-nav"></div>
+                <div class="mini-hero short"></div>
+                <div class="mini-cards tall"><i></i><i></i></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="frame frame-phone" data-frame="phone">
+            <div class="bezel">
+              <div class="notch"></div>
+              <div class="screen">
+                <div class="mini-nav"></div>
+                <div class="mini-hero short"></div>
+                <div class="mini-cards phone"><i></i><i></i><i></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="wd-device-label"><span data-device-label>Desktop</span> preview · auto-cycling</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="wd-sec">
+    <div class="container wd-split">
+      <h2 class="wd-h">
+        <span class="wd-ico ok">✓</span> Project Overview
+      </h2>
+      <p class="wd-body">
+        Businesses need more than a pretty template. They need a site that represents the brand,
+        loads in milliseconds, ranks for real search intent and guides visitors to contact or buy.
+        Creavix iT builds production-ready websites — from simple brand pages to multi-page
+        service portals — with clean code, strong SEO structure and conversion-minded design.
+      </p>
+    </div>
+  </section>
+
+  <!-- Challenges -->
+  <section class="wd-sec alt">
+    <div class="container wd-split">
+      <h2 class="wd-h">
+        <span class="wd-ico warn">!</span> The Challenges
+      </h2>
+      <ul class="wd-list">
+        {challenges.map((c) => <li>{c}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Problems -->
+  <section class="wd-sec">
+    <div class="container wd-split">
+      <h2 class="wd-h">
+        <span class="wd-ico bad">▲</span> The Problems We Solve
+      </h2>
+      <ul class="wd-list">
+        {problems.map((p) => <li>{p}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Platforms (top first) -->
+  <section class="wd-sec alt">
+    <div class="container">
+      <div class="wd-center">
+        <p class="wd-eyebrow">Technology stack</p>
+        <h2 class="wd-h2">Platforms we build with</h2>
+        <p class="wd-sub">Top industry tools first — each card links to the official site.</p>
+      </div>
+      <div class="plat-grid top">
+        {platformsTop.map((p) => (
+          <a class="plat-card top" href={p.href} target="_blank" rel="noopener noreferrer">
+            <span class="plat-logo" style={`--c:${p.color}`}>{p.name.charAt(0)}</span>
+            <div>
+              <strong>{p.name}</strong>
+              <span>{p.desc}</span>
+            </div>
+            <span class="plat-go">↗</span>
+          </a>
+        ))}
+      </div>
+      <div class="plat-grid more">
+        {platformsMore.map((p) => (
+          <a class="plat-card" href={p.href} target="_blank" rel="noopener noreferrer">
+            <strong>{p.name}</strong>
+            <span>{p.desc}</span>
+            <span class="plat-go">↗</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Domains -->
+  <section class="wd-sec">
+    <div class="container">
+      <div class="wd-center">
+        <p class="wd-eyebrow">Domain &amp; DNS</p>
+        <h2 class="wd-h2">Trusted places to buy domains</h2>
+        <p class="wd-sub">We help you register and connect domains. Tap any partner to visit their official site.</p>
+      </div>
+      <div class="plat-grid more">
+        {domains.map((d) => (
+          <a class="plat-card" href={d.href} target="_blank" rel="noopener noreferrer">
+            <strong>{d.name}</strong>
+            <span>{d.desc}</span>
+            <span class="plat-go">↗</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Workflow -->
+  <section class="wd-sec alt">
+    <div class="container">
+      <div class="wd-center">
+        <p class="wd-eyebrow">How we work</p>
+        <h2 class="wd-h2">Website delivery workflow</h2>
+      </div>
+      <ol class="flow">
+        {workflow.map((w, i) => (
+          <li class="flow-item">
+            <span class="flow-n">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{w.t}</h3>
+              <p>{w.d}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Solutions -->
+  <section class="wd-sec">
+    <div class="container">
+      <div class="wd-center">
+        <p class="wd-eyebrow">Outcomes</p>
+        <h2 class="wd-h2">What you get with Creavix</h2>
+      </div>
+      <div class="sol-grid">
+        {solutions.map((s) => (
+          <article class="sol-card">
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Conclusion + CTA -->
+  <section class="wd-sec alt">
+    <div class="container wd-split">
+      <h2 class="wd-h">
+        <span class="wd-ico ok">✓</span> Conclusion
+      </h2>
+      <p class="wd-body">
+        A strong website is infrastructure — not decoration. With the right stack, structure and
+        performance budget, your brand gains a durable digital asset that supports marketing,
+        sales and trust. Creavix iT delivers that asset with clear process and agency-grade quality.
+      </p>
+    </div>
+  </section>
+
+  <section class="wd-cta">
+    <div class="container wd-cta-inner">
+      <div>
+        <p class="wd-eyebrow light">Book a free consultation</p>
+        <h2>Let’s build your next website</h2>
+        <p>WhatsApp {SITE.whatsapp} · {SITE.email1}</p>
+      </div>
+      <div class="wd-actions">
+        <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+        <a class="btn btn-light" href="/contact">Contact form</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .wd-hero {
+    padding: 5.5rem 1.25rem 3.5rem;
+    background:
+      radial-gradient(ellipse 55% 45% at 85% 15%, rgba(37, 99, 235, 0.08), transparent 60%),
+      linear-gradient(180deg, #ffffff, #F7F9FC);
+  }
+  .wd-hero-grid {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 960px) {
+    .wd-hero-grid {
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 3rem;
+    }
+  }
+  .wd-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  }
+  .wd-badge-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #22C55E;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+  }
+  .wd-title {
+    margin: 0 0 1rem;
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-size: clamp(1.75rem, 4vw, 2.65rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    color: #0F172A;
+  }
+  .wd-lead {
+    margin: 0 0 1.35rem;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: #475569;
+    max-width: 36rem;
+  }
+  .wd-meta {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .wd-meta div {
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: 12px;
+    padding: 0.7rem 0.85rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #0F172A;
+  }
+  .wd-meta span {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #64748B;
+    margin-bottom: 0.2rem;
+  }
+  .wd-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  /* Device cycle */
+  .wd-device-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (max-width: 959px) {
+    .wd-device-wrap { order: -1; }
+  }
+  .wd-device {
+    position: relative;
+    width: min(420px, 100%);
+    height: 320px;
+    display: grid;
+    place-items: center;
+  }
+  .frame {
+    position: absolute;
+    opacity: 0;
+    transform: scale(0.92) translateY(12px);
+    transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+  .frame.is-active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+  }
+
+  .frame-laptop { width: 360px; }
+  .frame-laptop .bezel {
+    background: #1E293B;
+    border-radius: 14px 14px 6px 6px;
+    padding: 10px 10px 6px;
+    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.22);
+  }
+  .frame-laptop .base {
+    height: 10px;
+    margin: 0 auto;
+    width: 70%;
+    background: linear-gradient(180deg, #94A3B8, #64748B);
+    border-radius: 0 0 8px 8px;
+  }
+  .chrome {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 8px;
+  }
+  .dot { width: 7px; height: 7px; border-radius: 50%; }
+  .dot.r { background: #F87171; }
+  .dot.y { background: #FBBF24; }
+  .dot.g { background: #34D399; }
+  .url {
+    flex: 1;
+    margin-left: 8px;
+    background: #0F172A;
+    color: #94A3B8;
+    font-size: 0.65rem;
+    padding: 3px 8px;
+    border-radius: 6px;
+  }
+  .screen {
+    background: linear-gradient(160deg, #EFF6FF, #F8FAFC 40%, #EEF2FF);
+    border-radius: 6px;
+    padding: 10px;
+    min-height: 180px;
+  }
+  .mini-nav {
+    height: 10px;
+    border-radius: 4px;
+    background: rgba(37, 99, 235, 0.15);
+    margin-bottom: 10px;
+  }
+  .mini-hero {
+    height: 48px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #3B82F6, #6366F1);
+    margin-bottom: 10px;
+  }
+  .mini-hero.short { height: 36px; }
+  .mini-row {
+    height: 8px;
+    width: 60%;
+    border-radius: 4px;
+    background: rgba(15, 23, 42, 0.08);
+    margin-bottom: 10px;
+  }
+  .mini-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .mini-cards i {
+    display: block;
+    height: 36px;
+    border-radius: 6px;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  }
+  .mini-cards.tall { grid-template-columns: 1fr 1fr; }
+  .mini-cards.tall i { height: 52px; }
+  .mini-cards.phone { grid-template-columns: 1fr; }
+  .mini-cards.phone i { height: 28px; }
+
+  .frame-tablet { width: 240px; }
+  .frame-tablet .bezel {
+    background: #1E293B;
+    border-radius: 18px;
+    padding: 12px 10px;
+    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.22);
+  }
+  .frame-tablet .screen { min-height: 260px; }
+
+  .frame-phone { width: 150px; }
+  .frame-phone .bezel {
+    background: #0F172A;
+    border-radius: 26px;
+    padding: 14px 8px 18px;
+    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.25);
+  }
+  .frame-phone .notch {
+    width: 48px; height: 6px;
+    margin: 0 auto 8px;
+    border-radius: 999px;
+    background: #334155;
+  }
+  .frame-phone .screen { min-height: 240px; border-radius: 12px; }
+
+  .wd-device-label {
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #64748B;
+    letter-spacing: 0.02em;
+  }
+
+  /* Sections */
+  .wd-sec { padding: 3.25rem 1.25rem; background: #fff; }
+  .wd-sec.alt { background: #F8FAFC; }
+  .wd-split {
+    display: grid;
+    gap: 1.25rem 2.5rem;
+  }
+  @media (min-width: 800px) {
+    .wd-split { grid-template-columns: 280px 1fr; align-items: start; }
+  }
+  .wd-h {
+    margin: 0;
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0F172A;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .wd-ico {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    font-size: 0.85rem;
+    font-weight: 800;
+  }
+  .wd-ico.ok { background: #DCFCE7; color: #16A34A; }
+  .wd-ico.warn { background: #FEF3C7; color: #D97706; }
+  .wd-ico.bad { background: #FEE2E2; color: #DC2626; }
+  .wd-body {
+    margin: 0;
+    color: #475569;
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+  .wd-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.65rem;
+  }
+  .wd-list li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: #475569;
+    line-height: 1.55;
+  }
+  .wd-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.55em;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #2563EB;
+  }
+
+  .wd-center { text-align: center; max-width: 40rem; margin: 0 auto 2rem; }
+  .wd-eyebrow {
+    margin: 0 0 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #2563EB;
+  }
+  .wd-eyebrow.light { color: #93C5FD; }
+  .wd-h2 {
+    margin: 0 0 0.65rem;
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 800;
+    color: #0F172A;
+  }
+  .wd-sub { margin: 0; color: #64748B; line-height: 1.55; }
+
+  .plat-grid {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .plat-grid.top {
+    grid-template-columns: 1fr;
+    margin-bottom: 0.85rem;
+  }
+  @media (min-width: 640px) {
+    .plat-grid.top { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 960px) {
+    .plat-grid.top { grid-template-columns: repeat(4, 1fr); }
+  }
+  .plat-grid.more {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 800px) {
+    .plat-grid.more { grid-template-columns: repeat(3, 1fr); }
+  }
+  .plat-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.1rem;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .plat-card:hover {
+    border-color: rgba(37, 99, 235, 0.35);
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.1);
+    transform: translateY(-2px);
+  }
+  .plat-card.top { padding: 1.15rem 1.2rem; }
+  .plat-logo {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    color: #fff;
+    background: var(--c, #2563EB);
+    flex-shrink: 0;
+  }
+  .plat-card strong {
+    display: block;
+    font-size: 0.92rem;
+    color: #0F172A;
+  }
+  .plat-card span:not(.plat-go):not(.plat-logo) {
+    display: block;
+    font-size: 0.75rem;
+    color: #64748B;
+    margin-top: 0.15rem;
+  }
+  .plat-go {
+    margin-left: auto;
+    color: #94A3B8;
+    font-size: 0.95rem;
+  }
+
+  .flow {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.85rem;
+  }
+  .flow-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding: 1.15rem 1.25rem;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: 16px;
+  }
+  .flow-n {
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: #2563EB;
+    background: #EFF6FF;
+  }
+  .flow-item h3 {
+    margin: 0 0 0.3rem;
+    font-size: 1rem;
+    color: #0F172A;
+  }
+  .flow-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #64748B;
+    line-height: 1.55;
+  }
+
+  .sol-grid {
+    display: grid;
+    gap: 0.85rem;
+  }
+  @media (min-width: 700px) {
+    .sol-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .sol-card {
+    padding: 1.35rem 1.4rem;
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.03);
+  }
+  .sol-card h3 {
+    margin: 0 0 0.45rem;
+    font-size: 1.05rem;
+    color: #0F172A;
+  }
+  .sol-card p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: #64748B;
+    line-height: 1.55;
+  }
+
+  .wd-cta {
+    padding: 3.5rem 1.25rem;
+    background:
+      linear-gradient(135deg, #1E3A8A, #2563EB 55%, #0EA5E9);
+    color: #fff;
+  }
+  .wd-cta-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .wd-cta h2 {
+    margin: 0 0 0.4rem;
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+  }
+  .wd-cta p { margin: 0; opacity: 0.9; }
+  .btn-light {
+    background: #fff;
+    color: #1E40AF;
+    border: none;
+  }
+  .btn-light:hover { background: #EFF6FF; }
+
+  @media (max-width: 640px) {
+    .wd-meta { grid-template-columns: 1fr; }
+    .wd-device { height: 300px; }
+  }
+</style>
+
+<script is:inline>
+(function () {
+  var root = document.querySelector('[data-device-cycle]');
+  if (!root) return;
+  var frames = root.querySelectorAll('[data-frame]');
+  var label = document.querySelector('[data-device-label]');
+  var names = { laptop: 'Desktop', tablet: 'Tablet', phone: 'Mobile' };
+  var order = ['laptop', 'tablet', 'phone'];
+  var i = 0;
+  setInterval(function () {
+    frames.forEach(function (f) { f.classList.remove('is-active'); });
+    i = (i + 1) % order.length;
+    var next = root.querySelector('[data-frame="' + order[i] + '"]');
+    if (next) next.classList.add('is-active');
+    if (label) label.textContent = names[order[i]] || 'Preview';
+  }, 2800);
+})();
+</script>
