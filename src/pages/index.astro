@@ -3,614 +3,209 @@ import Layout from '../layouts/Layout.astro';
 import TopBar from '../components/TopBar.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import Reviews from '../components/Reviews.astro';
+import VideoGallery from '../components/VideoGallery.astro';
+import BrandStrip from '../components/BrandStrip.astro';
+import FAQ from '../components/FAQ.astro';
+import ProcessFlow from '../components/ProcessFlow.astro';
+import IconBox from '../components/IconBox.astro';
+import ServiceIcons from '../components/icons/ServiceIcons.astro';
+import HeroOrbit from '../components/HeroOrbit.astro';
+import { SITE } from '../data/site';
 
 const services = [
-  {
-    title: 'Search Engine Optimization (SEO)',
-    desc: 'Rank higher on Google with technical SEO, content strategy and authority building that drives qualified organic traffic.',
-    href: '/services/seo',
-    icon: 'seo',
-  },
-  {
-    title: 'Social Media Marketing',
-    desc: 'Grow brand presence and engagement across Meta, LinkedIn and more with creative campaigns that convert.',
-    href: '/services/digital-marketing',
-    icon: 'social',
-  },
-  {
-    title: 'Web & Software Development',
-    desc: 'Fast, scalable websites and software products built for performance, SEO and real business workflows.',
-    href: '/services/web-development',
-    icon: 'web',
-  },
-  {
-    title: 'UI/UX Design & Branding',
-    desc: 'Clear visual systems and product interfaces that strengthen trust and guide users to take action.',
-    href: '/services/application-build',
-    icon: 'design',
-  },
+  { href: '/services/video-editing', name: 'video', title: 'Video Editing', desc: 'Professional editing for ads, social, YouTube and brand films — cinematic grade.', tone: 'rgba(37,99,235,.08)' },
+  { href: '/services/ai-video-marketing', name: 'ai', title: 'AI Video Marketing', desc: 'Human-like AI video ads engineered for Meta, YouTube and TikTok conversion.', tone: 'rgba(15,23,42,.05)' },
+  { href: '/services/human-like-content', name: 'human', title: 'Human-like Content', desc: 'Authentic AI human & product visuals that feel real and convert.', tone: 'rgba(37,99,235,.08)' },
+  { href: '/services/web-development', name: 'web', title: 'Web Development', desc: 'Fast, SEO-ready websites and landing pages built for ranking and growth.', tone: 'rgba(15,23,42,.05)' },
+  { href: '/services/application-build', name: 'app', title: 'Application Build', desc: 'Custom web & mobile applications designed for performance and scale.', tone: 'rgba(37,99,235,.08)' },
+  { href: '/services/authentication', name: 'auth', title: 'Authentication Systems', desc: 'Secure login, roles and access control for modern products.', tone: 'rgba(15,23,42,.05)' },
+  { href: '/services/facebook-page', name: 'facebook', title: 'Facebook Page Services', desc: 'Business page setup and verification support for brands.', tone: 'rgba(37,99,235,.08)' },
+  { href: '/services/boosting', name: 'boost', title: 'Boosting Service', desc: 'Targeted Meta boosting to reach the right audience with ROI focus.', tone: 'rgba(15,23,42,.05)' },
+  { href: '/services/campaign', name: 'campaign', title: 'Campaign Service', desc: 'End-to-end campaign planning and performance management.', tone: 'rgba(37,99,235,.08)' },
 ];
-
-const whyPoints = [
-  'Data-Driven Strategies',
-  'Expert In-house Team',
-  'Transparent Reporting',
-  'Proven ROI',
-];
-
-const cases = [
-  { title: 'E-commerce Growth Engine', industry: 'E-commerce', tone: 'violet' },
-  { title: 'SaaS Product Launch Site', industry: 'SaaS', tone: 'blue' },
-  { title: 'Local Service Lead System', industry: 'Services', tone: 'teal' },
-  { title: 'Brand Campaign Hub', industry: 'Brand', tone: 'amber' },
-  { title: 'Fintech Trust Portal', industry: 'Fintech', tone: 'slate' },
-  { title: 'Education Platform UI', industry: 'Education', tone: 'rose' },
-];
-
-const testimonials = [
-  {
-    quote: 'Creavix IT Solution helped us scale leads with clear reporting and a strategy we could trust.',
-    name: 'Client Name',
-    role: 'Marketing Director, Company',
-    stars: 5,
-  },
-  {
-    quote: 'Professional delivery on web and digital campaigns — responsive team and measurable results.',
-    name: 'Client Name',
-    role: 'Founder, Startup',
-    stars: 5,
-  },
-  {
-    quote: 'From SEO to creative execution, the process was transparent and ROI-focused from day one.',
-    name: 'Client Name',
-    role: 'Operations Lead, Agency Partner',
-    stars: 5,
-  },
-];
-
-const clientPlaceholders = ['Brand A', 'Brand B', 'Brand C', 'Brand D', 'Brand E', 'Brand F', 'Brand G', 'Brand H'];
 ---
-<Layout
-  title="Creavix IT Solution | 360° Digital Marketing & Software"
-  description="Empowering digital presence with proven 360° digital marketing and software solutions — SEO, social, web development and branding by Creavix IT Solution."
->
+<Layout title={SITE.seoTitle} description={SITE.seoDescription}>
   <TopBar />
   <Nav active="home" />
 
-  <!-- [2] HERO -->
-  <section class="hero" id="home">
-    <div class="hero-bg" aria-hidden="true">
-      <div class="hero-orb o1"></div>
-      <div class="hero-orb o2"></div>
-      <div class="hero-grid"></div>
+  <section id="home" class="hero-premium">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="grid-overlay"></div>
     </div>
-    <div class="container hero-grid-layout">
-      <div class="hero-copy reveal">
-        <div class="trust-badge">
-          <span class="trust-score">5.0</span>
-          <span class="trust-stars" aria-hidden="true">★★★★★</span>
-          <span class="trust-label">Clutch Rating</span>
+    <div class="container hero-grid hero-grid-orbit">
+      <div class="hero-content reveal">
+        <div class="rating-pill">
+          <span class="rating-score">4.8</span>
+          <span class="rating-stars" aria-hidden="true">★★★★★</span>
+          <span class="rating-label">Client Rated</span>
         </div>
-        <h1>Empowering Digital Presence</h1>
-        <p class="hero-sub">
-          Get more leads, close more sales, and defeat competitors with our proven 360° digital marketing &amp; software solutions.
+
+        <h1 class="hero-title">
+          Video Editing Agency<br />in Bangladesh
+        </h1>
+
+        <p class="hero-lead">
+          Cinematic Human-like AI Videos, Professional Video Editing &amp; Full Digital Solutions |
+          <strong class="hero-delivery">24–48 Hours Delivery</strong>
         </p>
-        <div class="hero-ctas">
-          <a href="/contact" class="btn btn-primary">Get Free Assessment</a>
-          <a href="#" class="btn btn-outline">WhatsApp Us</a>
+
+        <div class="flex-btns">
+          <a href="#services" class="btn btn-primary">Explore Services</a>
+          <a href={SITE.whatsappLink} class="btn btn-outline" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
+
+        <div class="trust-row">
+          <div class="trust-item"><strong class="count-up" data-count="10+">0</strong><span>Years</span></div>
+          <div class="trust-divider"></div>
+          <div class="trust-item"><strong class="count-up" data-count="4300+">0</strong><span>Projects</span></div>
+          <div class="trust-divider"></div>
+          <div class="trust-item"><strong>24–48h</strong><span>Delivery</span></div>
         </div>
       </div>
-      <div class="hero-visual reveal" aria-hidden="true">
-        <div class="hero-panel">
-          <div class="hero-panel-bar"><i></i><i></i><i></i></div>
-          <div class="hero-panel-body">
-            <div class="hp-line"></div>
-            <div class="hp-cards"><span></span><span></span><span></span></div>
-            <div class="hp-chart"></div>
+
+      <div class="hero-visual reveal">
+        <div class="hero-visual-frame">
+          <HeroOrbit />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <BrandStrip />
+
+  <section id="services" class="section-soft">
+    <div class="container">
+      <div class="text-center mb-8 reveal">
+        <p class="eyebrow" style="margin:0 auto 1rem">Our Services</p>
+        <h2 class="mb-4">Everything Your Brand Needs to Grow</h2>
+        <p style="max-width:40rem;margin:0 auto">Video production, AI marketing, web &amp; apps, authentication and Meta growth — one professional partner.</p>
+      </div>
+      <div class="grid-3">
+        {services.map((s) => (
+          <a href={s.href} class="glass-card reveal" style="text-decoration:none;color:inherit;display:block">
+            <IconBox name={s.name} tone={s.tone} size={44} />
+            <h3 class="mb-4">{s.title}</h3>
+            <p style="font-size:.9rem">{s.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessFlow />
+
+  <VideoGallery />
+
+  <section id="about" class="section-violet">
+    <div class="container grid-2">
+      <div class="reveal">
+        <p class="eyebrow">Why Creavix</p>
+        <h2 class="mb-6">IT &amp; Video Agency · Since {SITE.servingSince}</h2>
+        <p class="lead mb-8">{SITE.shortDesc}</p>
+        <ul class="about-checks">
+          <li><ServiceIcons name="check" size={22} /><span>Cinematic &amp; AI video production</span></li>
+          <li><ServiceIcons name="check" size={22} /><span>Web, app &amp; authentication engineering</span></li>
+          <li><ServiceIcons name="check" size={22} /><span>Facebook page, boost &amp; campaigns</span></li>
+          <li><ServiceIcons name="check" size={22} /><span>Studio: {SITE.addressBn} · {SITE.founder.name}</span></li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="glass-card" style="padding:2.2rem">
+          <h3 class="mb-6">At a glance</h3>
+          <div class="stat-grid">
+            <div><strong class="count-up" data-count="10+" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Years</span></div>
+            <div><strong class="count-up" data-count="4300+" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Projects</span></div>
+            <div><strong class="count-up" data-count="4.8" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Avg rating</span></div>
+            <div><strong style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">24–48h</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Delivery</span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- [3] REVENUE & TRUST -->
-  <section class="revenue" id="revenue">
-    <div class="container revenue-inner reveal">
-      <p class="revenue-label">Revenue Driven for our clients</p>
-      <p class="revenue-stat">$10,293,344 +</p>
-      <div class="marquee" aria-label="Client logos">
-        <div class="marquee-track">
-          {[...clientPlaceholders, ...clientPlaceholders].map((name) => (
-            <span class="marquee-item">{name}</span>
-          ))}
-        </div>
+  <Reviews />
+  <FAQ />
+
+  <section id="contact" class="section-warm">
+    <div class="container text-center reveal" style="max-width:40rem">
+      <h2 class="mb-4">Ready to Grow With Creavix?</h2>
+      <p class="mb-8" style="font-size:1.1rem">WhatsApp {SITE.whatsapp} · {SITE.email1} · {SITE.hotline}</p>
+      <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center">
+        <a href={SITE.whatsappLink} class="btn btn-primary" style="padding:.9rem 2rem;font-size:1rem" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="/contact" class="btn btn-outline" style="padding:.9rem 2rem;font-size:1rem">Contact page</a>
       </div>
     </div>
   </section>
-
-  <!-- [4] SERVICES -->
-  <section class="services" id="services">
-    <div class="container">
-      <div class="sec-head reveal">
-        <p class="eyebrow">Our Services</p>
-        <h2>360° Solutions for Growth</h2>
-      </div>
-      <div class="svc-grid">
-        {services.map((s) => (
-          <article class={`svc-card reveal svc-${s.icon}`}>
-            <div class="svc-icon" aria-hidden="true">
-              {s.icon === 'seo' && (
-                <svg viewBox="0 0 48 48" width="40" height="40" fill="none"><circle cx="22" cy="22" r="12" stroke="#2563EB" stroke-width="2.5"/><path d="M31 31l8 8" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"/></svg>
-              )}
-              {s.icon === 'social' && (
-                <svg viewBox="0 0 48 48" width="40" height="40" fill="none"><rect x="10" y="12" width="28" height="24" rx="6" stroke="#2563EB" stroke-width="2.5"/><path d="M16 20h16M16 26h12" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/></svg>
-              )}
-              {s.icon === 'web' && (
-                <svg viewBox="0 0 48 48" width="40" height="40" fill="none"><rect x="8" y="10" width="32" height="24" rx="3" stroke="#2563EB" stroke-width="2.5"/><path d="M8 16h32M20 34h8" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/></svg>
-              )}
-              {s.icon === 'design' && (
-                <svg viewBox="0 0 48 48" width="40" height="40" fill="none"><path d="M14 34L34 14M20 12l4-2 12 12-2 4L20 12z" stroke="#2563EB" stroke-width="2.5" stroke-linejoin="round"/><circle cx="16" cy="32" r="4" stroke="#2563EB" stroke-width="2"/></svg>
-              )}
-            </div>
-            <h3>{s.title}</h3>
-            <p>{s.desc}</p>
-            <a href={s.href} class="learn-more">Learn More →</a>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- [5] WHY CHOOSE -->
-  <section class="why" id="why">
-    <div class="container why-grid">
-      <div class="why-copy reveal">
-        <p class="eyebrow">Why Choose Creavix</p>
-        <h2>Built for measurable digital growth</h2>
-        <p class="why-lead">
-          Creavix IT Solution combines strategy, creative and engineering so your brand wins attention, trust and revenue — with clarity at every step.
-        </p>
-        <ul class="why-list">
-          {whyPoints.map((p) => (
-            <li>
-              <span class="check" aria-hidden="true">✓</span>
-              {p}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div class="why-visual reveal" aria-hidden="true">
-        <div class="why-frame">
-          <div class="why-block b1"></div>
-          <div class="why-block b2"></div>
-          <div class="why-block b3"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- [6] CASE STUDIES -->
-  <section class="cases" id="case-studies">
-    <div class="container">
-      <div class="sec-head reveal">
-        <p class="eyebrow">Case Studies</p>
-        <h2>Selected work &amp; outcomes</h2>
-      </div>
-      <div class="case-grid">
-        {cases.map((c) => (
-          <article class={`case-card reveal tone-${c.tone}`}>
-            <span class="case-industry">{c.industry}</span>
-            <h3>{c.title}</h3>
-            <a href="/contact" class="case-view">View Details</a>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Industries anchor (nav link) -->
-  <section class="industries" id="industries">
-    <div class="container reveal">
-      <p class="eyebrow">Industries</p>
-      <h2>Sectors we support</h2>
-      <div class="ind-row">
-        <span>E-commerce</span>
-        <span>SaaS</span>
-        <span>Finance</span>
-        <span>Education</span>
-        <span>Healthcare</span>
-        <span>Local Services</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- [7] TESTIMONIALS -->
-  <section class="testimonials" id="testimonials">
-    <div class="container">
-      <div class="sec-head reveal">
-        <p class="eyebrow">Testimonials</p>
-        <h2>What clients say</h2>
-      </div>
-      <div class="t-grid">
-        {testimonials.map((t) => (
-          <article class="t-card reveal">
-            <div class="t-stars" aria-label={`${t.stars} star rating`}>{'★'.repeat(t.stars)}</div>
-            <p class="t-quote">“{t.quote}”</p>
-            <div class="t-meta">
-              <strong>{t.name}</strong>
-              <span>{t.role}</span>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Blog anchor -->
-  <section class="blog-teaser" id="blog">
-    <div class="container reveal">
-      <p class="eyebrow">Blog</p>
-      <h2>Insights coming soon</h2>
-      <p>Practical notes on SEO, digital marketing and product delivery from the Creavix IT Solution team.</p>
-    </div>
-  </section>
-
   <Footer />
 </Layout>
 
 <style>
-  .eyebrow {
-    display: inline-block;
-    margin: 0 0 0.6rem;
-    font-family: var(--font-b);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #2563EB;
+  .hero-grid-orbit {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
   }
-  .sec-head { text-align: center; max-width: 36rem; margin: 0 auto 2.5rem; }
-  .sec-head h2 {
-    font-family: var(--font-h);
-    font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+  .hero-visual {
+    order: -1;
+    display: flex;
+    justify-content: center;
+  }
+  .hero-content { order: 1; max-width: 580px; }
+  @media (min-width: 900px) {
+    .hero-grid-orbit {
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2.5rem;
+      align-items: center;
+      min-height: 520px;
+    }
+    .hero-content { order: 1; }
+    .hero-visual { order: 2; }
+  }
+
+  .rating-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+    margin-bottom: 1.35rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .rating-score { color: #0B0F19; }
+  .rating-stars { color: #F59E0B; letter-spacing: 1px; font-size: 0.75rem; }
+  .rating-label { color: #64748B; font-weight: 500; }
+
+  .hero-delivery {
+    color: #2563EB;
     font-weight: 700;
   }
 
-  /* Hero */
-  .hero {
+  .hero-visual-frame {
     position: relative;
-    padding: 4.5rem 0 4rem;
-    overflow: hidden;
-    background: #fff;
-  }
-  .hero-bg { position: absolute; inset: 0; pointer-events: none; }
-  .hero-orb {
-    position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.35;
-  }
-  .hero-orb.o1 {
-    width: 380px; height: 380px; top: -10%; left: -5%;
-    background: radial-gradient(circle, rgba(37,99,235,.28), transparent 70%);
-  }
-  .hero-orb.o2 {
-    width: 320px; height: 320px; bottom: 0; right: -5%;
-    background: radial-gradient(circle, rgba(148,163,184,.3), transparent 70%);
-  }
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(15,23,42,.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(15,23,42,.03) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: radial-gradient(ellipse 70% 60% at 70% 40%, #000 20%, transparent 75%);
-  }
-  .hero-grid-layout {
-    position: relative; z-index: 1;
-    display: grid; gap: 2.5rem; align-items: center;
-  }
-  @media (min-width: 900px) {
-    .hero-grid-layout { grid-template-columns: 1.1fr 0.9fr; gap: 3rem; }
-  }
-  .trust-badge {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    padding: 0.4rem 0.9rem; border-radius: 999px;
-    background: #fff; border: 1px solid rgba(15,23,42,.08);
-    box-shadow: 0 4px 14px rgba(15,23,42,.05);
-    margin-bottom: 1.25rem;
-    font-family: var(--font-b); font-size: 0.82rem; font-weight: 600;
-  }
-  .trust-score { color: #0B0F19; }
-  .trust-stars { color: #F59E0B; letter-spacing: 1px; font-size: 0.75rem; }
-  .trust-label { color: #64748B; font-weight: 500; }
-  .hero-copy h1 {
-    font-family: var(--font-h);
-    font-size: clamp(2.2rem, 5.5vw, 3.5rem);
-    font-weight: 800;
-    line-height: 1.08;
-    margin: 0 0 1.1rem;
-  }
-  .hero-sub {
-    font-family: var(--font-b);
-    font-size: 1.08rem;
-    color: #64748B;
-    max-width: 34rem;
-    margin: 0 0 1.75rem;
-    line-height: 1.7;
-  }
-  .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-  .hero-panel {
-    background: #0F172A; border-radius: 20px; padding: 1rem;
-    box-shadow: 0 24px 50px rgba(15,23,42,.22);
-    max-width: 420px; margin: 0 auto;
-  }
-  .hero-panel-bar { display: flex; gap: 6px; margin-bottom: 12px; }
-  .hero-panel-bar i { width: 10px; height: 10px; border-radius: 50%; background: #475569; }
-  .hero-panel-bar i:first-child { background: #F87171; }
-  .hero-panel-bar i:nth-child(2) { background: #FBBF24; }
-  .hero-panel-body {
-    background: linear-gradient(160deg, #1E293B, #0F172A);
-    border-radius: 12px; padding: 1.25rem; min-height: 220px;
-  }
-  .hp-line { height: 10px; width: 55%; border-radius: 6px; background: rgba(255,255,255,.15); margin-bottom: 1rem; }
-  .hp-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 1rem; }
-  .hp-cards span { display: block; height: 56px; border-radius: 10px; background: rgba(37,99,235,.25); }
-  .hp-chart {
-    height: 72px; border-radius: 12px;
-    background: linear-gradient(180deg, rgba(96,165,250,.45), transparent);
+    width: 100%;
+    max-width: 440px;
   }
 
-  /* Revenue */
-  .revenue {
-    background: #0B0F19;
-    color: #fff;
-    padding: 3rem 0;
-    text-align: center;
-  }
-  .revenue-label {
-    font-family: var(--font-b);
-    font-size: 0.95rem;
-    color: #94A3B8;
-    margin: 0 0 0.5rem;
-  }
-  .revenue-stat {
-    font-family: var(--font-h);
-    font-size: clamp(2.2rem, 6vw, 3.5rem);
-    font-weight: 800;
-    margin: 0 0 2rem;
-    letter-spacing: -0.03em;
-  }
-  .marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-  .marquee-track {
-    display: flex; gap: 2rem; width: max-content;
-    animation: marquee 28s linear infinite;
-  }
-  .marquee-item {
-    flex-shrink: 0;
-    padding: 0.65rem 1.25rem;
-    border-radius: 12px;
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.1);
-    font-family: var(--font-b);
-    font-weight: 600;
-    font-size: 0.88rem;
-    color: #CBD5E1;
-  }
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  /* Services */
-  .services { padding: 4.5rem 0; background: #F8FAFC; }
-  .svc-grid {
-    display: grid; gap: 1.25rem;
-  }
-  @media (min-width: 700px) { .svc-grid { grid-template-columns: 1fr 1fr; } }
-  .svc-card {
-    background: #fff;
-    border: 1px solid rgba(15,23,42,.07);
-    border-radius: 18px;
-    padding: 1.75rem 1.5rem;
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-  .svc-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 36px rgba(15,23,42,.08);
-  }
-  .svc-icon { margin-bottom: 1rem; }
-  .svc-card h3 {
-    font-family: var(--font-h);
-    font-size: 1.15rem;
-    margin: 0 0 0.55rem;
-  }
-  .svc-card p {
-    font-family: var(--font-b);
-    font-size: 0.95rem;
-    color: #64748B;
-    margin: 0 0 1.1rem;
-    line-height: 1.6;
-  }
-  .learn-more {
-    font-family: var(--font-h);
-    font-weight: 600;
-    font-size: 0.92rem;
-    color: #2563EB;
-  }
-  .learn-more:hover { text-decoration: underline; }
-
-  /* Why */
-  .why { padding: 4.5rem 0; background: #fff; }
-  .why-grid {
-    display: grid; gap: 2.5rem; align-items: center;
-  }
-  @media (min-width: 900px) { .why-grid { grid-template-columns: 1.1fr 0.9fr; gap: 3rem; } }
-  .why-copy h2 {
-    font-family: var(--font-h);
-    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-    margin: 0 0 1rem;
-  }
-  .why-lead {
-    font-family: var(--font-b);
-    color: #64748B;
-    margin: 0 0 1.5rem;
-    max-width: 32rem;
-  }
-  .why-list {
+  .about-checks {
     list-style: none;
-    display: grid;
-    gap: 0.85rem;
-  }
-  .why-list li {
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    font-family: var(--font-b);
-    font-weight: 600;
-    color: #0B0F19;
-  }
-  .check {
-    width: 28px; height: 28px; border-radius: 8px;
-    background: #DCFCE7; color: #16A34A;
-    display: grid; place-items: center;
-    font-size: 0.85rem; font-weight: 800;
-    flex-shrink: 0;
-  }
-  .why-frame {
-    display: grid; gap: 0.75rem;
-    grid-template-columns: 1fr 1fr;
-    min-height: 280px;
-  }
-  .why-block {
-    border-radius: 18px;
-    background: linear-gradient(145deg, #EFF6FF, #DBEAFE);
-    border: 1px solid rgba(37,99,235,.12);
-  }
-  .why-block.b1 { grid-row: span 2; background: linear-gradient(160deg, #1E3A8A, #2563EB); }
-  .why-block.b2 { min-height: 120px; }
-  .why-block.b3 { min-height: 120px; background: linear-gradient(145deg, #EEF2FF, #E0E7FF); }
-
-  /* Cases */
-  .cases { padding: 4.5rem 0; background: #F8FAFC; }
-  .case-grid {
-    display: grid; gap: 1rem;
-    grid-template-columns: 1fr;
-  }
-  @media (min-width: 640px) { .case-grid { grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 960px) { .case-grid { grid-template-columns: 1fr 1fr 1fr; } }
-  .case-card {
-    position: relative;
-    border-radius: 18px;
-    padding: 1.75rem 1.4rem;
-    min-height: 180px;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    gap: 0.85rem;
+    color: var(--text-2);
+    padding: 0;
+    margin: 0;
   }
-  .tone-violet { background: #F3E8FF; }
-  .tone-blue { background: #DBEAFE; }
-  .tone-teal { background: #CCFBF1; }
-  .tone-amber { background: #FEF3C7; }
-  .tone-slate { background: #E2E8F0; }
-  .tone-rose { background: #FCE7F3; }
-  .case-industry {
-    font-family: var(--font-b);
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #64748B;
-    margin-bottom: 0.5rem;
-  }
-  .case-card h3 {
-    font-family: var(--font-h);
-    font-size: 1.15rem;
-    margin: 0 0 auto;
-  }
-  .case-view {
-    margin-top: 1.25rem;
-    opacity: 0;
-    transform: translateY(6px);
-    font-family: var(--font-h);
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: #2563EB;
-    transition: opacity 0.25s, transform 0.25s;
-  }
-  .case-card:hover .case-view {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  @media (hover: none) {
-    .case-view { opacity: 1; transform: none; }
-  }
-
-  .industries { padding: 3.5rem 0; background: #fff; text-align: center; }
-  .industries h2 {
-    font-family: var(--font-h);
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    margin: 0 0 1.5rem;
-  }
-  .ind-row {
-    display: flex; flex-wrap: wrap; gap: 0.65rem; justify-content: center;
-  }
-  .ind-row span {
-    padding: 0.55rem 1.1rem;
-    border-radius: 999px;
-    background: #F1F5F9;
-    font-family: var(--font-b);
-    font-weight: 600;
-    font-size: 0.88rem;
-    color: #334155;
-  }
-
-  /* Testimonials */
-  .testimonials { padding: 4.5rem 0; background: #F8FAFC; }
-  .t-grid {
-    display: grid; gap: 1.15rem;
-  }
-  @media (min-width: 768px) { .t-grid { grid-template-columns: 1fr 1fr 1fr; } }
-  .t-card {
-    background: #fff;
-    border: 1px solid rgba(15,23,42,.07);
-    border-radius: 18px;
-    padding: 1.5rem 1.35rem;
-  }
-  .t-stars { color: #F59E0B; letter-spacing: 2px; margin-bottom: 0.75rem; font-size: 0.95rem; }
-  .t-quote {
-    font-family: var(--font-b);
-    font-size: 0.98rem;
-    color: #475569;
-    line-height: 1.65;
-    margin: 0 0 1.25rem;
-  }
-  .t-meta strong {
-    display: block;
-    font-family: var(--font-h);
-    font-size: 0.95rem;
-    color: #0B0F19;
-  }
-  .t-meta span {
-    font-family: var(--font-b);
-    font-size: 0.82rem;
-    color: #94A3B8;
-  }
-
-  .blog-teaser {
-    padding: 3.5rem 0;
-    background: #fff;
-    text-align: center;
-  }
-  .blog-teaser h2 {
-    font-family: var(--font-h);
-    font-size: clamp(1.4rem, 3vw, 1.85rem);
-    margin: 0 0 0.65rem;
-  }
-  .blog-teaser p {
-    font-family: var(--font-b);
-    color: #64748B;
-    max-width: 32rem;
-    margin: 0 auto;
-  }
-
-  @media (max-width: 640px) {
-    .hero { padding: 3rem 0 2.5rem; }
-    .hero-ctas .btn { flex: 1 1 auto; }
+  .about-checks li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
   }
 </style>
