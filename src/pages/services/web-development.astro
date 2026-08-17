@@ -5,29 +5,30 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { SITE } from '../../data/site';
 
+/** Official brand marks via Simple Icons CDN */
 const platformsTop = [
-  { name: 'WordPress', href: 'https://wordpress.org/', desc: 'CMS & business sites', color: '#21759B' },
-  { name: 'Next.js', href: 'https://nextjs.org/', desc: 'React full-stack apps', color: '#000000' },
-  { name: 'Astro', href: 'https://astro.build/', desc: 'Ultra-fast static sites', color: '#BC52EE' },
-  { name: 'Cloudflare', href: 'https://www.cloudflare.com/', desc: 'Workers, Pages & CDN', color: '#F38020' },
+  { name: 'WordPress', href: 'https://wordpress.org/', desc: 'CMS & business sites', icon: 'https://cdn.simpleicons.org/wordpress/21759B' },
+  { name: 'Next.js', href: 'https://nextjs.org/', desc: 'React full-stack apps', icon: 'https://cdn.simpleicons.org/nextdotjs/000000' },
+  { name: 'Astro', href: 'https://astro.build/', desc: 'Ultra-fast static sites', icon: 'https://cdn.simpleicons.org/astro/BC52EE' },
+  { name: 'Cloudflare', href: 'https://www.cloudflare.com/', desc: 'Workers, Pages & CDN', icon: 'https://cdn.simpleicons.org/cloudflare/F38020' },
 ];
 
 const platformsMore = [
-  { name: 'React', href: 'https://react.dev/', desc: 'UI library' },
-  { name: 'Vue.js', href: 'https://vuejs.org/', desc: 'Progressive framework' },
-  { name: 'Tailwind CSS', href: 'https://tailwindcss.com/', desc: 'Utility-first CSS' },
-  { name: 'Node.js', href: 'https://nodejs.org/', desc: 'Server runtime' },
-  { name: 'Shopify', href: 'https://www.shopify.com/', desc: 'E-commerce' },
-  { name: 'Webflow', href: 'https://webflow.com/', desc: 'No-code design' },
+  { name: 'React', href: 'https://react.dev/', desc: 'UI library', icon: 'https://cdn.simpleicons.org/react/61DAFB' },
+  { name: 'Vue.js', href: 'https://vuejs.org/', desc: 'Progressive framework', icon: 'https://cdn.simpleicons.org/vuedotjs/4FC08D' },
+  { name: 'Tailwind CSS', href: 'https://tailwindcss.com/', desc: 'Utility-first CSS', icon: 'https://cdn.simpleicons.org/tailwindcss/06B6D4' },
+  { name: 'Node.js', href: 'https://nodejs.org/', desc: 'Server runtime', icon: 'https://cdn.simpleicons.org/nodedotjs/339933' },
+  { name: 'Shopify', href: 'https://www.shopify.com/', desc: 'E-commerce', icon: 'https://cdn.simpleicons.org/shopify/7AB55C' },
+  { name: 'Webflow', href: 'https://webflow.com/', desc: 'No-code design', icon: 'https://cdn.simpleicons.org/webflow/4353FF' },
 ];
 
 const domains = [
-  { name: 'Cloudflare Registrar', href: 'https://www.cloudflare.com/products/registrar/', desc: 'At-cost domains + DNS' },
-  { name: 'Namecheap', href: 'https://www.namecheap.com/', desc: 'Popular & affordable' },
-  { name: 'GoDaddy', href: 'https://www.godaddy.com/', desc: 'Global domain leader' },
-  { name: 'Google Domains → Squarespace', href: 'https://domains.google/', desc: 'Simple managed domains' },
-  { name: 'Porkbun', href: 'https://porkbun.com/', desc: 'Cheap + free WHOIS' },
-  { name: 'Name.com', href: 'https://www.name.com/', desc: 'Easy management' },
+  { name: 'Cloudflare Registrar', href: 'https://www.cloudflare.com/products/registrar/', desc: 'At-cost domains + DNS', icon: 'https://cdn.simpleicons.org/cloudflare/F38020' },
+  { name: 'Namecheap', href: 'https://www.namecheap.com/', desc: 'Popular & affordable', letter: 'N', color: '#FF6C2C' },
+  { name: 'GoDaddy', href: 'https://www.godaddy.com/', desc: 'Global domain leader', letter: 'G', color: '#1BDBDB' },
+  { name: 'Porkbun', href: 'https://porkbun.com/', desc: 'Cheap + free WHOIS', letter: 'P', color: '#F7931A' },
+  { name: 'Name.com', href: 'https://www.name.com/', desc: 'Easy management', letter: 'n', color: '#1A73E8' },
+  { name: 'Squarespace Domains', href: 'https://domains.squarespace.com/', desc: 'Simple managed domains', letter: 'S', color: '#000000' },
 ];
 
 const challenges = [
@@ -58,6 +59,15 @@ const solutions = [
   { t: 'SEO foundations', d: 'Semantic HTML, meta, schema, sitemap, robots and Core Web Vitals friendly structure.' },
   { t: 'Maintainable stack', d: 'Documented components, easy content updates and scalable hosting choices.' },
 ];
+
+const floatIcons = [
+  { label: 'HTML5', color: '#E34F26' },
+  { label: 'CSS3', color: '#1572B6' },
+  { label: 'JS', color: '#F7DF1E' },
+  { label: 'SEO', color: '#10B981' },
+  { label: 'API', color: '#8B5CF6' },
+  { label: 'SSL', color: '#3B82F6' },
+];
 ---
 <Layout
   title="Web Development Agency Bangladesh | Premium Sites — Creavix iT"
@@ -66,7 +76,7 @@ const solutions = [
   <TopBar />
   <Nav active="services" />
 
-  <!-- HERO: text + cycling device mockup -->
+  <!-- HERO -->
   <section class="wd-hero">
     <div class="container wd-hero-grid">
       <div class="wd-hero-copy">
@@ -93,52 +103,167 @@ const solutions = [
       </div>
 
       <div class="wd-device-wrap" aria-hidden="true">
+        <!-- floating web-dev icons -->
+        <div class="float-ring">
+          {floatIcons.map((f, i) => (
+            <span class={`float-ico f${i}`} style={`--c:${f.color}`}>{f.label}</span>
+          ))}
+        </div>
+
         <div class="wd-device" data-device-cycle>
-          <!-- Laptop -->
+          <!-- LAPTOP -->
           <div class="frame frame-laptop is-active" data-frame="laptop">
             <div class="bezel">
               <div class="chrome">
                 <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
                 <div class="url">demo.creavixit.com</div>
               </div>
-              <div class="screen">
-                <div class="mini-nav"></div>
-                <div class="mini-hero"></div>
-                <div class="mini-row"></div>
-                <div class="mini-cards"><i></i><i></i><i></i></div>
+              <div class="screen dual">
+                <div class="pane code-pane">
+                  <div class="code-scroll">
+                    <pre><code><span class="k">const</span> <span class="v">site</span> = <span class="s">"Creavix"</span>
+<span class="k">export</span> <span class="k">default</span> <span class="f">build</span>() {'{'}
+  <span class="k">return</span> <span class="s">&lt;Hero /&gt;</span>
+{'}'}
+<span class="c">// SEO + speed ready</span>
+<span class="k">import</span> <span class="v">Layout</span>
+<span class="v">performance</span>.<span class="f">score</span> = <span class="n">98</span>
+<span class="k">async</span> <span class="k">function</span> <span class="f">deploy</span>() {'{'}
+  <span class="k">await</span> <span class="f">edge</span>()
+{'}'}
+<span class="c">/* mobile first */</span>
+<span class="v">css</span>.<span class="f">optimize</span>()
+<span class="k">const</span> <span class="v">rank</span> = <span class="s">"page-1"</span></code></pre>
+                    <pre aria-hidden="true"><code><span class="k">const</span> <span class="v">site</span> = <span class="s">"Creavix"</span>
+<span class="k">export</span> <span class="k">default</span> <span class="f">build</span>() {'{'}
+  <span class="k">return</span> <span class="s">&lt;Hero /&gt;</span>
+{'}'}
+<span class="c">// SEO + speed ready</span>
+<span class="k">import</span> <span class="v">Layout</span>
+<span class="v">performance</span>.<span class="f">score</span> = <span class="n">98</span>
+<span class="k">async</span> <span class="k">function</span> <span class="f">deploy</span>() {'{'}
+  <span class="k">await</span> <span class="f">edge</span>()
+{'}'}
+<span class="c">/* mobile first */</span>
+<span class="v">css</span>.<span class="f">optimize</span>()
+<span class="k">const</span> <span class="v">rank</span> = <span class="s">"page-1"</span></code></pre>
+                  </div>
+                </div>
+                <div class="pane demo-pane">
+                  <div class="demo-scroll">
+                    <div class="demo-page">
+                      <div class="d-nav"></div>
+                      <div class="d-hero"></div>
+                      <div class="d-line"></div>
+                      <div class="d-cards"><i></i><i></i><i></i></div>
+                      <div class="d-block"></div>
+                      <div class="d-line short"></div>
+                      <div class="d-cards"><i></i><i></i></div>
+                      <div class="d-cta"></div>
+                    </div>
+                    <div class="demo-page" aria-hidden="true">
+                      <div class="d-nav"></div>
+                      <div class="d-hero"></div>
+                      <div class="d-line"></div>
+                      <div class="d-cards"><i></i><i></i><i></i></div>
+                      <div class="d-block"></div>
+                      <div class="d-line short"></div>
+                      <div class="d-cards"><i></i><i></i></div>
+                      <div class="d-cta"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="base"></div>
           </div>
 
-          <!-- Tablet -->
+          <!-- TABLET -->
           <div class="frame frame-tablet" data-frame="tablet">
             <div class="bezel">
               <div class="chrome">
                 <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-                <div class="url">demo · tablet</div>
+                <div class="url">tablet · demo</div>
               </div>
-              <div class="screen">
-                <div class="mini-nav"></div>
-                <div class="mini-hero short"></div>
-                <div class="mini-cards tall"><i></i><i></i></div>
+              <div class="screen dual stacked">
+                <div class="pane code-pane">
+                  <div class="code-scroll">
+                    <pre><code><span class="k">export</span> <span class="k">const</span> <span class="v">meta</span> = {'{'}
+  <span class="v">title</span>: <span class="s">"Creavix"</span>,
+  <span class="v">seo</span>: <span class="k">true</span>
+{'}'}
+<span class="c">// responsive grid</span>
+<span class="v">layout</span> = <span class="s">"fluid"</span>
+<span class="f">render</span>(<span class="v">page</span>)</code></pre>
+                    <pre aria-hidden="true"><code><span class="k">export</span> <span class="k">const</span> <span class="v">meta</span> = {'{'}
+  <span class="v">title</span>: <span class="s">"Creavix"</span>,
+  <span class="v">seo</span>: <span class="k">true</span>
+{'}'}
+<span class="c">// responsive grid</span>
+<span class="v">layout</span> = <span class="s">"fluid"</span>
+<span class="f">render</span>(<span class="v">page</span>)</code></pre>
+                  </div>
+                </div>
+                <div class="pane demo-pane">
+                  <div class="demo-scroll">
+                    <div class="demo-page">
+                      <div class="d-nav"></div>
+                      <div class="d-hero"></div>
+                      <div class="d-cards tall"><i></i><i></i></div>
+                      <div class="d-cta"></div>
+                    </div>
+                    <div class="demo-page" aria-hidden="true">
+                      <div class="d-nav"></div>
+                      <div class="d-hero"></div>
+                      <div class="d-cards tall"><i></i><i></i></div>
+                      <div class="d-cta"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Phone -->
+          <!-- PHONE -->
           <div class="frame frame-phone" data-frame="phone">
             <div class="bezel">
               <div class="notch"></div>
-              <div class="screen">
-                <div class="mini-nav"></div>
-                <div class="mini-hero short"></div>
-                <div class="mini-cards phone"><i></i><i></i><i></i></div>
+              <div class="screen dual stacked">
+                <div class="pane code-pane slim">
+                  <div class="code-scroll">
+                    <pre><code><span class="k">@media</span> <span class="s">mobile</span>
+  <span class="v">grid</span>: <span class="n">1</span>
+<span class="f">fast</span>()
+<span class="c">// touch UI</span>
+<span class="v">cta</span>.<span class="f">sticky</span>()</code></pre>
+                    <pre aria-hidden="true"><code><span class="k">@media</span> <span class="s">mobile</span>
+  <span class="v">grid</span>: <span class="n">1</span>
+<span class="f">fast</span>()
+<span class="c">// touch UI</span>
+<span class="v">cta</span>.<span class="f">sticky</span>()</code></pre>
+                  </div>
+                </div>
+                <div class="pane demo-pane">
+                  <div class="demo-scroll">
+                    <div class="demo-page">
+                      <div class="d-nav"></div>
+                      <div class="d-hero short"></div>
+                      <div class="d-cards phone"><i></i><i></i><i></i></div>
+                      <div class="d-cta"></div>
+                    </div>
+                    <div class="demo-page" aria-hidden="true">
+                      <div class="d-nav"></div>
+                      <div class="d-hero short"></div>
+                      <div class="d-cards phone"><i></i><i></i><i></i></div>
+                      <div class="d-cta"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <p class="wd-device-label"><span data-device-label>Desktop</span> preview · auto-cycling</p>
+        <p class="wd-device-label"><span data-device-label>Desktop</span> · live code + demo scroll</p>
       </div>
     </div>
   </section>
@@ -146,9 +271,7 @@ const solutions = [
   <!-- Overview -->
   <section class="wd-sec">
     <div class="container wd-split">
-      <h2 class="wd-h">
-        <span class="wd-ico ok">✓</span> Project Overview
-      </h2>
+      <h2 class="wd-h"><span class="wd-ico ok">✓</span> Project Overview</h2>
       <p class="wd-body">
         Businesses need more than a pretty template. They need a site that represents the brand,
         loads in milliseconds, ranks for real search intent and guides visitors to contact or buy.
@@ -161,39 +284,51 @@ const solutions = [
   <!-- Challenges -->
   <section class="wd-sec alt">
     <div class="container wd-split">
-      <h2 class="wd-h">
-        <span class="wd-ico warn">!</span> The Challenges
-      </h2>
-      <ul class="wd-list">
-        {challenges.map((c) => <li>{c}</li>)}
-      </ul>
+      <h2 class="wd-h"><span class="wd-ico warn">!</span> The Challenges</h2>
+      <ul class="wd-list">{challenges.map((c) => <li>{c}</li>)}</ul>
     </div>
   </section>
 
-  <!-- Problems -->
+  <!-- Problems + visual -->
   <section class="wd-sec">
-    <div class="container wd-split">
-      <h2 class="wd-h">
-        <span class="wd-ico bad">▲</span> The Problems We Solve
-      </h2>
-      <ul class="wd-list">
-        {problems.map((p) => <li>{p}</li>)}
-      </ul>
+    <div class="container">
+      <div class="wd-split">
+        <h2 class="wd-h"><span class="wd-ico bad">▲</span> The Problems We Solve</h2>
+        <ul class="wd-list">{problems.map((p) => <li>{p}</li>)}</ul>
+      </div>
+      <div class="viz-row">
+        <div class="viz-card dark">
+          <div class="viz-lock">
+            <svg viewBox="0 0 64 64" width="72" height="72" aria-hidden="true">
+              <rect x="14" y="28" width="36" height="28" rx="6" fill="#3B82F6"/>
+              <path d="M22 28v-8a10 10 0 0 1 20 0v8" fill="none" stroke="#93C5FD" stroke-width="4"/>
+              <circle cx="32" cy="42" r="4" fill="#EFF6FF"/>
+            </svg>
+          </div>
+          <p>Secure · SSL · Forms</p>
+        </div>
+        <div class="viz-card light">
+          <div class="viz-iso">
+            <span class="iso a"></span><span class="iso b"></span><span class="iso c"></span>
+          </div>
+          <p>Modular architecture</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Platforms (top first) -->
+  <!-- Platforms -->
   <section class="wd-sec alt">
     <div class="container">
       <div class="wd-center">
         <p class="wd-eyebrow">Technology stack</p>
         <h2 class="wd-h2">Platforms we build with</h2>
-        <p class="wd-sub">Top industry tools first — each card links to the official site.</p>
+        <p class="wd-sub">Official logos · each card opens the real website</p>
       </div>
       <div class="plat-grid top">
         {platformsTop.map((p) => (
           <a class="plat-card top" href={p.href} target="_blank" rel="noopener noreferrer">
-            <span class="plat-logo" style={`--c:${p.color}`}>{p.name.charAt(0)}</span>
+            <img class="plat-img" src={p.icon} alt="" width="36" height="36" loading="lazy" />
             <div>
               <strong>{p.name}</strong>
               <span>{p.desc}</span>
@@ -205,8 +340,11 @@ const solutions = [
       <div class="plat-grid more">
         {platformsMore.map((p) => (
           <a class="plat-card" href={p.href} target="_blank" rel="noopener noreferrer">
-            <strong>{p.name}</strong>
-            <span>{p.desc}</span>
+            <img class="plat-img sm" src={p.icon} alt="" width="28" height="28" loading="lazy" />
+            <div>
+              <strong>{p.name}</strong>
+              <span>{p.desc}</span>
+            </div>
             <span class="plat-go">↗</span>
           </a>
         ))}
@@ -220,13 +358,20 @@ const solutions = [
       <div class="wd-center">
         <p class="wd-eyebrow">Domain &amp; DNS</p>
         <h2 class="wd-h2">Trusted places to buy domains</h2>
-        <p class="wd-sub">We help you register and connect domains. Tap any partner to visit their official site.</p>
+        <p class="wd-sub">Official links — register and connect with confidence</p>
       </div>
       <div class="plat-grid more">
         {domains.map((d) => (
           <a class="plat-card" href={d.href} target="_blank" rel="noopener noreferrer">
-            <strong>{d.name}</strong>
-            <span>{d.desc}</span>
+            {d.icon ? (
+              <img class="plat-img sm" src={d.icon} alt="" width="28" height="28" loading="lazy" />
+            ) : (
+              <span class="plat-letter" style={`--c:${d.color}`}>{d.letter}</span>
+            )}
+            <div>
+              <strong>{d.name}</strong>
+              <span>{d.desc}</span>
+            </div>
             <span class="plat-go">↗</span>
           </a>
         ))}
@@ -273,12 +418,10 @@ const solutions = [
     </div>
   </section>
 
-  <!-- Conclusion + CTA -->
+  <!-- Conclusion -->
   <section class="wd-sec alt">
     <div class="container wd-split">
-      <h2 class="wd-h">
-        <span class="wd-ico ok">✓</span> Conclusion
-      </h2>
+      <h2 class="wd-h"><span class="wd-ico ok">✓</span> Conclusion</h2>
       <p class="wd-body">
         A strong website is infrastructure — not decoration. With the right stack, structure and
         performance budget, your brand gains a durable digital asset that supports marketing,
@@ -308,8 +451,9 @@ const solutions = [
   .wd-hero {
     padding: 5.5rem 1.25rem 3.5rem;
     background:
-      radial-gradient(ellipse 55% 45% at 85% 15%, rgba(37, 99, 235, 0.08), transparent 60%),
+      radial-gradient(ellipse 55% 45% at 85% 15%, rgba(37, 99, 235, 0.1), transparent 60%),
       linear-gradient(180deg, #ffffff, #F7F9FC);
+    overflow: hidden;
   }
   .wd-hero-grid {
     display: grid;
@@ -317,453 +461,383 @@ const solutions = [
     align-items: center;
   }
   @media (min-width: 960px) {
-    .wd-hero-grid {
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 3rem;
-    }
+    .wd-hero-grid { grid-template-columns: 1.05fr 0.95fr; gap: 3rem; }
   }
   .wd-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.35rem 0.85rem;
-    border-radius: 999px;
-    background: #fff;
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: #334155;
-    margin-bottom: 1rem;
-    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.35rem 0.85rem; border-radius: 999px;
+    background: #fff; border: 1px solid rgba(15,23,42,.08);
+    font-size: 0.78rem; font-weight: 600; color: #334155;
+    margin-bottom: 1rem; box-shadow: 0 4px 14px rgba(15,23,42,.04);
   }
   .wd-badge-dot {
     width: 8px; height: 8px; border-radius: 50%;
-    background: #22C55E;
-    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+    background: #22C55E; box-shadow: 0 0 0 3px rgba(34,197,94,.25);
   }
   .wd-title {
     margin: 0 0 1rem;
     font-family: var(--font-h), system-ui, sans-serif;
     font-size: clamp(1.75rem, 4vw, 2.65rem);
-    font-weight: 800;
-    line-height: 1.12;
-    letter-spacing: -0.03em;
-    color: #0F172A;
+    font-weight: 800; line-height: 1.12; letter-spacing: -0.03em; color: #0F172A;
   }
   .wd-lead {
-    margin: 0 0 1.35rem;
-    font-size: 1.05rem;
-    line-height: 1.65;
-    color: #475569;
-    max-width: 36rem;
+    margin: 0 0 1.35rem; font-size: 1.05rem; line-height: 1.65;
+    color: #475569; max-width: 36rem;
   }
   .wd-meta {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
+    display: grid; grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 0.75rem; margin-bottom: 1.5rem;
   }
   .wd-meta div {
-    background: #fff;
-    border: 1px solid rgba(15, 23, 42, 0.07);
-    border-radius: 12px;
-    padding: 0.7rem 0.85rem;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: #0F172A;
+    background: #fff; border: 1px solid rgba(15,23,42,.07);
+    border-radius: 12px; padding: 0.7rem 0.85rem;
+    font-size: 0.82rem; font-weight: 600; color: #0F172A;
   }
   .wd-meta span {
-    display: block;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: #64748B;
-    margin-bottom: 0.2rem;
+    display: block; font-size: 0.68rem; font-weight: 600;
+    letter-spacing: .04em; text-transform: uppercase; color: #64748B; margin-bottom: .2rem;
   }
-  .wd-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.65rem;
+  .wd-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+
+  /* Device + floating icons */
+  .wd-device-wrap {
+    position: relative;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  @media (max-width: 959px) { .wd-device-wrap { order: -1; } }
+
+  .float-ring {
+    position: absolute; inset: -12px -8px;
+    pointer-events: none; z-index: 0;
+  }
+  .float-ico {
+    position: absolute;
+    padding: 0.35rem 0.55rem;
+    border-radius: 8px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: #fff;
+    background: var(--c);
+    box-shadow: 0 8px 20px rgba(15,23,42,.18);
+    animation: floatY 4.5s ease-in-out infinite;
+  }
+  .f0 { top: 8%; left: 2%; animation-delay: 0s; }
+  .f1 { top: 18%; right: 0%; animation-delay: .4s; }
+  .f2 { top: 48%; left: -2%; animation-delay: .8s; color: #0F172A; }
+  .f3 { bottom: 28%; right: 2%; animation-delay: 1.2s; }
+  .f4 { bottom: 12%; left: 8%; animation-delay: 1.6s; }
+  .f5 { top: 62%; right: 6%; animation-delay: 2s; }
+  @keyframes floatY {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
   }
 
-  /* Device cycle */
-  .wd-device-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  @media (max-width: 959px) {
-    .wd-device-wrap { order: -1; }
-  }
   .wd-device {
-    position: relative;
-    width: min(420px, 100%);
-    height: 320px;
-    display: grid;
-    place-items: center;
+    position: relative; z-index: 1;
+    width: min(440px, 100%); height: 340px;
+    display: grid; place-items: center;
   }
   .frame {
     position: absolute;
     opacity: 0;
     transform: scale(0.92) translateY(12px);
-    transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity .55s ease, transform .55s cubic-bezier(.16,1,.3,1);
     pointer-events: none;
   }
   .frame.is-active {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    pointer-events: auto;
+    opacity: 1; transform: scale(1) translateY(0); pointer-events: auto;
   }
 
-  .frame-laptop { width: 360px; }
+  .frame-laptop { width: 380px; }
   .frame-laptop .bezel {
-    background: #1E293B;
-    border-radius: 14px 14px 6px 6px;
+    background: #1E293B; border-radius: 14px 14px 6px 6px;
     padding: 10px 10px 6px;
-    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.22);
+    box-shadow: 0 24px 50px rgba(15,23,42,.25);
   }
   .frame-laptop .base {
-    height: 10px;
-    margin: 0 auto;
-    width: 70%;
+    height: 10px; margin: 0 auto; width: 70%;
     background: linear-gradient(180deg, #94A3B8, #64748B);
     border-radius: 0 0 8px 8px;
   }
-  .chrome {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-bottom: 8px;
-  }
+  .chrome { display: flex; align-items: center; gap: 5px; margin-bottom: 8px; }
   .dot { width: 7px; height: 7px; border-radius: 50%; }
   .dot.r { background: #F87171; }
   .dot.y { background: #FBBF24; }
   .dot.g { background: #34D399; }
   .url {
-    flex: 1;
-    margin-left: 8px;
-    background: #0F172A;
-    color: #94A3B8;
-    font-size: 0.65rem;
-    padding: 3px 8px;
-    border-radius: 6px;
+    flex: 1; margin-left: 8px; background: #0F172A; color: #94A3B8;
+    font-size: 0.65rem; padding: 3px 8px; border-radius: 6px;
   }
+
   .screen {
-    background: linear-gradient(160deg, #EFF6FF, #F8FAFC 40%, #EEF2FF);
-    border-radius: 6px;
-    padding: 10px;
-    min-height: 180px;
+    border-radius: 6px; overflow: hidden;
+    min-height: 190px;
   }
-  .mini-nav {
-    height: 10px;
-    border-radius: 4px;
-    background: rgba(37, 99, 235, 0.15);
-    margin-bottom: 10px;
-  }
-  .mini-hero {
-    height: 48px;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #3B82F6, #6366F1);
-    margin-bottom: 10px;
-  }
-  .mini-hero.short { height: 36px; }
-  .mini-row {
-    height: 8px;
-    width: 60%;
-    border-radius: 4px;
-    background: rgba(15, 23, 42, 0.08);
-    margin-bottom: 10px;
-  }
-  .mini-cards {
+  .screen.dual {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 4px;
+    background: #0B1220;
+    padding: 4px;
   }
-  .mini-cards i {
-    display: block;
-    height: 36px;
-    border-radius: 6px;
-    background: #fff;
-    border: 1px solid rgba(15, 23, 42, 0.06);
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  .screen.dual.stacked {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.85fr 1.15fr;
   }
-  .mini-cards.tall { grid-template-columns: 1fr 1fr; }
-  .mini-cards.tall i { height: 52px; }
-  .mini-cards.phone { grid-template-columns: 1fr; }
-  .mini-cards.phone i { height: 28px; }
+  .pane { overflow: hidden; border-radius: 4px; }
+  .code-pane {
+    background: #0B1220;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+  .code-pane.slim pre { font-size: 0.52rem; }
+  .code-scroll {
+    height: 100%;
+    overflow: hidden;
+    animation: codeUp 12s linear infinite;
+  }
+  .code-scroll pre {
+    margin: 0; padding: 8px;
+    font-size: 0.58rem; line-height: 1.45;
+    color: #E2E8F0;
+  }
+  .code-scroll .k { color: #C084FC; }
+  .code-scroll .v { color: #7DD3FC; }
+  .code-scroll .s { color: #86EFAC; }
+  .code-scroll .f { color: #FCD34D; }
+  .code-scroll .n { color: #FB923C; }
+  .code-scroll .c { color: #64748B; }
+  @keyframes codeUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+  }
 
-  .frame-tablet { width: 240px; }
+  .demo-pane { background: linear-gradient(160deg, #EFF6FF, #F8FAFC); }
+  .demo-scroll {
+    height: 100%;
+    overflow: hidden;
+    animation: demoUp 14s linear infinite;
+  }
+  .demo-page { padding: 8px; }
+  .d-nav {
+    height: 8px; border-radius: 3px;
+    background: rgba(37,99,235,.18); margin-bottom: 8px;
+  }
+  .d-hero {
+    height: 40px; border-radius: 6px;
+    background: linear-gradient(135deg, #3B82F6, #6366F1); margin-bottom: 8px;
+  }
+  .d-hero.short { height: 28px; }
+  .d-line {
+    height: 6px; width: 70%; border-radius: 3px;
+    background: rgba(15,23,42,.1); margin-bottom: 8px;
+  }
+  .d-line.short { width: 45%; }
+  .d-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-bottom: 8px;
+  }
+  .d-cards i {
+    display: block; height: 28px; border-radius: 5px;
+    background: #fff; border: 1px solid rgba(15,23,42,.06);
+  }
+  .d-cards.tall { grid-template-columns: 1fr 1fr; }
+  .d-cards.tall i { height: 40px; }
+  .d-cards.phone { grid-template-columns: 1fr; }
+  .d-cards.phone i { height: 22px; }
+  .d-block {
+    height: 24px; border-radius: 5px;
+    background: rgba(99,102,241,.15); margin-bottom: 8px;
+  }
+  .d-cta {
+    height: 14px; width: 40%; border-radius: 999px;
+    background: #2563EB; margin-top: 4px;
+  }
+  @keyframes demoUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+  }
+
+  .frame-tablet { width: 250px; }
   .frame-tablet .bezel {
-    background: #1E293B;
-    border-radius: 18px;
-    padding: 12px 10px;
-    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.22);
+    background: #1E293B; border-radius: 18px; padding: 12px 10px;
+    box-shadow: 0 24px 50px rgba(15,23,42,.25);
   }
-  .frame-tablet .screen { min-height: 260px; }
+  .frame-tablet .screen { min-height: 280px; }
 
-  .frame-phone { width: 150px; }
+  .frame-phone { width: 158px; }
   .frame-phone .bezel {
-    background: #0F172A;
-    border-radius: 26px;
-    padding: 14px 8px 18px;
-    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.25);
+    background: #0F172A; border-radius: 26px; padding: 14px 8px 18px;
+    box-shadow: 0 24px 50px rgba(15,23,42,.28);
   }
   .frame-phone .notch {
-    width: 48px; height: 6px;
-    margin: 0 auto 8px;
-    border-radius: 999px;
-    background: #334155;
+    width: 48px; height: 6px; margin: 0 auto 8px;
+    border-radius: 999px; background: #334155;
   }
-  .frame-phone .screen { min-height: 240px; border-radius: 12px; }
+  .frame-phone .screen { min-height: 250px; border-radius: 12px; }
 
   .wd-device-label {
-    margin-top: 1rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: #64748B;
-    letter-spacing: 0.02em;
+    margin-top: 1rem; font-size: 0.78rem; font-weight: 600;
+    color: #64748B; letter-spacing: .02em; position: relative; z-index: 2;
   }
 
-  /* Sections */
+  /* sections */
   .wd-sec { padding: 3.25rem 1.25rem; background: #fff; }
   .wd-sec.alt { background: #F8FAFC; }
-  .wd-split {
-    display: grid;
-    gap: 1.25rem 2.5rem;
-  }
+  .wd-split { display: grid; gap: 1.25rem 2.5rem; }
   @media (min-width: 800px) {
     .wd-split { grid-template-columns: 280px 1fr; align-items: start; }
   }
   .wd-h {
-    margin: 0;
-    font-family: var(--font-h), system-ui, sans-serif;
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #0F172A;
-    display: flex;
-    align-items: center;
-    gap: 0.55rem;
+    margin: 0; font-family: var(--font-h), system-ui, sans-serif;
+    font-size: 1.25rem; font-weight: 800; color: #0F172A;
+    display: flex; align-items: center; gap: 0.55rem;
   }
   .wd-ico {
-    width: 28px; height: 28px;
-    border-radius: 8px;
-    display: grid;
-    place-items: center;
-    font-size: 0.85rem;
-    font-weight: 800;
+    width: 28px; height: 28px; border-radius: 8px;
+    display: grid; place-items: center; font-size: 0.85rem; font-weight: 800;
   }
   .wd-ico.ok { background: #DCFCE7; color: #16A34A; }
   .wd-ico.warn { background: #FEF3C7; color: #D97706; }
   .wd-ico.bad { background: #FEE2E2; color: #DC2626; }
-  .wd-body {
-    margin: 0;
-    color: #475569;
-    line-height: 1.7;
-    font-size: 1rem;
-  }
-  .wd-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: grid;
-    gap: 0.65rem;
-  }
+  .wd-body { margin: 0; color: #475569; line-height: 1.7; font-size: 1rem; }
+  .wd-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.65rem; }
   .wd-list li {
-    position: relative;
-    padding-left: 1.1rem;
-    color: #475569;
-    line-height: 1.55;
+    position: relative; padding-left: 1.1rem; color: #475569; line-height: 1.55;
   }
   .wd-list li::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0.55em;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #2563EB;
+    content: ''; position: absolute; left: 0; top: 0.55em;
+    width: 6px; height: 6px; border-radius: 50%; background: #2563EB;
   }
+
+  .viz-row {
+    display: grid; gap: 1rem; margin-top: 2rem;
+  }
+  @media (min-width: 700px) { .viz-row { grid-template-columns: 1fr 1fr; } }
+  .viz-card {
+    border-radius: 18px; padding: 1.5rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+    min-height: 160px; justify-content: center;
+  }
+  .viz-card.dark {
+    background: linear-gradient(145deg, #0F172A, #1E3A8A);
+    color: #E2E8F0;
+  }
+  .viz-card.light {
+    background: linear-gradient(145deg, #EFF6FF, #EEF2FF);
+    border: 1px solid rgba(37,99,235,.12);
+    color: #1E40AF;
+  }
+  .viz-card p { margin: 0; font-weight: 700; font-size: 0.9rem; }
+  .viz-iso { display: flex; gap: 10px; align-items: flex-end; height: 72px; }
+  .iso {
+    width: 36px; border-radius: 6px;
+    background: linear-gradient(180deg, #60A5FA, #2563EB);
+    box-shadow: 0 8px 16px rgba(37,99,235,.25);
+  }
+  .iso.a { height: 36px; }
+  .iso.b { height: 56px; }
+  .iso.c { height: 44px; }
 
   .wd-center { text-align: center; max-width: 40rem; margin: 0 auto 2rem; }
   .wd-eyebrow {
-    margin: 0 0 0.5rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #2563EB;
+    margin: 0 0 0.5rem; font-size: 0.75rem; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase; color: #2563EB;
   }
   .wd-eyebrow.light { color: #93C5FD; }
   .wd-h2 {
     margin: 0 0 0.65rem;
     font-family: var(--font-h), system-ui, sans-serif;
-    font-size: clamp(1.4rem, 3vw, 1.9rem);
-    font-weight: 800;
-    color: #0F172A;
+    font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 800; color: #0F172A;
   }
   .wd-sub { margin: 0; color: #64748B; line-height: 1.55; }
 
-  .plat-grid {
-    display: grid;
-    gap: 0.75rem;
-  }
-  .plat-grid.top {
-    grid-template-columns: 1fr;
-    margin-bottom: 0.85rem;
-  }
-  @media (min-width: 640px) {
-    .plat-grid.top { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (min-width: 960px) {
-    .plat-grid.top { grid-template-columns: repeat(4, 1fr); }
-  }
-  .plat-grid.more {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (min-width: 800px) {
-    .plat-grid.more { grid-template-columns: repeat(3, 1fr); }
-  }
+  .plat-grid { display: grid; gap: 0.75rem; }
+  .plat-grid.top { grid-template-columns: 1fr; margin-bottom: 0.85rem; }
+  @media (min-width: 640px) { .plat-grid.top { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 960px) { .plat-grid.top { grid-template-columns: repeat(4, 1fr); } }
+  .plat-grid.more { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 800px) { .plat-grid.more { grid-template-columns: repeat(3, 1fr); } }
+
   .plat-card {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 1.1rem;
-    border-radius: 14px;
-    background: #fff;
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    text-decoration: none;
-    color: inherit;
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 1rem 1.1rem; border-radius: 14px;
+    background: #fff; border: 1px solid rgba(15,23,42,.08);
+    text-decoration: none; color: inherit;
+    transition: border-color .2s, box-shadow .2s, transform .2s;
   }
   .plat-card:hover {
-    border-color: rgba(37, 99, 235, 0.35);
-    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.1);
+    border-color: rgba(37,99,235,.35);
+    box-shadow: 0 12px 28px rgba(37,99,235,.1);
     transform: translateY(-2px);
   }
   .plat-card.top { padding: 1.15rem 1.2rem; }
-  .plat-logo {
-    width: 40px; height: 40px;
-    border-radius: 10px;
-    display: grid;
-    place-items: center;
-    font-weight: 800;
-    color: #fff;
-    background: var(--c, #2563EB);
-    flex-shrink: 0;
+  .plat-img {
+    width: 36px; height: 36px; object-fit: contain; flex-shrink: 0;
   }
-  .plat-card strong {
-    display: block;
-    font-size: 0.92rem;
-    color: #0F172A;
+  .plat-img.sm { width: 28px; height: 28px; }
+  .plat-letter {
+    width: 28px; height: 28px; border-radius: 8px;
+    display: grid; place-items: center;
+    font-weight: 800; font-size: 0.85rem; color: #fff;
+    background: var(--c, #2563EB); flex-shrink: 0;
   }
-  .plat-card span:not(.plat-go):not(.plat-logo) {
-    display: block;
-    font-size: 0.75rem;
-    color: #64748B;
-    margin-top: 0.15rem;
+  .plat-card strong { display: block; font-size: 0.92rem; color: #0F172A; }
+  .plat-card span:not(.plat-go):not(.plat-letter) {
+    display: block; font-size: 0.75rem; color: #64748B; margin-top: 0.15rem;
   }
-  .plat-go {
-    margin-left: auto;
-    color: #94A3B8;
-    font-size: 0.95rem;
-  }
+  .plat-go { margin-left: auto; color: #94A3B8; font-size: 0.95rem; }
 
-  .flow {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 0.85rem;
-  }
+  .flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.85rem; }
   .flow-item {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1rem;
-    align-items: start;
-    padding: 1.15rem 1.25rem;
-    background: #fff;
-    border: 1px solid rgba(15, 23, 42, 0.07);
-    border-radius: 16px;
+    display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start;
+    padding: 1.15rem 1.25rem; background: #fff;
+    border: 1px solid rgba(15,23,42,.07); border-radius: 16px;
   }
   .flow-n {
-    width: 42px; height: 42px;
-    border-radius: 12px;
-    display: grid;
-    place-items: center;
-    font-weight: 800;
-    font-size: 0.85rem;
-    color: #2563EB;
-    background: #EFF6FF;
+    width: 42px; height: 42px; border-radius: 12px;
+    display: grid; place-items: center; font-weight: 800; font-size: 0.85rem;
+    color: #2563EB; background: #EFF6FF;
   }
-  .flow-item h3 {
-    margin: 0 0 0.3rem;
-    font-size: 1rem;
-    color: #0F172A;
-  }
-  .flow-item p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #64748B;
-    line-height: 1.55;
-  }
+  .flow-item h3 { margin: 0 0 0.3rem; font-size: 1rem; color: #0F172A; }
+  .flow-item p { margin: 0; font-size: 0.9rem; color: #64748B; line-height: 1.55; }
 
-  .sol-grid {
-    display: grid;
-    gap: 0.85rem;
-  }
-  @media (min-width: 700px) {
-    .sol-grid { grid-template-columns: repeat(2, 1fr); }
-  }
+  .sol-grid { display: grid; gap: 0.85rem; }
+  @media (min-width: 700px) { .sol-grid { grid-template-columns: repeat(2, 1fr); } }
   .sol-card {
-    padding: 1.35rem 1.4rem;
-    border-radius: 16px;
-    background: #fff;
-    border: 1px solid rgba(15, 23, 42, 0.07);
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.03);
+    padding: 1.35rem 1.4rem; border-radius: 16px; background: #fff;
+    border: 1px solid rgba(15,23,42,.07); box-shadow: 0 8px 24px rgba(15,23,42,.03);
   }
-  .sol-card h3 {
-    margin: 0 0 0.45rem;
-    font-size: 1.05rem;
-    color: #0F172A;
-  }
-  .sol-card p {
-    margin: 0;
-    font-size: 0.92rem;
-    color: #64748B;
-    line-height: 1.55;
-  }
+  .sol-card h3 { margin: 0 0 0.45rem; font-size: 1.05rem; color: #0F172A; }
+  .sol-card p { margin: 0; font-size: 0.92rem; color: #64748B; line-height: 1.55; }
 
   .wd-cta {
     padding: 3.5rem 1.25rem;
-    background:
-      linear-gradient(135deg, #1E3A8A, #2563EB 55%, #0EA5E9);
+    background: linear-gradient(135deg, #1E3A8A, #2563EB 55%, #0EA5E9);
     color: #fff;
   }
   .wd-cta-inner {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; flex-wrap: wrap; gap: 1.5rem;
+    align-items: center; justify-content: space-between;
   }
   .wd-cta h2 {
     margin: 0 0 0.4rem;
     font-family: var(--font-h), system-ui, sans-serif;
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 800;
+    font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800;
   }
   .wd-cta p { margin: 0; opacity: 0.9; }
-  .btn-light {
-    background: #fff;
-    color: #1E40AF;
-    border: none;
-  }
+  .btn-light { background: #fff; color: #1E40AF; border: none; }
   .btn-light:hover { background: #EFF6FF; }
 
   @media (max-width: 640px) {
     .wd-meta { grid-template-columns: 1fr; }
-    .wd-device { height: 300px; }
+    .wd-device { height: 310px; }
+    .float-ico { font-size: 0.58rem; padding: 0.28rem 0.4rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .code-scroll, .demo-scroll, .float-ico, .frame {
+      animation: none !important;
+    }
   }
 </style>
 
@@ -782,6 +856,6 @@ const solutions = [
     var next = root.querySelector('[data-frame="' + order[i] + '"]');
     if (next) next.classList.add('is-active');
     if (label) label.textContent = names[order[i]] || 'Preview';
-  }, 2800);
+  }, 3200);
 })();
 </script>
