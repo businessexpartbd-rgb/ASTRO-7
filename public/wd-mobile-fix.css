@@ -1,43 +1,155 @@
-/* Web Development hero: smaller device on desktop, text not crushed on mobile */
+/* =========================================================
+   Web Development hero — mobile + desktop responsive fixes
+   Realistic phone / tablet / laptop frames, no text crush
+   ========================================================= */
+
+/* —— Mobile & tablet (< 960px) —— */
 @media (max-width: 959px) {
+  .wd-hero {
+    padding: 4.5rem 1rem 2rem !important;
+    overflow: hidden !important;
+  }
+
   .wd-hero .wd-hero-grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 1.25rem !important;
+    align-items: stretch !important;
+    gap: 1.5rem !important;
   }
-  .wd-hero .wd-hero-copy {
-    order: 1 !important;
-  }
+
+  /* Device ABOVE text, contained */
   .wd-hero .wd-device-wrap {
     order: 0 !important;
-    margin-bottom: 0.25rem !important;
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0.5rem 0 0.25rem !important;
+    overflow: visible !important;
   }
+
+  .wd-hero .wd-hero-copy {
+    order: 1 !important;
+    position: relative !important;
+    z-index: 2 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Float badges — hide on small screens so they never cover text */
+  .wd-hero .float-ring {
+    display: none !important;
+  }
+
+  /* Device stage — fixed height so text never slides under */
   .wd-hero .wd-device {
-    height: 220px !important;
-    width: min(220px, 80vw) !important;
+    width: 100% !important;
+    max-width: 280px !important;
+    height: 260px !important;
+    margin: 0 auto !important;
   }
-  .wd-hero .wd-device[data-mode="phone"] .morph { width: 110px !important; }
-  .wd-hero .wd-device[data-mode="tablet"] .morph { width: 155px !important; }
-  .wd-hero .wd-device[data-mode="laptop"] .morph { width: 200px !important; }
-  .wd-hero .screen.dual { min-height: 150px !important; }
-  .wd-hero .wd-device[data-mode="tablet"] .screen.dual { min-height: 170px !important; }
-  .wd-hero .wd-device[data-mode="laptop"] .screen.dual { min-height: 120px !important; }
-  .wd-hero .wd-title { font-size: 1.5rem !important; line-height: 1.2 !important; }
-  .wd-hero .wd-lead { font-size: 0.95rem !important; margin-bottom: 1rem !important; }
-  .wd-hero .wd-device-label { margin-top: 0.45rem !important; font-size: 0.72rem !important; }
-  .wd-hero { padding-top: 4.25rem !important; padding-bottom: 2rem !important; }
-}
-@media (min-width: 960px) {
-  .wd-hero .wd-device {
-    width: min(300px, 100%) !important;
-    height: 280px !important;
+
+  .wd-hero .wd-device[data-mode="phone"] .morph {
+    width: 128px !important;
   }
-  .wd-hero .wd-device[data-mode="phone"] .morph { width: 120px !important; }
-  .wd-hero .wd-device[data-mode="tablet"] .morph { width: 180px !important; }
-  .wd-hero .wd-device[data-mode="laptop"] .morph { width: 260px !important; }
+  .wd-hero .wd-device[data-mode="tablet"] .morph {
+    width: 190px !important;
+  }
+  .wd-hero .wd-device[data-mode="laptop"] .morph {
+    width: 250px !important;
+  }
+
+  .wd-hero .screen.dual {
+    min-height: 170px !important;
+  }
+  .wd-hero .wd-device[data-mode="tablet"] .screen.dual {
+    min-height: 195px !important;
+  }
+  .wd-hero .wd-device[data-mode="laptop"] .screen.dual {
+    min-height: 140px !important;
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: 1fr !important;
+  }
+
+  .wd-hero .wd-device-label {
+    margin-top: 0.65rem !important;
+    font-size: 0.72rem !important;
+    text-align: center !important;
+  }
+
+  /* Typography — readable, no overflow */
+  .wd-hero .wd-badge {
+    margin-bottom: 0.75rem !important;
+    font-size: 0.72rem !important;
+  }
+  .wd-hero .wd-title {
+    font-size: clamp(1.35rem, 5.5vw, 1.65rem) !important;
+    line-height: 1.22 !important;
+    margin-bottom: 0.75rem !important;
+    word-break: break-word !important;
+  }
+  .wd-hero .wd-lead {
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 1rem !important;
+    max-width: 100% !important;
+  }
+
+  /* Meta cards: 1 column on very small, 3 becomes stacked cleanly */
+  .wd-hero .wd-meta {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+    margin-bottom: 1.15rem !important;
+  }
+
+  .wd-hero .wd-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.55rem !important;
+  }
+  .wd-hero .wd-actions .btn {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
 }
 
-/* Application Build: official Android / Apple logos */
+/* Very small phones */
+@media (max-width: 380px) {
+  .wd-hero .wd-device {
+    height: 240px !important;
+    max-width: 250px !important;
+  }
+  .wd-hero .wd-device[data-mode="phone"] .morph { width: 112px !important; }
+  .wd-hero .wd-device[data-mode="tablet"] .morph { width: 168px !important; }
+  .wd-hero .wd-device[data-mode="laptop"] .morph { width: 220px !important; }
+}
+
+/* —— Desktop (≥ 960px) —— */
+@media (min-width: 960px) {
+  .wd-hero .wd-device-wrap {
+    order: 0 !important;
+  }
+  .wd-hero .wd-device {
+    width: min(340px, 100%) !important;
+    height: 320px !important;
+  }
+  .wd-hero .wd-device[data-mode="phone"] .morph { width: 132px !important; }
+  .wd-hero .wd-device[data-mode="tablet"] .morph { width: 210px !important; }
+  .wd-hero .wd-device[data-mode="laptop"] .morph { width: 300px !important; }
+
+  .wd-hero .screen.dual { min-height: 200px !important; }
+  .wd-hero .wd-device[data-mode="tablet"] .screen.dual { min-height: 240px !important; }
+  .wd-hero .wd-device[data-mode="laptop"] .screen.dual {
+    min-height: 168px !important;
+    grid-template-columns: 1.05fr 1fr !important;
+    grid-template-rows: 1fr !important;
+  }
+}
+
+/* Application Build logos (unchanged support) */
 .plat-art.android .android-bot,
 .plat-art.ios .ios-badge,
 .plat-art.cross .cross-icons .ci {
@@ -69,13 +181,10 @@
     url("/logos/apple.svg") right center / 56px no-repeat;
 }
 
-/* Hero phone animation boost */
 .app-hero .phone {
   animation: appPhoneFloat 3.2s ease-in-out infinite;
 }
-.app-hero .phone.p2 {
-  animation-delay: 0.45s;
-}
+.app-hero .phone.p2 { animation-delay: 0.45s; }
 @keyframes appPhoneFloat {
   0%, 100% { transform: translateY(0) rotate(var(--r, -8deg)); }
   50% { transform: translateY(-10px) rotate(var(--r, -8deg)); }
