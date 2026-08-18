@@ -1,7 +1,7 @@
 ---
 /**
- * Hero book-page video reel — landscape YouTube previews cycle like turning pages.
- * Speed-first: posters + one muted iframe at a time, CSS scroll, reduced-motion safe.
+ * Realistic book — white pages, soft shadow, 3D page-flip ~1s, continuous muted video.
+ * No play button. No dark chrome. Speed-first: one iframe at a time.
  */
 import { SHOWCASES, ytThumb } from '../data/site';
 
@@ -10,366 +10,432 @@ const longIds = [
   ...SHOWCASES.find((s) => s.id === 'custom')!.ids.slice(0, 2),
 ];
 
+/* Vary start seconds so each page shows a different “main moment” */
+const starts = [4, 12, 8, 18, 6, 15];
+
 const pages = longIds.map((id, i) => ({
   id,
   thumb: ytThumb(id),
+  start: starts[i % starts.length],
   label: i % 2 === 0 ? 'Cinematic' : 'Brand Film',
 }));
-
-const services = [
-  { t: 'Video Editing', c: '#2563EB' },
-  { t: 'AI Video', c: '#7C3AED' },
-  { t: 'Web Dev', c: '#0D9488' },
-  { t: 'App Build', c: '#D97706' },
-];
 ---
 
-<div class="hbr" data-hbr role="img" aria-label="Creavix video portfolio preview reel">
-  <div class="hbr-frame">
-    <div class="hbr-chrome">
-      <span class="hbr-dot r"></span>
-      <span class="hbr-dot y"></span>
-      <span class="hbr-dot g"></span>
-      <span class="hbr-title">Creavix · Long-form Showcase</span>
-    </div>
+<div class="book" data-book role="img" aria-label="Creavix cinematic video showcase book">
+  <div class="book-shadow" aria-hidden="true"></div>
 
-    <div class="hbr-stage">
-      <!-- Active muted player (one at a time) -->
-      <div class="hbr-player" data-hbr-player>
-        <iframe
-          data-hbr-iframe
-          title="Showcase preview"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          referrerpolicy="strict-origin-when-cross-origin"
-        ></iframe>
-        <img data-hbr-poster class="hbr-poster" alt="" width="640" height="360" decoding="async" />
-        <div class="hbr-play-hint" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-      </div>
-
-      <!-- Book-page vertical reel -->
-      <div class="hbr-reel-mask">
-        <div class="hbr-reel" data-hbr-reel>
-          {[...pages, ...pages].map((p, i) => (
-            <article class="hbr-page" data-yt={p.id} data-i={i % pages.length}>
-              <img src={p.thumb} alt="" width="320" height="180" loading="lazy" decoding="async" />
-              <span class="hbr-tag">{p.label}</span>
-            </article>
-          ))}
-        </div>
+  <div class="book-body">
+    <!-- Left fixed page (cover feel) -->
+    <div class="book-cover" aria-hidden="true">
+      <div class="book-cover-inner">
+        <span class="book-brand">CREAVIX</span>
+        <span class="book-sub">Video Portfolio</span>
       </div>
     </div>
 
-    <div class="hbr-services">
-      {services.map((s) => (
-        <span class="hbr-chip" style={`--c:${s.c}`}>{s.t}</span>
+    <!-- Flipping stack -->
+    <div class="book-stack" data-book-stack>
+      {pages.map((p, i) => (
+        <article
+          class:list={['book-page', i === 0 && 'is-top']}
+          data-page
+          data-yt={p.id}
+          data-start={p.start}
+          style={`z-index:${pages.length - i}`}
+        >
+          <div class="page-face">
+            <div class="page-media">
+              <img class="page-thumb" src={p.thumb} alt="" width="640" height="360" decoding="async" loading={i < 2 ? 'eager' : 'lazy'} />
+              <!-- iframe injected only for active top page -->
+              <div class="page-video" data-video-slot></div>
+            </div>
+            <div class="page-meta">
+              <span class="page-label">{p.label}</span>
+              <span class="page-num">{String(i + 1).padStart(2, '0')} / {String(pages.length).padStart(2, '0')}</span>
+            </div>
+          </div>
+          <div class="page-back" aria-hidden="true"></div>
+        </article>
       ))}
     </div>
   </div>
 
-  <!-- Soft floating badges -->
-  <div class="hbr-float hbr-f1" aria-hidden="true">16:9</div>
-  <div class="hbr-float hbr-f2" aria-hidden="true">4K</div>
-  <div class="hbr-float hbr-f3" aria-hidden="true">24–48h</div>
+  <!-- Soft service pills under book -->
+  <div class="book-pills" aria-hidden="true">
+    <span>Video Editing</span>
+    <span>AI Video</span>
+    <span>Web &amp; App</span>
+  </div>
 </div>
 
 <style>
-  .hbr {
+  .book {
+    --page-w: min(100%, 420px);
     position: relative;
-    width: 100%;
-    max-width: 460px;
+    width: var(--page-w);
     margin: 0 auto;
+    padding: 0.5rem 0 1.25rem;
+    perspective: 1400px;
   }
 
-  .hbr-frame {
+  .book-shadow {
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: 0.35rem;
+    height: 18px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(15, 23, 42, 0.22) 0%, transparent 70%);
+    filter: blur(4px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .book-body {
     position: relative;
     z-index: 1;
-    background: linear-gradient(165deg, #0F172A 0%, #1E293B 55%, #0B1220 100%);
-    border-radius: 22px;
-    padding: 0.65rem 0.65rem 0.85rem;
-    box-shadow:
-      0 28px 56px rgba(15, 23, 42, 0.28),
-      0 0 0 1px rgba(255, 255, 255, 0.06),
-      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    display: grid;
+    grid-template-columns: 0.22fr 0.78fr;
+    gap: 0;
+    transform-style: preserve-3d;
+    animation: book-float 7s ease-in-out infinite;
   }
 
-  .hbr-chrome {
+  @keyframes book-float {
+    0%, 100% { transform: rotateX(2deg) rotateY(-4deg) translateY(0); }
+    50% { transform: rotateX(3deg) rotateY(-2deg) translateY(-4px); }
+  }
+
+  /* Left cover / spine area */
+  .book-cover {
+    position: relative;
+    border-radius: 10px 0 0 10px;
+    background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-right: none;
+    box-shadow:
+      -4px 8px 24px rgba(15, 23, 42, 0.08),
+      inset 0 1px 0 #fff;
+    min-height: 100%;
     display: flex;
     align-items: center;
-    gap: 0.35rem;
-    padding: 0.25rem 0.35rem 0.55rem;
-  }
-  .hbr-dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-  }
-  .hbr-dot.r { background: #F87171; }
-  .hbr-dot.y { background: #FBBF24; }
-  .hbr-dot.g { background: #34D399; }
-  .hbr-title {
-    margin-left: 0.4rem;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    color: rgba(226, 232, 240, 0.7);
-  }
-
-  .hbr-stage {
-    display: grid;
-    gap: 0.55rem;
-  }
-
-  .hbr-player {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    border-radius: 14px;
+    justify-content: center;
     overflow: hidden;
-    background: #020617;
   }
-  .hbr-player iframe,
-  .hbr-poster {
+  .book-cover::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.06), transparent);
+  }
+  .book-cover-inner {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-align: center;
+    padding: 0.75rem 0;
+  }
+  .book-brand {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: #0f172a;
+  }
+  .book-sub {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: #64748b;
+  }
+
+  .book-stack {
+    position: relative;
+    aspect-ratio: 16 / 11;
+    transform-style: preserve-3d;
+  }
+
+  .book-page {
+    position: absolute;
+    inset: 0;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.45, 0.05, 0.25, 1);
+    border-radius: 0 12px 12px 0;
+  }
+
+  .page-face,
+  .page-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 0 12px 12px 0;
+  }
+
+  .page-face {
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-left: none;
+    box-shadow:
+      6px 10px 28px rgba(15, 23, 42, 0.1),
+      0 1px 0 rgba(255, 255, 255, 0.9) inset;
+    display: flex;
+    flex-direction: column;
+    padding: 0.55rem 0.55rem 0.45rem;
+    overflow: hidden;
+  }
+
+  .page-back {
+    background: linear-gradient(90deg, #f1f5f9 0%, #ffffff 18%, #f8fafc 100%);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    transform: rotateY(180deg);
+    box-shadow: inset 4px 0 12px rgba(15, 23, 42, 0.04);
+  }
+
+  .page-media {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #0f172a;
+  }
+
+  .page-thumb,
+  .page-media iframe,
+  .page-video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     border: 0;
-    object-fit: cover;
-  }
-  .hbr-player iframe {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.45s ease;
-  }
-  .hbr-player.is-playing iframe {
-    opacity: 1;
-  }
-  .hbr-player.is-playing .hbr-poster,
-  .hbr-player.is-playing .hbr-play-hint {
-    opacity: 0;
-  }
-  .hbr-poster {
-    transition: opacity 0.4s ease;
-  }
-  .hbr-play-hint {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    color: #fff;
-    background: rgba(2, 6, 23, 0.25);
-    transition: opacity 0.35s ease;
-    pointer-events: none;
-  }
-  .hbr-play-hint svg {
-    width: 44px;
-    height: 44px;
-    padding: 10px;
-    border-radius: 50%;
-    background: rgba(37, 99, 235, 0.92);
-    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.45);
-  }
-
-  .hbr-reel-mask {
-    height: 118px;
-    overflow: hidden;
-    border-radius: 12px;
-    mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
-  }
-  .hbr-reel {
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-    animation: hbr-scroll 28s linear infinite;
-    will-change: transform;
-  }
-  @keyframes hbr-scroll {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-50%); }
-  }
-
-  .hbr-page {
-    position: relative;
-    flex-shrink: 0;
-    height: 54px;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-  }
-  .hbr-page img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     display: block;
   }
-  .hbr-tag {
-    position: absolute;
-    left: 8px;
-    bottom: 6px;
-    padding: 0.15rem 0.45rem;
-    border-radius: 999px;
-    background: rgba(15, 23, 42, 0.72);
-    color: #E2E8F0;
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
+
+  .page-thumb {
+    object-fit: cover;
+    z-index: 1;
   }
 
-  .hbr-services {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    margin-top: 0.65rem;
-    padding: 0 0.15rem;
+  .page-video {
+    z-index: 2;
   }
-  .hbr-chip {
+
+  .page-video iframe {
+    pointer-events: none;
+    /* hide residual YT chrome as much as possible */
+    transform: scale(1.08);
+    transform-origin: center center;
+  }
+
+  .page-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.4rem;
+    padding: 0 0.1rem;
+  }
+  .page-label {
     font-size: 0.68rem;
     font-weight: 700;
-    padding: 0.28rem 0.55rem;
-    border-radius: 999px;
-    color: #fff;
-    background: color-mix(in srgb, var(--c) 88%, #000);
-    box-shadow: 0 2px 8px color-mix(in srgb, var(--c) 35%, transparent);
+    color: #334155;
+    letter-spacing: 0.02em;
+  }
+  .page-num {
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: #94a3b8;
+    font-variant-numeric: tabular-nums;
   }
 
-  .hbr-float {
-    position: absolute;
-    z-index: 2;
-    font-size: 0.68rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    padding: 0.35rem 0.55rem;
-    border-radius: 10px;
-    background: #fff;
-    color: #0B0F19;
-    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
-    border: 1px solid rgba(15, 23, 42, 0.06);
-    animation: hbr-bob 4.5s ease-in-out infinite;
+  /* States */
+  .book-page.is-flipping {
+    transform: rotateY(-158deg);
+    z-index: 40 !important;
   }
-  .hbr-f1 { top: 12%; left: -8px; animation-delay: 0s; }
-  .hbr-f2 { top: 42%; right: -10px; animation-delay: -1.2s; }
-  .hbr-f3 { bottom: 18%; left: -6px; animation-delay: -2.4s; color: #2563EB; }
-  @keyframes hbr-bob {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
+  .book-page.is-done {
+    transform: rotateY(-180deg);
+    pointer-events: none;
+    z-index: 1 !important;
+  }
+  .book-page.is-top {
+    z-index: 30 !important;
+  }
+
+  .book-pills {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.35rem;
+    margin-top: 0.85rem;
+  }
+  .book-pills span {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.28rem 0.6rem;
+    border-radius: 999px;
+    background: #fff;
+    color: #0f172a;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
   }
 
   @media (max-width: 767px) {
-    .hbr { max-width: 100%; }
-    .hbr-frame { border-radius: 18px; }
-    .hbr-reel-mask { height: 100px; }
-    .hbr-page { height: 46px; }
-    .hbr-float { font-size: 0.62rem; padding: 0.28rem 0.45rem; }
-    .hbr-f1 { left: 0; }
-    .hbr-f2 { right: 0; }
-    .hbr-f3 { left: 4px; bottom: 14%; }
-    .hbr-reel { animation-duration: 32s; }
+    .book {
+      --page-w: min(100%, 360px);
+      padding-bottom: 1rem;
+    }
+    .book-body {
+      grid-template-columns: 0.16fr 0.84fr;
+      animation-duration: 9s;
+    }
+    .book-brand { font-size: 0.62rem; letter-spacing: 0.12em; }
+    .book-sub { font-size: 0.52rem; }
+    .page-face { padding: 0.4rem 0.4rem 0.35rem; }
+    .page-label { font-size: 0.62rem; }
+    .book-page { transition-duration: 0.6s; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hbr-reel,
-    .hbr-float {
+    .book-body {
       animation: none !important;
+    }
+    .book-page {
+      transition: none !important;
     }
   }
 </style>
 
 <script is:inline>
 (function () {
-  var root = document.querySelector('[data-hbr]');
+  var root = document.querySelector('[data-book]');
   if (!root) return;
 
-  var pages = Array.prototype.slice.call(root.querySelectorAll('.hbr-page'));
+  var pages = Array.prototype.slice.call(root.querySelectorAll('[data-page]'));
   if (!pages.length) return;
 
-  var unique = [];
-  var seen = {};
-  pages.forEach(function (p) {
-    var id = p.getAttribute('data-yt');
-    if (id && !seen[id]) {
-      seen[id] = true;
-      unique.push(id);
-    }
-  });
-  if (!unique.length) return;
-
-  var player = root.querySelector('[data-hbr-player]');
-  var iframe = root.querySelector('[data-hbr-iframe]');
-  var poster = root.querySelector('[data-hbr-poster]');
-  var idx = 0;
-  var timer = null;
-  var visible = true;
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var visible = true;
+  var idx = 0;
+  var flipTimer = null;
+  var holdMs = 1100;      /* ~1s per page visible */
+  var flipMs = 700;
 
-  function thumb(id) {
-    return 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';
+  function clearVideo(page) {
+    var slot = page.querySelector('[data-video-slot]');
+    if (slot) slot.innerHTML = '';
   }
 
-  function embed(id) {
-    // mute + autoplay + short window; modestbranding for clean UI
-    return 'https://www.youtube-nocookie.com/embed/' + id +
-      '?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=0&start=3&end=12';
+  function playVideo(page) {
+    if (reduced || !visible) return;
+    var slot = page.querySelector('[data-video-slot]');
+    if (!slot) return;
+    var id = page.getAttribute('data-yt');
+    var start = page.getAttribute('data-start') || '5';
+    if (!id) return;
+
+    /* Continuous short window of the “main” part — no controls, muted, autoplay */
+    var end = String(parseInt(start, 10) + 9);
+    var src =
+      'https://www.youtube-nocookie.com/embed/' + id +
+      '?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1' +
+      '&iv_load_policy=3&disablekb=1&fs=0&start=' + start + '&end=' + end +
+      '&loop=1&playlist=' + id;
+
+    slot.innerHTML =
+      '<iframe title="" src="' + src + '" allow="autoplay; encrypted-media" allowfullscreen ' +
+      'referrerpolicy="strict-origin-when-cross-origin" tabindex="-1"></iframe>';
   }
 
-  function show(i) {
-    idx = i % unique.length;
-    var id = unique[idx];
-    if (poster) {
-      poster.src = thumb(id);
-      poster.alt = 'Video preview';
-    }
-    if (!iframe || reduced || !visible) {
-      if (player) player.classList.remove('is-playing');
+  function resetStack() {
+    pages.forEach(function (p, i) {
+      p.classList.remove('is-flipping', 'is-done', 'is-top');
+      p.style.zIndex = String(pages.length - i);
+      clearVideo(p);
+    });
+    idx = 0;
+    pages[0].classList.add('is-top');
+    playVideo(pages[0]);
+  }
+
+  function flipNext() {
+    if (!visible || reduced) return;
+    if (idx >= pages.length - 1) {
+      /* All pages flipped — reset like closing & reopening the book */
+      pages.forEach(function (p) {
+        p.classList.add('is-done');
+        clearVideo(p);
+      });
+      setTimeout(function () {
+        resetStack();
+        schedule();
+      }, 280);
       return;
     }
-    if (player) player.classList.remove('is-playing');
-    // slight delay so poster paints first
+
+    var current = pages[idx];
+    current.classList.remove('is-top');
+    current.classList.add('is-flipping');
+    clearVideo(current);
+
+    var next = pages[idx + 1];
+    if (next) {
+      next.classList.add('is-top');
+      playVideo(next);
+    }
+
     setTimeout(function () {
-      if (!visible || reduced) return;
-      iframe.src = embed(id);
-      if (player) player.classList.add('is-playing');
-    }, 180);
+      current.classList.remove('is-flipping');
+      current.classList.add('is-done');
+      idx += 1;
+      schedule();
+    }, flipMs);
   }
 
-  function next() {
-    show(idx + 1);
+  function schedule() {
+    if (flipTimer) clearTimeout(flipTimer);
+    if (!visible || reduced) return;
+    flipTimer = setTimeout(flipNext, holdMs);
   }
 
-  function startCycle() {
-    if (timer) clearInterval(timer);
-    show(0);
-    if (reduced) return;
-    timer = setInterval(next, 9000);
+  function start() {
+    if (reduced) {
+      pages[0].classList.add('is-top');
+      return;
+    }
+    resetStack();
+    schedule();
   }
 
-  function stopCycle() {
-    if (timer) clearInterval(timer);
-    timer = null;
-    if (iframe) iframe.src = '';
-    if (player) player.classList.remove('is-playing');
+  function stop() {
+    if (flipTimer) clearTimeout(flipTimer);
+    flipTimer = null;
+    pages.forEach(clearVideo);
   }
 
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         visible = e.isIntersecting;
-        if (visible) startCycle();
-        else stopCycle();
+        if (visible) start();
+        else stop();
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.15 });
     io.observe(root);
   } else {
-    startCycle();
+    start();
   }
 
-  // Pause when tab hidden (saves CPU / bandwidth)
   document.addEventListener('visibilitychange', function () {
-    if (document.hidden) stopCycle();
-    else if (visible) startCycle();
+    if (document.hidden) stop();
+    else if (visible) start();
   });
 })();
 </script>
