@@ -21,44 +21,13 @@ const platformsMore = [
   { name: 'Webflow', href: 'https://webflow.com/', desc: 'No-code design', icon: 'https://cdn.simpleicons.org/webflow/4353FF' },
 ];
 
-/** Domain registrars — real brand logos (Hostinger first) */
 const domains = [
-  {
-    name: 'Hostinger',
-    href: 'https://www.hostinger.com/domain-name-search',
-    desc: 'Domains + hosting · popular choice',
-    icon: 'https://cdn.simpleicons.org/hostinger/673DE6',
-  },
-  {
-    name: 'Namecheap',
-    href: 'https://www.namecheap.com/domains/',
-    desc: 'Affordable domains · free WHOIS',
-    icon: 'https://logo.clearbit.com/namecheap.com',
-  },
-  {
-    name: 'Cloudflare',
-    href: 'https://www.cloudflare.com/products/registrar/',
-    desc: 'At-cost domains + free DNS',
-    icon: 'https://cdn.simpleicons.org/cloudflare/F38020',
-  },
-  {
-    name: 'GoDaddy',
-    href: 'https://www.godaddy.com/domains',
-    desc: 'Global domain marketplace',
-    icon: 'https://logo.clearbit.com/godaddy.com',
-  },
-  {
-    name: 'Porkbun',
-    href: 'https://porkbun.com/',
-    desc: 'Cheap domains · free privacy',
-    icon: 'https://logo.clearbit.com/porkbun.com',
-  },
-  {
-    name: 'Name.com',
-    href: 'https://www.name.com/domain/search',
-    desc: 'Simple domain management',
-    icon: 'https://logo.clearbit.com/name.com',
-  },
+  { name: 'Hostinger', href: 'https://www.hostinger.com/domain-name-search', desc: 'Domains + hosting · popular choice', icon: 'https://cdn.simpleicons.org/hostinger/673DE6' },
+  { name: 'Namecheap', href: 'https://www.namecheap.com/domains/', desc: 'Affordable domains · free WHOIS', icon: 'https://cdn.simpleicons.org/namecheap/DE3723' },
+  { name: 'Cloudflare', href: 'https://www.cloudflare.com/products/registrar/', desc: 'At-cost domains + free DNS', icon: 'https://cdn.simpleicons.org/cloudflare/F38020' },
+  { name: 'GoDaddy', href: 'https://www.godaddy.com/domains', desc: 'Global domain marketplace', icon: 'https://cdn.simpleicons.org/godaddy/1BDBDB' },
+  { name: 'Porkbun', href: 'https://porkbun.com/', desc: 'Cheap domains · free privacy', icon: '/logos/porkbun.svg' },
+  { name: 'Name.com', href: 'https://www.name.com/domain/search', desc: 'Simple domain management', icon: '/logos/namecom.svg' },
 ];
 
 const challenges = [
@@ -202,11 +171,14 @@ const floatIcons = [
                   </div>
                 </div>
               </div>
+              <div class="home-bar" data-home></div>
             </div>
-            <div class="base" data-base></div>
+            <div class="base" data-base>
+              <span class="base-hinge"></span>
+            </div>
           </div>
         </div>
-        <p class="wd-device-label"><span data-device-label>Mobile</span> · same site · size morph</p>
+        <p class="wd-device-label"><span data-device-label>Mobile</span> · same site · live morph</p>
       </div>
     </div>
   </section>
@@ -397,10 +369,24 @@ const floatIcons = [
       linear-gradient(180deg, #ffffff, #F7F9FC);
     overflow: hidden;
   }
-  .wd-hero-grid { display: grid; gap: 2.5rem; align-items: center; }
-  @media (min-width: 960px) {
-    .wd-hero-grid { grid-template-columns: 1.05fr 0.95fr; gap: 3rem; }
+  .wd-hero-grid {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
   }
+  @media (min-width: 960px) {
+    .wd-hero-grid {
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 3rem;
+    }
+  }
+
+  .wd-hero-copy {
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+  }
+
   .wd-badge {
     display: inline-flex; align-items: center; gap: 0.5rem;
     padding: 0.35rem 0.85rem; border-radius: 999px;
@@ -439,11 +425,22 @@ const floatIcons = [
 
   .wd-device-wrap {
     position: relative;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
-  @media (max-width: 959px) { .wd-device-wrap { order: -1; } }
+  @media (max-width: 959px) {
+    .wd-device-wrap { order: -1; }
+  }
 
-  .float-ring { position: absolute; inset: -12px -8px; pointer-events: none; z-index: 0; }
+  .float-ring {
+    position: absolute;
+    inset: -12px -8px;
+    pointer-events: none;
+    z-index: 0;
+  }
   .float-ico {
     position: absolute; padding: 0.35rem 0.55rem; border-radius: 8px;
     font-size: 0.65rem; font-weight: 800; letter-spacing: 0.02em;
@@ -463,9 +460,12 @@ const floatIcons = [
   }
 
   .wd-device {
-    position: relative; z-index: 1;
-    width: min(420px, 100%); height: 360px;
-    display: grid; place-items: center;
+    position: relative;
+    z-index: 1;
+    width: min(420px, 100%);
+    height: 360px;
+    display: grid;
+    place-items: center;
   }
   .morph {
     width: 150px;
@@ -475,32 +475,67 @@ const floatIcons = [
   .wd-device[data-mode="tablet"] .morph { width: 250px; }
   .wd-device[data-mode="laptop"] .morph { width: 380px; }
 
+  /* —— Realistic device frames —— */
   .bezel {
-    background: #0F172A;
-    border-radius: 26px;
-    padding: 12px 8px 16px;
-    box-shadow: 0 22px 48px rgba(15,23,42,.28);
+    position: relative;
+    background: linear-gradient(160deg, #1a2332, #0F172A 55%, #0B1220);
+    border-radius: 28px;
+    padding: 10px 9px 12px;
+    box-shadow:
+      0 24px 48px rgba(15, 23, 42, 0.32),
+      0 0 0 2px rgba(255, 255, 255, 0.06) inset,
+      0 0 0 1px rgba(15, 23, 42, 0.5);
     transition: border-radius 0.55s ease, padding 0.55s ease, background 0.55s ease;
   }
   .wd-device[data-mode="tablet"] .bezel {
-    border-radius: 18px; padding: 12px 10px; background: #1E293B;
+    border-radius: 16px;
+    padding: 14px 12px;
+    background: linear-gradient(160deg, #243044, #1E293B);
   }
   .wd-device[data-mode="laptop"] .bezel {
-    border-radius: 14px 14px 6px 6px; padding: 10px 10px 6px; background: #1E293B;
+    border-radius: 12px 12px 4px 4px;
+    padding: 8px 8px 6px;
+    background: linear-gradient(180deg, #2a3548, #1E293B);
   }
 
+  /* Phone dynamic island */
   .notch {
-    width: 48px; height: 6px; margin: 0 auto 8px;
-    border-radius: 999px; background: #334155;
-    transition: opacity 0.35s ease, height 0.35s ease;
+    width: 56px;
+    height: 14px;
+    margin: 0 auto 8px;
+    border-radius: 999px;
+    background: #020617;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04);
+    transition: opacity 0.35s ease, height 0.35s ease, margin 0.35s ease;
   }
   .wd-device[data-mode="tablet"] .notch,
   .wd-device[data-mode="laptop"] .notch {
-    opacity: 0; height: 0; margin: 0;
+    opacity: 0;
+    height: 0;
+    margin: 0;
+  }
+
+  /* Phone home indicator */
+  .home-bar {
+    width: 36%;
+    height: 4px;
+    margin: 8px auto 0;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.55);
+    transition: opacity 0.3s ease, height 0.3s ease, margin 0.3s ease;
+  }
+  .wd-device[data-mode="tablet"] .home-bar,
+  .wd-device[data-mode="laptop"] .home-bar {
+    opacity: 0;
+    height: 0;
+    margin: 0;
   }
 
   .chrome {
-    display: none; align-items: center; gap: 5px; margin-bottom: 8px;
+    display: none;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 8px;
   }
   .wd-device[data-mode="tablet"] .chrome,
   .wd-device[data-mode="laptop"] .chrome {
@@ -511,32 +546,66 @@ const floatIcons = [
   .dot.y { background: #FBBF24; }
   .dot.g { background: #34D399; }
   .url {
-    flex: 1; margin-left: 8px; background: #0F172A; color: #94A3B8;
-    font-size: 0.65rem; padding: 3px 8px; border-radius: 6px;
+    flex: 1;
+    margin-left: 8px;
+    background: #0F172A;
+    color: #94A3B8;
+    font-size: 0.65rem;
+    padding: 3px 8px;
+    border-radius: 6px;
   }
 
+  /* Laptop base / stand */
   .base {
-    height: 0; margin: 0 auto; width: 70%;
-    background: linear-gradient(180deg, #94A3B8, #64748B);
-    border-radius: 0 0 8px 8px;
-    transition: height 0.4s ease;
+    height: 0;
+    margin: 0 auto;
+    width: 78%;
+    position: relative;
+    background: linear-gradient(180deg, #94A3B8, #64748B 40%, #475569);
+    border-radius: 0 0 6px 6px;
+    transition: height 0.4s ease, width 0.4s ease;
+    overflow: hidden;
   }
-  .wd-device[data-mode="laptop"] .base { height: 10px; }
+  .base-hinge {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28%;
+    height: 3px;
+    border-radius: 0 0 3px 3px;
+    background: #475569;
+  }
+  .wd-device[data-mode="laptop"] .base {
+    height: 12px;
+    width: 92%;
+  }
+  .wd-device[data-mode="laptop"] .base-hinge {
+    display: block;
+  }
 
   .screen.dual {
-    display: grid; grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: 1fr;
     grid-template-rows: 0.9fr 1.1fr;
-    gap: 4px; background: #0B1220; padding: 4px;
-    border-radius: 12px; overflow: hidden; min-height: 240px;
-    transition: min-height 0.55s ease, border-radius 0.55s ease;
+    gap: 4px;
+    background: #0B1220;
+    padding: 4px;
+    border-radius: 14px;
+    overflow: hidden;
+    min-height: 240px;
+    transition: min-height 0.55s ease, border-radius 0.55s ease, grid-template-columns 0.55s ease;
   }
   .wd-device[data-mode="tablet"] .screen.dual {
-    min-height: 280px; border-radius: 8px;
+    min-height: 280px;
+    border-radius: 8px;
   }
   .wd-device[data-mode="laptop"] .screen.dual {
     grid-template-columns: 1.05fr 1fr;
     grid-template-rows: 1fr;
-    min-height: 190px; border-radius: 6px;
+    min-height: 190px;
+    border-radius: 6px;
   }
 
   .pane { overflow: hidden; border-radius: 4px; }
@@ -545,12 +614,16 @@ const floatIcons = [
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   }
   .code-scroll {
-    height: 100%; overflow: hidden;
+    height: 100%;
+    overflow: hidden;
     animation: codeUp 8s linear infinite;
   }
   .code-scroll pre {
-    margin: 0; padding: 8px;
-    font-size: 0.56rem; line-height: 1.45; color: #E2E8F0;
+    margin: 0;
+    padding: 8px;
+    font-size: 0.56rem;
+    line-height: 1.45;
+    color: #E2E8F0;
   }
   .code-scroll .k { color: #C084FC; }
   .code-scroll .v { color: #7DD3FC; }
@@ -565,7 +638,8 @@ const floatIcons = [
 
   .demo-pane { background: linear-gradient(160deg, #EFF6FF, #F8FAFC); }
   .demo-scroll {
-    height: 100%; overflow: hidden;
+    height: 100%;
+    overflow: hidden;
     animation: demoUp 9s linear infinite;
   }
   .demo-page { padding: 8px; }
@@ -603,8 +677,14 @@ const floatIcons = [
   }
 
   .wd-device-label {
-    margin-top: 1rem; font-size: 0.78rem; font-weight: 600;
-    color: #64748B; letter-spacing: .02em; position: relative; z-index: 2;
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #64748B;
+    letter-spacing: .02em;
+    position: relative;
+    z-index: 2;
+    text-align: center;
   }
 
   .wd-sec { padding: 3.25rem 1.25rem; background: #fff; }
@@ -704,7 +784,6 @@ const floatIcons = [
   .plat-img {
     width: 28px; height: 28px; object-fit: contain; flex-shrink: 0;
   }
-  .plat-card.domain .plat-img { width: 28px; height: 28px; }
   .plat-img.sm { width: 28px; height: 28px; }
   .plat-letter {
     width: 36px; height: 36px; border-radius: 10px;
@@ -776,12 +855,6 @@ const floatIcons = [
   }
   .btn-light { background: #fff; color: #1E40AF; border: none; }
   .btn-light:hover { background: #EFF6FF; }
-
-  @media (max-width: 640px) {
-    .wd-meta { grid-template-columns: 1fr; }
-    .wd-device { height: 330px; }
-    .float-ico { font-size: 0.58rem; padding: 0.28rem 0.4rem; }
-  }
 
   @media (prefers-reduced-motion: reduce) {
     .code-scroll, .demo-scroll, .float-ico, .morph {
