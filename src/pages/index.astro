@@ -10,7 +10,7 @@ import FAQ from '../components/FAQ.astro';
 import ProcessFlow from '../components/ProcessFlow.astro';
 import IconBox from '../components/IconBox.astro';
 import ServiceIcons from '../components/icons/ServiceIcons.astro';
-import HeroOrbit from '../components/HeroOrbit.astro';
+import HeroBookReel from '../components/HeroBookReel.astro';
 import { SITE } from '../data/site';
 
 const services = [
@@ -68,7 +68,7 @@ const services = [
 
       <div class="hero-visual reveal">
         <div class="hero-visual-frame">
-          <HeroOrbit />
+          <HeroBookReel />
         </div>
       </div>
     </div>
@@ -146,24 +146,35 @@ const services = [
   .hero-grid-orbit {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.75rem;
     align-items: center;
   }
   .hero-visual {
     order: -1;
     display: flex;
     justify-content: center;
+    width: 100%;
   }
-  .hero-content { order: 1; max-width: 580px; }
+  .hero-content {
+    order: 1;
+    max-width: 580px;
+  }
+  .hero-visual-frame {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+  }
+
   @media (min-width: 900px) {
     .hero-grid-orbit {
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 2.5rem;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 2.75rem;
       align-items: center;
-      min-height: 520px;
+      min-height: 540px;
     }
     .hero-content { order: 1; }
     .hero-visual { order: 2; }
+    .hero-visual-frame { max-width: 480px; }
   }
 
   .rating-pill {
@@ -188,12 +199,6 @@ const services = [
     font-weight: 700;
   }
 
-  .hero-visual-frame {
-    position: relative;
-    width: 100%;
-    max-width: 440px;
-  }
-
   .about-checks {
     list-style: none;
     display: flex;
@@ -207,5 +212,11 @@ const services = [
     display: flex;
     align-items: flex-start;
     gap: 0.6rem;
+  }
+
+  @media (max-width: 639px) {
+    .hero-content { max-width: 100%; }
+    .flex-btns { width: 100%; }
+    .flex-btns .btn { flex: 1 1 calc(50% - 0.4rem); min-width: 0; text-align: center; }
   }
 </style>
