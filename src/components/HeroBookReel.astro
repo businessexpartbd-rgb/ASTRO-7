@@ -1,18 +1,19 @@
 ---
 /**
- * Hero video stage — reference-style floating cards:
- * soft glow, rounded 16:9 main video, blurred side peeks,
- * bottom thumb strip (no frames, no text), auto-cycle + click.
- * Continuous muted playback of main moments at fast (2x / 3x-feel) pace.
+ * Hero video stage — reference animation layout:
+ * soft aura, single center 16:9 card, bottom glass icon-strip,
+ * 3s auto cycle, click thumb → main, continuous muted play,
+ * no text, no play button, no channel logo, no side peeks, no black flash.
  */
 import { SHOWCASES, ytThumb } from '../data/site';
 
+/* Landscape / long-form only (16:9) — no shorts */
 const longIds = [
   ...SHOWCASES.find((s) => s.id === 'cinematic')!.ids,
-  ...SHOWCASES.find((s) => s.id === 'custom')!.ids.slice(0, 4),
+  ...SHOWCASES.find((s) => s.id === 'custom')!.ids,
 ];
 
-const starts = [3, 8, 5, 12, 6, 10, 4, 14, 7, 9];
+const starts = [4, 9, 6, 12, 5, 11, 7, 14, 8, 10, 3, 13];
 
 const clips = longIds.map((id, i) => ({
   id,
@@ -21,42 +22,32 @@ const clips = longIds.map((id, i) => ({
 }));
 ---
 
-<div class="hv" data-hv role="img" aria-label="Creavix video showcase">
-  <div class="hv-glow" aria-hidden="true"></div>
+<div class="hv" data-hv role="img" aria-label="Video showcase">
+  <div class="hv-aura" aria-hidden="true"></div>
 
-  <!-- Main stage: center clear + side peeks blurred -->
-  <div class="hv-stage" data-stage>
-    <div class="hv-side hv-side-l" data-side="prev" aria-hidden="true">
-      <img data-side-prev-img alt="" width="480" height="270" decoding="async" />
-    </div>
-
-    <div class="hv-main" data-main>
-      <div class="hv-screen">
-        <img class="hv-poster" data-poster alt="" width="1280" height="720" decoding="async" />
-        <div class="hv-player" data-player></div>
-      </div>
-    </div>
-
-    <div class="hv-side hv-side-r" data-side="next" aria-hidden="true">
-      <img data-side-next-img alt="" width="480" height="270" decoding="async" />
+  <!-- Single center stage — no side cards -->
+  <div class="hv-center">
+    <div class="hv-card" data-card>
+      <img class="hv-poster" data-poster src={clips[0].thumb} alt="" width="1280" height="720" decoding="async" fetchpriority="high" />
+      <div class="hv-layer" data-layer></div>
     </div>
   </div>
 
-  <!-- Bottom strip — direct video thumbs, no frames, no text -->
-  <div class="hv-strip" data-strip>
-    <div class="hv-strip-track" data-track>
+  <!-- Bottom glass strip — same videos as thumbs -->
+  <div class="hv-dock" data-dock>
+    <div class="hv-dock-track" data-track>
       {clips.map((c, i) => (
         <button
           type="button"
-          class:list={['hv-thumb', i === 0 && 'is-active']}
-          data-thumb
-          data-i={i}
+          class:list={['hv-btn', i === 0 && 'is-on']}
+          data-btn
+          data-i={String(i)}
           data-yt={c.id}
-          data-start={c.start}
-          data-thumb-src={c.thumb}
-          aria-label={`Video ${i + 1}`}
+          data-start={String(c.start)}
+          data-src={c.thumb}
+          aria-label={`Clip ${i + 1}`}
         >
-          <img src={c.thumb} alt="" width="160" height="90" loading={i < 4 ? 'eager' : 'lazy'} decoding="async" />
+          <img src={c.thumb} alt="" width="80" height="45" loading={i < 6 ? 'eager' : 'lazy'} decoding="async" />
         </button>
       ))}
     </div>
@@ -65,66 +56,75 @@ const clips = longIds.map((id, i) => ({
 
 <style>
   .hv {
+    --r: 22px;
     position: relative;
     width: 100%;
-    max-width: 520px;
+    max-width: 440px;
     margin: 0 auto;
-    padding: 1.5rem 0.25rem 0.5rem;
+    padding: 1.75rem 0.5rem 0.35rem;
   }
 
-  /* Soft multi-color aura like reference */
-  .hv-glow {
+  /* Soft multi-hue glow — matches reference */
+  .hv-aura {
     position: absolute;
     left: 50%;
-    top: 38%;
+    top: 36%;
+    width: 110%;
+    height: 72%;
     translate: -50% -50%;
-    width: 92%;
-    height: 70%;
     border-radius: 50%;
-    background:
-      radial-gradient(circle at 30% 40%, rgba(251, 191, 36, 0.28), transparent 50%),
-      radial-gradient(circle at 70% 35%, rgba(167, 139, 250, 0.3), transparent 48%),
-      radial-gradient(circle at 50% 70%, rgba(110, 231, 183, 0.22), transparent 55%),
-      radial-gradient(circle at 55% 45%, rgba(147, 197, 253, 0.25), transparent 60%);
-    filter: blur(28px);
     pointer-events: none;
     z-index: 0;
-    animation: hv-aura 6s ease-in-out infinite alternate;
+    background:
+      radial-gradient(circle at 28% 42%, rgba(253, 186, 116, 0.35), transparent 52%),
+      radial-gradient(circle at 72% 38%, rgba(196, 181, 253, 0.38), transparent 50%),
+      radial-gradient(circle at 50% 68%, rgba(110, 231, 183, 0.28), transparent 55%),
+      radial-gradient(circle at 55% 48%, rgba(147, 197, 253, 0.3), transparent 58%);
+    filter: blur(32px);
+    animation: hv-breathe 5.5s ease-in-out infinite alternate;
   }
-  @keyframes hv-aura {
-    from { opacity: 0.75; transform: scale(1); }
-    to { opacity: 1; transform: scale(1.06); }
+  @keyframes hv-breathe {
+    from { opacity: 0.7; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1.05); }
   }
 
-  .hv-stage {
+  .hv-center {
     position: relative;
     z-index: 1;
-    display: grid;
-    grid-template-columns: 0.18fr 0.64fr 0.18fr;
-    align-items: center;
-    gap: 0.35rem;
-    min-height: 200px;
+    display: flex;
+    justify-content: center;
   }
 
-  .hv-main {
+  .hv-card {
     position: relative;
-    z-index: 2;
-  }
-
-  .hv-screen {
-    position: relative;
+    width: 100%;
     aspect-ratio: 16 / 9;
-    border-radius: 18px;
+    border-radius: var(--r);
     overflow: hidden;
-    background: #0f172a;
+    background: #f8fafc;
     box-shadow:
-      0 24px 48px rgba(15, 23, 42, 0.14),
-      0 0 0 1px rgba(255, 255, 255, 0.55);
+      0 28px 56px rgba(15, 23, 42, 0.12),
+      0 0 0 1px rgba(255, 255, 255, 0.7);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease, filter 0.4s ease;
+  }
+
+  /* Crossfade states */
+  .hv-card.is-out {
+    opacity: 0;
+    transform: scale(0.94) translateY(6px);
+    filter: blur(6px);
+  }
+  .hv-card.is-in {
+    animation: hv-pop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @keyframes hv-pop {
+    from { opacity: 0; transform: scale(0.94) translateY(8px); filter: blur(6px); }
+    to { opacity: 1; transform: none; filter: none; }
   }
 
   .hv-poster,
-  .hv-player,
-  .hv-player iframe {
+  .hv-layer,
+  .hv-layer iframe {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -132,150 +132,128 @@ const clips = longIds.map((id, i) => ({
     border: 0;
     display: block;
   }
+
   .hv-poster {
     object-fit: cover;
     z-index: 1;
-    transition: opacity 0.35s ease;
-  }
-  .hv-player {
-    z-index: 2;
-  }
-  .hv-player iframe {
-    pointer-events: none;
-    /* crop residual YT chrome */
-    transform: scale(1.12);
-    transform-origin: center center;
-  }
-  .hv.is-playing .hv-poster {
-    opacity: 0;
+    /* always visible under player — prevents black flash */
+    background: #e2e8f0;
   }
 
-  /* Side peeks — blurred, scaled down */
-  .hv-side {
-    position: relative;
-    border-radius: 14px;
-    overflow: hidden;
-    aspect-ratio: 16 / 9;
-    opacity: 0.55;
-    filter: blur(3px);
-    transform: scale(0.88);
-    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
-    transition: opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+  .hv-layer {
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
   }
-  .hv-side img {
+  .hv-layer.is-live {
+    opacity: 1;
+  }
+
+  .hv-layer iframe {
+    pointer-events: none;
+    /* crop YouTube chrome / logo / any residual controls */
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    display: block;
+    transform: scale(1.28);
+    transform-origin: center center;
   }
-  .hv-side-l { justify-self: end; }
-  .hv-side-r { justify-self: start; }
 
-  /* Bottom strip */
-  .hv-strip {
+  /* Bottom dock — glass buttons, active larger (reference style) */
+  .hv-dock {
     position: relative;
     z-index: 2;
-    margin-top: 1.15rem;
+    margin-top: 1.35rem;
     overflow: hidden;
-    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
   }
-  .hv-strip-track {
+
+  .hv-dock-track {
     display: flex;
-    gap: 0.55rem;
-    justify-content: center;
     align-items: center;
-    padding: 0.35rem 0.5rem 0.5rem;
+    justify-content: flex-start;
+    gap: 0.55rem;
+    padding: 0.55rem 1rem 0.65rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
-  .hv-strip-track::-webkit-scrollbar { display: none; }
+  .hv-dock-track::-webkit-scrollbar { display: none; }
 
-  .hv-thumb {
+  .hv-btn {
     flex: 0 0 auto;
-    width: 72px;
-    aspect-ratio: 16 / 9;
+    width: 48px;
+    height: 48px;
     padding: 0;
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
     cursor: pointer;
-    background: transparent;
     scroll-snap-align: center;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+      0 6px 18px rgba(15, 23, 42, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.85);
     opacity: 0.55;
-    transform: scale(0.92);
-    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+    transform: scale(0.88);
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.3s ease,
+      box-shadow 0.3s ease,
+      width 0.35s ease,
+      height 0.35s ease;
   }
-  .hv-thumb img {
+  .hv-btn img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
-  .hv-thumb.is-active {
+  .hv-btn.is-on {
+    width: 58px;
+    height: 58px;
     opacity: 1;
-    transform: scale(1.12);
+    transform: scale(1);
+    border-radius: 16px;
     box-shadow:
-      0 10px 24px rgba(37, 99, 235, 0.22),
-      0 0 0 2px rgba(255, 255, 255, 0.9);
-    z-index: 1;
+      0 12px 28px rgba(15, 23, 42, 0.14),
+      0 0 0 2px rgba(255, 255, 255, 0.95),
+      inset 0 1px 0 #fff;
   }
-  .hv-thumb:hover {
+  .hv-btn:hover {
     opacity: 0.9;
-  }
-
-  /* Slide transition when changing main */
-  .hv-main.is-slide-out .hv-screen {
-    animation: hv-out 0.38s ease forwards;
-  }
-  .hv-main.is-slide-in .hv-screen {
-    animation: hv-in 0.42s ease forwards;
-  }
-  @keyframes hv-out {
-    to { opacity: 0; transform: translateX(-18px) scale(0.96); filter: blur(4px); }
-  }
-  @keyframes hv-in {
-    from { opacity: 0; transform: translateX(18px) scale(0.96); filter: blur(4px); }
-    to { opacity: 1; transform: none; filter: none; }
   }
 
   @media (max-width: 767px) {
     .hv {
       max-width: 100%;
-      padding: 0.75rem 0 0.25rem;
+      padding: 1rem 0.15rem 0.25rem;
+      --r: 16px;
     }
-    .hv-stage {
-      grid-template-columns: 0.12fr 0.76fr 0.12fr;
-      gap: 0.2rem;
-      min-height: 160px;
+    .hv-aura {
+      width: 120%;
+      height: 68%;
+      filter: blur(24px);
     }
-    .hv-screen { border-radius: 14px; }
-    .hv-side {
-      border-radius: 10px;
-      filter: blur(4px);
-      opacity: 0.4;
-      transform: scale(0.82);
+    .hv-dock { margin-top: 1.1rem; }
+    .hv-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
     }
-    .hv-thumb {
-      width: 58px;
-      border-radius: 10px;
-    }
-    .hv-thumb.is-active { transform: scale(1.1); }
-    .hv-glow {
-      width: 100%;
-      height: 65%;
-      filter: blur(22px);
+    .hv-btn.is-on {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hv-glow { animation: none !important; }
-    .hv-main.is-slide-out .hv-screen,
-    .hv-main.is-slide-in .hv-screen {
-      animation: none !important;
-    }
+    .hv-aura { animation: none !important; }
+    .hv-card.is-in { animation: none !important; }
   }
 </style>
 
@@ -284,128 +262,141 @@ const clips = longIds.map((id, i) => ({
   var root = document.querySelector('[data-hv]');
   if (!root) return;
 
-  var thumbs = Array.prototype.slice.call(root.querySelectorAll('[data-thumb]'));
-  if (!thumbs.length) return;
+  var btns = Array.prototype.slice.call(root.querySelectorAll('[data-btn]'));
+  if (!btns.length) return;
 
+  var card = root.querySelector('[data-card]');
   var poster = root.querySelector('[data-poster]');
-  var player = root.querySelector('[data-player]');
-  var main = root.querySelector('[data-main]');
+  var layer = root.querySelector('[data-layer]');
   var track = root.querySelector('[data-track]');
-  var prevImg = root.querySelector('[data-side-prev-img]');
-  var nextImg = root.querySelector('[data-side-next-img]');
 
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var visible = true;
   var idx = 0;
   var timer = null;
-  var HOLD = 2800; /* fast cycle ≈ 3x-feel segment length */
+  var switching = false;
+  var HOLD = 3000; /* exactly ~3 seconds */
 
-  function clip(i) {
-    var t = thumbs[((i % thumbs.length) + thumbs.length) % thumbs.length];
+  function item(i) {
+    var b = btns[((i % btns.length) + btns.length) % btns.length];
     return {
-      id: t.getAttribute('data-yt'),
-      start: parseInt(t.getAttribute('data-start') || '4', 10),
-      thumb: t.getAttribute('data-thumb-src'),
-      el: t,
+      id: b.getAttribute('data-yt'),
+      start: parseInt(b.getAttribute('data-start') || '4', 10),
+      src: b.getAttribute('data-src'),
+      el: b,
     };
   }
 
-  function ytSrc(id, start) {
-    /* Short main-moment window, muted autoplay, loop — fast turnover */
+  function embedUrl(id, start) {
     var s = start || 4;
-    var e = s + 5;
+    var e = s + 8; /* slightly longer than hold so it never ends early */
     return (
       'https://www.youtube-nocookie.com/embed/' + id +
       '?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1' +
-      '&iv_load_policy=3&disablekb=1&fs=0&start=' + s + '&end=' + e +
-      '&loop=1&playlist=' + id
+      '&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0' +
+      '&start=' + s + '&end=' + e +
+      '&loop=1&playlist=' + id +
+      '&origin=' + encodeURIComponent(location.origin || '')
     );
   }
 
-  function mountPlayer(id, start) {
-    if (!player || reduced) return;
-    player.innerHTML =
-      '<iframe title="" src="' + ytSrc(id, start) + '" allow="autoplay; encrypted-media" ' +
+  function paintPoster(src) {
+    if (poster && src) {
+      poster.src = src;
+      poster.style.opacity = '1';
+    }
+  }
+
+  function mount(id, start) {
+    if (!layer || reduced || !visible) return;
+    /* keep poster under iframe so no black frame */
+    layer.classList.remove('is-live');
+    layer.innerHTML =
+      '<iframe title="" src="' + embedUrl(id, start) + '" ' +
+      'allow="autoplay; encrypted-media; picture-in-picture" ' +
       'referrerpolicy="strict-origin-when-cross-origin" tabindex="-1"></iframe>';
-    root.classList.add('is-playing');
+    /* reveal after a tick so first paint is poster, not black */
+    requestAnimationFrame(function () {
+      setTimeout(function () {
+        if (layer) layer.classList.add('is-live');
+      }, 120);
+    });
   }
 
-  function clearPlayer() {
-    if (player) player.innerHTML = '';
-    root.classList.remove('is-playing');
+  function clearLayer() {
+    if (layer) {
+      layer.classList.remove('is-live');
+      layer.innerHTML = '';
+    }
   }
 
-  function updateSides(i) {
-    var p = clip(i - 1);
-    var n = clip(i + 1);
-    if (prevImg && p.thumb) prevImg.src = p.thumb;
-    if (nextImg && n.thumb) nextImg.src = n.thumb;
-  }
-
-  function scrollThumbIntoView(i) {
-    var el = thumbs[i];
+  function centerBtn(i) {
+    var el = btns[i];
     if (!el || !track) return;
-    var left = el.offsetLeft - (track.clientWidth / 2) + (el.clientWidth / 2);
+    var left = el.offsetLeft - track.clientWidth / 2 + el.clientWidth / 2;
     track.scrollTo({ left: Math.max(0, left), behavior: reduced ? 'auto' : 'smooth' });
   }
 
-  function setActive(i, animate) {
-    idx = ((i % thumbs.length) + thumbs.length) % thumbs.length;
-    var c = clip(idx);
-
-    thumbs.forEach(function (t, j) {
-      t.classList.toggle('is-active', j === idx);
+  function mark(i) {
+    btns.forEach(function (b, j) {
+      b.classList.toggle('is-on', j === i);
     });
+    centerBtn(i);
+  }
+
+  function go(i, animate) {
+    if (switching) return;
+    idx = ((i % btns.length) + btns.length) % btns.length;
+    var c = item(idx);
+    mark(idx);
 
     function apply() {
-      if (poster && c.thumb) poster.src = c.thumb;
-      updateSides(idx);
-      scrollThumbIntoView(idx);
-      if (visible && !reduced) mountPlayer(c.id, c.start);
-      else clearPlayer();
+      paintPoster(c.src);
+      if (visible && !reduced) mount(c.id, c.start);
+      else clearLayer();
+      switching = false;
     }
 
-    if (animate && main && !reduced) {
-      main.classList.remove('is-slide-in');
-      main.classList.add('is-slide-out');
+    if (animate && card && !reduced) {
+      switching = true;
+      card.classList.remove('is-in');
+      card.classList.add('is-out');
       setTimeout(function () {
-        main.classList.remove('is-slide-out');
+        card.classList.remove('is-out');
         apply();
-        main.classList.add('is-slide-in');
-        setTimeout(function () { main.classList.remove('is-slide-in'); }, 420);
-      }, 280);
+        card.classList.add('is-in');
+        setTimeout(function () {
+          if (card) card.classList.remove('is-in');
+        }, 450);
+      }, 320);
     } else {
       apply();
     }
-  }
-
-  function next() {
-    setActive(idx + 1, true);
   }
 
   function schedule() {
     if (timer) clearTimeout(timer);
     if (!visible || reduced) return;
     timer = setTimeout(function () {
-      next();
+      go(idx + 1, true);
       schedule();
     }, HOLD);
   }
 
   function start() {
-    setActive(idx, false);
+    go(idx, false);
     schedule();
   }
 
   function stop() {
     if (timer) clearTimeout(timer);
     timer = null;
-    clearPlayer();
+    clearLayer();
   }
 
-  thumbs.forEach(function (t, i) {
-    t.addEventListener('click', function () {
-      setActive(i, true);
+  btns.forEach(function (b, i) {
+    b.addEventListener('click', function () {
+      go(i, true);
       schedule();
     });
   });
@@ -417,7 +408,7 @@ const clips = longIds.map((id, i) => ({
         if (visible) start();
         else stop();
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
     io.observe(root);
   } else {
     start();
