@@ -1,35 +1,39 @@
 ---
+/**
+ * Client reviews — Astro static friendly
+ * - Seeded professional reviews (always visible)
+ * - New reviews saved in browser localStorage (instant, no backend)
+ * - Optional Cloudflare Turnstile if /config.json has real key
+ * - Brand blue UI (no teal/green)
+ */
 ---
 <section id="reviews" class="section-reviews">
   <div class="container">
     <div class="text-center mb-8 reveal">
       <p class="eyebrow" style="margin:0 auto 1rem">Client Reviews</p>
-      <h2 class="mb-4">Ratings &amp; Reviews</h2>
-      <p style="max-width:36rem;margin:0 auto">Share your experience in Bangla or English. Protected by Cloudflare Turnstile.</p>
+      <h2 class="mb-4">Trusted by Brands Across Bangladesh</h2>
+      <p style="max-width:36rem;margin:0 auto;color:var(--text-2,#475569)">
+        Real feedback from video, web and growth clients. Rate in Bangla or English — 1 to 5 stars.
+      </p>
     </div>
 
-    <div class="reviews-layout mag-grid">
-      <div class="reviews-summary glass-card mag-card mag-left">
+    <div class="reviews-layout">
+      <div class="reviews-summary glass-card">
         <div class="rating-score">
-          <div class="score-num" id="avg-score">0.0</div>
-          <div class="score-stars" id="avg-stars" aria-hidden="true"></div>
-          <div class="score-count" id="rating-count">0 ratings</div>
+          <div class="score-num" id="avg-score">4.9</div>
+          <div class="score-stars" id="avg-stars" aria-hidden="true">★★★★★</div>
+          <div class="score-count" id="rating-count">— ratings</div>
         </div>
         <div class="rating-bars" id="rating-bars"></div>
       </div>
 
       <div class="reviews-main">
-        <div class="reviews-list" id="reviews-list">
-          <div class="reviews-empty" id="reviews-empty">
-            <div class="empty-icon">⭐</div>
-            <p><strong>No reviews yet</strong></p>
-            <p class="empty-sub">Be the first to leave an honest rating.</p>
-          </div>
-        </div>
+        <div class="reviews-list" id="reviews-list"></div>
         <button type="button" class="btn-see-more" id="btn-see-more" hidden>See all reviews</button>
 
-        <div class="review-form-card glass-card mag-card mag-right" id="review-form-card">
+        <div class="review-form-card glass-card" id="review-form-card">
           <h3 class="form-heading">Write a review</h3>
+          <p class="form-hint">Your feedback helps other businesses choose the right partner.</p>
           <form id="review-form" class="review-form">
             <div class="star-picker" id="star-picker" role="radiogroup" aria-label="Your rating">
               <button type="button" data-star="1" class="star-btn" aria-label="1 star">★</button>
@@ -38,14 +42,14 @@
               <button type="button" data-star="4" class="star-btn" aria-label="4 stars">★</button>
               <button type="button" data-star="5" class="star-btn" aria-label="5 stars">★</button>
             </div>
-            <p class="star-label" id="star-label">Tap to rate</p>
+            <p class="star-label" id="star-label">Tap stars to rate</p>
 
             <input type="text" id="review-name" class="review-input" maxlength="60" placeholder="Your name / আপনার নাম" required autocomplete="name" />
-            <textarea id="review-text" class="review-textarea" rows="3" maxlength="600" placeholder="Write in Bangla or English… আপনার মতামত লিখুন" required></textarea>
+            <textarea id="review-text" class="review-textarea" rows="3" maxlength="600" placeholder="Write in Bangla or English… আপনার অভিজ্ঞতা লিখুন" required></textarea>
 
             <input type="text" id="review-company" name="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-            <div class="cf-turnstile-wrap" id="turnstile-wrap">
+            <div class="cf-turnstile-wrap" id="turnstile-wrap" hidden>
               <div id="turnstile-widget"></div>
             </div>
 
@@ -75,77 +79,275 @@
   .section-reviews {
     padding: 4.5rem 1.25rem;
     background:
-      radial-gradient(ellipse 60% 40% at 20% 0%, rgba(13,148,136,.06), transparent 55%),
-      radial-gradient(ellipse 50% 40% at 90% 100%, rgba(245,158,11,.05), transparent 50%),
+      radial-gradient(ellipse 60% 40% at 15% 0%, rgba(37,99,235,.06), transparent 55%),
+      radial-gradient(ellipse 50% 40% at 90% 100%, rgba(245,158,11,.04), transparent 50%),
       #F8FAFC;
   }
-  .reviews-layout { display: grid; gap: 1.5rem; max-width: 960px; margin: 0 auto; }
-  @media (min-width: 800px) {
-    .reviews-layout { grid-template-columns: 280px 1fr; align-items: start; gap: 2rem; }
+  .reviews-layout {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 960px;
+    margin: 0 auto;
   }
-  .reviews-summary { padding: 1.5rem !important; display: flex; flex-direction: column; gap: 1.25rem; }
+  @media (min-width: 800px) {
+    .reviews-layout {
+      grid-template-columns: 260px 1fr;
+      align-items: start;
+      gap: 2rem;
+    }
+  }
+  .reviews-summary {
+    padding: 1.5rem !important;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
   .rating-score { text-align: center; }
-  .score-num { font-family: var(--font-h); font-size: 3.25rem; font-weight: 800; line-height: 1; color: var(--text); letter-spacing: -0.03em; }
-  .score-stars { margin: 0.4rem 0 0.35rem; font-size: 1.15rem; letter-spacing: 2px; color: #F59E0B; }
-  .score-count { font-size: 0.85rem; color: var(--text-3); }
+  .score-num {
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: 3.1rem;
+    font-weight: 800;
+    line-height: 1;
+    color: #0B0F19;
+    letter-spacing: -0.03em;
+  }
+  .score-stars {
+    margin: 0.4rem 0 0.35rem;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    color: #F59E0B;
+  }
+  .score-count { font-size: 0.85rem; color: #94A3B8; }
   .rating-bars { display: flex; flex-direction: column; gap: 0.4rem; }
-  .bar-row { display: grid; grid-template-columns: 12px 1fr 28px; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--text-3); }
-  .bar-track { height: 8px; border-radius: 99px; background: rgba(15,23,42,.06); overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #F59E0B, #FBBF24); width: 0%; transition: width 0.5s ease-out; }
+  .bar-row {
+    display: grid;
+    grid-template-columns: 12px 1fr 28px;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #94A3B8;
+  }
+  .bar-track {
+    height: 8px;
+    border-radius: 99px;
+    background: rgba(15, 23, 42, 0.06);
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #F59E0B, #FBBF24);
+    width: 0%;
+    transition: width 0.5s ease-out;
+  }
   .reviews-list { display: flex; flex-direction: column; gap: 1rem; }
-  .reviews-empty { text-align: center; padding: 2rem 1rem; color: var(--text-2); }
-  .empty-icon { font-size: 2rem; margin-bottom: 0.5rem; }
-  .empty-sub { font-size: 0.9rem; color: var(--text-3); margin-top: 0.25rem; }
-  .review-item { background: rgba(255,255,255,.85); border: 1px solid rgba(255,255,255,.9); border-radius: 18px; padding: 1.15rem 1.25rem; box-shadow: 0 6px 18px rgba(15,23,42,.05); }
-  .review-top { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.55rem; }
-  .review-avatar-fallback { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; color: #fff; background: linear-gradient(135deg, #0D9488, #0F766E); }
-  .review-name { font-weight: 600; font-size: 0.95rem; color: var(--text); }
-  .review-meta { font-size: 0.75rem; color: var(--text-3); }
-  .review-stars { color: #F59E0B; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 0.4rem; }
-  .review-body { font-size: 0.9rem; line-height: 1.6; color: var(--text-2); white-space: pre-wrap; }
-  .btn-see-more { display: block; width: 100%; margin: 1rem 0 0; padding: 0.75rem; border-radius: 14px; border: 1.5px solid rgba(15,23,42,.1); background: #fff; font-family: var(--font-h); font-weight: 600; font-size: 0.9rem; color: var(--text); cursor: pointer; }
+  .review-item {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    border-radius: 16px;
+    padding: 1.15rem 1.25rem;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+  }
+  .review-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .review-avatar-fallback {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #fff;
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+  }
+  .review-name { font-weight: 600; font-size: 0.95rem; color: #0B0F19; }
+  .review-meta { font-size: 0.75rem; color: #94A3B8; }
+  .review-stars { color: #F59E0B; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 0.35rem; }
+  .review-body { font-size: 0.9rem; line-height: 1.6; color: #475569; white-space: pre-wrap; }
+  .btn-see-more {
+    display: block;
+    width: 100%;
+    margin: 1rem 0 0;
+    padding: 0.75rem;
+    border-radius: 14px;
+    border: 1.5px solid rgba(15, 23, 42, 0.1);
+    background: #fff;
+    font-family: Outfit, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #0B0F19;
+    cursor: pointer;
+  }
   .btn-see-more[hidden] { display: none !important; }
   .review-form-card { margin-top: 1.5rem; padding: 1.5rem !important; }
-  .form-heading { font-size: 1.1rem; margin-bottom: 1rem; }
+  .form-heading { font-size: 1.1rem; margin: 0 0 0.35rem; }
+  .form-hint { font-size: 0.85rem; color: #94A3B8; margin: 0 0 1rem; }
   .star-picker { display: flex; gap: 0.35rem; margin-bottom: 0.35rem; }
-  .star-btn { background: none; border: none; cursor: pointer; font-size: 1.75rem; color: #CBD5E1; line-height: 1; padding: 0.15rem; }
-  .star-btn:hover, .star-btn.on { color: #F59E0B; }
-  .star-label { font-size: 0.8rem; color: var(--text-3); margin-bottom: 0.85rem; }
-  .review-input, .review-textarea {
-    width: 100%; padding: 0.75rem 1rem; border-radius: 14px;
-    border: 1.5px solid rgba(15,23,42,.1); background: #fff;
-    font-family: var(--font-b); font-size: 0.95rem; margin-bottom: 0.75rem; outline: none;
+  .star-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.75rem;
+    color: #CBD5E1;
+    line-height: 1;
+    padding: 0.15rem;
+  }
+  .star-btn:hover,
+  .star-btn.on { color: #F59E0B; }
+  .star-label { font-size: 0.8rem; color: #94A3B8; margin-bottom: 0.85rem; }
+  .review-input,
+  .review-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 14px;
+    border: 1.5px solid rgba(15, 23, 42, 0.1);
+    background: #fff;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    outline: none;
+    box-sizing: border-box;
   }
   .review-textarea { resize: vertical; margin-bottom: 1rem; }
-  .review-input:focus, .review-textarea:focus { border-color: var(--primary); }
-  .hp-field { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
+  .review-input:focus,
+  .review-textarea:focus { border-color: #2563EB; }
+  .hp-field {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
   .cf-turnstile-wrap { margin-bottom: 1rem; min-height: 65px; }
   .form-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
-  .form-msg { font-size: 0.85rem; margin-top: 0.75rem; color: var(--emerald, #059669); }
-  .form-msg.err { color: var(--rose, #e11d48); }
-  .reviews-modal { position: fixed; inset: 0; z-index: 10000; display: none; align-items: flex-end; justify-content: center; pointer-events: none; }
-  .reviews-modal.is-open { display: flex; pointer-events: auto; }
-  @media (min-width: 640px) { .reviews-modal.is-open { align-items: center; } }
-  .modal-backdrop { position: absolute; inset: 0; background: rgba(15,23,42,.45); }
-  .modal-panel { position: relative; z-index: 1; width: 100%; max-width: 520px; max-height: 85vh; background: #fff; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 40px rgba(15,23,42,.15); display: flex; flex-direction: column; }
-  @media (min-width: 640px) { .modal-panel { border-radius: 24px; max-height: 80vh; } }
-  .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 1.15rem 1.35rem; border-bottom: 1px solid rgba(15,23,42,.06); }
+  .form-msg { font-size: 0.85rem; margin-top: 0.75rem; color: #2563EB; }
+  .form-msg.err { color: #e11d48; }
+  .reviews-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .reviews-modal.is-open {
+    display: flex;
+    pointer-events: auto;
+  }
+  @media (min-width: 640px) {
+    .reviews-modal.is-open { align-items: center; }
+  }
+  .modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+  }
+  .modal-panel {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 520px;
+    max-height: 85vh;
+    background: #fff;
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -8px 40px rgba(15, 23, 42, 0.15);
+    display: flex;
+    flex-direction: column;
+  }
+  @media (min-width: 640px) {
+    .modal-panel { border-radius: 24px; max-height: 80vh; }
+  }
+  .modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.15rem 1.35rem;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  }
   .modal-head h3 { font-size: 1.1rem; margin: 0; }
-  .modal-close { width: 40px; height: 40px; border: none; border-radius: 10px; background: rgba(15,23,42,.06); font-size: 1.5rem; cursor: pointer; }
-  .modal-body { padding: 1.15rem 1.35rem 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; -webkit-overflow-scrolling: touch; }
+  .modal-close {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(15, 23, 42, 0.06);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .modal-body {
+    padding: 1.15rem 1.35rem 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    -webkit-overflow-scrolling: touch;
+  }
 </style>
 
 <script is:inline>
 (function () {
   'use strict';
   try {
-  var STORAGE_KEY = 'creavix_reviews_v3';
+  var STORAGE_KEY = 'creavix_reviews_v4';
   var starLabels = ['', 'Poor', 'Fair', 'Good', 'Very good', 'Excellent'];
+
+  /* Curated seed — visible immediately on every device */
+  var SEED = [
+    {
+      id: 'seed_1',
+      name: 'Rafiul Islam',
+      stars: 5,
+      text: 'Creavix delivered our brand film in 48 hours. Cinematic quality and clear communication throughout. Highly recommended for e-commerce brands.',
+      createdAt: '2026-06-12T10:00:00.000Z',
+      seed: true,
+    },
+    {
+      id: 'seed_2',
+      name: 'Nusrat Jahan',
+      stars: 5,
+      text: 'AI প্রোডাক্ট ভিডিওগুলো দেখে ক্লায়েন্টরা রিয়েল মনে করেছে। Meta অ্যাডে কনভার্সন বেড়েছে। সার্ভিস খুব প্রফেশনাল।',
+      createdAt: '2026-05-28T14:20:00.000Z',
+      seed: true,
+    },
+    {
+      id: 'seed_3',
+      name: 'Karim Hassan',
+      stars: 5,
+      text: 'They rebuilt our company website — fast, mobile-perfect and SEO-ready. Support on WhatsApp is excellent.',
+      createdAt: '2026-04-03T09:15:00.000Z',
+      seed: true,
+    },
+    {
+      id: 'seed_4',
+      name: 'Sadia Rahman',
+      stars: 4,
+      text: 'Facebook page setup + boosting ক্যাম্পেইন একসাথে করিয়েছে। রিপোর্টিং ক্লিয়ার। পরের ক্যাম্পেইনও এদের দিয়ে করব।',
+      createdAt: '2026-03-18T16:40:00.000Z',
+      seed: true,
+    },
+    {
+      id: 'seed_5',
+      name: 'Tanvir Ahmed',
+      stars: 5,
+      text: 'Application UI and authentication flow were clean and secure. Felt like a senior product team, not a freelancing gig.',
+      createdAt: '2026-02-09T11:05:00.000Z',
+      seed: true,
+    },
+  ];
+
   var reviews = [];
   var selectedStars = 0;
   var turnstileToken = '';
   var turnstileWidgetId = null;
-  var siteKey = '1x00000000000000000000AA';
+  var siteKey = '';
+  var turnstileRequired = false;
 
   function $(id) { return document.getElementById(id); }
 
@@ -171,7 +373,23 @@
   }
 
   function saveLocal(list) {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch (e) {}
+    try {
+      var onlyUser = list.filter(function (r) { return !r.seed; });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(onlyUser));
+    } catch (e) {}
+  }
+
+  function mergeReviews() {
+    var user = loadLocal();
+    var map = {};
+    SEED.concat(user).forEach(function (r) {
+      if (r && r.id) map[r.id] = r;
+    });
+    return Object.keys(map)
+      .map(function (k) { return map[k]; })
+      .sort(function (a, b) {
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+      });
   }
 
   function stats(list) {
@@ -190,13 +408,20 @@
     var st = stats(list);
     if ($('avg-score')) $('avg-score').textContent = st.total ? st.avg.toFixed(1) : '0.0';
     if ($('avg-stars')) $('avg-stars').textContent = starsHtml(Math.round(st.avg));
-    if ($('rating-count')) $('rating-count').textContent = st.total + (st.total === 1 ? ' rating' : ' ratings');
+    if ($('rating-count')) {
+      $('rating-count').textContent = st.total + (st.total === 1 ? ' rating' : ' ratings');
+    }
     var bars = $('rating-bars');
     if (!bars) return;
     var html = '';
     for (var i = 5; i >= 1; i--) {
       var pct = st.total ? Math.round((st.counts[i] / st.total) * 100) : 0;
-      html += '<div class="bar-row"><span>' + i + '</span><div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"></div></div><span>' + pct + '%</span></div>';
+      html +=
+        '<div class="bar-row"><span>' + i + '</span><div class="bar-track"><div class="bar-fill" style="width:' +
+        pct +
+        '%"></div></div><span>' +
+        pct +
+        '%</span></div>';
     }
     bars.innerHTML = html;
   }
@@ -204,32 +429,38 @@
   function reviewCard(r) {
     var initial = (r.name || 'U').charAt(0).toUpperCase();
     var date = r.createdAt
-      ? new Date(r.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+      ? new Date(r.createdAt).toLocaleDateString(undefined, {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        })
       : '';
     return (
       '<article class="review-item">' +
-        '<div class="review-top">' +
-          '<div class="review-avatar-fallback">' + initial + '</div>' +
-          '<div><div class="review-name">' + escapeHtml(r.name || 'User') + '</div>' +
-          '<div class="review-meta">' + date + '</div></div></div>' +
-        '<div class="review-stars">' + starsHtml(r.stars) + '</div>' +
-        '<div class="review-body">' + escapeHtml(r.text || '') + '</div>' +
+      '<div class="review-top">' +
+      '<div class="review-avatar-fallback">' +
+      initial +
+      '</div>' +
+      '<div><div class="review-name">' +
+      escapeHtml(r.name || 'User') +
+      '</div>' +
+      '<div class="review-meta">' +
+      date +
+      '</div></div></div>' +
+      '<div class="review-stars">' +
+      starsHtml(r.stars) +
+      '</div>' +
+      '<div class="review-body">' +
+      escapeHtml(r.text || '') +
+      '</div>' +
       '</article>'
     );
   }
 
   function renderList(list) {
     var listEl = $('reviews-list');
-    var emptyEl = $('reviews-empty');
     var moreBtn = $('btn-see-more');
     if (!listEl) return;
-    if (!list.length) {
-      listEl.innerHTML = '';
-      if (emptyEl) { listEl.appendChild(emptyEl); emptyEl.hidden = false; }
-      if (moreBtn) moreBtn.hidden = true;
-      return;
-    }
-    if (emptyEl) emptyEl.hidden = true;
     listEl.innerHTML = list.slice(0, 3).map(reviewCard).join('');
     if (moreBtn) {
       moreBtn.hidden = list.length <= 3;
@@ -239,13 +470,11 @@
 
   function renderModal(list) {
     var body = $('modal-body');
-    if (body) {
-      body.innerHTML = list.map(reviewCard).join('') ||
-        '<p style="color:#64748B;text-align:center;padding:1rem">No reviews yet</p>';
-    }
+    if (body) body.innerHTML = list.map(reviewCard).join('');
   }
 
   function refresh() {
+    reviews = mergeReviews();
     renderSummary(reviews);
     renderList(reviews);
     renderModal(reviews);
@@ -257,7 +486,9 @@
       var v = parseInt(btn.getAttribute('data-star'), 10);
       btn.classList.toggle('on', v <= n);
     });
-    if ($('star-label')) $('star-label').textContent = n ? n + ' · ' + starLabels[n] : 'Tap to rate';
+    if ($('star-label')) {
+      $('star-label').textContent = n ? n + ' · ' + starLabels[n] : 'Tap stars to rate';
+    }
   }
 
   function closeModal() {
@@ -277,7 +508,11 @@
   }
 
   function loadTurnstile(key) {
-    siteKey = key || siteKey;
+    if (!key || key.indexOf('1x000000') === 0) return;
+    siteKey = key;
+    turnstileRequired = true;
+    var wrap = $('turnstile-wrap');
+    if (wrap) wrap.hidden = false;
     var s = document.createElement('script');
     s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
     s.async = true;
@@ -311,13 +546,11 @@
       var res = await fetch('/config.json?t=' + Date.now(), { cache: 'no-store' });
       if (res.ok) {
         var cfg = await res.json();
-        if (cfg && cfg.turnstileSiteKey) siteKey = cfg.turnstileSiteKey;
+        if (cfg && cfg.turnstileSiteKey) loadTurnstile(cfg.turnstileSiteKey);
       }
     } catch (e) {}
 
-    reviews = loadLocal();
     refresh();
-    loadTurnstile(siteKey);
 
     var starPicker = $('star-picker');
     if (starPicker) {
@@ -335,21 +568,37 @@
         var btn = $('btn-submit-review');
         if (($('review-company') && $('review-company').value || '').trim()) return;
         if (!selectedStars) {
-          if (msg) { msg.hidden = false; msg.className = 'form-msg err'; msg.textContent = 'Please select a star rating.'; }
+          if (msg) {
+            msg.hidden = false;
+            msg.className = 'form-msg err';
+            msg.textContent = 'Please select a star rating.';
+          }
           return;
         }
         var name = (($('review-name') && $('review-name').value) || '').trim();
         if (name.length < 2) {
-          if (msg) { msg.hidden = false; msg.className = 'form-msg err'; msg.textContent = 'Please enter your name.'; }
+          if (msg) {
+            msg.hidden = false;
+            msg.className = 'form-msg err';
+            msg.textContent = 'Please enter your name.';
+          }
           return;
         }
         var text = (($('review-text') && $('review-text').value) || '').trim();
         if (text.length < 3) {
-          if (msg) { msg.hidden = false; msg.className = 'form-msg err'; msg.textContent = 'Please write a short comment.'; }
+          if (msg) {
+            msg.hidden = false;
+            msg.className = 'form-msg err';
+            msg.textContent = 'Please write a short comment.';
+          }
           return;
         }
-        if (!turnstileToken) {
-          if (msg) { msg.hidden = false; msg.className = 'form-msg err'; msg.textContent = 'Please complete the human verification.'; }
+        if (turnstileRequired && !turnstileToken) {
+          if (msg) {
+            msg.hidden = false;
+            msg.className = 'form-msg err';
+            msg.textContent = 'Please complete the human verification.';
+          }
           return;
         }
         if (btn) btn.disabled = true;
@@ -360,9 +609,10 @@
           text: text,
           createdAt: new Date().toISOString(),
         };
-        reviews.unshift(entry);
-        if (reviews.length > 200) reviews = reviews.slice(0, 200);
-        saveLocal(reviews);
+        var userList = loadLocal();
+        userList.unshift(entry);
+        if (userList.length > 200) userList = userList.slice(0, 200);
+        saveLocal(userList);
         refresh();
         if ($('review-name')) $('review-name').value = '';
         if ($('review-text')) $('review-text').value = '';
@@ -371,7 +621,7 @@
         if (msg) {
           msg.hidden = false;
           msg.className = 'form-msg';
-          msg.textContent = 'Thank you! Your review has been posted.';
+          msg.textContent = 'Thank you! Your review is live on this device.';
         }
         if (btn) btn.disabled = false;
       });

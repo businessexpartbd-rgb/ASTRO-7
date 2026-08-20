@@ -4,7 +4,7 @@
   <div class="cookie-bar-inner">
     <p class="cookie-line">
       We use cookies to improve experience and analyze traffic.
-      <span class="cookie-line-2">You can accept or decline non-essential cookies.</span>
+      <span class="cookie-line-2">Accept or decline non-essential cookies anytime.</span>
     </p>
     <div class="cookie-btns">
       <button type="button" id="cookie-accept" class="c-btn c-accept">Accept</button>
@@ -20,10 +20,10 @@
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 0.65rem 1rem;
-    background: rgba(255, 255, 255, 0.94);
-    border-top: 1px solid rgba(13, 148, 136, 0.15);
-    box-shadow: 0 -6px 20px rgba(15, 23, 42, 0.06);
+    padding: 0.7rem 1rem;
+    background: rgba(255, 255, 255, 0.96);
+    border-top: 1px solid rgba(37, 99, 235, 0.12);
+    box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.06);
     opacity: 0;
     transform: translateY(100%);
     transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -31,9 +31,9 @@
   }
   @media (min-width: 768px) {
     .cookie-bar {
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
   }
   .cookie-bar.visible {
@@ -63,7 +63,6 @@
     color: #334155;
   }
   .cookie-line-2 {
-    display: inline;
     color: #64748B;
   }
   .cookie-btns {
@@ -72,24 +71,26 @@
     flex-shrink: 0;
   }
   .c-btn {
-    font-family: var(--font-h), system-ui, sans-serif;
+    font-family: Outfit, system-ui, sans-serif;
     font-size: 0.78rem;
     font-weight: 600;
-    padding: 0.4rem 0.95rem;
+    padding: 0.42rem 1rem;
     border-radius: 999px;
     border: none;
     cursor: pointer;
   }
   .c-accept {
-    background: linear-gradient(135deg, #0D9488, #0F766E);
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
     color: #fff;
-    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.28);
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
   }
+  .c-accept:hover { background: #1D4ED8; }
   .c-decline {
     background: rgba(15, 23, 42, 0.05);
     color: #475569;
     border: 1px solid rgba(15, 23, 42, 0.1);
   }
+  .c-decline:hover { background: rgba(15, 23, 42, 0.08); }
 </style>
 
 <script is:inline>
@@ -105,7 +106,7 @@
   }
   function setConsent(value) {
     try {
-      localStorage.setItem(KEY, JSON.stringify({ status: value, at: new Date().toISOString(), version: 2 }));
+      localStorage.setItem(KEY, JSON.stringify({ status: value, at: new Date().toISOString(), version: 3 }));
     } catch (e) {}
   }
   function hideBanner() {
