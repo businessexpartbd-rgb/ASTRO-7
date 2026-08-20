@@ -1,0 +1,612 @@
+---
+/**
+ * Premium, lightweight service hero visuals.
+ * GPU-friendly (transform/opacity only). Mobile-safe. prefers-reduced-motion.
+ */
+interface Props {
+  variant?: 'video' | 'ai' | 'human' | 'auth' | 'campaign' | 'it';
+}
+const { variant = 'video' } = Astro.props;
+---
+
+<div class={`shv shv-${variant}`} aria-hidden="true">
+  {variant === 'video' && (
+    <div class="shv-stage">
+      <div class="shv-monitor">
+        <div class="shv-screen">
+          <div class="shv-scene s1"></div>
+          <div class="shv-scene s2"></div>
+          <div class="shv-scene s3"></div>
+          <div class="shv-scan"></div>
+          <div class="shv-play-badge">▶ REC</div>
+        </div>
+        <div class="shv-chrome">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+      <div class="shv-timeline">
+        <div class="shv-track t1"></div>
+        <div class="shv-track t2"></div>
+        <div class="shv-track t3"></div>
+        <div class="shv-playhead"></div>
+      </div>
+      <div class="shv-float f1">4K</div>
+      <div class="shv-float f2">Cut</div>
+      <div class="shv-float f3">Color</div>
+    </div>
+  )}
+
+  {variant === 'ai' && (
+    <div class="shv-stage">
+      <div class="shv-orb-ring"></div>
+      <div class="shv-orb-ring r2"></div>
+      <div class="shv-core">
+        <span>AI</span>
+        <small>Render</small>
+      </div>
+      <div class="shv-chip c1">Script</div>
+      <div class="shv-chip c2">Generate</div>
+      <div class="shv-chip c3">Polish</div>
+      <div class="shv-chip c4">Ads</div>
+    </div>
+  )}
+
+  {variant === 'human' && (
+    <div class="shv-stage">
+      <div class="shv-soft-card">
+        <div class="shv-avatar-ring">
+          <div class="shv-avatar"></div>
+        </div>
+        <div class="shv-wave">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <div class="shv-caption">On-camera · Natural</div>
+      </div>
+      <div class="shv-float f1">Trust</div>
+      <div class="shv-float f2">Story</div>
+    </div>
+  )}
+
+  {variant === 'auth' && (
+    <div class="shv-stage">
+      <div class="shv-shield">
+        <div class="shv-shield-inner">
+          <span class="shv-lock">●</span>
+          <strong>Secure</strong>
+          <small>Auth layer</small>
+        </div>
+      </div>
+      <div class="shv-node n1"></div>
+      <div class="shv-node n2"></div>
+      <div class="shv-node n3"></div>
+      <div class="shv-link l1"></div>
+      <div class="shv-link l2"></div>
+    </div>
+  )}
+
+  {variant === 'campaign' && (
+    <div class="shv-stage">
+      <div class="shv-dash">
+        <div class="shv-bar" style="--h:42%"></div>
+        <div class="shv-bar on" style="--h:68%"></div>
+        <div class="shv-bar" style="--h:55%"></div>
+        <div class="shv-bar on" style="--h:88%"></div>
+        <div class="shv-bar" style="--h:60%"></div>
+      </div>
+      <div class="shv-kpi">ROAS ↑</div>
+      <div class="shv-float f1">Meta</div>
+      <div class="shv-float f2">YouTube</div>
+    </div>
+  )}
+
+  {variant === 'it' && (
+    <div class="shv-stage">
+      <div class="shv-window">
+        <div class="shv-win-bar"><i></i><i></i><i></i></div>
+        <div class="shv-code">
+          <span class="ln">const grow = true;</span>
+          <span class="ln hi">deploy();</span>
+          <span class="ln">// Creavix iT</span>
+        </div>
+      </div>
+      <div class="shv-float f1">Web</div>
+      <div class="shv-float f2">App</div>
+    </div>
+  )}
+</div>
+
+<style>
+  .shv {
+    --accent: #2563EB;
+    position: relative;
+    width: min(100%, 340px);
+    height: 300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .shv-ai { --accent: #7C3AED; }
+  .shv-human { --accent: #0284C7; }
+  .shv-auth { --accent: #059669; }
+  .shv-campaign { --accent: #D97706; }
+  .shv-it { --accent: #2563EB; }
+
+  .shv-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* —— VIDEO —— */
+  .shv-monitor {
+    width: 78%;
+    border-radius: 14px;
+    background: #0B1220;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.06),
+      0 28px 56px rgba(15, 23, 42, 0.28);
+    overflow: hidden;
+    transform: translateZ(0);
+  }
+  .shv-screen {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: #020617;
+    overflow: hidden;
+  }
+  .shv-scene {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background-size: cover;
+    animation: shv-scene 9s ease-in-out infinite;
+  }
+  .shv-scene.s1 {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 40%, #0ea5e9 100%);
+    animation-delay: 0s;
+  }
+  .shv-scene.s2 {
+    background: linear-gradient(145deg, #7c3aed 0%, #db2777 50%, #f59e0b 100%);
+    animation-delay: 3s;
+  }
+  .shv-scene.s3 {
+    background: linear-gradient(160deg, #0f766e 0%, #2563eb 55%, #6366f1 100%);
+    animation-delay: 6s;
+  }
+  .shv-scan {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 28%;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(255, 255, 255, 0.12),
+      transparent
+    );
+    animation: shv-scan 3.2s linear infinite;
+    pointer-events: none;
+  }
+  .shv-play-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: #fecaca;
+    background: rgba(220, 38, 38, 0.85);
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    animation: shv-blink 1.6s step-end infinite;
+  }
+  .shv-chrome {
+    display: flex;
+    gap: 6px;
+    padding: 8px 12px;
+    background: #111827;
+  }
+  .shv-chrome span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #334155;
+  }
+  .shv-chrome span:first-child { background: #f87171; }
+  .shv-chrome span:nth-child(2) { background: #fbbf24; }
+  .shv-chrome span:nth-child(3) { background: #34d399; }
+
+  .shv-timeline {
+    position: absolute;
+    bottom: 8%;
+    left: 8%;
+    right: 8%;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(15, 23, 42, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 6px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow: hidden;
+  }
+  .shv-track {
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(148, 163, 184, 0.25);
+    position: relative;
+    overflow: hidden;
+  }
+  .shv-track::after {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 40%;
+    border-radius: 3px;
+    background: var(--accent);
+    animation: shv-fill 4s ease-in-out infinite;
+  }
+  .shv-track.t2::after {
+    width: 55%;
+    background: #a78bfa;
+    animation-delay: 0.3s;
+  }
+  .shv-track.t3::after {
+    width: 30%;
+    background: #34d399;
+    animation-delay: 0.6s;
+  }
+  .shv-playhead {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    width: 2px;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    animation: shv-head 4s linear infinite;
+  }
+
+  /* —— AI —— */
+  .shv-orb-ring {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(124, 58, 237, 0.35);
+    animation: shv-spin 22s linear infinite;
+  }
+  .shv-orb-ring.r2 {
+    width: 260px;
+    height: 260px;
+    border-style: solid;
+    border-color: rgba(37, 99, 235, 0.15);
+    animation-direction: reverse;
+    animation-duration: 30s;
+  }
+  .shv-core {
+    position: relative;
+    z-index: 2;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #7c3aed, #2563eb);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      0 0 0 12px rgba(124, 58, 237, 0.15),
+      0 20px 40px rgba(37, 99, 235, 0.35);
+    animation: shv-pulse 2.8s ease-in-out infinite;
+  }
+  .shv-core span {
+    font-family: Outfit, system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+  }
+  .shv-core small {
+    font-size: 0.65rem;
+    opacity: 0.85;
+  }
+  .shv-chip {
+    position: absolute;
+    z-index: 3;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: #fff;
+    color: #5b21b6;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+    animation: shv-bob 3.6s ease-in-out infinite;
+  }
+  .shv-chip.c1 { top: 12%; left: 4%; }
+  .shv-chip.c2 { top: 18%; right: 2%; animation-delay: 0.4s; }
+  .shv-chip.c3 { bottom: 18%; left: 6%; animation-delay: 0.8s; }
+  .shv-chip.c4 { bottom: 12%; right: 8%; animation-delay: 1.2s; }
+
+  /* —— HUMAN —— */
+  .shv-soft-card {
+    width: 78%;
+    padding: 1.75rem 1.25rem 1.25rem;
+    border-radius: 20px;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    box-shadow: 0 24px 48px rgba(15, 23, 42, 0.1);
+    text-align: center;
+  }
+  .shv-avatar-ring {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, #38bdf8, #2563eb, #a78bfa);
+    animation: shv-spin 12s linear infinite;
+  }
+  .shv-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(160deg, #e0f2fe, #93c5fd);
+    border: 3px solid #fff;
+  }
+  .shv-wave {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4px;
+    height: 28px;
+    margin-bottom: 0.75rem;
+  }
+  .shv-wave i {
+    display: block;
+    width: 4px;
+    border-radius: 2px;
+    background: #0ea5e9;
+    animation: shv-wave 1.1s ease-in-out infinite;
+  }
+  .shv-wave i:nth-child(1) { height: 10px; animation-delay: 0s; }
+  .shv-wave i:nth-child(2) { height: 18px; animation-delay: 0.1s; }
+  .shv-wave i:nth-child(3) { height: 14px; animation-delay: 0.2s; }
+  .shv-wave i:nth-child(4) { height: 24px; animation-delay: 0.15s; }
+  .shv-wave i:nth-child(5) { height: 12px; animation-delay: 0.25s; }
+  .shv-wave i:nth-child(6) { height: 20px; animation-delay: 0.05s; }
+  .shv-wave i:nth-child(7) { height: 8px; animation-delay: 0.3s; }
+  .shv-caption {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #0284c7;
+  }
+
+  /* —— AUTH —— */
+  .shv-shield {
+    width: 140px;
+    height: 160px;
+    border-radius: 70px 70px 24px 24px;
+    background: linear-gradient(180deg, #10b981, #047857);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 24px 48px rgba(5, 150, 105, 0.35);
+    animation: shv-pulse 3s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+  }
+  .shv-shield-inner {
+    text-align: center;
+    color: #fff;
+  }
+  .shv-lock {
+    display: block;
+    font-size: 0.5rem;
+    margin-bottom: 0.35rem;
+    letter-spacing: 0.3em;
+  }
+  .shv-shield strong {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 800;
+  }
+  .shv-shield small {
+    font-size: 0.7rem;
+    opacity: 0.9;
+  }
+  .shv-node {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 12px rgba(52, 211, 153, 0.6);
+    animation: shv-bob 3s ease-in-out infinite;
+  }
+  .shv-node.n1 { top: 18%; left: 12%; }
+  .shv-node.n2 { top: 22%; right: 14%; animation-delay: 0.5s; }
+  .shv-node.n3 { bottom: 20%; right: 22%; animation-delay: 1s; }
+  .shv-link {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.5), transparent);
+    animation: shv-fade 2.4s ease-in-out infinite;
+  }
+  .shv-link.l1 { width: 40%; top: 28%; left: 18%; transform: rotate(-18deg); }
+  .shv-link.l2 { width: 35%; bottom: 30%; right: 16%; transform: rotate(22deg); animation-delay: 0.6s; }
+
+  /* —— CAMPAIGN —— */
+  .shv-dash {
+    width: 78%;
+    height: 160px;
+    border-radius: 16px;
+    background: #0b1220;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    padding: 1.25rem 1rem 1rem;
+    box-shadow: 0 24px 48px rgba(15, 23, 42, 0.22);
+  }
+  .shv-bar {
+    flex: 1;
+    max-width: 28px;
+    height: var(--h, 50%);
+    border-radius: 6px 6px 3px 3px;
+    background: rgba(148, 163, 184, 0.3);
+    transform-origin: bottom;
+    animation: shv-rise 1.4s ease-out both;
+  }
+  .shv-bar.on {
+    background: linear-gradient(180deg, #fbbf24, #d97706);
+  }
+  .shv-bar:nth-child(2) { animation-delay: 0.1s; }
+  .shv-bar:nth-child(3) { animation-delay: 0.2s; }
+  .shv-bar:nth-child(4) { animation-delay: 0.3s; }
+  .shv-bar:nth-child(5) { animation-delay: 0.4s; }
+  .shv-kpi {
+    position: absolute;
+    top: 14%;
+    right: 8%;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #059669;
+    background: #fff;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
+    animation: shv-bob 3s ease-in-out infinite;
+  }
+
+  /* —— IT —— */
+  .shv-window {
+    width: 82%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0b1220;
+    box-shadow: 0 24px 48px rgba(15, 23, 42, 0.22);
+  }
+  .shv-win-bar {
+    display: flex;
+    gap: 6px;
+    padding: 10px 12px;
+    background: #111827;
+  }
+  .shv-win-bar i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #334155;
+  }
+  .shv-win-bar i:first-child { background: #f87171; }
+  .shv-win-bar i:nth-child(2) { background: #fbbf24; }
+  .shv-win-bar i:nth-child(3) { background: #34d399; }
+  .shv-code {
+    padding: 1rem 1.1rem 1.25rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.78rem;
+    line-height: 1.7;
+    color: #94a3b8;
+  }
+  .shv-code .ln { display: block; }
+  .shv-code .hi {
+    color: #93c5fd;
+    animation: shv-blink 1.8s step-end infinite;
+  }
+
+  /* shared floats */
+  .shv-float {
+    position: absolute;
+    z-index: 4;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--accent);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+    animation: shv-bob 3.5s ease-in-out infinite;
+  }
+  .shv-float.f1 { top: 6%; left: 0; }
+  .shv-float.f2 { top: 40%; right: 0; animation-delay: 0.5s; }
+  .shv-float.f3 { bottom: 22%; left: 2%; animation-delay: 1s; }
+
+  /* keyframes — transform/opacity only */
+  @keyframes shv-scene {
+    0%, 28% { opacity: 1; transform: scale(1); }
+    33%, 95% { opacity: 0; transform: scale(1.05); }
+    100% { opacity: 0; }
+  }
+  @keyframes shv-scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(400%); }
+  }
+  @keyframes shv-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+  @keyframes shv-fill {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(40%); }
+  }
+  @keyframes shv-head {
+    0% { left: 8%; }
+    100% { left: 88%; }
+  }
+  @keyframes shv-spin {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes shv-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+  }
+  @keyframes shv-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+  }
+  @keyframes shv-wave {
+    0%, 100% { transform: scaleY(0.55); }
+    50% { transform: scaleY(1); }
+  }
+  @keyframes shv-fade {
+    0%, 100% { opacity: 0.25; }
+    50% { opacity: 1; }
+  }
+  @keyframes shv-rise {
+    from { transform: scaleY(0.2); opacity: 0.5; }
+    to { transform: scaleY(1); opacity: 1; }
+  }
+
+  @media (max-width: 639px) {
+    .shv { height: 260px; }
+    .shv-float.f3 { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .shv-scene,
+    .shv-scan,
+    .shv-play-badge,
+    .shv-track::after,
+    .shv-playhead,
+    .shv-orb-ring,
+    .shv-core,
+    .shv-chip,
+    .shv-avatar-ring,
+    .shv-wave i,
+    .shv-shield,
+    .shv-node,
+    .shv-link,
+    .shv-bar,
+    .shv-kpi,
+    .shv-float,
+    .shv-code .hi {
+      animation: none !important;
+    }
+    .shv-scene.s1 { opacity: 1; }
+  }
+</style>

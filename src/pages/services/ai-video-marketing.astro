@@ -3,32 +3,33 @@ import Layout from '../../layouts/Layout.astro';
 import TopBar from '../../components/TopBar.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import ServiceHeroVisual from '../../components/ServiceHeroVisual.astro';
 import { SITE } from '../../data/site';
 
 const seoTitle = 'AI Video Marketing Agency Bangladesh | Human-like Ads — Creavix iT';
 const seoDescription =
-  'AI-powered video marketing with human-like results for Meta, YouTube and TikTok. Scripts, hooks and fast delivery by Creavix iT Solution Bangladesh.';
+  'AI-powered video marketing with human-like results for Meta, YouTube and TikTok. Creavix iT Solution Bangladesh.';
 
 const uses = [
   { t: 'Performance ads', d: 'Short AI-assisted creatives tested for clicks, messages and conversions.' },
-  { t: 'Product stories', d: 'Show the product in lifestyle contexts without a full studio day every time.' },
-  { t: 'UGC-style clips', d: 'Natural, talk-to-camera energy that feels closer to real recommendations.' },
-  { t: 'Multi-size packs', d: 'One concept → feed, story and landscape versions for campaigns.' },
+  { t: 'Product stories', d: 'Lifestyle contexts without a full studio day every time.' },
+  { t: 'UGC-style clips', d: 'Natural energy closer to real recommendations.' },
+  { t: 'Multi-size packs', d: 'One concept → feed, story and landscape for campaigns.' },
 ];
 
 const stack = [
   { t: 'Concept & hook', d: 'Offer angle and first-3-second attention plan.' },
-  { t: 'AI + human polish', d: 'Generation where it helps; edit and grade for brand safety.' },
-  { t: 'Platform fit', d: 'Captions, safe zones and aspect ratios for Meta / YouTube / Shorts.' },
-  { t: 'Iterate', d: 'Swap hooks and CTAs based on early ad data.' },
+  { t: 'AI + human polish', d: 'Generation where it helps; edit for brand safety.' },
+  { t: 'Platform fit', d: 'Captions, safe zones and ratios for Meta / YouTube / Shorts.' },
+  { t: 'Iterate', d: 'Swap hooks and CTAs from early ad data.' },
 ];
 
 const faqs = [
-  { q: 'AI ভিডিও কি আসল মনে হবে?', a: 'লক্ষ্য human-like ফিনিশ — অতিরিক্ত “রবট” লুক এড়াতে এডিট, ভয়েস/টেক্সট এবং ব্র্যান্ড গাইডলাইন মিলিয়ে দেওয়া হয়।' },
+  { q: 'AI ভিডিও কি আসল মনে হবে?', a: 'লক্ষ্য human-like ফিনিশ — এডিট ও ব্র্যান্ড গাইডলাইন মিলিয়ে দেওয়া হয়।' },
   { q: 'শুধু AI নাকি মিশ্র?', a: 'প্রয়োজনমতো মিশ্র: AI অ্যাসেট + আপনার ফুটেজ/লোগো + প্রফেশনাল এডিট।' },
-  { q: 'অ্যাড অ্যাকাউন্টে চলবে?', a: 'পলিসি-সেফ ক্লেইম ও ক্রিয়েটিভ স্ট্যান্ডার্ড মেনে তৈরি করা হয়; চূড়ান্ত অ্যাপ্রুভাল প্ল্যাটফর্মের।' },
-  { q: 'Video Editing সার্ভিসের সাথে সম্পর্ক?', a: 'AI Video Marketing কনসেপ্ট+জেনারেশন ফোকাস; ক্লাসিক এডিটিং আলাদা পেজে। দুটো একসাথেও নেওয়া যায়।' },
-  { q: 'কত দ্রুত ডেলিভারি?', a: 'স্কোপ ও রিভিশন অনুযায়ী — অনেক অ্যাড ক্রিয়েটিভ দ্রুত টার্নঅ্যারাউন্ডের জন্য ডিজাইন করা।' },
+  { q: 'অ্যাড অ্যাকাউন্টে চলবে?', a: 'পলিসি-সেফ ক্লেইম মেনে তৈরি; চূড়ান্ত অ্যাপ্রুভাল প্ল্যাটফর্মের।' },
+  { q: 'Video Editing-এর সাথে সম্পর্ক?', a: 'AI Video কনসেপ্ট+জেনারেশন; ক্লাসিক এডিটিং আলাদা পেজে।' },
+  { q: 'কত দ্রুত ডেলিভারি?', a: 'স্কোপ অনুযায়ী — অনেক অ্যাড ক্রিয়েটিভ দ্রুত টার্নঅ্যারাউন্ডের জন্য।' },
 ];
 ---
 
@@ -41,19 +42,14 @@ const faqs = [
       <div class="reveal">
         <p class="sv-eye">AI Video Marketing</p>
         <h1>Human-like AI video built for ads that convert</h1>
-        <p class="sv-sub">Hooks, scripts and motion designed for feeds — not generic stock loops. Creavix blends AI speed with editor judgment for Bangladesh and global brands.</p>
+        <p class="sv-sub">Hooks, scripts and motion for feeds — AI speed with editor judgment for Bangladesh and global brands.</p>
         <div class="sv-actions">
           <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Brief my campaign</a>
           <a class="btn btn-outline" href="/services/video-editing">Classic editing</a>
         </div>
       </div>
-      <div class="sv-visual reveal" aria-hidden="true">
-        <div class="ai-stage">
-          <div class="ai-node">Prompt</div>
-          <div class="ai-node mid">Generate</div>
-          <div class="ai-node">Edit &amp; ship</div>
-          <div class="ai-beam"></div>
-        </div>
+      <div class="reveal">
+        <ServiceHeroVisual variant="ai" />
       </div>
     </div>
   </section>
@@ -61,21 +57,21 @@ const faqs = [
   <section class="sv-sec">
     <div class="container">
       <div class="sv-center reveal"><p class="sv-eye">Use cases</p><h2>Where AI video pays off</h2></div>
-      <div class="sv-cards">{uses.map(u => (<article class="sv-card reveal"><h3>{u.t}</h3><p>{u.d}</p></article>))}</div>
+      <div class="sv-cards">{uses.map((u) => (<article class="sv-card reveal"><h3>{u.t}</h3><p>{u.d}</p></article>))}</div>
     </div>
   </section>
 
   <section class="sv-sec sv-muted">
     <div class="container">
       <div class="sv-center reveal"><p class="sv-eye">How we work</p><h2>Speed without losing brand control</h2></div>
-      <div class="sv-cards">{stack.map(s => (<article class="sv-card reveal"><h3>{s.t}</h3><p>{s.d}</p></article>))}</div>
+      <div class="sv-cards">{stack.map((s) => (<article class="sv-card reveal"><h3>{s.t}</h3><p>{s.d}</p></article>))}</div>
     </div>
   </section>
 
   <section class="sv-sec">
     <div class="container sv-faq-wrap">
       <div class="sv-center reveal"><p class="sv-eye">FAQ</p><h2>AI video questions</h2></div>
-      <div class="sv-faq reveal">{faqs.map(f => (<details class="sv-faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>))}</div>
+      <div class="sv-faq reveal">{faqs.map((f) => (<details class="sv-faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>))}</div>
     </div>
   </section>
 
@@ -90,17 +86,12 @@ const faqs = [
 
 <style>
 .sv-hero{padding:5.25rem 1.25rem 3.5rem;background:radial-gradient(ellipse 50% 40% at 90% 10%,rgba(124,58,237,.12),transparent 55%),linear-gradient(180deg,#fff,#F8FAFC)}
-.sv-grid{display:grid;gap:2.5rem;align-items:center}@media(min-width:900px){.sv-grid{grid-template-columns:1.1fr .9fr}}
+.sv-grid{display:grid;gap:2rem;align-items:center}@media(min-width:900px){.sv-grid{grid-template-columns:1.05fr .95fr}}
 .sv-eye{margin:0 0 .5rem;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7C3AED}
 .sv-hero h1,.sv-center h2,.sv-cta h2{font-family:Outfit,system-ui,sans-serif;font-weight:800;letter-spacing:-.02em;color:#0B0F19;margin:0 0 .5rem}
 .sv-hero h1{font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.12}
 .sv-sub{margin:0 0 1.25rem;color:#475569;line-height:1.65;max-width:34rem}
 .sv-actions{display:flex;flex-wrap:wrap;gap:.65rem}
-.sv-visual{display:flex;justify-content:center}
-.ai-stage{position:relative;width:min(100%,320px);padding:1.5rem;border-radius:20px;background:#0B1220;display:flex;flex-direction:column;gap:.75rem;box-shadow:0 24px 48px rgba(15,23,42,.18)}
-.ai-node{padding:.85rem 1rem;border-radius:12px;background:rgba(255,255,255,.08);color:#E2E8F0;font-weight:700;font-size:.9rem;text-align:center;border:1px solid rgba(255,255,255,.1)}
-.ai-node.mid{background:linear-gradient(135deg,#7C3AED,#2563EB);border:none;animation:ai-pulse 2.5s ease-in-out infinite}
-@keyframes ai-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
 .sv-sec{padding:3.25rem 1.25rem;background:#fff}.sv-muted{background:#F8FAFC}
 .sv-center{text-align:center;max-width:36rem;margin:0 auto 1.75rem}.sv-center h2{font-size:clamp(1.35rem,3vw,1.8rem)}
 .sv-cards{display:grid;gap:1rem}@media(min-width:700px){.sv-cards{grid-template-columns:1fr 1fr}}
@@ -115,5 +106,4 @@ const faqs = [
 .sv-cta-inner{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between}
 .sv-cta h2{color:#fff;font-size:clamp(1.25rem,3vw,1.65rem)}.sv-cta p{margin:0;opacity:.95}
 .btn-light{background:#fff;color:#5B21B6;border:none}
-@media(prefers-reduced-motion:reduce){.ai-node.mid{animation:none}}
 </style>

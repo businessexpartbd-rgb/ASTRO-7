@@ -3,18 +3,19 @@ import Layout from '../../layouts/Layout.astro';
 import TopBar from '../../components/TopBar.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import ServiceHeroVisual from '../../components/ServiceHeroVisual.astro';
 import { SITE } from '../../data/site';
 
 const seoTitle = 'Professional Video Editing Bangladesh | Ads, Reels, YouTube — Creavix iT';
 const seoDescription =
-  'Cinematic video editing for ads, Reels, YouTube and brand films. Fast turnaround, platform-ready sizes, human storytelling — Creavix iT Solution Bangladesh.';
+  'Cinematic video editing for ads, Reels, YouTube and brand films. Fast turnaround, platform-ready sizes — Creavix iT Solution Bangladesh.';
 
 const offers = [
   { t: 'Ad & promo edits', d: 'Hook-first cuts for Meta, YouTube and TikTok that sell the offer in seconds.' },
-  { t: 'YouTube long-form', d: 'Pacing, titles cards, B-roll rhythm and retention-friendly structure.' },
+  { t: 'YouTube long-form', d: 'Pacing, title cards, B-roll rhythm and retention-friendly structure.' },
   { t: 'Reels & Shorts', d: 'Vertical 9:16 edits with captions, beat sync and clear CTAs.' },
   { t: 'Product & service films', d: 'Clean product reveals, before/after and testimonial assemblies.' },
-  { t: 'Color & sound', d: 'Basic grade, loudness balance and music bed that matches brand mood.' },
+  { t: 'Color & sound', d: 'Grade, loudness balance and music beds that match brand mood.' },
   { t: 'Subtitles & versions', d: 'Bangla/English captions and multi-size exports from one master.' },
 ];
 
@@ -26,10 +27,10 @@ const steps = [
 ];
 
 const faqs = [
-  { q: 'কী ধরনের ফুটেজ দিতে হবে?', a: 'মোবাইল বা ক্যামেরা — যা আছে পাঠান। রেজুলেশন ও অডিও যত ভালো, আউটপুট তত পরিষ্কার। রিফারেন্স ভিডিও থাকলে আরও দ্রুত স্টাইল মিলে।' },
-  { q: 'কতদিন লাগে?', a: 'ছোট রিল/অ্যাড সাধারণত দ্রুত; লম্বা ইউটিউব বা মাল্টি-ভার্সনে সময় বেশি। ডেডলাইন ব্রিফে লিখলে সেই অনুযায়ী প্ল্যান করা হয়।' },
-  { q: 'AI Video Marketing-এর সাথে পার্থক্য?', a: 'Video Editing মূলত আপনার শুট করা/দেওয়া ফুটেজ এডিট। AI Video-তে জেনারেটেড/হাইব্রিড হিউম্যান-লাইক ভিজুয়ালও যোগ হতে পারে।' },
-  { q: 'সংশোধন কয়বার?', a: 'প্যাকেজ অনুযায়ী রিভিশন রাউন্ড থাকে। বড় স্কোপ চেঞ্জ আলাদা করে ধরা হয়।' },
+  { q: 'কী ধরনের ফুটেজ দিতে হবে?', a: 'মোবাইল বা ক্যামেরা — যা আছে পাঠান। রেজুলেশন ও অডিও যত ভালো, আউটপুট তত পরিষ্কার।' },
+  { q: 'কতদিন লাগে?', a: 'ছোট রিল/অ্যাড সাধারণত দ্রুত; লম্বা ইউটিউব বা মাল্টি-ভার্সনে সময় বেশি।' },
+  { q: 'AI Video Marketing-এর সাথে পার্থক্য?', a: 'Video Editing মূলত আপনার ফুটেজ এডিট। AI Video-তে জেনারেটেড/হাইব্রিড ভিজুয়ালও যোগ হতে পারে।' },
+  { q: 'সংশোধন কয়বার?', a: 'প্যাকেজ অনুযায়ী রিভিশন রাউন্ড থাকে। বড় স্কোপ চেঞ্জ আলাদা।' },
   { q: 'শুধু অ্যাড এডিট নিতে পারি?', a: 'হ্যাঁ — সিঙ্গেল ক্রিয়েটিভ থেকে ক্যাম্পেইন সেট পর্যন্ত।' },
 ];
 ---
@@ -41,21 +42,16 @@ const faqs = [
   <section class="sv-hero">
     <div class="container sv-grid">
       <div class="reveal">
-        <p class="sv-eye">Video Editing</p>
+        <p class="sv-eye">Video Editing Agency</p>
         <h1>Edits that hold attention and push action</h1>
-        <p class="sv-sub">Ads, Reels, YouTube and brand films — paced for mobile feeds and clear offers. Platform-ready delivery from Creavix iT.</p>
+        <p class="sv-sub">Ads, Reels, YouTube and brand films — paced for mobile feeds. Platform-ready delivery from Creavix iT.</p>
         <div class="sv-actions">
           <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Send my footage</a>
           <a class="btn btn-outline" href="/portfolio">See portfolio</a>
         </div>
       </div>
-      <div class="sv-visual reveal" aria-hidden="true">
-        <div class="sv-timeline">
-          <div class="sv-clip c1"></div>
-          <div class="sv-clip c2"></div>
-          <div class="sv-clip c3"></div>
-          <div class="sv-play">▶</div>
-        </div>
+      <div class="reveal">
+        <ServiceHeroVisual variant="video" />
       </div>
     </div>
   </section>
@@ -63,21 +59,21 @@ const faqs = [
   <section class="sv-sec">
     <div class="container">
       <div class="sv-center reveal"><p class="sv-eye">What we edit</p><h2>Formats built for real channels</h2></div>
-      <div class="sv-cards">{offers.map(o => (<article class="sv-card reveal"><h3>{o.t}</h3><p>{o.d}</p></article>))}</div>
+      <div class="sv-cards">{offers.map((o) => (<article class="sv-card reveal"><h3>{o.t}</h3><p>{o.d}</p></article>))}</div>
     </div>
   </section>
 
   <section class="sv-sec sv-muted">
     <div class="container">
       <div class="sv-center reveal"><p class="sv-eye">Process</p><h2>From raw to publish-ready</h2></div>
-      <div class="sv-steps">{steps.map(s => (<div class="sv-step reveal"><span>{s.n}</span><h3>{s.t}</h3><p>{s.d}</p></div>))}</div>
+      <div class="sv-steps">{steps.map((s) => (<div class="sv-step reveal"><span>{s.n}</span><h3>{s.t}</h3><p>{s.d}</p></div>))}</div>
     </div>
   </section>
 
   <section class="sv-sec">
     <div class="container sv-faq-wrap">
       <div class="sv-center reveal"><p class="sv-eye">FAQ</p><h2>Editing questions</h2></div>
-      <div class="sv-faq reveal">{faqs.map(f => (<details class="sv-faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>))}</div>
+      <div class="sv-faq reveal">{faqs.map((f) => (<details class="sv-faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>))}</div>
     </div>
   </section>
 
@@ -92,27 +88,17 @@ const faqs = [
 
 <style>
 .sv-hero{padding:5.25rem 1.25rem 3.5rem;background:radial-gradient(ellipse 50% 40% at 90% 10%,rgba(37,99,235,.12),transparent 55%),linear-gradient(180deg,#fff,#F8FAFC)}
-.sv-grid{display:grid;gap:2.5rem;align-items:center}@media(min-width:900px){.sv-grid{grid-template-columns:1.1fr .9fr}}
+.sv-grid{display:grid;gap:2rem;align-items:center}@media(min-width:900px){.sv-grid{grid-template-columns:1.05fr .95fr;gap:2.5rem}}
 .sv-eye{margin:0 0 .5rem;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2563EB}
 .sv-hero h1,.sv-center h2,.sv-cta h2{font-family:Outfit,system-ui,sans-serif;font-weight:800;letter-spacing:-.02em;color:#0B0F19;margin:0 0 .5rem}
 .sv-hero h1{font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.12}
 .sv-sub{margin:0 0 1.25rem;color:#475569;line-height:1.65;max-width:34rem}
 .sv-actions{display:flex;flex-wrap:wrap;gap:.65rem}
-.sv-visual{display:flex;justify-content:center}
-.sv-timeline{position:relative;width:min(100%,300px);height:180px;border-radius:16px;background:#0B1220;overflow:hidden;box-shadow:0 24px 48px rgba(15,23,42,.18)}
-.sv-clip{position:absolute;border-radius:8px;opacity:.9;animation:sv-slide 4s ease-in-out infinite}
-.sv-clip.c1{inset:16px 40% 50% 16px;background:linear-gradient(135deg,#60A5FA,#2563EB)}
-.sv-clip.c2{inset:40% 16px 16px 35%;background:linear-gradient(135deg,#F472B6,#7C3AED);animation-delay:.4s}
-.sv-clip.c3{inset:55% 45% 16px 16px;background:linear-gradient(135deg,#34D399,#0EA5E9);animation-delay:.8s}
-.sv-play{position:absolute;inset:0;margin:auto;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.95);color:#2563EB;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800}
-@keyframes sv-slide{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .sv-sec{padding:3.25rem 1.25rem;background:#fff}.sv-muted{background:#F8FAFC}
-.sv-center{text-align:center;max-width:36rem;margin:0 auto 1.75rem}
-.sv-center h2{font-size:clamp(1.35rem,3vw,1.8rem)}
+.sv-center{text-align:center;max-width:36rem;margin:0 auto 1.75rem}.sv-center h2{font-size:clamp(1.35rem,3vw,1.8rem)}
 .sv-cards{display:grid;gap:1rem}@media(min-width:700px){.sv-cards{grid-template-columns:1fr 1fr 1fr}}
 .sv-card{background:#F8FAFC;border:1px solid rgba(15,23,42,.07);border-radius:16px;padding:1.25rem}
-.sv-muted .sv-card,.sv-muted .sv-step{background:#fff}
-.sv-card h3{margin:0 0 .35rem;font-size:1rem;font-weight:800}.sv-card p{margin:0;font-size:.9rem;color:#64748B;line-height:1.55}
+.sv-muted .sv-step{background:#fff}.sv-card h3{margin:0 0 .35rem;font-size:1rem;font-weight:800}.sv-card p{margin:0;font-size:.9rem;color:#64748B;line-height:1.55}
 .sv-steps{display:grid;gap:1rem}@media(min-width:700px){.sv-steps{grid-template-columns:repeat(4,1fr)}}
 .sv-step{padding:1.15rem;border-radius:16px;border:1px solid rgba(15,23,42,.07);background:#F8FAFC}
 .sv-step span{font-weight:800;font-size:.8rem;color:#2563EB}.sv-step h3{margin:.35rem 0;font-size:1rem}.sv-step p{margin:0;font-size:.88rem;color:#64748B}
@@ -125,5 +111,4 @@ const faqs = [
 .sv-cta-inner{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between}
 .sv-cta h2{color:#fff;font-size:clamp(1.25rem,3vw,1.65rem)}.sv-cta p{margin:0;opacity:.95}
 .btn-light{background:#fff;color:#1E40AF;border:none}
-@media(prefers-reduced-motion:reduce){.sv-clip{animation:none}}
 </style>
