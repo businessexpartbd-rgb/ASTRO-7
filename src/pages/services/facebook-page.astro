@@ -1,16 +1,852 @@
 ---
-import ServiceShell from '../../components/ServiceShell.astro';
+/**
+ * Facebook Page Services — setup, blue verification support, growth, branding,
+ * restrictions recovery guidance, full page checkup. BD marketplace focus.
+ */
+import Layout from '../../layouts/Layout.astro';
+import TopBar from '../../components/TopBar.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE } from '../../data/site';
+
+const seoTitle =
+  'Facebook Page Setup & Blue Verification Bangladesh | Business Page Growth — Creavix iT';
+const seoDescription =
+  'Facebook business page setup, blue verification guidance, branding, follower growth, page SEO, restriction help and full page checkup by Creavix iT Solution in Bangladesh.';
+
+const services = [
+  {
+    title: 'Business Page Setup',
+    tag: 'Start',
+    desc: 'Correct category, username, about, contact, location and call-to-action — ready for ads and Messenger.',
+    points: ['Page creation / migration', 'Username & vanity URL', 'About + services tabs', 'CTA & contact setup'],
+  },
+  {
+    title: 'Blue Verification Support',
+    tag: 'Trust',
+    desc: 'Eligibility review, document checklist and application guidance so your brand looks authentic.',
+    points: ['Eligibility assessment', 'Docs & profile audit', 'Application flow help', 'Post-submit follow-up tips'],
+  },
+  {
+    title: 'Branding Section',
+    tag: 'Identity',
+    desc: 'Cover, profile, highlights and visual system that match your real brand — not a random template.',
+    points: ['Cover & logo layout', 'Highlight covers', 'Color & tone guide', 'Story / Reels frame ideas'],
+  },
+  {
+    title: 'Page SEO & Discoverability',
+    tag: 'Find',
+    desc: 'Name, about, posts and local signals so people can find your Page in search and suggestions.',
+    points: ['Name & keyword clarity', 'About optimization', 'Local presence', 'Consistent NAP info'],
+  },
+  {
+    title: 'Follower & Reach Growth',
+    tag: 'Growth',
+    desc: 'Organic tactics plus optional boosting — content rhythm that builds real followers, not empty numbers.',
+    points: ['Content pillars', 'Posting cadence', 'Engagement habits', 'Boost alignment'],
+  },
+  {
+    title: 'Full Page Checkup',
+    tag: 'Audit',
+    desc: 'Health scan of roles, settings, quality, messaging and ad readiness — priority fix list included.',
+    points: ['Roles & security', 'Quality signals', 'Messenger readiness', 'Ads / restriction flags'],
+  },
+];
+
+const verifyBenefits = [
+  {
+    t: 'Instant trust',
+    d: 'The blue badge signals a confirmed presence — customers feel safer messaging and buying.',
+  },
+  {
+    t: 'Harder to impersonate',
+    d: 'Fake pages lose power when the real brand is clearly verified.',
+  },
+  {
+    t: 'Search & profile clarity',
+    d: 'Verified identity stands out in search results and recommendations.',
+  },
+  {
+    t: 'Professional image',
+    d: 'Partners, media and larger clients take a verified Page more seriously.',
+  },
+];
+
+const growth = [
+  {
+    t: 'Targeting the right people',
+    d: 'Define who should see you — location, interest, age and lookalikes — before spending on reach.',
+  },
+  {
+    t: 'Content that earns follows',
+    d: 'Offers, proof, process clips and FAQs beat random memes for business Pages.',
+  },
+  {
+    t: 'Messenger as a sales desk',
+    d: 'Fast replies (or automation) convert profile visits into chats and calls.',
+  },
+  {
+    t: 'Boost with a goal',
+    d: 'Boost messages, calls or conversions — not only “more likes” with no funnel.',
+  },
+];
+
+const restrictions = [
+  {
+    t: 'Why restrictions happen',
+    d: 'Unusual activity, policy flags, login issues, ad account problems or community reports can limit a Page.',
+  },
+  {
+    t: 'What we check',
+    d: 'Admin roles, linked assets, recent content, ad history and quality recommendations inside Meta tools.',
+  },
+  {
+    t: 'Recovery direction',
+    d: 'We guide cleanup, appeals where applicable and safe operating habits so limits are less likely to return.',
+  },
+  {
+    t: 'Prevention',
+    d: 'Secure logins, clear roles, policy-safe creatives and gradual scaling — not sudden spammy bursts.',
+  },
+];
+
+const steps = [
+  { n: '01', t: 'Audit', d: 'Current Page, goals, verification status and risk flags reviewed.' },
+  { n: '02', t: 'Fix & brand', d: 'Setup, branding, about and technical settings corrected.' },
+  { n: '03', t: 'Verify path', d: 'If eligible — documents and application guidance for blue badge.' },
+  { n: '04', t: 'Grow', d: 'Content + optional ads/automation so followers become customers.' },
+];
+
+const faqs = [
+  {
+    q: 'Blue verify কি এবং কারা পেতে পারে?',
+    a: 'Blue badge মানে Meta সেই পেজ/প্রোফাইলকে অথেন্টিক বলে নিশ্চিত করেছে। ব্যবসা, ব্র্যান্ড বা পাবলিক ফিগার — যোগ্যতা, নথি এবং পেজের সম্পূর্ণতা দেখে Meta সিদ্ধান্ত নেয়। আমরা আবেদনের আগে যোগ্যতা ও ডকুমেন্ট চেকলিস্ট সাহায্য করি; অনুমোদন Meta-র হাতে।',
+  },
+  {
+    q: 'পেজ সেটআপে কী কী থাকে?',
+    a: 'ক্যাটাগরি, ইউজারনেম, অ্যাবাউট, সার্ভিস/প্রোডাক্ট ট্যাব, লোকেশন, ফোন, WhatsApp, ওয়েবসাইট, CTA বাটন, প্রোফাইল/কভার এবং বেসিক প্রাইভেসি/রোল সেটিংস।',
+  },
+  {
+    q: 'Follower কিভাবে বাড়াব — শুধু বুস্ট?',
+    a: 'শুধু বুস্ট টেকসই নয়। নিয়মিত উপযোগী পোস্ট, রিল/স্টোরি, ইনবক্স রিপ্লাই এবং লক্ষ্যভিত্তিক বুস্ট একসাথে কাজ করে। খালি ফলোয়ারের চেয়ে মেসেজ ও অর্ডার বেশি গুরুত্বপূর্ণ।',
+  },
+  {
+    q: 'Facebook Page SEO বলতে কী?',
+    a: 'পেজের নাম, ইউজারনেম, অ্যাবাউট, পোস্ট টেক্সট এবং লোকাল তথ্য এমনভাবে সাজানো যাতে সার্চ ও সাজেশনে পেজটি সহজে মিলে। এটি Google SEO-র মতোই “খুঁজে পাওয়ার” কাজ, শুধু প্ল্যাটফর্ম আলাদা।',
+  },
+  {
+    q: 'পেজ restriction হলে কী করবেন?',
+    a: 'প্রথমে কোন ফিচার সীমিত এবং কেন — সেটা মেটা নোটিফিকেশন/কোয়ালিটি টুলস থেকে বুঝতে হয়। এরপর কনটেন্ট/অ্যাড ক্লিনআপ, রোল সিকিউরিটি এবং প্রয়োজনে অ্যাপিল। আমরা চেকআপ করে ধাপগুলো গাইড করি।',
+  },
+  {
+    q: 'Business Manager কি দরকার?',
+    a: 'অ্যাডস, একাধিক অ্যাডমিন এবং অ্যাসেট নিরাপত্তার জন্য Business Manager ব্যবহার করা ভালো অভ্যাস। পেজ সেটআপের সময় আমরা এটি সুপারিশ ও বেসিক সেটআপ গাইড করি।',
+  },
+  {
+    q: 'কতদিন লাগে?',
+    a: 'বেসিক সেটআপ ও ব্র্যান্ডিং সাধারণত দ্রুত হয়। Blue verify Meta-র রিভিউ টাইমলাইনের উপর নির্ভর করে — আমরা জমা দেওয়ার আগে পেজকে যতটা সম্ভব “ready” করি।',
+  },
+  {
+    q: 'Automation-এর সাথে কি মিলিয়ে নেওয়া যায়?',
+    a: 'হ্যাঁ। পেজ ঠিক হলে Messenger automation যোগ করে ২৪/৭ রিপ্লাই ও লিড ক্যাপচার করা যায় — আলাদা Automation সার্ভিস পেজে বিস্তারিত আছে।',
+  },
+];
 ---
-<ServiceShell
-  title="Facebook Page Services"
-  seoTitle="Facebook Business Page Setup & Verification Help — Creavix iT"
-  seoDescription="Facebook business page setup, optimization and verification support by Creavix iT Solution."
-  icon="facebook"
-  lead="Business page setup, optimization and verification guidance so your brand looks trusted on Meta."
-  bullets={['Page creation & branding', 'About, CTA & shop setup', 'Cover & highlight structure', 'Verification process guidance', 'Content starter plan']}
-  demos={[
-    { tag: 'Demo', title: 'Page kit', desc: 'Cover, profile, about text and CTA button layout sample.' },
-    { tag: 'Demo', title: 'Highlight tabs', desc: 'Services / offers / reviews highlight structure.' },
-    { tag: 'Demo', title: 'Trust checklist', desc: 'Verification-ready checklist clients can follow.' },
-  ]}
-/>
+
+<Layout title={seoTitle} description={seoDescription}>
+  <TopBar />
+  <Nav active="services" />
+
+  <!-- HERO -->
+  <section class="fb-hero">
+    <div class="container fb-hero-grid">
+      <div class="fb-copy reveal">
+        <p class="fb-eye">Facebook Page Services</p>
+        <h1>Business Page Setup, Blue Verify &amp; Real Growth</h1>
+        <p class="fb-sub">
+          From first setup to blue badge guidance, branding, follower strategy, page SEO,
+          restriction checkup and Messenger-ready pages — so your Facebook presence looks
+          trustworthy and converts.
+        </p>
+        <div class="fb-actions">
+          <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Fix my Page</a>
+          <a class="btn btn-outline" href="#services">All Page services</a>
+        </div>
+        <ul class="fb-pills">
+          <li>Setup</li>
+          <li>Blue Verify</li>
+          <li>Branding</li>
+          <li>Growth</li>
+          <li>Checkup</li>
+        </ul>
+      </div>
+
+      <!-- Facebook-style page card visual -->
+      <div class="fb-visual reveal" aria-hidden="true">
+        <div class="fb-card">
+          <div class="fb-cover">
+            <div class="fb-cover-grad"></div>
+            <span class="fb-cover-label">Your Brand Cover</span>
+          </div>
+          <div class="fb-profile-row">
+            <div class="fb-avatar">C</div>
+            <div class="fb-name-block">
+              <div class="fb-name">
+                Your Business Page
+                <span class="fb-badge" title="Verified">✓</span>
+              </div>
+              <div class="fb-meta">Business · Dhaka · Open now</div>
+            </div>
+          </div>
+          <div class="fb-cta-row">
+            <span class="fb-btn-main">Message</span>
+            <span class="fb-btn-sec">Call</span>
+            <span class="fb-btn-sec">Follow</span>
+          </div>
+          <div class="fb-stats">
+            <div><strong>Trust</strong><small>Blue ready</small></div>
+            <div><strong>Inbox</strong><small>Sales desk</small></div>
+            <div><strong>Reach</strong><small>Targeted</small></div>
+          </div>
+        </div>
+        <div class="fb-float fb-f1">Blue ✓</div>
+        <div class="fb-float fb-f2">Setup</div>
+        <div class="fb-float fb-f3">Secure</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT -->
+  <section class="fb-sec" id="what">
+    <div class="container fb-split">
+      <div class="reveal">
+        <p class="fb-eye">Why the Page matters</p>
+        <h2>Your Facebook Page is the shopfront customers check first</h2>
+        <p class="fb-body">
+          In Bangladesh, most buyers still search, message and judge a business on Facebook.
+          A weak Page — wrong category, no branding, slow inbox, or restriction — costs sales
+          every day.
+        </p>
+        <p class="fb-body">
+          Creavix treats the Page as a <strong>business system</strong>: setup, trust (including
+          blue verification path), growth and health checkup — not only a profile photo change.
+        </p>
+      </div>
+      <div class="fb-mini-grid reveal">
+        <div class="fb-mini"><strong>Setup</strong><span>Correct business identity</span></div>
+        <div class="fb-mini"><strong>Verify</strong><span>Badge eligibility path</span></div>
+        <div class="fb-mini"><strong>Grow</strong><span>Followers who message</span></div>
+        <div class="fb-mini"><strong>Protect</strong><span>Roles &amp; restrictions</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="fb-sec fb-muted" id="services">
+    <div class="container">
+      <div class="fb-center reveal">
+        <p class="fb-eye">Services</p>
+        <h2>Everything your Facebook Page may need</h2>
+        <p class="fb-lead">Pick a single fix or a full package — each area below is handled with a clear checklist.</p>
+      </div>
+      <div class="fb-services">
+        {services.map((s) => (
+          <article class="fb-svc reveal">
+            <span class="fb-tag">{s.tag}</span>
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+            <ul>
+              {s.points.map((p) => (
+                <li>{p}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BLUE VERIFY -->
+  <section class="fb-sec" id="blue-verify">
+    <div class="container">
+      <div class="fb-center reveal">
+        <p class="fb-eye">Blue verification</p>
+        <h2>What the blue badge unlocks</h2>
+        <p class="fb-lead">
+          Verification is approved by Meta. We prepare your Page and documents so you apply
+          from a stronger position — no fake “guaranteed badge” claims.
+        </p>
+      </div>
+      <div class="fb-benefits">
+        {verifyBenefits.map((b) => (
+          <article class="fb-ben reveal">
+            <div class="fb-ben-ico" aria-hidden="true">✓</div>
+            <h3>{b.t}</h3>
+            <p>{b.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GROWTH -->
+  <section class="fb-sec fb-muted" id="growth">
+    <div class="container">
+      <div class="fb-center reveal">
+        <p class="fb-eye">Growth</p>
+        <h2>Targeting, SEO signals &amp; follower strategy</h2>
+      </div>
+      <div class="fb-growth">
+        {growth.map((g) => (
+          <article class="fb-gcard reveal">
+            <h3>{g.t}</h3>
+            <p>{g.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RESTRICTIONS -->
+  <section class="fb-sec" id="restrictions">
+    <div class="container">
+      <div class="fb-center reveal">
+        <p class="fb-eye">Restrictions &amp; checkup</p>
+        <h2>When the Page is limited or “unhealthy”</h2>
+        <p class="fb-lead">Full checkup finds issues early — roles, quality, ads and messaging readiness.</p>
+      </div>
+      <div class="fb-growth">
+        {restrictions.map((r) => (
+          <article class="fb-gcard reveal">
+            <h3>{r.t}</h3>
+            <p>{r.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="fb-sec fb-muted" id="process">
+    <div class="container">
+      <div class="fb-center reveal">
+        <p class="fb-eye">Process</p>
+        <h2>How we work on your Page</h2>
+      </div>
+      <div class="fb-steps">
+        {steps.map((s) => (
+          <div class="fb-step reveal">
+            <span class="fb-step-n">{s.n}</span>
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="fb-sec" id="faq">
+    <div class="container fb-faq-wrap">
+      <div class="fb-center reveal">
+        <p class="fb-eye">FAQ</p>
+        <h2>Questions before you order</h2>
+      </div>
+      <div class="fb-faq reveal">
+        {faqs.map((f) => (
+          <details class="fb-faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="fb-cta">
+    <div class="container fb-cta-inner reveal">
+      <div>
+        <p class="fb-eye light">Next step</p>
+        <h2>Send your Page link — we outline the fixes</h2>
+        <p>WhatsApp {SITE.whatsapp} · {SITE.email1} · {SITE.hotline}</p>
+      </div>
+      <div class="fb-cta-btns">
+        <a class="btn btn-light" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a class="btn btn-ghost" href="/contact">Contact</a>
+        <a class="btn btn-ghost" href="/services/automation">Messenger Automation</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .fb-hero {
+    padding: 5.25rem 1.25rem 3.5rem;
+    background:
+      radial-gradient(ellipse 50% 40% at 90% 10%, rgba(24, 119, 242, 0.16), transparent 55%),
+      radial-gradient(ellipse 40% 35% at 5% 85%, rgba(37, 99, 235, 0.08), transparent 50%),
+      linear-gradient(180deg, #fff, #F8FAFC);
+  }
+  .fb-hero-grid {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .fb-hero-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+    }
+  }
+  .fb-eye {
+    margin: 0 0 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #1877F2;
+  }
+  .fb-eye.light { color: #93C5FD; }
+  .fb-hero h1 {
+    margin: 0 0 0.9rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.7rem, 4.2vw, 2.55rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    color: #0B0F19;
+  }
+  .fb-sub {
+    margin: 0 0 1.35rem;
+    color: #475569;
+    font-size: 1.02rem;
+    line-height: 1.65;
+    max-width: 34rem;
+  }
+  .fb-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-bottom: 1.15rem;
+  }
+  .fb-pills {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .fb-pills li {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #1D4ED8;
+    background: #EFF6FF;
+    border: 1px solid rgba(24, 119, 242, 0.2);
+    padding: 0.28rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  .fb-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .fb-card {
+    width: min(100%, 340px);
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.12);
+    overflow: hidden;
+  }
+  .fb-cover {
+    height: 110px;
+    position: relative;
+    background: #1877F2;
+  }
+  .fb-cover-grad {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1877F2 0%, #0A4DA3 50%, #2563EB 100%);
+  }
+  .fb-cover-label {
+    position: absolute;
+    left: 12px;
+    bottom: 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .fb-profile-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-end;
+    padding: 0 1rem;
+    margin-top: -28px;
+    position: relative;
+    z-index: 1;
+  }
+  .fb-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2563EB, #1877F2);
+    border: 4px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(24, 119, 242, 0.25);
+  }
+  .fb-name-block { padding-bottom: 0.35rem; }
+  .fb-name {
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: #0B0F19;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .fb-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #1877F2;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 800;
+  }
+  .fb-meta {
+    font-size: 0.75rem;
+    color: #64748B;
+  }
+  .fb-cta-row {
+    display: flex;
+    gap: 0.4rem;
+    padding: 1rem;
+  }
+  .fb-btn-main {
+    flex: 1;
+    text-align: center;
+    padding: 0.45rem;
+    border-radius: 8px;
+    background: #1877F2;
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  .fb-btn-sec {
+    flex: 1;
+    text-align: center;
+    padding: 0.45rem;
+    border-radius: 8px;
+    background: #E7F3FF;
+    color: #1877F2;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  .fb-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.35rem;
+    padding: 0 1rem 1.1rem;
+    text-align: center;
+  }
+  .fb-stats strong {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #0B0F19;
+  }
+  .fb-stats small {
+    font-size: 0.65rem;
+    color: #94A3B8;
+  }
+  .fb-float {
+    position: absolute;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
+    color: #1877F2;
+    animation: fb-bob 4s ease-in-out infinite;
+  }
+  .fb-f1 { top: 8%; left: 0; }
+  .fb-f2 { top: 45%; right: 0; animation-delay: 0.5s; }
+  .fb-f3 { bottom: 10%; left: 4%; animation-delay: 1s; }
+  @keyframes fb-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .fb-sec { padding: 3.5rem 1.25rem; background: #fff; }
+  .fb-muted { background: #F8FAFC; }
+  .fb-center {
+    text-align: center;
+    max-width: 36rem;
+    margin: 0 auto 2rem;
+  }
+  .fb-center h2,
+  .fb-split h2 {
+    margin: 0 0 0.5rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.4rem, 3vw, 1.85rem);
+    font-weight: 800;
+    color: #0B0F19;
+    letter-spacing: -0.02em;
+  }
+  .fb-lead,
+  .fb-body {
+    margin: 0;
+    color: #64748B;
+    line-height: 1.65;
+    font-size: 0.98rem;
+  }
+  .fb-body + .fb-body { margin-top: 0.85rem; }
+  .fb-body strong { color: #0F172A; }
+
+  .fb-split {
+    display: grid;
+    gap: 2rem;
+    align-items: start;
+  }
+  @media (min-width: 800px) {
+    .fb-split { grid-template-columns: 1.15fr 0.85fr; gap: 2.5rem; }
+  }
+  .fb-mini-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .fb-mini {
+    background: #F8FAFC;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: 14px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .fb-mini strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #1877F2;
+    margin-bottom: 0.2rem;
+  }
+  .fb-mini span { font-size: 0.8rem; color: #64748B; }
+
+  .fb-services {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 700px) {
+    .fb-services { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 1000px) {
+    .fb-services { grid-template-columns: 1fr 1fr 1fr; }
+  }
+  .fb-svc {
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: 18px;
+    padding: 1.35rem 1.25rem;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.03);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .fb-svc:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(24, 119, 242, 0.12);
+  }
+  .fb-tag {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    background: #E7F3FF;
+    color: #1877F2;
+  }
+  .fb-svc h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #0B0F19;
+  }
+  .fb-svc > p {
+    margin: 0 0 0.75rem;
+    font-size: 0.9rem;
+    color: #64748B;
+    line-height: 1.55;
+  }
+  .fb-svc ul {
+    margin: 0;
+    padding: 0 0 0 1.05rem;
+    color: #475569;
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  .fb-benefits,
+  .fb-growth {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 700px) {
+    .fb-benefits,
+    .fb-growth { grid-template-columns: 1fr 1fr; }
+  }
+  .fb-ben,
+  .fb-gcard {
+    background: #F8FAFC;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: 16px;
+    padding: 1.3rem 1.2rem;
+  }
+  .fb-muted .fb-gcard { background: #fff; }
+  .fb-ben-ico {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #1877F2;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.85rem;
+    margin-bottom: 0.65rem;
+  }
+  .fb-ben h3,
+  .fb-gcard h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.02rem;
+    font-weight: 800;
+  }
+  .fb-ben p,
+  .fb-gcard p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #64748B;
+    line-height: 1.55;
+  }
+
+  .fb-steps {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 700px) {
+    .fb-steps { grid-template-columns: repeat(4, 1fr); }
+  }
+  .fb-step {
+    padding: 1.25rem 1.1rem;
+    border-radius: 16px;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    background: #fff;
+  }
+  .fb-step-n {
+    display: block;
+    font-family: Outfit, system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: #1877F2;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.45rem;
+  }
+  .fb-step h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1rem;
+    font-weight: 800;
+  }
+  .fb-step p {
+    margin: 0;
+    font-size: 0.88rem;
+    color: #64748B;
+    line-height: 1.5;
+  }
+
+  .fb-faq-wrap { max-width: 720px; }
+  .fb-faq { display: flex; flex-direction: column; gap: 0.65rem; }
+  .fb-faq-item {
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 14px;
+    background: #F8FAFC;
+    padding: 0.15rem 1rem;
+  }
+  .fb-faq-item summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #0B0F19;
+    padding: 0.9rem 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .fb-faq-item summary::-webkit-details-marker { display: none; }
+  .fb-faq-item summary::after {
+    content: '+';
+    font-size: 1.25rem;
+    color: #1877F2;
+    flex-shrink: 0;
+  }
+  .fb-faq-item[open] summary::after { content: '–'; }
+  .fb-faq-item p {
+    margin: 0 0 1rem;
+    color: #64748B;
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .fb-cta {
+    padding: 3rem 1.25rem;
+    background: linear-gradient(135deg, #0A4DA3, #1877F2 45%, #2563EB);
+    color: #fff;
+  }
+  .fb-cta-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .fb-cta h2 {
+    margin: 0 0 0.4rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
+    font-weight: 800;
+  }
+  .fb-cta p { margin: 0; opacity: 0.95; font-size: 0.95rem; }
+  .fb-cta-btns { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+  .btn-light {
+    background: #fff;
+    color: #0A4DA3;
+    border: none;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+  }
+
+  @media (max-width: 639px) {
+    .fb-hero { padding-top: 4.5rem; }
+    .fb-float { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fb-float { animation: none; }
+  }
+</style>
