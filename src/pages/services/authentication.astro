@@ -1,16 +1,125 @@
 ---
-import ServiceShell from '../../components/ServiceShell.astro';
+import Layout from '../../layouts/Layout.astro';
+import TopBar from '../../components/TopBar.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE } from '../../data/site';
+
+const seoTitle = 'Web & App Authentication Systems Bangladesh | Secure Login — Creavix iT';
+const seoDescription =
+  'Secure authentication for websites and apps — login, signup, OTP, social login and role-based access. Creavix iT Solution Bangladesh.';
+
+const features = [
+  { t: 'Email & password', d: 'Solid baseline auth with hashed credentials and recovery flows.' },
+  { t: 'OTP / phone', d: 'SMS or app-based codes for local user habits.' },
+  { t: 'Social login', d: 'Google and other providers where the product needs faster signup.' },
+  { t: 'Roles & permissions', d: 'Admin, staff and customer access without mixing data.' },
+  { t: 'Session security', d: 'Tokens, expiry and protected routes for web and API.' },
+  { t: 'Audit-friendly', d: 'Clear structure so future developers can maintain the system.' },
+];
+
+const steps = [
+  { n: '01', t: 'Requirements', d: 'Who logs in, what they can do, and compliance needs.' },
+  { n: '02', t: 'Architecture', d: 'Provider choice, data model and edge cases.' },
+  { n: '03', t: 'Implement', d: 'UI + backend hooks integrated with your product.' },
+  { n: '04', t: 'Harden', d: 'Tests for reset, lockout and permission boundaries.' },
+];
+
+const faqs = [
+  { q: 'কোন স্ট্যাক সাপোর্ট করেন?', a: 'প্রজেক্ট অনুযায়ী আধুনিক ওয়েব/অ্যাপ স্ট্যাক — বিদ্যমান কোডবেস দেখে সিদ্ধান্ত।' },
+  { q: 'শুধু UI নাকি ফুল সিস্টেম?', a: 'লগইন স্ক্রিন থেকে সার্ভার-সাইড সেশন/টোকেন পর্যন্ত প্রয়োজনমতো।' },
+  { q: 'Google login কি ফ্রি সেটআপ?', a: 'Google Cloud কনসোলে প্রজেক্ট/ওএথ সেটআপ লাগে; আমরা ইমপ্লিমেন্টেশন গাইড ও কোড করি।' },
+  { q: 'Application Build-এর সাথে?', a: 'অ্যাপ বা ওয়েব প্রজেক্টের ভিতরে অথেন্টিকেশন মডিউল হিসেবে যুক্ত করা যায়।' },
+  { q: 'সিকিউরিটি গ্যারান্টি?', a: 'বেস্ট প্র্যাকটিস অ্যাপ্লাই করি; হোস্টিং, সিক্রেট ম্যানেজমেন্ট ও ইউজার আচরণও নিরাপত্তার অংশ।' },
+];
 ---
-<ServiceShell
-  title="Authentication Systems"
-  seoTitle="Secure Authentication Systems | Login & Roles — Creavix iT"
-  seoDescription="Secure login, signup, OTP and role-based authentication systems for websites and apps by Creavix iT Solution."
-  icon="auth"
-  lead="Secure login, signup, role-based access and session systems that protect your product and users."
-  bullets={['Email / phone auth flows', 'Role-based permissions', 'Session & token security', 'Password reset & verification', 'Admin access controls']}
-  demos={[
-    { tag: 'Demo', title: 'Login + OTP screen', desc: 'Clean auth UI with email/OTP toggle and error states.' },
-    { tag: 'Demo', title: 'Role matrix', desc: 'Admin / editor / viewer permission cards for product planning.' },
-    { tag: 'Demo', title: 'Secure session panel', desc: 'Active devices list and force-logout concept for user security.' },
-  ]}
-/>
+
+<Layout title={seoTitle} description={seoDescription}>
+  <TopBar />
+  <Nav active="services" />
+
+  <section class="sv-hero">
+    <div class="container sv-grid">
+      <div class="reveal">
+        <p class="sv-eye">Authentication</p>
+        <h1>Secure login systems people can actually use</h1>
+        <p class="sv-sub">Signup, login, recovery and roles for websites and apps — designed for real users in Bangladesh and teams that need clean access control.</p>
+        <div class="sv-actions">
+          <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Describe my app</a>
+          <a class="btn btn-outline" href="/services/application-build">Application build</a>
+        </div>
+      </div>
+      <div class="sv-visual reveal" aria-hidden="true">
+        <div class="auth-box">
+          <div class="auth-field"></div>
+          <div class="auth-field short"></div>
+          <div class="auth-btn">Secure sign in</div>
+          <div class="auth-lock">🔐</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sv-sec">
+    <div class="container">
+      <div class="sv-center reveal"><p class="sv-eye">Capabilities</p><h2>What authentication covers</h2></div>
+      <div class="sv-cards">{features.map(f => (<article class="sv-card reveal"><h3>{f.t}</h3><p>{f.d}</p></article>))}</div>
+    </div>
+  </section>
+
+  <section class="sv-sec sv-muted">
+    <div class="container">
+      <div class="sv-center reveal"><p class="sv-eye">Process</p><h2>From brief to hardened login</h2></div>
+      <div class="sv-steps">{steps.map(s => (<div class="sv-step reveal"><span>{s.n}</span><h3>{s.t}</h3><p>{s.d}</p></div>))}</div>
+    </div>
+  </section>
+
+  <section class="sv-sec">
+    <div class="container sv-faq-wrap">
+      <div class="sv-center reveal"><p class="sv-eye">FAQ</p><h2>Auth questions</h2></div>
+      <div class="sv-faq reveal">{faqs.map(f => (<details class="sv-faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>))}</div>
+    </div>
+  </section>
+
+  <section class="sv-cta">
+    <div class="container sv-cta-inner reveal">
+      <div><h2>Add auth to your product</h2><p>WhatsApp {SITE.whatsapp}</p></div>
+      <a class="btn btn-light" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </div>
+  </section>
+  <Footer />
+</Layout>
+
+<style>
+.sv-hero{padding:5.25rem 1.25rem 3.5rem;background:radial-gradient(ellipse 50% 40% at 90% 10%,rgba(16,185,129,.12),transparent 55%),linear-gradient(180deg,#fff,#F8FAFC)}
+.sv-grid{display:grid;gap:2.5rem;align-items:center}@media(min-width:900px){.sv-grid{grid-template-columns:1.1fr .9fr}}
+.sv-eye{margin:0 0 .5rem;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#059669}
+.sv-hero h1,.sv-center h2,.sv-cta h2{font-family:Outfit,system-ui,sans-serif;font-weight:800;letter-spacing:-.02em;color:#0B0F19;margin:0 0 .5rem}
+.sv-hero h1{font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.12}
+.sv-sub{margin:0 0 1.25rem;color:#475569;line-height:1.65;max-width:34rem}
+.sv-actions{display:flex;flex-wrap:wrap;gap:.65rem}
+.sv-visual{display:flex;justify-content:center}
+.auth-box{position:relative;width:min(100%,280px);padding:1.5rem;border-radius:16px;background:#0B1220;box-shadow:0 24px 48px rgba(15,23,42,.18)}
+.auth-field{height:40px;border-radius:8px;background:rgba(255,255,255,.1);margin-bottom:.65rem}
+.auth-field.short{width:70%}.auth-btn{padding:.75rem;border-radius:8px;background:linear-gradient(135deg,#10B981,#059669);color:#fff;font-weight:700;text-align:center;font-size:.9rem}
+.auth-lock{position:absolute;top:-12px;right:16px;font-size:1.5rem;animation:auth-bob 3s ease-in-out infinite}
+@keyframes auth-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.sv-sec{padding:3.25rem 1.25rem;background:#fff}.sv-muted{background:#F8FAFC}
+.sv-center{text-align:center;max-width:36rem;margin:0 auto 1.75rem}.sv-center h2{font-size:clamp(1.35rem,3vw,1.8rem)}
+.sv-cards{display:grid;gap:1rem}@media(min-width:700px){.sv-cards{grid-template-columns:1fr 1fr 1fr}}
+.sv-card{background:#F8FAFC;border:1px solid rgba(15,23,42,.07);border-radius:16px;padding:1.25rem}
+.sv-card h3{margin:0 0 .35rem;font-size:1rem;font-weight:800}.sv-card p{margin:0;font-size:.9rem;color:#64748B;line-height:1.55}
+.sv-steps{display:grid;gap:1rem}@media(min-width:700px){.sv-steps{grid-template-columns:repeat(4,1fr)}}
+.sv-step{padding:1.15rem;border-radius:16px;border:1px solid rgba(15,23,42,.07);background:#fff}
+.sv-step span{font-weight:800;font-size:.8rem;color:#059669}.sv-step h3{margin:.35rem 0;font-size:1rem}.sv-step p{margin:0;font-size:.88rem;color:#64748B}
+.sv-faq-wrap{max-width:720px}.sv-faq{display:flex;flex-direction:column;gap:.65rem}
+.sv-faq-item{border:1px solid rgba(15,23,42,.08);border-radius:14px;background:#F8FAFC;padding:.15rem 1rem}
+.sv-faq-item summary{cursor:pointer;font-weight:700;padding:.9rem 0;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+.sv-faq-item summary::-webkit-details-marker{display:none}.sv-faq-item summary::after{content:'+';color:#059669;font-size:1.25rem}
+.sv-faq-item[open] summary::after{content:'–'}.sv-faq-item p{margin:0 0 1rem;color:#64748B;font-size:.92rem;line-height:1.65}
+.sv-cta{padding:2.75rem 1.25rem;background:linear-gradient(135deg,#047857,#10B981);color:#fff}
+.sv-cta-inner{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between}
+.sv-cta h2{color:#fff;font-size:clamp(1.25rem,3vw,1.65rem)}.sv-cta p{margin:0;opacity:.95}
+.btn-light{background:#fff;color:#047857;border:none}
+@media(prefers-reduced-motion:reduce){.auth-lock{animation:none}}
+</style>

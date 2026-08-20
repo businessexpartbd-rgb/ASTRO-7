@@ -1,16 +1,127 @@
 ---
-import ServiceShell from '../../components/ServiceShell.astro';
+import Layout from '../../layouts/Layout.astro';
+import TopBar from '../../components/TopBar.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE } from '../../data/site';
+
+const seoTitle = 'Facebook & YouTube Ad Campaign Management Bangladesh — Creavix iT';
+const seoDescription =
+  'Full ad campaign management — strategy, creatives, Meta & YouTube delivery, optimization and reporting. Creavix iT Solution Bangladesh.';
+
+const pillars = [
+  { t: 'Strategy', d: 'Offer, audience, funnel stage and success metric before spend.' },
+  { t: 'Creative system', d: 'Hooks, angles and formats ready to test — not one lonely ad.' },
+  { t: 'Delivery', d: 'Meta campaigns and optional YouTube under clear objectives.' },
+  { t: 'Optimization', d: 'Weekly cuts and scales based on cost per result.' },
+  { t: 'Reporting', d: 'Plain-language numbers: spend, results, learnings, next steps.' },
+  { t: 'Stack with boost', d: 'Use boosting for quick tests; campaigns for sustained growth.' },
+];
+
+const phases = [
+  { n: '01', t: 'Discover', d: 'Business goal, margin, creatives and tracking readiness.' },
+  { n: '02', t: 'Build', d: 'Structure, audiences, ads and landing/WhatsApp path.' },
+  { n: '03', t: 'Launch', d: 'Go live with monitoring windows.' },
+  { n: '04', t: 'Improve', d: 'Iterate winners; retire weak ads.' },
+];
+
+const faqs = [
+  { q: 'Boosting পেজের সাথে পার্থক্য?', a: 'Boosting দ্রুত পোস্ট প্রমোশন। Campaign পেজ পুরো ফানেল, অডিয়েন্স ও অপটিমাইজেশন সিস্টেম নিয়ে কাজ করে। বিস্তারিত তুলনা Boosting পেজেও আছে।' },
+  { q: 'YouTube কি আলাদা বাজেট?', a: 'হ্যাঁ — প্ল্যাটফর্ম আলাদা। একই মাসে Meta + YouTube মিক্স পরিকল্পনা করা যায়।' },
+  { q: 'মিনিমাম বাজেট?', a: 'শেখার মতো ডেটা পেতে লক্ষ্য অনুযায়ী — ছোট টেস্ট Boosting থেকেও শুরু করা যায়।' },
+  { q: 'রিপোর্ট কী পাব?', a: 'খরচ, রিচ/ক্লিক, মেসেজ বা কনভার্সন, খরচ প্রতি রেজাল্ট এবং পরবর্তী অ্যাকশন।' },
+  { q: 'ল্যান্ডিং পেজ দরকার?', a: 'মেসেজ ক্যাম্পেইনে Messenger/WhatsApp যথেষ্ট হতে পারে; ওয়েব কনভার্সনে ল্যান্ডিং জরুরি।' },
+];
 ---
-<ServiceShell
-  title="Campaign Service"
-  seoTitle="Digital Campaign Management Agency Bangladesh — Creavix iT"
-  seoDescription="End-to-end digital campaign planning, creative and performance management by Creavix iT Solution."
-  icon="campaign"
-  lead="Full campaign planning — strategy, creative, media and optimization under one roof."
-  bullets={['Strategy & messaging', 'Creative production', 'Media plan', 'Weekly optimization', 'Transparent reporting']}
-  demos={[
-    { tag: 'Demo', title: 'Launch roadmap', desc: '4-week launch calendar with assets and KPIs.' },
-    { tag: 'Demo', title: 'Funnel map', desc: 'Awareness → consideration → conversion creative map.' },
-    { tag: 'Demo', title: 'KPI dashboard', desc: 'Sample campaign KPI cards: CPL, ROAS, CTR.' },
-  ]}
-/>
+
+<Layout title={seoTitle} description={seoDescription}>
+  <TopBar />
+  <Nav active="services" />
+
+  <section class="sv-hero">
+    <div class="container sv-grid">
+      <div class="reveal">
+        <p class="sv-eye">Campaign Management</p>
+        <h1>Campaigns with a plan — not random daily spend</h1>
+        <p class="sv-sub">Strategy, creative tests, Meta &amp; YouTube delivery and weekly optimization. Built for businesses that need leads and sales, not vanity metrics.</p>
+        <div class="sv-actions">
+          <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Plan a campaign</a>
+          <a class="btn btn-outline" href="/services/boosting">Boost vs Campaign</a>
+        </div>
+      </div>
+      <div class="sv-visual reveal" aria-hidden="true">
+        <div class="cp-funnel">
+          <div class="cp-step s1">Awareness</div>
+          <div class="cp-step s2">Consideration</div>
+          <div class="cp-step s3">Conversion</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sv-sec">
+    <div class="container">
+      <div class="sv-center reveal"><p class="sv-eye">Included</p><h2>What campaign management covers</h2></div>
+      <div class="sv-cards">{pillars.map(p => (<article class="sv-card reveal"><h3>{p.t}</h3><p>{p.d}</p></article>))}</div>
+    </div>
+  </section>
+
+  <section class="sv-sec sv-muted">
+    <div class="container">
+      <div class="sv-center reveal"><p class="sv-eye">Phases</p><h2>How a campaign runs</h2></div>
+      <div class="sv-steps">{phases.map(s => (<div class="sv-step reveal"><span>{s.n}</span><h3>{s.t}</h3><p>{s.d}</p></div>))}</div>
+    </div>
+  </section>
+
+  <section class="sv-sec">
+    <div class="container sv-faq-wrap">
+      <div class="sv-center reveal"><p class="sv-eye">FAQ</p><h2>Campaign questions</h2></div>
+      <div class="sv-faq reveal">{faqs.map(f => (<details class="sv-faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>))}</div>
+    </div>
+  </section>
+
+  <section class="sv-cta">
+    <div class="container sv-cta-inner reveal">
+      <div><h2>Launch with a clear objective</h2><p>WhatsApp {SITE.whatsapp}</p></div>
+      <div class="sv-actions">
+        <a class="btn btn-light" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a class="btn btn-ghost" href="/services/boosting">Dollar rate &amp; boost</a>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</Layout>
+
+<style>
+.sv-hero{padding:5.25rem 1.25rem 3.5rem;background:radial-gradient(ellipse 50% 40% at 90% 10%,rgba(245,158,11,.14),transparent 55%),linear-gradient(180deg,#fff,#F8FAFC)}
+.sv-grid{display:grid;gap:2.5rem;align-items:center}@media(min-width:900px){.sv-grid{grid-template-columns:1.1fr .9fr}}
+.sv-eye{margin:0 0 .5rem;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#D97706}
+.sv-hero h1,.sv-center h2,.sv-cta h2{font-family:Outfit,system-ui,sans-serif;font-weight:800;letter-spacing:-.02em;color:#0B0F19;margin:0 0 .5rem}
+.sv-hero h1{font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.12}
+.sv-sub{margin:0 0 1.25rem;color:#475569;line-height:1.65;max-width:34rem}
+.sv-actions{display:flex;flex-wrap:wrap;gap:.65rem}
+.sv-visual{display:flex;justify-content:center}
+.cp-funnel{width:min(100%,280px);display:flex;flex-direction:column;gap:.65rem;align-items:center}
+.cp-step{width:100%;text-align:center;padding:1rem;border-radius:12px;font-weight:800;color:#fff;animation:cp-in 2.8s ease-in-out infinite}
+.cp-step.s1{width:100%;background:#F59E0B}.cp-step.s2{width:82%;background:#2563EB;animation-delay:.2s}.cp-step.s3{width:64%;background:#059669;animation-delay:.4s}
+@keyframes cp-in{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.sv-sec{padding:3.25rem 1.25rem;background:#fff}.sv-muted{background:#F8FAFC}
+.sv-center{text-align:center;max-width:36rem;margin:0 auto 1.75rem}.sv-center h2{font-size:clamp(1.35rem,3vw,1.8rem)}
+.sv-cards{display:grid;gap:1rem}@media(min-width:700px){.sv-cards{grid-template-columns:1fr 1fr 1fr}}
+.sv-card{background:#F8FAFC;border:1px solid rgba(15,23,42,.07);border-radius:16px;padding:1.25rem}
+.sv-muted .sv-step{background:#fff}.sv-card h3{margin:0 0 .35rem;font-size:1rem;font-weight:800}.sv-card p{margin:0;font-size:.9rem;color:#64748B;line-height:1.55}
+.sv-steps{display:grid;gap:1rem}@media(min-width:700px){.sv-steps{grid-template-columns:repeat(4,1fr)}}
+.sv-step{padding:1.15rem;border-radius:16px;border:1px solid rgba(15,23,42,.07);background:#F8FAFC}
+.sv-step span{font-weight:800;font-size:.8rem;color:#D97706}.sv-step h3{margin:.35rem 0;font-size:1rem}.sv-step p{margin:0;font-size:.88rem;color:#64748B}
+.sv-faq-wrap{max-width:720px}.sv-faq{display:flex;flex-direction:column;gap:.65rem}
+.sv-faq-item{border:1px solid rgba(15,23,42,.08);border-radius:14px;background:#F8FAFC;padding:.15rem 1rem}
+.sv-faq-item summary{cursor:pointer;font-weight:700;padding:.9rem 0;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+.sv-faq-item summary::-webkit-details-marker{display:none}.sv-faq-item summary::after{content:'+';color:#D97706;font-size:1.25rem}
+.sv-faq-item[open] summary::after{content:'–'}.sv-faq-item p{margin:0 0 1rem;color:#64748B;font-size:.92rem;line-height:1.65}
+.sv-cta{padding:2.75rem 1.25rem;background:linear-gradient(135deg,#B45309,#F59E0B 50%,#2563EB);color:#fff}
+.sv-cta-inner{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between}
+.sv-cta h2{color:#fff;font-size:clamp(1.25rem,3vw,1.65rem)}.sv-cta p{margin:0;opacity:.95}
+.btn-light{background:#fff;color:#B45309;border:none}
+.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.45)}
+@media(prefers-reduced-motion:reduce){.cp-step{animation:none}}
+</style>
