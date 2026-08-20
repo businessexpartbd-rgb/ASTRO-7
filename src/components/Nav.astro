@@ -44,7 +44,7 @@ const { active = '' } = Astro.props;
               <a href="/services/campaign" role="menuitem">Campaign</a>
             </div>
           </li>
-          <li style="--i:2"><a href="/#portfolio">Portfolio</a></li>
+          <li style="--i:2"><a href="/portfolio" class={active === 'portfolio' ? 'active' : ''}>Portfolio</a></li>
           <li style="--i:3"><a href="/about" class={active === 'about' ? 'active' : ''}>About</a></li>
           <li style="--i:4"><a href="/contact" class={active === 'contact' ? 'active' : ''}>Contact</a></li>
         </ul>

@@ -1,0 +1,356 @@
+---
+/**
+ * Homepage featured videos — 6 YouTube landscape clips.
+ * Vertical sticky stack (scroll → pin → next folds over).
+ * Full 16:9. Click plays WITH SOUND. One player at a time.
+ */
+import { SHOWCASES, ytThumb } from '../data/site';
+
+const cinematic = SHOWCASES.find((s) => s.id === 'cinematic')!;
+const videos = cinematic.ids.map((id, i) => ({
+  id,
+  thumb: ytThumb(id),
+  n: i + 1,
+}));
+---
+
+<section id="featured-videos" class="fvs" data-fvs>
+  <div class="container fvs-head">
+    <p class="eyebrow">Featured Work</p>
+    <h2>Cinematic Videos</h2>
+    <p class="fvs-lead">Scroll — each film pins, then the next folds over. Tap any card to play with sound.</p>
+  </div>
+
+  <div class="fvs-stack">
+    {videos.map((v, i) => (
+      <div class="fvs-slot" style={`--i:${i}`}>
+        <div class="fvs-pin">
+          <article class="fvs-card" data-vid={v.id} data-i={String(i)}>
+            <div class="fvs-frame" data-frame>
+              <img
+                class="fvs-poster"
+                src={v.thumb}
+                alt=""
+                width="1280"
+                height="720"
+                loading={i < 2 ? 'eager' : 'lazy'}
+                decoding="async"
+                data-poster
+              />
+              <div class="fvs-player" data-player></div>
+              <button type="button" class="fvs-play" data-play aria-label={`Play video ${v.n}`}>
+                <span class="fvs-play-ic" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </span>
+                <span class="fvs-play-txt">Play with sound</span>
+              </button>
+              <div class="fvs-meta">
+                <span class="fvs-num">{String(v.n).padStart(2, '0')}</span>
+                <span class="fvs-tag">16:9 · Cinematic</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="container fvs-more">
+    <a href="/portfolio" class="btn btn-outline">View full portfolio →</a>
+  </div>
+</section>
+
+<style>
+  .fvs {
+    padding: 2.5rem 0 3rem;
+    background: linear-gradient(180deg, #F8FAFC 0%, #fff 18%, #fff 100%);
+  }
+  .fvs-head {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 0 1.25rem;
+  }
+  .fvs-head h2 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+  .fvs-lead {
+    margin: 0 auto;
+    max-width: 28rem;
+    color: var(--text-2, #475569);
+    font-size: 0.95rem;
+  }
+
+  .fvs-stack {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 0.75rem;
+  }
+
+  /* Each slot is tall so sticky pin holds while scrolling */
+  .fvs-slot {
+    position: relative;
+    height: 88vh;
+    min-height: 420px;
+    max-height: 720px;
+  }
+  .fvs-slot:last-child {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding-bottom: 1rem;
+  }
+
+  .fvs-pin {
+    position: sticky;
+    top: 5.5rem; /* under fixed nav */
+    z-index: calc(10 + var(--i, 0));
+  }
+
+  .fvs-card {
+    border-radius: 18px;
+    overflow: hidden;
+    background: #0f172a;
+    box-shadow:
+      0 20px 48px rgba(15, 23, 42, 0.14),
+      0 0 0 1px rgba(15, 23, 42, 0.06);
+    transform: translateY(0);
+    transition: box-shadow 0.35s ease;
+  }
+  .fvs-card.is-playing {
+    box-shadow:
+      0 28px 56px rgba(13, 148, 136, 0.22),
+      0 0 0 2px rgba(13, 148, 136, 0.45);
+  }
+
+  .fvs-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #0f172a;
+  }
+
+  .fvs-poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 1;
+  }
+
+  .fvs-player {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .fvs-player.is-on {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .fvs-player iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .fvs-play {
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #fff;
+    padding: 0;
+  }
+  .fvs-play-ic {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(13, 148, 136, 0.92);
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 10px 28px rgba(13, 148, 136, 0.4);
+    transition: transform 0.25s ease, background 0.25s ease;
+  }
+  .fvs-play:hover .fvs-play-ic {
+    transform: scale(1.08);
+    background: #0D9488;
+  }
+  .fvs-play-txt {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  }
+  .fvs-card.is-playing .fvs-play {
+    display: none;
+  }
+  .fvs-card.is-playing .fvs-poster {
+    opacity: 0;
+  }
+
+  .fvs-meta {
+    position: absolute;
+    z-index: 3;
+    left: 12px;
+    bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    pointer-events: none;
+  }
+  .fvs-num {
+    font-family: var(--font-h, Outfit, system-ui, sans-serif);
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: #fff;
+    background: rgba(15, 23, 42, 0.55);
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    backdrop-filter: blur(8px);
+  }
+  .fvs-tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(13, 148, 136, 0.75);
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+  }
+  .fvs-card.is-playing .fvs-meta {
+    opacity: 0;
+  }
+
+  .fvs-more {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding: 0 1.25rem;
+  }
+
+  @media (max-width: 767px) {
+    .fvs {
+      padding: 1.75rem 0 2rem;
+    }
+    .fvs-slot {
+      height: 78vh;
+      min-height: 280px;
+      max-height: 560px;
+    }
+    .fvs-pin {
+      top: 4.25rem;
+    }
+    .fvs-card {
+      border-radius: 14px;
+    }
+    .fvs-play-ic {
+      width: 56px;
+      height: 56px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fvs-slot {
+      height: auto;
+      min-height: 0;
+      max-height: none;
+      margin-bottom: 1rem;
+    }
+    .fvs-pin {
+      position: relative;
+      top: 0;
+    }
+  }
+</style>
+
+<script is:inline>
+(function () {
+  var root = document.querySelector('[data-fvs]');
+  if (!root) return;
+
+  var cards = Array.prototype.slice.call(root.querySelectorAll('.fvs-card[data-vid]'));
+  var active = null;
+
+  function stopAll(except) {
+    cards.forEach(function (card) {
+      if (except && card === except) return;
+      var player = card.querySelector('[data-player]');
+      if (player) {
+        player.classList.remove('is-on');
+        player.innerHTML = '';
+      }
+      card.classList.remove('is-playing');
+    });
+  }
+
+  function play(card) {
+    var id = card.getAttribute('data-vid');
+    var player = card.querySelector('[data-player]');
+    if (!id || !player) return;
+
+    stopAll(card);
+    active = card;
+    card.classList.add('is-playing');
+
+    /* Sound ON — no mute. User click allows audio in browsers. */
+    var src =
+      'https://www.youtube-nocookie.com/embed/' + id +
+      '?autoplay=1&rel=0&playsinline=1&modestbranding=1&iv_load_policy=3' +
+      '&origin=' + encodeURIComponent(location.origin || '');
+
+    player.innerHTML =
+      '<iframe src="' + src + '" title="Video" ' +
+      'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+      'allowfullscreen loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+    player.classList.add('is-on');
+  }
+
+  cards.forEach(function (card) {
+    var btn = card.querySelector('[data-play]');
+    if (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        play(card);
+      });
+    }
+    /* Also allow click on poster area */
+    card.addEventListener('click', function (e) {
+      if (card.classList.contains('is-playing')) return;
+      if (e.target.closest('[data-play]') || e.target.closest('iframe')) return;
+      play(card);
+    });
+  });
+
+  /* Pause when off-screen to save bandwidth */
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting && en.target.classList.contains('is-playing')) {
+            stopAll(null);
+            active = null;
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    cards.forEach(function (c) { io.observe(c); });
+  }
+})();
+</script>

@@ -4,7 +4,7 @@ import TopBar from '../components/TopBar.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import Reviews from '../components/Reviews.astro';
-import VideoGallery from '../components/VideoGallery.astro';
+import FeaturedVideoStack from '../components/FeaturedVideoStack.astro';
 import BrandStrip from '../components/BrandStrip.astro';
 import FAQ from '../components/FAQ.astro';
 import ProcessFlow from '../components/ProcessFlow.astro';
@@ -53,7 +53,7 @@ const services = [
         </p>
 
         <div class="flex-btns">
-          <a href="#services" class="btn btn-primary">Explore Services</a>
+          <a href="#featured-videos" class="btn btn-primary">Watch Videos</a>
           <a href={SITE.whatsappLink} class="btn btn-outline" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
 
@@ -76,6 +76,9 @@ const services = [
 
   <BrandStrip />
 
+  <!-- 6 large landscape videos — sticky stack, sound on click -->
+  <FeaturedVideoStack />
+
   <section id="services" class="section-soft">
     <div class="container">
       <div class="text-center mb-8 reveal">
@@ -96,8 +99,6 @@ const services = [
   </section>
 
   <ProcessFlow />
-
-  <VideoGallery />
 
   <section id="about" class="section-violet">
     <div class="container grid-2">

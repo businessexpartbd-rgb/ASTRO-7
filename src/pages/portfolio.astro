@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TopBar from '../components/TopBar.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import VideoGallery from '../components/VideoGallery.astro';
+import { SITE } from '../data/site';
+---
+<Layout
+  title={`Video Portfolio | ${SITE.brand}`}
+  description="Full video portfolio — cinematic films, AI product ads, financial campaigns and custom projects by Creavix iT Solution."
+>
+  <TopBar />
+  <Nav active="portfolio" />
+
+  <section class="port-hero">
+    <div class="container text-center">
+      <p class="eyebrow" style="margin:0 auto 1rem">Portfolio</p>
+      <h1 class="mb-4">All Video Work</h1>
+      <p style="max-width:36rem;margin:0 auto;color:var(--text-2)">
+        AI product ads, financial campaigns, brand films and custom projects — play any clip with sound.
+      </p>
+    </div>
+  </section>
+
+  <VideoGallery excludeCinematic={false} portfolioMode={true} />
+
+  <Footer />
+</Layout>
+
+<style>
+  .port-hero {
+    padding: 3.5rem 1.25rem 1.5rem;
+    background: linear-gradient(180deg, #F8FAFC, #fff);
+  }
+  .port-hero h1 {
+    font-size: clamp(1.75rem, 4vw, 2.35rem);
+    margin: 0 0 0.75rem;
+  }
+</style>
