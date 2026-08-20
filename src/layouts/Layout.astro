@@ -11,10 +11,10 @@ const {
   description = SITE.seoDescription,
 } = Astro.props;
 
-// Always prefer production domain (never localhost in meta tags)
 const pathWithSearch = Astro.url.pathname + Astro.url.search;
 const canonical = new URL(pathWithSearch || '/', SITE.url).href;
 const favVersion = '20260821f2';
+const perfV = '20260821p1';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -66,13 +66,21 @@ const jsonLd = {
     <meta name="googlebot" content="index, follow" />
     <link rel="canonical" href={canonical} />
 
-    <!-- Favicon: colorful CX (matches creavixit.shop style) -->
+    <!-- Speed: early connections -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://i.ytimg.com" />
+    <link rel="dns-prefetch" href="https://www.youtube-nocookie.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href={`/favicon.svg?v=${favVersion}`} />
     <link rel="icon" type="image/png" href={`/favicon.png?v=${favVersion}`} sizes="48x48" />
     <link rel="icon" type="image/png" href={`/favicon-32.png?v=${favVersion}`} sizes="32x32" />
     <link rel="apple-touch-icon" href={`/apple-touch-icon.png?v=${favVersion}`} />
     <link rel="shortcut icon" href={`/favicon.ico?v=${favVersion}`} />
-    <link rel="alternate icon" href={`/favicon.svg?v=${favVersion}`} />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.brand} />
@@ -86,20 +94,18 @@ const jsonLd = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={`${SITE.url}/logo.png`} />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Fonts: non-blocking -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
     <noscript>
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
     </noscript>
+
+    <link rel="stylesheet" href={`/perf.css?v=${perfV}`} />
     <link rel="stylesheet" href="/layout-restore.css?v=20260821center6" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    <script src="/js/perf.js" defer></script>
+    <script src={`/js/perf.js?v=${perfV}`} defer></script>
+
     <style is:global>
       :root {
         --primary: #2563EB;
@@ -164,7 +170,7 @@ const jsonLd = {
                   io.unobserve(e.target);
                 }
               });
-            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
             reveals.forEach(function (el) { io.observe(el); });
           } else {
             reveals.forEach(function (el) { el.classList.add('visible'); });

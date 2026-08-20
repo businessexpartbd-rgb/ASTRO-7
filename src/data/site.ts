@@ -87,4 +87,6 @@ export const STATS = [
   { value: '24-48h', label: 'Delivery', sub: 'Fast turnaround' },
 ] as const;
 
-export const ytThumb = (id: string) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+/** YouTube thumb — mqdefault is lighter (~shorter bytes) for grids; hq for hero */
+export const ytThumb = (id: string, quality: 'mq' | 'hq' | 'sd' = 'mq') =>
+  `https://i.ytimg.com/vi/${id}/${quality === 'hq' ? 'hqdefault' : quality === 'sd' ? 'sddefault' : 'mqdefault'}.jpg`;
