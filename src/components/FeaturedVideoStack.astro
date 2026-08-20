@@ -1,8 +1,8 @@
 ---
 /**
  * Homepage featured videos — 6 YouTube landscape clips.
- * Vertical sticky stack (scroll → pin → next folds over).
- * Full 16:9. Click plays WITH SOUND. One player at a time.
+ * Vertical sticky stack. Full-bleed 16:9 player (desktop + mobile).
+ * Click plays WITH SOUND. One at a time.
  */
 import { SHOWCASES, ytThumb } from '../data/site';
 
@@ -18,7 +18,7 @@ const videos = cinematic.ids.map((id, i) => ({
   <div class="container fvs-head">
     <p class="eyebrow">Featured Work</p>
     <h2>Cinematic Videos</h2>
-    <p class="fvs-lead">Scroll — each film pins, then the next folds over. Tap any card to play with sound.</p>
+    <p class="fvs-lead">Scroll — each film pins, then the next folds over. Tap to play full size with sound.</p>
   </div>
 
   <div class="fvs-stack">
@@ -26,6 +26,7 @@ const videos = cinematic.ids.map((id, i) => ({
       <div class="fvs-slot" style={`--i:${i}`}>
         <div class="fvs-pin">
           <article class="fvs-card" data-vid={v.id} data-i={String(i)}>
+            <!-- padding-bottom box = reliable full 16:9 on all browsers -->
             <div class="fvs-frame" data-frame>
               <img
                 class="fvs-poster"
@@ -81,41 +82,61 @@ const videos = cinematic.ids.map((id, i) => ({
     font-size: 0.95rem;
   }
 
+  /* Full available width on both desktop and mobile */
   .fvs-stack {
-    max-width: 920px;
+    width: 100%;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 0.75rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
   }
 
-  /* Each slot is tall so sticky pin holds while scrolling */
   .fvs-slot {
     position: relative;
-    height: 88vh;
-    min-height: 420px;
-    max-height: 720px;
-  }
-  .fvs-slot:last-child {
+    /* Only as tall as the video + small gap — no giant empty dark box */
     height: auto;
-    min-height: 0;
-    max-height: none;
-    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  /* Sticky stack: use min-height only while scrolling between cards */
+  @media (min-width: 768px) {
+    .fvs-slot {
+      height: calc(56.25vw * 0.85 + 2rem);
+      max-height: 640px;
+      min-height: 360px;
+      margin-bottom: 0;
+    }
+    .fvs-slot:last-child {
+      height: auto;
+      min-height: 0;
+      max-height: none;
+      margin-bottom: 0;
+      padding-bottom: 0.5rem;
+    }
   }
 
   .fvs-pin {
-    position: sticky;
-    top: 5.5rem; /* under fixed nav */
+    position: relative;
     z-index: calc(10 + var(--i, 0));
+  }
+  @media (min-width: 768px) {
+    .fvs-pin {
+      position: sticky;
+      top: 5.5rem;
+    }
   }
 
   .fvs-card {
-    border-radius: 18px;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 16px;
     overflow: hidden;
-    background: #0f172a;
+    background: #000;
     box-shadow:
       0 20px 48px rgba(15, 23, 42, 0.14),
       0 0 0 1px rgba(15, 23, 42, 0.06);
-    transform: translateY(0);
-    transition: box-shadow 0.35s ease;
+    /* Never stretch taller than the 16:9 frame */
+    height: auto;
+    line-height: 0;
   }
   .fvs-card.is-playing {
     box-shadow:
@@ -123,40 +144,55 @@ const videos = cinematic.ids.map((id, i) => ({
       0 0 0 2px rgba(13, 148, 136, 0.45);
   }
 
+  /*
+   * Classic responsive 16:9 box — works everywhere.
+   * Frame is ONLY this size; no extra dark area below/side.
+   */
   .fvs-frame {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #0f172a;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 */
+    background: #000;
+    overflow: hidden;
+  }
+
+  .fvs-poster,
+  .fvs-player,
+  .fvs-player iframe {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    border: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
   }
 
   .fvs-poster {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
     object-fit: cover;
-    display: block;
     z-index: 1;
   }
 
   .fvs-player {
-    position: absolute;
-    inset: 0;
     z-index: 2;
     opacity: 0;
     pointer-events: none;
+    background: #000;
   }
   .fvs-player.is-on {
     opacity: 1;
     pointer-events: auto;
   }
+
   .fvs-player iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
+    z-index: 1;
+    /* Force YouTube to fill the box edge-to-edge */
+    object-fit: cover;
   }
 
   .fvs-play {
@@ -199,10 +235,11 @@ const videos = cinematic.ids.map((id, i) => ({
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
   }
   .fvs-card.is-playing .fvs-play {
-    display: none;
+    display: none !important;
   }
   .fvs-card.is-playing .fvs-poster {
     opacity: 0;
+    pointer-events: none;
   }
 
   .fvs-meta {
@@ -243,20 +280,27 @@ const videos = cinematic.ids.map((id, i) => ({
     padding: 0 1.25rem;
   }
 
+  /* Mobile: edge-to-edge within safe padding, full width of device */
   @media (max-width: 767px) {
     .fvs {
-      padding: 1.75rem 0 2rem;
+      padding: 1.5rem 0 2rem;
+    }
+    .fvs-stack {
+      padding: 0 0.5rem;
+      max-width: 100%;
     }
     .fvs-slot {
-      height: 78vh;
-      min-height: 280px;
-      max-height: 560px;
+      height: auto !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      margin-bottom: 0.85rem;
     }
     .fvs-pin {
-      top: 4.25rem;
+      position: relative !important;
+      top: 0 !important;
     }
     .fvs-card {
-      border-radius: 14px;
+      border-radius: 12px;
     }
     .fvs-play-ic {
       width: 56px;
@@ -266,14 +310,14 @@ const videos = cinematic.ids.map((id, i) => ({
 
   @media (prefers-reduced-motion: reduce) {
     .fvs-slot {
-      height: auto;
-      min-height: 0;
-      max-height: none;
+      height: auto !important;
+      min-height: 0 !important;
+      max-height: none !important;
       margin-bottom: 1rem;
     }
     .fvs-pin {
-      position: relative;
-      top: 0;
+      position: relative !important;
+      top: 0 !important;
     }
   }
 </style>
@@ -284,7 +328,6 @@ const videos = cinematic.ids.map((id, i) => ({
   if (!root) return;
 
   var cards = Array.prototype.slice.call(root.querySelectorAll('.fvs-card[data-vid]'));
-  var active = null;
 
   function stopAll(except) {
     cards.forEach(function (card) {
@@ -304,19 +347,24 @@ const videos = cinematic.ids.map((id, i) => ({
     if (!id || !player) return;
 
     stopAll(card);
-    active = card;
     card.classList.add('is-playing');
 
-    /* Sound ON — no mute. User click allows audio in browsers. */
+    /* Full-size embed + sound (no mute). User gesture required for audio. */
     var src =
       'https://www.youtube-nocookie.com/embed/' + id +
       '?autoplay=1&rel=0&playsinline=1&modestbranding=1&iv_load_policy=3' +
       '&origin=' + encodeURIComponent(location.origin || '');
 
     player.innerHTML =
-      '<iframe src="' + src + '" title="Video" ' +
+      '<iframe ' +
+      'src="' + src + '" ' +
+      'title="Video" ' +
+      'width="1280" height="720" ' +
+      'style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" ' +
       'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
-      'allowfullscreen loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+      'allowfullscreen ' +
+      'loading="eager" ' +
+      'referrerpolicy="strict-origin-when-cross-origin"></iframe>';
     player.classList.add('is-on');
   }
 
@@ -329,7 +377,6 @@ const videos = cinematic.ids.map((id, i) => ({
         play(card);
       });
     }
-    /* Also allow click on poster area */
     card.addEventListener('click', function (e) {
       if (card.classList.contains('is-playing')) return;
       if (e.target.closest('[data-play]') || e.target.closest('iframe')) return;
@@ -337,18 +384,16 @@ const videos = cinematic.ids.map((id, i) => ({
     });
   });
 
-  /* Pause when off-screen to save bandwidth */
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (en) {
           if (!en.isIntersecting && en.target.classList.contains('is-playing')) {
             stopAll(null);
-            active = null;
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.12 }
     );
     cards.forEach(function (c) { io.observe(c); });
   }
