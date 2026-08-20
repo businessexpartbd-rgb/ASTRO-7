@@ -4,106 +4,150 @@ import TopBar from '../components/TopBar.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ServiceIcons from '../components/icons/ServiceIcons.astro';
+import ServiceHeroVisual from '../components/ServiceHeroVisual.astro';
 import { SITE, STATS, SOCIAL_LINKS } from '../data/site';
 
 const pillars = [
-  { icon: 'video', title: 'Video & AI', desc: 'Cinematic edits and human-like AI videos built for ads and social.' },
-  { icon: 'web', title: 'Web & Apps', desc: 'SEO-ready websites and applications engineered for speed and scale.' },
-  { icon: 'campaign', title: 'Growth', desc: 'Facebook pages, boosting and campaigns that drive measurable results.' },
+  { icon: 'video', title: 'Video & AI', desc: 'Cinematic edits and human-like AI videos for ads, Reels and YouTube — local and export-ready.' },
+  { icon: 'web', title: 'Web & Apps', desc: 'SEO-ready sites and applications for Bangladesh businesses and remote international clients.' },
+  { icon: 'campaign', title: 'Growth', desc: 'Facebook pages, boosting, campaigns and automation that turn attention into messages.' },
+];
+
+const markets = [
+  { t: 'Bangladesh', d: 'Savar–Dhaka studio · Facebook-first sellers · Bangla/English creatives · local payment & delivery culture.' },
+  { t: 'Global', d: 'English reporting · remote collaboration · ads and websites that meet international brand standards.' },
+];
+
+const faqs = [
+  { q: 'Creavix কী করে?', a: 'ভিডিও এডিটিং, AI ভিডিও মার্কেটিং, ওয়েব/অ্যাপ, অথেন্টিকেশন, ফেসবুক পেজ, বুস্টিং, ক্যাম্পেইন, অটোমেশন ও SEO — এক পার্টনার থেকে।' },
+  { q: 'কোথায় অবস্থিত?', a: `${SITE.address} (${SITE.addressBn}). রিমোট ক্লায়েন্টও সাপোর্ট করা হয়।` },
+  { q: 'ডেলিভারি কত দ্রুত?', a: 'অনেক ভিডিও প্রজেক্ট ২৪–৪৮ ঘণ্টার টার্নঅ্যারাউন্ড টার্গেট — স্কোপ অনুযায়ী নিশ্চিত করা হয়।' },
 ];
 ---
+
 <Layout
   title={`About ${SITE.brand} | Video Editing & IT Agency Bangladesh`}
-  description={`About ${SITE.brand} — video editing agency and full IT partner in Savar, Dhaka. AI video, professional editing, web, apps and Meta growth since ${SITE.servingSince}. Founder ${SITE.founder.name}.`}
+  description={`About ${SITE.brand} — video & IT agency in Savar, Dhaka since ${SITE.servingSince}. AI video, editing, web, apps and growth for BD and global clients. Founder ${SITE.founder.name}.`}
 >
   <TopBar />
   <Nav active="about" />
 
-  <section class="page-hero">
-    <div class="container page-hero-inner">
+  <section class="ab-hero">
+    <div class="container ab-grid">
       <div class="reveal">
-        <div class="rating-pill">
-          <span class="rating-score">4.8</span>
-          <span class="rating-stars">★★★★★</span>
-          <span class="rating-label">Since {SITE.servingSince}</span>
+        <p class="ab-eye">About · Since {SITE.servingSince}</p>
+        <h1>Video &amp; IT agency built for Bangladesh and beyond</h1>
+        <p class="ab-sub">{SITE.shortDesc}</p>
+        <div class="ab-actions">
+          <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn btn-outline" href="/portfolio">Portfolio</a>
         </div>
-        <h1 class="hero-title">
-          Video &amp; IT Agency<br /><span class="text-gradient">Built for Growth</span>
-        </h1>
-        <p class="hero-lead">{SITE.shortDesc}</p>
+      </div>
+      <div class="reveal">
+        <ServiceHeroVisual variant="it" />
       </div>
     </div>
   </section>
 
-  <section class="section-soft">
+  <section class="ab-sec">
     <div class="container">
-      <div class="text-center mb-8 reveal">
-        <p class="eyebrow" style="margin:0 auto 1rem">What we stand for</p>
-        <h2 class="mb-4">One partner. Full digital stack.</h2>
+      <div class="ab-center reveal">
+        <p class="ab-eye">What we stand for</p>
+        <h2>One partner. Full digital stack.</h2>
       </div>
-      <div class="grid-3">
+      <div class="ab-cards">
         {pillars.map((p) => (
-          <div class="glass-card reveal">
-            <div style="margin-bottom:0.75rem"><ServiceIcons name={p.icon} size={36} /></div>
-            <h3 class="mb-4">{p.title}</h3>
-            <p style="font-size:.9rem">{p.desc}</p>
-          </div>
+          <article class="ab-card reveal">
+            <div class="ab-ico"><ServiceIcons name={p.icon} size={36} /></div>
+            <h3>{p.title}</h3>
+            <p>{p.desc}</p>
+          </article>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="section-violet">
-    <div class="container grid-2">
+  <section class="ab-sec ab-muted">
+    <div class="container ab-split">
       <div class="reveal">
-        <h2 class="mb-6">Who We Are</h2>
-        <p class="mb-4">
-          {SITE.brand} delivers professional video editing, human-like AI video marketing, website development,
-          application build, secure authentication, Facebook page services, boosting and full campaigns.
+        <p class="ab-eye">Who we are</p>
+        <h2>{SITE.brand}</h2>
+        <p>
+          We deliver professional video editing, human-like AI video marketing, websites, applications,
+          authentication, Facebook page services, boosting, campaigns and automation.
         </p>
-        <p class="mb-4">
+        <p>
           Founded by <strong>{SITE.founder.name}</strong> ({SITE.founder.role}). Serving clients since {SITE.servingSince}
           from our studio in {SITE.address}.
         </p>
-        <p>We focus on quality delivery, fast turnaround and measurable business results.</p>
+        <p>Quality delivery, clear communication and measurable results — for local shops and international brands.</p>
       </div>
-      <div class="reveal">
-        <div class="glass-card" style="padding:2rem">
-          <h3 class="mb-6">By the numbers</h3>
-          <div class="stat-grid">
-            {STATS.map((s) => (
-              <div>
-                <strong style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">{s.value}</strong>
-                <br />
-                <span style="font-size:.8rem;color:var(--text-3)">{s.label}</span>
-              </div>
-            ))}
-          </div>
+      <div class="ab-stats reveal">
+        <h3>By the numbers</h3>
+        <div class="ab-stat-grid">
+          {STATS.map((s) => (
+            <div class="ab-stat">
+              <strong>{s.value}</strong>
+              <span>{s.label}</span>
+              <small>{s.sub}</small>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section-soft">
-    <div class="container reveal" style="max-width:40rem">
-      <h2 class="mb-4">Connect with us</h2>
-      <div style="display:flex;flex-wrap:wrap;gap:.65rem">
-        {SOCIAL_LINKS.map((s) => (
-          <a href={s.url} target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:.55rem 1rem;font-size:.85rem">
-            {s.name}
-          </a>
+  <section class="ab-sec">
+    <div class="container">
+      <div class="ab-center reveal">
+        <p class="ab-eye">Markets</p>
+        <h2>Local depth · Global standard</h2>
+      </div>
+      <div class="ab-markets">
+        {markets.map((m) => (
+          <article class="ab-market reveal">
+            <h3>{m.t}</h3>
+            <p>{m.d}</p>
+          </article>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="section-warm">
-    <div class="container text-center reveal" style="max-width:40rem">
-      <h2 class="mb-4">Work With Us</h2>
-      <p class="mb-8">Need video, AI creatives, a website or a full digital campaign? Message us.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center">
-        <a href={SITE.whatsappLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-        <a href="/contact" class="btn btn-outline">Contact page</a>
+  <section class="ab-sec ab-muted">
+    <div class="container ab-faq-wrap">
+      <div class="ab-center reveal"><p class="ab-eye">FAQ</p><h2>Quick answers</h2></div>
+      <div class="reveal">
+        {faqs.map((f) => (
+          <details class="ab-faq">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="ab-sec">
+    <div class="container reveal">
+      <h2 class="ab-social-title">Connect</h2>
+      <div class="ab-socials">
+        {SOCIAL_LINKS.map((s) => (
+          <a href={s.url} target="_blank" rel="noopener noreferrer" class="btn btn-outline">{s.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="ab-cta">
+    <div class="container ab-cta-inner reveal">
+      <div>
+        <h2>Work with Creavix</h2>
+        <p>Video, AI, web or full growth stack — message us.</p>
+      </div>
+      <div class="ab-actions">
+        <a class="btn btn-light" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a class="btn btn-ghost" href="/contact">Contact</a>
       </div>
     </div>
   </section>
@@ -111,27 +155,119 @@ const pillars = [
 </Layout>
 
 <style>
-  .page-hero {
-    padding: 5.5rem 1.25rem 3.25rem;
+  .ab-hero {
+    padding: 5rem 1.25rem 3rem;
     background:
-      radial-gradient(ellipse 60% 50% at 85% 30%, rgba(13, 148, 136, 0.08), transparent 55%),
-      linear-gradient(180deg, #fff, #F7F8FA);
+      radial-gradient(ellipse 50% 40% at 90% 10%, rgba(37, 99, 235, 0.1), transparent 55%),
+      linear-gradient(180deg, #fff, #F8FAFC);
   }
-  .page-hero-inner { max-width: 720px; }
-  .rating-pill {
-    display: inline-flex;
+  .ab-grid {
+    display: grid;
+    gap: 2rem;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.35rem 0.85rem;
-    border-radius: 999px;
-    background: #fff;
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
-    margin-bottom: 1.15rem;
-    font-size: 0.8rem;
-    font-weight: 600;
   }
-  .rating-score { color: #0B1220; }
-  .rating-stars { color: #F59E0B; font-size: 0.75rem; letter-spacing: 1px; }
-  .rating-label { color: #64748B; font-weight: 500; }
+  @media (min-width: 900px) {
+    .ab-grid { grid-template-columns: 1.1fr 0.9fr; }
+  }
+  .ab-eye {
+    margin: 0 0 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #2563EB;
+  }
+  .ab-hero h1, .ab-center h2, .ab-split h2, .ab-cta h2, .ab-social-title {
+    font-family: Outfit, system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #0B0F19;
+    margin: 0 0 0.5rem;
+  }
+  .ab-hero h1 { font-size: clamp(1.7rem, 4vw, 2.45rem); line-height: 1.12; }
+  .ab-sub { margin: 0 0 1.25rem; color: #475569; line-height: 1.65; max-width: 34rem; }
+  .ab-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+  .ab-sec { padding: 3rem 1.25rem; background: #fff; }
+  .ab-muted { background: #F8FAFC; }
+  .ab-center { text-align: center; max-width: 36rem; margin: 0 auto 1.75rem; }
+  .ab-center h2 { font-size: clamp(1.35rem, 3vw, 1.8rem); }
+  .ab-cards {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 700px) { .ab-cards { grid-template-columns: 1fr 1fr 1fr; } }
+  .ab-card {
+    background: #F8FAFC;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: 16px;
+    padding: 1.35rem 1.2rem;
+  }
+  .ab-ico { margin-bottom: 0.65rem; }
+  .ab-card h3 { margin: 0 0 0.4rem; font-size: 1.05rem; font-weight: 800; }
+  .ab-card p { margin: 0; font-size: 0.9rem; color: #64748B; line-height: 1.55; }
+  .ab-split {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 800px) { .ab-split { grid-template-columns: 1.15fr 0.85fr; } }
+  .ab-split p { color: #475569; line-height: 1.65; }
+  .ab-stats {
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: 18px;
+    padding: 1.5rem;
+  }
+  .ab-stats h3 { margin: 0 0 1rem; font-size: 1.05rem; font-weight: 800; }
+  .ab-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .ab-stat strong { display: block; font-size: 1.4rem; color: #2563EB; font-family: Outfit, system-ui, sans-serif; }
+  .ab-stat span { font-size: 0.85rem; font-weight: 600; color: #0B0F19; }
+  .ab-stat small { display: block; font-size: 0.75rem; color: #94A3B8; }
+  .ab-markets { display: grid; gap: 1rem; }
+  @media (min-width: 700px) { .ab-markets { grid-template-columns: 1fr 1fr; } }
+  .ab-market {
+    background: #F8FAFC;
+    border-radius: 16px;
+    padding: 1.35rem;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+  }
+  .ab-market h3 { margin: 0 0 0.4rem; font-weight: 800; color: #2563EB; }
+  .ab-market p { margin: 0; color: #64748B; font-size: 0.92rem; line-height: 1.55; }
+  .ab-faq-wrap { max-width: 640px; }
+  .ab-faq {
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 12px;
+    padding: 0.2rem 1rem;
+    background: #fff;
+    margin-bottom: 0.55rem;
+  }
+  .ab-faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0.85rem 0;
+    list-style: none;
+  }
+  .ab-faq summary::-webkit-details-marker { display: none; }
+  .ab-faq p { margin: 0 0 0.9rem; color: #64748B; font-size: 0.92rem; line-height: 1.6; }
+  .ab-social-title { font-size: 1.25rem; margin-bottom: 1rem !important; }
+  .ab-socials { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+  .ab-cta {
+    padding: 2.75rem 1.25rem;
+    background: linear-gradient(135deg, #1E3A8A, #2563EB);
+    color: #fff;
+  }
+  .ab-cta-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .ab-cta h2 { color: #fff; font-size: clamp(1.25rem, 3vw, 1.65rem); }
+  .ab-cta p { margin: 0; opacity: 0.95; }
+  .btn-light { background: #fff; color: #1E40AF; border: none; }
+  .btn-ghost {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+  }
 </style>

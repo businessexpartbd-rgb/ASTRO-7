@@ -3,38 +3,319 @@ import Layout from '../layouts/Layout.astro';
 import TopBar from '../components/TopBar.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import VideoGallery from '../components/VideoGallery.astro';
-import { SITE } from '../data/site';
+import { SITE, SHOWCASES, ytThumb } from '../data/site';
+
+const seoTitle = `Video Portfolio | AI Ads, Brand Films & Campaigns — ${SITE.brand}`;
+const seoDescription =
+  'Watch Creavix iT portfolio — cinematic films, AI product ads, financial campaigns and custom video projects for Bangladesh and global brands.';
 ---
-<Layout
-  title={`Video Portfolio | ${SITE.brand}`}
-  description="Full video portfolio — cinematic films, AI product ads, financial campaigns and custom projects by Creavix iT Solution."
->
+
+<Layout title={seoTitle} description={seoDescription}>
   <TopBar />
   <Nav active="portfolio" />
 
-  <section class="port-hero">
-    <div class="container text-center">
-      <p class="eyebrow" style="margin:0 auto 1rem">Portfolio</p>
-      <h1 class="mb-4">All Video Work</h1>
-      <p style="max-width:36rem;margin:0 auto;color:var(--text-2)">
-        AI product ads, financial campaigns, brand films and custom projects — play any clip with sound.
-      </p>
+  <section class="pf-hero">
+    <div class="container pf-hero-inner">
+      <div class="reveal">
+        <p class="pf-eye">Portfolio</p>
+        <h1>Work that sells on screen</h1>
+        <p class="pf-sub">
+          Cinematic stories, AI product ads, fintech creatives and custom campaigns —
+          built for Bangladesh marketplaces and international brands. Tap any card to open on YouTube.
+        </p>
+        <div class="pf-actions">
+          <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Request similar work</a>
+          <a class="btn btn-outline" href="/services/video-editing">Video editing</a>
+        </div>
+      </div>
+      <div class="pf-hero-mosaic reveal" aria-hidden="true">
+        {SHOWCASES[0].ids.slice(0, 4).map((id, i) => (
+          <div class={`pf-mosaic-item m${i + 1}`}>
+            <img src={ytThumb(id)} alt="" loading="lazy" width="320" height="180" />
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
-  <VideoGallery excludeCinematic={false} portfolioMode={true} />
+  <section class="pf-sec">
+    <div class="container">
+      <div class="pf-filters reveal" role="tablist" aria-label="Portfolio categories">
+        <a class="pf-filter active" href="#all">All</a>
+        {SHOWCASES.map((c) => (
+          <a class="pf-filter" href={`#${c.id}`}>{c.title}</a>
+        ))}
+      </div>
 
+      <div id="all"></div>
+      {SHOWCASES.map((cat) => (
+        <div class="pf-block" id={cat.id}>
+          <div class="pf-block-head reveal">
+            <div>
+              <p class="pf-eye">{cat.titleBn}</p>
+              <h2>{cat.title}</h2>
+              <p class="pf-lead">{cat.sub}</p>
+            </div>
+            <details class="pf-explain">
+              <summary>Details</summary>
+              <p>
+                Format: <strong>{cat.format === 'landscape' ? '16:9 landscape' : 'Vertical / short'}</strong>.
+                Ideal for {cat.format === 'landscape' ? 'YouTube, website hero and long-form ads' : 'Reels, Stories, TikTok and feed ads'}.
+                Ask us for a similar pack tailored to your product.
+              </p>
+            </details>
+          </div>
+          <div class={`pf-grid ${cat.format === 'short' ? 'pf-grid-short' : ''}`}>
+            {cat.ids.map((id) => (
+              <a
+                class="pf-card reveal"
+                href={`https://www.youtube.com/watch?v=${id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="pf-thumb">
+                  <img src={ytThumb(id)} alt={`${cat.title} sample`} loading="lazy" width="480" height="360" />
+                  <span class="pf-play" aria-hidden="true">▶</span>
+                </div>
+                <div class="pf-card-meta">
+                  <span>{cat.title}</span>
+                  <span class="pf-open">Watch →</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="pf-cta">
+    <div class="container pf-cta-inner reveal">
+      <div>
+        <h2>Need a pack like these?</h2>
+        <p>Bangladesh + international creatives · WhatsApp {SITE.whatsapp}</p>
+      </div>
+      <div class="pf-actions">
+        <a class="btn btn-light" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a class="btn btn-ghost" href="/contact">Contact</a>
+      </div>
+    </div>
+  </section>
   <Footer />
 </Layout>
 
 <style>
-  .port-hero {
-    padding: 3.5rem 1.25rem 1.5rem;
-    background: linear-gradient(180deg, #F8FAFC, #fff);
+  .pf-hero {
+    padding: 5rem 1.25rem 2.5rem;
+    background:
+      radial-gradient(ellipse 50% 40% at 90% 10%, rgba(37, 99, 235, 0.12), transparent 55%),
+      linear-gradient(180deg, #fff, #F8FAFC);
   }
-  .port-hero h1 {
-    font-size: clamp(1.75rem, 4vw, 2.35rem);
+  .pf-hero-inner {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .pf-hero-inner { grid-template-columns: 1.1fr 0.9fr; gap: 2.5rem; }
+  }
+  .pf-eye {
+    margin: 0 0 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #2563EB;
+  }
+  .pf-hero h1 {
     margin: 0 0 0.75rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #0B0F19;
+  }
+  .pf-sub {
+    margin: 0 0 1.25rem;
+    color: #475569;
+    line-height: 1.65;
+    max-width: 34rem;
+  }
+  .pf-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+
+  .pf-hero-mosaic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+  .pf-mosaic-item {
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+  }
+  .pf-mosaic-item.m1 { transform: translateY(8px); }
+  .pf-mosaic-item.m4 { transform: translateY(-8px); }
+  .pf-mosaic-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .pf-sec { padding: 2rem 1.25rem 3.5rem; background: #fff; }
+  .pf-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 2rem;
+    position: sticky;
+    top: 64px;
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    padding: 0.65rem 0;
+  }
+  .pf-filter {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.4rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    color: #475569;
+    text-decoration: none;
+    background: #fff;
+  }
+  .pf-filter.active, .pf-filter:hover {
+    background: #EFF6FF;
+    border-color: rgba(37, 99, 235, 0.35);
+    color: #1D4ED8;
+  }
+
+  .pf-block { margin-bottom: 3rem; scroll-margin-top: 100px; }
+  .pf-block-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+  }
+  .pf-block-head h2 {
+    margin: 0 0 0.35rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+    font-weight: 800;
+  }
+  .pf-lead { margin: 0; color: #64748B; font-size: 0.95rem; max-width: 36rem; }
+  .pf-explain {
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 12px;
+    padding: 0.35rem 0.85rem;
+    background: #F8FAFC;
+    max-width: 280px;
+    font-size: 0.85rem;
+  }
+  .pf-explain summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: #2563EB;
+    list-style: none;
+  }
+  .pf-explain summary::-webkit-details-marker { display: none; }
+  .pf-explain p { margin: 0.5rem 0 0.65rem; color: #64748B; line-height: 1.5; }
+
+  .pf-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 600px) {
+    .pf-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 960px) {
+    .pf-grid { grid-template-columns: 1fr 1fr 1fr; }
+    .pf-grid-short { grid-template-columns: repeat(3, 1fr); }
+  }
+  .pf-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .pf-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(37, 99, 235, 0.12);
+  }
+  .pf-thumb {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: #0B1220;
+    overflow: hidden;
+  }
+  .pf-grid-short .pf-thumb { aspect-ratio: 9 / 14; max-height: 320px; }
+  .pf-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .pf-play {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    color: #2563EB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 800;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    opacity: 0.95;
+  }
+  .pf-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0.9rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #475569;
+  }
+  .pf-open { color: #2563EB; }
+
+  .pf-cta {
+    padding: 2.75rem 1.25rem;
+    background: linear-gradient(135deg, #1E3A8A, #2563EB);
+    color: #fff;
+  }
+  .pf-cta-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .pf-cta h2 {
+    margin: 0 0 0.35rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.25rem, 3vw, 1.65rem);
+    font-weight: 800;
+  }
+  .pf-cta p { margin: 0; opacity: 0.95; }
+  .btn-light { background: #fff; color: #1E40AF; border: none; }
+  .btn-ghost {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
   }
 </style>

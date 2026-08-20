@@ -11,19 +11,24 @@ import ProcessFlow from '../components/ProcessFlow.astro';
 import IconBox from '../components/IconBox.astro';
 import ServiceIcons from '../components/icons/ServiceIcons.astro';
 import HeroBookReel from '../components/HeroBookReel.astro';
-import { SITE } from '../data/site';
+import { SITE, SHOWCASES, ytThumb } from '../data/site';
 
 const services = [
-  { href: '/services/video-editing', name: 'video', title: 'Video Editing', desc: 'Professional editing for ads, social, YouTube and brand films — cinematic grade.', tone: 'rgba(37,99,235,.08)' },
-  { href: '/services/ai-video-marketing', name: 'ai', title: 'AI Video Marketing', desc: 'Human-like AI video ads engineered for Meta, YouTube and TikTok conversion.', tone: 'rgba(15,23,42,.05)' },
-  { href: '/services/human-like-content', name: 'human', title: 'Human-like Content', desc: 'Authentic AI human & product visuals that feel real and convert.', tone: 'rgba(37,99,235,.08)' },
-  { href: '/services/web-development', name: 'web', title: 'Web Development', desc: 'Fast, SEO-ready websites and landing pages built for ranking and growth.', tone: 'rgba(15,23,42,.05)' },
-  { href: '/services/application-build', name: 'app', title: 'Application Build', desc: 'Custom web & mobile applications designed for performance and scale.', tone: 'rgba(37,99,235,.08)' },
-  { href: '/services/authentication', name: 'auth', title: 'Authentication Systems', desc: 'Secure login, roles and access control for modern products.', tone: 'rgba(15,23,42,.05)' },
-  { href: '/services/facebook-page', name: 'facebook', title: 'Facebook Page Services', desc: 'Business page setup and verification support for brands.', tone: 'rgba(37,99,235,.08)' },
-  { href: '/services/boosting', name: 'boost', title: 'Boosting Service', desc: 'Targeted Meta boosting to reach the right audience with ROI focus.', tone: 'rgba(15,23,42,.05)' },
-  { href: '/services/campaign', name: 'campaign', title: 'Campaign Service', desc: 'End-to-end campaign planning and performance management.', tone: 'rgba(37,99,235,.08)' },
+  { href: '/services/video-editing', name: 'video', title: 'Video Editing', desc: 'Ads, Reels, YouTube and brand films — cinematic grade.', tone: 'rgba(37,99,235,.08)' },
+  { href: '/services/ai-video-marketing', name: 'ai', title: 'AI Video Marketing', desc: 'Human-like AI ads for Meta, YouTube and TikTok.', tone: 'rgba(15,23,42,.05)' },
+  { href: '/services/human-like-content', name: 'human', title: 'Human-like Content', desc: 'Authentic product & people content that converts.', tone: 'rgba(37,99,235,.08)' },
+  { href: '/services/web-development', name: 'web', title: 'Web Development', desc: 'Fast, SEO-ready websites and landing pages.', tone: 'rgba(15,23,42,.05)' },
+  { href: '/services/application-build', name: 'app', title: 'Application Build', desc: 'Custom web & mobile apps for performance and scale.', tone: 'rgba(37,99,235,.08)' },
+  { href: '/services/authentication', name: 'auth', title: 'Authentication', desc: 'Secure login, roles and access control.', tone: 'rgba(15,23,42,.05)' },
+  { href: '/services/automation', name: 'campaign', title: 'Automation', desc: 'Messenger & channel automation with human-like replies.', tone: 'rgba(37,99,235,.08)' },
+  { href: '/services/digital-marketing', name: 'boost', title: 'Digital Marketing', desc: 'SEO, ads, social and growth under one plan.', tone: 'rgba(15,23,42,.05)' },
+  { href: '/services/seo', name: 'web', title: 'SEO Services', desc: 'Rank for the searches your customers type.', tone: 'rgba(37,99,235,.08)' },
+  { href: '/services/facebook-page', name: 'facebook', title: 'Facebook Page', desc: 'Setup, blue verify path, growth and checkup.', tone: 'rgba(15,23,42,.05)' },
+  { href: '/services/boosting', name: 'boost', title: 'Boosting', desc: 'Meta boosting from $5 with clear BDT rates.', tone: 'rgba(37,99,235,.08)' },
+  { href: '/services/campaign', name: 'campaign', title: 'Campaign', desc: 'Full Meta & YouTube campaign management.', tone: 'rgba(15,23,42,.05)' },
 ];
+
+const previewIds = SHOWCASES.flatMap((c) => c.ids).slice(0, 6);
 ---
 <Layout title={SITE.seoTitle} description={SITE.seoDescription}>
   <TopBar />
@@ -40,7 +45,7 @@ const services = [
         <div class="rating-pill">
           <span class="rating-score">4.8</span>
           <span class="rating-stars" aria-hidden="true">★★★★★</span>
-          <span class="rating-label">Client Rated</span>
+          <span class="rating-label">Client Rated · BD &amp; Global</span>
         </div>
 
         <h1 class="hero-title">
@@ -55,6 +60,7 @@ const services = [
         <div class="flex-btns">
           <a href="#featured-videos" class="btn btn-primary">Watch Videos</a>
           <a href={SITE.whatsappLink} class="btn btn-outline" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a href="/portfolio" class="btn btn-outline">Portfolio</a>
         </div>
 
         <div class="trust-row">
@@ -76,15 +82,35 @@ const services = [
 
   <BrandStrip />
 
-  <!-- HOMEPAGE video stack — same place as before (after brands, before services) -->
   <FeaturedVideoStack />
+
+  <!-- Picture strip — real project thumbs -->
+  <section class="home-pics">
+    <div class="container">
+      <div class="text-center mb-8 reveal">
+        <p class="eyebrow" style="margin:0 auto 1rem">On screen</p>
+        <h2 class="mb-4">Recent creative frames</h2>
+        <p style="max-width:36rem;margin:0 auto;color:var(--text-2)">Stills from client work — open full portfolio for every category.</p>
+      </div>
+      <div class="home-pic-grid">
+        {previewIds.map((id) => (
+          <a class="home-pic reveal" href={`/portfolio`} aria-label="Open portfolio">
+            <img src={ytThumb(id)} alt="Creavix project frame" loading="lazy" width="400" height="225" />
+          </a>
+        ))}
+      </div>
+      <div class="text-center" style="margin-top:1.5rem">
+        <a href="/portfolio" class="btn btn-primary">View full portfolio</a>
+      </div>
+    </div>
+  </section>
 
   <section id="services" class="section-soft">
     <div class="container">
       <div class="text-center mb-8 reveal">
         <p class="eyebrow" style="margin:0 auto 1rem">Our Services</p>
         <h2 class="mb-4">Everything Your Brand Needs to Grow</h2>
-        <p style="max-width:40rem;margin:0 auto">Video production, AI marketing, web &amp; apps, authentication and Meta growth — one professional partner.</p>
+        <p style="max-width:40rem;margin:0 auto">Video, AI, web, apps, SEO, automation and Meta growth — one professional partner for Bangladesh and global brands.</p>
       </div>
       <div class="grid-3">
         {services.map((s) => (
@@ -92,6 +118,7 @@ const services = [
             <IconBox name={s.name} tone={s.tone} size={44} />
             <h3 class="mb-4">{s.title}</h3>
             <p style="font-size:.9rem">{s.desc}</p>
+            <span class="svc-more">Explore →</span>
           </a>
         ))}
       </div>
@@ -108,10 +135,14 @@ const services = [
         <p class="lead mb-8">{SITE.shortDesc}</p>
         <ul class="about-checks">
           <li><ServiceIcons name="check" size={22} /><span>Cinematic &amp; AI video production</span></li>
-          <li><ServiceIcons name="check" size={22} /><span>Web, app &amp; authentication engineering</span></li>
+          <li><ServiceIcons name="check" size={22} /><span>Web, app, SEO &amp; automation</span></li>
           <li><ServiceIcons name="check" size={22} /><span>Facebook page, boost &amp; campaigns</span></li>
           <li><ServiceIcons name="check" size={22} /><span>Studio: {SITE.addressBn} · {SITE.founder.name}</span></li>
         </ul>
+        <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.65rem">
+          <a href="/about" class="btn btn-outline">About us</a>
+          <a href="/contact" class="btn btn-primary">Contact</a>
+        </div>
       </div>
       <div class="reveal">
         <div class="glass-card" style="padding:2.2rem">
@@ -194,10 +225,42 @@ const services = [
   .rating-score { color: #0B0F19; }
   .rating-stars { color: #F59E0B; letter-spacing: 1px; font-size: 0.75rem; }
   .rating-label { color: #64748B; font-weight: 500; }
+  .hero-delivery { color: #2563EB; font-weight: 700; }
 
-  .hero-delivery {
-    color: #2563EB;
+  .home-pics {
+    padding: 3rem 1.25rem;
+    background: #fff;
+  }
+  .home-pic-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  @media (min-width: 700px) {
+    .home-pic-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  }
+  .home-pic {
+    display: block;
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    transition: transform 0.25s ease;
+  }
+  .home-pic:hover { transform: translateY(-3px); }
+  .home-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .svc-more {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
     font-weight: 700;
+    color: #2563EB;
   }
 
   .about-checks {
