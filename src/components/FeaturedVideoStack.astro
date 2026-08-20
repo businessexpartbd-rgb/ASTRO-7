@@ -1,13 +1,10 @@
 ---
 /**
- * 6 cinematic videos — sticky book-page stack
- * -----------------------------------------
- * Scroll down → video 1 pins (cannot go higher).
- * Keep scrolling → video 2 slides onto THE SAME spot (covers 1).
- * Video 1 stays underneath, lightly blurred.
- * Same for 3…6 — all share one screen position.
- * Scroll further down → pages leave one-by-one downward.
- * One playback only; auto-stop when covered or off-screen.
+ * Cinematic stack — ONE sticky stage in the middle of the screen.
+ * Outer rail height = 6 × viewport → scroll distance.
+ * All 6 videos sit in the SAME absolute slot; scroll progress
+ * decides which page is on top (book-page). Under pages blur.
+ * Full-width 16:9 on mobile + desktop. One player. Auto-stop.
  */
 import { SHOWCASES, ytThumb } from '../data/site';
 
@@ -20,31 +17,25 @@ const videos = cinematic.ids.map((id, i) => ({
 const total = videos.length;
 ---
 
-<section id="featured-videos" class="fvs" data-fvs>
-  <div class="fvs-head container">
+<section id="featured-videos" class="fvs" data-fvs data-count={String(total)}>
+  <div class="fvs-head">
     <p class="eyebrow">Featured Work</p>
     <h2>Cinematic Videos</h2>
-    <p class="fvs-lead">Scroll — each film pins in one place like a book page. Tap to play with sound.</p>
+    <p class="fvs-lead">Scroll — films stack like book pages in the center. Tap to play with sound.</p>
   </div>
 
-  <!--
-    Sticky stack rail — MUST NOT have overflow:hidden
-    Each .fvs-page is 100vh tall; .fvs-sticky pins at the same top.
-  -->
-  <div class="fvs-rail" data-rail>
-    {videos.map((v, i) => (
-      <div
-        class="fvs-page"
-        data-page
-        data-i={String(i)}
-        style={`--i:${i}`}
-      >
-        <div class="fvs-sticky">
+  <!-- Tall scroll track: one viewport of travel per video -->
+  <div class="fvs-track" data-track>
+    <!-- Single sticky stage locked to vertical middle -->
+    <div class="fvs-stage" data-stage>
+      <div class="fvs-stage-inner">
+        {videos.map((v, i) => (
           <article
-            class="fvs-card"
-            data-card
-            data-vid={v.id}
+            class:list={['fvs-page', i === 0 && 'is-front']}
+            data-page
             data-i={String(i)}
+            data-vid={v.id}
+            style={`--i:${i}`}
           >
             <div class="fvs-frame">
               <img
@@ -67,149 +58,145 @@ const total = videos.length;
 
               <div class="fvs-meta">
                 <span class="fvs-num">{String(v.n).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
-                <span class="fvs-tag">Cinematic</span>
+                <span class="fvs-tag">16:9</span>
               </div>
             </div>
           </article>
-        </div>
+        ))}
       </div>
-    ))}
+
+      <!-- Progress dots -->
+      <div class="fvs-dots" data-dots aria-hidden="true">
+        {videos.map((_, i) => (
+          <span class:list={['fvs-dot', i === 0 && 'is-on']} data-dot={String(i)}></span>
+        ))}
+      </div>
+    </div>
   </div>
 
-  <div class="fvs-more container">
+  <div class="fvs-more">
     <a href="/portfolio" class="btn btn-outline">View full portfolio →</a>
   </div>
 </section>
 
 <style>
   .fvs {
-    /* no overflow hidden — sticky would break */
     padding: 2rem 0 0;
-    background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 30%);
+    background: linear-gradient(180deg, #F8FAFC 0%, #fff 25%);
   }
 
   .fvs-head {
     text-align: center;
-    margin-bottom: 0.5rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    padding: 0 1.25rem 1rem;
+    max-width: 40rem;
+    margin: 0 auto;
   }
   .fvs-head h2 {
     margin: 0 0 0.4rem;
     font-size: clamp(1.5rem, 3vw, 2rem);
   }
   .fvs-lead {
-    margin: 0 auto 1rem;
-    max-width: 28rem;
+    margin: 0;
     color: var(--text-2, #475569);
     font-size: 0.95rem;
   }
 
-  .fvs-rail {
-    width: 100%;
-    max-width: 920px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    /* critical: visible overflow so position:sticky works */
-    overflow: visible;
-  }
-
   /*
-   * Each page owns one full viewport of scroll distance.
-   * While you scroll through that distance, its card stays pinned.
+   * Track height = N × 100vh → scroll distance for N pages.
+   * Inside: one sticky stage that stays centered while you scroll the track.
    */
-  .fvs-page {
+  .fvs-track {
     position: relative;
-    height: 100vh;
-    height: 100dvh;
-    /* keep a sensible cap on very tall monitors */
-    max-height: 920px;
+    height: calc(var(--fvs-count, 6) * 100vh);
+    height: calc(var(--fvs-count, 6) * 100dvh);
   }
 
-  /*
-   * THE pin — same top for every card → they all sit on one spot.
-   * Higher --i later in DOM → naturally paints on top (stack order).
-   */
-  .fvs-sticky {
+  .fvs-stage {
     position: -webkit-sticky;
     position: sticky;
-    top: 5.5rem; /* below fixed navbar */
-    z-index: calc(20 + var(--i, 0));
+    top: 0;
+    height: 100vh;
+    height: 100dvh;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-items: flex-start;
-    padding-top: 0.25rem;
+    padding: 5.5rem 0.75rem 1.5rem; /* nav clearance */
+    box-sizing: border-box;
+    z-index: 5;
   }
 
-  .fvs-card {
-    width: 100%;
+  .fvs-stage-inner {
+    position: relative;
+    width: min(100%, 1100px);
+    /* 16:9 box */
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    /* stacking context for absolute pages */
+    isolation: isolate;
+  }
+
+  /*
+   * Every page is ABSOLUTE in the same slot.
+   * Only the front page is fully visible; under pages blur.
+   */
+  .fvs-page {
+    position: absolute;
+    inset: 0;
     border-radius: 16px;
     overflow: hidden;
     background: #000;
     box-shadow:
-      0 20px 50px rgba(15, 23, 42, 0.16),
+      0 22px 50px rgba(15, 23, 42, 0.18),
       0 0 0 1px rgba(15, 23, 42, 0.06);
-    line-height: 0;
-    transform: translate3d(0, 0, 0) scale(1);
-    filter: none;
-    opacity: 1;
-    transform-origin: center top;
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(0.97);
+    filter: blur(4px);
+    pointer-events: none;
     transition:
+      opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
       transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
       filter 0.45s ease,
-      opacity 0.45s ease,
       box-shadow 0.35s ease;
-    will-change: transform, filter, opacity;
+    will-change: opacity, transform, filter;
   }
 
-  /* Covered by a newer page — stays in place, soft book-under look */
-  .fvs-card.is-under {
-    filter: blur(2.5px) brightness(0.82);
-    opacity: 0.78;
-    transform: translate3d(0, 0, 0) scale(0.965);
-    pointer-events: none;
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+  .fvs-page.is-under {
+    opacity: 0.72;
+    transform: translate3d(0, 0, 0) scale(0.96);
+    filter: blur(2.5px) brightness(0.85);
+    z-index: 1;
   }
 
-  /* Active page on top of the stack */
-  .fvs-card.is-front {
-    filter: none;
+  .fvs-page.is-front {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
+    filter: none;
     pointer-events: auto;
+    z-index: 3;
+    box-shadow:
+      0 26px 56px rgba(15, 23, 42, 0.2),
+      0 0 0 1px rgba(15, 23, 42, 0.08);
   }
 
-  /* Just arrived on top — short page-turn settle */
-  .fvs-card.is-arrive {
-    animation: fvs-page-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-  @keyframes fvs-page-in {
-    from {
-      opacity: 0.4;
-      transform: translate3d(0, 28px, 0) scale(0.97);
-      filter: blur(4px);
-    }
-    to {
-      opacity: 1;
-      transform: translate3d(0, 0, 0) scale(1);
-      filter: none;
-    }
-  }
-
-  .fvs-card.is-playing.is-front {
+  .fvs-page.is-front.is-playing {
     box-shadow:
       0 28px 56px rgba(13, 148, 136, 0.28),
       0 0 0 2px rgba(13, 148, 136, 0.55);
   }
 
-  /* Full 16:9 — no empty dark band */
+  /* Pages not yet reached stay hidden below */
+  .fvs-page.is-wait {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0) scale(0.97);
+    filter: blur(6px);
+    z-index: 0;
+  }
+
   .fvs-frame {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 56.25%;
+    position: absolute;
+    inset: 0;
     background: #000;
-    overflow: hidden;
   }
 
   .fvs-poster,
@@ -244,7 +231,7 @@ const total = videos.length;
 
   .fvs-play {
     position: absolute;
-    z-index: 3;
+    z-index: 4;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -259,15 +246,15 @@ const total = videos.length;
     padding: 0;
   }
   .fvs-play-ic {
-    width: 64px;
-    height: 64px;
+    width: 68px;
+    height: 68px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     background: rgba(13, 148, 136, 0.92);
     border: 2px solid rgba(255, 255, 255, 0.55);
-    box-shadow: 0 10px 28px rgba(13, 148, 136, 0.4);
+    box-shadow: 0 12px 32px rgba(13, 148, 136, 0.4);
     transition: transform 0.2s ease, background 0.2s ease;
   }
   .fvs-play:hover .fvs-play-ic {
@@ -279,16 +266,16 @@ const total = videos.length;
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   }
-
-  .fvs-card.is-playing .fvs-play { display: none !important; }
-  .fvs-card.is-playing .fvs-poster { opacity: 0; pointer-events: none; }
-  .fvs-card.is-under .fvs-play { display: none !important; }
+  .fvs-page.is-playing .fvs-play { display: none !important; }
+  .fvs-page.is-playing .fvs-poster { opacity: 0; pointer-events: none; }
+  .fvs-page.is-under .fvs-play,
+  .fvs-page.is-wait .fvs-play { display: none !important; }
 
   .fvs-meta {
     position: absolute;
-    z-index: 3;
+    z-index: 4;
     left: 12px;
     bottom: 12px;
     display: flex;
@@ -309,53 +296,72 @@ const total = videos.length;
     font-size: 0.62rem;
     font-weight: 600;
     color: #fff;
-    background: rgba(13, 148, 136, 0.8);
+    background: rgba(13, 148, 136, 0.82);
     padding: 0.2rem 0.5rem;
     border-radius: 8px;
   }
-  .fvs-card.is-playing .fvs-meta,
-  .fvs-card.is-under .fvs-meta { opacity: 0; }
+  .fvs-page.is-playing .fvs-meta,
+  .fvs-page.is-under .fvs-meta { opacity: 0; }
+
+  .fvs-dots {
+    display: flex;
+    gap: 0.4rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .fvs-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #CBD5E1;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  .fvs-dot.is-on {
+    background: #0D9488;
+    transform: scale(1.25);
+  }
 
   .fvs-more {
     text-align: center;
-    padding: 1.5rem 1.25rem 2.5rem;
+    padding: 1.75rem 1.25rem 2.75rem;
   }
 
-  /* —— Mobile: same sticky stack, tighter pin —— */
+  /* Mobile: full width sides, large 16:9 */
   @media (max-width: 767px) {
-    .fvs-rail { padding: 0 0.5rem; max-width: 100%; }
-    .fvs-page {
-      height: 100vh;
-      height: 100dvh;
-      max-height: none;
+    .fvs-stage {
+      padding: 4.5rem 0.4rem 1rem;
     }
-    .fvs-sticky {
-      top: 4.5rem;
+    .fvs-stage-inner {
+      width: 100%;
+      border-radius: 12px;
     }
-    .fvs-card { border-radius: 12px; }
-    .fvs-play-ic { width: 56px; height: 56px; }
-    .fvs-card.is-under {
-      filter: blur(2px) brightness(0.88);
-      transform: scale(0.97);
-    }
+    .fvs-page { border-radius: 12px; }
+    .fvs-play-ic { width: 58px; height: 58px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .fvs-page {
-      height: auto !important;
-      margin-bottom: 1rem;
-    }
-    .fvs-sticky {
+    .fvs-track { height: auto !important; }
+    .fvs-stage {
       position: relative !important;
-      top: auto !important;
+      height: auto !important;
+      padding: 1rem 0.75rem;
     }
-    .fvs-card {
-      transition: none !important;
-      animation: none !important;
-      filter: none !important;
+    .fvs-stage-inner {
+      aspect-ratio: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .fvs-page {
+      position: relative !important;
+      inset: auto !important;
       opacity: 1 !important;
+      filter: none !important;
       transform: none !important;
+      pointer-events: auto !important;
+      aspect-ratio: 16 / 9;
     }
+    .fvs-dots { display: none; }
   }
 </style>
 
@@ -364,41 +370,45 @@ const total = videos.length;
   var root = document.querySelector('[data-fvs]');
   if (!root) return;
 
+  var track = root.querySelector('[data-track]');
+  var stage = root.querySelector('[data-stage]');
   var pages = Array.prototype.slice.call(root.querySelectorAll('[data-page]'));
-  var cards = Array.prototype.slice.call(root.querySelectorAll('[data-card]'));
-  if (!cards.length) return;
+  var dots = Array.prototype.slice.call(root.querySelectorAll('[data-dot]'));
+  var count = pages.length || 6;
+
+  if (track) track.style.setProperty('--fvs-count', String(count));
 
   var reduced =
     window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var frontIdx = -1;
+  var front = 0;
   var playing = null;
 
-  function stopCard(card) {
-    if (!card) return;
-    var p = card.querySelector('[data-player]');
-    if (p) {
-      p.classList.remove('is-on');
-      p.innerHTML = '';
+  function stopPage(page) {
+    if (!page) return;
+    var player = page.querySelector('[data-player]');
+    if (player) {
+      player.classList.remove('is-on');
+      player.innerHTML = '';
     }
-    card.classList.remove('is-playing');
-    if (playing === card) playing = null;
+    page.classList.remove('is-playing');
+    if (playing === page) playing = null;
   }
 
   function stopAll() {
-    cards.forEach(stopCard);
+    pages.forEach(stopPage);
   }
 
-  function play(card) {
-    if (!card || !card.classList.contains('is-front')) return;
-    var id = card.getAttribute('data-vid');
-    var player = card.querySelector('[data-player]');
+  function play(page) {
+    if (!page || !page.classList.contains('is-front')) return;
+    var id = page.getAttribute('data-vid');
+    var player = page.querySelector('[data-player]');
     if (!id || !player) return;
 
     stopAll();
-    playing = card;
-    card.classList.add('is-playing');
+    playing = page;
+    page.classList.add('is-playing');
 
     var src =
       'https://www.youtube-nocookie.com/embed/' + id +
@@ -414,54 +424,53 @@ const total = videos.length;
   }
 
   /**
-   * Front page = highest index whose sticky has engaged
-   * (page top has scrolled to or above the sticky offset).
+   * Map scroll position inside the track → page index 0..N-1
+   * Stage is sticky in the viewport center the whole time.
    */
-  function updateFront() {
+  function pageFromScroll() {
+    if (!track) return 0;
+    var rect = track.getBoundingClientRect();
+    var trackH = track.offsetHeight;
+    var viewH = window.innerHeight || 1;
+    /* distance scrolled through the track */
+    var scrolled = -rect.top;
+    var travel = Math.max(1, trackH - viewH);
+    var p = scrolled / travel;
+    if (p < 0) p = 0;
+    if (p > 1) p = 1;
+    var idx = Math.min(count - 1, Math.floor(p * count));
+    return idx;
+  }
+
+  function paint(idx) {
+    pages.forEach(function (page, i) {
+      page.classList.remove('is-front', 'is-under', 'is-wait');
+      if (i < idx) {
+        page.classList.add('is-under');
+        if (page.classList.contains('is-playing')) stopPage(page);
+      } else if (i === idx) {
+        page.classList.add('is-front');
+      } else {
+        page.classList.add('is-wait');
+      }
+    });
+    dots.forEach(function (d, i) {
+      d.classList.toggle('is-on', i === idx);
+    });
+  }
+
+  function update() {
     if (reduced) {
-      cards.forEach(function (c) {
-        c.classList.add('is-front');
-        c.classList.remove('is-under', 'is-arrive');
+      pages.forEach(function (p) {
+        p.classList.add('is-front');
+        p.classList.remove('is-under', 'is-wait');
       });
       return;
     }
-
-    var stickyEl = root.querySelector('.fvs-sticky');
-    var pin = 88;
-    if (stickyEl) {
-      var t = parseFloat(window.getComputedStyle(stickyEl).top);
-      if (!isNaN(t)) pin = t;
-    }
-
-    var idx = 0;
-    pages.forEach(function (page, i) {
-      var top = page.getBoundingClientRect().top;
-      if (top <= pin + 4) idx = i;
-    });
-
-    if (idx !== frontIdx) {
-      var prev = frontIdx;
-      frontIdx = idx;
-
-      cards.forEach(function (card, i) {
-        card.classList.remove('is-front', 'is-under', 'is-arrive');
-        if (i < idx) {
-          card.classList.add('is-under');
-          if (card.classList.contains('is-playing')) stopCard(card);
-        } else if (i === idx) {
-          card.classList.add('is-front');
-          /* page-turn only when advancing forward */
-          if (prev >= 0 && idx > prev) {
-            card.classList.add('is-arrive');
-            setTimeout(function () {
-              card.classList.remove('is-arrive');
-            }, 560);
-          }
-        } else {
-          /* not yet reached — still normal */
-          card.classList.add('is-front');
-        }
-      });
+    var idx = pageFromScroll();
+    if (idx !== front) {
+      front = idx;
+      paint(idx);
     }
   }
 
@@ -470,45 +479,44 @@ const total = videos.length;
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(function () {
-      updateFront();
+      update();
       ticking = false;
     });
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
-  updateFront();
+  paint(0);
+  update();
 
-  cards.forEach(function (card) {
-    var btn = card.querySelector('[data-play]');
+  pages.forEach(function (page) {
+    var btn = page.querySelector('[data-play]');
     if (btn) {
       btn.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
-        play(card);
+        play(page);
       });
     }
-    card.addEventListener('click', function (e) {
-      if (card.classList.contains('is-playing')) return;
-      if (!card.classList.contains('is-front')) return;
-      if (card.classList.contains('is-under')) return;
+    page.addEventListener('click', function (e) {
+      if (page.classList.contains('is-playing')) return;
+      if (!page.classList.contains('is-front')) return;
       if (e.target.closest('iframe') || e.target.closest('[data-play]')) return;
-      play(card);
+      play(page);
     });
   });
 
-  if ('IntersectionObserver' in window) {
+  /* Stop when the whole section leaves the viewport */
+  if ('IntersectionObserver' in window && track) {
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (en) {
-          if (!en.isIntersecting && en.target.classList.contains('is-playing')) {
-            stopCard(en.target);
-          }
+          if (!en.isIntersecting) stopAll();
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.02 }
     );
-    cards.forEach(function (c) { io.observe(c); });
+    io.observe(track);
   }
 
   document.addEventListener('visibilitychange', function () {
