@@ -1,0 +1,152 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TopBar from '../../components/TopBar.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE } from '../../data/site';
+import { BLOG_POSTS, getPost } from '../../data/blog';
+
+export function getStaticPaths() {
+  return BLOG_POSTS.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const post = getPost(slug!);
+if (!post) {
+  return Astro.redirect('/blog');
+}
+
+const related = BLOG_POSTS.filter((p) => p.slug !== post.slug).slice(0, 3);
+---
+
+<Layout title={`${post.title} | ${SITE.brand} Blog`} description={post.description}>
+  <TopBar />
+  <Nav active="blog" />
+
+  <article class="bp">
+    <header class="bp-hero">
+      <div class="container bp-hero-inner reveal">
+        <p class="bp-eye">{post.category} · {post.readMin} min read</p>
+        <h1>{post.title}</h1>
+        <p class="bp-desc">{post.description}</p>
+        <div class="bp-meta">
+          <time datetime={post.date}>{post.date}</time>
+          <span>·</span>
+          <span>{SITE.brand}</span>
+        </div>
+        <div class="bp-tags">
+          {post.tags.map((t) => (
+            <span>{t}</span>
+          ))}
+        </div>
+      </div>
+    </header>
+
+    <div class="container bp-body reveal">
+      {post.body.map((para) => (
+        <p>{para}</p>
+      ))}
+
+      <div class="bp-box">
+        <h2>Work with Creavix</h2>
+        <p>Ready to apply this on your Page, ads or website? Message the team.</p>
+        <div class="bp-actions">
+          <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn btn-outline" href="/blog">All articles</a>
+          <a class="btn btn-outline" href="/contact">Contact</a>
+        </div>
+      </div>
+
+      <section class="bp-related">
+        <h2>Related reading</h2>
+        <ul>
+          {related.map((r) => (
+            <li><a href={`/blog/${r.slug}`}>{r.title}</a></li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  </article>
+
+  <Footer />
+</Layout>
+
+<style>
+  .bp-hero {
+    padding: 4.5rem 1.25rem 2rem;
+    background: linear-gradient(180deg, #F8FAFC, #fff);
+  }
+  .bp-hero-inner { max-width: 720px; }
+  .bp-eye {
+    margin: 0 0 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #2563EB;
+  }
+  .bp-hero h1 {
+    margin: 0 0 0.75rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.55rem, 3.5vw, 2.15rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: #0B0F19;
+  }
+  .bp-desc { margin: 0 0 0.75rem; color: #475569; line-height: 1.6; }
+  .bp-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    color: #94A3B8;
+    margin-bottom: 0.85rem;
+  }
+  .bp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .bp-tags span {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
+    background: #EFF6FF;
+    color: #1D4ED8;
+  }
+  .bp-body {
+    max-width: 720px;
+    padding: 0.5rem 1.25rem 3.5rem;
+  }
+  .bp-body > p {
+    margin: 0 0 1.1rem;
+    color: #334155;
+    line-height: 1.75;
+    font-size: 1.02rem;
+  }
+  .bp-box {
+    margin: 2rem 0;
+    padding: 1.35rem 1.25rem;
+    border-radius: 16px;
+    background: #F8FAFC;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+  }
+  .bp-box h2 {
+    margin: 0 0 0.4rem;
+    font-size: 1.15rem;
+    font-weight: 800;
+  }
+  .bp-box p { margin: 0 0 1rem; color: #64748B; }
+  .bp-actions { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+  .bp-related h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+  }
+  .bp-related ul { margin: 0; padding: 0 0 0 1.1rem; }
+  .bp-related li { margin-bottom: 0.45rem; }
+  .bp-related a {
+    color: #2563EB;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .bp-related a:hover { text-decoration: underline; }
+</style>

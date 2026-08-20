@@ -1,0 +1,195 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TopBar from '../../components/TopBar.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE } from '../../data/site';
+import { BLOG_POSTS } from '../../data/blog';
+
+const seoTitle = `Blog | AI Video, SEO, Facebook Growth & Digital Tips — ${SITE.brand}`;
+const seoDescription =
+  'Creavix iT blog — AI video marketing, Facebook boosting vs campaigns, SEO for Bangladesh businesses, automation and agency services explained.';
+
+const sorted = [...BLOG_POSTS].sort((a, b) => (a.date < b.date ? 1 : -1));
+---
+
+<Layout title={seoTitle} description={seoDescription}>
+  <TopBar />
+  <Nav active="blog" />
+
+  <section class="bl-hero">
+    <div class="container bl-hero-inner reveal">
+      <p class="bl-eye">Blog · Insights</p>
+      <h1>Learn growth, AI video &amp; digital systems</h1>
+      <p class="bl-sub">
+        Practical guides for Bangladesh businesses and global brands — how AI is moving creative work forward,
+        and how Creavix delivers video, web, SEO and Meta growth without the jargon wall.
+      </p>
+      <div class="bl-actions">
+        <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Ask a question</a>
+        <a class="btn btn-outline" href="/services/digital-marketing">Digital marketing</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bl-sec">
+    <div class="container">
+      <div class="bl-grid">
+        {sorted.map((post) => (
+          <article class="bl-card reveal">
+            <div class="bl-card-top">
+              <span class="bl-cat">{post.category}</span>
+              <time datetime={post.date}>{post.date}</time>
+            </div>
+            <h2><a href={`/blog/${post.slug}`}>{post.title}</a></h2>
+            <p>{post.description}</p>
+            <div class="bl-card-foot">
+              <span>{post.readMin} min read</span>
+              <a class="bl-read" href={`/blog/${post.slug}`}>Read article →</a>
+            </div>
+            <details class="bl-peek">
+              <summary>Quick peek</summary>
+              <p>{post.body[0]}</p>
+            </details>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bl-cta">
+    <div class="container bl-cta-inner reveal">
+      <div>
+        <h2>Need this done for your brand?</h2>
+        <p>WhatsApp {SITE.whatsapp} · We apply these ideas on real projects.</p>
+      </div>
+      <a class="btn btn-light" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </div>
+  </section>
+  <Footer />
+</Layout>
+
+<style>
+  .bl-hero {
+    padding: 5rem 1.25rem 2.5rem;
+    background:
+      radial-gradient(ellipse 50% 40% at 80% 10%, rgba(37, 99, 235, 0.12), transparent 55%),
+      linear-gradient(180deg, #fff, #F8FAFC);
+  }
+  .bl-hero-inner { max-width: 720px; }
+  .bl-eye {
+    margin: 0 0 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #2563EB;
+  }
+  .bl-hero h1 {
+    margin: 0 0 0.75rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #0B0F19;
+  }
+  .bl-sub { margin: 0 0 1.25rem; color: #475569; line-height: 1.65; }
+  .bl-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+  .bl-sec { padding: 2rem 1.25rem 3.5rem; background: #fff; }
+  .bl-grid { display: grid; gap: 1.25rem; }
+  @media (min-width: 800px) {
+    .bl-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .bl-card {
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 18px;
+    padding: 1.35rem 1.25rem;
+    background: #F8FAFC;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .bl-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(37, 99, 235, 0.1);
+  }
+  .bl-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #64748B;
+  }
+  .bl-cat {
+    font-weight: 700;
+    color: #1D4ED8;
+    background: #EFF6FF;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+  }
+  .bl-card h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 800;
+    line-height: 1.35;
+  }
+  .bl-card h2 a {
+    color: #0B0F19;
+    text-decoration: none;
+  }
+  .bl-card h2 a:hover { color: #2563EB; }
+  .bl-card > p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: #64748B;
+    line-height: 1.55;
+    flex: 1;
+  }
+  .bl-card-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    color: #94A3B8;
+  }
+  .bl-read {
+    font-weight: 700;
+    color: #2563EB;
+    text-decoration: none;
+  }
+  .bl-peek {
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+    padding-top: 0.5rem;
+    font-size: 0.85rem;
+  }
+  .bl-peek summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: #2563EB;
+    list-style: none;
+  }
+  .bl-peek summary::-webkit-details-marker { display: none; }
+  .bl-peek p { margin: 0.5rem 0 0; color: #64748B; line-height: 1.5; }
+  .bl-cta {
+    padding: 2.5rem 1.25rem;
+    background: linear-gradient(135deg, #1E3A8A, #2563EB);
+    color: #fff;
+  }
+  .bl-cta-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .bl-cta h2 {
+    margin: 0 0 0.35rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.2rem, 3vw, 1.55rem);
+  }
+  .bl-cta p { margin: 0; opacity: 0.95; }
+  .btn-light { background: #fff; color: #1E40AF; border: none; }
+</style>
