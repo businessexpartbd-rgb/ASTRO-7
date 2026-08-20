@@ -1,8 +1,8 @@
 ---
 /**
- * Homepage featured videos — 6 YouTube landscape clips.
- * Vertical sticky stack. Full-bleed 16:9 player (desktop + mobile).
- * Click plays WITH SOUND. One at a time.
+ * Homepage cinematic stack — book-page sticky scroll:
+ * each video pins at the same center slot; next folds on top;
+ * under-cards lightly blur; only one plays; auto-stop off-screen.
  */
 import { SHOWCASES, ytThumb } from '../data/site';
 
@@ -12,22 +12,32 @@ const videos = cinematic.ids.map((id, i) => ({
   thumb: ytThumb(id),
   n: i + 1,
 }));
+const total = videos.length;
 ---
 
-<section id="featured-videos" class="fvs" data-fvs>
+<section id="featured-videos" class="fvs" data-fvs data-total={String(total)}>
   <div class="container fvs-head">
     <p class="eyebrow">Featured Work</p>
     <h2>Cinematic Videos</h2>
-    <p class="fvs-lead">Scroll — each film pins, then the next folds over. Tap to play full size with sound.</p>
+    <p class="fvs-lead">Scroll — films stack like pages in one place. Tap to play with sound.</p>
   </div>
 
-  <div class="fvs-stack">
+  <div class="fvs-stack" data-stack>
     {videos.map((v, i) => (
-      <div class="fvs-slot" style={`--i:${i}`}>
+      <div
+        class="fvs-slot"
+        data-slot
+        data-i={String(i)}
+        style={`--i:${i}; --z:${i + 1}`}
+      >
         <div class="fvs-pin">
-          <article class="fvs-card" data-vid={v.id} data-i={String(i)}>
-            <!-- padding-bottom box = reliable full 16:9 on all browsers -->
-            <div class="fvs-frame" data-frame>
+          <article
+            class:list={['fvs-card', i === 0 && 'is-top']}
+            data-card
+            data-vid={v.id}
+            data-i={String(i)}
+          >
+            <div class="fvs-frame">
               <img
                 class="fvs-poster"
                 src={v.thumb}
@@ -36,7 +46,6 @@ const videos = cinematic.ids.map((id, i) => ({
                 height="720"
                 loading={i < 2 ? 'eager' : 'lazy'}
                 decoding="async"
-                data-poster
               />
               <div class="fvs-player" data-player></div>
               <button type="button" class="fvs-play" data-play aria-label={`Play video ${v.n}`}>
@@ -46,7 +55,7 @@ const videos = cinematic.ids.map((id, i) => ({
                 <span class="fvs-play-txt">Play with sound</span>
               </button>
               <div class="fvs-meta">
-                <span class="fvs-num">{String(v.n).padStart(2, '0')}</span>
+                <span class="fvs-num">{String(v.n).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
                 <span class="fvs-tag">16:9 · Cinematic</span>
               </div>
             </div>
@@ -63,16 +72,16 @@ const videos = cinematic.ids.map((id, i) => ({
 
 <style>
   .fvs {
-    padding: 2.5rem 0 3rem;
-    background: linear-gradient(180deg, #F8FAFC 0%, #fff 18%, #fff 100%);
+    padding: 2.25rem 0 2.5rem;
+    background: linear-gradient(180deg, #F8FAFC 0%, #fff 20%, #fff 100%);
   }
   .fvs-head {
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     padding: 0 1.25rem;
   }
   .fvs-head h2 {
-    margin: 0 0 0.5rem;
+    margin: 0 0 0.45rem;
     font-size: clamp(1.5rem, 3vw, 2rem);
   }
   .fvs-lead {
@@ -82,47 +91,41 @@ const videos = cinematic.ids.map((id, i) => ({
     font-size: 0.95rem;
   }
 
-  /* Full available width on both desktop and mobile */
   .fvs-stack {
     width: 100%;
-    max-width: 1100px;
+    max-width: 960px;
     margin: 0 auto;
     padding: 0 1rem;
     box-sizing: border-box;
   }
 
+  /*
+   * Each slot is viewport-tall so the sticky card holds
+   * in the same on-screen position until the next page covers it.
+   */
   .fvs-slot {
     position: relative;
-    /* Only as tall as the video + small gap — no giant empty dark box */
-    height: auto;
-    margin-bottom: 1.25rem;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 900px;
+    min-height: 480px;
   }
-  /* Sticky stack: use min-height only while scrolling between cards */
-  @media (min-width: 768px) {
-    .fvs-slot {
-      height: calc(56.25vw * 0.85 + 2rem);
-      max-height: 640px;
-      min-height: 360px;
-      margin-bottom: 0;
-    }
-    .fvs-slot:last-child {
-      height: auto;
-      min-height: 0;
-      max-height: none;
-      margin-bottom: 0;
-      padding-bottom: 0.5rem;
-    }
+  .fvs-slot:last-child {
+    /* last page: release stack after a short hold */
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding-bottom: 1.5rem;
   }
 
   .fvs-pin {
-    position: relative;
-    z-index: calc(10 + var(--i, 0));
-  }
-  @media (min-width: 768px) {
-    .fvs-pin {
-      position: sticky;
-      top: 5.5rem;
-    }
+    position: sticky;
+    top: max(5.25rem, calc(50vh - 28vw));
+    top: max(5.25rem, calc(50dvh - 28vw));
+    z-index: var(--z, 1);
+    display: flex;
+    justify-content: center;
+    will-change: transform;
   }
 
   .fvs-card {
@@ -132,27 +135,55 @@ const videos = cinematic.ids.map((id, i) => ({
     overflow: hidden;
     background: #000;
     box-shadow:
-      0 20px 48px rgba(15, 23, 42, 0.14),
+      0 18px 42px rgba(15, 23, 42, 0.16),
       0 0 0 1px rgba(15, 23, 42, 0.06);
-    /* Never stretch taller than the 16:9 frame */
-    height: auto;
     line-height: 0;
-  }
-  .fvs-card.is-playing {
-    box-shadow:
-      0 28px 56px rgba(13, 148, 136, 0.22),
-      0 0 0 2px rgba(13, 148, 136, 0.45);
+    transform-origin: center center;
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.45s ease,
+      opacity 0.45s ease,
+      box-shadow 0.35s ease;
   }
 
-  /*
-   * Classic responsive 16:9 box — works everywhere.
-   * Frame is ONLY this size; no extra dark area below/side.
-   */
+  /* Under pages (already covered by a newer sticky card) */
+  .fvs-card.is-under {
+    filter: blur(3px) brightness(0.85);
+    opacity: 0.72;
+    transform: scale(0.96);
+    pointer-events: none;
+  }
+
+  /* Active top page */
+  .fvs-card.is-top {
+    filter: none;
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+    box-shadow:
+      0 24px 52px rgba(15, 23, 42, 0.18),
+      0 0 0 1px rgba(15, 23, 42, 0.08);
+  }
+
+  .fvs-card.is-playing.is-top {
+    box-shadow:
+      0 28px 56px rgba(13, 148, 136, 0.25),
+      0 0 0 2px rgba(13, 148, 136, 0.5);
+  }
+
+  /* Leaving the stack downward */
+  .fvs-card.is-exit {
+    filter: blur(6px);
+    opacity: 0.35;
+    transform: scale(0.92) translateY(12px);
+  }
+
+  /* Reliable full 16:9 box */
   .fvs-frame {
     position: relative;
     width: 100%;
     height: 0;
-    padding-bottom: 56.25%; /* 16:9 */
+    padding-bottom: 56.25%;
     background: #000;
     overflow: hidden;
   }
@@ -189,12 +220,6 @@ const videos = cinematic.ids.map((id, i) => ({
     pointer-events: auto;
   }
 
-  .fvs-player iframe {
-    z-index: 1;
-    /* Force YouTube to fill the box edge-to-edge */
-    object-fit: cover;
-  }
-
   .fvs-play {
     position: absolute;
     z-index: 3;
@@ -204,7 +229,7 @@ const videos = cinematic.ids.map((id, i) => ({
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.45rem;
+    gap: 0.4rem;
     border: none;
     background: transparent;
     cursor: pointer;
@@ -228,19 +253,18 @@ const videos = cinematic.ids.map((id, i) => ({
     background: #0D9488;
   }
   .fvs-play-txt {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
   }
-  .fvs-card.is-playing .fvs-play {
-    display: none !important;
-  }
+  .fvs-card.is-playing .fvs-play { display: none !important; }
   .fvs-card.is-playing .fvs-poster {
     opacity: 0;
     pointer-events: none;
   }
+  .fvs-card.is-under .fvs-play { display: none !important; }
 
   .fvs-meta {
     position: absolute;
@@ -249,13 +273,13 @@ const videos = cinematic.ids.map((id, i) => ({
     bottom: 12px;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.45rem;
     pointer-events: none;
   }
   .fvs-num {
     font-family: var(--font-h, Outfit, system-ui, sans-serif);
     font-weight: 800;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #fff;
     background: rgba(15, 23, 42, 0.55);
     padding: 0.2rem 0.5rem;
@@ -263,48 +287,45 @@ const videos = cinematic.ids.map((id, i) => ({
     backdrop-filter: blur(8px);
   }
   .fvs-tag {
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
-    background: rgba(13, 148, 136, 0.75);
+    color: rgba(255, 255, 255, 0.92);
+    background: rgba(13, 148, 136, 0.78);
     padding: 0.2rem 0.5rem;
     border-radius: 8px;
   }
-  .fvs-card.is-playing .fvs-meta {
-    opacity: 0;
-  }
+  .fvs-card.is-playing .fvs-meta,
+  .fvs-card.is-under .fvs-meta { opacity: 0; }
 
   .fvs-more {
     text-align: center;
-    margin-top: 1.5rem;
+    margin-top: 1.25rem;
     padding: 0 1.25rem;
   }
 
-  /* Mobile: edge-to-edge within safe padding, full width of device */
+  /* Mobile: same stack logic, tighter pin offset, full width */
   @media (max-width: 767px) {
-    .fvs {
-      padding: 1.5rem 0 2rem;
-    }
-    .fvs-stack {
-      padding: 0 0.5rem;
-      max-width: 100%;
-    }
+    .fvs { padding: 1.35rem 0 1.75rem; }
+    .fvs-stack { padding: 0 0.5rem; max-width: 100%; }
     .fvs-slot {
-      height: auto !important;
-      min-height: 0 !important;
-      max-height: none !important;
-      margin-bottom: 0.85rem;
+      height: 100vh;
+      height: 100dvh;
+      max-height: none;
+      min-height: 420px;
+    }
+    .fvs-slot:last-child {
+      height: auto;
+      min-height: 0;
+      padding-bottom: 1rem;
     }
     .fvs-pin {
-      position: relative !important;
-      top: 0 !important;
+      top: max(4.5rem, calc(50dvh - 32vw));
     }
-    .fvs-card {
-      border-radius: 12px;
-    }
-    .fvs-play-ic {
-      width: 56px;
-      height: 56px;
+    .fvs-card { border-radius: 12px; }
+    .fvs-play-ic { width: 56px; height: 56px; }
+    .fvs-card.is-under {
+      filter: blur(2.5px) brightness(0.88);
+      transform: scale(0.97);
     }
   }
 
@@ -319,6 +340,12 @@ const videos = cinematic.ids.map((id, i) => ({
       position: relative !important;
       top: 0 !important;
     }
+    .fvs-card {
+      transition: none !important;
+      filter: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
   }
 </style>
 
@@ -327,46 +354,117 @@ const videos = cinematic.ids.map((id, i) => ({
   var root = document.querySelector('[data-fvs]');
   if (!root) return;
 
-  var cards = Array.prototype.slice.call(root.querySelectorAll('.fvs-card[data-vid]'));
+  var slots = Array.prototype.slice.call(root.querySelectorAll('[data-slot]'));
+  var cards = Array.prototype.slice.call(root.querySelectorAll('[data-card]'));
+  if (!cards.length) return;
 
-  function stopAll(except) {
-    cards.forEach(function (card) {
-      if (except && card === except) return;
-      var player = card.querySelector('[data-player]');
-      if (player) {
-        player.classList.remove('is-on');
-        player.innerHTML = '';
-      }
-      card.classList.remove('is-playing');
-    });
+  var reduced =
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var playingCard = null;
+
+  function stopCard(card) {
+    if (!card) return;
+    var player = card.querySelector('[data-player]');
+    if (player) {
+      player.classList.remove('is-on');
+      player.innerHTML = '';
+    }
+    card.classList.remove('is-playing');
+    if (playingCard === card) playingCard = null;
+  }
+
+  function stopAll() {
+    cards.forEach(stopCard);
+    playingCard = null;
   }
 
   function play(card) {
+    /* Only top card may play; never two at once */
+    if (!card || !card.classList.contains('is-top')) return;
     var id = card.getAttribute('data-vid');
     var player = card.querySelector('[data-player]');
     if (!id || !player) return;
 
-    stopAll(card);
+    stopAll();
+    playingCard = card;
     card.classList.add('is-playing');
 
-    /* Full-size embed + sound (no mute). User gesture required for audio. */
     var src =
       'https://www.youtube-nocookie.com/embed/' + id +
       '?autoplay=1&rel=0&playsinline=1&modestbranding=1&iv_load_policy=3' +
       '&origin=' + encodeURIComponent(location.origin || '');
 
     player.innerHTML =
-      '<iframe ' +
-      'src="' + src + '" ' +
-      'title="Video" ' +
-      'width="1280" height="720" ' +
-      'style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" ' +
+      '<iframe src="' + src + '" title="Video" width="1280" height="720" ' +
+      'style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" ' +
       'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
-      'allowfullscreen ' +
-      'loading="eager" ' +
-      'referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+      'allowfullscreen loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
     player.classList.add('is-on');
   }
+
+  /**
+   * Which page is on top of the sticky stack?
+   * The last slot whose pin has reached the sticky top (slot top <= pin top threshold).
+   */
+  function updateStack() {
+    if (reduced) {
+      cards.forEach(function (c) {
+        c.classList.add('is-top');
+        c.classList.remove('is-under', 'is-exit');
+      });
+      return;
+    }
+
+    var pinTop = 0;
+    var samplePin = root.querySelector('.fvs-pin');
+    if (samplePin) {
+      var cs = window.getComputedStyle(samplePin);
+      pinTop = parseFloat(cs.top) || 84;
+    }
+
+    var topIdx = 0;
+    slots.forEach(function (slot, i) {
+      var rect = slot.getBoundingClientRect();
+      /* Slot has scrolled so its top is at or above the sticky line */
+      if (rect.top <= pinTop + 8) topIdx = i;
+    });
+
+    /* If whole stack scrolled past viewport → exit state + stop play */
+    var stack = root.querySelector('[data-stack]');
+    var stackRect = stack ? stack.getBoundingClientRect() : null;
+    var stackGone = stackRect && stackRect.bottom < pinTop + 40;
+
+    cards.forEach(function (card, i) {
+      card.classList.remove('is-top', 'is-under', 'is-exit');
+      if (stackGone) {
+        card.classList.add('is-exit');
+        if (card.classList.contains('is-playing')) stopCard(card);
+      } else if (i < topIdx) {
+        card.classList.add('is-under');
+        /* Covered page cannot keep playing */
+        if (card.classList.contains('is-playing')) stopCard(card);
+      } else if (i === topIdx) {
+        card.classList.add('is-top');
+      } else {
+        /* Upcoming pages below — normal, waiting to rise */
+        card.classList.add('is-top');
+      }
+    });
+  }
+
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      updateStack();
+      ticking = false;
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  updateStack();
 
   cards.forEach(function (card) {
     var btn = card.querySelector('[data-play]');
@@ -379,23 +477,29 @@ const videos = cinematic.ids.map((id, i) => ({
     }
     card.addEventListener('click', function (e) {
       if (card.classList.contains('is-playing')) return;
+      if (!card.classList.contains('is-top')) return;
       if (e.target.closest('[data-play]') || e.target.closest('iframe')) return;
       play(card);
     });
   });
 
+  /* Safety: stop if card leaves viewport entirely */
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (en) {
           if (!en.isIntersecting && en.target.classList.contains('is-playing')) {
-            stopAll(null);
+            stopCard(en.target);
           }
         });
       },
-      { threshold: 0.12 }
+      { threshold: 0.08 }
     );
     cards.forEach(function (c) { io.observe(c); });
   }
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) stopAll();
+  });
 })();
 </script>
