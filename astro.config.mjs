@@ -1,4 +1,3 @@
-import { defineConfig } from 'astro/core';
 import { defineConfig } from 'astro/config';
 
 // Static site for Cloudflare Workers assets.
