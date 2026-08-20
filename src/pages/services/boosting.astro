@@ -1,16 +1,994 @@
 ---
-import ServiceShell from '../../components/ServiceShell.astro';
+/**
+ * Boosting & Campaign service page
+ * Boost vs Campaign, Facebook + YouTube, live USD→BDT service rate
+ * (market × 150/122), budget from $5, algorithm notes, FAQ
+ */
+import Layout from '../../layouts/Layout.astro';
+import TopBar from '../../components/TopBar.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE } from '../../data/site';
+
+const seoTitle =
+  'Facebook Boosting & Ad Campaign Bangladesh | YouTube Ads · Dollar Rate — Creavix iT';
+const seoDescription =
+  'Facebook boosting vs full campaign, YouTube ads, budget from $5, transparent USD to BDT service rate with tax & bank fee explanation. Creavix iT Solution Bangladesh.';
+
+const compare = [
+  {
+    side: 'Boosting',
+    color: 'boost',
+    points: [
+      'Start from a post, Reel or existing creative',
+      'Quick reach, messages, profile visits',
+      'Simple goals — ideal for offers & page activity',
+      'Faster to launch, smaller tests',
+      'Best when creative already performs organically',
+    ],
+  },
+  {
+    side: 'Campaign',
+    color: 'camp',
+    points: [
+      'Full funnel: awareness → traffic → leads/sales',
+      'Audience research, placements, retargeting',
+      'Facebook / Instagram + optional YouTube',
+      'A/B creatives, weekly optimization',
+      'Best for sustained growth & clear KPIs',
+    ],
+  },
+];
+
+const platforms = [
+  {
+    title: 'Facebook & Instagram',
+    tag: 'Meta',
+    desc: 'Feed, Stories, Reels, Messenger — boost a post or run structured campaigns for messages, calls and conversions.',
+    items: ['Boost post / Reel', 'Traffic & engagement', 'Message / lead campaigns', 'Retargeting warm audiences'],
+  },
+  {
+    title: 'YouTube Campaigns',
+    tag: 'Google',
+    desc: 'In-stream and discovery-style video ads that put your offer in front of viewers already watching related content.',
+    items: ['Video views & awareness', 'Traffic to site / WhatsApp', 'Brand lift style goals', 'Creative length guidance'],
+  },
+];
+
+const benefitsBoost = [
+  { t: 'Speed', d: 'Go live the same day when the post and budget are ready.' },
+  { t: 'Simple goals', d: 'More people seeing, reacting or messaging that specific post.' },
+  { t: 'Low entry', d: 'Test from about $5 and learn what creative works.' },
+  { t: 'Page heat', d: 'Useful before festivals, launches or limited offers.' },
+];
+
+const benefitsCamp = [
+  { t: 'Structure', d: 'Objectives, audiences and placements planned together.' },
+  { t: 'Scale', d: 'Move budget to winners; cut waste with weekly reviews.' },
+  { t: 'Multi-platform', d: 'Meta plus YouTube under one growth plan when needed.' },
+  { t: 'Reporting', d: 'Spend, results and cost-per-result in plain language.' },
+];
+
+const tiers = [
+  { usd: 5, label: 'Test', note: 'Single boost test · one creative' },
+  { usd: 15, label: 'Starter', note: 'Short boost window · offer push' },
+  { usd: 50, label: 'Growth', note: 'Campaign-style · audience + creative' },
+  { usd: 100, label: 'Scale', note: 'Multi-ad · retargeting ready' },
+  { usd: 250, label: 'Pro', note: 'Full week optimization · FB / YT mix' },
+];
+
+const algo = [
+  {
+    t: 'Facebook delivery today',
+    d: 'Meta rewards relevance and meaningful interactions. Clear creative, honest claims and message/call goals usually beat random “boost for likes only”.',
+  },
+  {
+    t: 'Android & mobile feed',
+    d: 'Most BD traffic is mobile. Vertical video, readable text on small screens and fast first seconds matter more than desktop-only designs.',
+  },
+  {
+    t: 'Quality & limits',
+    d: 'Sudden spammy boosts, misleading ads or weak Page quality can reduce delivery. Healthy Page + gradual spend is safer.',
+  },
+  {
+    t: 'YouTube attention',
+    d: 'Hooks in the first seconds, readable branding and a single clear action (visit, message, search) improve campaign efficiency.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Boosting আর Campaign-এর আসল পার্থক্য কী?',
+    a: 'Boosting সাধারণত একটি পোস্ট/রিলকে টার্গেট অডিয়েন্সের কাছে পৌঁছে দেয় — দ্রুত ও সহজ। Campaign মানে উদ্দেশ্য, অডিয়েন্স, প্লেসমেন্ট, ক্রিয়েটিভ টেস্ট এবং অপটিমাইজেশনসহ পুরো পরিকল্পনা — Facebook/Instagram এবং প্রয়োজনে YouTube একসাথে।',
+  },
+  {
+    q: 'সর্বনিম্ন বাজেট কত?',
+    a: 'টেস্ট বুস্ট প্রায় $5 থেকে শুরু করা যায়। ক্যাম্পেইনের জন্য লক্ষ্য অনুযায়ী বাজেট বাড়ানো হয় যাতে ডেটা শেখার মতো যথেষ্ট হয়।',
+  },
+  {
+    q: 'ডলার রেট কেন মার্কেটের চেয়ে বেশি?',
+    a: 'সার্ভিস রেটে ট্যাক্স ও পেমেন্ট/ব্যাংক খরচ ধরা হয়। মার্কেটে ডলার এক দামে দেখা গেলেও ব্যাংক/গেটওয়ে প্রায়ই অতিরিক্ত কেটে — কখনো ঘোষিত ~৮%, বাস্তবে কিছু ক্ষেত্রে আরও বেশি (এমনকি ~১৫% পর্যন্ত ভিন্ন চার্জের অভিযোগ থাকে)। তাই ক্লায়েন্টের চূড়ান্ত BDT রেট মার্কেট স্পটের চেয়ে উঁচুতে সেট করা হয় যাতে হিসাব স্বচ্ছ থাকে।',
+  },
+  {
+    q: 'রেট কি প্রতিদিন বদলায়?',
+    a: 'হ্যাঁ। পেজের ক্যালকুলেটর মার্কেট USD/BDT রেফারেন্স নিয়ে আমাদের ফর্মুলা (মার্কেট × ১৫০/১২২) প্রয়োগ করে সার্ভিস রেট দেখায়। API না পেলে ফলব্যাক ভ্যালু ব্যবহার হয়।',
+  },
+  {
+    q: 'YouTube ক্যাম্পেইন কি আলাদা?',
+    a: 'হ্যাঁ — গুগল/ইউটিউব সাইডে ভিডিও অ্যাড। মেটা বুস্টের বিকল্প বা সম্পূরক হিসেবে ব্র্যান্ড ও ট্রাফিকের জন্য ব্যবহার করা যায়।',
+  },
+  {
+    q: 'কতদিনে রেজাল্ট?',
+    a: 'বুস্টে কয়েক ঘণ্টা থেকে কয়েক দিনে রিচ/ইনবক্স দেখা যায়। ক্যাম্পেইনে শেখা ও স্কেল করতে সাধারণত কয়েক দিনের ডেটা লাগে। অবাস্তব “গ্যারান্টিড সেলস” দিই না।',
+  },
+  {
+    q: 'পেজ restriction থাকলে বুস্ট হবে?',
+    a: 'সীমাবদ্ধ পেজ/অ্যাড অ্যাকাউন্টে ডেলিভারি কমে বা বন্ধ হতে পারে। আগে পেজ হেলথ ঠিক করা ভালো — Facebook Page সার্ভিসে চেকআপ আছে।',
+  },
+  {
+    q: 'কী দিয়ে শুরু করব — বুস্ট নাকি ক্যাম্পেইন?',
+    a: 'একটি অফার দ্রুত টেস্ট করতে বুস্ট। নিয়মিত লিড/মেসেজ ও বাজেট স্কেল করতে ক্যাম্পেইন। WhatsApp-এ লক্ষ্য বললে আমরা রোডম্যাপ সাজাই।',
+  },
+];
 ---
-<ServiceShell
-  title="Boosting Service"
-  seoTitle="Facebook & Instagram Boosting Service Bangladesh — Creavix iT"
-  seoDescription="Targeted Facebook and Instagram boosting to reach the right audience — Creavix iT Solution."
-  icon="boost"
-  lead="Targeted Meta boosting with clear audience, creative testing and daily monitoring."
-  bullets={['Audience research', 'Creative A/B testing', 'Budget pacing', 'Retargeting basics', 'Performance summary']}
-  demos={[
-    { tag: 'Demo', title: 'Audience map', desc: 'Interest + location + lookalike planning sheet concept.' },
-    { tag: 'Demo', title: 'Creative test grid', desc: '3 hooks × 2 visuals testing board for boosts.' },
-    { tag: 'Demo', title: 'Weekly report card', desc: 'Spend, reach, CTR and leads summary sample.' },
-  ]}
-/>
+
+<Layout title={seoTitle} description={seoDescription}>
+  <TopBar />
+  <Nav active="services" />
+
+  <!-- HERO -->
+  <section class="bo-hero">
+    <div class="container bo-hero-grid">
+      <div class="bo-copy reveal">
+        <p class="bo-eye">Boosting &amp; Campaigns</p>
+        <h1>Facebook Boosting, Full Campaigns &amp; YouTube Ads</h1>
+        <p class="bo-sub">
+          Know the difference. Start from about $5. See a transparent USD → BDT service rate
+          (market-linked, tax &amp; bank costs included). Magnetic growth creative — not random spend.
+        </p>
+        <div class="bo-actions">
+          <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Plan my boost</a>
+          <a class="btn btn-outline" href="#rate">Today’s dollar rate</a>
+        </div>
+        <ul class="bo-pills">
+          <li>From $5</li>
+          <li>Meta Boost</li>
+          <li>Campaigns</li>
+          <li>YouTube</li>
+          <li>Live BDT rate</li>
+        </ul>
+      </div>
+
+      <div class="bo-visual reveal" aria-hidden="true">
+        <div class="bo-magnet">
+          <div class="bo-core">
+            <span class="bo-core-label">Your offer</span>
+            <strong>Pulls clients</strong>
+          </div>
+          <div class="bo-orbit bo-o1">Reach</div>
+          <div class="bo-orbit bo-o2">Inbox</div>
+          <div class="bo-orbit bo-o3">Calls</div>
+          <div class="bo-orbit bo-o4">Orders</div>
+          <div class="bo-ring"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARE -->
+  <section class="bo-sec" id="compare">
+    <div class="container">
+      <div class="bo-center reveal">
+        <p class="bo-eye">Boost vs Campaign</p>
+        <h2>Same platform — different jobs</h2>
+        <p class="bo-lead">Choose boost for speed tests. Choose campaign when you need a system.</p>
+      </div>
+      <div class="bo-compare">
+        {compare.map((c) => (
+          <article class={`bo-col bo-${c.color} reveal`}>
+            <h3>{c.side}</h3>
+            <ul>
+              {c.points.map((p) => (
+                <li>{p}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="bo-sec bo-muted" id="platforms">
+    <div class="container">
+      <div class="bo-center reveal">
+        <p class="bo-eye">Platforms</p>
+        <h2>Facebook, Instagram &amp; YouTube</h2>
+      </div>
+      <div class="bo-platforms">
+        {platforms.map((p) => (
+          <article class="bo-plat reveal">
+            <span class="bo-tag">{p.tag}</span>
+            <h3>{p.title}</h3>
+            <p>{p.desc}</p>
+            <ul>
+              {p.items.map((i) => (
+                <li>{i}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="bo-sec" id="benefits">
+    <div class="container">
+      <div class="bo-two">
+        <div class="reveal">
+          <p class="bo-eye">Boosting benefits</p>
+          <h2 class="bo-h2">When boosting helps</h2>
+          <div class="bo-bgrid">
+            {benefitsBoost.map((b) => (
+              <div class="bo-bcard">
+                <h3>{b.t}</h3>
+                <p>{b.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="reveal">
+          <p class="bo-eye">Campaign benefits</p>
+          <h2 class="bo-h2">When a campaign is better</h2>
+          <div class="bo-bgrid">
+            {benefitsCamp.map((b) => (
+              <div class="bo-bcard">
+                <h3>{b.t}</h3>
+                <p>{b.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUDGET TIERS -->
+  <section class="bo-sec bo-muted" id="budget">
+    <div class="container">
+      <div class="bo-center reveal">
+        <p class="bo-eye">Budget friendly</p>
+        <h2>From $5 — pick a starting band</h2>
+        <p class="bo-lead">Final BDT = your USD band × today’s service rate (see calculator below).</p>
+      </div>
+      <div class="bo-tiers">
+        {tiers.map((t) => (
+          <article class="bo-tier reveal" data-usd={t.usd}>
+            <div class="bo-tier-usd">${t.usd}</div>
+            <div class="bo-tier-label">{t.label}</div>
+            <p>{t.note}</p>
+            <div class="bo-tier-bdt">≈ <span class="js-tier-bdt">—</span> BDT</div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DOLLAR RATE -->
+  <section class="bo-sec" id="rate">
+    <div class="container bo-rate-wrap">
+      <div class="bo-center reveal">
+        <p class="bo-eye">Service dollar rate</p>
+        <h2>Live USD → BDT calculation</h2>
+        <p class="bo-lead">
+          When market USD is <strong>122</strong> BDT, our service rate is <strong>150</strong> BDT.
+          Formula: <code>service = market × (150 ÷ 122)</code>. Updates when you open the page (market feed + daily cache).
+        </p>
+      </div>
+
+      <div class="bo-rate-card reveal" id="bo-rate-card">
+        <div class="bo-rate-status" id="bo-rate-status">Loading market rate…</div>
+        <div class="bo-rate-grid">
+          <div class="bo-rate-box">
+            <span class="bo-rate-k">Market USD (ref)</span>
+            <span class="bo-rate-v" id="bo-market">—</span>
+            <span class="bo-rate-u">BDT</span>
+          </div>
+          <div class="bo-rate-arrow" aria-hidden="true">→</div>
+          <div class="bo-rate-box hi">
+            <span class="bo-rate-k">Creavix service rate</span>
+            <span class="bo-rate-v" id="bo-service">—</span>
+            <span class="bo-rate-u">BDT / USD</span>
+          </div>
+        </div>
+        <div class="bo-calc">
+          <label for="bo-usd-input">Estimate budget</label>
+          <div class="bo-calc-row">
+            <input id="bo-usd-input" type="number" min="5" step="1" value="50" />
+            <span class="bo-calc-usd">USD</span>
+            <span class="bo-calc-eq">≈</span>
+            <strong id="bo-bdt-out">—</strong>
+            <span>BDT</span>
+          </div>
+        </div>
+        <div class="bo-why">
+          <h3>কেন মার্কেটের চেয়ে বেশি?</h3>
+          <ul>
+            <li><strong>Tax:</strong> সার্ভিস ও পেমেন্ট সংক্রান্ত ট্যাক্স খরচ রেটের মধ্যে ধরা হয়।</li>
+            <li><strong>Bank / gateway:</strong> ঘোষিত চার্জ প্রায় ~৮% হলেও বাস্তবে কিছু ক্ষেত্রে অতিরিক্ত কেটে — এমনকি ~১৫% পর্যন্ত পার্থক্যের অভিজ্ঞতা থাকে।</li>
+            <li><strong>স্বচ্ছ ফিক্সড সার্ভিস রেট:</strong> মার্কেট ১২২ হলে সার্ভিস ১৫০ — একই অনুপাতে প্রতিদিন মার্কেট বদলালে সার্ভিস রেটও আপডেট হয়।</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALGORITHM -->
+  <section class="bo-sec bo-muted" id="algorithm">
+    <div class="container">
+      <div class="bo-center reveal">
+        <p class="bo-eye">Algorithm &amp; mobile</p>
+        <h2>How delivery works in practice</h2>
+      </div>
+      <div class="bo-algo">
+        {algo.map((a) => (
+          <article class="bo-acard reveal">
+            <h3>{a.t}</h3>
+            <p>{a.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bo-sec" id="faq">
+    <div class="container bo-faq-wrap">
+      <div class="bo-center reveal">
+        <p class="bo-eye">FAQ</p>
+        <h2>Boosting &amp; rate questions</h2>
+      </div>
+      <div class="bo-faq reveal">
+        {faqs.map((f) => (
+          <details class="bo-faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bo-cta">
+    <div class="container bo-cta-inner reveal">
+      <div>
+        <p class="bo-eye light">Next step</p>
+        <h2>Send your post link or goal — we suggest boost or campaign</h2>
+        <p>WhatsApp {SITE.whatsapp} · {SITE.email1}</p>
+      </div>
+      <div class="bo-cta-btns">
+        <a class="btn btn-light" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a class="btn btn-ghost" href="/services/campaign">Campaign page</a>
+        <a class="btn btn-ghost" href="/contact">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<script is:inline>
+(function () {
+  var REF_MARKET = 122;
+  var REF_SERVICE = 150;
+  var FACTOR = REF_SERVICE / REF_MARKET;
+  var CACHE_KEY = 'creavix_usd_bdt_v1';
+  var DAY_MS = 24 * 60 * 60 * 1000;
+
+  var elMarket = document.getElementById('bo-market');
+  var elService = document.getElementById('bo-service');
+  var elStatus = document.getElementById('bo-rate-status');
+  var elInput = document.getElementById('bo-usd-input');
+  var elOut = document.getElementById('bo-bdt-out');
+
+  function apply(market, source) {
+    var service = Math.round(market * FACTOR * 100) / 100;
+    if (elMarket) elMarket.textContent = market.toFixed(2);
+    if (elService) elService.textContent = service.toFixed(2);
+    if (elStatus) {
+      elStatus.textContent =
+        source === 'live'
+          ? 'Updated from market feed · formula × (150/122)'
+          : source === 'cache'
+            ? 'Today’s cached rate · formula × (150/122)'
+            : 'Fallback rate (API offline) · 122 → 150 baseline';
+    }
+    window.__creavixServiceRate = service;
+    updateCalc();
+    document.querySelectorAll('.bo-tier').forEach(function (node) {
+      var usd = parseFloat(node.getAttribute('data-usd') || '0');
+      var span = node.querySelector('.js-tier-bdt');
+      if (span) span.textContent = Math.round(usd * service).toLocaleString('en-BD');
+    });
+  }
+
+  function updateCalc() {
+    var rate = window.__creavixServiceRate || REF_SERVICE;
+    var usd = parseFloat((elInput && elInput.value) || '0');
+    if (!isFinite(usd) || usd < 0) usd = 0;
+    if (elOut) elOut.textContent = Math.round(usd * rate).toLocaleString('en-BD');
+  }
+
+  if (elInput) elInput.addEventListener('input', updateCalc);
+
+  function readCache() {
+    try {
+      var raw = localStorage.getItem(CACHE_KEY);
+      if (!raw) return null;
+      var o = JSON.parse(raw);
+      if (!o || !o.market || !o.ts) return null;
+      if (Date.now() - o.ts > DAY_MS) return null;
+      return o.market;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function writeCache(market) {
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify({ market: market, ts: Date.now() }));
+    } catch (e) {}
+  }
+
+  var cached = readCache();
+  if (cached) apply(cached, 'cache');
+  else apply(REF_MARKET, 'fallback');
+
+  fetch('https://open.er-api.com/v6/latest/USD')
+    .then(function (r) {
+      return r.json();
+    })
+    .then(function (data) {
+      var m = data && data.rates && data.rates.BDT;
+      if (typeof m === 'number' && m > 0) {
+        writeCache(m);
+        apply(m, 'live');
+      }
+    })
+    .catch(function () {
+      /* keep cache or fallback */
+    });
+})();
+</script>
+
+<style>
+  .bo-hero {
+    padding: 5.25rem 1.25rem 3.5rem;
+    background:
+      radial-gradient(ellipse 55% 45% at 85% 15%, rgba(37, 99, 235, 0.14), transparent 55%),
+      radial-gradient(ellipse 40% 30% at 10% 90%, rgba(245, 158, 11, 0.08), transparent 50%),
+      linear-gradient(180deg, #fff, #F8FAFC);
+  }
+  .bo-hero-grid {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .bo-hero-grid {
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+  }
+  .bo-eye {
+    margin: 0 0 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #2563EB;
+  }
+  .bo-eye.light { color: #93C5FD; }
+  .bo-hero h1 {
+    margin: 0 0 0.9rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.7rem, 4.2vw, 2.55rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    color: #0B0F19;
+  }
+  .bo-sub {
+    margin: 0 0 1.35rem;
+    color: #475569;
+    font-size: 1.02rem;
+    line-height: 1.65;
+    max-width: 36rem;
+  }
+  .bo-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-bottom: 1.15rem;
+  }
+  .bo-pills {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .bo-pills li {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #1E40AF;
+    background: #EFF6FF;
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    padding: 0.28rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  .bo-visual {
+    display: flex;
+    justify-content: center;
+  }
+  .bo-magnet {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bo-ring {
+    position: absolute;
+    inset: 18px;
+    border-radius: 50%;
+    border: 2px dashed rgba(37, 99, 235, 0.25);
+    animation: bo-spin 18s linear infinite;
+  }
+  .bo-core {
+    position: relative;
+    z-index: 2;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #2563EB, #1D4ED8);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 0 0 12px rgba(37, 99, 235, 0.15), 0 20px 40px rgba(37, 99, 235, 0.35);
+    animation: bo-pulse 2.8s ease-in-out infinite;
+  }
+  .bo-core-label {
+    font-size: 0.65rem;
+    opacity: 0.85;
+  }
+  .bo-core strong {
+    font-size: 0.95rem;
+    font-weight: 800;
+  }
+  .bo-orbit {
+    position: absolute;
+    z-index: 3;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
+    color: #1E40AF;
+    animation: bo-bob 3.5s ease-in-out infinite;
+  }
+  .bo-o1 { top: 8%; left: 50%; transform: translateX(-50%); }
+  .bo-o2 { top: 42%; right: 0; animation-delay: 0.4s; }
+  .bo-o3 { bottom: 12%; left: 50%; transform: translateX(-50%); animation-delay: 0.8s; }
+  .bo-o4 { top: 42%; left: 0; animation-delay: 1.2s; }
+  @keyframes bo-spin {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes bo-pulse {
+    0%, 100% { box-shadow: 0 0 0 12px rgba(37, 99, 235, 0.15), 0 20px 40px rgba(37, 99, 235, 0.35); }
+    50% { box-shadow: 0 0 0 20px rgba(37, 99, 235, 0.08), 0 20px 40px rgba(37, 99, 235, 0.4); }
+  }
+  @keyframes bo-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .bo-o1 { animation-name: bo-bob; }
+  .bo-o2, .bo-o3, .bo-o4 { animation-name: bo-bob; }
+
+  .bo-sec { padding: 3.5rem 1.25rem; background: #fff; }
+  .bo-muted { background: #F8FAFC; }
+  .bo-center {
+    text-align: center;
+    max-width: 38rem;
+    margin: 0 auto 2rem;
+  }
+  .bo-center h2,
+  .bo-h2 {
+    margin: 0 0 0.5rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.35rem, 3vw, 1.85rem);
+    font-weight: 800;
+    color: #0B0F19;
+    letter-spacing: -0.02em;
+  }
+  .bo-lead {
+    margin: 0;
+    color: #64748B;
+    line-height: 1.65;
+    font-size: 0.98rem;
+  }
+  .bo-lead code {
+    font-size: 0.85rem;
+    background: #EFF6FF;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    color: #1D4ED8;
+  }
+
+  .bo-compare {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 700px) {
+    .bo-compare { grid-template-columns: 1fr 1fr; }
+  }
+  .bo-col {
+    border-radius: 18px;
+    padding: 1.5rem 1.35rem;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+  }
+  .bo-boost {
+    background: linear-gradient(180deg, #EFF6FF, #fff);
+  }
+  .bo-camp {
+    background: linear-gradient(180deg, #FFFBEB, #fff);
+  }
+  .bo-col h3 {
+    margin: 0 0 0.85rem;
+    font-size: 1.2rem;
+    font-weight: 800;
+  }
+  .bo-boost h3 { color: #1D4ED8; }
+  .bo-camp h3 { color: #B45309; }
+  .bo-col ul {
+    margin: 0;
+    padding: 0 0 0 1.1rem;
+    color: #475569;
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .bo-platforms {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 700px) {
+    .bo-platforms { grid-template-columns: 1fr 1fr; }
+  }
+  .bo-plat {
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: 18px;
+    padding: 1.4rem 1.3rem;
+  }
+  .bo-tag {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    background: #EFF6FF;
+    color: #1D4ED8;
+  }
+  .bo-plat h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+  }
+  .bo-plat > p {
+    margin: 0 0 0.75rem;
+    font-size: 0.9rem;
+    color: #64748B;
+    line-height: 1.55;
+  }
+  .bo-plat ul {
+    margin: 0;
+    padding: 0 0 0 1.05rem;
+    color: #475569;
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  .bo-two {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 800px) {
+    .bo-two { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+  .bo-bgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  .bo-bcard {
+    background: #F8FAFC;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: 14px;
+    padding: 1rem;
+  }
+  .bo-bcard h3 {
+    margin: 0 0 0.3rem;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #2563EB;
+  }
+  .bo-bcard p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #64748B;
+    line-height: 1.5;
+  }
+
+  .bo-tiers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  @media (min-width: 700px) {
+    .bo-tiers { grid-template-columns: repeat(5, 1fr); }
+  }
+  .bo-tier {
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 16px;
+    padding: 1.15rem 0.85rem;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .bo-tier:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.12);
+  }
+  .bo-tier-usd {
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #2563EB;
+  }
+  .bo-tier-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #0B0F19;
+    margin: 0.2rem 0 0.35rem;
+  }
+  .bo-tier p {
+    margin: 0 0 0.5rem;
+    font-size: 0.75rem;
+    color: #64748B;
+    line-height: 1.4;
+  }
+  .bo-tier-bdt {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #1E40AF;
+    background: #EFF6FF;
+    border-radius: 8px;
+    padding: 0.35rem;
+  }
+
+  .bo-rate-wrap { max-width: 720px; }
+  .bo-rate-card {
+    background: #0B1220;
+    color: #E2E8F0;
+    border-radius: 20px;
+    padding: 1.5rem 1.35rem 1.35rem;
+    box-shadow: 0 24px 48px rgba(15, 23, 42, 0.2);
+  }
+  .bo-rate-status {
+    font-size: 0.78rem;
+    color: #94A3B8;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .bo-rate-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .bo-rate-box {
+    flex: 1;
+    min-width: 140px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 1rem 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .bo-rate-box.hi {
+    background: linear-gradient(145deg, rgba(37, 99, 235, 0.45), rgba(29, 78, 216, 0.35));
+    border-color: rgba(96, 165, 250, 0.35);
+  }
+  .bo-rate-k {
+    display: block;
+    font-size: 0.7rem;
+    color: #94A3B8;
+    margin-bottom: 0.35rem;
+  }
+  .bo-rate-v {
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #fff;
+  }
+  .bo-rate-u {
+    display: block;
+    font-size: 0.7rem;
+    color: #94A3B8;
+    margin-top: 0.2rem;
+  }
+  .bo-rate-arrow {
+    font-size: 1.25rem;
+    color: #64748B;
+  }
+  .bo-calc {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  .bo-calc label {
+    display: block;
+    font-size: 0.75rem;
+    color: #94A3B8;
+    margin-bottom: 0.5rem;
+  }
+  .bo-calc-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .bo-calc-row input {
+    width: 100px;
+    padding: 0.5rem 0.65rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: #111827;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  .bo-calc-row strong {
+    font-size: 1.25rem;
+    color: #93C5FD;
+  }
+  .bo-why {
+    font-size: 0.88rem;
+    color: #CBD5E1;
+    line-height: 1.55;
+  }
+  .bo-why h3 {
+    margin: 0 0 0.5rem;
+    font-size: 0.95rem;
+    color: #fff;
+  }
+  .bo-why ul {
+    margin: 0;
+    padding: 0 0 0 1.1rem;
+  }
+  .bo-why li { margin-bottom: 0.35rem; }
+
+  .bo-algo {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 700px) {
+    .bo-algo { grid-template-columns: 1fr 1fr; }
+  }
+  .bo-acard {
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: 16px;
+    padding: 1.25rem 1.15rem;
+  }
+  .bo-acard h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1rem;
+    font-weight: 800;
+  }
+  .bo-acard p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #64748B;
+    line-height: 1.55;
+  }
+
+  .bo-faq-wrap { max-width: 720px; }
+  .bo-faq { display: flex; flex-direction: column; gap: 0.65rem; }
+  .bo-faq-item {
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 14px;
+    background: #F8FAFC;
+    padding: 0.15rem 1rem;
+  }
+  .bo-faq-item summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #0B0F19;
+    padding: 0.9rem 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .bo-faq-item summary::-webkit-details-marker { display: none; }
+  .bo-faq-item summary::after {
+    content: '+';
+    font-size: 1.25rem;
+    color: #2563EB;
+    flex-shrink: 0;
+  }
+  .bo-faq-item[open] summary::after { content: '–'; }
+  .bo-faq-item p {
+    margin: 0 0 1rem;
+    color: #64748B;
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .bo-cta {
+    padding: 3rem 1.25rem;
+    background: linear-gradient(135deg, #1E3A8A, #2563EB 50%, #F59E0B);
+    color: #fff;
+  }
+  .bo-cta-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .bo-cta h2 {
+    margin: 0 0 0.4rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
+    font-weight: 800;
+  }
+  .bo-cta p { margin: 0; opacity: 0.95; font-size: 0.95rem; }
+  .bo-cta-btns { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+  .btn-light {
+    background: #fff;
+    color: #1E40AF;
+    border: none;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+  }
+
+  @media (max-width: 639px) {
+    .bo-hero { padding-top: 4.5rem; }
+    .bo-magnet { width: 240px; height: 240px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bo-ring, .bo-core, .bo-orbit { animation: none; }
+  }
+</style>
