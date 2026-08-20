@@ -1,10 +1,12 @@
 ---
 /**
- * Cinematic stack — ONE sticky stage in the middle of the screen.
- * Outer rail height = 6 × viewport → scroll distance.
- * All 6 videos sit in the SAME absolute slot; scroll progress
- * decides which page is on top (book-page). Under pages blur.
- * Full-width 16:9 on mobile + desktop. One player. Auto-stop.
+ * Homepage only — 6 cinematic videos
+ * Classic sticky stack (one card per scroll panel):
+ *  - Each video full-width 16:9
+ *  - Pins in the middle while you scroll its panel
+ *  - Next video covers same spot (book page)
+ *  - Previous gets soft blur
+ *  - If sticky fails, videos still show one after another (never empty)
  */
 import { SHOWCASES, ytThumb } from '../data/site';
 
@@ -17,35 +19,33 @@ const videos = cinematic.ids.map((id, i) => ({
 const total = videos.length;
 ---
 
-<section id="featured-videos" class="fvs" data-fvs data-count={String(total)}>
+<section id="featured-videos" class="fvs" data-fvs>
   <div class="fvs-head">
     <p class="eyebrow">Featured Work</p>
     <h2>Cinematic Videos</h2>
-    <p class="fvs-lead">Scroll — films stack like book pages in the center. Tap to play with sound.</p>
+    <p class="fvs-lead">Scroll — each film pins in the center like a book page. Tap to play with sound.</p>
   </div>
 
-  <!-- Tall scroll track: one viewport of travel per video -->
-  <div class="fvs-track" data-track>
-    <!-- Single sticky stage locked to vertical middle -->
-    <div class="fvs-stage" data-stage>
-      <div class="fvs-stage-inner">
-        {videos.map((v, i) => (
+  <div class="fvs-list" data-list>
+    {videos.map((v, i) => (
+      <div class="fvs-panel" data-panel data-i={String(i)} style={`--i:${i}`}>
+        <div class="fvs-pin">
           <article
-            class:list={['fvs-page', i === 0 && 'is-front']}
-            data-page
-            data-i={String(i)}
+            class:list={['fvs-card', i === 0 && 'is-front']}
+            data-card
             data-vid={v.id}
-            style={`--i:${i}`}
+            data-i={String(i)}
           >
             <div class="fvs-frame">
               <img
                 class="fvs-poster"
                 src={v.thumb}
-                alt=""
+                alt={`Cinematic video ${v.n}`}
                 width="1280"
                 height="720"
                 loading={i < 2 ? 'eager' : 'lazy'}
                 decoding="async"
+                fetchpriority={i === 0 ? 'high' : 'auto'}
               />
               <div class="fvs-player" data-player></div>
 
@@ -58,20 +58,13 @@ const total = videos.length;
 
               <div class="fvs-meta">
                 <span class="fvs-num">{String(v.n).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
-                <span class="fvs-tag">16:9</span>
+                <span class="fvs-tag">16:9 · Cinematic</span>
               </div>
             </div>
           </article>
-        ))}
+        </div>
       </div>
-
-      <!-- Progress dots -->
-      <div class="fvs-dots" data-dots aria-hidden="true">
-        {videos.map((_, i) => (
-          <span class:list={['fvs-dot', i === 0 && 'is-on']} data-dot={String(i)}></span>
-        ))}
-      </div>
-    </div>
+    ))}
   </div>
 
   <div class="fvs-more">
@@ -81,130 +74,116 @@ const total = videos.length;
 
 <style>
   .fvs {
-    padding: 2rem 0 0;
-    background: linear-gradient(180deg, #F8FAFC 0%, #fff 25%);
+    padding: 1.75rem 0 0;
+    background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 40%);
   }
 
   .fvs-head {
     text-align: center;
-    padding: 0 1.25rem 1rem;
-    max-width: 40rem;
+    padding: 0 1rem 1rem;
+    max-width: 36rem;
     margin: 0 auto;
   }
   .fvs-head h2 {
-    margin: 0 0 0.4rem;
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin: 0 0 0.35rem;
+    font-size: clamp(1.45rem, 3vw, 1.95rem);
   }
   .fvs-lead {
     margin: 0;
-    color: var(--text-2, #475569);
-    font-size: 0.95rem;
+    color: #475569;
+    font-size: 0.92rem;
+  }
+
+  .fvs-list {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 0.75rem;
+    box-sizing: border-box;
   }
 
   /*
-   * Track height = N × 100vh → scroll distance for N pages.
-   * Inside: one sticky stage that stays centered while you scroll the track.
+   * Each panel = one scroll length.
+   * Card inside is sticky → pins at same vertical spot.
+   * Later panels paint on top (higher --i / DOM order).
    */
-  .fvs-track {
+  .fvs-panel {
     position: relative;
-    height: calc(var(--fvs-count, 6) * 100vh);
-    height: calc(var(--fvs-count, 6) * 100dvh);
+    height: 92vh;
+    height: 92dvh;
+    max-height: 860px;
+    min-height: 420px;
+  }
+  .fvs-panel:last-child {
+    height: auto;
+    max-height: none;
+    min-height: 0;
+    padding-bottom: 1.25rem;
   }
 
-  .fvs-stage {
+  .fvs-pin {
     position: -webkit-sticky;
     position: sticky;
-    top: 0;
-    height: 100vh;
-    height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 5.5rem 0.75rem 1.5rem; /* nav clearance */
-    box-sizing: border-box;
-    z-index: 5;
+    top: max(4.75rem, calc((100vh - 56.25vw) / 2));
+    top: max(4.75rem, calc((100dvh - 56.25vw) / 2));
+    z-index: calc(10 + var(--i, 0));
+    width: 100%;
   }
 
-  .fvs-stage-inner {
-    position: relative;
-    width: min(100%, 1100px);
-    /* 16:9 box */
-    aspect-ratio: 16 / 9;
-    border-radius: 16px;
-    /* stacking context for absolute pages */
-    isolation: isolate;
-  }
-
-  /*
-   * Every page is ABSOLUTE in the same slot.
-   * Only the front page is fully visible; under pages blur.
-   */
-  .fvs-page {
-    position: absolute;
-    inset: 0;
-    border-radius: 16px;
+  .fvs-card {
+    width: 100%;
+    border-radius: 14px;
     overflow: hidden;
-    background: #000;
+    background: #0B0F19;
     box-shadow:
-      0 22px 50px rgba(15, 23, 42, 0.18),
-      0 0 0 1px rgba(15, 23, 42, 0.06);
-    opacity: 0;
-    transform: translate3d(0, 18px, 0) scale(0.97);
-    filter: blur(4px);
-    pointer-events: none;
-    transition:
-      opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-      filter 0.45s ease,
-      box-shadow 0.35s ease;
-    will-change: opacity, transform, filter;
-  }
-
-  .fvs-page.is-under {
-    opacity: 0.72;
-    transform: translate3d(0, 0, 0) scale(0.96);
-    filter: blur(2.5px) brightness(0.85);
-    z-index: 1;
-  }
-
-  .fvs-page.is-front {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
+      0 20px 48px rgba(15, 23, 42, 0.16),
+      0 0 0 1px rgba(15, 23, 42, 0.07);
+    line-height: 0;
+    transform: scale(1);
     filter: none;
+    opacity: 1;
+    transition:
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.4s ease,
+      opacity 0.4s ease,
+      box-shadow 0.3s ease;
+  }
+
+  /* Covered by a newer sticky card */
+  .fvs-card.is-under {
+    filter: blur(2.5px) brightness(0.84);
+    opacity: 0.8;
+    transform: scale(0.97);
+    pointer-events: none;
+  }
+
+  .fvs-card.is-front {
+    filter: none;
+    opacity: 1;
+    transform: scale(1);
     pointer-events: auto;
-    z-index: 3;
+  }
+
+  .fvs-card.is-front.is-playing {
     box-shadow:
-      0 26px 56px rgba(15, 23, 42, 0.2),
-      0 0 0 1px rgba(15, 23, 42, 0.08);
+      0 26px 52px rgba(13, 148, 136, 0.28),
+      0 0 0 2px rgba(13, 148, 136, 0.5);
   }
 
-  .fvs-page.is-front.is-playing {
-    box-shadow:
-      0 28px 56px rgba(13, 148, 136, 0.28),
-      0 0 0 2px rgba(13, 148, 136, 0.55);
-  }
-
-  /* Pages not yet reached stay hidden below */
-  .fvs-page.is-wait {
-    opacity: 0;
-    transform: translate3d(0, 24px, 0) scale(0.97);
-    filter: blur(6px);
-    z-index: 0;
-  }
-
+  /* Always-visible 16:9 — never collapses */
   .fvs-frame {
-    position: absolute;
-    inset: 0;
-    background: #000;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #0B0F19;
+    overflow: hidden;
   }
 
   .fvs-poster,
   .fvs-player,
   .fvs-player iframe {
     position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
+    inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
     max-width: none !important;
@@ -238,7 +217,7 @@ const total = videos.length;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.35rem;
     border: none;
     background: transparent;
     cursor: pointer;
@@ -246,122 +225,99 @@ const total = videos.length;
     padding: 0;
   }
   .fvs-play-ic {
-    width: 68px;
-    height: 68px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(13, 148, 136, 0.92);
+    background: rgba(13, 148, 136, 0.94);
     border: 2px solid rgba(255, 255, 255, 0.55);
-    box-shadow: 0 12px 32px rgba(13, 148, 136, 0.4);
+    box-shadow: 0 10px 28px rgba(13, 148, 136, 0.4);
     transition: transform 0.2s ease, background 0.2s ease;
   }
   .fvs-play:hover .fvs-play-ic {
-    transform: scale(1.07);
+    transform: scale(1.06);
     background: #0D9488;
   }
   .fvs-play-txt {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   }
-  .fvs-page.is-playing .fvs-play { display: none !important; }
-  .fvs-page.is-playing .fvs-poster { opacity: 0; pointer-events: none; }
-  .fvs-page.is-under .fvs-play,
-  .fvs-page.is-wait .fvs-play { display: none !important; }
+
+  .fvs-card.is-playing .fvs-play { display: none !important; }
+  .fvs-card.is-playing .fvs-poster { opacity: 0; pointer-events: none; }
+  .fvs-card.is-under .fvs-play { display: none !important; }
 
   .fvs-meta {
     position: absolute;
     z-index: 4;
-    left: 12px;
-    bottom: 12px;
+    left: 10px;
+    bottom: 10px;
     display: flex;
-    gap: 0.4rem;
+    gap: 0.35rem;
     pointer-events: none;
   }
   .fvs-num {
-    font-family: var(--font-h, Outfit, system-ui, sans-serif);
+    font-family: Outfit, system-ui, sans-serif;
     font-weight: 800;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: #fff;
     background: rgba(15, 23, 42, 0.55);
-    padding: 0.2rem 0.5rem;
-    border-radius: 8px;
+    padding: 0.18rem 0.45rem;
+    border-radius: 7px;
     backdrop-filter: blur(8px);
   }
   .fvs-tag {
-    font-size: 0.62rem;
+    font-size: 0.6rem;
     font-weight: 600;
     color: #fff;
-    background: rgba(13, 148, 136, 0.82);
-    padding: 0.2rem 0.5rem;
-    border-radius: 8px;
+    background: rgba(13, 148, 136, 0.85);
+    padding: 0.18rem 0.45rem;
+    border-radius: 7px;
   }
-  .fvs-page.is-playing .fvs-meta,
-  .fvs-page.is-under .fvs-meta { opacity: 0; }
-
-  .fvs-dots {
-    display: flex;
-    gap: 0.4rem;
-    justify-content: center;
-    margin-top: 1rem;
-  }
-  .fvs-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #CBD5E1;
-    transition: background 0.3s ease, transform 0.3s ease;
-  }
-  .fvs-dot.is-on {
-    background: #0D9488;
-    transform: scale(1.25);
-  }
+  .fvs-card.is-playing .fvs-meta,
+  .fvs-card.is-under .fvs-meta { opacity: 0; }
 
   .fvs-more {
     text-align: center;
-    padding: 1.75rem 1.25rem 2.75rem;
+    padding: 1.25rem 1rem 2.5rem;
   }
 
-  /* Mobile: full width sides, large 16:9 */
   @media (max-width: 767px) {
-    .fvs-stage {
-      padding: 4.5rem 0.4rem 1rem;
+    .fvs-list { padding: 0 0.4rem; max-width: 100%; }
+    .fvs-panel {
+      height: 88vh;
+      height: 88dvh;
+      max-height: none;
+      min-height: 360px;
     }
-    .fvs-stage-inner {
-      width: 100%;
-      border-radius: 12px;
+    .fvs-pin {
+      top: 4.5rem;
     }
-    .fvs-page { border-radius: 12px; }
-    .fvs-play-ic { width: 58px; height: 58px; }
+    .fvs-card { border-radius: 12px; }
+    .fvs-play-ic { width: 56px; height: 56px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .fvs-track { height: auto !important; }
-    .fvs-stage {
-      position: relative !important;
+    .fvs-panel {
       height: auto !important;
-      padding: 1rem 0.75rem;
+      min-height: 0 !important;
+      margin-bottom: 1rem;
     }
-    .fvs-stage-inner {
-      aspect-ratio: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .fvs-page {
+    .fvs-pin {
       position: relative !important;
-      inset: auto !important;
-      opacity: 1 !important;
-      filter: none !important;
-      transform: none !important;
-      pointer-events: auto !important;
-      aspect-ratio: 16 / 9;
+      top: auto !important;
     }
-    .fvs-dots { display: none; }
+    .fvs-card {
+      filter: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
   }
 </style>
 
@@ -370,45 +326,41 @@ const total = videos.length;
   var root = document.querySelector('[data-fvs]');
   if (!root) return;
 
-  var track = root.querySelector('[data-track]');
-  var stage = root.querySelector('[data-stage]');
-  var pages = Array.prototype.slice.call(root.querySelectorAll('[data-page]'));
-  var dots = Array.prototype.slice.call(root.querySelectorAll('[data-dot]'));
-  var count = pages.length || 6;
-
-  if (track) track.style.setProperty('--fvs-count', String(count));
+  var panels = Array.prototype.slice.call(root.querySelectorAll('[data-panel]'));
+  var cards = Array.prototype.slice.call(root.querySelectorAll('[data-card]'));
+  if (!cards.length) return;
 
   var reduced =
     window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var front = 0;
+  var frontIdx = 0;
   var playing = null;
 
-  function stopPage(page) {
-    if (!page) return;
-    var player = page.querySelector('[data-player]');
-    if (player) {
-      player.classList.remove('is-on');
-      player.innerHTML = '';
+  function stopCard(card) {
+    if (!card) return;
+    var p = card.querySelector('[data-player]');
+    if (p) {
+      p.classList.remove('is-on');
+      p.innerHTML = '';
     }
-    page.classList.remove('is-playing');
-    if (playing === page) playing = null;
+    card.classList.remove('is-playing');
+    if (playing === card) playing = null;
   }
 
   function stopAll() {
-    pages.forEach(stopPage);
+    cards.forEach(stopCard);
   }
 
-  function play(page) {
-    if (!page || !page.classList.contains('is-front')) return;
-    var id = page.getAttribute('data-vid');
-    var player = page.querySelector('[data-player]');
+  function play(card) {
+    if (!card || card.classList.contains('is-under')) return;
+    var id = card.getAttribute('data-vid');
+    var player = card.querySelector('[data-player]');
     if (!id || !player) return;
 
     stopAll();
-    playing = page;
-    page.classList.add('is-playing');
+    playing = card;
+    card.classList.add('is-playing');
 
     var src =
       'https://www.youtube-nocookie.com/embed/' + id +
@@ -417,61 +369,45 @@ const total = videos.length;
 
     player.innerHTML =
       '<iframe src="' + src + '" title="Video" width="1280" height="720" ' +
-      'style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" ' +
+      'style="position:absolute;inset:0;width:100%;height:100%;border:0" ' +
       'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
       'allowfullscreen loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
     player.classList.add('is-on');
   }
 
-  /**
-   * Map scroll position inside the track → page index 0..N-1
-   * Stage is sticky in the viewport center the whole time.
-   */
-  function pageFromScroll() {
-    if (!track) return 0;
-    var rect = track.getBoundingClientRect();
-    var trackH = track.offsetHeight;
-    var viewH = window.innerHeight || 1;
-    /* distance scrolled through the track */
-    var scrolled = -rect.top;
-    var travel = Math.max(1, trackH - viewH);
-    var p = scrolled / travel;
-    if (p < 0) p = 0;
-    if (p > 1) p = 1;
-    var idx = Math.min(count - 1, Math.floor(p * count));
-    return idx;
-  }
-
-  function paint(idx) {
-    pages.forEach(function (page, i) {
-      page.classList.remove('is-front', 'is-under', 'is-wait');
-      if (i < idx) {
-        page.classList.add('is-under');
-        if (page.classList.contains('is-playing')) stopPage(page);
-      } else if (i === idx) {
-        page.classList.add('is-front');
-      } else {
-        page.classList.add('is-wait');
-      }
-    });
-    dots.forEach(function (d, i) {
-      d.classList.toggle('is-on', i === idx);
-    });
-  }
-
-  function update() {
+  function updateFront() {
     if (reduced) {
-      pages.forEach(function (p) {
-        p.classList.add('is-front');
-        p.classList.remove('is-under', 'is-wait');
+      cards.forEach(function (c) {
+        c.classList.add('is-front');
+        c.classList.remove('is-under');
       });
       return;
     }
-    var idx = pageFromScroll();
-    if (idx !== front) {
-      front = idx;
-      paint(idx);
+
+    var pin = 80;
+    var sample = root.querySelector('.fvs-pin');
+    if (sample) {
+      var t = parseFloat(window.getComputedStyle(sample).top);
+      if (!isNaN(t)) pin = t;
     }
+
+    var idx = 0;
+    panels.forEach(function (panel, i) {
+      if (panel.getBoundingClientRect().top <= pin + 6) idx = i;
+    });
+
+    if (idx === frontIdx) return;
+    frontIdx = idx;
+
+    cards.forEach(function (card, i) {
+      card.classList.remove('is-front', 'is-under');
+      if (i < idx) {
+        card.classList.add('is-under');
+        if (card.classList.contains('is-playing')) stopCard(card);
+      } else {
+        card.classList.add('is-front');
+      }
+    });
   }
 
   var ticking = false;
@@ -479,44 +415,44 @@ const total = videos.length;
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(function () {
-      update();
+      updateFront();
       ticking = false;
     });
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
-  paint(0);
-  update();
+  updateFront();
 
-  pages.forEach(function (page) {
-    var btn = page.querySelector('[data-play]');
+  cards.forEach(function (card) {
+    var btn = card.querySelector('[data-play]');
     if (btn) {
       btn.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
-        play(page);
+        play(card);
       });
     }
-    page.addEventListener('click', function (e) {
-      if (page.classList.contains('is-playing')) return;
-      if (!page.classList.contains('is-front')) return;
+    card.addEventListener('click', function (e) {
+      if (card.classList.contains('is-playing')) return;
+      if (card.classList.contains('is-under')) return;
       if (e.target.closest('iframe') || e.target.closest('[data-play]')) return;
-      play(page);
+      play(card);
     });
   });
 
-  /* Stop when the whole section leaves the viewport */
-  if ('IntersectionObserver' in window && track) {
+  if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (en) {
-          if (!en.isIntersecting) stopAll();
+          if (!en.isIntersecting && en.target.classList.contains('is-playing')) {
+            stopCard(en.target);
+          }
         });
       },
-      { threshold: 0.02 }
+      { threshold: 0.12 }
     );
-    io.observe(track);
+    cards.forEach(function (c) { io.observe(c); });
   }
 
   document.addEventListener('visibilitychange', function () {
