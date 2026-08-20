@@ -79,7 +79,7 @@ const jsonLd = {
     <noscript>
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
     </noscript>
-    <link rel="stylesheet" href="/layout-restore.css?v=20260818revert2" />
+    <link rel="stylesheet" href="/layout-restore.css?v=20260821center6" />
     <link rel="icon" type="image/png" href="/logo.png" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script src="/js/perf.js" defer></script>
@@ -114,7 +114,8 @@ const jsonLd = {
         color: var(--text);
         -webkit-font-smoothing: antialiased;
         line-height: 1.6;
-        overflow-x: hidden;
+        /* clip (not hidden) — overflow-x:hidden breaks position:sticky in Chrome */
+        overflow-x: clip;
         touch-action: manipulation;
         overscroll-behavior-y: none;
       }
