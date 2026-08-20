@@ -21,7 +21,7 @@ const seoDescription =
         <h1>Work that sells on screen</h1>
         <p class="pf-sub">
           Cinematic stories, AI product ads, fintech creatives and custom campaigns —
-          built for Bangladesh marketplaces and international brands. Tap any card to open on YouTube.
+          built for Bangladesh marketplaces and international brands. Tap a card to play in full size (one video at a time).
         </p>
         <div class="pf-actions">
           <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Request similar work</a>
@@ -59,19 +59,20 @@ const seoDescription =
             <details class="pf-explain">
               <summary>Details</summary>
               <p>
-                Format: <strong>{cat.format === 'landscape' ? '16:9 landscape' : 'Vertical / short'}</strong>.
+                Format: <strong>{cat.format === 'landscape' ? '16:9 landscape' : 'Vertical short (9:16)'}</strong>.
                 Ideal for {cat.format === 'landscape' ? 'YouTube, website hero and long-form ads' : 'Reels, Stories, TikTok and feed ads'}.
                 Ask us for a similar pack tailored to your product.
               </p>
             </details>
           </div>
-          <div class={`pf-grid ${cat.format === 'short' ? 'pf-grid-short' : ''}`}>
+          <div class={`pf-grid ${cat.format === 'short' ? 'pf-grid-short' : 'pf-grid-land'}`}>
             {cat.ids.map((id) => (
-              <a
+              <button
+                type="button"
                 class="pf-card reveal"
-                href={`https://www.youtube.com/watch?v=${id}`}
-                target="_blank"
-                rel="noopener noreferrer"
+                data-yt={id}
+                data-format={cat.format}
+                aria-label={`Play ${cat.title} video`}
               >
                 <div class="pf-thumb">
                   <img src={ytThumb(id)} alt={`${cat.title} sample`} loading="lazy" width="480" height="360" />
@@ -79,9 +80,9 @@ const seoDescription =
                 </div>
                 <div class="pf-card-meta">
                   <span>{cat.title}</span>
-                  <span class="pf-open">Watch →</span>
+                  <span class="pf-open">Play →</span>
                 </div>
-              </a>
+              </button>
             ))}
           </div>
         </div>
@@ -91,7 +92,7 @@ const seoDescription =
 
   <section class="pf-cta">
     <div class="container pf-cta-inner reveal">
-      <div>
+      <div class="pf-cta-copy">
         <h2>Need a pack like these?</h2>
         <p>Bangladesh + international creatives · WhatsApp {SITE.whatsapp}</p>
       </div>
@@ -102,7 +103,67 @@ const seoDescription =
     </div>
   </section>
   <Footer />
+
+  <!-- Single-play lightbox: only one video with sound -->
+  <div class="pf-lightbox" id="pf-lightbox" hidden aria-modal="true" role="dialog" aria-label="Video player">
+    <div class="pf-lb-backdrop" data-close></div>
+    <div class="pf-lb-panel">
+      <button type="button" class="pf-lb-close" data-close aria-label="Close">×</button>
+      <div class="pf-lb-frame" id="pf-lb-frame" data-ratio="land">
+        <div id="pf-lb-mount"></div>
+      </div>
+    </div>
+  </div>
 </Layout>
+
+<script is:inline>
+(function () {
+  var lb = document.getElementById('pf-lightbox');
+  var mount = document.getElementById('pf-lb-mount');
+  var frame = document.getElementById('pf-lb-frame');
+  if (!lb || !mount || !frame) return;
+
+  function closeLb() {
+    lb.hidden = true;
+    document.body.style.overflow = '';
+    mount.innerHTML = '';
+  }
+
+  function openLb(id, format) {
+    mount.innerHTML = '';
+    frame.setAttribute('data-ratio', format === 'short' ? 'short' : 'land');
+    var src =
+      'https://www.youtube.com/embed/' +
+      encodeURIComponent(id) +
+      '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+    var iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.title = 'Portfolio video';
+    iframe.allow =
+      'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    iframe.setAttribute('playsinline', 'true');
+    mount.appendChild(iframe);
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+
+  document.querySelectorAll('.pf-card[data-yt]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var id = btn.getAttribute('data-yt');
+      var format = btn.getAttribute('data-format') || 'landscape';
+      if (id) openLb(id, format);
+    });
+  });
+
+  lb.querySelectorAll('[data-close]').forEach(function (el) {
+    el.addEventListener('click', closeLb);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !lb.hidden) closeLb();
+  });
+})();
+</script>
 
 <style>
   .pf-hero {
@@ -225,20 +286,37 @@ const seoDescription =
   .pf-explain summary::-webkit-details-marker { display: none; }
   .pf-explain p { margin: 0.5rem 0 0.65rem; color: #64748B; line-height: 1.5; }
 
+  /* Landscape: mobile 1–2, desktop up to 3 */
   .pf-grid {
     display: grid;
     gap: 1rem;
     grid-template-columns: 1fr;
   }
-  @media (min-width: 600px) {
-    .pf-grid { grid-template-columns: 1fr 1fr; }
+  @media (min-width: 560px) {
+    .pf-grid-land { grid-template-columns: 1fr 1fr; }
   }
   @media (min-width: 960px) {
-    .pf-grid { grid-template-columns: 1fr 1fr 1fr; }
-    .pf-grid-short { grid-template-columns: repeat(3, 1fr); }
+    .pf-grid-land { grid-template-columns: repeat(3, 1fr); }
   }
+
+  /* Short vertical: mobile 2-col, desktop 4-col (4 top + 2 bottom for 6) */
+  .pf-grid-short {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  @media (min-width: 900px) {
+    .pf-grid-short {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+  }
+
   .pf-card {
     display: block;
+    width: 100%;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
     text-decoration: none;
     color: inherit;
     border-radius: 16px;
@@ -246,6 +324,7 @@ const seoDescription =
     border: 1px solid rgba(15, 23, 42, 0.07);
     background: #fff;
     box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+    padding: 0;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
   .pf-card:hover {
@@ -258,7 +337,10 @@ const seoDescription =
     background: #0B1220;
     overflow: hidden;
   }
-  .pf-grid-short .pf-thumb { aspect-ratio: 9 / 14; max-height: 320px; }
+  .pf-grid-short .pf-thumb {
+    aspect-ratio: 9 / 16;
+    max-height: none;
+  }
   .pf-thumb img {
     width: 100%;
     height: 100%;
@@ -280,7 +362,6 @@ const seoDescription =
     font-size: 0.9rem;
     font-weight: 800;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-    opacity: 0.95;
   }
   .pf-card-meta {
     display: flex;
@@ -296,7 +377,6 @@ const seoDescription =
   .pf-cta {
     padding: 2.75rem 1.25rem;
     background: linear-gradient(135deg, #1E3A8A, #2563EB);
-    color: #fff;
   }
   .pf-cta-inner {
     display: flex;
@@ -305,17 +385,85 @@ const seoDescription =
     align-items: center;
     justify-content: space-between;
   }
-  .pf-cta h2 {
-    margin: 0 0 0.35rem;
+  .pf-cta-copy h2 {
+    margin: 0 0 0.4rem;
     font-family: Outfit, system-ui, sans-serif;
     font-size: clamp(1.25rem, 3vw, 1.65rem);
     font-weight: 800;
+    color: #FFFFFF !important;
   }
-  .pf-cta p { margin: 0; opacity: 0.95; }
+  .pf-cta-copy p {
+    margin: 0;
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+    font-weight: 500;
+    font-size: 1rem;
+  }
   .btn-light { background: #fff; color: #1E40AF; border: none; }
   .btn-ghost {
     background: transparent;
     color: #fff;
-    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    border: 1.5px solid rgba(255, 255, 255, 0.65);
+  }
+
+  /* Lightbox */
+  .pf-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .pf-lightbox[hidden] { display: none !important; }
+  .pf-lb-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(11, 18, 32, 0.88);
+    backdrop-filter: blur(6px);
+  }
+  .pf-lb-panel {
+    position: relative;
+    z-index: 1;
+    width: min(960px, 100%);
+  }
+  .pf-lb-close {
+    position: absolute;
+    top: -2.5rem;
+    right: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: none;
+    border-radius: 999px;
+    background: #fff;
+    color: #0B0F19;
+    font-size: 1.35rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .pf-lb-frame {
+    position: relative;
+    width: 100%;
+    background: #000;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+  }
+  .pf-lb-frame[data-ratio='land'] { aspect-ratio: 16 / 9; }
+  .pf-lb-frame[data-ratio='short'] {
+    aspect-ratio: 9 / 16;
+    max-height: min(85vh, 720px);
+    width: auto;
+    max-width: min(100%, 360px);
+    margin: 0 auto;
+  }
+  .pf-lb-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
   }
 </style>

@@ -4,70 +4,110 @@ import { SITE } from '../data/site';
 <div class="topbar" role="banner">
   <div class="topbar-inner">
     <p class="topbar-left">
-      <span class="topbar-label">PROJECTS DELIVERED FOR OUR CLIENTS</span>
+      <span class="topbar-label">PROJECTS DELIVERED</span>
       <strong class="topbar-stat">4,300+</strong>
     </p>
     <p class="topbar-right">
-      <a href="/contact" class="topbar-link">CONTACT NOW</a>
-      <span class="topbar-sep">·</span>
-      <a href={`tel:${SITE.hotline.replace(/\s/g, '')}`} class="topbar-link">{SITE.hotline}</a>
+      <a href={`tel:${SITE.hotline.replace(/\s/g, '')}`} class="topbar-link topbar-phone" aria-label="Call hotline">
+        {SITE.hotline}
+      </a>
+      <span class="topbar-sep" aria-hidden="true">·</span>
+      <a href={SITE.whatsappLink} class="topbar-link topbar-wa" target="_blank" rel="noopener noreferrer">
+        WhatsApp
+      </a>
+      <span class="topbar-sep topbar-sep-desk" aria-hidden="true">·</span>
+      <a href="/contact" class="topbar-link topbar-contact-desk">Contact</a>
     </p>
   </div>
 </div>
 
 <style>
   .topbar {
-    background: #2563EB;
-    color: #fff;
-    font-size: 0.72rem;
+    background: #1D4ED8;
+    color: #FFFFFF;
+    font-size: 0.8rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.02em;
     position: relative;
     z-index: 110;
   }
   .topbar-inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0.5rem 1.25rem;
+    padding: 0.55rem 1rem;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
-    gap: 0.35rem 1rem;
+    gap: 0.5rem 1rem;
   }
   .topbar-left {
     margin: 0;
     display: flex;
     align-items: center;
-    gap: 0.55rem;
-    flex-wrap: wrap;
+    gap: 0.45rem;
+    flex-shrink: 1;
+    min-width: 0;
   }
   .topbar-label {
-    opacity: 0.95;
+    color: #FFFFFF;
+    opacity: 1;
     text-transform: uppercase;
-    font-size: 0.65rem;
-    letter-spacing: 0.06em;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    white-space: nowrap;
   }
   .topbar-stat {
     font-family: var(--font-h), system-ui, sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 800;
+    color: #FFFFFF;
+    white-space: nowrap;
   }
   .topbar-right {
     margin: 0;
     display: flex;
     align-items: center;
-    gap: 0.45rem;
+    gap: 0.4rem;
+    flex-shrink: 0;
   }
   .topbar-link {
-    color: #fff;
+    color: #FFFFFF !important;
     text-decoration: none;
-    opacity: 0.98;
+    opacity: 1 !important;
+    font-weight: 700;
+    white-space: nowrap;
   }
-  .topbar-link:hover { text-decoration: underline; }
-  .topbar-sep { opacity: 0.55; }
+  .topbar-link:hover {
+    text-decoration: underline;
+    color: #DBEAFE !important;
+  }
+  .topbar-phone {
+    font-variant-numeric: tabular-nums;
+  }
+  .topbar-sep {
+    color: rgba(255, 255, 255, 0.55);
+  }
   @media (max-width: 640px) {
+    .topbar-inner {
+      padding: 0.5rem 0.75rem;
+      gap: 0.35rem;
+    }
+    .topbar-label {
+      font-size: 0.6rem;
+      max-width: 9.5rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .topbar-stat { font-size: 0.85rem; }
+    .topbar-phone { font-size: 0.72rem; }
+    .topbar-contact-desk,
+    .topbar-sep-desk {
+      display: none;
+    }
+  }
+  @media (max-width: 380px) {
     .topbar-label { display: none; }
-    .topbar-inner { justify-content: center; text-align: center; }
   }
 </style>

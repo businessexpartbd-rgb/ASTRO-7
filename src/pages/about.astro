@@ -141,7 +141,7 @@ const faqs = [
 
   <section class="ab-cta">
     <div class="container ab-cta-inner reveal">
-      <div>
+      <div class="ab-cta-copy">
         <h2>Work with Creavix</h2>
         <p>Video, AI, web or full growth stack — message us.</p>
       </div>
@@ -177,7 +177,10 @@ const faqs = [
     text-transform: uppercase;
     color: #2563EB;
   }
-  .ab-hero h1, .ab-center h2, .ab-split h2, .ab-cta h2, .ab-social-title {
+  .ab-hero h1,
+  .ab-center h2,
+  .ab-split h2,
+  .ab-social-title {
     font-family: Outfit, system-ui, sans-serif;
     font-weight: 800;
     letter-spacing: -0.02em;
@@ -250,10 +253,10 @@ const faqs = [
   .ab-faq p { margin: 0 0 0.9rem; color: #64748B; font-size: 0.92rem; line-height: 1.6; }
   .ab-social-title { font-size: 1.25rem; margin-bottom: 1rem !important; }
   .ab-socials { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+
   .ab-cta {
     padding: 2.75rem 1.25rem;
     background: linear-gradient(135deg, #1E3A8A, #2563EB);
-    color: #fff;
   }
   .ab-cta-inner {
     display: flex;
@@ -262,12 +265,26 @@ const faqs = [
     align-items: center;
     justify-content: space-between;
   }
-  .ab-cta h2 { color: #fff; font-size: clamp(1.25rem, 3vw, 1.65rem); }
-  .ab-cta p { margin: 0; opacity: 0.95; }
+  .ab-cta-copy h2 {
+    margin: 0 0 0.4rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.25rem, 3vw, 1.65rem);
+    color: #FFFFFF !important;
+    letter-spacing: -0.02em;
+  }
+  .ab-cta-copy p {
+    margin: 0;
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
   .btn-light { background: #fff; color: #1E40AF; border: none; }
   .btn-ghost {
     background: transparent;
     color: #fff;
-    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    border: 1.5px solid rgba(255, 255, 255, 0.65);
   }
 </style>

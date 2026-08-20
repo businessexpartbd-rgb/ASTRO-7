@@ -11,7 +11,7 @@ import ProcessFlow from '../components/ProcessFlow.astro';
 import IconBox from '../components/IconBox.astro';
 import ServiceIcons from '../components/icons/ServiceIcons.astro';
 import HeroBookReel from '../components/HeroBookReel.astro';
-import { SITE, SHOWCASES, ytThumb } from '../data/site';
+import { SITE } from '../data/site';
 
 const services = [
   { href: '/services/video-editing', name: 'video', title: 'Video Editing', desc: 'Ads, Reels, YouTube and brand films — cinematic grade.', tone: 'rgba(37,99,235,.08)' },
@@ -27,8 +27,6 @@ const services = [
   { href: '/services/boosting', name: 'boost', title: 'Boosting', desc: 'Meta boosting from $5 with clear BDT rates.', tone: 'rgba(37,99,235,.08)' },
   { href: '/services/campaign', name: 'campaign', title: 'Campaign', desc: 'Full Meta & YouTube campaign management.', tone: 'rgba(15,23,42,.05)' },
 ];
-
-const previewIds = SHOWCASES.flatMap((c) => c.ids).slice(0, 6);
 ---
 <Layout title={SITE.seoTitle} description={SITE.seoDescription}>
   <TopBar />
@@ -69,6 +67,8 @@ const previewIds = SHOWCASES.flatMap((c) => c.ids).slice(0, 6);
           <div class="trust-item"><strong class="count-up" data-count="4300+">0</strong><span>Projects</span></div>
           <div class="trust-divider"></div>
           <div class="trust-item"><strong>24–48h</strong><span>Delivery</span></div>
+          <div class="trust-divider"></div>
+          <div class="trust-item"><strong class="count-up" data-count="4.8">0</strong><span>Rating</span></div>
         </div>
       </div>
 
@@ -83,27 +83,6 @@ const previewIds = SHOWCASES.flatMap((c) => c.ids).slice(0, 6);
   <BrandStrip />
 
   <FeaturedVideoStack />
-
-  <!-- Picture strip — real project thumbs -->
-  <section class="home-pics">
-    <div class="container">
-      <div class="text-center mb-8 reveal">
-        <p class="eyebrow" style="margin:0 auto 1rem">On screen</p>
-        <h2 class="mb-4">Recent creative frames</h2>
-        <p style="max-width:36rem;margin:0 auto;color:var(--text-2)">Stills from client work — open full portfolio for every category.</p>
-      </div>
-      <div class="home-pic-grid">
-        {previewIds.map((id) => (
-          <a class="home-pic reveal" href={`/portfolio`} aria-label="Open portfolio">
-            <img src={ytThumb(id)} alt="Creavix project frame" loading="lazy" width="400" height="225" />
-          </a>
-        ))}
-      </div>
-      <div class="text-center" style="margin-top:1.5rem">
-        <a href="/portfolio" class="btn btn-primary">View full portfolio</a>
-      </div>
-    </div>
-  </section>
 
   <section id="services" class="section-soft">
     <div class="container">
@@ -227,32 +206,37 @@ const previewIds = SHOWCASES.flatMap((c) => c.ids).slice(0, 6);
   .rating-label { color: #64748B; font-weight: 500; }
   .hero-delivery { color: #2563EB; font-weight: 700; }
 
-  .home-pics {
-    padding: 3rem 1.25rem;
-    background: #fff;
+  .trust-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem 0.85rem;
+    margin-top: 1.5rem;
   }
-  .home-pic-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
+  .trust-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
   }
-  @media (min-width: 700px) {
-    .home-pic-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .trust-item strong {
+    font-family: var(--font-h), system-ui, sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0B0F19;
+    line-height: 1.1;
   }
-  .home-pic {
-    display: block;
-    border-radius: 14px;
-    overflow: hidden;
-    aspect-ratio: 16/10;
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
-    transition: transform 0.25s ease;
+  .trust-item span {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #64748B;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
-  .home-pic:hover { transform: translateY(-3px); }
-  .home-pic img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  .trust-divider {
+    width: 1px;
+    height: 2rem;
+    background: rgba(15, 23, 42, 0.12);
+    flex-shrink: 0;
   }
 
   .svc-more {
@@ -282,5 +266,8 @@ const previewIds = SHOWCASES.flatMap((c) => c.ids).slice(0, 6);
     .hero-content { max-width: 100%; }
     .flex-btns { width: 100%; }
     .flex-btns .btn { flex: 1 1 calc(50% - 0.4rem); min-width: 0; text-align: center; }
+    .trust-row { gap: 0.5rem 0.55rem; }
+    .trust-item strong { font-size: 1.05rem; }
+    .trust-divider { height: 1.75rem; }
   }
 </style>
