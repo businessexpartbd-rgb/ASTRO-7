@@ -1,82 +1,341 @@
 ---
+/**
+ * Digital Marketing — complete service page
+ * SEO, paid ads, social, content, video, email, analytics
+ * Bangladesh + international focus · FAQ · easy for non-marketers
+ */
 import Layout from '../../layouts/Layout.astro';
 import TopBar from '../../components/TopBar.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { SITE } from '../../data/site';
 
-const pillars = [
+const seoTitle =
+  'Digital Marketing Agency Bangladesh | SEO, Ads, Social & Growth — Creavix iT';
+const seoDescription =
+  'Full digital marketing by Creavix iT Solution — SEO, Google & Meta ads, social media, content, video marketing, email and analytics. Clear strategy for Bangladesh and global brands.';
+
+const channels = [
   {
-    title: 'SEO Services',
-    desc: 'Rankings, local search, e-commerce SEO, audits, Google Business Profile and ASO — full organic growth stack.',
+    title: 'Search Engine Optimization',
+    tag: 'Organic',
+    desc: 'Rank on Google for the keywords your customers actually type — local, national and product search.',
     href: '/services/seo',
-    tag: 'Core',
+    points: ['On-page & technical SEO', 'Local SEO / Google Business', 'Content for rankings', 'Monthly reporting'],
   },
   {
-    title: 'Social & Boosting',
-    desc: 'Facebook page setup, Meta boosting and campaign management that reaches the right audience.',
+    title: 'Paid Ads (Meta & Google)',
+    tag: 'Paid',
+    desc: 'Facebook, Instagram and Google campaigns with clear audience, creative tests and budget control.',
     href: '/services/boosting',
-    tag: 'Paid + Social',
+    points: ['Audience research', 'Creative A/B testing', 'Retargeting', 'Cost per lead focus'],
   },
   {
-    title: 'Campaigns',
-    desc: 'Structured campaign planning, creative testing and performance reporting.',
-    href: '/services/campaign',
+    title: 'Social Media Marketing',
+    tag: 'Social',
+    desc: 'Page presence, posting rhythm and community replies that keep your brand active and trusted.',
+    href: '/services/facebook-page',
+    points: ['Page setup & branding', 'Content calendar', 'Engagement playbook', 'Story & Reels guidance'],
+  },
+  {
+    title: 'Campaign Management',
     tag: 'Growth',
+    desc: 'End-to-end campaigns — message, creative, media and weekly optimization under one plan.',
+    href: '/services/campaign',
+    points: ['Strategy & funnel', 'Launch roadmap', 'KPI tracking', 'Transparent reports'],
   },
   {
     title: 'AI Video Marketing',
-    desc: 'Human-like AI video ads and promotional content engineered for paid social.',
-    href: '/services/ai-video-marketing',
     tag: 'Creative',
+    desc: 'Human-like AI and cinematic video ads built for Meta, YouTube and TikTok conversion.',
+    href: '/services/ai-video-marketing',
+    points: ['Ad-ready edits', 'Hook-first scripts', 'Platform sizes', 'Fast turnaround'],
+  },
+  {
+    title: 'Content & Email',
+    tag: 'Nurture',
+    desc: 'Website copy, offers and simple email/SMS sequences that turn visitors into repeat buyers.',
+    href: '/contact',
+    points: ['Landing page copy', 'Offer structure', 'Basic email flows', 'CTA optimization'],
+  },
+];
+
+const pillars = [
+  {
+    t: 'Be found',
+    d: 'SEO + local search so people discover you when they need your product or service.',
+  },
+  {
+    t: 'Be chosen',
+    d: 'Clear offers, social proof and creative that make clicking you the easy decision.',
+  },
+  {
+    t: 'Be converted',
+    d: 'Ads, landing pages and follow-ups designed for leads, calls and orders — not vanity likes.',
+  },
+  {
+    t: 'Be measured',
+    d: 'Simple dashboards: spend, reach, leads, cost per result — so you know what works.',
+  },
+];
+
+const steps = [
+  { n: '01', t: 'Discover', d: 'Business goals, offer, audience and current channels reviewed in a short brief.' },
+  { n: '02', t: 'Plan', d: 'Channel mix, budget suggestion, creative needs and 30–90 day roadmap.' },
+  { n: '03', t: 'Launch', d: 'SEO tasks, ads, posts or video go live with tracking in place.' },
+  { n: '04', t: 'Optimize', d: 'Weekly checks — pause waste, scale winners, report in plain language.' },
+];
+
+const who = [
+  {
+    title: 'Local shops & services',
+    desc: 'Clinics, coaching, restaurants, home services — get calls and messages from nearby customers.',
+  },
+  {
+    title: 'E-commerce & Facebook shops',
+    desc: 'Product visibility, retargeting and catalog-style creatives that push add-to-cart and inbox orders.',
+  },
+  {
+    title: 'Agencies & B2B',
+    desc: 'Lead forms, LinkedIn-style positioning and landing pages for higher-ticket services.',
+  },
+  {
+    title: 'International brands',
+    desc: 'English creative, global ad accounts and reporting standards for remote teams.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'ডিজিটাল মার্কেটিং আসলে কী?',
+    a: 'ইন্টারনেটে আপনার ব্যবসাকে খুঁজে পাওয়া, বিশ্বাস তৈরি এবং বিক্রি/লিড বাড়ানোর পুরো কাজ। এতে সার্চ (SEO), বিজ্ঞাপন (Ads), সোশ্যাল মিডিয়া, কনটেন্ট, ভিডিও এবং ইমেইল — প্রয়োজনমতো মিশিয়ে ব্যবহার করা হয়।',
+  },
+  {
+    q: 'SEO না Ads — কোনটা আগে?',
+    a: 'দ্রুত লিড চাইলে Paid Ads দিয়ে শুরু করা যায়। দীর্ঘমেয়াদি কম খরচে ট্রাফিক চাইলে SEO জরুরি। অনেক ব্যবসার জন্য দুটোই একসাথে সবচেয়ে ভালো — আমরা বাজেট ও লক্ষ্য দেখে মিক্স সাজাই।',
+  },
+  {
+    q: 'বাজেট কত লাগে?',
+    a: 'অ্যাড স্পেন্ড আলাদা (আপনার বিজনেস অনুযায়ী দৈনিক/মাসিক)। সার্ভিস ফি স্কোপ অনুযায়ী — শুধু SEO, শুধু বুস্টিং, নাকি ফুল ক্যাম্পেইন। WhatsApp-এ ব্রিফ দিলে রেঞ্জ বলে দেওয়া হয়।',
+  },
+  {
+    q: 'কতদিনে রেজাল্ট দেখা যায়?',
+    a: 'Ads-এ প্রথম ডেটা সাধারণত কয়েক দিনেই আসে। SEO-তে স্থায়ী র‍্যাংকিংয়ে সপ্তাহ থেকে কয়েক মাস লাগতে পারে। আমরা প্রতি রিপোর্টে বাস্তব টাইমলাইন বলি — অবাস্তব গ্যারান্টি দিই না।',
+  },
+  {
+    q: 'রিপোর্ট কেমন পাব?',
+    a: 'সহজ ভাষায়: খরচ, রিচ, ক্লিক, লিড/মেসেজ, খরচ প্রতি রেজাল্ট। জটিল জargon এড়িয়ে আপনি যা সিদ্ধান্ত নিতে চান সেটাই দেখানো হয়।',
+  },
+  {
+    q: 'শুধু Facebook পেজ চালালেই কি ডিজিটাল মার্কেটিং?',
+    a: 'পেজ অ্যাকটিভিটি একটা অংশ। পূর্ণ ডিজিটাল মার্কেটিং-এ সার্চ, অ্যাডস, ল্যান্ডিং পেজ, ট্র্যাকিং এবং অফার ক্লিয়ারিটিও থাকে — যাতে শুধু লাইক নয়, কাস্টমার আসে।',
+  },
+  {
+    q: 'Creavix কি সব চ্যানেল একসাথে করে?',
+    a: 'হ্যাঁ, এক টিম থেকে SEO, Meta boosting, ক্যাম্পেইন, AI ভিডিও এবং ওয়েব/ল্যান্ডিং সাপোর্ট নেওয়া যায়। ছোট স্কোপে শুধু একটি চ্যানেল দিয়েও শুরু করা যায়।',
+  },
+  {
+    q: 'আন্তর্জাতিক ক্লায়েন্ট কি নিতে পারেন?',
+    a: 'পারেন। ইংরেজি ক্রিয়েটিভ, রিপোর্টিং এবং রিমোট কমিউনিকেশন সাপোর্ট করা হয় — বাংলাদেশি মার্কেটপ্লেসের অভিজ্ঞতার সাথে।',
   },
 ];
 ---
-<Layout
-  title="Digital Marketing Services Bangladesh — Creavix iT"
-  description="Digital marketing by Creavix iT Solution — SEO, local SEO, boosting, campaigns and AI video marketing for businesses in Bangladesh."
->
+
+<Layout title={seoTitle} description={seoDescription}>
   <TopBar />
   <Nav active="services" />
 
+  <!-- HERO -->
   <section class="dm-hero">
-    <div class="container dm-hero-inner">
-      <p class="dm-eye">Digital Marketing</p>
-      <h1>Grow visibility, traffic &amp; leads with Creavix iT</h1>
-      <p class="dm-lead">
-        SEO, local search, paid social and creative — one team focused on measurable results
-        for your brand.
-      </p>
-      <div class="dm-actions">
-        <a class="btn btn-primary" href="/services/seo">Explore SEO Services</a>
-        <a class="btn btn-outline" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    <div class="container dm-hero-grid">
+      <div class="dm-copy reveal">
+        <p class="dm-eye">Digital Marketing</p>
+        <h1>Get Found. Get Chosen. Get Customers Online.</h1>
+        <p class="dm-sub">
+          SEO, ads, social, content and video — one clear growth system for Bangladesh businesses
+          and international brands. No jargon walls. Just channels that move leads and sales.
+        </p>
+        <div class="dm-actions">
+          <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Plan my channels</a>
+          <a class="btn btn-outline" href="#channels">See all services</a>
+        </div>
+        <ul class="dm-pills">
+          <li>SEO</li>
+          <li>Meta &amp; Google Ads</li>
+          <li>Social</li>
+          <li>Video</li>
+          <li>Analytics</li>
+        </ul>
+      </div>
+
+      <div class="dm-visual reveal" aria-hidden="true">
+        <div class="dm-board">
+          <div class="dm-board-top">
+            <span>Growth board</span>
+            <span class="dm-live">Live mix</span>
+          </div>
+          <div class="dm-bars">
+            <div class="dm-bar" style="--h:45%"><span>SEO</span></div>
+            <div class="dm-bar on" style="--h:78%"><span>Ads</span></div>
+            <div class="dm-bar" style="--h:58%"><span>Social</span></div>
+            <div class="dm-bar on" style="--h:88%"><span>Video</span></div>
+            <div class="dm-bar" style="--h:52%"><span>Email</span></div>
+          </div>
+          <div class="dm-board-foot">
+            <div><strong>+Leads</strong><small>This month</small></div>
+            <div><strong>ROAS</strong><small>Tracked</small></div>
+            <div><strong>SEO</strong><small>Compounding</small></div>
+          </div>
+        </div>
+        <div class="dm-chip dm-chip-1">Google</div>
+        <div class="dm-chip dm-chip-2">Meta</div>
+        <div class="dm-chip dm-chip-3">YouTube</div>
       </div>
     </div>
   </section>
 
-  <section class="dm-sec">
-    <div class="container">
-      <div class="dm-grid">
+  <!-- WHAT IS -->
+  <section class="dm-sec" id="what-is">
+    <div class="container dm-split">
+      <div class="reveal">
+        <p class="dm-eye">What is digital marketing?</p>
+        <h2>Online marketing that your customer can actually follow</h2>
+        <p class="dm-body">
+          Digital marketing is how people <strong>discover</strong> your business on Google or social,
+          <strong>trust</strong> your content and offers, then <strong>message, call or buy</strong>.
+          It is not only “boosting a post”. It is a mix of search, ads, creative and follow-up.
+        </p>
+        <p class="dm-body">
+          Creavix builds that mix for real marketplaces — Facebook-heavy local sellers,
+          service businesses that need calls, and brands that need measurable growth.
+        </p>
+      </div>
+      <div class="dm-pillar-grid reveal">
         {pillars.map((p) => (
-          <a class="dm-card" href={p.href}>
-            <span class="dm-tag">{p.tag}</span>
-            <h2>{p.title}</h2>
-            <p>{p.desc}</p>
-            <span class="dm-go">See details →</span>
-          </a>
+          <div class="dm-pillar">
+            <h3>{p.t}</h3>
+            <p>{p.d}</p>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="dm-cta">
-    <div class="container dm-cta-inner">
-      <div>
-        <p class="dm-eye light">Book a free consultation</p>
-        <h2>Let’s plan your next growth channel</h2>
-        <p>WhatsApp {SITE.whatsapp} · {SITE.email1}</p>
+  <!-- CHANNELS -->
+  <section class="dm-sec dm-muted" id="channels">
+    <div class="container">
+      <div class="dm-center reveal">
+        <p class="dm-eye">Full stack</p>
+        <h2>Every digital function you may need</h2>
+        <p class="dm-lead">Pick one channel or combine — each card links to deeper service pages where available.</p>
       </div>
-      <a class="btn btn-light" href="/contact">Contact Us</a>
+      <div class="dm-channels">
+        {channels.map((c) => (
+          <article class="dm-channel reveal">
+            <div class="dm-channel-head">
+              <span class="dm-tag">{c.tag}</span>
+              <h3>{c.title}</h3>
+              <p>{c.desc}</p>
+            </div>
+            <ul>
+              {c.points.map((pt) => (
+                <li>{pt}</li>
+              ))}
+            </ul>
+            <a class="dm-link" href={c.href}>Explore →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="dm-sec" id="process">
+    <div class="container">
+      <div class="dm-center reveal">
+        <p class="dm-eye">Process</p>
+        <h2>How we run digital marketing</h2>
+      </div>
+      <div class="dm-steps">
+        {steps.map((s) => (
+          <div class="dm-step reveal">
+            <span class="dm-step-n">{s.n}</span>
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO -->
+  <section class="dm-sec dm-muted">
+    <div class="container">
+      <div class="dm-center reveal">
+        <p class="dm-eye">Who it is for</p>
+        <h2>Built for local and global marketplaces</h2>
+      </div>
+      <div class="dm-who">
+        {who.map((w) => (
+          <article class="dm-who-card reveal">
+            <h3>{w.title}</h3>
+            <p>{w.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNNEL VISUAL -->
+  <section class="dm-funnel-sec">
+    <div class="container">
+      <div class="dm-center reveal">
+        <p class="dm-eye light">Simple funnel</p>
+        <h2>From stranger to customer</h2>
+      </div>
+      <div class="dm-funnel reveal" aria-hidden="true">
+        <div class="dm-fn">Awareness<br /><small>SEO · Ads · Social</small></div>
+        <span>→</span>
+        <div class="dm-fn">Interest<br /><small>Content · Video</small></div>
+        <span>→</span>
+        <div class="dm-fn">Action<br /><small>Form · Inbox · Call</small></div>
+        <span>→</span>
+        <div class="dm-fn hi">Customer<br /><small>Order · Retain</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="dm-sec" id="faq">
+    <div class="container dm-faq-wrap">
+      <div class="dm-center reveal">
+        <p class="dm-eye">FAQ</p>
+        <h2>Common questions before you start</h2>
+      </div>
+      <div class="dm-faq reveal">
+        {faqs.map((f) => (
+          <details class="dm-faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="dm-cta">
+    <div class="container dm-cta-inner reveal">
+      <div>
+        <p class="dm-eye light">Next step</p>
+        <h2>Tell us your goal — we map the channels</h2>
+        <p>WhatsApp {SITE.whatsapp} · {SITE.email1} · {SITE.hotline}</p>
+      </div>
+      <div class="dm-cta-btns">
+        <a class="btn btn-light" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a class="btn btn-ghost" href="/contact">Contact</a>
+        <a class="btn btn-ghost" href="/services/seo">SEO details</a>
+      </div>
     </div>
   </section>
 
@@ -85,92 +344,421 @@ const pillars = [
 
 <style>
   .dm-hero {
-    padding: 5rem 1.25rem 3.5rem;
+    padding: 5.25rem 1.25rem 3.5rem;
     background:
-      radial-gradient(ellipse 50% 40% at 80% 10%, rgba(37,99,235,.12), transparent 60%),
+      radial-gradient(ellipse 55% 45% at 88% 12%, rgba(37, 99, 235, 0.14), transparent 60%),
+      radial-gradient(ellipse 40% 30% at 5% 90%, rgba(14, 165, 233, 0.07), transparent 50%),
       linear-gradient(180deg, #fff, #F8FAFC);
   }
-  .dm-hero-inner { max-width: 40rem; }
+  .dm-hero-grid {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .dm-hero-grid {
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+    }
+  }
   .dm-eye {
     margin: 0 0 0.5rem;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #2563EB;
   }
   .dm-eye.light { color: #93C5FD; }
   .dm-hero h1 {
-    margin: 0 0 0.85rem;
-    font-family: var(--font-h), system-ui, sans-serif;
-    font-size: clamp(1.85rem, 4vw, 2.6rem);
+    margin: 0 0 0.9rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.75rem, 4.2vw, 2.65rem);
     font-weight: 800;
-    color: #0F172A;
+    line-height: 1.12;
     letter-spacing: -0.03em;
-    line-height: 1.15;
+    color: #0B0F19;
   }
-  .dm-lead {
-    margin: 0 0 1.5rem;
+  .dm-sub {
+    margin: 0 0 1.35rem;
     color: #475569;
+    font-size: 1.02rem;
     line-height: 1.65;
-    font-size: 1.05rem;
+    max-width: 34rem;
   }
-  .dm-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+  .dm-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-bottom: 1.15rem;
+  }
+  .dm-pills {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .dm-pills li {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #1E40AF;
+    background: #EFF6FF;
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    padding: 0.28rem 0.6rem;
+    border-radius: 999px;
+  }
 
-  .dm-sec { padding: 3rem 1.25rem 3.5rem; background: #fff; }
-  .dm-grid {
+  .dm-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .dm-board {
+    width: min(100%, 340px);
+    border-radius: 20px;
+    background: #0B1220;
+    color: #E2E8F0;
+    box-shadow: 0 28px 56px rgba(15, 23, 42, 0.2);
+    overflow: hidden;
+  }
+  .dm-board-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 1rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: #111827;
+  }
+  .dm-live {
+    color: #34D399;
+    font-size: 0.7rem;
+  }
+  .dm-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.45rem;
+    height: 160px;
+    padding: 1rem 1rem 0.5rem;
+  }
+  .dm-bar {
+    flex: 1;
+    height: var(--h, 50%);
+    border-radius: 8px 8px 4px 4px;
+    background: rgba(148, 163, 184, 0.25);
+    position: relative;
+    animation: dm-rise 1.2s ease-out both;
+  }
+  .dm-bar.on {
+    background: linear-gradient(180deg, #60A5FA, #2563EB);
+  }
+  .dm-bar span {
+    position: absolute;
+    bottom: -1.35rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.58rem;
+    font-weight: 600;
+    color: #94A3B8;
+    white-space: nowrap;
+  }
+  .dm-board-foot {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.35rem;
+    padding: 2rem 0.85rem 1rem;
+    text-align: center;
+  }
+  .dm-board-foot strong {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #fff;
+  }
+  .dm-board-foot small {
+    font-size: 0.65rem;
+    color: #94A3B8;
+  }
+  @keyframes dm-rise {
+    from { transform: scaleY(0.3); opacity: 0.4; transform-origin: bottom; }
+    to { transform: scaleY(1); opacity: 1; transform-origin: bottom; }
+  }
+  .dm-chip {
+    position: absolute;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
+    color: #1E40AF;
+    animation: dm-bob 4s ease-in-out infinite;
+  }
+  .dm-chip-1 { top: 6%; left: 0; }
+  .dm-chip-2 { top: 48%; right: 0; animation-delay: 0.5s; }
+  .dm-chip-3 { bottom: 8%; left: 6%; animation-delay: 1s; }
+  @keyframes dm-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .dm-sec { padding: 3.5rem 1.25rem; background: #fff; }
+  .dm-muted { background: #F8FAFC; }
+  .dm-center {
+    text-align: center;
+    max-width: 36rem;
+    margin: 0 auto 2rem;
+  }
+  .dm-center h2,
+  .dm-split h2 {
+    margin: 0 0 0.5rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.4rem, 3vw, 1.85rem);
+    font-weight: 800;
+    color: #0B0F19;
+    letter-spacing: -0.02em;
+  }
+  .dm-lead,
+  .dm-body {
+    margin: 0;
+    color: #64748B;
+    line-height: 1.65;
+    font-size: 0.98rem;
+  }
+  .dm-body + .dm-body { margin-top: 0.85rem; }
+  .dm-body strong { color: #0F172A; }
+
+  .dm-split {
+    display: grid;
+    gap: 2rem;
+    align-items: start;
+  }
+  @media (min-width: 800px) {
+    .dm-split { grid-template-columns: 1.15fr 0.85fr; gap: 2.5rem; }
+  }
+  .dm-pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .dm-pillar {
+    background: #F8FAFC;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: 16px;
+    padding: 1.1rem 1rem;
+  }
+  .dm-pillar h3 {
+    margin: 0 0 0.35rem;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #2563EB;
+  }
+  .dm-pillar p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #64748B;
+    line-height: 1.5;
+  }
+
+  .dm-channels {
     display: grid;
     gap: 1rem;
   }
   @media (min-width: 700px) {
-    .dm-grid { grid-template-columns: 1fr 1fr; }
+    .dm-channels { grid-template-columns: 1fr 1fr; }
   }
-  .dm-card {
-    display: block;
-    padding: 1.5rem 1.4rem;
+  @media (min-width: 1000px) {
+    .dm-channels { grid-template-columns: 1fr 1fr 1fr; }
+  }
+  .dm-channel {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.07);
     border-radius: 18px;
-    background: #F8FAFC;
-    border: 1px solid rgba(15,23,42,.07);
-    text-decoration: none;
-    color: inherit;
-    transition: border-color .2s, box-shadow .2s, transform .2s;
+    padding: 1.35rem 1.25rem;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.03);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
-  .dm-card:hover {
-    border-color: rgba(37,99,235,.35);
-    box-shadow: 0 14px 32px rgba(37,99,235,.1);
-    transform: translateY(-2px);
+  .dm-channel:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(37, 99, 235, 0.1);
   }
   .dm-tag {
     display: inline-block;
-    margin-bottom: 0.65rem;
-    padding: 0.25rem 0.6rem;
+    margin-bottom: 0.5rem;
+    padding: 0.2rem 0.55rem;
     border-radius: 999px;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 700;
     background: #EFF6FF;
     color: #1D4ED8;
   }
-  .dm-card h2 {
-    margin: 0 0 0.45rem;
-    font-size: 1.15rem;
+  .dm-channel h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.05rem;
     font-weight: 800;
-    color: #0F172A;
+    color: #0B0F19;
   }
-  .dm-card p {
-    margin: 0 0 0.85rem;
+  .dm-channel-head p {
+    margin: 0 0 0.75rem;
+    font-size: 0.9rem;
     color: #64748B;
     line-height: 1.55;
-    font-size: 0.92rem;
   }
-  .dm-go {
+  .dm-channel ul {
+    margin: 0 0 1rem;
+    padding: 0 0 0 1.05rem;
+    color: #475569;
+    font-size: 0.88rem;
+    line-height: 1.65;
+    flex: 1;
+  }
+  .dm-link {
     font-size: 0.88rem;
     font-weight: 700;
     color: #2563EB;
+    text-decoration: none;
+  }
+  .dm-link:hover { text-decoration: underline; }
+
+  .dm-steps {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 700px) {
+    .dm-steps { grid-template-columns: repeat(4, 1fr); }
+  }
+  .dm-step {
+    padding: 1.25rem 1.1rem;
+    border-radius: 16px;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    background: #F8FAFC;
+  }
+  .dm-step-n {
+    display: block;
+    font-family: Outfit, system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: #2563EB;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.45rem;
+  }
+  .dm-step h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1rem;
+    font-weight: 800;
+  }
+  .dm-step p {
+    margin: 0;
+    font-size: 0.88rem;
+    color: #64748B;
+    line-height: 1.5;
+  }
+
+  .dm-who {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 700px) {
+    .dm-who { grid-template-columns: 1fr 1fr; }
+  }
+  .dm-who-card {
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: 16px;
+    padding: 1.3rem 1.2rem;
+  }
+  .dm-who-card h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.02rem;
+    font-weight: 800;
+  }
+  .dm-who-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #64748B;
+    line-height: 1.55;
+  }
+
+  .dm-funnel-sec {
+    padding: 3rem 1.25rem;
+    background: #0B1220;
+    color: #E2E8F0;
+  }
+  .dm-funnel-sec h2 { color: #fff; }
+  .dm-funnel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+  }
+  .dm-fn {
+    padding: 0.75rem 1rem;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-align: center;
+    min-width: 7.5rem;
+  }
+  .dm-fn small {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: #94A3B8;
+  }
+  .dm-fn.hi {
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    border-color: transparent;
+  }
+  .dm-funnel > span { color: #64748B; }
+
+  .dm-faq-wrap { max-width: 720px; }
+  .dm-faq { display: flex; flex-direction: column; gap: 0.65rem; }
+  .dm-faq-item {
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 14px;
+    background: #F8FAFC;
+    padding: 0.15rem 1rem;
+  }
+  .dm-faq-item summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #0B0F19;
+    padding: 0.9rem 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .dm-faq-item summary::-webkit-details-marker { display: none; }
+  .dm-faq-item summary::after {
+    content: '+';
+    font-size: 1.25rem;
+    color: #2563EB;
+    flex-shrink: 0;
+  }
+  .dm-faq-item[open] summary::after { content: '–'; }
+  .dm-faq-item p {
+    margin: 0 0 1rem;
+    color: #64748B;
+    font-size: 0.92rem;
+    line-height: 1.65;
   }
 
   .dm-cta {
     padding: 3rem 1.25rem;
-    background: linear-gradient(135deg, #1E3A8A, #2563EB 55%, #0EA5E9);
+    background: linear-gradient(135deg, #1E3A8A, #2563EB 50%, #0EA5E9);
     color: #fff;
   }
   .dm-cta-inner {
@@ -182,10 +770,28 @@ const pillars = [
   }
   .dm-cta h2 {
     margin: 0 0 0.4rem;
-    font-family: var(--font-h), system-ui, sans-serif;
-    font-size: clamp(1.4rem, 3vw, 1.85rem);
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
     font-weight: 800;
   }
-  .dm-cta p { margin: 0; opacity: 0.95; }
-  .btn-light { background: #fff; color: #1E40AF; border: none; }
+  .dm-cta p { margin: 0; opacity: 0.95; font-size: 0.95rem; }
+  .dm-cta-btns { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+  .btn-light {
+    background: #fff;
+    color: #1E40AF;
+    border: none;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+  }
+
+  @media (max-width: 639px) {
+    .dm-hero { padding-top: 4.5rem; }
+    .dm-chip { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .dm-bar, .dm-chip { animation: none; }
+  }
 </style>
