@@ -6,12 +6,62 @@ import Footer from '../components/Footer.astro';
 import ServiceIcons from '../components/icons/ServiceIcons.astro';
 import { SITE, SOCIAL_LINKS } from '../data/site';
 
+const linkedIn =
+  SOCIAL_LINKS.find((s) => s.key === 'linkedin')?.url ||
+  'https://www.linkedin.com/in/creavix-it-solution';
+const facebookCompany =
+  SOCIAL_LINKS.find((s) => s.key === 'facebook')?.url ||
+  'https://www.facebook.com/CreavixITSolution';
+
+/** Photos: replace files in /public/team/ when ready */
+const leaders = [
+  {
+    role: 'Chairman & Owner',
+    name: 'Hannan Khan',
+    size: 'lg',
+    photo: '/team/hannan.jpg',
+    initial: 'H',
+    experience: 'Since 2014',
+    bio: 'Online activist, freelancer and content creator since 2014. Built Creavix iT Solution through hands-on creative work, client delivery and long-term digital craft — the story of turning freelance discipline into a full video & IT agency. Main oversight of company direction stays with Hannan.',
+    social: true,
+    facebook: facebookCompany,
+    linkedin: linkedIn,
+    whatsapp: true,
+  },
+  {
+    role: 'Chief Executive Officer',
+    name: 'Sabbir Khan',
+    size: 'md',
+    photo: '/team/sabbir.jpg',
+    initial: 'S',
+    experience: '3+ years leadership',
+    bio: 'Leads day-to-day executive coordination so projects, people and client promises stay aligned. Focused on operations quality and growth execution under the Creavix brand.',
+    social: true,
+    facebook: facebookCompany,
+    linkedin: linkedIn,
+    whatsapp: false,
+  },
+  {
+    role: 'Director',
+    name: 'Tanni Aktar',
+    size: 'sm',
+    photo: '/team/tanni.jpg',
+    initial: 'T',
+    experience: '5 years as Director',
+    bio: 'Experienced director guiding company operations on the ground. Much of daily direction runs through this role, with strategic supervision from the Owner — a steady hand for delivery and team coordination.',
+    social: false,
+    facebook: '',
+    linkedin: '',
+    whatsapp: false,
+  },
+];
+
 const channels = [
   {
     title: 'WhatsApp',
     value: SITE.whatsapp,
     href: SITE.whatsappLink,
-    hint: 'Fastest reply · BD & international',
+    hint: 'Fastest reply · Owner line',
     icon: 'boost',
   },
   {
@@ -33,8 +83,8 @@ const channels = [
 const topics = [
   { t: 'Video / AI edit', d: 'Send footage or product links + deadline.' },
   { t: 'Website / app', d: 'Share references and must-have features.' },
-  { t: 'Boost / campaign', d: 'Page link, budget band and goal (messages, sales).' },
-  { t: 'Facebook page', d: 'Page URL + what is broken (setup, verify, restriction).' },
+  { t: 'Boost / campaign', d: 'Page link, budget band and goal.' },
+  { t: 'Facebook page', d: 'Page URL + what needs fixing.' },
 ];
 
 const faqs = [
@@ -45,8 +95,8 @@ const faqs = [
 ---
 
 <Layout
-  title={`Contact ${SITE.brand} | Video, AI & Digital Quote`}
-  description={`Contact ${SITE.brand} — WhatsApp ${SITE.whatsapp}, hotline ${SITE.hotline}, ${SITE.email1}. ${SITE.address}.`}
+  title={`Contact ${SITE.brand} | Leadership & Quote`}
+  description={`Contact ${SITE.brand} — meet Chairman Hannan Khan, CEO Sabbir Khan and Director Tanni Aktar. WhatsApp ${SITE.whatsapp}, ${SITE.address}.`}
 >
   <TopBar />
   <Nav active="contact" />
@@ -56,11 +106,60 @@ const faqs = [
       <p class="ct-eye">Contact</p>
       <h1>Talk to a partner that delivers</h1>
       <p class="ct-sub">
-        Video, AI creatives, websites, apps or growth campaigns — Bangladesh studio with global-ready communication.
+        Video, AI, web and growth — Bangladesh studio with global-ready communication.
+        Meet the leadership below, then reach us on WhatsApp.
       </p>
       <div class="ct-actions">
         <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
-        <a class="btn btn-outline" href="/portfolio">See portfolio</a>
+        <a class="btn btn-outline" href="/blog">Read the blog</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP -->
+  <section class="lead-sec" id="leadership">
+    <div class="container">
+      <div class="ct-center reveal">
+        <p class="ct-eye">Leadership</p>
+        <h2>Chairman, CEO &amp; Director</h2>
+        <p class="ct-lead">Photos can be replaced anytime in <code>/public/team/</code> — layout stays premium on mobile and desktop.</p>
+      </div>
+
+      <div class="lead-row">
+        {leaders.map((p) => (
+          <article class={`lead-card lead-${p.size} reveal`}>
+            <div class="lead-photo-wrap">
+              <div class="lead-photo" data-initial={p.initial}>
+                <img
+                  src={p.photo}
+                  alt={p.name}
+                  width="320"
+                  height="320"
+                  loading="lazy"
+                  onerror="this.style.display='none'"
+                />
+                <span class="lead-fallback" aria-hidden="true">{p.initial}</span>
+              </div>
+              <span class="lead-badge">{p.role}</span>
+            </div>
+            <h3>{p.name}</h3>
+            <p class="lead-exp">{p.experience}</p>
+            <p class="lead-bio">{p.bio}</p>
+            {p.social && (
+              <div class="lead-social">
+                {p.facebook && (
+                  <a href={p.facebook} target="_blank" rel="noopener noreferrer" class="lead-soc" title="Facebook">Facebook</a>
+                )}
+                {p.linkedin && (
+                  <a href={p.linkedin} target="_blank" rel="noopener noreferrer" class="lead-soc" title="LinkedIn">LinkedIn</a>
+                )}
+                {p.whatsapp && (
+                  <a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer" class="lead-soc lead-wa" title="WhatsApp">WhatsApp</a>
+                )}
+              </div>
+            )}
+          </article>
+        ))}
       </div>
     </div>
   </section>
@@ -83,9 +182,8 @@ const faqs = [
           <h3>Studio</h3>
           <p>{SITE.address}</p>
           <p class="ct-hint">{SITE.addressBn}</p>
-          <p class="ct-founder">Founder: <strong>{SITE.founder.name}</strong> — {SITE.founder.role}</p>
         </div>
-        <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Message first</a>
+        <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Message Owner</a>
       </div>
 
       <div class="ct-topics">
@@ -128,7 +226,7 @@ const faqs = [
 
 <style>
   .ct-hero {
-    padding: 5rem 1.25rem 2.5rem;
+    padding: 5rem 1.25rem 2rem;
     background:
       radial-gradient(ellipse 50% 40% at 50% 0%, rgba(37, 99, 235, 0.1), transparent 55%),
       linear-gradient(180deg, #fff, #F8FAFC);
@@ -153,7 +251,153 @@ const faqs = [
   }
   .ct-sub { margin: 0 0 1.25rem; color: #475569; line-height: 1.65; }
   .ct-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; justify-content: center; }
-  .ct-sec { padding: 2rem 1.25rem 3.5rem; background: #fff; }
+  .ct-center { text-align: center; margin-bottom: 1.75rem; }
+  .ct-center h2 {
+    margin: 0 0 0.4rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.3rem, 3vw, 1.65rem);
+    font-weight: 800;
+  }
+  .ct-lead { margin: 0; color: #64748B; font-size: 0.9rem; }
+  .ct-lead code {
+    font-size: 0.8rem;
+    background: #EFF6FF;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    color: #1D4ED8;
+  }
+
+  /* Leadership */
+  .lead-sec {
+    padding: 2.5rem 1.25rem 3rem;
+    background: #fff;
+  }
+  .lead-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .lead-row {
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: center;
+      gap: 1.25rem;
+    }
+  }
+  .lead-card {
+    background: #F8FAFC;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: 20px;
+    padding: 1.35rem 1.15rem 1.5rem;
+    text-align: center;
+    width: 100%;
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .lead-lg { max-width: 300px; flex: 1.15; }
+    .lead-md { max-width: 260px; flex: 1; }
+    .lead-sm { max-width: 230px; flex: 0.9; }
+  }
+  .lead-photo-wrap { position: relative; margin-bottom: 1rem; }
+  .lead-photo {
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(145deg, #2563EB, #1E40AF);
+    margin: 0 auto;
+    box-shadow: 0 16px 36px rgba(37, 99, 235, 0.25);
+  }
+  .lead-lg .lead-photo { width: 168px; height: 168px; }
+  .lead-md .lead-photo { width: 132px; height: 132px; }
+  .lead-sm .lead-photo { width: 108px; height: 108px; }
+  @media (max-width: 899px) {
+    .lead-lg .lead-photo { width: 160px; height: 160px; }
+    .lead-md .lead-photo { width: 136px; height: 136px; }
+    .lead-sm .lead-photo { width: 112px; height: 112px; }
+  }
+  .lead-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+  .lead-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Outfit, system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: #fff;
+    z-index: 0;
+  }
+  .lead-badge {
+    display: inline-block;
+    margin-top: 0.65rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #1D4ED8;
+    background: #EFF6FF;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+  }
+  .lead-card h3 {
+    margin: 0.35rem 0 0.2rem;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0B0F19;
+  }
+  .lead-lg h3 { font-size: 1.3rem; }
+  .lead-exp {
+    margin: 0 0 0.65rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #2563EB;
+  }
+  .lead-bio {
+    margin: 0;
+    font-size: 0.88rem;
+    color: #64748B;
+    line-height: 1.55;
+    flex: 1;
+  }
+  .lead-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .lead-soc {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    text-decoration: none;
+    color: #1E40AF;
+    background: #fff;
+    border: 1px solid rgba(37, 99, 235, 0.2);
+  }
+  .lead-soc:hover { background: #EFF6FF; }
+  .lead-wa {
+    background: #25D366;
+    border-color: #25D366;
+    color: #fff;
+  }
+  .lead-wa:hover { background: #1ebe57; color: #fff; }
+
+  .ct-sec { padding: 2rem 1.25rem 3.5rem; background: #F8FAFC; }
   .ct-channels {
     display: grid;
     gap: 1rem;
@@ -167,7 +411,7 @@ const faqs = [
     padding: 1.5rem 1.15rem;
     border-radius: 18px;
     border: 1px solid rgba(15, 23, 42, 0.07);
-    background: #F8FAFC;
+    background: #fff;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .ct-card:hover {
@@ -199,19 +443,10 @@ const faqs = [
     align-items: center;
     justify-content: space-between;
     background: #fff;
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
   }
   .ct-studio h3 { margin: 0 0 0.35rem; font-weight: 800; }
   .ct-studio p { margin: 0; color: #475569; }
-  .ct-founder { margin-top: 0.65rem !important; font-size: 0.9rem; }
   .ct-topics { margin-top: 2.75rem; }
-  .ct-center { text-align: center; margin-bottom: 1.25rem; }
-  .ct-center h2 {
-    margin: 0;
-    font-family: Outfit, system-ui, sans-serif;
-    font-size: clamp(1.25rem, 3vw, 1.55rem);
-    font-weight: 800;
-  }
   .ct-topic-grid {
     display: grid;
     gap: 0.85rem;
@@ -220,7 +455,7 @@ const faqs = [
   .ct-topic {
     padding: 1.15rem;
     border-radius: 14px;
-    background: #F8FAFC;
+    background: #fff;
     border: 1px solid rgba(15, 23, 42, 0.06);
   }
   .ct-topic h3 { margin: 0 0 0.3rem; font-size: 0.95rem; font-weight: 800; color: #2563EB; }
@@ -237,7 +472,7 @@ const faqs = [
     border-radius: 12px;
     padding: 0.15rem 1rem;
     margin-bottom: 0.5rem;
-    background: #F8FAFC;
+    background: #fff;
   }
   .ct-faq summary {
     cursor: pointer;

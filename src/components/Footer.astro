@@ -19,7 +19,9 @@ const companyLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/portfolio', label: 'Portfolio' },
+  { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
+  { href: '/contact#leadership', label: 'Leadership' },
   { href: '/#reviews', label: 'Reviews' },
 ];
 ---
@@ -86,6 +88,7 @@ const companyLinks = [
     <div class="container vx-bottom">
       <div class="vx-copy">© {new Date().getFullYear()} {SITE.brand}. All rights reserved.</div>
       <div class="vx-bottom-links">
+        <a href="/blog">Blog</a>
         <a href="/contact">Contact</a>
         <a href="/about">About</a>
         <a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
