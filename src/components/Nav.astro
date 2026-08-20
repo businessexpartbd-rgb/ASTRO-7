@@ -37,6 +37,7 @@ const { active = '' } = Astro.props;
               <a href="/services/web-development" role="menuitem">Web Development</a>
               <a href="/services/application-build" role="menuitem">Application Build</a>
               <a href="/services/authentication" role="menuitem">Authentication</a>
+              <a href="/services/automation" role="menuitem">Automation</a>
               <a href="/services/digital-marketing" role="menuitem">Digital Marketing</a>
               <a href="/services/seo" role="menuitem">SEO Services</a>
               <a href="/services/facebook-page" role="menuitem">Facebook Page</a>
@@ -71,9 +72,9 @@ const { active = '' } = Astro.props;
     transition: background .2s, border-color .2s, color .2s;
   }
   .nav-menu-btn:hover, .nav-menu-btn.open {
-    border-color: var(--primary, #0D9488);
-    color: var(--primary, #0D9488);
-    background: rgba(13,148,136,.06);
+    border-color: #2563EB;
+    color: #2563EB;
+    background: rgba(37,99,235,.06);
   }
   @media (min-width: 768px) {
     .nav-menu-btn { display: none; }
@@ -87,7 +88,7 @@ const { active = '' } = Astro.props;
     }
     .nav-links a.active,
     .nav-drop-btn.active {
-      color: #0D9488 !important;
+      color: #2563EB !important;
       font-weight: 600 !important;
     }
   }

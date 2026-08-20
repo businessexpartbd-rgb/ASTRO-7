@@ -1,0 +1,865 @@
+---
+/**
+ * Automation Service — Facebook / Instagram Messenger AI
+ * Human-like replies · multi-service bots · call conversion
+ * Bangladesh + international marketplace focus
+ */
+import Layout from '../../layouts/Layout.astro';
+import TopBar from '../../components/TopBar.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE } from '../../data/site';
+
+const seoTitle =
+  'Facebook Messenger Automation Bangladesh | AI Chatbot & Human-like Replies — Creavix iT';
+const seoDescription =
+  'Automate Facebook & Instagram Messenger with human-like AI replies. 24/7 inbox, multi-service bots, lead capture and call conversion for Bangladesh and global businesses. Creavix iT Solution.';
+
+const channels = [
+  {
+    title: 'Facebook Messenger',
+    desc: 'Page inbox replies, comment-to-DM, story replies and post CTAs — always-on.',
+    icon: 'fb',
+  },
+  {
+    title: 'Instagram DM',
+    desc: 'DM, story mentions and comment automation tuned for product questions.',
+    icon: 'ig',
+  },
+  {
+    title: 'WhatsApp flows',
+    desc: 'Optional WhatsApp Business flow for order status and support handoff.',
+    icon: 'wa',
+  },
+  {
+    title: 'Multi-service bots',
+    desc: 'One page, many services — routing by intent (price, booking, support, sales).',
+    icon: 'multi',
+  },
+];
+
+const benefits = [
+  {
+    t: '24/7 authentic replies',
+    d: 'Customers get instant answers in Bangla or English — sounds human, not robotic.',
+  },
+  {
+    t: 'Zero missed leads',
+    d: 'Night-time and peak-hour messages are captured, qualified and tagged automatically.',
+  },
+  {
+    t: 'Call conversion',
+    d: 'Hot leads can be guided to a phone call or WhatsApp voice — bot hands off cleanly.',
+  },
+  {
+    t: 'Lower support cost',
+    d: 'Routine FAQs handled by automation; your team focuses only on high-value chats.',
+  },
+  {
+    t: 'Service-aware flows',
+    d: 'Video, web, boosting, apps — each service gets its own script and offer path.',
+  },
+  {
+    t: 'BD + global ready',
+    d: 'Built for local marketplaces and international clients who expect fast inbox response.',
+  },
+];
+
+const steps = [
+  {
+    n: '01',
+    t: 'Audit & map',
+    d: 'We review your Page, services, FAQs and peak message types.',
+  },
+  {
+    n: '02',
+    t: 'Script & train',
+    d: 'Human-like reply scripts in Bangla/English + intent routing for every service.',
+  },
+  {
+    n: '03',
+    t: 'Connect & test',
+    d: 'Messenger / Instagram connected, flows tested with real scenarios.',
+  },
+  {
+    n: '04',
+    t: 'Go live & optimize',
+    d: 'Launch, monitor conversions, refine answers weekly from real chats.',
+  },
+];
+
+const useCases = [
+  {
+    tag: 'E-commerce',
+    title: 'Price, stock & order',
+    points: ['Product price & size', 'Delivery area check', 'Order status links', 'Upsell related items'],
+  },
+  {
+    tag: 'Agency / Service',
+    title: 'Quote & booking',
+    points: ['Service menu routing', 'Budget qualification', 'Appointment slots', 'WhatsApp handoff'],
+  },
+  {
+    tag: 'Education / Clinic',
+    title: 'Info & appointment',
+    points: ['Course or package info', 'Location & hours', 'Book a call', 'Reminder follow-ups'],
+  },
+  {
+    tag: 'International',
+    title: 'Lead capture 24/7',
+    points: ['Timezone-safe replies', 'English + local language', 'CRM tag & export', 'Sales call trigger'],
+  },
+];
+
+const future = [
+  {
+    t: 'Smarter intent AI',
+    d: 'Continuous learning from your real inbox so replies stay natural and on-brand.',
+  },
+  {
+    t: 'Voice & call bots',
+    d: 'Beyond chat — guided call booking and simple voice FAQ for power users.',
+  },
+  {
+    t: 'Omnichannel inbox',
+    d: 'Messenger, Instagram, WhatsApp and web chat under one automation brain.',
+  },
+  {
+    t: 'Revenue analytics',
+    d: 'See which flows create orders, calls and closed deals — not just “messages answered”.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Automation কী — মানুষ কি আর রিপ্লাই দেবে না?',
+    a: 'Automation রুটিন প্রশ্ন (দাম, সময়, সার্ভিস লিস্ট, লোকেশন) তাৎক্ষণিক জবাব দেয়। জটিল বা সেনসিটিভ চ্যাট আপনার টিমে হ্যান্ডওভার হয়। মানুষ সম্পূর্ণ বাদ পড়ে না — শুধু ক্লান্তিকর রিপিট কাজ কমে।',
+  },
+  {
+    q: 'রিপ্লাই কি রোবোটিক শোনাবে?',
+    a: 'Creavix হিউম্যান-লাইক স্ক্রিপ্ট ব্যবহার করে — স্বাভাবিক বাক্য, নাম ধরে সম্ভাষণ, বাংলা/ইংরেজি মিশ্রণ যেখানে দরকার। গোল টেক্সট নয়; ব্র্যান্ড টোন অনুযায়ী লেখা হয়।',
+  },
+  {
+    q: 'কোন প্ল্যাটফর্ম সাপোর্ট করে?',
+    a: 'মূল ফোকাস Facebook Messenger ও Instagram DM। চাহিদা অনুযায়ী WhatsApp Business ফ্লো এবং ওয়েব চ্যাট যোগ করা যায়।',
+  },
+  {
+    q: 'একাধিক সার্ভিস এক পেজে কিভাবে?',
+    a: 'ইন্টেন্ট রাউটিং দিয়ে। ইউজার “ভিডিও”, “ওয়েবসাইট” বা “বুস্টিং” লিখলে আলাদা ফ্লো চালু হয় — দাম, প্যাকেজ, বুকিং আলাদা থাকে।',
+  },
+  {
+    q: 'কল বা সেলস কনভার্সন কি সম্ভব?',
+    a: 'হ্যাঁ। হট লিড শনাক্ত হলে বট ফোন নম্বর, কল-ব্যাক স্লট বা WhatsApp ভয়েস/কল লিংক দিতে পারে। সেলস টিম নোটিফিকেশন পায়।',
+  },
+  {
+    q: 'বাংলাদেশি বিজনেসের জন্য কেন জরুরি?',
+    a: 'অধিকাংশ কাস্টমার Messenger-এ মেসেজ দেয় — রাতেও। ম্যানুয়াল ইনবক্সে লিড হারায়। ২৪/৭ অটোমেশন লোকাল মার্কেটপ্লেসে বিক্রি ও সাপোর্ট দুটোই বাড়ায়।',
+  },
+  {
+    q: 'সেটআপ কতদিন লাগে?',
+    a: 'সাধারণ পেজ ও FAQ স্কোপে সাধারণত কয়েক কর্মদিবস। জটিল মাল্টি-সার্ভিস ফ্লোতে স্ক্রিপ্ট ও টেস্ট অনুযায়ী সময় বাড়ে — শুরুতেই টাইমলাইন ক্লিয়ার করা হয়।',
+  },
+  {
+    q: 'ডেটা ও প্রাইভেসি?',
+    a: 'অফিসিয়াল প্ল্যাটফর্ম টুলস ও অনুমোদিত ইন্টিগ্রেশন ব্যবহার করা হয়। চ্যাট লগ আপনার বিজনেস নিয়ন্ত্রণে থাকে; নীতিমালা মেনে কনফিগার করা হয়।',
+  },
+];
+---
+
+<Layout title={seoTitle} description={seoDescription}>
+  <TopBar />
+  <Nav active="services" />
+
+  <!-- HERO -->
+  <section class="au-hero">
+    <div class="container au-hero-grid">
+      <div class="au-hero-copy reveal">
+        <p class="au-eye">Automation Service</p>
+        <h1>Messenger Automation that Replies Like a Real Human</h1>
+        <p class="au-sub">
+          Facebook &amp; Instagram inbox on autopilot — authentic Bangla/English replies,
+          multi-service routing, lead capture and call conversion. Built for Bangladesh shops
+          and international brands that cannot miss a message.
+        </p>
+        <div class="au-actions">
+          <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Get automation quote</a>
+          <a class="btn btn-outline" href="#how-it-works">How it works</a>
+        </div>
+        <ul class="au-trust">
+          <li>24/7 inbox</li>
+          <li>Human-like AI</li>
+          <li>Call conversion</li>
+          <li>Multi-service flows</li>
+        </ul>
+      </div>
+
+      <!-- Visual: chat mock -->
+      <div class="au-visual reveal" aria-hidden="true">
+        <div class="au-phone">
+          <div class="au-phone-bar">
+            <span class="au-dot"></span>
+            <span>Messenger · Live</span>
+            <span class="au-live">●</span>
+          </div>
+          <div class="au-chat">
+            <div class="au-bubble them">আপনাদের ভিডিও এডিটিং এর দাম কত?</div>
+            <div class="au-bubble us typing-sim">
+              হ্যালো! 👋 Creavix-এ সিনেম্যাটিক এডিট প্যাকেজ ২৪–৪৮ ঘণ্টায় ডেলিভারি।
+              কোন প্ল্যাটফর্মের জন্য লাগবে — YouTube, Meta নাকি ব্র্যান্ড ফিল্ম?
+            </div>
+            <div class="au-bubble them">Meta অ্যাডের জন্য</div>
+            <div class="au-bubble us">
+              দারুণ। সংক্ষেপে ব্রিফ পাঠান বা সরাসরি কল বুক করুন —
+              <span class="au-cta-chip">📞 Call request</span>
+            </div>
+          </div>
+          <div class="au-phone-foot">AI · Human-like · Instant</div>
+        </div>
+        <div class="au-float au-float-1">FB Page</div>
+        <div class="au-float au-float-2">IG DM</div>
+        <div class="au-float au-float-3">24/7</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IS -->
+  <section class="au-sec" id="what-is">
+    <div class="container au-split">
+      <div class="reveal">
+        <p class="au-eye">What is Automation?</p>
+        <h2>Your inbox works while your team sleeps</h2>
+        <p class="au-body">
+          <strong>Chat automation</strong> connects your Facebook Page and Instagram to smart flows.
+          When a customer messages about price, services, location or booking, the system replies
+          instantly — in natural language — then collects details or offers a call.
+        </p>
+        <p class="au-body">
+          It is not a cold keyword bot. Creavix designs <strong>service-aware scripts</strong> so
+          video editing, web development, boosting and other offers each get the right path.
+          Humans still handle complex deals; automation clears the queue.
+        </p>
+      </div>
+      <div class="au-stat-grid reveal">
+        <div class="au-stat"><strong>24/7</strong><span>Reply window</span></div>
+        <div class="au-stat"><strong>&lt;3s</strong><span>Typical first reply</span></div>
+        <div class="au-stat"><strong>BN + EN</strong><span>Language ready</span></div>
+        <div class="au-stat"><strong>Call</strong><span>Hot-lead handoff</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHANNELS -->
+  <section class="au-sec au-muted">
+    <div class="container">
+      <div class="au-center reveal">
+        <p class="au-eye">Channels</p>
+        <h2>Where automation runs</h2>
+        <p class="au-lead">Messenger-first for Bangladesh marketplaces — expandable worldwide.</p>
+      </div>
+      <div class="au-cards4">
+        {channels.map((c) => (
+          <article class="au-card reveal">
+            <div class={`au-ico au-ico-${c.icon}`} aria-hidden="true"></div>
+            <h3>{c.title}</h3>
+            <p>{c.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="au-sec" id="how-it-works">
+    <div class="container">
+      <div class="au-center reveal">
+        <p class="au-eye">Process</p>
+        <h2>How Creavix sets up automation</h2>
+      </div>
+      <div class="au-steps">
+        {steps.map((s) => (
+          <div class="au-step reveal">
+            <span class="au-step-n">{s.n}</span>
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="au-sec au-muted">
+    <div class="container">
+      <div class="au-center reveal">
+        <p class="au-eye">Benefits</p>
+        <h2>Why businesses automate Messenger</h2>
+      </div>
+      <div class="au-cards3">
+        {benefits.map((b) => (
+          <article class="au-card reveal">
+            <h3>{b.t}</h3>
+            <p>{b.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- USE CASES -->
+  <section class="au-sec">
+    <div class="container">
+      <div class="au-center reveal">
+        <p class="au-eye">Use cases</p>
+        <h2>Built for real marketplaces</h2>
+        <p class="au-lead">From local Facebook shops to global lead gen — same engine, tailored scripts.</p>
+      </div>
+      <div class="au-cards2">
+        {useCases.map((u) => (
+          <article class="au-usecase reveal">
+            <span class="au-tag">{u.tag}</span>
+            <h3>{u.title}</h3>
+            <ul>
+              {u.points.map((p) => (
+                <li>{p}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOW VISUAL -->
+  <section class="au-sec au-flow-sec">
+    <div class="container">
+      <div class="au-center reveal">
+        <p class="au-eye">Live flow</p>
+        <h2>From message to conversion</h2>
+      </div>
+      <div class="au-flow reveal" aria-hidden="true">
+        <div class="au-flow-node">Message in</div>
+        <span class="au-flow-arr">→</span>
+        <div class="au-flow-node">Intent detect</div>
+        <span class="au-flow-arr">→</span>
+        <div class="au-flow-node">Human-like reply</div>
+        <span class="au-flow-arr">→</span>
+        <div class="au-flow-node">Lead / FAQ</div>
+        <span class="au-flow-arr">→</span>
+        <div class="au-flow-node hi">Call or sale</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUTURE -->
+  <section class="au-sec au-muted">
+    <div class="container">
+      <div class="au-center reveal">
+        <p class="au-eye">Roadmap</p>
+        <h2>Where automation is going</h2>
+        <p class="au-lead">We design flows that can grow with AI — without rebuilding everything later.</p>
+      </div>
+      <div class="au-cards2">
+        {future.map((f) => (
+          <article class="au-card reveal">
+            <h3>{f.t}</h3>
+            <p>{f.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="au-sec" id="faq">
+    <div class="container au-faq-wrap">
+      <div class="au-center reveal">
+        <p class="au-eye">FAQ</p>
+        <h2>Questions clients ask before ordering</h2>
+      </div>
+      <div class="au-faq reveal">
+        {faqs.map((item) => (
+          <details class="au-faq-item">
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="au-cta">
+    <div class="container au-cta-inner reveal">
+      <div>
+        <p class="au-eye light">Start automation</p>
+        <h2>Stop losing Messenger leads after hours</h2>
+        <p>WhatsApp {SITE.whatsapp} · {SITE.email1} · {SITE.hotline}</p>
+      </div>
+      <div class="au-cta-btns">
+        <a class="btn btn-light" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp us</a>
+        <a class="btn btn-ghost" href="/contact">Contact form</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .au-hero {
+    padding: 5.25rem 1.25rem 3.5rem;
+    background:
+      radial-gradient(ellipse 55% 45% at 85% 15%, rgba(37, 99, 235, 0.14), transparent 60%),
+      radial-gradient(ellipse 40% 35% at 10% 80%, rgba(14, 165, 233, 0.08), transparent 55%),
+      linear-gradient(180deg, #fff 0%, #F8FAFC 100%);
+  }
+  .au-hero-grid {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .au-hero-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+    }
+  }
+  .au-eye {
+    margin: 0 0 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #2563EB;
+  }
+  .au-eye.light { color: #93C5FD; }
+  .au-hero h1 {
+    margin: 0 0 0.9rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.75rem, 4.2vw, 2.65rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    color: #0B0F19;
+  }
+  .au-sub {
+    margin: 0 0 1.35rem;
+    color: #475569;
+    font-size: 1.02rem;
+    line-height: 1.65;
+    max-width: 34rem;
+  }
+  .au-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-bottom: 1.25rem;
+  }
+  .au-trust {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .au-trust li {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #1E40AF;
+    background: #EFF6FF;
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+  }
+
+  /* Phone mock */
+  .au-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    min-height: 320px;
+  }
+  .au-phone {
+    width: min(100%, 320px);
+    border-radius: 24px;
+    background: #0B1220;
+    box-shadow:
+      0 28px 60px rgba(15, 23, 42, 0.22),
+      0 0 0 1px rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+  }
+  .au-phone-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: #111827;
+    color: #E2E8F0;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .au-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2563EB;
+  }
+  .au-live {
+    margin-left: auto;
+    color: #34D399;
+    font-size: 0.65rem;
+  }
+  .au-chat {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    min-height: 260px;
+    background: linear-gradient(180deg, #0F172A, #1E293B);
+  }
+  .au-bubble {
+    max-width: 92%;
+    padding: 0.55rem 0.75rem;
+    border-radius: 14px;
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+  .au-bubble.them {
+    align-self: flex-start;
+    background: #334155;
+    color: #F1F5F9;
+    border-bottom-left-radius: 4px;
+  }
+  .au-bubble.us {
+    align-self: flex-end;
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+  }
+  .au-cta-chip {
+    display: inline-block;
+    margin-top: 0.35rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    font-weight: 700;
+    font-size: 0.72rem;
+  }
+  .au-phone-foot {
+    text-align: center;
+    padding: 0.55rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #94A3B8;
+    background: #0B1220;
+  }
+  .au-float {
+    position: absolute;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
+    color: #1E40AF;
+    animation: au-bob 4s ease-in-out infinite;
+  }
+  .au-float-1 { top: 8%; left: 0; animation-delay: 0s; }
+  .au-float-2 { top: 42%; right: 0; animation-delay: 0.6s; }
+  .au-float-3 { bottom: 12%; left: 4%; animation-delay: 1.2s; }
+  @keyframes au-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .au-sec { padding: 3.5rem 1.25rem; background: #fff; }
+  .au-muted { background: #F8FAFC; }
+  .au-center {
+    text-align: center;
+    max-width: 36rem;
+    margin: 0 auto 2rem;
+  }
+  .au-center h2,
+  .au-split h2 {
+    margin: 0 0 0.5rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.4rem, 3vw, 1.85rem);
+    font-weight: 800;
+    color: #0B0F19;
+    letter-spacing: -0.02em;
+  }
+  .au-lead,
+  .au-body {
+    margin: 0;
+    color: #64748B;
+    line-height: 1.65;
+    font-size: 0.98rem;
+  }
+  .au-body + .au-body { margin-top: 0.85rem; }
+  .au-body strong { color: #0F172A; }
+
+  .au-split {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 800px) {
+    .au-split { grid-template-columns: 1.2fr 0.8fr; gap: 3rem; }
+  }
+  .au-stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .au-stat {
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: 16px;
+    padding: 1.15rem 1rem;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  }
+  .au-stat strong {
+    display: block;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #2563EB;
+    margin-bottom: 0.2rem;
+  }
+  .au-stat span { font-size: 0.8rem; color: #64748B; }
+
+  .au-cards4,
+  .au-cards3,
+  .au-cards2 {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 640px) {
+    .au-cards2 { grid-template-columns: 1fr 1fr; }
+    .au-cards3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 900px) {
+    .au-cards3 { grid-template-columns: 1fr 1fr 1fr; }
+    .au-cards4 { grid-template-columns: repeat(4, 1fr); }
+  }
+  .au-card {
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: 18px;
+    padding: 1.35rem 1.25rem;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.03);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .au-muted .au-card { background: #fff; }
+  .au-sec:not(.au-muted) .au-card { background: #F8FAFC; }
+  .au-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(37, 99, 235, 0.1);
+  }
+  .au-card h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.02rem;
+    font-weight: 800;
+    color: #0B0F19;
+  }
+  .au-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #64748B;
+    line-height: 1.55;
+  }
+  .au-ico {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+    background: #EFF6FF;
+    position: relative;
+  }
+  .au-ico::after {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border-radius: 6px;
+    background: #2563EB;
+    opacity: 0.85;
+  }
+  .au-ico-fb::after { border-radius: 50%; }
+  .au-ico-ig::after {
+    background: linear-gradient(135deg, #F59E0B, #EC4899, #2563EB);
+  }
+  .au-ico-wa::after { background: #25D366; border-radius: 50%; }
+  .au-ico-multi::after {
+    box-shadow: 6px 6px 0 rgba(37, 99, 235, 0.35);
+  }
+
+  .au-steps {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 700px) {
+    .au-steps { grid-template-columns: repeat(4, 1fr); }
+  }
+  .au-step {
+    padding: 1.25rem 1.1rem;
+    border-radius: 16px;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    background: #F8FAFC;
+  }
+  .au-step-n {
+    display: block;
+    font-family: Outfit, system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: #2563EB;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.45rem;
+  }
+  .au-step h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1rem;
+    font-weight: 800;
+  }
+  .au-step p {
+    margin: 0;
+    font-size: 0.88rem;
+    color: #64748B;
+    line-height: 1.5;
+  }
+
+  .au-usecase {
+    padding: 1.4rem 1.3rem;
+    border-radius: 18px;
+    background: #F8FAFC;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+  }
+  .au-tag {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    padding: 0.22rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    background: #EFF6FF;
+    color: #1D4ED8;
+  }
+  .au-usecase h3 {
+    margin: 0 0 0.65rem;
+    font-size: 1.05rem;
+    font-weight: 800;
+  }
+  .au-usecase ul {
+    margin: 0;
+    padding: 0 0 0 1.1rem;
+    color: #64748B;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .au-flow-sec { background: #0B1220; color: #E2E8F0; }
+  .au-flow-sec .au-eye { color: #93C5FD; }
+  .au-flow-sec h2 { color: #fff; }
+  .au-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem 0.35rem;
+  }
+  .au-flow-node {
+    padding: 0.55rem 0.85rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .au-flow-node.hi {
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    border-color: transparent;
+  }
+  .au-flow-arr {
+    color: #64748B;
+    font-size: 0.85rem;
+  }
+
+  .au-faq-wrap { max-width: 720px; }
+  .au-faq { display: flex; flex-direction: column; gap: 0.65rem; }
+  .au-faq-item {
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 14px;
+    background: #F8FAFC;
+    padding: 0.15rem 1rem 0.15rem;
+  }
+  .au-faq-item summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #0B0F19;
+    padding: 0.9rem 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .au-faq-item summary::-webkit-details-marker { display: none; }
+  .au-faq-item summary::after {
+    content: '+';
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #2563EB;
+    flex-shrink: 0;
+  }
+  .au-faq-item[open] summary::after { content: '–'; }
+  .au-faq-item p {
+    margin: 0 0 1rem;
+    color: #64748B;
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .au-cta {
+    padding: 3rem 1.25rem;
+    background: linear-gradient(135deg, #1E3A8A, #2563EB 50%, #0EA5E9);
+    color: #fff;
+  }
+  .au-cta-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .au-cta h2 {
+    margin: 0 0 0.4rem;
+    font-family: Outfit, system-ui, sans-serif;
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
+    font-weight: 800;
+  }
+  .au-cta p { margin: 0; opacity: 0.95; font-size: 0.95rem; }
+  .au-cta-btns { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .btn-light {
+    background: #fff;
+    color: #1E40AF;
+    border: none;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+  }
+
+  @media (max-width: 639px) {
+    .au-hero { padding-top: 4.5rem; }
+    .au-float { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .au-float { animation: none; }
+  }
+</style>
