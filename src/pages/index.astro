@@ -27,6 +27,8 @@ const services = [
   { href: '/services/boosting', name: 'boost', title: 'Boosting', desc: 'Meta boosting from $5 with clear BDT rates.', tone: 'rgba(37,99,235,.08)' },
   { href: '/services/campaign', name: 'campaign', title: 'Campaign', desc: 'Full Meta & YouTube campaign management.', tone: 'rgba(15,23,42,.05)' },
 ];
+const primaryServices = services.filter((_, index) => index < 3);
+const supportingServices = services.filter((_, index) => index >= 3);
 ---
 <Layout title={SITE.seoTitle} description={SITE.seoDescription}>
   <TopBar />
@@ -62,13 +64,13 @@ const services = [
         </div>
 
         <div class="trust-row">
-          <div class="trust-item"><strong class="count-up" data-count="10+">0</strong><span>Years</span></div>
+          <div class="trust-item"><strong class="count-up" data-count="10+">10+</strong><span>Years</span></div>
           <div class="trust-divider"></div>
-          <div class="trust-item"><strong class="count-up" data-count="4300+">0</strong><span>Projects</span></div>
+          <div class="trust-item"><strong class="count-up" data-count="4300+">4,300+</strong><span>Projects</span></div>
           <div class="trust-divider"></div>
           <div class="trust-item"><strong>24–48h</strong><span>Delivery</span></div>
           <div class="trust-divider"></div>
-          <div class="trust-item"><strong class="count-up" data-count="4.8">0</strong><span>Rating</span></div>
+          <div class="trust-item"><strong class="count-up" data-count="4.8">4.8</strong><span>Rating</span></div>
         </div>
       </div>
 
@@ -91,9 +93,24 @@ const services = [
         <h2 class="mb-4">Everything Your Brand Needs to Grow</h2>
         <p style="max-width:40rem;margin:0 auto">Video, AI, web, apps, SEO, automation and Meta growth — one professional partner for Bangladesh and global brands.</p>
       </div>
-      <div class="grid-3">
-        {services.map((s) => (
-          <a href={s.href} class="glass-card reveal" style="text-decoration:none;color:inherit;display:block">
+      <div class="primary-services grid-3" aria-label="Primary services">
+        {primaryServices.map((s) => (
+          <a href={s.href} class="glass-card service-card service-card-primary reveal" data-magnetic style="text-decoration:none;color:inherit;display:block">
+            <span class="service-priority">Core expertise</span>
+            <IconBox name={s.name} tone={s.tone} size={44} />
+            <h3 class="mb-4">{s.title}</h3>
+            <p style="font-size:.9rem">{s.desc}</p>
+            <span class="svc-more">Explore →</span>
+          </a>
+        ))}
+      </div>
+      <div class="supporting-heading reveal">
+        <p class="eyebrow">Complete IT Solutions</p>
+        <h3>Development, SEO, Automation &amp; Growth</h3>
+      </div>
+      <div class="grid-3 supporting-services" aria-label="Supporting digital services">
+        {supportingServices.map((s) => (
+          <a href={s.href} class="glass-card service-card reveal" style="text-decoration:none;color:inherit;display:block">
             <IconBox name={s.name} tone={s.tone} size={44} />
             <h3 class="mb-4">{s.title}</h3>
             <p style="font-size:.9rem">{s.desc}</p>
@@ -127,9 +144,9 @@ const services = [
         <div class="glass-card" style="padding:2.2rem">
           <h3 class="mb-6">At a glance</h3>
           <div class="stat-grid">
-            <div><strong class="count-up" data-count="10+" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Years</span></div>
-            <div><strong class="count-up" data-count="4300+" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Projects</span></div>
-            <div><strong class="count-up" data-count="4.8" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">0</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Avg rating</span></div>
+            <div><strong class="count-up" data-count="10+" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">10+</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Years</span></div>
+            <div><strong class="count-up" data-count="4300+" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">4,300+</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Projects</span></div>
+            <div><strong class="count-up" data-count="4.8" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">4.8</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Avg rating</span></div>
             <div><strong style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">24–48h</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Delivery</span></div>
           </div>
         </div>
@@ -154,6 +171,28 @@ const services = [
 </Layout>
 
 <style>
+  .primary-services { margin-bottom: 2.5rem; }
+  .service-card { position: relative; }
+  .service-card-primary {
+    border-color: rgba(37, 99, 235, 0.2);
+    background: linear-gradient(145deg, #fff 0%, #f8fbff 100%);
+  }
+  .service-priority {
+    display: inline-flex;
+    margin-bottom: 1rem;
+    padding: .3rem .7rem;
+    border-radius: 999px;
+    color: #1d4ed8;
+    background: rgba(37, 99, 235, .08);
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .supporting-heading { max-width: 42rem; margin: 0 auto 1.5rem; text-align: center; }
+  .supporting-heading .eyebrow { margin: 0 auto .65rem; }
+  .supporting-heading h3 { font-size: clamp(1.35rem, 2.4vw, 1.9rem); }
+  .supporting-services .service-card { min-height: 100%; }
   .hero-grid-orbit {
     display: grid;
     grid-template-columns: 1fr;

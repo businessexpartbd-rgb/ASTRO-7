@@ -171,12 +171,12 @@
       var reduced =
         window.matchMedia &&
         window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var cards = document.querySelectorAll(
-        '.glass-card, .magnet-card, .grid-3 > a.glass-card, .pf-card, .faq-item, .rv-card'
-      );
+      var cards = document.querySelectorAll('[data-magnetic]');
       if (!cards.length) return;
 
-      if (reduced) {
+      var finePointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      var wideScreen = (window.innerWidth || 0) >= 1024;
+      if (reduced || !finePointer || !wideScreen) {
         cards.forEach(function (c) {
           c.classList.add('is-magnet');
         });

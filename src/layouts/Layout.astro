@@ -11,39 +11,53 @@ const {
   description = SITE.seoDescription,
 } = Astro.props;
 
-const pathWithSearch = Astro.url.pathname + Astro.url.search;
-const canonical = new URL(pathWithSearch || '/', SITE.url).href;
+const canonical = new URL(Astro.url.pathname || '/', SITE.url).href;
 const favVersion = '20260821f2';
 const perfV = '20260822magnet1';
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: SITE.brand,
-  url: SITE.url,
-  logo: `${SITE.url}/logo.png`,
-  image: `${SITE.url}/logo.png`,
-  description: SITE.seoDescription,
-  email: SITE.email1,
-  telephone: SITE.hotline,
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'Hemayetpur',
-    addressLocality: 'Savar',
-    addressRegion: 'Dhaka',
-    postalCode: '1340',
-    addressCountry: 'BD',
-  },
-  sameAs: [
-    'https://www.facebook.com/CreavixITSolution',
-    'https://www.instagram.com/creavixitsolution',
-    'https://www.youtube.com/@CreavixiTsolution',
-    'https://www.tiktok.com/@creavixitsolution',
-    'https://www.linkedin.com/in/creavix-it-solution',
-    'https://x.com/creavixit',
+  '@graph': [
+    {
+      '@type': ['Organization', 'ProfessionalService'],
+      '@id': `${SITE.url}/#organization`,
+      name: SITE.brand,
+      url: SITE.url,
+      logo: `${SITE.url}/logo.png`,
+      image: `${SITE.url}/og-creavix.png`,
+      description: SITE.seoDescription,
+      email: SITE.email1,
+      telephone: SITE.hotline,
+      areaServed: ['Bangladesh', 'Worldwide'],
+      knowsAbout: ['Video Editing', 'AI Video Marketing', 'SEO', 'Web Development', 'Digital Marketing', 'Automation'],
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Hemayetpur',
+        addressLocality: 'Savar',
+        addressRegion: 'Dhaka',
+        postalCode: '1340',
+        addressCountry: 'BD',
+      },
+      sameAs: [
+        'https://www.facebook.com/CreavixITSolution',
+        'https://www.instagram.com/creavixitsolution',
+        'https://www.youtube.com/@CreavixiTsolution',
+        'https://www.tiktok.com/@creavixitsolution',
+        'https://www.linkedin.com/in/creavix-it-solution',
+        'https://x.com/creavixit',
+      ],
+      foundingDate: String(SITE.servingSince),
+      founder: { '@type': 'Person', name: SITE.founder.name },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE.url}/#website`,
+      url: SITE.url,
+      name: SITE.brand,
+      publisher: { '@id': `${SITE.url}/#organization` },
+      inLanguage: 'en',
+    },
   ],
-  foundingDate: String(SITE.servingSince),
-  founder: { '@type': 'Person', name: SITE.founder.name },
 };
 ---
 <!doctype html>
@@ -84,12 +98,15 @@ const jsonLd = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:image" content={`${SITE.url}/logo.png`} />
-    <meta property="og:image:alt" content={`${SITE.brand} logo`} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={`${SITE.url}/og-creavix.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content={`${SITE.brand} — Video Editing and Digital Solutions`} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${SITE.url}/logo.png`} />
+    <meta name="twitter:image" content={`${SITE.url}/og-creavix.png`} />
 
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
     <noscript>
@@ -137,6 +154,7 @@ const jsonLd = {
       }
       a, button, input, textarea, select { touch-action: manipulation; }
       a { color: inherit; text-decoration: none; }
+      :focus-visible { outline: 3px solid #F59E0B; outline-offset: 3px; }
       img { max-width: 100%; height: auto; display: block; }
       @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto; }

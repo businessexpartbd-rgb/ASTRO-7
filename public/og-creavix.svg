@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.55" stop-color="#f8fbff"/>
+      <stop offset="1" stop-color="#eff6ff"/>
+    </linearGradient>
+    <radialGradient id="orb" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#3b82f6" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#0f172a" flood-opacity=".12"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1045" cy="84" r="300" fill="url(#orb)"/>
+  <circle cx="1030" cy="522" r="230" fill="url(#orb)" opacity=".55"/>
+  <g opacity=".2" stroke="#2563eb">
+    <path d="M0 92H1200M0 538H1200"/>
+    <path d="M90 0V630M1110 0V630"/>
+  </g>
+  <g transform="translate(84 74)">
+    <rect width="154" height="154" rx="38" fill="#fff" filter="url(#shadow)"/>
+    <image href="logo.png" x="19" y="19" width="116" height="116" preserveAspectRatio="xMidYMid meet"/>
+  </g>
+  <text x="278" y="134" fill="#0b0f19" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="800">Creavix <tspan fill="#2563eb">iT Solution</tspan></text>
+  <text x="84" y="306" fill="#0b0f19" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="800">Video Editing &amp;</text>
+  <text x="84" y="390" fill="#2563eb" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="800">Digital Growth Agency</text>
+  <text x="88" y="458" fill="#475569" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="500">Cinematic AI Video · SEO · Web · Automation</text>
+  <g transform="translate(84 515)">
+    <rect width="392" height="62" rx="31" fill="#2563eb"/>
+    <text x="196" y="41" text-anchor="middle" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Bangladesh &amp; Global</text>
+  </g>
+  <g transform="translate(880 250)" filter="url(#shadow)">
+    <rect width="238" height="158" rx="28" fill="#fff" stroke="#dbeafe"/>
+    <circle cx="58" cy="56" r="24" fill="#eff6ff"/>
+    <path d="M49 43l25 13-25 13z" fill="#2563eb"/>
+    <rect x="96" y="43" width="102" height="14" rx="7" fill="#0f172a" opacity=".86"/>
+    <rect x="96" y="68" width="76" height="10" rx="5" fill="#94a3b8"/>
+    <rect x="38" y="112" width="162" height="10" rx="5" fill="#dbeafe"/>
+  </g>
+</svg>

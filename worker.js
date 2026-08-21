@@ -1,4 +1,4 @@
-/** Serve Astro assets — always fresh HTML + theme CSS/JS after deploy */
+/** Serve Astro assets with browser-safe revalidation and Cloudflare edge caching. */
 export default {
   async fetch(request, env) {
     const response = await env.ASSETS.fetch(request);
@@ -7,40 +7,33 @@ export default {
     const headers = new Headers(response.headers);
 
     const isHashedAstro = path.startsWith('/_astro/');
-    const isStaticMedia = /\.(png|jpg|jpeg|webp|svg|woff2?|ico|gif|map)$/i.test(path);
-    const isFreshAlways =
+    const isVersionedCode = /\.(css|js)$/i.test(path) && url.searchParams.has('v');
+    const isStaticMedia = /\.(png|jpg|jpeg|webp|avif|svg|woff2?|ico|gif)$/i.test(path);
+    const isDocument =
       path === '/' ||
       path.endsWith('.html') ||
-      path.endsWith('.css') ||
-      path.endsWith('.js') ||
-      path.endsWith('.json') ||
-      path.endsWith('.xml') ||
-      path.endsWith('.txt') ||
-      !path.includes('.') ||
-      path.startsWith('/services/') ||
-      path.startsWith('/about') ||
-      path.startsWith('/contact');
+      !path.includes('.');
 
-    if (isHashedAstro) {
+    if (isHashedAstro || isVersionedCode) {
       headers.set('Cache-Control', 'public, max-age=31536000, immutable');
     } else if (isStaticMedia) {
-      headers.set('Cache-Control', 'public, max-age=86400, must-revalidate');
-    } else if (isFreshAlways) {
-      headers.set('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0');
-      headers.set('CDN-Cache-Control', 'no-store');
-      headers.set('Cloudflare-CDN-Cache-Control', 'no-store');
-      headers.set('Surrogate-Control', 'no-store');
-      headers.set('Pragma', 'no-cache');
-      headers.set('Expires', '0');
-      headers.set('Vary', 'Accept-Encoding');
+      headers.set('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
+    } else if (isDocument) {
+      headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
+      headers.set('CDN-Cache-Control', 'public, max-age=600, stale-while-revalidate=86400');
+    } else if (path.endsWith('.xml') || path.endsWith('.txt')) {
+      headers.set('Cache-Control', 'public, max-age=3600, must-revalidate');
+      headers.set('CDN-Cache-Control', 'public, max-age=3600');
+    } else if (path.endsWith('.json')) {
+      headers.set('Cache-Control', 'public, max-age=300, must-revalidate');
     } else {
-      headers.set('Cache-Control', 'no-cache, must-revalidate, max-age=0');
-      headers.set('CDN-Cache-Control', 'no-store');
+      headers.set('Cache-Control', 'public, max-age=3600, must-revalidate');
     }
 
     headers.set('X-Content-Type-Options', 'nosniff');
     headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
-    headers.set('X-Creavix-Cache', 'fresh');
+    headers.set('Permissions-Policy', 'interest-cohort=()');
+    headers.set('X-Creavix-Cache', 'optimized');
 
     return new Response(response.body, {
       status: response.status,
