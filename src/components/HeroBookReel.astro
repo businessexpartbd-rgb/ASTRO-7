@@ -5,38 +5,40 @@ const heroPosters = [
   '/media/hero-ai-product.webp',
   '/media/hero-edit-suite.webp',
 ];
-const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editing', 'Campaign ready'];
+const steps = ['WhatsApp brief', 'AI enhancement', 'Image to video', 'Cinematic result', 'Pro editing', 'Human quality', 'Campaign ready'];
 ---
 <div class="vs" data-video-studio aria-label="Creavix AI and professional video production workflow">
   <div class="vs-aura" aria-hidden="true"></div>
   <div class="vs-window">
     <div class="vs-titlebar">
       <div class="vs-dots" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="vs-brand"><span class="vs-mark">C</span><strong>CREAVIX STUDIO</strong></div>
+      <div class="vs-brand"><img src="/media/creavix-original-logo.webp" alt="" width="28" height="28" /><strong>CREAVIX STUDIO</strong></div>
       <div class="vs-live"><i></i> LIVE WORKFLOW</div>
     </div>
 
     <div class="vs-screen">
       <div class="vs-panel is-active" data-scene="0">
-        <div class="brief-board">
-          <div class="brief-copy">
-            <span class="scene-kicker">01 · Creative direction</span>
-            <strong>From idea to a story<br />people remember.</strong>
-            <div class="brief-tags"><span>Brand</span><span>Audience</span><span>Emotion</span></div>
+        <div class="wa-intake">
+          <div class="wa-phone">
+            <div class="wa-head"><img src="/brands/whatsapp.svg" alt="" width="22" height="22" /><b>Client brief</b><i>•••</i></div>
+            <div class="wa-chat"><span>Today</span><div class="wa-photo"><img src={heroPosters[0]} alt="Client supplied visual" width="480" height="360" decoding="async" fetchpriority="high" /></div><p>এই ছবিটি দিয়ে একটি premium promotional video তৈরি করুন। <small>✓✓</small></p></div>
           </div>
-          <div class="storyboard" aria-hidden="true">
-            <i class="shot-one"><img src={heroPosters[0]} alt="" width="480" height="360" decoding="async" fetchpriority="high" /></i>
-            <i class="shot-two"><img src={heroPosters[1]} alt="" width="480" height="360" loading="lazy" decoding="async" /></i>
-            <i class="shot-three"><img src={heroPosters[2]} alt="" width="480" height="360" loading="lazy" decoding="async" /></i>
-            <span class="story-line"></span>
-          </div>
+          <div class="intake-copy"><span class="scene-kicker">01 · WhatsApp intake</span><strong>One simple image.<br />A bigger possibility.</strong><div class="transfer-line"><i></i><b>SECURE IMPORT</b></div></div>
         </div>
       </div>
 
       <div class="vs-panel" data-scene="1">
+        <div class="enhance-lab">
+          <span class="scene-kicker">02 · AI image enhancement</span>
+          <div class="compare-stage"><div class="compare-side"><img src={heroPosters[0]} alt="" width="480" height="360" loading="lazy" /><b>ORIGINAL</b></div><div class="compare-side enhanced"><img src={heroPosters[1]} alt="" width="480" height="360" loading="lazy" /><b>ENHANCED</b></div><i class="compare-scan"></i></div>
+          <div class="ai-mini-tools"><span><b>ChatGPT</b> Concept</span><span><img src="/brands/googlegemini.svg" alt="" />Gemini</span><span><b>G</b> Grok</span><span><b>◆</b> Identity Lock</span></div>
+        </div>
+      </div>
+
+      <div class="vs-panel" data-scene="2">
         <div class="ai-console">
           <div class="prompt-box">
-            <span class="scene-kicker">02 · AI generation</span>
+            <span class="scene-kicker">03 · Image-to-video</span>
             <p><b>Prompt</b> Human-like product film,<br />cinematic light, authentic emotion…</p>
             <span class="typing-line"></span>
           </div>
@@ -52,7 +54,7 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
         </div>
       </div>
 
-      <div class="vs-panel" data-scene="2">
+      <div class="vs-panel" data-scene="3">
         <div class="cinema-frame">
           <div class="cinema-reel" aria-label="Original Creavix cinematic concept preview">
             {heroPosters.map((poster, i) => (
@@ -60,20 +62,20 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
             ))}
           </div>
           <div class="cinema-light"></div>
-          <span class="scene-kicker cinema-kicker">03 · Human-like visual</span>
+          <span class="scene-kicker cinema-kicker">04 · Human-like visual</span>
           <span class="cinema-rec"><i></i> REC</span>
           <div class="cinema-caption"><strong>Cinematic. Authentic. Different.</strong><small>Real Creavix work · AI precision × human direction</small></div>
         </div>
       </div>
 
-      <div class="vs-panel" data-scene="3">
+      <div class="vs-panel" data-scene="4">
         <div class="edit-suite">
           <div class="edit-preview">
             <img src={heroPosters[2]} alt="" width="480" height="360" loading="lazy" decoding="async" />
             <div class="play-icon" aria-hidden="true"></div>
           </div>
           <div class="edit-controls">
-            <span class="scene-kicker">04 · Professional finishing</span>
+            <span class="scene-kicker">05 · Professional finishing</span>
             <div class="edit-labels"><b>Color</b><b>Sound</b><b>Motion</b><b>Story</b></div>
             <div class="timeline">
               <div class="track video"><i></i><i></i><i></i></div>
@@ -85,12 +87,20 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
         </div>
       </div>
 
-      <div class="vs-panel" data-scene="4">
+      <div class="vs-panel" data-scene="5">
+        <div class="quality-lab">
+          <img src={heroPosters[2]} alt="Creavix team reviewing final production" width="960" height="540" loading="lazy" />
+          <div class="quality-copy"><span class="scene-kicker">06 · Human quality control</span><strong>AI Precision × Human Creativity</strong></div>
+          <div class="quality-grid"><span>✓ Face consistency</span><span>✓ Product accuracy</span><span>✓ Natural motion</span><span>✓ Brand colour</span><span>✓ Sound sync</span><span>✓ Final review</span></div>
+        </div>
+      </div>
+
+      <div class="vs-panel" data-scene="6">
         <div class="delivery">
           <div class="delivery-rings" aria-hidden="true"><i></i><i></i><i></i></div>
           <div class="delivery-card">
             <span class="delivery-check">✓</span>
-            <span class="scene-kicker">05 · Campaign ready</span>
+            <span class="scene-kicker">07 · Campaign ready</span>
             <strong>One idea.<br />Every screen.</strong>
             <div class="format-row"><span>9:16</span><span>1:1</span><span>16:9</span></div>
           </div>
@@ -120,11 +130,12 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
   <div class="vs-float-chip chip-ai"><i>✦</i><span>Human-like AI</span></div>
   <div class="vs-float-chip chip-pro"><i>◆</i><span>Pro Editing</span></div>
   <div class="tool-orbit" aria-label="Creative production tools">
-    <span class="tool-badge pr"><i>Pr</i>Premiere</span>
+    <span class="tool-badge wa"><i><img src="/brands/whatsapp.svg" alt="" /></i>WhatsApp</span>
+    <span class="tool-badge pr"><i>Pr</i>Premiere Pro</span>
     <span class="tool-badge ae"><i>Ae</i>After Effects</span>
     <span class="tool-badge cap"><i>✂</i>CapCut</span>
-    <span class="tool-badge film"><i>F</i>Filmora</span>
-    <span class="tool-badge gem"><i>✦</i>Gemini</span>
+    <span class="tool-badge film"><i><img src="/brands/wondersharefilmora.svg" alt="" /></i>Filmora</span>
+    <span class="tool-badge gem"><i><img src="/brands/googlegemini.svg" alt="" /></i>Gemini</span>
     <span class="tool-badge grok"><i>G</i>Grok</span>
     <span class="tool-badge kling"><i>K</i>Kling</span>
     <span class="tool-badge veo"><i>V</i>Veo</span>
@@ -143,11 +154,13 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
   .vs-window{overflow:hidden;border:1px solid rgba(255,255,255,.9);border-radius:22px;background:rgba(255,255,255,.9);box-shadow:0 30px 80px rgba(15,23,42,.16),0 7px 20px rgba(37,99,235,.08);transform:perspective(1200px) rotateY(-2deg) rotateX(1deg);transform-origin:center}
   .vs-titlebar{height:42px;padding:0 .8rem;display:flex;align-items:center;border-bottom:1px solid #e7ebf2;background:rgba(255,255,255,.96)}
   .vs-dots{display:flex;gap:5px}.vs-dots i{width:7px;height:7px;border-radius:50%;background:#ff665d}.vs-dots i:nth-child(2){background:#ffbd2e}.vs-dots i:nth-child(3){background:#27c840}
-  .vs-brand{display:flex;align-items:center;gap:.35rem;margin-left:.75rem;color:#0f172a;font-size:.58rem;letter-spacing:.09em}.vs-mark{width:20px;height:20px;display:grid;place-items:center;border-radius:7px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-weight:900}
+  .vs-brand{display:flex;align-items:center;gap:.35rem;margin-left:.75rem;color:#0f172a;font-size:.58rem;letter-spacing:.09em}.vs-brand img{width:26px;height:26px;object-fit:contain}
   .vs-live{margin-left:auto;display:flex;align-items:center;gap:.3rem;color:#64748b;font-size:.5rem;font-weight:800;letter-spacing:.08em}.vs-live i{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.12);animation:blink 1.4s ease-in-out infinite}
   .vs-screen{position:relative;aspect-ratio:16/10;overflow:hidden;background:#0b1220}
   .vs-panel{position:absolute;inset:0;opacity:0;transform:translate3d(18px,0,0) scale(.985);transition:opacity .42s ease,transform .52s cubic-bezier(.2,.8,.2,1);pointer-events:none}.vs-panel.is-active{opacity:1;transform:none;pointer-events:auto}
   .scene-kicker{display:block;color:#60a5fa;font-size:.52rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
+  .wa-intake{height:100%;display:grid;grid-template-columns:.82fr 1.18fr;align-items:center;gap:7%;padding:7%;background:radial-gradient(circle at 15% 20%,#173a35,#09141d 58%)}.wa-phone{height:90%;overflow:hidden;border:4px solid #172033;border-radius:18px;background:#efeae2;box-shadow:0 18px 35px rgba(0,0,0,.42);transform:rotate(-2deg);animation:phoneIn 2.6s ease-in-out infinite alternate}.wa-head{height:18%;display:flex;align-items:center;gap:.35rem;padding:.45rem;background:#075e54;color:#fff;font-size:.5rem}.wa-head img{filter:brightness(0) invert(1)}.wa-head i{margin-left:auto}.wa-chat{height:82%;padding:.45rem;background:#efeae2}.wa-chat>span{display:block;width:max-content;margin:0 auto .3rem;padding:.12rem .35rem;border-radius:5px;background:#d9f1f5;color:#64748b;font-size:.37rem}.wa-photo{height:53%;overflow:hidden;border-radius:7px 7px 0 0}.wa-photo img{width:100%;height:100%;object-fit:cover}.wa-chat p{margin:0;padding:.32rem;border-radius:0 0 7px 7px;background:#d9fdd3;color:#263238;font-size:.42rem;line-height:1.35}.wa-chat small{color:#1aa7e8}.intake-copy strong{display:block;margin:.6rem 0;color:#fff;font:800 1.18rem/1.12 Outfit}.transfer-line{display:flex;align-items:center;gap:.35rem;color:#86efac;font-size:.4rem;letter-spacing:.09em}.transfer-line i{width:44%;height:2px;background:linear-gradient(90deg,#25d366,#60a5fa);position:relative}.transfer-line i:after{content:'›';position:absolute;right:-2px;top:-8px;font-size:.9rem;animation:transfer 1s linear infinite}
+  .enhance-lab{height:100%;padding:6%;display:grid;grid-template-rows:auto 1fr auto;gap:.45rem;background:radial-gradient(circle at 70% 40%,#312e81,#090d18 65%)}.compare-stage{position:relative;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;border:1px solid rgba(255,255,255,.2);border-radius:12px}.compare-side{position:relative;overflow:hidden;filter:saturate(.6)}.compare-side.enhanced{filter:saturate(1.25) contrast(1.05)}.compare-side img{width:100%;height:100%;display:block;object-fit:cover}.compare-side b{position:absolute;left:.4rem;bottom:.35rem;padding:.18rem .32rem;border-radius:4px;background:rgba(3,7,18,.72);color:#fff;font-size:.38rem}.compare-scan{position:absolute;z-index:2;top:0;bottom:0;left:50%;width:2px;background:#fff;box-shadow:0 0 18px 5px #60a5fa;animation:compare 3s ease-in-out infinite alternate}.ai-mini-tools{display:flex;gap:.3rem;overflow:hidden}.ai-mini-tools span{display:flex;align-items:center;gap:.22rem;padding:.26rem .36rem;border:1px solid rgba(255,255,255,.14);border-radius:6px;background:rgba(15,23,42,.72);color:#cbd5e1;font-size:.37rem;white-space:nowrap}.ai-mini-tools img{width:14px;height:14px}.ai-mini-tools b{color:#c4b5fd}
   .brief-board{height:100%;padding:12% 9%;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:7%;background:linear-gradient(135deg,#0f172a,#18264a)}
   .brief-copy strong{display:block;margin:.65rem 0 1rem;color:#fff;font:800 clamp(1rem,3vw,1.55rem)/1.15 Outfit,system-ui;letter-spacing:-.03em}.brief-tags{display:flex;gap:.35rem;flex-wrap:wrap}.brief-tags span{padding:.28rem .48rem;border:1px solid rgba(255,255,255,.14);border-radius:99px;color:#cbd5e1;font-size:.52rem}
   .storyboard{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:5px;transform:rotate(2deg)}.storyboard i{height:58px;border:2px solid rgba(255,255,255,.8);border-radius:8px;box-shadow:0 8px 22px rgba(0,0,0,.25)}.storyboard .shot-one{grid-row:span 2;height:auto;background:linear-gradient(145deg,#fde68a,#fb7185 50%,#312e81)}.storyboard .shot-two{background:linear-gradient(145deg,#93c5fd,#1e3a8a)}.storyboard .shot-three{background:linear-gradient(145deg,#fda4af,#7c3aed)}.story-line{position:absolute;left:-9%;right:-4%;bottom:-12%;height:2px;background:linear-gradient(90deg,transparent,#60a5fa,transparent)}
@@ -163,6 +176,7 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
   .edit-suite{height:100%;display:grid;grid-template-columns:.78fr 1.22fr;gap:4px;padding:4px;background:#101827}.edit-preview{position:relative;display:grid;place-items:center;overflow:hidden;border-radius:8px;background:linear-gradient(145deg,#fbbf24,#ec4899 48%,#1e3a8a)}.edit-shot{position:absolute;inset:0}.edit-shot:before{content:'';position:absolute;left:38%;top:24%;width:24%;height:55%;border-radius:45% 45% 10% 10%;background:rgba(255,255,255,.8)}.edit-shot i{position:absolute;left:42%;top:12%;width:16%;aspect-ratio:1;border-radius:50%;background:#d89b72}.play-icon{position:relative;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.9);box-shadow:0 8px 20px rgba(0,0,0,.25)}.play-icon:after{content:'';position:absolute;left:42%;top:31%;border-left:12px solid #2563eb;border-top:7px solid transparent;border-bottom:7px solid transparent}
   .edit-controls{padding:7% 6%;display:flex;flex-direction:column}.edit-labels{display:flex;gap:.3rem;margin:.6rem 0}.edit-labels b{padding:.25rem .4rem;border-radius:6px;background:#1e293b;color:#94a3b8;font-size:.45rem}.timeline{position:relative;flex:1;padding:.45rem;background:#080d16;border-radius:8px;overflow:hidden}.track{display:flex;gap:3px;height:18%;margin-bottom:5%}.track i{display:block;flex:1;border-radius:3px}.video i{background:#6366f1}.video i:nth-child(2){flex:1.5;background:#8b5cf6}.audio i{background:#10b981}.effects i{background:#f43f5e}.effects i:nth-child(2){background:#f59e0b}.playhead{position:absolute;top:0;bottom:0;left:8%;width:2px;background:#fff;box-shadow:0 0 7px #fff;animation:scrub 3s linear infinite}
   .delivery{position:relative;height:100%;display:grid;place-items:center;background:radial-gradient(circle at center,#1e3a8a,#080d19 65%)}.delivery-rings i{position:absolute;inset:13%;border:1px solid rgba(96,165,250,.2);border-radius:50%;animation:deliveryPulse 3s ease-out infinite}.delivery-rings i:nth-child(2){inset:4%;animation-delay:1s}.delivery-rings i:nth-child(3){inset:-5%;animation-delay:2s}
+  .quality-lab{position:relative;height:100%;overflow:hidden;background:#07101f}.quality-lab>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:qualityMove 7s ease-in-out infinite alternate}.quality-lab:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,7,18,.84),rgba(3,7,18,.16) 70%)}.quality-copy{position:absolute;z-index:2;left:6%;top:9%;color:#fff}.quality-copy strong{display:block;margin-top:.35rem;font:800 .9rem/1.1 Outfit}.quality-grid{position:absolute;z-index:2;left:6%;bottom:8%;display:grid;grid-template-columns:1fr 1fr;gap:.25rem}.quality-grid span{padding:.24rem .35rem;border:1px solid rgba(134,239,172,.28);border-radius:6px;background:rgba(5,46,22,.7);color:#bbf7d0;font-size:.38rem;animation:qualityCheck 2.1s ease-in-out infinite alternate}.quality-grid span:nth-child(2n){animation-delay:.4s}
   .delivery-card{position:relative;z-index:2;width:48%;padding:1rem;border:1px solid rgba(255,255,255,.2);border-radius:16px;background:rgba(15,23,42,.72);box-shadow:0 18px 50px rgba(0,0,0,.35);text-align:center;backdrop-filter:blur(10px)}.delivery-check{width:35px;height:35px;margin:0 auto .55rem;display:grid;place-items:center;border-radius:50%;background:#22c55e;color:#fff;font-weight:900}.delivery-card strong{display:block;margin:.5rem 0;color:#fff;font:800 1.05rem/1.1 Outfit}.format-row{display:flex;gap:.3rem;justify-content:center}.format-row span{padding:.25rem .4rem;border-radius:5px;background:rgba(255,255,255,.09);color:#bfdbfe;font-size:.46rem;font-weight:700}
   .device{position:absolute;border:2px solid rgba(255,255,255,.5);background:#111827;box-shadow:0 10px 30px rgba(0,0,0,.3)}.device i{display:block;position:absolute;inset:5px;border-radius:inherit;background:linear-gradient(145deg,#fbbf24,#db2777 50%,#2563eb)}.device.phone{left:12%;bottom:15%;width:10%;height:38%;border-radius:8px;transform:rotate(-8deg)}.device.desktop{right:8%;top:18%;width:23%;height:36%;border-radius:6px;transform:rotate(6deg)}.device.desktop:after{content:'';position:absolute;left:35%;right:35%;bottom:-20%;height:20%;background:#64748b}
   .storyboard i,.frame-stack i{overflow:hidden}.storyboard i img,.frame-stack i img{width:100%;height:100%;display:block;object-fit:cover}.storyboard .shot-one,.storyboard .shot-two,.storyboard .shot-three,.frame-stack i{background:#172554}
@@ -171,16 +185,16 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
   .edit-preview{background:#0f172a}.edit-preview>img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover}
   .device i{background-size:cover;background-position:center}
   .vs-corner{position:absolute;width:13px;height:13px;border-color:rgba(255,255,255,.65);border-style:solid;z-index:10}.top-left{left:10px;top:10px;border-width:1px 0 0 1px}.top-right{right:10px;top:10px;border-width:1px 1px 0 0}.bottom-left{left:10px;bottom:10px;border-width:0 0 1px 1px}.bottom-right{right:10px;bottom:10px;border-width:0 1px 1px 0}
-  .vs-status{padding:.65rem .8rem .7rem;background:#fff}.vs-progress{height:3px;border-radius:5px;background:#e7ebf2;overflow:hidden}.vs-progress i{display:block;height:100%;width:20%;border-radius:inherit;background:linear-gradient(90deg,#2563eb,#8b5cf6,#ec4899);transition:width .45s ease}
+  .vs-status{padding:.65rem .8rem .7rem;background:#fff}.vs-progress{height:3px;border-radius:5px;background:#e7ebf2;overflow:hidden}.vs-progress i{display:block;height:100%;width:14.285%;border-radius:inherit;background:linear-gradient(90deg,#2563eb,#8b5cf6,#ec4899);transition:width .45s ease}
   .vs-step-copy{display:flex;align-items:baseline;gap:.45rem;margin-top:.5rem}.vs-step-copy span{color:#2563eb;font-size:.54rem;font-weight:800}.vs-step-copy strong{color:#0f172a;font-size:.64rem}.vs-quality{display:flex;gap:.35rem;margin-left:auto;justify-content:flex-end;margin-top:-.8rem}.vs-quality span{padding:.2rem .35rem;border-radius:5px;background:#f1f5f9;color:#64748b;font-size:.42rem;font-weight:800}
   .vs-nav{display:flex;justify-content:center;gap:.4rem;margin-top:.8rem}.vs-nav-btn{width:32px;height:7px;padding:0;border:0;border-radius:99px;background:#cbd5e1;cursor:pointer;overflow:hidden;transition:width .3s,background .3s}.vs-nav-btn span{position:absolute;clip:rect(0 0 0 0)}.vs-nav-btn.is-active{width:58px;background:linear-gradient(90deg,#2563eb,#8b5cf6)}
   .vs-float-chip{position:absolute;z-index:3;display:flex;align-items:center;gap:.35rem;padding:.45rem .62rem;border:1px solid rgba(255,255,255,.9);border-radius:12px;background:rgba(255,255,255,.92);box-shadow:0 10px 26px rgba(15,23,42,.12);color:#334155;font-size:.55rem;font-weight:800;backdrop-filter:blur(9px);animation:chipFloat 3s ease-in-out infinite alternate}.vs-float-chip i{width:22px;height:22px;display:grid;place-items:center;border-radius:7px;color:#fff;font-style:normal}.chip-ai{left:-4%;top:25%}.chip-ai i{background:linear-gradient(135deg,#7c3aed,#ec4899)}.chip-pro{right:-3%;bottom:20%;animation-delay:1s}.chip-pro i{background:linear-gradient(135deg,#2563eb,#06b6d4)}
   .core-logo{position:relative;animation:aiGlow 2s ease-in-out infinite alternate}.core-logo:after{content:'CREATIVE INTELLIGENCE';position:absolute;left:50%;top:108%;transform:translateX(-50%);white-space:nowrap;color:#c4b5fd;font:800 .31rem/1 Outfit;letter-spacing:.12em}
-  .tool-orbit{position:relative;z-index:4;display:flex;gap:.38rem;width:92%;margin:-.12rem auto 0;padding:.48rem;overflow:hidden;border:1px solid rgba(226,232,240,.9);border-radius:13px;background:rgba(255,255,255,.93);box-shadow:0 12px 28px rgba(15,23,42,.1)}.tool-badge{flex:0 0 auto;display:flex;align-items:center;gap:.28rem;padding:.3rem .43rem;border-radius:8px;background:#f8fafc;color:#334155;font-size:.43rem;font-weight:800;animation:toolFlow 16s ease-in-out infinite alternate}.tool-badge i{width:20px;height:20px;display:grid;place-items:center;border-radius:6px;color:#fff;font-style:normal;font-size:.48rem}.pr i,.ae i{background:#24165d;color:#b6a7ff}.cap i,.grok i{background:#090f1b}.film i{background:linear-gradient(135deg,#16d9d3,#7c3aed)}.gem i{background:linear-gradient(135deg,#4285f4,#a855f7,#f59e0b)}.kling i{background:linear-gradient(135deg,#8b5cf6,#ec4899)}.veo i{background:linear-gradient(135deg,#2563eb,#06b6d4)}
+  .tool-orbit{position:relative;z-index:4;display:flex;gap:.38rem;width:92%;margin:-.12rem auto 0;padding:.48rem;overflow:hidden;border:1px solid rgba(226,232,240,.9);border-radius:13px;background:rgba(255,255,255,.93);box-shadow:0 12px 28px rgba(15,23,42,.1)}.tool-badge{flex:0 0 auto;display:flex;align-items:center;gap:.28rem;padding:.3rem .43rem;border-radius:8px;background:#f8fafc;color:#334155;font-size:.43rem;font-weight:800;animation:toolFlow 16s ease-in-out infinite alternate}.tool-badge i{width:20px;height:20px;display:grid;place-items:center;border-radius:6px;color:#fff;font-style:normal;font-size:.48rem}.tool-badge i img{width:15px;height:15px;display:block}.wa i,.film i,.gem i{background:#fff}.pr i,.ae i{background:#24165d;color:#b6a7ff}.cap i,.grok i{background:#090f1b}.kling i{background:linear-gradient(135deg,#8b5cf6,#ec4899)}.veo i{background:linear-gradient(135deg,#2563eb,#06b6d4)}
   .action-rig{position:absolute;z-index:5;right:-7%;top:9%;display:flex;align-items:center;gap:.35rem;padding:.38rem .48rem;border:1px solid rgba(255,255,255,.9);border-radius:12px;background:rgba(255,255,255,.92);box-shadow:0 12px 25px rgba(15,23,42,.12);color:#0f172a}.rig-light{width:18px;height:18px;border-radius:50%;background:#fde68a;box-shadow:0 0 18px #f59e0b;animation:rigGlow 1.6s ease-in-out infinite alternate}.rig-camera{width:26px;height:18px;border-radius:5px;background:#172033;position:relative}.rig-camera i{position:absolute;right:-6px;top:4px;width:10px;height:10px;border-radius:50%;background:#38bdf8;box-shadow:0 0 8px #38bdf8}.rig-clap{width:22px;height:18px;border:2px solid #111827;position:relative}.rig-clap i{position:absolute;left:-2px;right:-2px;top:-7px;height:5px;background:repeating-linear-gradient(135deg,#111827 0 4px,#fff 4px 8px);transform-origin:left;animation:clap 2.6s ease-in-out infinite}.action-rig strong{font-size:.38rem;letter-spacing:.08em}.action-rig b{color:#ef4444;animation:blink 1s infinite}
-  @keyframes aura{to{opacity:.72;transform:scale(1.06)}}@keyframes blink{50%{opacity:.25}}@keyframes type{50%{width:35%;opacity:.6}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes frames{50%{transform:translateY(-5px) rotate(2deg)}}@keyframes heroFloat{to{transform:translateY(-4px)}}@keyframes lightSweep{50%{transform:translateX(18%)}}@keyframes scrub{to{left:90%}}@keyframes deliveryPulse{0%{transform:scale(.8);opacity:.7}100%{transform:scale(1.15);opacity:0}}@keyframes chipFloat{to{transform:translateY(-7px)}}@keyframes cinemaCut{0%,29%{opacity:1}34%,95%{opacity:0}100%{opacity:1}}@keyframes cinemaMove{to{transform:scale(1.08) translate3d(-1.5%,1%,0)}}@keyframes aiGlow{to{filter:saturate(1.25);box-shadow:0 0 45px rgba(139,92,246,.8)}}@keyframes toolFlow{to{transform:translateX(-22%)}}@keyframes rigGlow{to{transform:scale(1.12);opacity:.7}}@keyframes clap{0%,68%,100%{transform:rotate(0)}78%{transform:rotate(-28deg)}}
+  @keyframes aura{to{opacity:.72;transform:scale(1.06)}}@keyframes blink{50%{opacity:.25}}@keyframes type{50%{width:35%;opacity:.6}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes frames{50%{transform:translateY(-5px) rotate(2deg)}}@keyframes heroFloat{to{transform:translateY(-4px)}}@keyframes lightSweep{50%{transform:translateX(18%)}}@keyframes scrub{to{left:90%}}@keyframes deliveryPulse{0%{transform:scale(.8);opacity:.7}100%{transform:scale(1.15);opacity:0}}@keyframes chipFloat{to{transform:translateY(-7px)}}@keyframes cinemaCut{0%,29%{opacity:1}34%,95%{opacity:0}100%{opacity:1}}@keyframes cinemaMove{to{transform:scale(1.08) translate3d(-1.5%,1%,0)}}@keyframes aiGlow{to{filter:saturate(1.25);box-shadow:0 0 45px rgba(139,92,246,.8)}}@keyframes toolFlow{to{transform:translateX(-22%)}}@keyframes rigGlow{to{transform:scale(1.12);opacity:.7}}@keyframes clap{0%,68%,100%{transform:rotate(0)}78%{transform:rotate(-28deg)}}@keyframes phoneIn{to{transform:rotate(1deg) translateY(-4px)}}@keyframes transfer{from{transform:translateX(-28px);opacity:0}to{transform:translateX(0);opacity:1}}@keyframes compare{from{left:18%}to{left:82%}}@keyframes qualityMove{to{transform:scale(1.06) translateX(-1%)}}@keyframes qualityCheck{to{background:rgba(21,128,61,.82);box-shadow:0 0 12px rgba(34,197,94,.25)}}
   @media(max-width:899px){.vs{max-width:460px;padding-top:.4rem}.vs-window{transform:none}.vs-float-chip,.action-rig{display:none}.tool-orbit{width:100%;margin-top:.45rem}.tool-badge{animation-duration:12s}}
-  @media(max-width:520px){.vs{max-width:100%;padding-inline:0}.vs-window{border-radius:17px}.vs-titlebar{height:36px}.vs-brand strong{font-size:.5rem}.vs-live{font-size:.42rem}.vs-screen{aspect-ratio:16/10.6}.brief-board{padding:9% 7%;gap:5%}.storyboard i{height:43px}.ai-console{padding:7%;grid-template-columns:1.2fr .72fr .45fr}.prompt-box{padding:.58rem}.prompt-box p{font-size:.5rem}.edit-suite{grid-template-columns:.72fr 1.28fr}.delivery-card{width:58%;padding:.7rem}.vs-quality span:nth-child(2){display:none}}
+  @media(max-width:520px){.vs{max-width:100%;padding-inline:0}.vs-window{border-radius:17px}.vs-titlebar{height:36px}.vs-brand strong{font-size:.5rem}.vs-live{font-size:.42rem}.vs-screen{aspect-ratio:16/10.6}.wa-intake{padding:5%;grid-template-columns:.82fr 1.18fr;gap:5%}.wa-phone{height:86%;border-width:3px}.wa-chat p{font-size:.34rem}.intake-copy strong{font-size:.82rem}.ai-mini-tools span:nth-child(4){display:none}.brief-board{padding:9% 7%;gap:5%}.storyboard i{height:43px}.ai-console{padding:7%;grid-template-columns:1.2fr .72fr .45fr}.prompt-box{padding:.58rem}.prompt-box p{font-size:.5rem}.edit-suite{grid-template-columns:.72fr 1.28fr}.delivery-card{width:58%;padding:.7rem}.vs-quality span:nth-child(2){display:none}.vs-nav{gap:.25rem}.vs-nav-btn{width:22px}.vs-nav-btn.is-active{width:42px}}
   @media(prefers-reduced-motion:reduce){.vs *{animation:none!important;transition:none!important}.vs-panel:not(.is-active){display:none}}
 </style>
 
@@ -189,7 +203,7 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
   const root=document.querySelector('[data-video-studio]');if(!root)return;
   const scenes=[...root.querySelectorAll('[data-scene]')],buttons=[...root.querySelectorAll('[data-step]')];
   const label=root.querySelector('[data-step-label]'),number=root.querySelector('[data-step-number]'),progress=root.querySelector('[data-progress]');
-  const names=['Creative brief','AI generation','Human-like scene','Pro editing','Campaign ready'];
+  const names=['WhatsApp brief','AI enhancement','Image to video','Cinematic result','Pro editing','Human quality','Campaign ready'];
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
   let index=0,timer=null,visible=true;
   function show(next){index=(next+scenes.length)%scenes.length;scenes.forEach((el,i)=>el.classList.toggle('is-active',i===index));buttons.forEach((el,i)=>{el.classList.toggle('is-active',i===index);el.setAttribute('aria-pressed',String(i===index))});number.textContent=String(index+1).padStart(2,'0');label.textContent=names[index];progress.style.width=((index+1)/scenes.length*100)+'%'}
