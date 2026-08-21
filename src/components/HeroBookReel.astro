@@ -1,759 +1,163 @@
 ---
-/**
- * Hero visual — AI Video Marketing Agency workflow stage.
- * No YouTube embeds. Pure CSS/JS storytelling animation:
- * Photo → Prompt → AI tools (Kling, Veo, Grok, ChatGPT, Claude) →
- * Generate → Premiere edit → ACTION camera.
- * Soft aura, glass cards, bottom tool dock, continuous cycle.
- */
+/** Premium code-native AI + professional video production hero. */
+const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editing', 'Campaign ready'];
 ---
+<div class="vs" data-video-studio aria-label="Creavix AI and professional video production workflow">
+  <div class="vs-aura" aria-hidden="true"></div>
+  <div class="vs-window">
+    <div class="vs-titlebar">
+      <div class="vs-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="vs-brand"><span class="vs-mark">C</span><strong>CREAVIX STUDIO</strong></div>
+      <div class="vs-live"><i></i> LIVE WORKFLOW</div>
+    </div>
 
-<div class="hx" data-hx role="img" aria-label="AI video production workflow">
-  <div class="hx-aura" aria-hidden="true"></div>
-
-  <!-- Main stage card -->
-  <div class="hx-stage">
-    <div class="hx-card" data-panel="0">
-      <!-- 0 · Upload photo -->
-      <div class="hx-panel is-on" data-p="0">
-        <div class="hx-photo">
-          <div class="hx-photo-img">
-            <svg viewBox="0 0 120 80" fill="none" aria-hidden="true">
-              <rect width="120" height="80" rx="8" fill="url(#phg)"/>
-              <circle cx="38" cy="28" r="10" fill="#FDBA74"/>
-              <path d="M0 58 L28 40 L48 52 L72 32 L120 58 V80 H0Z" fill="#34D399" opacity=".85"/>
-              <defs>
-                <linearGradient id="phg" x1="0" y1="0" x2="120" y2="80">
-                  <stop stop-color="#E0F2FE"/><stop offset="1" stop-color="#C7D2FE"/>
-                </linearGradient>
-              </defs>
-            </svg>
+    <div class="vs-screen">
+      <div class="vs-panel is-active" data-scene="0">
+        <div class="brief-board">
+          <div class="brief-copy">
+            <span class="scene-kicker">01 · Creative direction</span>
+            <strong>From idea to a story<br />people remember.</strong>
+            <div class="brief-tags"><span>Brand</span><span>Audience</span><span>Emotion</span></div>
           </div>
-          <div class="hx-badge">Upload</div>
-          <div class="hx-drop">
-            <span class="hx-drop-icon">⬆</span>
-            <span>Drop image</span>
+          <div class="storyboard" aria-hidden="true">
+            <i class="shot-one"></i><i class="shot-two"></i><i class="shot-three"></i>
+            <span class="story-line"></span>
           </div>
         </div>
       </div>
 
-      <!-- 1 · Prompt + coding -->
-      <div class="hx-panel" data-p="1">
-        <div class="hx-prompt">
-          <div class="hx-prompt-bar">
-            <span class="hx-dot r"></span><span class="hx-dot y"></span><span class="hx-dot g"></span>
-            <span class="hx-prompt-title">prompt · creavix</span>
+      <div class="vs-panel" data-scene="1">
+        <div class="ai-console">
+          <div class="prompt-box">
+            <span class="scene-kicker">02 · AI generation</span>
+            <p><b>Prompt</b> Human-like product film,<br />cinematic light, authentic emotion…</p>
+            <span class="typing-line"></span>
           </div>
-          <div class="hx-code">
-            <span class="c-key">model</span><span class="c-op">:</span> <span class="c-str">"kling-v2"</span>
-            <br /><span class="c-key">prompt</span><span class="c-op">:</span> <span class="c-str">"cinematic product ad,</span>
-            <br /><span class="c-str">&nbsp;&nbsp;bangladesh street, golden hour"</span>
-            <br /><span class="c-key">duration</span><span class="c-op">:</span> <span class="c-num">8s</span>
-            <br /><span class="c-cursor">▋</span>
+          <div class="generation-core" aria-hidden="true">
+            <div class="core-ring ring-a"></div><div class="core-ring ring-b"></div>
+            <div class="core-logo">AI</div>
           </div>
+          <div class="frame-stack" aria-hidden="true"><i></i><i></i><i></i></div>
         </div>
       </div>
 
-      <!-- 2 · AI tools generating -->
-      <div class="hx-panel" data-p="2">
-        <div class="hx-tools">
-          <div class="hx-tool is-active" data-tool="kling">
-            <div class="hx-tool-icon kling">K</div>
-            <span>Kling</span>
-            <div class="hx-bar"><i style="--w:92%"></i></div>
-          </div>
-          <div class="hx-tool" data-tool="veo">
-            <div class="hx-tool-icon veo">V</div>
-            <span>Veo 3</span>
-            <div class="hx-bar"><i style="--w:78%"></i></div>
-          </div>
-          <div class="hx-tool" data-tool="grok">
-            <div class="hx-tool-icon grok">G</div>
-            <span>Grok</span>
-            <div class="hx-bar"><i style="--w:65%"></i></div>
-          </div>
-          <div class="hx-tool" data-tool="gpt">
-            <div class="hx-tool-icon gpt">✦</div>
-            <span>ChatGPT</span>
-            <div class="hx-bar"><i style="--w:54%"></i></div>
-          </div>
-          <div class="hx-tool" data-tool="claude">
-            <div class="hx-tool-icon claude">C</div>
-            <span>Claude</span>
-            <div class="hx-bar"><i style="--w:40%"></i></div>
-          </div>
-        </div>
-        <div class="hx-gen-label">Generating cinematic frames…</div>
-      </div>
-
-      <!-- 3 · Video preview playing -->
-      <div class="hx-panel" data-p="3">
-        <div class="hx-preview">
-          <div class="hx-preview-screen">
-            <div class="hx-preview-scene">
-              <div class="hx-scene-sky"></div>
-              <div class="hx-scene-road"></div>
-              <div class="hx-scene-car"></div>
-              <div class="hx-scene-glow"></div>
-            </div>
-            <div class="hx-rec">● REC</div>
-            <div class="hx-timecode">00:03 / 00:08</div>
-          </div>
+      <div class="vs-panel" data-scene="2">
+        <div class="cinema-frame">
+          <div class="cinema-sky"></div><div class="cinema-city"></div><div class="cinema-floor"></div>
+          <div class="cinema-person" aria-hidden="true"><i></i></div>
+          <div class="cinema-product"><span>YOUR<br />BRAND</span></div>
+          <div class="cinema-light"></div>
+          <span class="scene-kicker cinema-kicker">03 · Human-like visual</span>
+          <span class="cinema-rec"><i></i> REC</span>
+          <div class="cinema-caption"><strong>Cinematic. Authentic. Different.</strong><small>AI precision × human creative direction</small></div>
         </div>
       </div>
 
-      <!-- 4 · Premiere edit -->
-      <div class="hx-panel" data-p="4">
-        <div class="hx-premiere">
-          <div class="hx-pr-top">
-            <span class="hx-pr-logo">Pr</span>
-            <span class="hx-pr-name">Adobe Premiere Pro</span>
+      <div class="vs-panel" data-scene="3">
+        <div class="edit-suite">
+          <div class="edit-preview">
+            <div class="edit-shot"><i></i><span></span></div>
+            <div class="play-icon" aria-hidden="true"></div>
           </div>
-          <div class="hx-timeline">
-            <div class="hx-track t1"><span></span><span></span><span></span></div>
-            <div class="hx-track t2"><span></span><span></span></div>
-            <div class="hx-track t3"><span></span><span></span><span></span></div>
-            <div class="hx-playhead"></div>
-          </div>
-          <div class="hx-pr-tools">
-            <span>✂</span><span>🎵</span><span>✨</span><span>🎨</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5 · ACTION ready -->
-      <div class="hx-panel" data-p="5">
-        <div class="hx-action">
-          <div class="hx-action-ring">
-            <div class="hx-action-btn">
-              <svg viewBox="0 0 48 48" width="36" height="36" aria-hidden="true">
-                <rect x="8" y="14" width="28" height="20" rx="4" fill="#fff" opacity=".95"/>
-                <circle cx="22" cy="24" r="7" fill="none" stroke="#EF4444" stroke-width="2.5"/>
-                <circle cx="22" cy="24" r="3.5" fill="#EF4444"/>
-                <rect x="32" y="18" width="6" height="5" rx="1" fill="#fff" opacity=".8"/>
-              </svg>
+          <div class="edit-controls">
+            <span class="scene-kicker">04 · Professional finishing</span>
+            <div class="edit-labels"><b>Color</b><b>Sound</b><b>Motion</b><b>Story</b></div>
+            <div class="timeline">
+              <div class="track video"><i></i><i></i><i></i></div>
+              <div class="track audio"><i></i><i></i></div>
+              <div class="track effects"><i></i><i></i><i></i></div>
+              <span class="playhead"></span>
             </div>
           </div>
-          <div class="hx-action-label">ACTION</div>
-          <div class="hx-action-sub">Camera ready · Deliver</div>
         </div>
       </div>
+
+      <div class="vs-panel" data-scene="4">
+        <div class="delivery">
+          <div class="delivery-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="delivery-card">
+            <span class="delivery-check">✓</span>
+            <span class="scene-kicker">05 · Campaign ready</span>
+            <strong>One idea.<br />Every screen.</strong>
+            <div class="format-row"><span>9:16</span><span>1:1</span><span>16:9</span></div>
+          </div>
+          <div class="device phone" aria-hidden="true"><i></i></div>
+          <div class="device desktop" aria-hidden="true"><i></i></div>
+        </div>
+      </div>
+
+      <div class="vs-corner top-left" aria-hidden="true"></div><div class="vs-corner top-right" aria-hidden="true"></div>
+      <div class="vs-corner bottom-left" aria-hidden="true"></div><div class="vs-corner bottom-right" aria-hidden="true"></div>
+    </div>
+
+    <div class="vs-status">
+      <div class="vs-progress"><i data-progress></i></div>
+      <div class="vs-step-copy"><span data-step-number>01</span><strong data-step-label>Creative brief</strong></div>
+      <div class="vs-quality"><span>4K</span><span>AI + HUMAN</span><span>24–48H</span></div>
     </div>
   </div>
 
-  <!-- Bottom dock — workflow steps -->
-  <div class="hx-dock">
-    <button type="button" class="hx-btn is-on" data-step="0" aria-label="Upload">
-      <span class="hx-btn-ic">📷</span>
-    </button>
-    <button type="button" class="hx-btn" data-step="1" aria-label="Prompt">
-      <span class="hx-btn-ic">⌘</span>
-    </button>
-    <button type="button" class="hx-btn" data-step="2" aria-label="AI Generate">
-      <span class="hx-btn-ic">✦</span>
-    </button>
-    <button type="button" class="hx-btn" data-step="3" aria-label="Preview">
-      <span class="hx-btn-ic">▶</span>
-    </button>
-    <button type="button" class="hx-btn" data-step="4" aria-label="Edit">
-      <span class="hx-btn-ic">✂</span>
-    </button>
-    <button type="button" class="hx-btn" data-step="5" aria-label="Action">
-      <span class="hx-btn-ic">●</span>
-    </button>
+  <div class="vs-nav" aria-label="Video production animation steps">
+    {steps.map((step, i) => (
+      <button type="button" class:list={['vs-nav-btn', { 'is-active': i === 0 }]} data-step={i} aria-label={step} aria-pressed={i === 0 ? 'true' : 'false'}>
+        <span>{String(i + 1).padStart(2, '0')}</span>
+      </button>
+    ))}
   </div>
+  <div class="vs-float-chip chip-ai"><i>✦</i><span>Human-like AI</span></div>
+  <div class="vs-float-chip chip-pro"><i>◆</i><span>Pro Editing</span></div>
 </div>
 
 <style>
-  .hx {
-    --r: 20px;
-    position: relative;
-    width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
-    padding: 1.5rem 0.4rem 0.25rem;
-  }
-
-  .hx-aura {
-    position: absolute;
-    left: 50%; top: 38%;
-    width: 115%; height: 75%;
-    translate: -50% -50%;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-    background:
-      radial-gradient(circle at 25% 40%, rgba(251, 146, 60, 0.38), transparent 50%),
-      radial-gradient(circle at 75% 35%, rgba(167, 139, 250, 0.4), transparent 48%),
-      radial-gradient(circle at 50% 70%, rgba(52, 211, 153, 0.3), transparent 52%),
-      radial-gradient(circle at 55% 50%, rgba(96, 165, 250, 0.32), transparent 55%);
-    filter: blur(30px);
-    animation: hx-breathe 5s ease-in-out infinite alternate;
-  }
-  @keyframes hx-breathe {
-    from { opacity: 0.75; transform: scale(0.97); }
-    to { opacity: 1; transform: scale(1.06); }
-  }
-
-  .hx-stage {
-    position: relative;
-    z-index: 1;
-  }
-
-  .hx-card {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    border-radius: var(--r);
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow:
-      0 24px 48px rgba(15, 23, 42, 0.1),
-      0 0 0 1px rgba(255, 255, 255, 0.8),
-      inset 0 1px 0 #fff;
-  }
-
-  .hx-panel {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    opacity: 0;
-    transform: scale(0.94) translateY(8px);
-    filter: blur(4px);
-    pointer-events: none;
-    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22,1,0.36,1), filter 0.35s ease;
-  }
-  .hx-panel.is-on {
-    opacity: 1;
-    transform: none;
-    filter: none;
-    pointer-events: auto;
-  }
-
-  /* ── 0 Upload ── */
-  .hx-photo {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    position: relative;
-  }
-  .hx-photo-img {
-    width: 72%;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 12px 28px rgba(15,23,42,0.12);
-    animation: hx-float 3s ease-in-out infinite alternate;
-  }
-  .hx-photo-img svg { display: block; width: 100%; height: auto; }
-  @keyframes hx-float {
-    from { transform: translateY(0); }
-    to { transform: translateY(-6px); }
-  }
-  .hx-badge {
-    position: absolute;
-    top: 12%; right: 14%;
-    background: #FBBF24;
-    color: #0F172A;
-    font-size: 0.65rem;
-    font-weight: 700;
-    padding: 0.25rem 0.55rem;
-    border-radius: 999px;
-    box-shadow: 0 4px 12px rgba(251,191,36,0.4);
-  }
-  .hx-drop {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: #64748B;
-    background: rgba(255,255,255,0.8);
-    padding: 0.3rem 0.7rem;
-    border-radius: 999px;
-    border: 1px dashed #CBD5E1;
-  }
-  .hx-drop-icon { animation: hx-bounce 1.2s ease-in-out infinite; }
-  @keyframes hx-bounce {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-3px); }
-  }
-
-  /* ── 1 Prompt ── */
-  .hx-prompt {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #0F172A;
-    box-shadow: 0 8px 24px rgba(15,23,42,0.25);
-  }
-  .hx-prompt-bar {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.45rem 0.7rem;
-    background: #1E293B;
-  }
-  .hx-dot { width: 8px; height: 8px; border-radius: 50%; }
-  .hx-dot.r { background: #F87171; }
-  .hx-dot.y { background: #FBBF24; }
-  .hx-dot.g { background: #34D399; }
-  .hx-prompt-title {
-    margin-left: auto;
-    font-size: 0.6rem;
-    color: #94A3B8;
-    font-family: ui-monospace, monospace;
-  }
-  .hx-code {
-    flex: 1;
-    padding: 0.7rem 0.85rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 0.68rem;
-    line-height: 1.55;
-    color: #E2E8F0;
-    overflow: hidden;
-  }
-  .c-key { color: #67E8F9; }
-  .c-op { color: #94A3B8; }
-  .c-str { color: #FDE68A; }
-  .c-num { color: #A5B4FC; }
-  .c-cursor {
-    color: #34D399;
-    animation: hx-blink 0.9s step-end infinite;
-  }
-  @keyframes hx-blink {
-    50% { opacity: 0; }
-  }
-
-  /* ── 2 AI tools ── */
-  .hx-tools {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    width: 100%;
-  }
-  .hx-tool {
-    display: grid;
-    grid-template-columns: 28px 1fr auto;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.35rem 0.5rem;
-    border-radius: 10px;
-    background: rgba(248,250,252,0.9);
-    border: 1px solid rgba(15,23,42,0.06);
-    font-size: 0.68rem;
-    font-weight: 600;
-    color: #334155;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .hx-tool.is-active {
-    transform: scale(1.03);
-    box-shadow: 0 6px 16px rgba(99,102,241,0.15);
-    border-color: rgba(99,102,241,0.25);
-  }
-  .hx-tool-icon {
-    width: 26px; height: 26px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.7rem; font-weight: 800; color: #fff;
-  }
-  .hx-tool-icon.kling { background: linear-gradient(135deg, #7C3AED, #EC4899); }
-  .hx-tool-icon.veo { background: linear-gradient(135deg, #2563EB, #06B6D4); }
-  .hx-tool-icon.grok { background: linear-gradient(135deg, #0F172A, #334155); }
-  .hx-tool-icon.gpt { background: linear-gradient(135deg, #10B981, #059669); }
-  .hx-tool-icon.claude { background: linear-gradient(135deg, #D97706, #F59E0B); }
-  .hx-bar {
-    grid-column: 2 / -1;
-    height: 4px;
-    border-radius: 999px;
-    background: #E2E8F0;
-    overflow: hidden;
-  }
-  .hx-bar i {
-    display: block;
-    height: 100%;
-    width: var(--w, 50%);
-    border-radius: inherit;
-    background: linear-gradient(90deg, #818CF8, #C084FC, #F472B6);
-    animation: hx-fill 2.2s ease-out infinite alternate;
-  }
-  @keyframes hx-fill {
-    from { width: 20%; }
-    to { width: var(--w); }
-  }
-  .hx-gen-label {
-    margin-top: 0.55rem;
-    text-align: center;
-    font-size: 0.65rem;
-    font-weight: 600;
-    color: #64748B;
-  }
-
-  /* ── 3 Preview ── */
-  .hx-preview {
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .hx-preview-screen {
-    position: relative;
-    width: 92%;
-    aspect-ratio: 16/9;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #0F172A;
-    box-shadow: 0 12px 32px rgba(15,23,42,0.2);
-  }
-  .hx-preview-scene {
-    position: absolute; inset: 0;
-  }
-  .hx-scene-sky {
-    position: absolute; inset: 0 0 40% 0;
-    background: linear-gradient(180deg, #FDBA74 0%, #FDE68A 40%, #7DD3FC 100%);
-  }
-  .hx-scene-road {
-    position: absolute; bottom: 0; left: 0; right: 0; height: 42%;
-    background: linear-gradient(180deg, #475569, #1E293B);
-  }
-  .hx-scene-road::after {
-    content: '';
-    position: absolute;
-    top: 45%; left: 0; right: 0; height: 3px;
-    background: repeating-linear-gradient(90deg, #FBBF24 0 18px, transparent 18px 32px);
-    animation: hx-dash 1.2s linear infinite;
-  }
-  @keyframes hx-dash {
-    from { background-position: 0 0; }
-    to { background-position: 50px 0; }
-  }
-  .hx-scene-car {
-    position: absolute;
-    bottom: 28%; left: 35%;
-    width: 30%; height: 18%;
-    background: linear-gradient(180deg, #F43F5E, #BE123C);
-    border-radius: 6px 10px 4px 4px;
-    animation: hx-drive 2.5s ease-in-out infinite alternate;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  }
-  .hx-scene-car::before {
-    content: '';
-    position: absolute;
-    top: 20%; left: 15%; right: 20%; height: 40%;
-    background: rgba(255,255,255,0.25);
-    border-radius: 3px;
-  }
-  @keyframes hx-drive {
-    from { transform: translateX(-12%); }
-    to { transform: translateX(18%); }
-  }
-  .hx-scene-glow {
-    position: absolute;
-    bottom: 20%; left: 20%; right: 20%; height: 30%;
-    background: radial-gradient(ellipse, rgba(251,191,36,0.35), transparent 70%);
-    pointer-events: none;
-  }
-  .hx-rec {
-    position: absolute;
-    top: 8px; left: 10px;
-    font-size: 0.6rem; font-weight: 700;
-    color: #F87171;
-    letter-spacing: 0.04em;
-    animation: hx-blink 1s step-end infinite;
-  }
-  .hx-timecode {
-    position: absolute;
-    bottom: 8px; right: 10px;
-    font-size: 0.58rem; font-weight: 600;
-    color: rgba(255,255,255,0.85);
-    font-family: ui-monospace, monospace;
-    background: rgba(0,0,0,0.4);
-    padding: 0.15rem 0.4rem;
-    border-radius: 4px;
-  }
-
-  /* ── 4 Premiere ── */
-  .hx-premiere {
-    width: 100%; height: 100%;
-    display: flex; flex-direction: column;
-    gap: 0.45rem;
-  }
-  .hx-pr-top {
-    display: flex; align-items: center; gap: 0.4rem;
-  }
-  .hx-pr-logo {
-    width: 22px; height: 22px;
-    border-radius: 5px;
-    background: linear-gradient(135deg, #9999FF, #00005B);
-    color: #fff;
-    font-size: 0.6rem; font-weight: 800;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .hx-pr-name {
-    font-size: 0.65rem; font-weight: 700; color: #334155;
-  }
-  .hx-timeline {
-    position: relative;
-    flex: 1;
-    background: #1E293B;
-    border-radius: 10px;
-    padding: 0.5rem 0.55rem;
-    display: flex; flex-direction: column; gap: 0.3rem;
-    overflow: hidden;
-  }
-  .hx-track {
-    display: flex; gap: 3px; height: 14px;
-  }
-  .hx-track span {
-    border-radius: 3px;
-    flex: 1;
-  }
-  .hx-track.t1 span:nth-child(1) { background: #818CF8; flex: 2; }
-  .hx-track.t1 span:nth-child(2) { background: #A78BFA; flex: 1.2; }
-  .hx-track.t1 span:nth-child(3) { background: #C084FC; flex: 0.8; }
-  .hx-track.t2 span:nth-child(1) { background: #34D399; flex: 1.5; }
-  .hx-track.t2 span:nth-child(2) { background: #2DD4BF; flex: 2; }
-  .hx-track.t3 span:nth-child(1) { background: #F472B6; flex: 1; }
-  .hx-track.t3 span:nth-child(2) { background: #FB7185; flex: 1.8; }
-  .hx-track.t3 span:nth-child(3) { background: #FBBF24; flex: 1.2; }
-  .hx-playhead {
-    position: absolute;
-    top: 0; bottom: 0;
-    width: 2px;
-    background: #F8FAFC;
-    left: 12%;
-    animation: hx-scrub 3.2s linear infinite;
-    box-shadow: 0 0 6px rgba(255,255,255,0.6);
-  }
-  @keyframes hx-scrub {
-    from { left: 8%; }
-    to { left: 88%; }
-  }
-  .hx-pr-tools {
-    display: flex; gap: 0.5rem; justify-content: center;
-    font-size: 0.85rem;
-  }
-  .hx-pr-tools span {
-    width: 28px; height: 28px;
-    border-radius: 8px;
-    background: rgba(255,255,255,0.85);
-    border: 1px solid rgba(15,23,42,0.06);
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 2px 8px rgba(15,23,42,0.06);
-  }
-
-  /* ── 5 ACTION ── */
-  .hx-action {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.55rem;
-  }
-  .hx-action-ring {
-    width: 88px; height: 88px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    background: radial-gradient(circle, rgba(239,68,68,0.15), transparent 70%);
-    animation: hx-pulse-ring 2s ease-out infinite;
-  }
-  @keyframes hx-pulse-ring {
-    0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.35); }
-    70% { box-shadow: 0 0 0 18px rgba(239,68,68,0); }
-    100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); }
-  }
-  .hx-action-btn {
-    width: 64px; height: 64px;
-    border-radius: 50%;
-    background: linear-gradient(145deg, #EF4444, #B91C1C);
-    display: flex; align-items: center; justify-content: center;
-    box-shadow:
-      0 8px 24px rgba(239,68,68,0.4),
-      inset 0 1px 0 rgba(255,255,255,0.3);
-    animation: hx-action-bob 2.2s ease-in-out infinite alternate;
-  }
-  @keyframes hx-action-bob {
-    from { transform: scale(1); }
-    to { transform: scale(1.06); }
-  }
-  .hx-action-label {
-    font-size: 0.85rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    color: #0F172A;
-  }
-  .hx-action-sub {
-    font-size: 0.65rem;
-    font-weight: 600;
-    color: #64748B;
-  }
-
-  /* ── Dock ── */
-  .hx-dock {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.45rem;
-    margin-top: 1.2rem;
-    padding: 0.4rem 0.5rem;
-  }
-  .hx-btn {
-    width: 42px; height: 42px;
-    border: none;
-    border-radius: 13px;
-    cursor: pointer;
-    background: rgba(255,255,255,0.72);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow:
-      0 4px 14px rgba(15,23,42,0.07),
-      inset 0 1px 0 rgba(255,255,255,0.9);
-    opacity: 0.55;
-    transform: scale(0.9);
-    transition:
-      transform 0.3s cubic-bezier(0.22,1,0.36,1),
-      opacity 0.25s ease,
-      box-shadow 0.25s ease,
-      width 0.3s ease,
-      height 0.3s ease;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .hx-btn-ic { font-size: 0.9rem; line-height: 1; }
-  .hx-btn.is-on {
-    width: 50px; height: 50px;
-    opacity: 1;
-    transform: scale(1);
-    border-radius: 15px;
-    box-shadow:
-      0 10px 24px rgba(15,23,42,0.12),
-      0 0 0 2px rgba(255,255,255,0.95),
-      inset 0 1px 0 #fff;
-  }
-  .hx-btn:hover { opacity: 0.9; }
-
-  @media (max-width: 767px) {
-    .hx {
-      max-width: 100%;
-      padding: 0.85rem 0.1rem 0.2rem;
-      --r: 16px;
-    }
-    .hx-aura { filter: blur(22px); width: 125%; }
-    .hx-card { aspect-ratio: 16 / 11; }
-    .hx-btn { width: 38px; height: 38px; border-radius: 11px; }
-    .hx-btn.is-on { width: 46px; height: 46px; }
-    .hx-code { font-size: 0.6rem; }
-    .hx-tool { font-size: 0.62rem; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hx-aura,
-    .hx-photo-img,
-    .hx-scene-car,
-    .hx-playhead,
-    .hx-action-ring,
-    .hx-action-btn,
-    .hx-bar i,
-    .c-cursor,
-    .hx-rec,
-    .hx-drop-icon,
-    .hx-scene-road::after { animation: none !important; }
-  }
+  .vs{--blue:#2563eb;--ink:#0b1220;position:relative;width:100%;max-width:520px;margin:0 auto;padding:1.25rem .3rem .4rem;isolation:isolate}
+  .vs-aura{position:absolute;inset:5% -12% 2%;z-index:-1;border-radius:50%;background:radial-gradient(circle at 25% 30%,rgba(37,99,235,.28),transparent 42%),radial-gradient(circle at 76% 25%,rgba(168,85,247,.24),transparent 43%),radial-gradient(circle at 60% 85%,rgba(249,115,22,.18),transparent 42%);filter:blur(30px);animation:aura 5s ease-in-out infinite alternate;pointer-events:none}
+  .vs-window{overflow:hidden;border:1px solid rgba(255,255,255,.9);border-radius:22px;background:rgba(255,255,255,.9);box-shadow:0 30px 80px rgba(15,23,42,.16),0 7px 20px rgba(37,99,235,.08);transform:perspective(1200px) rotateY(-2deg) rotateX(1deg);transform-origin:center}
+  .vs-titlebar{height:42px;padding:0 .8rem;display:flex;align-items:center;border-bottom:1px solid #e7ebf2;background:rgba(255,255,255,.96)}
+  .vs-dots{display:flex;gap:5px}.vs-dots i{width:7px;height:7px;border-radius:50%;background:#ff665d}.vs-dots i:nth-child(2){background:#ffbd2e}.vs-dots i:nth-child(3){background:#27c840}
+  .vs-brand{display:flex;align-items:center;gap:.35rem;margin-left:.75rem;color:#0f172a;font-size:.58rem;letter-spacing:.09em}.vs-mark{width:20px;height:20px;display:grid;place-items:center;border-radius:7px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-weight:900}
+  .vs-live{margin-left:auto;display:flex;align-items:center;gap:.3rem;color:#64748b;font-size:.5rem;font-weight:800;letter-spacing:.08em}.vs-live i{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.12);animation:blink 1.4s ease-in-out infinite}
+  .vs-screen{position:relative;aspect-ratio:16/10;overflow:hidden;background:#0b1220}
+  .vs-panel{position:absolute;inset:0;opacity:0;transform:translate3d(18px,0,0) scale(.985);transition:opacity .42s ease,transform .52s cubic-bezier(.2,.8,.2,1);pointer-events:none}.vs-panel.is-active{opacity:1;transform:none;pointer-events:auto}
+  .scene-kicker{display:block;color:#60a5fa;font-size:.52rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
+  .brief-board{height:100%;padding:12% 9%;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:7%;background:linear-gradient(135deg,#0f172a,#18264a)}
+  .brief-copy strong{display:block;margin:.65rem 0 1rem;color:#fff;font:800 clamp(1rem,3vw,1.55rem)/1.15 Outfit,system-ui;letter-spacing:-.03em}.brief-tags{display:flex;gap:.35rem;flex-wrap:wrap}.brief-tags span{padding:.28rem .48rem;border:1px solid rgba(255,255,255,.14);border-radius:99px;color:#cbd5e1;font-size:.52rem}
+  .storyboard{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:5px;transform:rotate(2deg)}.storyboard i{height:58px;border:2px solid rgba(255,255,255,.8);border-radius:8px;box-shadow:0 8px 22px rgba(0,0,0,.25)}.storyboard .shot-one{grid-row:span 2;height:auto;background:linear-gradient(145deg,#fde68a,#fb7185 50%,#312e81)}.storyboard .shot-two{background:linear-gradient(145deg,#93c5fd,#1e3a8a)}.storyboard .shot-three{background:linear-gradient(145deg,#fda4af,#7c3aed)}.story-line{position:absolute;left:-9%;right:-4%;bottom:-12%;height:2px;background:linear-gradient(90deg,transparent,#60a5fa,transparent)}
+  .ai-console{height:100%;padding:9%;display:grid;grid-template-columns:1.15fr .7fr .6fr;align-items:center;gap:5%;background:radial-gradient(circle at 55% 50%,#172554,#080d19 62%)}
+  .prompt-box{padding:.85rem;border:1px solid rgba(96,165,250,.3);border-radius:13px;background:rgba(15,23,42,.82);box-shadow:inset 0 0 22px rgba(37,99,235,.08)}.prompt-box p{margin:.55rem 0;color:#cbd5e1;font:500 .62rem/1.55 ui-monospace,monospace}.prompt-box b{color:#c084fc}.typing-line{display:block;width:70%;height:3px;border-radius:5px;background:linear-gradient(90deg,#2563eb,#c084fc);animation:type 1.8s ease-in-out infinite}
+  .generation-core{position:relative;aspect-ratio:1;display:grid;place-items:center}.core-logo{width:55%;aspect-ratio:1;display:grid;place-items:center;border-radius:35%;background:linear-gradient(135deg,#3b82f6,#8b5cf6 55%,#ec4899);color:#fff;font:900 1rem Outfit;box-shadow:0 0 30px rgba(99,102,241,.55)}.core-ring{position:absolute;inset:4%;border:1px solid rgba(147,197,253,.45);border-radius:42%;animation:spin 7s linear infinite}.ring-b{inset:-8%;border-style:dashed;animation-direction:reverse;animation-duration:11s}
+  .frame-stack{position:relative;height:65%;min-width:48px}.frame-stack i{position:absolute;inset:0;border:1px solid rgba(255,255,255,.25);border-radius:9px;background:linear-gradient(145deg,#fbbf24,#db2777 54%,#1e3a8a);box-shadow:0 8px 18px rgba(0,0,0,.3);animation:frames 2s ease-in-out infinite}.frame-stack i:nth-child(2){transform:translate(-7px,7px);opacity:.55;animation-delay:.25s}.frame-stack i:nth-child(3){transform:translate(-14px,14px);opacity:.25;animation-delay:.5s}
+  .cinema-frame{position:relative;height:100%;overflow:hidden;background:#182444}.cinema-sky{position:absolute;inset:0 0 38%;background:linear-gradient(#365789,#f8b47a 70%,#ffd4a5)}.cinema-city{position:absolute;inset:23% 0 35%;opacity:.4;background:repeating-linear-gradient(90deg,#1e293b 0 18px,transparent 18px 25px)}.cinema-floor{position:absolute;inset:62% 0 0;background:linear-gradient(#334155,#0f172a)}
+  .cinema-person{position:absolute;left:25%;bottom:14%;width:18%;height:50%;animation:heroFloat 3s ease-in-out infinite alternate}.cinema-person:before{content:'';position:absolute;left:26%;top:0;width:48%;aspect-ratio:1;border-radius:50%;background:#d59a72}.cinema-person i{position:absolute;inset:23% 0 0;border-radius:40% 40% 15% 15%;background:linear-gradient(120deg,#f8fafc,#cbd5e1)}
+  .cinema-product{position:absolute;right:24%;bottom:18%;width:19%;height:39%;display:grid;place-items:center;border-radius:12% 12% 7% 7%;background:linear-gradient(145deg,#fafafa,#dbeafe);box-shadow:0 18px 30px rgba(0,0,0,.32),inset 0 0 0 1px #fff;transform:rotate(3deg)}.cinema-product span{text-align:center;color:#1d4ed8;font:900 .48rem/1.15 Outfit}
+  .cinema-light{position:absolute;inset:-35% -10%;background:linear-gradient(110deg,transparent 28%,rgba(255,235,185,.28) 45%,transparent 59%);animation:lightSweep 3.2s ease-in-out infinite}.cinema-kicker{position:absolute;left:5%;top:6%;color:#fff}.cinema-rec{position:absolute;right:5%;top:6%;display:flex;align-items:center;gap:.3rem;color:#fff;font-size:.52rem;font-weight:800}.cinema-rec i{width:6px;height:6px;border-radius:50%;background:#ef4444;animation:blink 1s infinite}
+  .cinema-caption{position:absolute;left:5%;bottom:6%;display:flex;flex-direction:column;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.3)}.cinema-caption strong{font-size:.72rem}.cinema-caption small{font-size:.48rem;color:#dbeafe;margin-top:.15rem}
+  .edit-suite{height:100%;display:grid;grid-template-columns:.78fr 1.22fr;gap:4px;padding:4px;background:#101827}.edit-preview{position:relative;display:grid;place-items:center;overflow:hidden;border-radius:8px;background:linear-gradient(145deg,#fbbf24,#ec4899 48%,#1e3a8a)}.edit-shot{position:absolute;inset:0}.edit-shot:before{content:'';position:absolute;left:38%;top:24%;width:24%;height:55%;border-radius:45% 45% 10% 10%;background:rgba(255,255,255,.8)}.edit-shot i{position:absolute;left:42%;top:12%;width:16%;aspect-ratio:1;border-radius:50%;background:#d89b72}.play-icon{position:relative;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.9);box-shadow:0 8px 20px rgba(0,0,0,.25)}.play-icon:after{content:'';position:absolute;left:42%;top:31%;border-left:12px solid #2563eb;border-top:7px solid transparent;border-bottom:7px solid transparent}
+  .edit-controls{padding:7% 6%;display:flex;flex-direction:column}.edit-labels{display:flex;gap:.3rem;margin:.6rem 0}.edit-labels b{padding:.25rem .4rem;border-radius:6px;background:#1e293b;color:#94a3b8;font-size:.45rem}.timeline{position:relative;flex:1;padding:.45rem;background:#080d16;border-radius:8px;overflow:hidden}.track{display:flex;gap:3px;height:18%;margin-bottom:5%}.track i{display:block;flex:1;border-radius:3px}.video i{background:#6366f1}.video i:nth-child(2){flex:1.5;background:#8b5cf6}.audio i{background:#10b981}.effects i{background:#f43f5e}.effects i:nth-child(2){background:#f59e0b}.playhead{position:absolute;top:0;bottom:0;left:8%;width:2px;background:#fff;box-shadow:0 0 7px #fff;animation:scrub 3s linear infinite}
+  .delivery{position:relative;height:100%;display:grid;place-items:center;background:radial-gradient(circle at center,#1e3a8a,#080d19 65%)}.delivery-rings i{position:absolute;inset:13%;border:1px solid rgba(96,165,250,.2);border-radius:50%;animation:deliveryPulse 3s ease-out infinite}.delivery-rings i:nth-child(2){inset:4%;animation-delay:1s}.delivery-rings i:nth-child(3){inset:-5%;animation-delay:2s}
+  .delivery-card{position:relative;z-index:2;width:48%;padding:1rem;border:1px solid rgba(255,255,255,.2);border-radius:16px;background:rgba(15,23,42,.72);box-shadow:0 18px 50px rgba(0,0,0,.35);text-align:center;backdrop-filter:blur(10px)}.delivery-check{width:35px;height:35px;margin:0 auto .55rem;display:grid;place-items:center;border-radius:50%;background:#22c55e;color:#fff;font-weight:900}.delivery-card strong{display:block;margin:.5rem 0;color:#fff;font:800 1.05rem/1.1 Outfit}.format-row{display:flex;gap:.3rem;justify-content:center}.format-row span{padding:.25rem .4rem;border-radius:5px;background:rgba(255,255,255,.09);color:#bfdbfe;font-size:.46rem;font-weight:700}
+  .device{position:absolute;border:2px solid rgba(255,255,255,.5);background:#111827;box-shadow:0 10px 30px rgba(0,0,0,.3)}.device i{display:block;position:absolute;inset:5px;border-radius:inherit;background:linear-gradient(145deg,#fbbf24,#db2777 50%,#2563eb)}.device.phone{left:12%;bottom:15%;width:10%;height:38%;border-radius:8px;transform:rotate(-8deg)}.device.desktop{right:8%;top:18%;width:23%;height:36%;border-radius:6px;transform:rotate(6deg)}.device.desktop:after{content:'';position:absolute;left:35%;right:35%;bottom:-20%;height:20%;background:#64748b}
+  .vs-corner{position:absolute;width:13px;height:13px;border-color:rgba(255,255,255,.65);border-style:solid;z-index:10}.top-left{left:10px;top:10px;border-width:1px 0 0 1px}.top-right{right:10px;top:10px;border-width:1px 1px 0 0}.bottom-left{left:10px;bottom:10px;border-width:0 0 1px 1px}.bottom-right{right:10px;bottom:10px;border-width:0 1px 1px 0}
+  .vs-status{padding:.65rem .8rem .7rem;background:#fff}.vs-progress{height:3px;border-radius:5px;background:#e7ebf2;overflow:hidden}.vs-progress i{display:block;height:100%;width:20%;border-radius:inherit;background:linear-gradient(90deg,#2563eb,#8b5cf6,#ec4899);transition:width .45s ease}
+  .vs-step-copy{display:flex;align-items:baseline;gap:.45rem;margin-top:.5rem}.vs-step-copy span{color:#2563eb;font-size:.54rem;font-weight:800}.vs-step-copy strong{color:#0f172a;font-size:.64rem}.vs-quality{display:flex;gap:.35rem;margin-left:auto;justify-content:flex-end;margin-top:-.8rem}.vs-quality span{padding:.2rem .35rem;border-radius:5px;background:#f1f5f9;color:#64748b;font-size:.42rem;font-weight:800}
+  .vs-nav{display:flex;justify-content:center;gap:.4rem;margin-top:.8rem}.vs-nav-btn{width:32px;height:7px;padding:0;border:0;border-radius:99px;background:#cbd5e1;cursor:pointer;overflow:hidden;transition:width .3s,background .3s}.vs-nav-btn span{position:absolute;clip:rect(0 0 0 0)}.vs-nav-btn.is-active{width:58px;background:linear-gradient(90deg,#2563eb,#8b5cf6)}
+  .vs-float-chip{position:absolute;z-index:3;display:flex;align-items:center;gap:.35rem;padding:.45rem .62rem;border:1px solid rgba(255,255,255,.9);border-radius:12px;background:rgba(255,255,255,.92);box-shadow:0 10px 26px rgba(15,23,42,.12);color:#334155;font-size:.55rem;font-weight:800;backdrop-filter:blur(9px);animation:chipFloat 3s ease-in-out infinite alternate}.vs-float-chip i{width:22px;height:22px;display:grid;place-items:center;border-radius:7px;color:#fff;font-style:normal}.chip-ai{left:-4%;top:25%}.chip-ai i{background:linear-gradient(135deg,#7c3aed,#ec4899)}.chip-pro{right:-3%;bottom:20%;animation-delay:1s}.chip-pro i{background:linear-gradient(135deg,#2563eb,#06b6d4)}
+  @keyframes aura{to{opacity:.72;transform:scale(1.06)}}@keyframes blink{50%{opacity:.25}}@keyframes type{50%{width:35%;opacity:.6}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes frames{50%{transform:translateY(-5px) rotate(2deg)}}@keyframes heroFloat{to{transform:translateY(-4px)}}@keyframes lightSweep{50%{transform:translateX(18%)}}@keyframes scrub{to{left:90%}}@keyframes deliveryPulse{0%{transform:scale(.8);opacity:.7}100%{transform:scale(1.15);opacity:0}}@keyframes chipFloat{to{transform:translateY(-7px)}}
+  @media(max-width:899px){.vs{max-width:460px;padding-top:.4rem}.vs-window{transform:none}.vs-float-chip{display:none}}
+  @media(max-width:520px){.vs{max-width:100%;padding-inline:0}.vs-window{border-radius:17px}.vs-titlebar{height:36px}.vs-brand strong{font-size:.5rem}.vs-live{font-size:.42rem}.vs-screen{aspect-ratio:16/10.6}.brief-board{padding:9% 7%;gap:5%}.storyboard i{height:43px}.ai-console{padding:7%;grid-template-columns:1.2fr .72fr .45fr}.prompt-box{padding:.58rem}.prompt-box p{font-size:.5rem}.edit-suite{grid-template-columns:.72fr 1.28fr}.delivery-card{width:58%;padding:.7rem}.vs-quality span:nth-child(2){display:none}}
+  @media(prefers-reduced-motion:reduce){.vs *{animation:none!important;transition:none!important}.vs-panel:not(.is-active){display:none}}
 </style>
 
 <script is:inline>
-(function () {
-  var root = document.querySelector('[data-hx]');
-  if (!root) return;
-
-  var panels = Array.prototype.slice.call(root.querySelectorAll('[data-p]'));
-  var btns = Array.prototype.slice.call(root.querySelectorAll('[data-step]'));
-  var tools = Array.prototype.slice.call(root.querySelectorAll('[data-tool]'));
-  if (!panels.length) return;
-
-  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var visible = true;
-  var idx = 0;
-  var timer = null;
-  var HOLD = 3200;
-  var toolIdx = 0;
-  var toolTimer = null;
-
-  function show(i) {
-    idx = ((i % panels.length) + panels.length) % panels.length;
-    panels.forEach(function (p, j) {
-      p.classList.toggle('is-on', j === idx);
-    });
-    btns.forEach(function (b, j) {
-      b.classList.toggle('is-on', j === idx);
-    });
-
-    /* cycle AI tool highlight only on generate panel */
-    if (toolTimer) clearInterval(toolTimer);
-    if (idx === 2 && tools.length && !reduced) {
-      toolIdx = 0;
-      tools.forEach(function (t, j) { t.classList.toggle('is-active', j === 0); });
-      toolTimer = setInterval(function () {
-        toolIdx = (toolIdx + 1) % tools.length;
-        tools.forEach(function (t, j) { t.classList.toggle('is-active', j === toolIdx); });
-      }, 700);
-    }
-  }
-
-  function schedule() {
-    if (timer) clearTimeout(timer);
-    if (!visible || reduced) return;
-    timer = setTimeout(function () {
-      show(idx + 1);
-      schedule();
-    }, HOLD);
-  }
-
-  function start() {
-    show(idx);
-    schedule();
-  }
-
-  function stop() {
-    if (timer) clearTimeout(timer);
-    timer = null;
-    if (toolTimer) clearInterval(toolTimer);
-    toolTimer = null;
-  }
-
-  btns.forEach(function (b) {
-    b.addEventListener('click', function () {
-      var s = parseInt(b.getAttribute('data-step') || '0', 10);
-      show(s);
-      schedule();
-    });
-  });
-
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        visible = e.isIntersecting;
-        if (visible) start();
-        else stop();
-      });
-    }, { threshold: 0.12 });
-    io.observe(root);
-  } else {
-    start();
-  }
-
-  document.addEventListener('visibilitychange', function () {
-    if (document.hidden) stop();
-    else if (visible) start();
-  });
+(() => {
+  const root=document.querySelector('[data-video-studio]');if(!root)return;
+  const scenes=[...root.querySelectorAll('[data-scene]')],buttons=[...root.querySelectorAll('[data-step]')];
+  const label=root.querySelector('[data-step-label]'),number=root.querySelector('[data-step-number]'),progress=root.querySelector('[data-progress]');
+  const names=['Creative brief','AI generation','Human-like scene','Pro editing','Campaign ready'];
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;let index=0,timer=null,visible=true;
+  function show(next){index=(next+scenes.length)%scenes.length;scenes.forEach((el,i)=>el.classList.toggle('is-active',i===index));buttons.forEach((el,i)=>{el.classList.toggle('is-active',i===index);el.setAttribute('aria-pressed',String(i===index))});number.textContent=String(index+1).padStart(2,'0');label.textContent=names[index];progress.style.width=((index+1)/scenes.length*100)+'%'}
+  function stop(){clearInterval(timer);timer=null}function start(){stop();if(!reduced&&visible)timer=setInterval(()=>show(index+1),2600)}
+  buttons.forEach(button=>button.addEventListener('click',()=>{show(Number(button.dataset.step));start()}));
+  if('IntersectionObserver'in window){new IntersectionObserver(entries=>{visible=entries[0]?.isIntersecting??true;visible?start():stop()},{threshold:.15}).observe(root)}else start();
+  document.addEventListener('visibilitychange',()=>{document.hidden?stop():start()});
 })();
 </script>

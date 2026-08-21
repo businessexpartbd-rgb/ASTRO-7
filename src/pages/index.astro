@@ -49,13 +49,19 @@ const supportingServices = services.filter((_, index) => index >= 3);
         </div>
 
         <h1 class="hero-title">
-          Video Editing Agency<br />in Bangladesh
+          AI Video Marketing &amp;<br />Professional Video Editing
         </h1>
 
         <p class="hero-lead">
-          Cinematic Human-like AI Videos, Professional Video Editing &amp; Full Digital Solutions |
+          Human creative direction, cinematic AI generation and professional post-production—built for brands that refuse to look ordinary. |
           <strong class="hero-delivery">24–48 Hours Delivery</strong>
         </p>
+
+        <div class="hero-capabilities" aria-label="Video production capabilities">
+          <span><i></i>Human-like AI</span>
+          <span><i></i>Camera Footage</span>
+          <span><i></i>Pro Post-Production</span>
+        </div>
 
         <div class="flex-btns">
           <a href="#featured-videos" class="btn btn-primary">Watch Videos</a>
@@ -244,6 +250,31 @@ const supportingServices = services.filter((_, index) => index >= 3);
   .rating-stars { color: #F59E0B; letter-spacing: 1px; font-size: 0.75rem; }
   .rating-label { color: #64748B; font-weight: 500; }
   .hero-delivery { color: #2563EB; font-weight: 700; }
+  .hero-capabilities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .45rem;
+    margin: 1rem 0 1.15rem;
+  }
+  .hero-capabilities span {
+    display: inline-flex;
+    align-items: center;
+    gap: .38rem;
+    padding: .36rem .58rem;
+    border: 1px solid rgba(37, 99, 235, .12);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .78);
+    color: #334155;
+    font-size: .68rem;
+    font-weight: 700;
+  }
+  .hero-capabilities i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2563EB, #8B5CF6);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, .08);
+  }
 
   .trust-row {
     display: flex;
