@@ -55,6 +55,9 @@ const n = String(name || 'web');
   {n === 'strategy' && (
     <svg viewBox="0 0 48 48" width={size} height={size} fill="none"><circle cx="22" cy="25" r="15" stroke="currentColor" stroke-width="2.4"/><circle cx="22" cy="25" r="8" stroke="currentColor" stroke-width="2" opacity=".7"/><circle cx="22" cy="25" r="3" fill="currentColor"/><path class="li-accent" d="M26 21L40 8M33 8h7v7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
   )}
+  {n === 'search' && (
+    <svg viewBox="0 0 48 48" width={size} height={size} fill="none"><circle cx="21" cy="21" r="12" stroke="currentColor" stroke-width="2.8"/><path class="li-accent" d="M30 30l10 10" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M16 21h10M21 16v10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+  )}
   {n === 'facebook' && (
     <svg viewBox="0 0 48 48" width={size} height={size} fill="none"><rect class="li-page" x="10" y="8" width="28" height="32" rx="4" stroke="currentColor" stroke-width="2"></rect><circle class="li-dot" cx="24" cy="18" r="5" stroke="currentColor" stroke-width="1.8"></circle><path class="li-wave" d="M16 30h16M18 35h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
   )}
@@ -70,12 +73,12 @@ const n = String(name || 'web');
   {n === 'spark' && (
     <svg viewBox="0 0 48 48" width={size} height={size} fill="none"><path class="li-star" d="M24 6l3.5 12.5H40l-10 7.5 3.8 12L24 30.5 14.2 38l3.8-12-10-7.5h12.5L24 6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>
   )}
-  {(n === 'check' || !['web','app','auth','ai','video','human','seo','automation','marketing','boosting','whatsapp','phone','email','production','global','strategy','facebook','boost','campaign','rocket','spark'].includes(n)) && (
+  {(n === 'check' || !['web','app','auth','ai','video','human','seo','automation','marketing','boosting','whatsapp','phone','email','production','global','strategy','search','facebook','boost','campaign','rocket','spark'].includes(n)) && (
     <svg viewBox="0 0 48 48" width={size} height={size} fill="none"><circle class="li-ring" cx="24" cy="24" r="16" stroke="currentColor" stroke-width="2"></circle><path class="li-check" d="M15 24l6 6 12-13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
   )}
 </span>
 
 <style>
   .live-icon{display:inline-grid;place-items:center;flex:0 0 auto;color:#2563eb;--accent:#8b5cf6}.live-icon svg{display:block;overflow:visible}.live-icon .li-accent{color:var(--accent)}
-  .li-video{color:#7c3aed;--accent:#ec4899}.li-ai{color:#2563eb;--accent:#8b5cf6}.li-human{color:#f43f5e;--accent:#f59e0b}.li-web{color:#0891b2;--accent:#2563eb}.li-app{color:#3b82f6;--accent:#06b6d4}.li-auth{color:#059669;--accent:#14b8a6}.li-automation{color:#0f766e;--accent:#22c55e}.li-marketing{color:#ea580c;--accent:#f59e0b}.li-seo{color:#4f46e5;--accent:#06b6d4}.li-facebook{color:#1877f2;--accent:#60a5fa}.li-boosting{color:#ca8a04;--accent:#f97316}.li-campaign{color:#db2777;--accent:#8b5cf6}.li-whatsapp{color:#16a34a;--accent:#22c55e}.li-phone{color:#0284c7;--accent:#06b6d4}.li-email{color:#7c3aed;--accent:#ec4899}.li-production{color:#7c3aed;--accent:#f43f5e}.li-global{color:#0284c7;--accent:#22c55e}.li-strategy{color:#ea580c;--accent:#facc15}.li-check{color:#16a34a}.li-spark{color:#d97706}.li-rocket{color:#2563eb;--accent:#f43f5e}
+  .li-video{color:#7c3aed;--accent:#ec4899}.li-ai{color:#2563eb;--accent:#8b5cf6}.li-human{color:#f43f5e;--accent:#f59e0b}.li-web{color:#0891b2;--accent:#2563eb}.li-app{color:#3b82f6;--accent:#06b6d4}.li-auth{color:#059669;--accent:#14b8a6}.li-automation{color:#0f766e;--accent:#22c55e}.li-marketing{color:#ea580c;--accent:#f59e0b}.li-seo{color:#4f46e5;--accent:#06b6d4}.li-facebook{color:#1877f2;--accent:#60a5fa}.li-boosting{color:#ca8a04;--accent:#f97316}.li-campaign{color:#db2777;--accent:#8b5cf6}.li-whatsapp{color:#16a34a;--accent:#22c55e}.li-phone{color:#0284c7;--accent:#06b6d4}.li-email{color:#7c3aed;--accent:#ec4899}.li-production{color:#7c3aed;--accent:#f43f5e}.li-global{color:#0284c7;--accent:#22c55e}.li-strategy{color:#ea580c;--accent:#facc15}.li-search{color:#2563eb;--accent:#06b6d4}.li-check{color:#16a34a}.li-spark{color:#d97706}.li-rocket{color:#2563eb;--accent:#f43f5e}
 </style>

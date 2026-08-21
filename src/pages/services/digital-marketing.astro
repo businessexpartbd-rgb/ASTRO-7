@@ -8,6 +8,7 @@ import Layout from '../../layouts/Layout.astro';
 import TopBar from '../../components/TopBar.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import ServiceIcons from '../../components/icons/ServiceIcons.astro';
 import { SITE } from '../../data/site';
 
 const seoTitle =
@@ -22,6 +23,7 @@ const channels = [
     desc: 'Rank on Google for the keywords your customers actually type — local, national and product search.',
     href: '/services/seo',
     points: ['On-page & technical SEO', 'Local SEO / Google Business', 'Content for rankings', 'Monthly reporting'],
+    icon: 'seo',
   },
   {
     title: 'Paid Ads (Meta & Google)',
@@ -29,6 +31,7 @@ const channels = [
     desc: 'Facebook, Instagram and Google campaigns with clear audience, creative tests and budget control.',
     href: '/services/boosting',
     points: ['Audience research', 'Creative A/B testing', 'Retargeting', 'Cost per lead focus'],
+    icon: 'boosting',
   },
   {
     title: 'Social Media Marketing',
@@ -36,6 +39,7 @@ const channels = [
     desc: 'Page presence, posting rhythm and community replies that keep your brand active and trusted.',
     href: '/services/facebook-page',
     points: ['Page setup & branding', 'Content calendar', 'Engagement playbook', 'Story & Reels guidance'],
+    icon: 'facebook',
   },
   {
     title: 'Campaign Management',
@@ -43,6 +47,7 @@ const channels = [
     desc: 'End-to-end campaigns — message, creative, media and weekly optimization under one plan.',
     href: '/services/campaign',
     points: ['Strategy & funnel', 'Launch roadmap', 'KPI tracking', 'Transparent reports'],
+    icon: 'campaign',
   },
   {
     title: 'AI Video Marketing',
@@ -50,6 +55,7 @@ const channels = [
     desc: 'Human-like AI and cinematic video ads built for Meta, YouTube and TikTok conversion.',
     href: '/services/ai-video-marketing',
     points: ['Ad-ready edits', 'Hook-first scripts', 'Platform sizes', 'Fast turnaround'],
+    icon: 'ai',
   },
   {
     title: 'Content & Email',
@@ -57,6 +63,7 @@ const channels = [
     desc: 'Website copy, offers and simple email/SMS sequences that turn visitors into repeat buyers.',
     href: '/contact',
     points: ['Landing page copy', 'Offer structure', 'Basic email flows', 'CTA optimization'],
+    icon: 'email',
   },
 ];
 
@@ -78,6 +85,7 @@ const pillars = [
     d: 'Simple dashboards: spend, reach, leads, cost per result — so you know what works.',
   },
 ];
+const pillarIcons = ['seo','strategy','marketing','boosting'];
 
 const steps = [
   { n: '01', t: 'Discover', d: 'Business goals, offer, audience and current channels reviewed in a short brief.' },
@@ -85,6 +93,7 @@ const steps = [
   { n: '03', t: 'Launch', d: 'SEO tasks, ads, posts or video go live with tracking in place.' },
   { n: '04', t: 'Optimize', d: 'Weekly checks — pause waste, scale winners, report in plain language.' },
 ];
+const stepIcons = ['search','strategy','rocket','automation'];
 
 const who = [
   {
@@ -104,6 +113,7 @@ const who = [
     desc: 'English creative, global ad accounts and reporting standards for remote teams.',
   },
 ];
+const whoIcons = ['phone','app','auth','global'];
 
 const faqs = [
   {
@@ -211,8 +221,9 @@ const faqs = [
         </p>
       </div>
       <div class="dm-pillar-grid reveal">
-        {pillars.map((p) => (
+        {pillars.map((p, i) => (
           <div class="dm-pillar">
+            <span class="dm-icon"><ServiceIcons name={pillarIcons[i]} size={28} /></span>
             <h3>{p.t}</h3>
             <p>{p.d}</p>
           </div>
@@ -233,7 +244,7 @@ const faqs = [
         {channels.map((c) => (
           <article class="dm-channel reveal">
             <div class="dm-channel-head">
-              <span class="dm-tag">{c.tag}</span>
+              <div class="dm-card-top"><span class="dm-icon lg"><ServiceIcons name={c.icon} size={34} /></span><span class="dm-tag">{c.tag}</span></div>
               <h3>{c.title}</h3>
               <p>{c.desc}</p>
             </div>
@@ -257,9 +268,9 @@ const faqs = [
         <h2>How we run digital marketing</h2>
       </div>
       <div class="dm-steps">
-        {steps.map((s) => (
+        {steps.map((s, i) => (
           <div class="dm-step reveal">
-            <span class="dm-step-n">{s.n}</span>
+            <div class="dm-step-top"><span class="dm-icon"><ServiceIcons name={stepIcons[i]} size={26} /></span><span class="dm-step-n">{s.n}</span></div>
             <h3>{s.t}</h3>
             <p>{s.d}</p>
           </div>
@@ -276,8 +287,9 @@ const faqs = [
         <h2>Built for local and global marketplaces</h2>
       </div>
       <div class="dm-who">
-        {who.map((w) => (
+        {who.map((w, i) => (
           <article class="dm-who-card reveal">
+            <span class="dm-icon"><ServiceIcons name={whoIcons[i]} size={28} /></span>
             <h3>{w.title}</h3>
             <p>{w.desc}</p>
           </article>
@@ -551,6 +563,9 @@ const faqs = [
     border-radius: 16px;
     padding: 1.1rem 1rem;
   }
+  .dm-icon { width:48px; height:48px; display:grid; place-items:center; flex:0 0 auto; margin-bottom:.75rem; border-radius:15px; background:linear-gradient(145deg,#fff,#edf4ff); border:1px solid rgba(37,99,235,.12); box-shadow:0 9px 22px rgba(37,99,235,.12); }
+  .dm-icon.lg { width:58px; height:58px; }
+  .dm-card-top,.dm-step-top { display:flex; align-items:flex-start; justify-content:space-between; gap:.75rem; }
   .dm-pillar h3 {
     margin: 0 0 0.35rem;
     font-size: 0.95rem;
