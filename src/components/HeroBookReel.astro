@@ -1,14 +1,13 @@
 ---
-/** Premium portfolio-backed AI + professional video production hero. */
-import { SHOWCASES, ytThumb } from '../data/site';
-const cinematic = SHOWCASES.find((group) => group.id === 'cinematic')!;
-const productAi = SHOWCASES.find((group) => group.id === 'product-ai')!;
-const brand = SHOWCASES.find((group) => group.id === 'brand')!;
-const heroVideos = [cinematic.ids[0], productAi.ids[0], brand.ids[0]];
-const heroPosters = heroVideos.map((id) => ytThumb(id, 'hq'));
+/** Premium original-media AI + professional video production hero. */
+const heroPosters = [
+  '/media/hero-studio-bangladesh.webp',
+  '/media/hero-ai-product.webp',
+  '/media/hero-edit-suite.webp',
+];
 const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editing', 'Campaign ready'];
 ---
-<div class="vs" data-video-studio data-video-ids={heroVideos.join(',')} aria-label="Creavix AI and professional video production workflow">
+<div class="vs" data-video-studio aria-label="Creavix AI and professional video production workflow">
   <div class="vs-aura" aria-hidden="true"></div>
   <div class="vs-window">
     <div class="vs-titlebar">
@@ -55,8 +54,11 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
 
       <div class="vs-panel" data-scene="2">
         <div class="cinema-frame">
-          <img class="cinema-poster" src={heroPosters[0]} alt="Creavix cinematic video preview" width="480" height="360" decoding="async" fetchpriority="high" />
-          <div class="cinema-player" data-hero-player aria-hidden="true"></div>
+          <div class="cinema-reel" aria-label="Original Creavix cinematic concept preview">
+            {heroPosters.map((poster, i) => (
+              <img src={poster} alt={i === 0 ? 'Bangladeshi cinematic production studio' : ''} width="960" height="540" decoding="async" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'low'} />
+            ))}
+          </div>
           <div class="cinema-light"></div>
           <span class="scene-kicker cinema-kicker">03 · Human-like visual</span>
           <span class="cinema-rec"><i></i> REC</span>
@@ -117,6 +119,22 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
   </div>
   <div class="vs-float-chip chip-ai"><i>✦</i><span>Human-like AI</span></div>
   <div class="vs-float-chip chip-pro"><i>◆</i><span>Pro Editing</span></div>
+  <div class="tool-orbit" aria-label="Creative production tools">
+    <span class="tool-badge pr"><i>Pr</i>Premiere</span>
+    <span class="tool-badge ae"><i>Ae</i>After Effects</span>
+    <span class="tool-badge cap"><i>✂</i>CapCut</span>
+    <span class="tool-badge film"><i>F</i>Filmora</span>
+    <span class="tool-badge gem"><i>✦</i>Gemini</span>
+    <span class="tool-badge grok"><i>G</i>Grok</span>
+    <span class="tool-badge kling"><i>K</i>Kling</span>
+    <span class="tool-badge veo"><i>V</i>Veo</span>
+  </div>
+  <div class="action-rig" aria-hidden="true">
+    <span class="rig-light"></span>
+    <span class="rig-camera"><i></i></span>
+    <span class="rig-clap"><i></i></span>
+    <strong>READY <b>●</b> ACTION</strong>
+  </div>
 </div>
 
 <style>
@@ -148,7 +166,7 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
   .delivery-card{position:relative;z-index:2;width:48%;padding:1rem;border:1px solid rgba(255,255,255,.2);border-radius:16px;background:rgba(15,23,42,.72);box-shadow:0 18px 50px rgba(0,0,0,.35);text-align:center;backdrop-filter:blur(10px)}.delivery-check{width:35px;height:35px;margin:0 auto .55rem;display:grid;place-items:center;border-radius:50%;background:#22c55e;color:#fff;font-weight:900}.delivery-card strong{display:block;margin:.5rem 0;color:#fff;font:800 1.05rem/1.1 Outfit}.format-row{display:flex;gap:.3rem;justify-content:center}.format-row span{padding:.25rem .4rem;border-radius:5px;background:rgba(255,255,255,.09);color:#bfdbfe;font-size:.46rem;font-weight:700}
   .device{position:absolute;border:2px solid rgba(255,255,255,.5);background:#111827;box-shadow:0 10px 30px rgba(0,0,0,.3)}.device i{display:block;position:absolute;inset:5px;border-radius:inherit;background:linear-gradient(145deg,#fbbf24,#db2777 50%,#2563eb)}.device.phone{left:12%;bottom:15%;width:10%;height:38%;border-radius:8px;transform:rotate(-8deg)}.device.desktop{right:8%;top:18%;width:23%;height:36%;border-radius:6px;transform:rotate(6deg)}.device.desktop:after{content:'';position:absolute;left:35%;right:35%;bottom:-20%;height:20%;background:#64748b}
   .storyboard i,.frame-stack i{overflow:hidden}.storyboard i img,.frame-stack i img{width:100%;height:100%;display:block;object-fit:cover}.storyboard .shot-one,.storyboard .shot-two,.storyboard .shot-three,.frame-stack i{background:#172554}
-  .cinema-poster,.cinema-player,.cinema-player iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0;object-fit:cover}.cinema-poster{z-index:0}.cinema-player{z-index:1;opacity:0;background:#000;pointer-events:none;transition:opacity .4s ease}.cinema-player.is-playing{opacity:1}
+  .cinema-reel{position:absolute;inset:0;background:#07101f}.cinema-reel img{position:absolute;inset:-3%;width:106%;height:106%;display:block;object-fit:cover;opacity:0;animation:cinemaCut 12s linear infinite,cinemaMove 8s ease-in-out infinite alternate}.cinema-reel img:nth-child(2){animation-delay:-8s,-2s;animation-duration:12s,6s}.cinema-reel img:nth-child(3){animation-delay:-4s,-4s;animation-duration:12s,10s}
   .cinema-light{z-index:2;pointer-events:none}.cinema-kicker,.cinema-rec,.cinema-caption{z-index:3}.cinema-caption{text-shadow:0 2px 9px rgba(0,0,0,.7)}
   .edit-preview{background:#0f172a}.edit-preview>img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover}
   .device i{background-size:cover;background-position:center}
@@ -157,8 +175,11 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
   .vs-step-copy{display:flex;align-items:baseline;gap:.45rem;margin-top:.5rem}.vs-step-copy span{color:#2563eb;font-size:.54rem;font-weight:800}.vs-step-copy strong{color:#0f172a;font-size:.64rem}.vs-quality{display:flex;gap:.35rem;margin-left:auto;justify-content:flex-end;margin-top:-.8rem}.vs-quality span{padding:.2rem .35rem;border-radius:5px;background:#f1f5f9;color:#64748b;font-size:.42rem;font-weight:800}
   .vs-nav{display:flex;justify-content:center;gap:.4rem;margin-top:.8rem}.vs-nav-btn{width:32px;height:7px;padding:0;border:0;border-radius:99px;background:#cbd5e1;cursor:pointer;overflow:hidden;transition:width .3s,background .3s}.vs-nav-btn span{position:absolute;clip:rect(0 0 0 0)}.vs-nav-btn.is-active{width:58px;background:linear-gradient(90deg,#2563eb,#8b5cf6)}
   .vs-float-chip{position:absolute;z-index:3;display:flex;align-items:center;gap:.35rem;padding:.45rem .62rem;border:1px solid rgba(255,255,255,.9);border-radius:12px;background:rgba(255,255,255,.92);box-shadow:0 10px 26px rgba(15,23,42,.12);color:#334155;font-size:.55rem;font-weight:800;backdrop-filter:blur(9px);animation:chipFloat 3s ease-in-out infinite alternate}.vs-float-chip i{width:22px;height:22px;display:grid;place-items:center;border-radius:7px;color:#fff;font-style:normal}.chip-ai{left:-4%;top:25%}.chip-ai i{background:linear-gradient(135deg,#7c3aed,#ec4899)}.chip-pro{right:-3%;bottom:20%;animation-delay:1s}.chip-pro i{background:linear-gradient(135deg,#2563eb,#06b6d4)}
-  @keyframes aura{to{opacity:.72;transform:scale(1.06)}}@keyframes blink{50%{opacity:.25}}@keyframes type{50%{width:35%;opacity:.6}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes frames{50%{transform:translateY(-5px) rotate(2deg)}}@keyframes heroFloat{to{transform:translateY(-4px)}}@keyframes lightSweep{50%{transform:translateX(18%)}}@keyframes scrub{to{left:90%}}@keyframes deliveryPulse{0%{transform:scale(.8);opacity:.7}100%{transform:scale(1.15);opacity:0}}@keyframes chipFloat{to{transform:translateY(-7px)}}
-  @media(max-width:899px){.vs{max-width:460px;padding-top:.4rem}.vs-window{transform:none}.vs-float-chip{display:none}}
+  .core-logo{position:relative;animation:aiGlow 2s ease-in-out infinite alternate}.core-logo:after{content:'CREATIVE INTELLIGENCE';position:absolute;left:50%;top:108%;transform:translateX(-50%);white-space:nowrap;color:#c4b5fd;font:800 .31rem/1 Outfit;letter-spacing:.12em}
+  .tool-orbit{position:relative;z-index:4;display:flex;gap:.38rem;width:92%;margin:-.12rem auto 0;padding:.48rem;overflow:hidden;border:1px solid rgba(226,232,240,.9);border-radius:13px;background:rgba(255,255,255,.93);box-shadow:0 12px 28px rgba(15,23,42,.1)}.tool-badge{flex:0 0 auto;display:flex;align-items:center;gap:.28rem;padding:.3rem .43rem;border-radius:8px;background:#f8fafc;color:#334155;font-size:.43rem;font-weight:800;animation:toolFlow 16s ease-in-out infinite alternate}.tool-badge i{width:20px;height:20px;display:grid;place-items:center;border-radius:6px;color:#fff;font-style:normal;font-size:.48rem}.pr i,.ae i{background:#24165d;color:#b6a7ff}.cap i,.grok i{background:#090f1b}.film i{background:linear-gradient(135deg,#16d9d3,#7c3aed)}.gem i{background:linear-gradient(135deg,#4285f4,#a855f7,#f59e0b)}.kling i{background:linear-gradient(135deg,#8b5cf6,#ec4899)}.veo i{background:linear-gradient(135deg,#2563eb,#06b6d4)}
+  .action-rig{position:absolute;z-index:5;right:-7%;top:9%;display:flex;align-items:center;gap:.35rem;padding:.38rem .48rem;border:1px solid rgba(255,255,255,.9);border-radius:12px;background:rgba(255,255,255,.92);box-shadow:0 12px 25px rgba(15,23,42,.12);color:#0f172a}.rig-light{width:18px;height:18px;border-radius:50%;background:#fde68a;box-shadow:0 0 18px #f59e0b;animation:rigGlow 1.6s ease-in-out infinite alternate}.rig-camera{width:26px;height:18px;border-radius:5px;background:#172033;position:relative}.rig-camera i{position:absolute;right:-6px;top:4px;width:10px;height:10px;border-radius:50%;background:#38bdf8;box-shadow:0 0 8px #38bdf8}.rig-clap{width:22px;height:18px;border:2px solid #111827;position:relative}.rig-clap i{position:absolute;left:-2px;right:-2px;top:-7px;height:5px;background:repeating-linear-gradient(135deg,#111827 0 4px,#fff 4px 8px);transform-origin:left;animation:clap 2.6s ease-in-out infinite}.action-rig strong{font-size:.38rem;letter-spacing:.08em}.action-rig b{color:#ef4444;animation:blink 1s infinite}
+  @keyframes aura{to{opacity:.72;transform:scale(1.06)}}@keyframes blink{50%{opacity:.25}}@keyframes type{50%{width:35%;opacity:.6}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes frames{50%{transform:translateY(-5px) rotate(2deg)}}@keyframes heroFloat{to{transform:translateY(-4px)}}@keyframes lightSweep{50%{transform:translateX(18%)}}@keyframes scrub{to{left:90%}}@keyframes deliveryPulse{0%{transform:scale(.8);opacity:.7}100%{transform:scale(1.15);opacity:0}}@keyframes chipFloat{to{transform:translateY(-7px)}}@keyframes cinemaCut{0%,29%{opacity:1}34%,95%{opacity:0}100%{opacity:1}}@keyframes cinemaMove{to{transform:scale(1.08) translate3d(-1.5%,1%,0)}}@keyframes aiGlow{to{filter:saturate(1.25);box-shadow:0 0 45px rgba(139,92,246,.8)}}@keyframes toolFlow{to{transform:translateX(-22%)}}@keyframes rigGlow{to{transform:scale(1.12);opacity:.7}}@keyframes clap{0%,68%,100%{transform:rotate(0)}78%{transform:rotate(-28deg)}}
+  @media(max-width:899px){.vs{max-width:460px;padding-top:.4rem}.vs-window{transform:none}.vs-float-chip,.action-rig{display:none}.tool-orbit{width:100%;margin-top:.45rem}.tool-badge{animation-duration:12s}}
   @media(max-width:520px){.vs{max-width:100%;padding-inline:0}.vs-window{border-radius:17px}.vs-titlebar{height:36px}.vs-brand strong{font-size:.5rem}.vs-live{font-size:.42rem}.vs-screen{aspect-ratio:16/10.6}.brief-board{padding:9% 7%;gap:5%}.storyboard i{height:43px}.ai-console{padding:7%;grid-template-columns:1.2fr .72fr .45fr}.prompt-box{padding:.58rem}.prompt-box p{font-size:.5rem}.edit-suite{grid-template-columns:.72fr 1.28fr}.delivery-card{width:58%;padding:.7rem}.vs-quality span:nth-child(2){display:none}}
   @media(prefers-reduced-motion:reduce){.vs *{animation:none!important;transition:none!important}.vs-panel:not(.is-active){display:none}}
 </style>
@@ -168,29 +189,13 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
   const root=document.querySelector('[data-video-studio]');if(!root)return;
   const scenes=[...root.querySelectorAll('[data-scene]')],buttons=[...root.querySelectorAll('[data-step]')];
   const label=root.querySelector('[data-step-label]'),number=root.querySelector('[data-step-number]'),progress=root.querySelector('[data-progress]');
-  const player=root.querySelector('[data-hero-player]'),videoId=(root.dataset.videoIds||'').split(',')[0];
   const names=['Creative brief','AI generation','Human-like scene','Pro editing','Campaign ready'];
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const connection=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
-  const allowVideo=!reduced&&!connection?.saveData&&!/2g/.test(connection?.effectiveType||'');
-  let index=0,timer=null,visible=true,playerTimer=null;
-  function mountVideo(){
-    if(!allowVideo||!visible||!player||!videoId||player.firstChild)return;
-    const iframe=document.createElement('iframe');
-    iframe.title='Muted Creavix portfolio video preview';
-    iframe.loading='lazy';
-    iframe.allow='autoplay; encrypted-media; picture-in-picture';
-    iframe.referrerPolicy='strict-origin-when-cross-origin';
-    iframe.style.cssText='position:absolute;inset:0;width:100%;height:100%;display:block;border:0';
-    iframe.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(videoId)+'?autoplay=1&mute=1&controls=0&loop=1&playlist='+encodeURIComponent(videoId)+'&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&origin='+encodeURIComponent(location.origin);
-    iframe.addEventListener('load',()=>player.classList.add('is-playing'),{once:true});
-    player.appendChild(iframe);
-  }
-  function unmountVideo(){clearTimeout(playerTimer);playerTimer=null;if(player){player.classList.remove('is-playing');player.replaceChildren()}}
+  let index=0,timer=null,visible=true;
   function show(next){index=(next+scenes.length)%scenes.length;scenes.forEach((el,i)=>el.classList.toggle('is-active',i===index));buttons.forEach((el,i)=>{el.classList.toggle('is-active',i===index);el.setAttribute('aria-pressed',String(i===index))});number.textContent=String(index+1).padStart(2,'0');label.textContent=names[index];progress.style.width=((index+1)/scenes.length*100)+'%'}
-  function stop(){clearInterval(timer);timer=null}function start(){stop();if(!reduced&&visible)timer=setInterval(()=>show(index+1),2600);if(allowVideo&&visible&&!playerTimer)playerTimer=setTimeout(mountVideo,1800)}
+  function stop(){clearInterval(timer);timer=null}function start(){stop();if(!reduced&&visible)timer=setInterval(()=>show(index+1),2600)}
   buttons.forEach(button=>button.addEventListener('click',()=>{show(Number(button.dataset.step));start()}));
-  if('IntersectionObserver'in window){new IntersectionObserver(entries=>{visible=entries[0]?.isIntersecting??true;if(visible)start();else{stop();unmountVideo()}},{threshold:.15}).observe(root)}else start();
-  document.addEventListener('visibilitychange',()=>{if(document.hidden){stop();unmountVideo()}else start()});
+  if('IntersectionObserver'in window){new IntersectionObserver(entries=>{visible=entries[0]?.isIntersecting??true;if(visible)start();else stop()},{threshold:.15}).observe(root)}else start();
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else start()});
 })();
 </script>
