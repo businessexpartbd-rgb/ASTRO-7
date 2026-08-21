@@ -18,7 +18,7 @@ const total = videos.length;
   <div class="fvs-head">
     <p class="eyebrow">Featured Work</p>
     <h2>Cinematic Videos</h2>
-    <p class="fvs-lead">Scroll — each film pins in the center like a book page. Tap to play with sound.</p>
+    <p class="fvs-lead">Scroll — each film locks into a cinematic stack. Only the front film plays when you choose.</p>
   </div>
 
   <div class="fvs-list" data-list>
@@ -140,10 +140,18 @@ const total = videos.length;
   }
 
   .fvs-card.is-under {
-    filter: blur(2px) brightness(0.84);
-    opacity: 0.8;
-    transform: scale(0.97);
+    filter: brightness(calc(0.9 - (var(--depth, 1) * 0.035)));
+    opacity: calc(0.94 - (var(--depth, 1) * 0.08));
+    transform:
+      translate3d(0, calc(var(--depth, 1) * -9px), 0)
+      scale(calc(1 - (var(--depth, 1) * 0.012)));
     pointer-events: none;
+  }
+
+  .fvs-card.is-next {
+    filter: none;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 
   .fvs-card.is-front {
@@ -151,6 +159,16 @@ const total = videos.length;
     opacity: 1;
     transform: scale(1);
     pointer-events: auto;
+  }
+
+  .fvs-card.is-front::before {
+    content: '';
+    position: absolute;
+    z-index: 5;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
   }
 
   .fvs-card.is-front.is-playing {
@@ -285,7 +303,7 @@ const total = videos.length;
       max-height: none;
       min-height: 360px;
     }
-    .fvs-pin { top: 4.5rem; }
+    .fvs-pin { top: max(4.5rem, 14dvh); }
     .fvs-card { border-radius: 12px; }
     .fvs-play-ic { width: 56px; height: 56px; }
   }
@@ -322,7 +340,7 @@ const total = videos.length;
     window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var frontIdx = 0;
+  var frontIdx = -1;
   var playing = null;
 
   function stopCard(card) {
@@ -341,7 +359,7 @@ const total = videos.length;
   }
 
   function play(card) {
-    if (!card || card.classList.contains('is-under')) return;
+    if (!card || (!reduced && Number(card.getAttribute('data-i')) !== frontIdx)) return;
     var id = card.getAttribute('data-vid');
     var player = card.querySelector('[data-player]');
     if (!id || !player) return;
@@ -374,7 +392,10 @@ const total = videos.length;
     if (reduced) {
       cards.forEach(function (c) {
         c.classList.add('is-front');
-        c.classList.remove('is-under');
+        c.classList.remove('is-under', 'is-next');
+        c.setAttribute('aria-hidden', 'false');
+        var reducedBtn = c.querySelector('[data-play]');
+        if (reducedBtn) reducedBtn.removeAttribute('tabindex');
       });
       return;
     }
@@ -392,16 +413,25 @@ const total = videos.length;
     });
 
     if (idx === frontIdx) return;
+    if (playing && playing !== cards[idx]) stopCard(playing);
     frontIdx = idx;
 
     cards.forEach(function (card, i) {
-      card.classList.remove('is-front', 'is-under');
+      card.classList.remove('is-front', 'is-under', 'is-next');
+      card.style.removeProperty('--depth');
       if (i < idx) {
         card.classList.add('is-under');
-        if (card.classList.contains('is-playing')) stopCard(card);
-      } else {
+        card.style.setProperty('--depth', String(Math.min(idx - i, 4)));
+        card.setAttribute('aria-hidden', 'true');
+      } else if (i === idx) {
         card.classList.add('is-front');
+        card.setAttribute('aria-hidden', 'false');
+      } else {
+        card.classList.add('is-next');
+        card.setAttribute('aria-hidden', 'true');
       }
+      var cardBtn = card.querySelector('[data-play]');
+      if (cardBtn) cardBtn.setAttribute('tabindex', i === idx ? '0' : '-1');
     });
   }
 
