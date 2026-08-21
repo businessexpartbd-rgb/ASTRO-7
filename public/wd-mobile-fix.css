@@ -6,7 +6,7 @@
 /* —— Mobile & tablet (< 960px) —— */
 @media (max-width: 959px) {
   .wd-hero {
-    padding: 4.5rem 1rem 2rem !important;
+    padding: 7.25rem 1rem 2.25rem !important;
     overflow: hidden !important;
   }
 
@@ -36,41 +36,6 @@
     max-width: 100% !important;
     padding: 0 !important;
     margin: 0 !important;
-  }
-
-  /* Float badges — hide on small screens so they never cover text */
-  .wd-hero .float-ring {
-    display: none !important;
-  }
-
-  /* Device stage — fixed height so text never slides under */
-  .wd-hero .wd-device {
-    width: 100% !important;
-    max-width: 280px !important;
-    height: 260px !important;
-    margin: 0 auto !important;
-  }
-
-  .wd-hero .wd-device[data-mode="phone"] .morph {
-    width: 128px !important;
-  }
-  .wd-hero .wd-device[data-mode="tablet"] .morph {
-    width: 190px !important;
-  }
-  .wd-hero .wd-device[data-mode="laptop"] .morph {
-    width: 250px !important;
-  }
-
-  .wd-hero .screen.dual {
-    min-height: 170px !important;
-  }
-  .wd-hero .wd-device[data-mode="tablet"] .screen.dual {
-    min-height: 195px !important;
-  }
-  .wd-hero .wd-device[data-mode="laptop"] .screen.dual {
-    min-height: 140px !important;
-    grid-template-columns: 1fr 1fr !important;
-    grid-template-rows: 1fr !important;
   }
 
   .wd-hero .wd-device-label {
@@ -116,36 +81,10 @@
   }
 }
 
-/* Very small phones */
-@media (max-width: 380px) {
-  .wd-hero .wd-device {
-    height: 240px !important;
-    max-width: 250px !important;
-  }
-  .wd-hero .wd-device[data-mode="phone"] .morph { width: 112px !important; }
-  .wd-hero .wd-device[data-mode="tablet"] .morph { width: 168px !important; }
-  .wd-hero .wd-device[data-mode="laptop"] .morph { width: 220px !important; }
-}
-
 /* —— Desktop (≥ 960px) —— */
 @media (min-width: 960px) {
   .wd-hero .wd-device-wrap {
     order: 0 !important;
-  }
-  .wd-hero .wd-device {
-    width: min(340px, 100%) !important;
-    height: 320px !important;
-  }
-  .wd-hero .wd-device[data-mode="phone"] .morph { width: 132px !important; }
-  .wd-hero .wd-device[data-mode="tablet"] .morph { width: 210px !important; }
-  .wd-hero .wd-device[data-mode="laptop"] .morph { width: 300px !important; }
-
-  .wd-hero .screen.dual { min-height: 200px !important; }
-  .wd-hero .wd-device[data-mode="tablet"] .screen.dual { min-height: 240px !important; }
-  .wd-hero .wd-device[data-mode="laptop"] .screen.dual {
-    min-height: 168px !important;
-    grid-template-columns: 1.05fr 1fr !important;
-    grid-template-rows: 1fr !important;
   }
 }
 
