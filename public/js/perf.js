@@ -1,8 +1,7 @@
-/** Creavix — performance, zoom policy, lazy media, fast touch */
+/** Creavix — performance + magnetic white cards + lazy media */
 (function () {
   'use strict';
   try {
-    /* ── Viewport zoom policy ── */
     var meta = document.getElementById('viewport-meta');
     function isDesktopMode() {
       var w = window.innerWidth || document.documentElement.clientWidth || 0;
@@ -54,7 +53,6 @@
       { passive: false }
     );
 
-    /* ── Ensure all content images are lazy except explicit eager ── */
     function markLazyImages() {
       var imgs = document.querySelectorAll('img:not([loading])');
       for (var i = 0; i < imgs.length; i++) {
@@ -66,20 +64,15 @@
     }
     markLazyImages();
 
-    /* ── Native lazy + IO fallback for data-src ── */
     function hydrateLazy() {
       var nodes = document.querySelectorAll('[data-src]');
       if (!nodes.length) return;
       function load(el) {
         var src = el.getAttribute('data-src');
         if (!src) return;
-        if (el.tagName === 'IMG') {
-          el.src = src;
-        } else if (el.tagName === 'IFRAME') {
-          el.src = src;
-        } else {
-          el.style.backgroundImage = 'url(' + src + ')';
-        }
+        if (el.tagName === 'IMG') el.src = src;
+        else if (el.tagName === 'IFRAME') el.src = src;
+        else el.style.backgroundImage = 'url(' + src + ')';
         el.removeAttribute('data-src');
         el.classList.add('is-loaded');
       }
@@ -104,7 +97,6 @@
     }
     hydrateLazy();
 
-    /* ── Prefetch internal links on hover / touchstart (fast navigation) ── */
     var prefetched = Object.create(null);
     function prefetch(href) {
       if (!href || prefetched[href]) return;
@@ -129,8 +121,6 @@
       { passive: true, capture: true }
     );
 
-    /* ── Smooth passive scroll listener helper (no jank) ── */
-    /* count-up numbers when visible */
     function runCountUps() {
       var els = document.querySelectorAll('.count-up[data-count]');
       if (!els.length) return;
@@ -147,7 +137,10 @@
           if (!t0) t0 = ts;
           var p = Math.min(1, (ts - t0) / dur);
           var eased = 1 - Math.pow(1 - p, 3);
-          var val = num % 1 === 0 ? Math.round(start + (num - start) * eased) : (start + (num - start) * eased).toFixed(1);
+          var val =
+            num % 1 === 0
+              ? Math.round(start + (num - start) * eased)
+              : (start + (num - start) * eased).toFixed(1);
           el.textContent = val + suffix;
           if (p < 1) requestAnimationFrame(frame);
         }
@@ -172,13 +165,127 @@
         els.forEach(animate);
       }
     }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', runCountUps, { once: true });
-    } else {
-      runCountUps();
+
+    /* ── Magnetic card pull on scroll (smooth, GPU-friendly) ── */
+    function initMagnetCards() {
+      var reduced =
+        window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var cards = document.querySelectorAll(
+        '.glass-card, .magnet-card, .grid-3 > a.glass-card, .pf-card, .faq-item, .rv-card'
+      );
+      if (!cards.length) return;
+
+      if (reduced) {
+        cards.forEach(function (c) {
+          c.classList.add('is-magnet');
+        });
+        return;
+      }
+
+      var active = [];
+      var ticking = false;
+
+      function measure() {
+        var vh = window.innerHeight || 1;
+        var center = vh * 0.45;
+        for (var i = 0; i < active.length; i++) {
+          var card = active[i];
+          var r = card.getBoundingClientRect();
+          var mid = r.top + r.height * 0.5;
+          var dist = Math.abs(mid - center);
+          var range = vh * 0.55;
+          var t = Math.max(0, 1 - dist / range);
+          /* ease-out */
+          var eased = 1 - Math.pow(1 - t, 2.4);
+
+          card.classList.toggle('is-magnet', eased > 0.15);
+          card.classList.toggle('is-magnet-strong', eased > 0.72);
+
+          if (!card.classList.contains('is-hover')) {
+            var y = (1 - eased) * 22;
+            var s = 0.975 + eased * 0.03;
+            card.style.transform =
+              'translate3d(0,' + y.toFixed(2) + 'px,0) scale(' + s.toFixed(4) + ')';
+            card.style.opacity = String(0.88 + eased * 0.12);
+          }
+        }
+      }
+
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          measure();
+          ticking = false;
+        });
+      }
+
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (en) {
+              var el = en.target;
+              if (en.isIntersecting) {
+                if (active.indexOf(el) === -1) active.push(el);
+              } else {
+                var ix = active.indexOf(el);
+                if (ix !== -1) active.splice(ix, 1);
+                el.classList.remove('is-magnet', 'is-magnet-strong');
+                el.style.transform = '';
+                el.style.opacity = '';
+              }
+            });
+            onScroll();
+          },
+          { rootMargin: '12% 0px', threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] }
+        );
+        cards.forEach(function (c) {
+          io.observe(c);
+        });
+      } else {
+        cards.forEach(function (c) {
+          c.classList.add('is-magnet');
+          active.push(c);
+        });
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      onScroll();
+
+      /* hover lock so magnet doesn't fight :hover */
+      cards.forEach(function (c) {
+        c.addEventListener(
+          'pointerenter',
+          function () {
+            c.classList.add('is-hover');
+            c.style.transform = '';
+            c.style.opacity = '';
+          },
+          { passive: true }
+        );
+        c.addEventListener(
+          'pointerleave',
+          function () {
+            c.classList.remove('is-hover');
+            onScroll();
+          },
+          { passive: true }
+        );
+      });
     }
 
-    /* ── Idle: warm YouTube DNS only when needed ── */
+    function boot() {
+      runCountUps();
+      initMagnetCards();
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot, { once: true });
+    } else {
+      boot();
+    }
+
     function warmVideoHosts() {
       ['https://www.youtube-nocookie.com', 'https://i.ytimg.com'].forEach(function (origin) {
         var l = document.createElement('link');
@@ -193,9 +300,8 @@
       setTimeout(warmVideoHosts, 1800);
     }
 
-    /* ── Touch: remove 300ms delay feel via CSS already; reinforce fast click on buttons ── */
     document.documentElement.classList.add('js-ready');
   } catch (err) {
-    /* never crash the page */
+    /* never crash */
   }
 })();

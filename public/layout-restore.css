@@ -1,4 +1,4 @@
-/* Restored global styles for pre-blueprint homepage */
+/* Restored global + premium white magnet cards */
 :root {
   --primary: #2563EB;
   --primary-light: #3B82F6;
@@ -12,9 +12,17 @@
   --text-3: #94A3B8;
   --bg: #FFFFFF;
   --white: #FFFFFF;
-  --radius: 20px;
+  --radius: 22px;
   --font-h: "Outfit", system-ui, sans-serif;
   --font-b: "Inter", system-ui, sans-serif;
+  --card-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 8px 24px rgba(15, 23, 42, 0.06),
+    0 24px 48px rgba(15, 23, 42, 0.07);
+  --card-shadow-lift:
+    0 2px 4px rgba(15, 23, 42, 0.05),
+    0 16px 40px rgba(15, 23, 42, 0.1),
+    0 32px 64px rgba(37, 99, 235, 0.12);
 }
 body { font-family: var(--font-b) !important; }
 h1,h2,h3,h4,h5,h6,.font-h { font-family: var(--font-h) !important; }
@@ -116,6 +124,7 @@ h1,h2,h3,h4,h5,h6,.font-h { font-family: var(--font-h) !important; }
   padding: .8rem 1.65rem; border-radius: 9999px;
   font-family: var(--font-h); font-weight: 600; font-size: .9rem;
   border: none; cursor: pointer; transition: all .25s ease;
+  touch-action: manipulation;
 }
 .btn-primary {
   background: #2563EB; color: #fff; box-shadow: 0 6px 20px rgba(37, 99, 235, 0.28);
@@ -125,12 +134,69 @@ h1,h2,h3,h4,h5,h6,.font-h { font-family: var(--font-h) !important; }
 .btn-outline:hover { background: #1e293b; color: #fff; }
 .flex-btns { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 1.75rem; }
 
-.glass-card {
-  background: #fff; border: 1px solid rgba(15,23,42,.08); border-radius: var(--radius);
-  padding: 1.75rem 1.5rem; box-shadow: 0 8px 30px rgba(15,23,42,.05);
-  transition: transform .35s ease, box-shadow .35s ease;
+/* ========== PREMIUM WHITE CARDS (visibility + soft under-shadow) ========== */
+.glass-card,
+.magnet-card,
+.grid-3 > a.glass-card,
+.pf-card,
+.faq-item,
+.rv-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.06) !important;
+  border-radius: var(--radius) !important;
+  padding: 1.75rem 1.5rem;
+  box-shadow: var(--card-shadow) !important;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease;
+  will-change: transform;
+  transform: translate3d(0, 28px, 0) scale(0.98);
+  opacity: 0.92;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
-.glass-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(15,23,42,.08); }
+
+.glass-card.is-magnet,
+.magnet-card.is-magnet,
+.grid-3 > a.glass-card.is-magnet,
+.pf-card.is-magnet,
+.faq-item.is-magnet,
+.rv-card.is-magnet,
+.glass-card.reveal.visible,
+.magnet-card.reveal.visible {
+  transform: translate3d(0, 0, 0) scale(1);
+  opacity: 1;
+  box-shadow: var(--card-shadow) !important;
+}
+
+.glass-card.is-magnet-strong,
+.magnet-card.is-magnet-strong {
+  transform: translate3d(0, -6px, 0) scale(1.02);
+  box-shadow: var(--card-shadow-lift) !important;
+  border-color: rgba(37, 99, 235, 0.14) !important;
+}
+
+.glass-card:hover,
+.magnet-card:hover,
+.grid-3 > a.glass-card:hover {
+  transform: translate3d(0, -8px, 0) scale(1.015);
+  box-shadow: var(--card-shadow-lift) !important;
+  border-color: rgba(37, 99, 235, 0.16) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-card,
+  .magnet-card,
+  .grid-3 > a.glass-card,
+  .pf-card,
+  .faq-item,
+  .rv-card {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}
 
 .hero-premium {
   position: relative; display: flex; align-items: center;
@@ -191,7 +257,7 @@ h1,h2,h3,h4,h5,h6,.font-h { font-family: var(--font-h) !important; }
 .container { max-width: 1200px; margin: 0 auto; width: 100%; }
 .grid-2 { display: grid; gap: 2rem; align-items: center; }
 @media (min-width: 1024px) { .grid-2 { grid-template-columns: 1fr 1fr; gap: 3rem; } }
-.grid-3 { display: grid; gap: 1.25rem; }
+.grid-3 { display: grid; gap: 1.35rem; }
 @media (min-width: 640px) { .grid-3 { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1024px) { .grid-3 { grid-template-columns: 1fr 1fr 1fr; } }
 .text-center { text-align: center; }
@@ -227,4 +293,9 @@ p { color: #64748B; }
 @media (max-width: 767px) {
   .navbar { top: 32px; }
   .orb { filter: blur(28px); opacity: 0.18; animation: none; }
+  .glass-card,
+  .magnet-card,
+  .grid-3 > a.glass-card {
+    padding: 1.4rem 1.2rem;
+  }
 }

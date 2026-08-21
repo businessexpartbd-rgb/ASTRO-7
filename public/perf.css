@@ -1,6 +1,5 @@
-/* Creavix speed layer — content-visibility + GPU-friendly motion */
+/* Creavix speed + magnet cards */
 
-/* Off-screen sections skip layout/paint until near viewport */
 section:not(.hero-premium):not(.topbar),
 .fvs-panel,
 .pf-block,
@@ -11,13 +10,11 @@ section:not(.hero-premium):not(.topbar),
   contain-intrinsic-size: 1px 720px;
 }
 
-/* Faster paint for sticky nav */
 .navbar,
 .topbar {
   contain: layout style;
 }
 
-/* Images never cause layout shift if width/height set; smooth decode */
 img {
   content-visibility: auto;
 }
@@ -25,25 +22,23 @@ img[loading='lazy'] {
   decoding: async;
 }
 
-/* Smooth scrolling without jank on low-end */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
   }
 }
 
-/* Touch targets respond instantly */
 a,
 button,
 .btn,
 .pf-card,
 .fvs-play,
-.nav-menu-btn {
+.nav-menu-btn,
+.glass-card {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Prefer compositor for reveal animations */
 .reveal {
   will-change: opacity, transform;
 }
@@ -51,7 +46,6 @@ button,
   will-change: auto;
 }
 
-/* YouTube poster containers — black box until load */
 .fvs-frame,
 .pf-thumb,
 .pf-lb-frame {
@@ -59,7 +53,13 @@ button,
   contain: layout paint;
 }
 
-/* Reduce expensive blur when reduced motion */
+/* Magnet card GPU path */
+.glass-card,
+.magnet-card {
+  transform: translateZ(0);
+  contain: layout style;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     scroll-behavior: auto !important;
@@ -69,14 +69,17 @@ button,
     transform: none !important;
     transition: none !important;
   }
+  .glass-card,
+  .magnet-card {
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }
 
-/* Fonts: avoid invisible text flash longer than needed */
 body {
   text-rendering: optimizeSpeed;
 }
 
-/* Hero first paint priority */
 .hero-premium {
   content-visibility: visible;
   contain: none;
