@@ -98,15 +98,15 @@ const supportingServices = services.filter((_, index) => index >= 3);
         <p class="eyebrow" style="margin:0 auto 1rem">Our Services</p>
         <h2 class="mb-4">Everything Your Brand Needs to Grow</h2>
         <p style="max-width:40rem;margin:0 auto">Video, AI, web, apps, SEO, automation and Meta growth — one professional partner for Bangladesh and global brands.</p>
+        <div class="section-signals" aria-label="Service standards"><span>12 capabilities</span><span>One accountable team</span><span>Global-ready delivery</span></div>
       </div>
       <div class="primary-services grid-3" aria-label="Primary services">
-        {primaryServices.map((s) => (
-          <a href={s.href} class="glass-card service-card service-card-primary reveal" data-magnetic style="text-decoration:none;color:inherit;display:block">
-            <span class="service-priority">Core expertise</span>
+        {primaryServices.map((s, i) => (
+          <a href={s.href} class="service-card service-card-primary reveal" data-magnetic style={`--card-index:${i}`}>
+            <div class="service-card-top"><span class="service-priority">Core expertise</span><span class="service-index">0{i + 1}</span></div>
             <IconBox name={s.name} tone={s.tone} size={44} />
-            <h3 class="mb-4">{s.title}</h3>
-            <p style="font-size:.9rem">{s.desc}</p>
-            <span class="svc-more">Explore →</span>
+            <div class="service-copy"><h3>{s.title}</h3><p>{s.desc}</p></div>
+            <span class="svc-more"><span>Explore service</span><i aria-hidden="true">↗</i></span>
           </a>
         ))}
       </div>
@@ -115,12 +115,11 @@ const supportingServices = services.filter((_, index) => index >= 3);
         <h3>Development, SEO, Automation &amp; Growth</h3>
       </div>
       <div class="grid-3 supporting-services" aria-label="Supporting digital services">
-        {supportingServices.map((s) => (
-          <a href={s.href} class="glass-card service-card reveal" style="text-decoration:none;color:inherit;display:block">
-            <IconBox name={s.name} tone={s.tone} size={44} />
-            <h3 class="mb-4">{s.title}</h3>
-            <p style="font-size:.9rem">{s.desc}</p>
-            <span class="svc-more">Explore →</span>
+        {supportingServices.map((s, i) => (
+          <a href={s.href} class="service-card service-card-support reveal" style={`--card-index:${i + 3}`}>
+            <div class="service-card-top"><IconBox name={s.name} tone={s.tone} size={38} /><span class="service-index">{String(i + 4).padStart(2, '0')}</span></div>
+            <div class="service-copy"><h3>{s.title}</h3><p>{s.desc}</p></div>
+            <span class="svc-more"><span>Discover</span><i aria-hidden="true">→</i></span>
           </a>
         ))}
       </div>
@@ -130,8 +129,8 @@ const supportingServices = services.filter((_, index) => index >= 3);
   <ProcessFlow />
 
   <section id="about" class="section-violet">
-    <div class="container grid-2">
-      <div class="reveal">
+    <div class="container about-premium-grid">
+      <div class="about-story reveal">
         <p class="eyebrow">Why Creavix</p>
         <h2 class="mb-6">IT &amp; Video Agency · Since {SITE.servingSince}</h2>
         <p class="lead mb-8">{SITE.shortDesc}</p>
@@ -141,21 +140,23 @@ const supportingServices = services.filter((_, index) => index >= 3);
           <li><ServiceIcons name="check" size={22} /><span>Facebook page, boost &amp; campaigns</span></li>
           <li><ServiceIcons name="check" size={22} /><span>Studio: {SITE.addressBn} · {SITE.founder.name}</span></li>
         </ul>
-        <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.65rem">
+        <div class="about-actions">
           <a href="/about" class="btn btn-outline">About us</a>
           <a href="/contact" class="btn btn-primary">Contact</a>
         </div>
       </div>
-      <div class="reveal">
-        <div class="glass-card" style="padding:2.2rem">
-          <h3 class="mb-6">At a glance</h3>
+      <div class="about-dashboard reveal">
+        <div class="about-dashboard-head"><span>Creavix performance</span><i>Live</i></div>
+        <div class="about-stat-card">
+          <h3>At a glance</h3>
           <div class="stat-grid">
-            <div><strong class="count-up" data-count="10+" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">10+</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Years</span></div>
-            <div><strong class="count-up" data-count="4300+" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">4,300+</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Projects</span></div>
-            <div><strong class="count-up" data-count="4.8" style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">4.8</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Avg rating</span></div>
-            <div><strong style="font-size:1.5rem;color:var(--primary);font-family:var(--font-h)">24–48h</strong><br /><span style="font-size:.8rem;color:var(--text-3)">Delivery</span></div>
+            <div><strong class="count-up" data-count="10+">10+</strong><span>Years</span></div>
+            <div><strong class="count-up" data-count="4300+">4,300+</strong><span>Projects</span></div>
+            <div><strong class="count-up" data-count="4.8">4.8</strong><span>Avg rating</span></div>
+            <div><strong>24–48h</strong><span>Delivery</span></div>
           </div>
         </div>
+        <div class="about-mini-row"><span><b>BD</b> Local insight</span><span><b>∞</b> Global scale</span></div>
       </div>
     </div>
   </section>
@@ -163,13 +164,11 @@ const supportingServices = services.filter((_, index) => index >= 3);
   <Reviews />
   <FAQ />
 
-  <section id="contact" class="section-warm">
-    <div class="container text-center reveal" style="max-width:40rem">
-      <h2 class="mb-4">Ready to Grow With Creavix?</h2>
-      <p class="mb-8" style="font-size:1.1rem">WhatsApp {SITE.whatsapp} · {SITE.email1} · {SITE.hotline}</p>
-      <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center">
-        <a href={SITE.whatsappLink} class="btn btn-primary" style="padding:.9rem 2rem;font-size:1rem" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-        <a href="/contact" class="btn btn-outline" style="padding:.9rem 2rem;font-size:1rem">Contact page</a>
+  <section id="contact" class="section-warm premium-contact">
+    <div class="container reveal">
+      <div class="contact-panel">
+        <div class="contact-copy"><span class="contact-kicker"><i></i>Accepting selected projects</span><h2>Ready to Grow With Creavix?</h2><p>Tell us what you want to build. We’ll turn the idea into a clear, high-performance production plan.</p></div>
+        <div class="contact-action"><a href={SITE.whatsappLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Start on WhatsApp <span>↗</span></a><a href="/contact" class="btn btn-outline">Contact page</a><small>{SITE.whatsapp} · {SITE.email1}</small></div>
       </div>
     </div>
   </section>
@@ -177,12 +176,17 @@ const supportingServices = services.filter((_, index) => index >= 3);
 </Layout>
 
 <style>
-  .primary-services { margin-bottom: 2.5rem; }
-  .service-card { position: relative; }
+  .section-signals{display:flex;justify-content:center;flex-wrap:wrap;gap:.45rem;margin-top:1.25rem}.section-signals span{padding:.38rem .68rem;border:1px solid rgba(37,99,235,.12);border-radius:999px;background:rgba(255,255,255,.7);color:#475569;font-size:.7rem;font-weight:700}
+  .primary-services { margin-bottom: 3.25rem; }
+  .service-card{position:relative;display:flex;flex-direction:column;min-height:100%;padding:1.45rem;text-decoration:none;color:inherit;overflow:hidden;border:1px solid rgba(15,23,42,.08);border-radius:24px;background:rgba(255,255,255,.88);box-shadow:0 12px 35px rgba(15,23,42,.055),inset 0 1px 0 #fff;isolation:isolate;transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s,border-color .45s}.service-card:before{content:'';position:absolute;z-index:-1;width:170px;height:170px;right:-75px;top:-80px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.14),transparent 68%);transition:transform .55s ease}.service-card:hover{transform:translateY(-8px);border-color:rgba(37,99,235,.24);box-shadow:0 26px 60px rgba(37,99,235,.12),inset 0 1px 0 #fff}.service-card:hover:before{transform:scale(1.35)}
   .service-card-primary {
+    min-height:330px;
+    padding:1.65rem;
     border-color: rgba(37, 99, 235, 0.2);
     background: linear-gradient(145deg, #fff 0%, #f8fbff 100%);
   }
+  .service-card-primary:nth-child(2){background:linear-gradient(145deg,#fff,#faf8ff)}.service-card-primary:nth-child(3){background:linear-gradient(145deg,#fff,#f4fbff)}
+  .service-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}.service-index{font:800 .7rem/1 var(--font-h);letter-spacing:.12em;color:#94a3b8}.service-copy{margin-top:auto}.service-copy h3{margin:0 0 .65rem;font-size:clamp(1.1rem,2vw,1.35rem);letter-spacing:-.025em}.service-copy p{margin:0;color:#64748b;font-size:.88rem;line-height:1.65}
   .service-priority {
     display: inline-flex;
     margin-bottom: 1rem;
@@ -198,7 +202,7 @@ const supportingServices = services.filter((_, index) => index >= 3);
   .supporting-heading { max-width: 42rem; margin: 0 auto 1.5rem; text-align: center; }
   .supporting-heading .eyebrow { margin: 0 auto .65rem; }
   .supporting-heading h3 { font-size: clamp(1.35rem, 2.4vw, 1.9rem); }
-  .supporting-services .service-card { min-height: 100%; }
+  .supporting-services{gap:1rem}.service-card-support{min-height:245px}.service-card-support .service-card-top :global(.live-icon-box){margin:0}.service-card-support:nth-child(3n+2){transform:translateY(14px)}.service-card-support:nth-child(3n+2):hover{transform:translateY(6px)}
   .hero-grid-orbit {
     display: grid;
     grid-template-columns: 1fr;
@@ -309,13 +313,11 @@ const supportingServices = services.filter((_, index) => index >= 3);
     flex-shrink: 0;
   }
 
-  .svc-more {
-    display: inline-block;
-    margin-top: 0.75rem;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #2563EB;
-  }
+  .svc-more{display:flex;align-items:center;justify-content:space-between;gap:.6rem;margin-top:1.1rem;color:#2563eb;font-size:.78rem;font-weight:800}.svc-more i{width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:#eff6ff;font-style:normal;transition:transform .3s,background .3s}.service-card:hover .svc-more i{transform:rotate(12deg) scale(1.08);background:#2563eb;color:#fff}
+
+  .about-premium-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,6vw,5rem);align-items:center}.about-story{max-width:620px}.about-actions{margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.65rem}.about-dashboard{position:relative;padding:1rem;border:1px solid rgba(37,99,235,.13);border-radius:28px;background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(241,245,255,.86));box-shadow:0 30px 70px rgba(37,99,235,.11)}.about-dashboard:before{content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(37,99,235,.4),transparent 40%,rgba(139,92,246,.25));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}.about-dashboard-head{display:flex;align-items:center;justify-content:space-between;padding:.25rem .35rem .85rem;color:#64748b;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em}.about-dashboard-head i{display:flex;align-items:center;gap:.3rem;padding:.25rem .5rem;border-radius:999px;background:#dcfce7;color:#15803d;font-style:normal}.about-dashboard-head i:before{content:'';width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.12)}.about-stat-card{padding:1.45rem;border:1px solid rgba(15,23,42,.07);border-radius:21px;background:#fff;box-shadow:0 12px 35px rgba(15,23,42,.06)}.about-stat-card h3{margin:0 0 1rem}.about-stat-card .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}.about-stat-card .stat-grid>div{padding:.9rem;border-radius:15px;background:#f8fafc}.about-stat-card strong{display:block;font:800 1.45rem/1 var(--font-h);color:#2563eb}.about-stat-card .stat-grid span{display:block;margin-top:.35rem;color:#64748b;font-size:.72rem}.about-mini-row{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-top:.7rem}.about-mini-row span{padding:.65rem;border-radius:13px;background:rgba(255,255,255,.75);color:#475569;font-size:.72rem;font-weight:700}.about-mini-row b{color:#2563eb;margin-right:.35rem}
+
+  .premium-contact{padding:1.25rem 1.25rem 5rem;background:#fff}.contact-panel{position:relative;overflow:hidden;display:grid;grid-template-columns:1.3fr .7fr;gap:2rem;align-items:center;padding:clamp(1.6rem,5vw,3.5rem);border:1px solid rgba(37,99,235,.14);border-radius:32px;background:radial-gradient(circle at 8% 15%,rgba(37,99,235,.12),transparent 34%),radial-gradient(circle at 90% 90%,rgba(139,92,246,.1),transparent 30%),#f8fbff;box-shadow:0 28px 75px rgba(37,99,235,.1)}.contact-panel:after{content:'';position:absolute;right:-45px;top:-45px;width:170px;height:170px;border:1px solid rgba(37,99,235,.12);border-radius:50%;box-shadow:0 0 0 25px rgba(37,99,235,.025),0 0 0 50px rgba(37,99,235,.018)}.contact-copy,.contact-action{position:relative;z-index:1}.contact-kicker{display:inline-flex;align-items:center;gap:.45rem;margin-bottom:1rem;color:#2563eb;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em}.contact-kicker i{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 5px rgba(34,197,94,.12)}.contact-copy h2{margin:0 0 .75rem}.contact-copy p{max-width:580px;margin:0;color:#64748b;line-height:1.7}.contact-action{display:flex;flex-direction:column;gap:.65rem;align-items:stretch}.contact-action .btn{display:flex;justify-content:space-between;align-items:center}.contact-action small{text-align:center;color:#64748b;font-size:.7rem;overflow-wrap:anywhere}
 
   .about-checks {
     list-style: none;
@@ -339,5 +341,8 @@ const supportingServices = services.filter((_, index) => index >= 3);
     .trust-row { gap: 0.5rem 0.55rem; }
     .trust-item strong { font-size: 1.05rem; }
     .trust-divider { height: 1.75rem; }
+    .section-signals span:nth-child(2){display:none}.service-card-primary{min-height:285px}.service-card-support{min-height:220px}.supporting-services .service-card-support{transform:none}.about-premium-grid,.contact-panel{grid-template-columns:1fr}.about-dashboard{padding:.7rem;border-radius:22px}.contact-panel{border-radius:24px;gap:1.35rem}.premium-contact{padding-inline:.85rem}.contact-action .btn{width:100%}
   }
+
+  @media (prefers-reduced-motion:reduce){.service-card,.service-card:before,.svc-more i{transition:none}.service-card:hover,.service-card-support:nth-child(3n+2),.service-card-support:nth-child(3n+2):hover{transform:none}}
 </style>
