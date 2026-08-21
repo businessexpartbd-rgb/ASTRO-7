@@ -29,6 +29,17 @@ const services = [
 ];
 const primaryServices = services.filter((_, index) => index < 3);
 const supportingServices = services.filter((_, index) => index >= 3);
+const aiTools = [
+  { name: 'Kling AI', role: 'Cinematic video', icon: '/ai-tools/kling.webp', href: 'https://kling.ai/' },
+  { name: 'Hunyuan', role: 'AI video model', icon: '/ai-tools/hunyuan.webp', href: 'https://aivideo.hunyuan.tencent.com/' },
+  { name: 'ElevenLabs', role: 'Voice & dubbing', icon: '/ai-tools/elevenlabs.webp', href: 'https://elevenlabs.io/' },
+  { name: 'Gemini', role: 'Ideas & visuals', icon: '/ai-tools/gemini.webp', href: 'https://gemini.google.com/' },
+  { name: 'ChatGPT', role: 'Creative direction', icon: '/ai-tools/chatgpt.webp', href: 'https://chatgpt.com/' },
+  { name: 'Claude', role: 'Scripts & research', icon: '/ai-tools/claude.webp', href: 'https://claude.ai/' },
+  { name: 'Higgsfield', role: 'AI video effects', icon: '/ai-tools/higgsfield.webp', href: 'https://higgsfield.ai/' },
+  { name: 'Grok', role: 'Image & video ideas', icon: '/ai-tools/grok.webp', href: 'https://grok.com/' },
+  { name: 'HeyGen', role: 'Avatar video', icon: '/ai-tools/heygen.webp', href: 'https://www.heygen.com/' },
+];
 ---
 <Layout title={SITE.seoTitle} description={SITE.seoDescription}>
   <TopBar />
@@ -91,6 +102,28 @@ const supportingServices = services.filter((_, index) => index >= 3);
   <BrandStrip />
 
   <FeaturedVideoStack />
+
+  <section class="ai-stack" aria-labelledby="ai-stack-title">
+    <div class="container">
+      <div class="ai-stack-head reveal">
+        <div>
+          <p class="eyebrow">Our AI Production Stack</p>
+          <h2 id="ai-stack-title">Professional Tools. Human Creative Direction.</h2>
+        </div>
+        <p>We combine leading AI platforms with professional editing to produce human-like videos, voices and campaign-ready visuals.</p>
+      </div>
+      <div class="ai-tools-grid" aria-label="AI platforms used by Creavix iT Solution">
+        {aiTools.map((tool, i) => (
+          <a class="ai-tool-card reveal" href={tool.href} target="_blank" rel="noopener noreferrer" aria-label={`Open the official ${tool.name} website`} style={`--tool-index:${i}`}>
+            <span class="ai-tool-logo"><img src={tool.icon} alt={`${tool.name} logo`} width="192" height="192" loading="lazy" decoding="async" /></span>
+            <span class="ai-tool-copy"><strong>{tool.name}</strong><small>{tool.role}</small></span>
+            <i aria-hidden="true">↗</i>
+          </a>
+        ))}
+      </div>
+      <p class="ai-stack-note">Official platform links · Account availability and plans are managed by each provider.</p>
+    </div>
+  </section>
 
   <section id="services" class="section-soft">
     <div class="container">
@@ -176,6 +209,16 @@ const supportingServices = services.filter((_, index) => index >= 3);
 </Layout>
 
 <style>
+  .ai-stack{padding:4.25rem 1.25rem;background:linear-gradient(180deg,#fff 0%,#f6f9ff 100%);border-block:1px solid rgba(15,23,42,.06)}
+  .ai-stack-head{display:grid;gap:1rem;margin-bottom:1.65rem}.ai-stack-head .eyebrow{margin:0 0 .75rem}.ai-stack-head h2{margin:0;max-width:660px;font-size:clamp(1.7rem,3.5vw,2.7rem);line-height:1.08}.ai-stack-head>p{margin:0;max-width:600px;color:#64748b;line-height:1.7}
+  .ai-tools-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+  .ai-tool-card{position:relative;display:flex;align-items:center;gap:.7rem;min-width:0;padding:.72rem;border:1px solid rgba(15,23,42,.08);border-radius:18px;background:rgba(255,255,255,.92);box-shadow:0 10px 28px rgba(15,23,42,.055);color:#0b0f19;text-decoration:none;transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s,border-color .3s}
+  .ai-tool-card:hover,.ai-tool-card:focus-visible{transform:translateY(-4px);border-color:rgba(37,99,235,.24);box-shadow:0 18px 38px rgba(37,99,235,.12);outline:none}
+  .ai-tool-logo{width:54px;height:54px;display:grid;place-items:center;flex:0 0 54px;overflow:hidden;border-radius:15px;background:#090d17;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 7px 18px rgba(15,23,42,.13)}
+  .ai-tool-logo img{display:block;width:100%;height:100%;object-fit:contain}.ai-tool-copy{display:grid;min-width:0;gap:.16rem}.ai-tool-copy strong{overflow:hidden;text-overflow:ellipsis;font:800 .82rem/1.2 var(--font-h);white-space:nowrap}.ai-tool-copy small{overflow:hidden;text-overflow:ellipsis;color:#64748b;font-size:.64rem;white-space:nowrap}.ai-tool-card>i{display:none;margin-left:auto;color:#2563eb;font-style:normal;font-weight:800}.ai-stack-note{margin:1rem 0 0;color:#94a3b8;font-size:.68rem;text-align:center}
+  @media(min-width:640px){.ai-tools-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.ai-tool-card>i{display:block}}
+  @media(min-width:900px){.ai-stack{padding-block:5.5rem}.ai-stack-head{grid-template-columns:1.1fr .9fr;align-items:end}.ai-tools-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:.85rem}.ai-tool-card{display:grid;justify-items:center;gap:.65rem;padding:1rem .7rem;text-align:center}.ai-tool-logo{width:72px;height:72px;flex-basis:72px;border-radius:20px}.ai-tool-copy strong{font-size:.9rem}.ai-tool-copy small{font-size:.68rem}.ai-tool-card>i{position:absolute;right:.65rem;top:.55rem}}
+  @media(prefers-reduced-motion:reduce){.ai-tool-card{transition:none}.ai-tool-card:hover{transform:none}}
   .section-signals{display:flex;justify-content:center;flex-wrap:wrap;gap:.45rem;margin-top:1.25rem}.section-signals span{padding:.38rem .68rem;border:1px solid rgba(37,99,235,.12);border-radius:999px;background:rgba(255,255,255,.7);color:#475569;font-size:.7rem;font-weight:700}
   .primary-services { margin-bottom: 3.25rem; }
   .service-card{position:relative;display:flex;flex-direction:column;min-height:100%;padding:1.45rem;text-decoration:none;color:inherit;overflow:hidden;border:1px solid rgba(15,23,42,.08);border-radius:24px;background:rgba(255,255,255,.88);box-shadow:0 12px 35px rgba(15,23,42,.055),inset 0 1px 0 #fff;isolation:isolate;transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s,border-color .45s}.service-card:before{content:'';position:absolute;z-index:-1;width:170px;height:170px;right:-75px;top:-80px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.14),transparent 68%);transition:transform .55s ease}.service-card:hover{transform:translateY(-8px);border-color:rgba(37,99,235,.24);box-shadow:0 26px 60px rgba(37,99,235,.12),inset 0 1px 0 #fff}.service-card:hover:before{transform:scale(1.35)}
