@@ -38,7 +38,7 @@ const total = videos.length;
                 alt={`Cinematic video ${v.n}`}
                 width="640"
                 height="360"
-                loading={i < 2 ? 'eager' : 'lazy'}
+                loading={i === 0 ? 'eager' : 'lazy'}
                 decoding="async"
                 fetchpriority={i === 0 ? 'high' : 'low'}
               />
