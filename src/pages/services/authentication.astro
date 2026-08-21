@@ -4,6 +4,7 @@ import TopBar from '../../components/TopBar.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ServiceHeroVisual from '../../components/ServiceHeroVisual.astro';
+import ServiceIcons from '../../components/icons/ServiceIcons.astro';
 import { SITE } from '../../data/site';
 
 const seoTitle = 'Web & App Authentication Systems Bangladesh | Secure Login — Creavix iT';
@@ -25,6 +26,8 @@ const steps = [
   { n: '03', t: 'Implement', d: 'UI + backend integrated with your product.' },
   { n: '04', t: 'Harden', d: 'Reset, lockout and permission tests.' },
 ];
+const featureIcons = ['email', 'phone', 'auth', 'strategy', 'automation', 'check'];
+const stepIcons = ['search', 'strategy', 'web', 'auth'];
 
 const faqs = [
   { q: 'কোন স্ট্যাক?', a: 'বিদ্যমান কোডবেস দেখে আধুনিক ওয়েব/অ্যাপ স্ট্যাক।' },
@@ -59,14 +62,14 @@ const faqs = [
   <section class="sv-sec">
     <div class="container">
       <div class="sv-center reveal"><p class="sv-eye">Capabilities</p><h2>What authentication covers</h2></div>
-      <div class="sv-cards">{features.map((f) => (<article class="sv-card reveal"><h3>{f.t}</h3><p>{f.d}</p></article>))}</div>
+      <div class="sv-cards">{features.map((f, i) => (<article class="sv-card reveal"><span class="sv-card-icon"><ServiceIcons name={featureIcons[i]} size={30} /></span><h3>{f.t}</h3><p>{f.d}</p></article>))}</div>
     </div>
   </section>
 
   <section class="sv-sec sv-muted">
     <div class="container">
       <div class="sv-center reveal"><p class="sv-eye">Process</p><h2>From brief to hardened login</h2></div>
-      <div class="sv-steps">{steps.map((s) => (<div class="sv-step reveal"><span>{s.n}</span><h3>{s.t}</h3><p>{s.d}</p></div>))}</div>
+      <div class="sv-steps">{steps.map((s, i) => (<div class="sv-step reveal"><div class="sv-step-top"><span class="sv-card-icon"><ServiceIcons name={stepIcons[i]} size={28} /></span><span>{s.n}</span></div><h3>{s.t}</h3><p>{s.d}</p></div>))}</div>
     </div>
   </section>
 

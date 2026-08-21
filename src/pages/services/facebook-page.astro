@@ -7,6 +7,7 @@ import Layout from '../../layouts/Layout.astro';
 import TopBar from '../../components/TopBar.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import ServiceIcons from '../../components/icons/ServiceIcons.astro';
 import { SITE } from '../../data/site';
 
 const seoTitle =
@@ -52,6 +53,8 @@ const services = [
     points: ['Roles & security', 'Quality signals', 'Messenger readiness', 'Ads / restriction flags'],
   },
 ];
+const serviceIcons = ['facebook', 'auth', 'spark', 'search', 'boosting', 'check'];
+const sectionIcons = ['strategy', 'production', 'automation', 'boosting'];
 
 const verifyBenefits = [
   {
@@ -250,8 +253,9 @@ const faqs = [
         <p class="fb-lead">Pick a single fix or a full package — each area below is handled with a clear checklist.</p>
       </div>
       <div class="fb-services">
-        {services.map((s) => (
+        {services.map((s, i) => (
           <article class="fb-svc reveal">
+            <span class="sv-card-icon"><ServiceIcons name={serviceIcons[i]} size={30} /></span>
             <span class="fb-tag">{s.tag}</span>
             <h3>{s.title}</h3>
             <p>{s.desc}</p>
@@ -297,8 +301,9 @@ const faqs = [
         <h2>Targeting, SEO signals &amp; follower strategy</h2>
       </div>
       <div class="fb-growth">
-        {growth.map((g) => (
+        {growth.map((g, i) => (
           <article class="fb-gcard reveal">
+            <span class="sv-card-icon"><ServiceIcons name={sectionIcons[i]} size={30} /></span>
             <h3>{g.t}</h3>
             <p>{g.d}</p>
           </article>
@@ -316,8 +321,9 @@ const faqs = [
         <p class="fb-lead">Full checkup finds issues early — roles, quality, ads and messaging readiness.</p>
       </div>
       <div class="fb-growth">
-        {restrictions.map((r) => (
+        {restrictions.map((r, i) => (
           <article class="fb-gcard reveal">
+            <span class="sv-card-icon"><ServiceIcons name={['auth','search','check','strategy'][i]} size={30} /></span>
             <h3>{r.t}</h3>
             <p>{r.d}</p>
           </article>
@@ -334,8 +340,9 @@ const faqs = [
         <h2>How we work on your Page</h2>
       </div>
       <div class="fb-steps">
-        {steps.map((s) => (
+        {steps.map((s, i) => (
           <div class="fb-step reveal">
+            <span class="sv-card-icon"><ServiceIcons name={['search','spark','auth','rocket'][i]} size={28} /></span>
             <span class="fb-step-n">{s.n}</span>
             <h3>{s.t}</h3>
             <p>{s.d}</p>

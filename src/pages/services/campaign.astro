@@ -4,6 +4,7 @@ import TopBar from '../../components/TopBar.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ServiceHeroVisual from '../../components/ServiceHeroVisual.astro';
+import ServiceIcons from '../../components/icons/ServiceIcons.astro';
 import { SITE } from '../../data/site';
 
 const seoTitle = 'Facebook & YouTube Ad Campaign Management Bangladesh — Creavix iT';
@@ -25,6 +26,8 @@ const phases = [
   { n: '03', t: 'Launch', d: 'Go live with monitoring windows.' },
   { n: '04', t: 'Improve', d: 'Iterate winners; retire weak ads.' },
 ];
+const pillarIcons = ['strategy', 'production', 'campaign', 'boosting', 'seo', 'rocket'];
+const phaseIcons = ['search', 'web', 'rocket', 'automation'];
 
 const faqs = [
   { q: 'Boosting-এর সাথে পার্থক্য?', a: 'Boosting দ্রুত পোস্ট প্রমোশন। Campaign পুরো ফানেল ও অপটিমাইজেশন।' },
@@ -59,14 +62,14 @@ const faqs = [
   <section class="sv-sec">
     <div class="container">
       <div class="sv-center reveal"><p class="sv-eye">Included</p><h2>What campaign management covers</h2></div>
-      <div class="sv-cards">{pillars.map((p) => (<article class="sv-card reveal"><h3>{p.t}</h3><p>{p.d}</p></article>))}</div>
+      <div class="sv-cards">{pillars.map((p, i) => (<article class="sv-card reveal"><span class="sv-card-icon"><ServiceIcons name={pillarIcons[i]} size={30} /></span><h3>{p.t}</h3><p>{p.d}</p></article>))}</div>
     </div>
   </section>
 
   <section class="sv-sec sv-muted">
     <div class="container">
       <div class="sv-center reveal"><p class="sv-eye">Phases</p><h2>How a campaign runs</h2></div>
-      <div class="sv-steps">{phases.map((s) => (<div class="sv-step reveal"><span>{s.n}</span><h3>{s.t}</h3><p>{s.d}</p></div>))}</div>
+      <div class="sv-steps">{phases.map((s, i) => (<div class="sv-step reveal"><div class="sv-step-top"><span class="sv-card-icon"><ServiceIcons name={phaseIcons[i]} size={28} /></span><span>{s.n}</span></div><h3>{s.t}</h3><p>{s.d}</p></div>))}</div>
     </div>
   </section>
 

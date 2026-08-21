@@ -790,4 +790,61 @@ footer .logo span {
   .scroll-indicator {
     display: none;
   }
+
+  .hero-grid-orbit {
+    width: 100%;
+    max-width: 100%;
+    justify-items: center;
+    gap: 1.25rem;
+  }
+
+  .hero-grid-orbit .hero-content,
+  .hero-grid-orbit .hero-visual {
+    width: 100%;
+    min-width: 0;
+    margin-inline: auto;
+  }
+
+  .hero-grid-orbit .hero-visual {
+    justify-content: center;
+  }
+
+  .hero-grid-orbit .hero-visual-frame {
+    width: min(100%, 430px);
+    margin-inline: auto;
+  }
+
+  .hero-content .flex-btns {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    gap: .4rem;
+  }
+
+  .hero-content .flex-btns .btn {
+    width: 100%;
+    min-width: 0;
+    padding-inline: .25rem;
+    font-size: clamp(.62rem, 2.8vw, .76rem);
+    white-space: nowrap;
+  }
+}
+
+/* Shared colourful service-card icon treatment. */
+.sv-card-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  margin: 0 0 .75rem;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #eff6ff, #f5f3ff);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, .09);
+}
+
+.sv-step-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: .75rem;
 }

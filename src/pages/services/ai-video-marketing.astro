@@ -4,6 +4,7 @@ import TopBar from '../../components/TopBar.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ServiceHeroVisual from '../../components/ServiceHeroVisual.astro';
+import ServiceIcons from '../../components/icons/ServiceIcons.astro';
 import { SITE } from '../../data/site';
 
 const seoTitle = 'AI Video Marketing Agency Bangladesh | Human-like Ads — Creavix iT';
@@ -23,6 +24,8 @@ const stack = [
   { t: 'Platform fit', d: 'Captions, safe zones and ratios for Meta / YouTube / Shorts.' },
   { t: 'Iterate', d: 'Swap hooks and CTAs from early ad data.' },
 ];
+const useIcons = ['boosting', 'production', 'human', 'global'];
+const stackIcons = ['strategy', 'ai', 'video', 'automation'];
 
 const faqs = [
   { q: 'AI ভিডিও কি আসল মনে হবে?', a: 'লক্ষ্য human-like ফিনিশ — এডিট ও ব্র্যান্ড গাইডলাইন মিলিয়ে দেওয়া হয়।' },
@@ -57,14 +60,14 @@ const faqs = [
   <section class="sv-sec">
     <div class="container">
       <div class="sv-center reveal"><p class="sv-eye">Use cases</p><h2>Where AI video pays off</h2></div>
-      <div class="sv-cards">{uses.map((u) => (<article class="sv-card reveal"><h3>{u.t}</h3><p>{u.d}</p></article>))}</div>
+      <div class="sv-cards">{uses.map((u, i) => (<article class="sv-card reveal"><span class="sv-card-icon"><ServiceIcons name={useIcons[i]} size={30} /></span><h3>{u.t}</h3><p>{u.d}</p></article>))}</div>
     </div>
   </section>
 
   <section class="sv-sec sv-muted">
     <div class="container">
       <div class="sv-center reveal"><p class="sv-eye">How we work</p><h2>Speed without losing brand control</h2></div>
-      <div class="sv-cards">{stack.map((s) => (<article class="sv-card reveal"><h3>{s.t}</h3><p>{s.d}</p></article>))}</div>
+      <div class="sv-cards">{stack.map((s, i) => (<article class="sv-card reveal"><span class="sv-card-icon"><ServiceIcons name={stackIcons[i]} size={30} /></span><h3>{s.t}</h3><p>{s.d}</p></article>))}</div>
     </div>
   </section>
 

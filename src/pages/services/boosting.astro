@@ -8,6 +8,7 @@ import Layout from '../../layouts/Layout.astro';
 import TopBar from '../../components/TopBar.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import ServiceIcons from '../../components/icons/ServiceIcons.astro';
 import { SITE } from '../../data/site';
 
 const seoTitle =
@@ -206,8 +207,9 @@ const faqs = [
         <h2>Facebook, Instagram &amp; YouTube</h2>
       </div>
       <div class="bo-platforms">
-        {platforms.map((p) => (
+        {platforms.map((p, i) => (
           <article class="bo-plat reveal">
+            <span class="sv-card-icon"><ServiceIcons name={['facebook','video'][i]} size={30} /></span>
             <span class="bo-tag">{p.tag}</span>
             <h3>{p.title}</h3>
             <p>{p.desc}</p>
@@ -230,8 +232,9 @@ const faqs = [
           <p class="bo-eye">Boosting benefits</p>
           <h2 class="bo-h2">When boosting helps</h2>
           <div class="bo-bgrid">
-            {benefitsBoost.map((b) => (
+            {benefitsBoost.map((b, i) => (
               <div class="bo-bcard">
+                <span class="sv-card-icon"><ServiceIcons name={['rocket','strategy','boosting','spark'][i]} size={28} /></span>
                 <h3>{b.t}</h3>
                 <p>{b.d}</p>
               </div>
@@ -242,8 +245,9 @@ const faqs = [
           <p class="bo-eye">Campaign benefits</p>
           <h2 class="bo-h2">When a campaign is better</h2>
           <div class="bo-bgrid">
-            {benefitsCamp.map((b) => (
+            {benefitsCamp.map((b, i) => (
               <div class="bo-bcard">
+                <span class="sv-card-icon"><ServiceIcons name={['campaign','global','marketing','check'][i]} size={28} /></span>
                 <h3>{b.t}</h3>
                 <p>{b.d}</p>
               </div>
@@ -332,8 +336,9 @@ const faqs = [
         <h2>How delivery works in practice</h2>
       </div>
       <div class="bo-algo">
-        {algo.map((a) => (
+        {algo.map((a, i) => (
           <article class="bo-acard reveal">
+            <span class="sv-card-icon"><ServiceIcons name={['facebook','phone','auth','video'][i]} size={30} /></span>
             <h3>{a.t}</h3>
             <p>{a.d}</p>
           </article>

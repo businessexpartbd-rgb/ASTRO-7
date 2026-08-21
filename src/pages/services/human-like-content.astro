@@ -4,6 +4,7 @@ import TopBar from '../../components/TopBar.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ServiceHeroVisual from '../../components/ServiceHeroVisual.astro';
+import ServiceIcons from '../../components/icons/ServiceIcons.astro';
 import { SITE } from '../../data/site';
 
 const seoTitle = 'Human-like Content & Product Videos Bangladesh — Creavix iT';
@@ -23,6 +24,8 @@ const why = [
   { t: 'Flexible', d: 'Local sellers and international brands.' },
   { t: 'Pairs with ads', d: 'Ready for boosting and full campaigns.' },
 ];
+const typeIcons = ['production', 'human', 'marketing', 'check'];
+const whyIcons = ['auth', 'phone', 'global', 'boosting'];
 
 const faqs = [
   { q: 'Human-like মানে কী?', a: 'দেখতে ও শুনতে যতটা সম্ভব প্রাকৃতিক — অফার পরিষ্কার রাখা।' },
@@ -56,14 +59,14 @@ const faqs = [
   <section class="sv-sec">
     <div class="container">
       <div class="sv-center reveal"><p class="sv-eye">Formats</p><h2>What we produce</h2></div>
-      <div class="sv-cards">{types.map((t) => (<article class="sv-card reveal"><h3>{t.t}</h3><p>{t.d}</p></article>))}</div>
+      <div class="sv-cards">{types.map((t, i) => (<article class="sv-card reveal"><span class="sv-card-icon"><ServiceIcons name={typeIcons[i]} size={30} /></span><h3>{t.t}</h3><p>{t.d}</p></article>))}</div>
     </div>
   </section>
 
   <section class="sv-sec sv-muted">
     <div class="container">
       <div class="sv-center reveal"><p class="sv-eye">Why it works</p><h2>Built for attention and trust</h2></div>
-      <div class="sv-cards">{why.map((w) => (<article class="sv-card reveal"><h3>{w.t}</h3><p>{w.d}</p></article>))}</div>
+      <div class="sv-cards">{why.map((w, i) => (<article class="sv-card reveal"><span class="sv-card-icon"><ServiceIcons name={whyIcons[i]} size={30} /></span><h3>{w.t}</h3><p>{w.d}</p></article>))}</div>
     </div>
   </section>
 
