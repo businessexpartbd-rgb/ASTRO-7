@@ -40,6 +40,14 @@ const aiTools = [
   { name: 'Grok', role: 'Image & video ideas', icon: '/ai-tools/grok.webp', href: 'https://grok.com/' },
   { name: 'HeyGen', role: 'Avatar video', icon: '/ai-tools/heygen.webp', href: 'https://www.heygen.com/' },
 ];
+const devToolTeaser = [
+  { name: 'v0', icon: 'https://v0.dev/favicon.ico' },
+  { name: 'Lovable', icon: 'https://lovable.dev/favicon.ico' },
+  { name: 'Bolt', icon: 'https://bolt.new/favicon.ico' },
+  { name: 'Replit', icon: 'https://replit.com/favicon.ico' },
+  { name: 'Base44', icon: 'https://base44.com/favicon.ico' },
+  { name: 'Cursor', icon: 'https://cursor.com/favicon.ico' },
+];
 ---
 <Layout title={SITE.seoTitle} description={SITE.seoDescription}>
   <TopBar />
@@ -156,6 +164,19 @@ const aiTools = [
           </a>
         ))}
       </div>
+      <aside class="dev-stack-teaser reveal" aria-labelledby="dev-stack-teaser-title">
+        <div class="dev-stack-copy">
+          <p class="eyebrow">AI-Assisted Development</p>
+          <h3 id="dev-stack-teaser-title">AI speed. Expert engineering.</h3>
+          <p>We use leading builders for faster iteration, then complete the code, security, performance and deployment manually.</p>
+        </div>
+        <div class="dev-stack-logos" aria-label="Selected AI development platforms">
+          {devToolTeaser.map((tool) => (
+            <span class="dev-stack-chip"><span><img src={tool.icon} alt="" width="30" height="30" loading="lazy" decoding="async" /></span><b>{tool.name}</b></span>
+          ))}
+        </div>
+        <a class="dev-stack-link" href="/services/web-development#ai-builders">Explore our development stack <span aria-hidden="true">→</span></a>
+      </aside>
     </div>
   </section>
 
@@ -220,6 +241,8 @@ const aiTools = [
   @media(min-width:900px){.ai-stack{padding-block:5.5rem}.ai-stack-head{grid-template-columns:1.1fr .9fr;align-items:end}.ai-tools-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:.85rem}.ai-tool-card{display:grid;justify-items:center;gap:.65rem;padding:1rem .7rem;text-align:center}.ai-tool-logo{width:72px;height:72px;flex-basis:72px;border-radius:20px}.ai-tool-copy strong{font-size:.9rem}.ai-tool-copy small{font-size:.68rem}.ai-tool-card>i{position:absolute;right:.65rem;top:.55rem}}
   @media(prefers-reduced-motion:reduce){.ai-tool-card{transition:none}.ai-tool-card:hover{transform:none}}
   .section-signals{display:flex;justify-content:center;flex-wrap:wrap;gap:.45rem;margin-top:1.25rem}.section-signals span{padding:.38rem .68rem;border:1px solid rgba(37,99,235,.12);border-radius:999px;background:rgba(255,255,255,.7);color:#475569;font-size:.7rem;font-weight:700}
+  .dev-stack-teaser{display:grid;gap:1.15rem;margin-top:3.3rem;padding:1.2rem;border:1px solid rgba(37,99,235,.14);border-radius:24px;background:linear-gradient(135deg,#fff 0%,#f4f8ff 62%,#eefbf8 100%);box-shadow:0 18px 45px rgba(15,23,42,.06)}.dev-stack-copy .eyebrow{margin:0 0 .55rem}.dev-stack-copy h3{margin:0 0 .4rem;font-size:1.18rem}.dev-stack-copy p{margin:0;color:#64748b;font-size:.82rem;line-height:1.55}.dev-stack-logos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.48rem}.dev-stack-chip{display:flex;align-items:center;gap:.42rem;min-width:0;padding:.45rem;border:1px solid rgba(15,23,42,.07);border-radius:13px;background:rgba(255,255,255,.88)}.dev-stack-chip>span{width:30px;height:30px;display:grid;place-items:center;flex:0 0 30px;overflow:hidden;border-radius:9px;background:#fff}.dev-stack-chip img{display:block;width:24px;height:24px;object-fit:contain}.dev-stack-chip b{overflow:hidden;text-overflow:ellipsis;font-size:.67rem;white-space:nowrap}.dev-stack-link{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;padding:.75rem 1rem;border-radius:14px;background:#0b1220;color:#fff;text-decoration:none;font-size:.78rem;font-weight:800}.dev-stack-link:hover{background:#1d4ed8;color:#fff}
+  @media(min-width:900px){.dev-stack-teaser{grid-template-columns:1.15fr 1fr auto;align-items:center;padding:1.35rem 1.5rem}.dev-stack-link{white-space:nowrap}.dev-stack-logos{grid-template-columns:repeat(3,minmax(0,1fr))}}
   .primary-services { margin-bottom: 3.25rem; }
   .service-card{position:relative;display:flex;flex-direction:column;min-height:100%;padding:1.45rem;text-decoration:none;color:inherit;overflow:hidden;border:1px solid rgba(15,23,42,.08);border-radius:24px;background:rgba(255,255,255,.88);box-shadow:0 12px 35px rgba(15,23,42,.055),inset 0 1px 0 #fff;isolation:isolate;transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s,border-color .45s}.service-card:before{content:'';position:absolute;z-index:-1;width:170px;height:170px;right:-75px;top:-80px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.14),transparent 68%);transition:transform .55s ease}.service-card:hover{transform:translateY(-8px);border-color:rgba(37,99,235,.24);box-shadow:0 26px 60px rgba(37,99,235,.12),inset 0 1px 0 #fff}.service-card:hover:before{transform:scale(1.35)}
   .service-card-primary {
