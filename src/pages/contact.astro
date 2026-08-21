@@ -9,22 +9,18 @@ import { SITE, SOCIAL_LINKS } from '../data/site';
 const linkedIn =
   SOCIAL_LINKS.find((s) => s.key === 'linkedin')?.url ||
   'https://www.linkedin.com/in/creavix-it-solution';
-const facebookCompany =
-  SOCIAL_LINKS.find((s) => s.key === 'facebook')?.url ||
-  'https://www.facebook.com/CreavixITSolution';
-
 /** Photos: replace files in /public/team/ when ready */
 const leaders = [
   {
-    role: 'Chairman & Owner',
+    role: 'Founder & Chairman',
     name: 'Hannan Khan',
     size: 'lg',
     photo: '/team/hannan-executive.webp',
     initial: 'H',
     experience: 'Since 2014',
-    bio: 'Online activist, freelancer and content creator since 2014. Built Creavix iT Solution through hands-on creative work, client delivery and long-term digital craft — the story of turning freelance discipline into a full video & IT agency. Main oversight of company direction stays with Hannan.',
+    bio: 'Founder and strategic leader of Creavix iT Solution, shaping the company’s creative vision, client standards and long-term direction through more than a decade of hands-on digital experience.',
     social: true,
-    facebook: facebookCompany,
+    facebook: 'https://www.facebook.com/HannanKhanDesigner',
     linkedin: linkedIn,
     whatsapp: true,
   },
@@ -35,20 +31,20 @@ const leaders = [
     photo: '/team/sabbir-executive.webp',
     initial: 'S',
     experience: '3+ years leadership',
-    bio: 'Leads day-to-day executive coordination so projects, people and client promises stay aligned. Focused on operations quality and growth execution under the Creavix brand.',
+    bio: 'Leads executive operations, project coordination and delivery quality—keeping the team, timelines and client commitments aligned as Creavix grows.',
     social: true,
-    facebook: facebookCompany,
+    facebook: 'https://www.facebook.com/sabbirkhanmotivation',
     linkedin: linkedIn,
     whatsapp: false,
   },
   {
-    role: 'Director',
+    role: 'Director, Operations',
     name: 'Tanni Aktar',
     size: 'sm',
     photo: '/team/tanni.jpg',
     initial: 'T',
     experience: '5 years as Director',
-    bio: 'Experienced director guiding company operations on the ground. Much of daily direction runs through this role, with strategic supervision from the Owner — a steady hand for delivery and team coordination.',
+    bio: 'Supports operational governance, internal coordination and consistent project execution across the company’s creative and technology services.',
     social: false,
     facebook: '',
     linkedin: '',
@@ -96,7 +92,7 @@ const faqs = [
 
 <Layout
   title={`Contact ${SITE.brand} | Leadership & Quote`}
-  description={`Contact ${SITE.brand} — meet Chairman Hannan Khan, CEO Sabbir Khan and Director Tanni Aktar. WhatsApp ${SITE.whatsapp}, ${SITE.address}.`}
+  description={`Contact ${SITE.brand} — meet Founder & Chairman Hannan Khan, CEO Sabbir Khan and Operations Director Tanni Aktar. WhatsApp ${SITE.whatsapp}, ${SITE.address}.`}
 >
   <TopBar />
   <Nav active="contact" />
@@ -121,8 +117,8 @@ const faqs = [
     <div class="container">
       <div class="ct-center reveal">
         <p class="ct-eye">Leadership</p>
-        <h2>Chairman, CEO &amp; Director</h2>
-        <p class="ct-lead">Leadership built around creative direction, accountable execution and dependable delivery.</p>
+        <h2>Executive Leadership</h2>
+        <p class="ct-lead">Meet the management team responsible for vision, executive operations and dependable delivery.</p>
       </div>
 
       <div class="lead-row">
@@ -149,7 +145,7 @@ const faqs = [
             {p.social && (
               <div class="lead-social">
                 {p.facebook && (
-                  <a href={p.facebook} target="_blank" rel="noopener noreferrer" class="lead-soc" title="Facebook">Facebook</a>
+                  <a href={p.facebook} target="_blank" rel="noopener noreferrer" class="lead-soc" title={`${p.name} on Facebook`} aria-label={`Open ${p.name}'s Facebook profile`}>Facebook profile</a>
                 )}
                 {p.linkedin && (
                   <a href={p.linkedin} target="_blank" rel="noopener noreferrer" class="lead-soc" title="LinkedIn">LinkedIn</a>
@@ -323,6 +319,7 @@ const faqs = [
   .lead-lg .lead-photo,.lead-md .lead-photo,.lead-sm .lead-photo{width:100%;height:auto}
   @media (max-width: 899px) {
     .lead-card{max-width:380px}.lead-photo{max-height:470px}
+    .lead-card:nth-child(1){order:1}.lead-card:nth-child(2){order:2}.lead-card:nth-child(3){order:3}
   }
   .lead-photo img {
     width: 100%;
