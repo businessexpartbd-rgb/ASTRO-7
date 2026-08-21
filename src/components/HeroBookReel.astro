@@ -1,8 +1,14 @@
 ---
-/** Premium code-native AI + professional video production hero. */
+/** Premium portfolio-backed AI + professional video production hero. */
+import { SHOWCASES, ytThumb } from '../data/site';
+const cinematic = SHOWCASES.find((group) => group.id === 'cinematic')!;
+const productAi = SHOWCASES.find((group) => group.id === 'product-ai')!;
+const brand = SHOWCASES.find((group) => group.id === 'brand')!;
+const heroVideos = [cinematic.ids[0], productAi.ids[0], brand.ids[0]];
+const heroPosters = heroVideos.map((id) => ytThumb(id, 'hq'));
 const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editing', 'Campaign ready'];
 ---
-<div class="vs" data-video-studio aria-label="Creavix AI and professional video production workflow">
+<div class="vs" data-video-studio data-video-ids={heroVideos.join(',')} aria-label="Creavix AI and professional video production workflow">
   <div class="vs-aura" aria-hidden="true"></div>
   <div class="vs-window">
     <div class="vs-titlebar">
@@ -20,7 +26,9 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
             <div class="brief-tags"><span>Brand</span><span>Audience</span><span>Emotion</span></div>
           </div>
           <div class="storyboard" aria-hidden="true">
-            <i class="shot-one"></i><i class="shot-two"></i><i class="shot-three"></i>
+            <i class="shot-one"><img src={heroPosters[0]} alt="" width="480" height="360" decoding="async" fetchpriority="high" /></i>
+            <i class="shot-two"><img src={heroPosters[1]} alt="" width="480" height="360" loading="lazy" decoding="async" /></i>
+            <i class="shot-three"><img src={heroPosters[2]} alt="" width="480" height="360" loading="lazy" decoding="async" /></i>
             <span class="story-line"></span>
           </div>
         </div>
@@ -37,26 +45,29 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
             <div class="core-ring ring-a"></div><div class="core-ring ring-b"></div>
             <div class="core-logo">AI</div>
           </div>
-          <div class="frame-stack" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="frame-stack" aria-hidden="true">
+            <i><img src={heroPosters[1]} alt="" width="480" height="360" loading="lazy" decoding="async" /></i>
+            <i><img src={heroPosters[2]} alt="" width="480" height="360" loading="lazy" decoding="async" /></i>
+            <i><img src={heroPosters[0]} alt="" width="480" height="360" loading="lazy" decoding="async" /></i>
+          </div>
         </div>
       </div>
 
       <div class="vs-panel" data-scene="2">
         <div class="cinema-frame">
-          <div class="cinema-sky"></div><div class="cinema-city"></div><div class="cinema-floor"></div>
-          <div class="cinema-person" aria-hidden="true"><i></i></div>
-          <div class="cinema-product"><span>YOUR<br />BRAND</span></div>
+          <img class="cinema-poster" src={heroPosters[0]} alt="Creavix cinematic video preview" width="480" height="360" decoding="async" fetchpriority="high" />
+          <div class="cinema-player" data-hero-player aria-hidden="true"></div>
           <div class="cinema-light"></div>
           <span class="scene-kicker cinema-kicker">03 · Human-like visual</span>
           <span class="cinema-rec"><i></i> REC</span>
-          <div class="cinema-caption"><strong>Cinematic. Authentic. Different.</strong><small>AI precision × human creative direction</small></div>
+          <div class="cinema-caption"><strong>Cinematic. Authentic. Different.</strong><small>Real Creavix work · AI precision × human direction</small></div>
         </div>
       </div>
 
       <div class="vs-panel" data-scene="3">
         <div class="edit-suite">
           <div class="edit-preview">
-            <div class="edit-shot"><i></i><span></span></div>
+            <img src={heroPosters[2]} alt="" width="480" height="360" loading="lazy" decoding="async" />
             <div class="play-icon" aria-hidden="true"></div>
           </div>
           <div class="edit-controls">
@@ -81,8 +92,8 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
             <strong>One idea.<br />Every screen.</strong>
             <div class="format-row"><span>9:16</span><span>1:1</span><span>16:9</span></div>
           </div>
-          <div class="device phone" aria-hidden="true"><i></i></div>
-          <div class="device desktop" aria-hidden="true"><i></i></div>
+          <div class="device phone" aria-hidden="true"><i style={`background-image:url('${heroPosters[1]}')`}></i></div>
+          <div class="device desktop" aria-hidden="true"><i style={`background-image:url('${heroPosters[0]}')`}></i></div>
         </div>
       </div>
 
@@ -136,6 +147,11 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
   .delivery{position:relative;height:100%;display:grid;place-items:center;background:radial-gradient(circle at center,#1e3a8a,#080d19 65%)}.delivery-rings i{position:absolute;inset:13%;border:1px solid rgba(96,165,250,.2);border-radius:50%;animation:deliveryPulse 3s ease-out infinite}.delivery-rings i:nth-child(2){inset:4%;animation-delay:1s}.delivery-rings i:nth-child(3){inset:-5%;animation-delay:2s}
   .delivery-card{position:relative;z-index:2;width:48%;padding:1rem;border:1px solid rgba(255,255,255,.2);border-radius:16px;background:rgba(15,23,42,.72);box-shadow:0 18px 50px rgba(0,0,0,.35);text-align:center;backdrop-filter:blur(10px)}.delivery-check{width:35px;height:35px;margin:0 auto .55rem;display:grid;place-items:center;border-radius:50%;background:#22c55e;color:#fff;font-weight:900}.delivery-card strong{display:block;margin:.5rem 0;color:#fff;font:800 1.05rem/1.1 Outfit}.format-row{display:flex;gap:.3rem;justify-content:center}.format-row span{padding:.25rem .4rem;border-radius:5px;background:rgba(255,255,255,.09);color:#bfdbfe;font-size:.46rem;font-weight:700}
   .device{position:absolute;border:2px solid rgba(255,255,255,.5);background:#111827;box-shadow:0 10px 30px rgba(0,0,0,.3)}.device i{display:block;position:absolute;inset:5px;border-radius:inherit;background:linear-gradient(145deg,#fbbf24,#db2777 50%,#2563eb)}.device.phone{left:12%;bottom:15%;width:10%;height:38%;border-radius:8px;transform:rotate(-8deg)}.device.desktop{right:8%;top:18%;width:23%;height:36%;border-radius:6px;transform:rotate(6deg)}.device.desktop:after{content:'';position:absolute;left:35%;right:35%;bottom:-20%;height:20%;background:#64748b}
+  .storyboard i,.frame-stack i{overflow:hidden}.storyboard i img,.frame-stack i img{width:100%;height:100%;display:block;object-fit:cover}.storyboard .shot-one,.storyboard .shot-two,.storyboard .shot-three,.frame-stack i{background:#172554}
+  .cinema-poster,.cinema-player,.cinema-player iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0;object-fit:cover}.cinema-poster{z-index:0}.cinema-player{z-index:1;opacity:0;background:#000;pointer-events:none;transition:opacity .4s ease}.cinema-player.is-playing{opacity:1}
+  .cinema-light{z-index:2;pointer-events:none}.cinema-kicker,.cinema-rec,.cinema-caption{z-index:3}.cinema-caption{text-shadow:0 2px 9px rgba(0,0,0,.7)}
+  .edit-preview{background:#0f172a}.edit-preview>img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover}
+  .device i{background-size:cover;background-position:center}
   .vs-corner{position:absolute;width:13px;height:13px;border-color:rgba(255,255,255,.65);border-style:solid;z-index:10}.top-left{left:10px;top:10px;border-width:1px 0 0 1px}.top-right{right:10px;top:10px;border-width:1px 1px 0 0}.bottom-left{left:10px;bottom:10px;border-width:0 0 1px 1px}.bottom-right{right:10px;bottom:10px;border-width:0 1px 1px 0}
   .vs-status{padding:.65rem .8rem .7rem;background:#fff}.vs-progress{height:3px;border-radius:5px;background:#e7ebf2;overflow:hidden}.vs-progress i{display:block;height:100%;width:20%;border-radius:inherit;background:linear-gradient(90deg,#2563eb,#8b5cf6,#ec4899);transition:width .45s ease}
   .vs-step-copy{display:flex;align-items:baseline;gap:.45rem;margin-top:.5rem}.vs-step-copy span{color:#2563eb;font-size:.54rem;font-weight:800}.vs-step-copy strong{color:#0f172a;font-size:.64rem}.vs-quality{display:flex;gap:.35rem;margin-left:auto;justify-content:flex-end;margin-top:-.8rem}.vs-quality span{padding:.2rem .35rem;border-radius:5px;background:#f1f5f9;color:#64748b;font-size:.42rem;font-weight:800}
@@ -152,12 +168,29 @@ const steps = ['Creative brief', 'AI generation', 'Human-like scene', 'Pro editi
   const root=document.querySelector('[data-video-studio]');if(!root)return;
   const scenes=[...root.querySelectorAll('[data-scene]')],buttons=[...root.querySelectorAll('[data-step]')];
   const label=root.querySelector('[data-step-label]'),number=root.querySelector('[data-step-number]'),progress=root.querySelector('[data-progress]');
+  const player=root.querySelector('[data-hero-player]'),videoId=(root.dataset.videoIds||'').split(',')[0];
   const names=['Creative brief','AI generation','Human-like scene','Pro editing','Campaign ready'];
-  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;let index=0,timer=null,visible=true;
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const connection=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+  const allowVideo=!reduced&&!connection?.saveData&&!/2g/.test(connection?.effectiveType||'');
+  let index=0,timer=null,visible=true,playerTimer=null;
+  function mountVideo(){
+    if(!allowVideo||!visible||!player||!videoId||player.firstChild)return;
+    const iframe=document.createElement('iframe');
+    iframe.title='Muted Creavix portfolio video preview';
+    iframe.loading='lazy';
+    iframe.allow='autoplay; encrypted-media; picture-in-picture';
+    iframe.referrerPolicy='strict-origin-when-cross-origin';
+    iframe.style.cssText='position:absolute;inset:0;width:100%;height:100%;display:block;border:0';
+    iframe.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(videoId)+'?autoplay=1&mute=1&controls=0&loop=1&playlist='+encodeURIComponent(videoId)+'&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&origin='+encodeURIComponent(location.origin);
+    iframe.addEventListener('load',()=>player.classList.add('is-playing'),{once:true});
+    player.appendChild(iframe);
+  }
+  function unmountVideo(){clearTimeout(playerTimer);playerTimer=null;if(player){player.classList.remove('is-playing');player.replaceChildren()}}
   function show(next){index=(next+scenes.length)%scenes.length;scenes.forEach((el,i)=>el.classList.toggle('is-active',i===index));buttons.forEach((el,i)=>{el.classList.toggle('is-active',i===index);el.setAttribute('aria-pressed',String(i===index))});number.textContent=String(index+1).padStart(2,'0');label.textContent=names[index];progress.style.width=((index+1)/scenes.length*100)+'%'}
-  function stop(){clearInterval(timer);timer=null}function start(){stop();if(!reduced&&visible)timer=setInterval(()=>show(index+1),2600)}
+  function stop(){clearInterval(timer);timer=null}function start(){stop();if(!reduced&&visible)timer=setInterval(()=>show(index+1),2600);if(allowVideo&&visible&&!playerTimer)playerTimer=setTimeout(mountVideo,1800)}
   buttons.forEach(button=>button.addEventListener('click',()=>{show(Number(button.dataset.step));start()}));
-  if('IntersectionObserver'in window){new IntersectionObserver(entries=>{visible=entries[0]?.isIntersecting??true;visible?start():stop()},{threshold:.15}).observe(root)}else start();
-  document.addEventListener('visibilitychange',()=>{document.hidden?stop():start()});
+  if('IntersectionObserver'in window){new IntersectionObserver(entries=>{visible=entries[0]?.isIntersecting??true;if(visible)start();else{stop();unmountVideo()}},{threshold:.15}).observe(root)}else start();
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){stop();unmountVideo()}else start()});
 })();
 </script>
