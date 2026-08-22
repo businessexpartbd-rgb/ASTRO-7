@@ -24,6 +24,38 @@
         el.classList.add('title-rise');
       });
 
+      /* Global editorial motion hierarchy: hero title -> supporting copy -> actions. */
+      var heroRoots = document.querySelectorAll('.hero, [class*="-hero"], [class*="hero-"]');
+      heroRoots.forEach(function (hero) {
+        var title = hero.querySelector('h1');
+        if (title) {
+          title.classList.remove('title-rise');
+          title.classList.add('motion-hero-title');
+          title.style.setProperty('--motion-delay', '20ms');
+        }
+        hero.querySelectorAll('p:not(.eyebrow), .lead, [class*="subtitle"], [class*="subhead"]').forEach(function (el, i) {
+          if (i > 2 || el.closest('article')) return;
+          el.classList.add('motion-copy');
+          el.style.setProperty('--motion-delay', 80 + Math.min(i, 2) * 45 + 'ms');
+        });
+        hero.querySelectorAll('.btn, [class*="actions"] > a, [class*="actions"] > button').forEach(function (el, i) {
+          el.classList.add('motion-action');
+          el.style.setProperty('--motion-delay', 150 + Math.min(i, 3) * 40 + 'ms');
+        });
+      });
+
+      document.querySelectorAll('section header > p, section [class*="-center"] > p, section [class*="-head"] > p').forEach(function (el, i) {
+        if (el.classList.contains('eyebrow') || el.closest('article')) return;
+        el.classList.add('motion-copy');
+        el.style.setProperty('--motion-delay', Math.min(i % 3, 2) * 35 + 'ms');
+      });
+
+      document.querySelectorAll('main .btn, body > section .btn').forEach(function (el, i) {
+        if (el.classList.contains('motion-action')) return;
+        el.classList.add('motion-action');
+        el.style.setProperty('--motion-delay', Math.min(i % 4, 3) * 35 + 'ms');
+      });
+
       /* Stagger video cards for book-flip */
       document.querySelectorAll('.video-grid').forEach(function (grid) {
         grid.querySelectorAll('.video-card').forEach(function (el, i) {
@@ -31,7 +63,7 @@
         });
       });
 
-      var targets = document.querySelectorAll('.mag-card, .title-rise, .reveal, .reviews-summary, .review-form-card');
+      var targets = document.querySelectorAll('.mag-card, .title-rise, .motion-hero-title, .motion-copy, .motion-action, .reveal, .reviews-summary, .review-form-card');
       var videos = document.querySelectorAll('.video-card');
 
       if (reduce || !('IntersectionObserver' in window)) {
