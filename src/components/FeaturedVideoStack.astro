@@ -44,6 +44,11 @@ const total = videos.length;
               />
               <div class="fvs-player" data-player></div>
 
+              <button type="button" class="fvs-pause" data-pause aria-label={`Pause video ${v.n}`}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+                <span>Pause</span>
+              </button>
+
               <button type="button" class="fvs-play" data-play aria-label={`Play video ${v.n}`}>
                 <span class="fvs-play-ic" aria-hidden="true">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -260,6 +265,27 @@ const total = videos.length;
   .fvs-card.is-playing .fvs-play { display: none !important; }
   .fvs-card.is-playing .fvs-poster { opacity: 0; pointer-events: none; }
   .fvs-card.is-under .fvs-play { display: none !important; }
+  .fvs-pause {
+    position: absolute;
+    z-index: 5;
+    top: 10px;
+    right: 10px;
+    display: none;
+    align-items: center;
+    gap: .3rem;
+    min-height: 38px;
+    padding: .45rem .65rem;
+    border: 1px solid rgba(255,255,255,.32);
+    border-radius: 999px;
+    color: #fff;
+    background: rgba(2,6,23,.72);
+    box-shadow: 0 8px 24px rgba(0,0,0,.22);
+    backdrop-filter: blur(8px);
+    font: 800 .62rem/1 Outfit,system-ui,sans-serif;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  .fvs-card.is-playing .fvs-pause { display: inline-flex; }
 
   .fvs-meta {
     position: absolute;
@@ -343,19 +369,29 @@ const total = videos.length;
   var frontIdx = -1;
   var playing = null;
 
-  function stopCard(card) {
+  function command(card, func) {
+    if (!card) return;
+    var iframe = card.querySelector('[data-player] iframe');
+    if (!iframe || !iframe.contentWindow) return;
+    iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: [] }), '*');
+  }
+
+  function stopCard(card, unload) {
     if (!card) return;
     var p = card.querySelector('[data-player]');
+    command(card, 'pauseVideo');
     if (p) {
       p.classList.remove('is-on');
-      p.innerHTML = '';
+      if (unload) p.innerHTML = '';
     }
     card.classList.remove('is-playing');
     if (playing === card) playing = null;
   }
 
-  function stopAll() {
-    cards.forEach(stopCard);
+  function stopAll(except) {
+    cards.forEach(function (card) {
+      if (card !== except) stopCard(card, true);
+    });
   }
 
   function play(card) {
@@ -364,14 +400,21 @@ const total = videos.length;
     var player = card.querySelector('[data-player]');
     if (!id || !player) return;
 
-    stopAll();
+    stopAll(card);
     playing = card;
     card.classList.add('is-playing');
 
-    /* youtube-nocookie + minimal params = faster start */
+    var existing = player.querySelector('iframe');
+    if (existing) {
+      player.classList.add('is-on');
+      command(card, 'playVideo');
+      return;
+    }
+
+    /* Poster-first loading; the iframe is created only after a real user tap. */
     var src =
       'https://www.youtube-nocookie.com/embed/' + id +
-      '?autoplay=1&rel=0&playsinline=1&modestbranding=1&iv_load_policy=3&enablejsapi=0' +
+      '?autoplay=1&controls=1&rel=0&playsinline=1&modestbranding=1&iv_load_policy=3&enablejsapi=1&fs=1' +
       '&origin=' + encodeURIComponent(location.origin || '');
 
     var iframe = document.createElement('iframe');
@@ -382,6 +425,7 @@ const total = videos.length;
     iframe.setAttribute('allowfullscreen', '');
     iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
     iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    iframe.setAttribute('loading', 'eager');
     iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0';
     player.innerHTML = '';
     player.appendChild(iframe);
@@ -413,7 +457,7 @@ const total = videos.length;
     });
 
     if (idx === frontIdx) return;
-    if (playing && playing !== cards[idx]) stopCard(playing);
+    if (playing && playing !== cards[idx]) stopCard(playing, true);
     frontIdx = idx;
 
     cards.forEach(function (card, i) {
@@ -451,11 +495,23 @@ const total = videos.length;
 
   cards.forEach(function (card) {
     var btn = card.querySelector('[data-play]');
+    var pauseBtn = card.querySelector('[data-pause]');
     if (btn) {
       btn.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
         play(card);
+      }, { passive: false });
+    }
+    if (pauseBtn) {
+      pauseBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        command(card, 'pauseVideo');
+        card.classList.remove('is-playing');
+        playing = null;
+        var resume = card.querySelector('[data-play] .fvs-play-txt');
+        if (resume) resume.textContent = 'Resume video';
       }, { passive: false });
     }
     card.addEventListener('click', function (e) {
@@ -471,7 +527,7 @@ const total = videos.length;
       function (entries) {
         entries.forEach(function (en) {
           if (!en.isIntersecting && en.target.classList.contains('is-playing')) {
-            stopCard(en.target);
+            stopCard(en.target, true);
           }
         });
       },
@@ -481,7 +537,7 @@ const total = videos.length;
   }
 
   document.addEventListener('visibilitychange', function () {
-    if (document.hidden) stopAll();
+    if (document.hidden) stopAll(null);
   });
 })();
 </script>
