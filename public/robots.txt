@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.creavixit.com/sitemap.xml
+Host: www.creavixit.com
