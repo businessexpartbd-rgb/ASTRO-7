@@ -19,7 +19,15 @@ if (!post) {
 const related = BLOG_POSTS.filter((p) => p.slug !== post.slug).slice(0, 3);
 ---
 
-<Layout title={`${post.title} | ${SITE.brand} Blog`} description={post.description}>
+<Layout
+  title={`${post.title} | ${SITE.brand} Blog`}
+  description={post.description}
+  pageType="article"
+  publishedTime={post.date}
+  modifiedTime={post.date}
+  articleSection={post.category}
+  articleTags={post.tags}
+>
   <TopBar />
   <Nav active="blog" />
 
