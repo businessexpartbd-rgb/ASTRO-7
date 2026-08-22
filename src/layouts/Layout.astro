@@ -5,14 +5,113 @@ import { SITE } from '../data/site';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  pageType?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+  articleSection?: string;
+  articleTags?: string[];
 }
 const {
   title = SITE.seoTitle,
   description = SITE.seoDescription,
+  image = '/og-creavix-share-v2.png',
+  pageType = 'website',
+  publishedTime,
+  modifiedTime,
+  articleSection,
+  articleTags = [],
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname || '/', SITE.url).href;
+const socialImage = new URL(image, SITE.url).href;
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const segments = pathname.split('/').filter(Boolean);
+const pageId = `${canonical}#webpage`;
 const perfV = '20260822magnet1';
+
+const compact = (value: string, limit: number) => {
+  if (value.length <= limit) return value;
+  const shortened = value.slice(0, limit + 1);
+  const boundary = shortened.lastIndexOf(' ');
+  return `${shortened.slice(0, boundary > limit * 0.72 ? boundary : limit).replace(/[\s,;:|—-]+$/, '')}…`;
+};
+
+const titleWithoutLongBrand = title
+  .replace(/\s*[|—]\s*Creavix iT Solution Blog$/i, '')
+  .replace(/\s*[|—]\s*Creavix iT Solution$/i, '')
+  .replace(/\s*[|—]\s*Creavix iT$/i, '');
+const searchTitle = compact(title.length > 68 ? titleWithoutLongBrand : title, 68);
+const searchDescription = compact(description, 165);
+
+const labelFor = (segment: string) => segment
+  .replaceAll('-', ' ')
+  .replace(/\b\w/g, (letter) => letter.toUpperCase());
+
+const breadcrumbItems = [
+  { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
+  ...segments.map((segment, index) => ({
+    '@type': 'ListItem',
+    position: index + 2,
+    name: index === segments.length - 1 ? searchTitle : labelFor(segment),
+    item: new URL(`/${segments.slice(0, index + 1).join('/')}/`, SITE.url).href,
+  })),
+];
+
+const webPageType = pathname === '/about'
+  ? 'AboutPage'
+  : pathname === '/contact'
+    ? 'ContactPage'
+    : pathname === '/portfolio' || pathname === '/blog'
+      ? 'CollectionPage'
+      : pageType === 'article'
+        ? 'BlogPosting'
+        : 'WebPage';
+
+const pageSchema: Record<string, unknown> = {
+  '@type': webPageType,
+  '@id': pageId,
+  url: canonical,
+  name: searchTitle,
+  description: searchDescription,
+  isPartOf: { '@id': `${SITE.url}/#website` },
+  about: { '@id': `${SITE.url}/#organization` },
+  primaryImageOfPage: { '@type': 'ImageObject', url: socialImage },
+  inLanguage: 'en-BD',
+  breadcrumb: { '@id': `${canonical}#breadcrumb` },
+};
+
+if (pageType === 'article') {
+  Object.assign(pageSchema, {
+    headline: title.split('|')[0].trim(),
+    image: [socialImage],
+    datePublished: publishedTime,
+    dateModified: modifiedTime || publishedTime,
+    articleSection,
+    keywords: articleTags.join(', '),
+    author: { '@id': `${SITE.url}/#organization` },
+    publisher: { '@id': `${SITE.url}/#organization` },
+    mainEntityOfPage: { '@id': pageId },
+  });
+}
+
+const serviceSchema = pathname.startsWith('/services/') ? {
+  '@type': 'Service',
+  '@id': `${canonical}#service`,
+  name: title.split('|')[0].trim(),
+  description: searchDescription,
+  url: canonical,
+  provider: { '@id': `${SITE.url}/#organization` },
+  areaServed: [
+    { '@type': 'Country', name: 'Bangladesh' },
+    { '@type': 'Place', name: 'Worldwide' },
+  ],
+  availableChannel: {
+    '@type': 'ServiceChannel',
+    serviceUrl: canonical,
+    servicePhone: SITE.hotline,
+  },
+} : null;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -54,8 +153,15 @@ const jsonLd = {
       url: SITE.url,
       name: SITE.brand,
       publisher: { '@id': `${SITE.url}/#organization` },
-      inLanguage: 'en',
+      inLanguage: ['en-BD', 'bn-BD'],
     },
+    pageSchema,
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonical}#breadcrumb`,
+      itemListElement: breadcrumbItems,
+    },
+    ...(serviceSchema ? [serviceSchema] : []),
   ],
 };
 ---
@@ -71,13 +177,16 @@ const jsonLd = {
     <meta name="theme-color" content="#2563EB" />
     <meta name="color-scheme" content="light" />
     <meta name="format-detection" content="telephone=no" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <title>{searchTitle}</title>
+    <meta name="description" content={searchDescription} />
     <meta name="keywords" content={SITE.seoKeywords} />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="author" content={SITE.brand} />
-    <meta name="googlebot" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
+    <link rel="alternate" hreflang="en-BD" href={canonical} />
 
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -93,23 +202,29 @@ const jsonLd = {
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={pageType} />
     <meta property="og:site_name" content={SITE.brand} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={searchTitle} />
+    <meta property="og:description" content={searchDescription} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:image" content={`${SITE.url}/og-creavix-share-v2.png`} />
-    <meta property="og:image:secure_url" content={`${SITE.url}/og-creavix-share-v2.png`} />
+    <meta property="og:locale" content="en_BD" />
+    <meta property="og:locale:alternate" content="bn_BD" />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:secure_url" content={socialImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:alt" content={`${SITE.brand} — Video Editing and Digital Solutions`} />
+    {pageType === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {pageType === 'article' && (modifiedTime || publishedTime) && <meta property="article:modified_time" content={modifiedTime || publishedTime} />}
+    {pageType === 'article' && articleSection && <meta property="article:section" content={articleSection} />}
+    {pageType === 'article' && articleTags.map((tag) => <meta property="article:tag" content={tag} />)}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${SITE.url}/og-creavix-share-v2.png`} />
-    <link rel="image_src" href={`${SITE.url}/og-creavix-share-v2.png`} />
+    <meta name="twitter:title" content={searchTitle} />
+    <meta name="twitter:description" content={searchDescription} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={`${SITE.brand} — Video Editing and Digital Solutions`} />
+    <link rel="image_src" href={socialImage} />
 
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
     <noscript>
