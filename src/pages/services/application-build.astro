@@ -104,37 +104,62 @@ const faqs = [
 
   <!-- HERO -->
   <section class="app-hero">
+    <div class="app-hero-atmosphere" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="container app-hero-grid">
       <div class="app-hero-copy">
-        <h1>Share Ultimate Productivity with Mobile App</h1>
+        <div class="app-hero-kicker"><span></span>Application Engineering Studio</div>
+        <h1>We Build Apps That Feel <em>Effortless.</em></h1>
         <p>
-          Stay connected with real-time information, collaborate on projects
-          effortlessly, and share files efficiently. This tool amplifies your
-          workflow for maximum efficiency — whether you’re managing tasks or
-          communicating with your team.
+          From the first product idea to a secure, production-ready launch—we design
+          fast mobile and web applications that users understand instantly and
+          businesses can scale confidently.
         </p>
-        <div class="app-hero-actions">
-          <a class="btn btn-wa" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          <a class="btn btn-assess" href="/contact">Get Free Assessment</a>
+        <div class="app-hero-proof" aria-label="Application development capabilities">
+          <span><i>✓</i> Android &amp; iOS</span>
+          <span><i>✓</i> Web Applications</span>
+          <span><i>✓</i> Secure Cloud</span>
         </div>
+        <div class="app-hero-actions">
+          <a class="btn btn-assess" href="/contact">Plan Your Application <span>→</span></a>
+          <a class="btn btn-wa" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
+        <p class="app-hero-micro"><span></span>Strategy · UI/UX · Development · Deployment</p>
       </div>
-      <div class="app-hero-visual" aria-hidden="true">
-        <div class="phone-stack">
-          <div class="phone p1">
-            <div class="phone-screen">
-              <div class="ui-bar"></div>
-              <div class="ui-card"></div>
-              <div class="ui-row"><i></i><i></i></div>
-              <div class="ui-cta"></div>
+      <div class="app-hero-visual" aria-label="Animated application design and development preview" role="img">
+        <div class="app-studio">
+          <div class="studio-topbar">
+            <span class="studio-dots"><i></i><i></i><i></i></span>
+            <span class="studio-title">CREAVIX · APP STUDIO</span>
+            <span class="studio-live"><i></i> Live build</span>
+          </div>
+          <div class="studio-canvas">
+            <div class="code-panel">
+              <div class="code-head"><span>app.tsx</span><i>●</i></div>
+              <div class="code-lines">
+                <b style="--w:74%"></b><b style="--w:88%"></b><b style="--w:60%"></b>
+                <b style="--w:78%"></b><b style="--w:48%"></b><b style="--w:68%"></b>
+              </div>
+              <div class="build-status"><i>✓</i><span><b>Production ready</b><small>Performance · Security · SEO</small></span></div>
+            </div>
+            <div class="device-stage">
+              <div class="device-glow"></div>
+              <div class="app-phone">
+                <div class="app-phone-speaker"></div>
+                <div class="app-phone-screen">
+                  <div class="mobile-head"><span>9:41</span><i>● ● ●</i></div>
+                  <div class="mobile-welcome"><small>Good morning</small><strong>Your business</strong></div>
+                  <div class="mobile-balance"><span>Performance</span><strong>+38.6%</strong><div><i></i></div></div>
+                  <div class="mobile-grid"><i></i><i></i><i></i><i></i></div>
+                  <div class="mobile-nav"><i></i><i></i><i></i><i></i></div>
+                </div>
+              </div>
+              <div class="orbit orbit-flutter"><span>F</span><b>Flutter</b></div>
+              <div class="orbit orbit-react"><span>⚛</span><b>React</b></div>
+              <div class="orbit orbit-cloud"><span>☁</span><b>Cloud</b></div>
+              <div class="orbit orbit-secure"><span>✓</span><b>Secure</b></div>
             </div>
           </div>
-          <div class="phone p2">
-            <div class="phone-screen dark">
-              <div class="ui-bar light"></div>
-              <div class="ui-stat">$10,315</div>
-              <div class="ui-chart"></div>
-            </div>
-          </div>
+          <div class="studio-progress"><span class="active"><i>1</i>Idea</span><b></b><span class="active"><i>2</i>Design</span><b></b><span class="active"><i>3</i>Build</span><b></b><span><i>4</i>Launch</span></div>
         </div>
       </div>
     </div>
@@ -395,56 +420,46 @@ const faqs = [
 
 <style>
   .app-hero {
-    padding: 5rem 1.25rem 3.5rem;
-    background: linear-gradient(180deg, #FFF5F7, #FFF9F0 50%, #fff);
+    position:relative;isolation:isolate;overflow:hidden;padding:clamp(3.5rem,7vw,6.8rem) 1.25rem clamp(4rem,7vw,6rem);
+    background:radial-gradient(circle at 82% 15%,rgba(99,102,241,.14),transparent 29%),radial-gradient(circle at 8% 82%,rgba(14,165,233,.1),transparent 28%),linear-gradient(135deg,#fbfdff 0%,#f6f8ff 52%,#fff 100%);
   }
+  .app-hero:before{content:'';position:absolute;z-index:-2;inset:0;background-image:linear-gradient(rgba(37,99,235,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.035) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,#000,transparent 88%)}
+  .app-hero-atmosphere i{position:absolute;z-index:-1;border-radius:50%;filter:blur(1px);pointer-events:none}.app-hero-atmosphere i:nth-child(1){width:360px;height:360px;right:-120px;top:-110px;background:rgba(79,70,229,.08)}.app-hero-atmosphere i:nth-child(2){width:240px;height:240px;left:-100px;bottom:-90px;background:rgba(6,182,212,.08)}.app-hero-atmosphere i:nth-child(3){width:8px;height:8px;left:48%;top:15%;background:#6366f1;box-shadow:90px 80px 0 #22c55e,-80px 180px 0 #38bdf8,230px 310px 0 #f59e0b}
   .app-hero-grid {
-    display: grid; gap: 2.5rem; align-items: center;
+    display:grid;gap:clamp(2.5rem,6vw,5rem);align-items:center;min-width:0;
   }
   @media (min-width: 900px) {
-    .app-hero-grid { grid-template-columns: 1.1fr 0.9fr; }
+    .app-hero-grid {grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr)}
   }
+  .app-hero-copy{position:relative;z-index:2;min-width:0}.app-hero-kicker{display:inline-flex;align-items:center;gap:.5rem;margin-bottom:1rem;padding:.42rem .72rem;border:1px solid rgba(37,99,235,.13);border-radius:999px;background:rgba(255,255,255,.76);color:#2563eb;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 8px 30px rgba(37,99,235,.07)}.app-hero-kicker span{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 5px rgba(34,197,94,.12)}
   .app-hero-copy h1 {
-    margin: 0 0 1rem;
-    font-family: var(--font-h), system-ui, sans-serif;
-    font-size: clamp(1.85rem, 4vw, 2.75rem);
-    font-weight: 800; line-height: 1.15; letter-spacing: -0.03em; color: #0F172A;
+    max-width:700px;margin:0 0 1.15rem;font-family:var(--font-h),system-ui,sans-serif;font-size:clamp(2.35rem,5.8vw,4.8rem);font-weight:800;line-height:.98;letter-spacing:-.055em;color:#0b0f19;text-wrap:balance;
   }
+  .app-hero-copy h1 em{position:relative;color:#2563eb;font-style:normal;white-space:nowrap}.app-hero-copy h1 em:after{content:'';position:absolute;left:2%;right:2%;bottom:-.08em;height:.09em;border-radius:999px;background:linear-gradient(90deg,#2563eb,#8b5cf6,#22c55e);transform-origin:left;animation:app-line 1.1s .3s both cubic-bezier(.16,1,.3,1)}
   .app-hero-copy p {
-    margin: 0 0 1.5rem; color: #475569; line-height: 1.7; font-size: 1.05rem; max-width: 34rem;
+    margin:0 0 1.4rem;color:#526178;line-height:1.75;font-size:clamp(.96rem,1.5vw,1.08rem);max-width:38rem;
   }
-  .app-hero-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+  .app-hero-proof{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.35rem}.app-hero-proof span{display:inline-flex;align-items:center;gap:.38rem;padding:.4rem .62rem;border:1px solid rgba(15,23,42,.08);border-radius:999px;background:rgba(255,255,255,.75);color:#334155;font-size:.68rem;font-weight:750}.app-hero-proof i{display:grid;place-items:center;width:15px;height:15px;border-radius:50%;background:#dcfce7;color:#15803d;font-size:.55rem;font-style:normal}
+  .app-hero-actions{display:flex;flex-wrap:wrap;gap:.65rem}.app-hero-actions .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:48px;box-shadow:0 12px 28px rgba(15,23,42,.09)}
   .btn-wa {
-    background: #22C55E; color: #fff; border: none; border-radius: 999px;
-    padding: 0.75rem 1.35rem; font-weight: 700; text-decoration: none;
+    background:#fff;color:#0f766e;border:1px solid rgba(15,118,110,.18);border-radius:14px;padding:.78rem 1.25rem;font-weight:800;text-decoration:none;
   }
-  .btn-wa:hover { background: #16A34A; }
+  .btn-wa:hover{background:#ecfdf5;color:#115e59;transform:translateY(-2px)}
   .btn-assess {
-    background: #2563EB; color: #fff; border: none; border-radius: 999px;
-    padding: 0.75rem 1.35rem; font-weight: 700; text-decoration: none;
+    background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff;border:none;border-radius:14px;padding:.78rem 1.25rem;font-weight:800;text-decoration:none;
   }
-  .btn-assess:hover { background: #1D4ED8; }
+  .btn-assess:hover{background:linear-gradient(135deg,#1d4ed8,#4338ca);color:#fff;transform:translateY(-2px)}.app-hero-micro{display:flex;align-items:center;gap:.45rem;margin:.9rem 0 0!important;color:#94a3b8!important;font-size:.68rem!important;font-weight:700}.app-hero-micro span{width:26px;height:1px;background:#cbd5e1}
 
-  .phone-stack { position: relative; height: 320px; display: grid; place-items: center; }
-  .phone {
-    position: absolute; width: 150px; height: 280px; border-radius: 28px;
-    background: #0F172A; padding: 10px; box-shadow: 0 24px 50px rgba(15,23,42,.25);
-  }
-  .phone.p1 { left: 12%; transform: rotate(-8deg); }
-  .phone.p2 { right: 12%; transform: rotate(8deg); background: #1E293B; }
-  .phone-screen {
-    height: 100%; border-radius: 20px; background: linear-gradient(160deg, #EFF6FF, #F8FAFC);
-    padding: 12px; display: flex; flex-direction: column; gap: 10px;
-  }
-  .phone-screen.dark { background: linear-gradient(160deg, #0F172A, #1E3A8A); }
-  .ui-bar { height: 10px; border-radius: 6px; background: rgba(37,99,235,.2); }
-  .ui-bar.light { background: rgba(255,255,255,.2); }
-  .ui-card { height: 70px; border-radius: 12px; background: #fff; border: 1px solid rgba(15,23,42,.06); }
-  .ui-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .ui-row i { display: block; height: 40px; border-radius: 8px; background: #fff; border: 1px solid rgba(15,23,42,.06); }
-  .ui-cta { margin-top: auto; height: 28px; border-radius: 999px; background: #2563EB; width: 70%; }
-  .ui-stat { color: #fff; font-weight: 800; font-size: 1.1rem; margin-top: 1rem; }
-  .ui-chart { flex: 1; margin-top: 1rem; border-radius: 12px; background: linear-gradient(180deg, rgba(96,165,250,.4), transparent); }
+  .app-hero-visual{position:relative;min-width:0;width:100%;perspective:1400px}.app-studio{position:relative;width:min(100%,680px);margin-inline:auto;overflow:hidden;border:1px solid rgba(30,64,175,.13);border-radius:28px;background:rgba(255,255,255,.86);box-shadow:0 45px 100px rgba(30,64,175,.17),0 10px 30px rgba(15,23,42,.08),inset 0 1px 0 #fff;backdrop-filter:blur(18px);transform:rotateY(-2deg) rotateX(1deg);transform-origin:center;animation:studio-enter 1s both cubic-bezier(.16,1,.3,1)}.app-studio:after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 25%,rgba(255,255,255,.6) 46%,transparent 62%);transform:translateX(-120%);animation:studio-shine 7s 1.3s infinite}
+  .studio-topbar{display:flex;align-items:center;justify-content:space-between;gap:.5rem;height:46px;padding:0 .9rem;border-bottom:1px solid rgba(15,23,42,.07);background:rgba(248,250,252,.85)}.studio-dots{display:flex;gap:5px}.studio-dots i{width:7px;height:7px;border-radius:50%;background:#fb7185}.studio-dots i:nth-child(2){background:#fbbf24}.studio-dots i:nth-child(3){background:#22c55e}.studio-title{color:#475569;font-size:.59rem;font-weight:900;letter-spacing:.13em}.studio-live{display:flex;align-items:center;gap:.3rem;color:#15803d;font-size:.57rem;font-weight:800}.studio-live i{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.12);animation:live-pulse 1.8s infinite}
+  .studio-canvas{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);min-height:390px;background:radial-gradient(circle at 75% 50%,rgba(99,102,241,.11),transparent 35%),linear-gradient(135deg,#f8fbff,#f4f7ff)}.code-panel{display:flex;flex-direction:column;gap:1rem;padding:1rem;border-right:1px solid rgba(15,23,42,.07);background:rgba(255,255,255,.48)}.code-head{display:flex;align-items:center;justify-content:space-between;padding:.55rem .65rem;border-radius:10px;background:#0b1220;color:#cbd5e1;font-size:.62rem;font-weight:800}.code-head i{color:#22c55e;font-style:normal}.code-lines{display:grid;gap:.58rem;padding:.8rem .45rem}.code-lines b{display:block;width:var(--w);height:6px;border-radius:9px;background:linear-gradient(90deg,#60a5fa 0 24%,#c4b5fd 24% 56%,#dbeafe 56%);transform-origin:left;animation:code-write 3.4s infinite both}.code-lines b:nth-child(2){animation-delay:.15s}.code-lines b:nth-child(3){animation-delay:.3s}.code-lines b:nth-child(4){animation-delay:.45s}.code-lines b:nth-child(5){animation-delay:.6s}.code-lines b:nth-child(6){animation-delay:.75s}.build-status{display:flex;align-items:center;gap:.55rem;margin-top:auto;padding:.65rem;border:1px solid rgba(34,197,94,.15);border-radius:12px;background:rgba(240,253,244,.86)}.build-status>i{display:grid;place-items:center;width:24px;height:24px;flex:0 0 24px;border-radius:50%;background:#22c55e;color:#fff;font-style:normal;font-weight:900}.build-status span{display:grid;gap:.1rem}.build-status b{color:#166534;font-size:.62rem}.build-status small{color:#65a30d;font-size:.46rem}
+  .device-stage{position:relative;display:grid;place-items:center;min-width:0;padding:1.4rem}.device-glow{position:absolute;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.25),rgba(139,92,246,.08) 48%,transparent 70%);filter:blur(3px);animation:glow-breathe 4s infinite}.app-phone{position:relative;z-index:2;width:168px;height:338px;padding:7px;border:1px solid rgba(255,255,255,.25);border-radius:31px;background:linear-gradient(145deg,#111827,#020617);box-shadow:0 28px 55px rgba(15,23,42,.3),inset 0 0 0 1px rgba(255,255,255,.08);animation:phone-float 5s ease-in-out infinite}.app-phone-speaker{position:absolute;z-index:3;top:11px;left:50%;width:44px;height:5px;border-radius:8px;background:#020617;transform:translateX(-50%)}.app-phone-screen{position:relative;overflow:hidden;height:100%;padding:1rem .65rem .6rem;border-radius:24px;background:linear-gradient(165deg,#fff,#eef4ff)}.mobile-head{display:flex;justify-content:space-between;color:#64748b;font-size:.42rem;font-weight:800}.mobile-head i{font-style:normal;letter-spacing:1px}.mobile-welcome{display:grid;gap:.08rem;margin-top:1.2rem}.mobile-welcome small{color:#94a3b8;font-size:.48rem}.mobile-welcome strong{color:#0f172a;font-size:.82rem}.mobile-balance{margin-top:.65rem;padding:.65rem;border-radius:14px;background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff;box-shadow:0 12px 24px rgba(37,99,235,.22)}.mobile-balance span{display:block;font-size:.42rem;opacity:.8}.mobile-balance strong{display:block;margin:.15rem 0 .4rem;font-size:1.05rem}.mobile-balance div{height:24px;border-bottom:1px solid rgba(255,255,255,.28);overflow:hidden}.mobile-balance div i{display:block;width:130%;height:25px;border:2px solid #a7f3d0;border-color:#a7f3d0 transparent transparent;border-radius:50%;transform:rotate(-8deg) translate(-5px,10px)}.mobile-grid{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;margin-top:.55rem}.mobile-grid i{height:54px;border:1px solid rgba(15,23,42,.06);border-radius:11px;background:#fff;box-shadow:0 5px 15px rgba(15,23,42,.05)}.mobile-grid i:before{content:'';display:block;width:18px;height:18px;margin:8px;border-radius:6px;background:#dbeafe}.mobile-grid i:nth-child(2):before{background:#ede9fe}.mobile-grid i:nth-child(3):before{background:#dcfce7}.mobile-grid i:nth-child(4):before{background:#ffedd5}.mobile-nav{position:absolute;left:.6rem;right:.6rem;bottom:.55rem;display:flex;justify-content:space-around;padding:.55rem;border-radius:12px;background:rgba(255,255,255,.92);box-shadow:0 -5px 18px rgba(15,23,42,.06)}.mobile-nav i{width:12px;height:3px;border-radius:4px;background:#cbd5e1}.mobile-nav i:first-child{background:#2563eb}
+  .orbit{position:absolute;z-index:3;display:flex;align-items:center;gap:.35rem;padding:.38rem .52rem;border:1px solid rgba(15,23,42,.08);border-radius:11px;background:rgba(255,255,255,.91);box-shadow:0 12px 28px rgba(15,23,42,.12);backdrop-filter:blur(8px);font-size:.52rem;animation:orbit-float 4s ease-in-out infinite}.orbit span{display:grid;place-items:center;width:21px;height:21px;border-radius:7px;background:#eef2ff;color:#4f46e5;font-weight:900}.orbit b{color:#334155}.orbit-flutter{left:3%;top:16%}.orbit-react{right:1%;top:22%;animation-delay:-1s}.orbit-cloud{left:0;bottom:18%;animation-delay:-2s}.orbit-secure{right:2%;bottom:14%;animation-delay:-3s}.orbit-secure span{background:#dcfce7;color:#15803d}.orbit-cloud span{background:#e0f2fe;color:#0284c7}
+  .studio-progress{display:flex;align-items:center;justify-content:center;gap:.35rem;min-height:52px;padding:.6rem .8rem;border-top:1px solid rgba(15,23,42,.06);background:#fff}.studio-progress span{display:flex;align-items:center;gap:.25rem;color:#94a3b8;font-size:.5rem;font-weight:800}.studio-progress span i{display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:#f1f5f9;font-style:normal}.studio-progress .active{color:#2563eb}.studio-progress .active i{background:#dbeafe}.studio-progress b{width:clamp(12px,3vw,34px);height:2px;border-radius:3px;background:linear-gradient(90deg,#60a5fa,#c4b5fd)}
+  @keyframes studio-enter{from{opacity:0;transform:translateY(35px) rotateY(-8deg) rotateX(3deg) scale(.96)}to{opacity:1;transform:rotateY(-2deg) rotateX(1deg) scale(1)}}@keyframes app-line{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes studio-shine{0%,70%{transform:translateX(-130%)}88%,100%{transform:translateX(130%)}}@keyframes live-pulse{50%{box-shadow:0 0 0 7px rgba(34,197,94,0)}}@keyframes code-write{0%,18%{transform:scaleX(.12);opacity:.35}45%,90%{transform:scaleX(1);opacity:1}100%{opacity:.45}}@keyframes phone-float{50%{transform:translateY(-8px) rotate(.6deg)}}@keyframes glow-breathe{50%{transform:scale(1.12);opacity:.75}}@keyframes orbit-float{50%{transform:translateY(-7px)}}
+  @media(max-width:639px){.app-hero{padding:2.5rem .8rem 3.5rem}.app-hero-grid{gap:2rem}.app-hero-copy{text-align:center}.app-hero-kicker{font-size:.58rem}.app-hero-copy h1{font-size:clamp(2.15rem,11.2vw,3.15rem);line-height:1.01}.app-hero-copy p{margin-inline:auto;font-size:.92rem;line-height:1.65}.app-hero-proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.3rem}.app-hero-proof span{min-width:0;justify-content:center;padding:.35rem .18rem;font-size:clamp(.5rem,2.5vw,.61rem);white-space:nowrap}.app-hero-proof i{display:none}.app-hero-actions{display:grid;grid-template-columns:1.35fr .8fr;gap:.4rem}.app-hero-actions .btn{min-width:0;width:100%;min-height:44px;padding:.62rem .4rem;border-radius:12px;font-size:.68rem}.app-hero-micro{justify-content:center;font-size:.56rem!important}.app-hero-micro span{display:none}.app-studio{border-radius:20px;transform:none}.studio-topbar{height:40px;padding:0 .65rem}.studio-title{font-size:.5rem}.studio-live{font-size:.48rem}.studio-canvas{grid-template-columns:1fr;min-height:365px}.code-panel{display:none}.device-stage{min-height:365px;padding:1rem}.app-phone{width:155px;height:315px}.orbit-flutter{left:4%;top:18%}.orbit-react{right:3%;top:22%}.orbit-cloud{left:3%;bottom:17%}.orbit-secure{right:3%;bottom:13%}.studio-progress{gap:.2rem;padding:.5rem .35rem}.studio-progress b{width:10px}.studio-progress span{font-size:.45rem}.studio-progress span i{width:15px;height:15px}}
+  @media(min-width:640px) and (max-width:899px){.app-hero-copy{text-align:center;max-width:700px;margin-inline:auto}.app-hero-copy p{margin-inline:auto}.app-hero-proof,.app-hero-actions{justify-content:center}.app-hero-micro{justify-content:center}.app-studio{max-width:650px}}
+  @media(prefers-reduced-motion:reduce){.app-studio,.app-studio:after,.app-hero-copy h1 em:after,.studio-live i,.code-lines b,.app-phone,.device-glow,.orbit{animation:none!important}.app-studio{transform:none}}
 
   .app-sec { padding: 3.5rem 1.25rem; background: #fff; }
   .app-sec.alt { background: #F8FAFC; }
