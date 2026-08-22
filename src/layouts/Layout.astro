@@ -12,7 +12,6 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname || '/', SITE.url).href;
-const favVersion = '20260821f2';
 const perfV = '20260822magnet1';
 
 const jsonLd = {
@@ -23,7 +22,7 @@ const jsonLd = {
       '@id': `${SITE.url}/#organization`,
       name: SITE.brand,
       url: SITE.url,
-      logo: `${SITE.url}/logo.png`,
+      logo: `${SITE.url}/favicon-512.png`,
       image: `${SITE.url}/og-creavix.png`,
       description: SITE.seoDescription,
       email: SITE.email1,
@@ -88,9 +87,11 @@ const jsonLd = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
 
-    <link rel="icon" type="image/svg+xml" href={`/favicon.svg?v=${favVersion}`} />
-    <link rel="shortcut icon" type="image/svg+xml" href={`/favicon.svg?v=${favVersion}`} />
-    <link rel="apple-touch-icon" href={`/logo.png?v=${favVersion}`} />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.brand} />
