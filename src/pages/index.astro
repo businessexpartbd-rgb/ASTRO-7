@@ -41,12 +41,12 @@ const aiTools = [
   { name: 'HeyGen', role: 'Avatar video', icon: '/ai-tools/heygen.webp', href: 'https://www.heygen.com/' },
 ];
 const devToolTeaser = [
-  { name: 'v0', icon: 'https://v0.dev/favicon.ico' },
+  { name: 'v0', icon: '/logos/v0.svg' },
   { name: 'Lovable', icon: 'https://lovable.dev/favicon.ico' },
-  { name: 'Bolt', icon: 'https://bolt.new/favicon.ico' },
-  { name: 'Replit', icon: 'https://replit.com/favicon.ico' },
+  { name: 'Bolt', icon: '/logos/bolt.svg' },
+  { name: 'Replit', icon: '/logos/replit.svg' },
   { name: 'Base44', icon: 'https://base44.com/favicon.ico' },
-  { name: 'Cursor', icon: 'https://cursor.com/favicon.ico' },
+  { name: 'Cursor', icon: '/logos/cursor.svg' },
 ];
 ---
 <Layout title={SITE.seoTitle} description={SITE.seoDescription}>
@@ -172,7 +172,7 @@ const devToolTeaser = [
         </div>
         <div class="dev-stack-logos" aria-label="Selected AI development platforms">
           {devToolTeaser.map((tool) => (
-            <span class="dev-stack-chip"><span><img src={tool.icon} alt="" width="30" height="30" loading="lazy" decoding="async" /></span><b>{tool.name}</b></span>
+            <span class="dev-stack-chip"><span><img src={tool.icon} alt={`${tool.name} official logo`} width="30" height="30" loading="lazy" decoding="async" /></span><b>{tool.name}</b></span>
           ))}
         </div>
         <a class="dev-stack-link" href="/services/web-development#ai-builders">Explore our development stack <span aria-hidden="true">→</span></a>
