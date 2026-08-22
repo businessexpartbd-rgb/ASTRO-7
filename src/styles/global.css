@@ -87,7 +87,11 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: var(--primary) var(--soft-gray);
+  max-width: 100%;
+  overflow-x: clip;
 }
+
+body { max-width: 100%; overflow-x: clip; }
 
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--soft-gray); }
@@ -796,6 +800,8 @@ footer .logo span {
     max-width: 100%;
     justify-items: center;
     gap: 1.25rem;
+    min-width: 0;
+    overflow: clip;
   }
 
   .hero-grid-orbit .hero-content,
@@ -810,8 +816,9 @@ footer .logo span {
   }
 
   .hero-grid-orbit .hero-visual-frame {
-    width: min(100%, 430px);
+    width: min(100%, 380px);
     margin-inline: auto;
+    min-width: 0;
   }
 
   .hero-content .flex-btns {
