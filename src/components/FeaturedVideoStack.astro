@@ -382,7 +382,11 @@ const total = videos.length;
     command(card, 'pauseVideo');
     if (p) {
       p.classList.remove('is-on');
-      if (unload) p.innerHTML = '';
+      if (unload) {
+        p.innerHTML = '';
+        var resetLabel = card.querySelector('[data-play] .fvs-play-txt');
+        if (resetLabel) resetLabel.textContent = 'Play with sound';
+      }
     }
     card.classList.remove('is-playing');
     if (playing === card) playing = null;
@@ -508,6 +512,8 @@ const total = videos.length;
         e.preventDefault();
         e.stopPropagation();
         command(card, 'pauseVideo');
+        var player = card.querySelector('[data-player]');
+        if (player) player.classList.remove('is-on');
         card.classList.remove('is-playing');
         playing = null;
         var resume = card.querySelector('[data-play] .fvs-play-txt');
