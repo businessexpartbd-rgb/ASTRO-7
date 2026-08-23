@@ -19,7 +19,7 @@ export const SITE = {
   email1: 'info@creavixit.com',
   email2: 'creavixbd@gmail.com',
   address: 'Hemayetpur, Savar, Dhaka, 1340, Bangladesh',
-  addressBn: 'হেমায়েতপুর, সাভার, ঢাকা, ১৩৪০',
+  addressBn: 'Hemayetpur, Savar, Dhaka 1340',
   servingSince: 2014,
   founder: {
     name: 'Hannan Khan',
@@ -41,7 +41,7 @@ export const SHOWCASES = [
   {
     id: 'cinematic',
     title: 'Cinematic Storytelling',
-    titleBn: 'সিনেম্যাটিক স্টোরিটেলিং',
+    titleBn: 'Cinematic Storytelling',
     sub: 'Story-driven brand films that move audiences and build emotional trust.',
     format: 'landscape' as const,
     ids: ['Tu9qAT9c2Ek', 'rlY4Ih68DHM', 'FvWyFDNAAPY', '6RaKnCSXZhM', '4ryJaLx6o0k', 'UlNoCAs69vg'],
@@ -49,7 +49,7 @@ export const SHOWCASES = [
   {
     id: 'product-ai',
     title: 'Product AI Promotional Ads',
-    titleBn: 'এআই প্রোডাক্ট প্রমোশনাল অ্যাড',
+    titleBn: 'AI Product Promotional Ad',
     sub: 'AI-powered product promos engineered for conversion across paid social.',
     format: 'short' as const,
     ids: ['rQk_sPwkDwU', '3U3-3IgbPQc', 'zaFsO8fv2iA', 'KU7j0JhzJKI', 'tooCPxc0pnY', 'DO-SisqDTY4'],
@@ -57,7 +57,7 @@ export const SHOWCASES = [
   {
     id: 'financial',
     title: 'Financial Video Ads',
-    titleBn: 'ফাইন্যান্সিয়াল ভিডিও অ্যাড',
+    titleBn: 'Financial Video Ad',
     sub: 'Trust-first ads for banks, MFS, insurance and fintech brands.',
     format: 'short' as const,
     ids: ['Q67-Nq-fPe0', '0baTxFVpSyo', '7knZkqenPII', 'dM6YLCGOOX4', '6n2y_nrRahM', 'QdPW3bDFc5I'],
@@ -65,7 +65,7 @@ export const SHOWCASES = [
   {
     id: 'brand',
     title: 'Product & Brand Ads',
-    titleBn: 'প্রোডাক্ট ও ব্র্যান্ড অ্যাড',
+    titleBn: 'Product and Brand Ad',
     sub: 'High-impact creatives for product launches and brand campaigns.',
     format: 'short' as const,
     ids: ['xwGjL_XnzDU', 'boFvTomIRrQ', 'xxXjRLIL7Xc', '6EKnfroWXQE', 'h0cnhVfsXhU', 'MtgdKWMRAPI'],
@@ -73,7 +73,7 @@ export const SHOWCASES = [
   {
     id: 'custom',
     title: 'Custom Projects',
-    titleBn: 'কাস্টম ভিডিও প্রজেক্ট',
+    titleBn: 'Custom Video Project',
     sub: 'Tailored campaigns for unique client requests, formats and industries.',
     format: 'landscape' as const,
     ids: ['HOnXRgkC-2Q', 'DjXhq-ScyE8', '7iJumW6HROQ', 'eEqeRIsI9oQ', 'KxFQv4M-bow', 'Szel9WlwaS8'],

@@ -99,36 +99,36 @@ const algo = [
 
 const faqs = [
   {
-    q: 'Boosting আর Campaign-এর আসল পার্থক্য কী?',
-    a: 'Boosting সাধারণত একটি পোস্ট/রিলকে টার্গেট অডিয়েন্সের কাছে পৌঁছে দেয় — দ্রুত ও সহজ। Campaign মানে উদ্দেশ্য, অডিয়েন্স, প্লেসমেন্ট, ক্রিয়েটিভ টেস্ট এবং অপটিমাইজেশনসহ পুরো পরিকল্পনা — Facebook/Instagram এবং প্রয়োজনে YouTube একসাথে।',
+    q: 'What is the difference between boosting and campaign management?',
+    a: 'Boosting quickly distributes a post or reel to a selected audience. Campaign management coordinates objectives, audiences, placements, creative testing and optimization across Meta and, when required, YouTube.',
   },
   {
-    q: 'সর্বনিম্ন বাজেট কত?',
-    a: 'টেস্ট বুস্ট প্রায় $5 থেকে শুরু করা যায়। ক্যাম্পেইনের জন্য লক্ষ্য অনুযায়ী বাজেট বাড়ানো হয় যাতে ডেটা শেখার মতো যথেষ্ট হয়।',
+    q: 'What is the minimum budget?',
+    a: 'A small boost test can begin around $5. Managed campaigns need enough budget to generate meaningful learning data for the chosen objective.',
   },
   {
-    q: 'ডলার রেট কেন মার্কেটের চেয়ে বেশি?',
-    a: 'সার্ভিস রেটে ট্যাক্স ও পেমেন্ট/ব্যাংক খরচ ধরা হয়। মার্কেটে ডলার এক দামে দেখা গেলেও ব্যাংক/গেটওয়ে প্রায়ই অতিরিক্ত কেটে — কখনো ঘোষিত ~৮%, বাস্তবে কিছু ক্ষেত্রে আরও বেশি (এমনকি ~১৫% পর্যন্ত ভিন্ন চার্জের অভিযোগ থাকে)। তাই ক্লায়েন্টের চূড়ান্ত BDT রেট মার্কেট স্পটের চেয়ে উঁচুতে সেট করা হয় যাতে হিসাব স্বচ্ছ থাকে।',
+    q: 'Why can the billed exchange rate exceed the market rate?',
+    a: 'The service rate includes applicable taxes and payment or banking costs. The final BDT rate is shown transparently before confirmation and may therefore differ from the market spot rate.',
   },
   {
-    q: 'রেট কি প্রতিদিন বদলায়?',
-    a: 'হ্যাঁ। পেজের ক্যালকুলেটর মার্কেট USD/BDT রেফারেন্স নিয়ে আমাদের ফর্মুলা (মার্কেট × ১৫০/১২২) প্রয়োগ করে সার্ভিস রেট দেখায়। API না পেলে ফলব্যাক ভ্যালু ব্যবহার হয়।',
+    q: 'Can the rate change daily?',
+    a: 'Yes. The calculator uses a current USD/BDT reference and applies the displayed service-rate formula. A fallback value is used if the external reference is unavailable.',
   },
   {
-    q: 'YouTube ক্যাম্পেইন কি আলাদা?',
-    a: 'হ্যাঁ — গুগল/ইউটিউব সাইডে ভিডিও অ্যাড। মেটা বুস্টের বিকল্প বা সম্পূরক হিসেবে ব্র্যান্ড ও ট্রাফিকের জন্য ব্যবহার করা যায়।',
+    q: 'Is a YouTube campaign separate?',
+    a: 'Yes. YouTube video advertising runs through the Google advertising ecosystem and can complement Meta promotion for awareness and traffic.',
   },
   {
-    q: 'কতদিনে রেজাল্ট?',
-    a: 'বুস্টে কয়েক ঘণ্টা থেকে কয়েক দিনে রিচ/ইনবক্স দেখা যায়। ক্যাম্পেইনে শেখা ও স্কেল করতে সাধারণত কয়েক দিনের ডেটা লাগে। অবাস্তব “গ্যারান্টিড সেলস” দিই না।',
+    q: 'How quickly will I see results?',
+    a: 'A boost can begin generating reach or enquiries within hours or days. Managed campaigns need several days of data for learning and scaling; we do not promise guaranteed sales.',
   },
   {
-    q: 'পেজ restriction থাকলে বুস্ট হবে?',
-    a: 'সীমাবদ্ধ পেজ/অ্যাড অ্যাকাউন্টে ডেলিভারি কমে বা বন্ধ হতে পারে। আগে পেজ হেলথ ঠিক করা ভালো — Facebook Page সার্ভিসে চেকআপ আছে।',
+    q: 'Can I advertise from a restricted page?',
+    a: 'Restrictions can reduce or stop delivery. The page and ad account should be reviewed and corrected before budget is committed.',
   },
   {
-    q: 'কী দিয়ে শুরু করব — বুস্ট নাকি ক্যাম্পেইন?',
-    a: 'একটি অফার দ্রুত টেস্ট করতে বুস্ট। নিয়মিত লিড/মেসেজ ও বাজেট স্কেল করতে ক্যাম্পেইন। WhatsApp-এ লক্ষ্য বললে আমরা রোডম্যাপ সাজাই।',
+    q: 'Should I start with a boost or a campaign?',
+    a: 'Use a boost to validate one offer quickly. Choose campaign management for repeatable leads, structured testing and scalable budgets.',
   },
 ];
 ---
@@ -317,11 +317,11 @@ const faqs = [
           </div>
         </div>
         <div class="bo-why">
-          <h3>কেন মার্কেটের চেয়ে বেশি?</h3>
+          <h3>Why is the service rate above the market rate?</h3>
           <ul>
-            <li><strong>Tax:</strong> সার্ভিস ও পেমেন্ট সংক্রান্ত ট্যাক্স খরচ রেটের মধ্যে ধরা হয়।</li>
-            <li><strong>Bank / gateway:</strong> ঘোষিত চার্জ প্রায় ~৮% হলেও বাস্তবে কিছু ক্ষেত্রে অতিরিক্ত কেটে — এমনকি ~১৫% পর্যন্ত পার্থক্যের অভিজ্ঞতা থাকে।</li>
-            <li><strong>স্বচ্ছ ফিক্সড সার্ভিস রেট:</strong> মার্কেট ১২২ হলে সার্ভিস ১৫০ — একই অনুপাতে প্রতিদিন মার্কেট বদলালে সার্ভিস রেটও আপডেট হয়।</li>
+            <li><strong>Tax:</strong> Applicable service and payment taxes are included in the final rate.</li>
+            <li><strong>Bank and gateway costs:</strong> Provider charges and settlement differences can increase the effective conversion cost.</li>
+            <li><strong>Transparent service rate:</strong> The current calculation is shown before confirmation and updates with the reference market rate.</li>
           </ul>
         </div>
       </div>

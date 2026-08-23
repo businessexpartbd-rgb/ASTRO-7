@@ -18,36 +18,27 @@ const seoDescription =
 
 const channels = [
   {
-    title: 'WhatsApp Business',
-    desc: 'Instant FAQ, order updates, lead qualification and human handoff in one trusted conversation.',
-    logo: '/automation/whatsapp.svg',
-  },
-  {
-    title: 'Messenger',
-    desc: 'Page inbox, comment-to-DM, story replies and campaign conversations — always on.',
-    logo: '/automation/messenger.svg',
+    title: 'Facebook Messenger',
+    desc: 'Page inbox replies, comment-to-DM, story replies and post CTAs — always-on.',
+    icon: 'fb',
   },
   {
     title: 'Instagram DM',
-    desc: 'Automated DMs, story mentions and comment replies tuned for product and service questions.',
-    logo: '/automation/instagram.svg',
+    desc: 'DM, story mentions and comment automation tuned for product questions.',
+    icon: 'ig',
   },
   {
-    title: 'Email Automation',
-    desc: 'Welcome, follow-up, reminders and personalized lead nurturing triggered at the right moment.',
-    logo: '/automation/gmail.svg',
+    title: 'WhatsApp flows',
+    desc: 'Optional WhatsApp Business flow for order status and support handoff.',
+    icon: 'wa',
   },
   {
-    title: 'CRM & Lead Routing',
-    desc: 'Capture, score and route every lead to the right team with a clean customer history.',
-    logo: '/automation/hubspot.svg',
-  },
-  {
-    title: 'Sheets & Reporting',
-    desc: 'Sync enquiries, orders and campaign results into live dashboards without manual copying.',
-    logo: '/automation/googlesheets.svg',
+    title: 'Multi-service bots',
+    desc: 'One page, many services — routing by intent (price, booking, support, sales).',
+    icon: 'multi',
   },
 ];
+const channelIcons = ['facebook', 'marketing', 'whatsapp', 'automation'];
 const stepIcons = ['strategy', 'human', 'auth', 'rocket'];
 const benefitIcons = ['automation', 'boosting', 'phone', 'marketing', 'strategy', 'global'];
 const useCaseIcons = ['app', 'campaign', 'production', 'global'];
@@ -146,46 +137,37 @@ const future = [
 
 const faqs = [
   {
-    q: 'What is automation — will people stop replying?',
-    a: 'Automation answers routine questions such as price, opening hours, services and location instantly. Complex or sensitive conversations are handed over to your team. People stay in control while repetitive work is reduced.',
+    q: 'Does automation replace human support?',
+    a: 'Automation answers routine questions about pricing, timing, services and location instantly. Complex or sensitive conversations are handed to your team, reducing repetitive work without removing the human layer.',
   },
   {
     q: 'Will the replies sound robotic?',
-    a: 'No. Creavix creates human-like scripts with natural sentences, personalized greetings and your brand tone. The system can communicate in English, Bangla or a controlled mix when required.',
+    a: 'No. We write natural, brand-aligned conversation flows with contextual greetings, clear language and a smooth route to a human agent.',
   },
   {
-    q: 'Which platforms can be connected?',
-    a: 'We can connect WhatsApp Business, Facebook Messenger, Instagram DM, email, web chat, CRM platforms and reporting tools according to your workflow and approved API access.',
+    q: 'Which platforms are supported?',
+    a: 'The core focus is Facebook Messenger and Instagram DM. WhatsApp Business flows and website chat can be added when required.',
   },
   {
-    q: 'How can one inbox handle multiple services?',
-    a: 'Intent routing identifies what a customer needs. A message about video, websites or marketing starts the correct flow with its own pricing, package, booking and follow-up path.',
+    q: 'How do multiple services work in one inbox?',
+    a: 'Intent routing sends video, website, advertising and other enquiries into separate flows with the right pricing, package and booking options.',
   },
   {
-    q: 'Can automation create calls and sales?',
-    a: 'Yes. When a high-intent lead is detected, the workflow can collect a phone number, offer a callback slot, share a WhatsApp call option and notify your sales team immediately.',
+    q: 'Can automation support calls and sales conversion?',
+    a: 'Yes. A qualified lead can receive a callback option, phone number or WhatsApp call route while the sales team receives a notification.',
   },
   {
-    q: 'Why is this important for growing businesses?',
-    a: 'Customers message outside office hours and expect a fast response. A 24/7 workflow prevents missed leads, improves support consistency and moves qualified buyers toward the next action.',
+    q: 'Why is this valuable for growing businesses?',
+    a: 'Customers message outside office hours, and manual inboxes lose leads. A 24/7 first-response system improves both sales follow-up and customer support.',
   },
   {
     q: 'How long does setup take?',
-    a: 'A focused FAQ and lead-capture workflow can usually be prepared within a few working days. Multi-service systems require additional mapping, API configuration and testing. The timeline is confirmed before work begins.',
+    a: 'A focused page and FAQ flow usually takes a few working days. Complex multi-service systems require more scripting and testing, with the timeline confirmed before work starts.',
   },
   {
     q: 'How are data and privacy handled?',
-    a: 'We use official platform tools and approved integrations whenever available. Access is limited to the required workflow, and customer data remains under your business control with privacy-aware configuration.',
+    a: 'We use official platform tools and approved integrations. Conversation data remains under your business controls and is configured around the applicable platform policies.',
   },
-];
-
-const integrations = [
-  { name: 'WhatsApp', logo: '/automation/whatsapp.svg' },
-  { name: 'Messenger', logo: '/automation/messenger.svg' },
-  { name: 'Instagram', logo: '/automation/instagram.svg' },
-  { name: 'Gmail', logo: '/automation/gmail.svg' },
-  { name: 'HubSpot', logo: '/automation/hubspot.svg' },
-  { name: 'Sheets', logo: '/automation/googlesheets.svg' },
 ];
 ---
 
@@ -197,59 +179,50 @@ const integrations = [
   <section class="au-hero">
     <div class="container au-hero-grid">
       <div class="au-hero-copy reveal">
-        <p class="au-eye">Intelligent Business Automation</p>
-        <h1>Every Message. Every Lead. <span>One Smart System.</span></h1>
+        <p class="au-eye">Automation Service</p>
+        <h1>Messenger Automation that Replies Like a Real Human</h1>
         <p class="au-sub">
-          Connect WhatsApp, Messenger, Instagram, email, CRM and AI into one responsive workflow.
-          We design human-like automation that replies, qualifies, follows up and grows your business 24/7.
+          Facebook &amp; Instagram inbox on autopilot — authentic Bangla/English replies,
+          multi-service routing, lead capture and call conversion. Built for Bangladesh shops
+          and international brands that cannot miss a message.
         </p>
         <div class="au-actions">
           <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Get automation quote</a>
           <a class="btn btn-outline" href="#how-it-works">How it works</a>
         </div>
         <ul class="au-trust">
-          <li>24/7 response</li>
-          <li>Bangla + English</li>
-          <li>Official APIs</li>
-          <li>Human handoff</li>
+          <li>24/7 inbox</li>
+          <li>Human-like AI</li>
+          <li>Call conversion</li>
+          <li>Multi-service flows</li>
         </ul>
       </div>
 
-      <div class="au-command reveal" aria-label="Animated automation workflow illustration">
-        <div class="au-command-top">
-          <span class="au-window-dots"><i></i><i></i><i></i></span>
-          <span>CREAVIX · AUTOMATION OS</span>
-          <span class="au-status"><i></i> LIVE</span>
-        </div>
-        <div class="au-command-stage">
-          <div class="au-orbit au-orbit-one"></div>
-          <div class="au-orbit au-orbit-two"></div>
-          <div class="au-brain">
-            <span class="au-brain-pulse"></span>
-            <ServiceIcons name="automation" size={48} />
-            <strong>AI FLOW</strong>
-            <small>6 systems connected</small>
+      <!-- Visual: chat mock -->
+      <div class="au-visual reveal" aria-hidden="true">
+        <div class="au-phone">
+          <div class="au-phone-bar">
+            <span class="au-dot"></span>
+            <span>Messenger · Live</span>
+            <span class="au-live">●</span>
           </div>
-          {integrations.map((item, i) => (
-            <div class={`au-brand au-brand-${i + 1}`}>
-              <img src={item.logo} width="28" height="28" alt="" loading="eager" decoding="async" />
-              <span>{item.name}</span>
+          <div class="au-chat">
+            <div class="au-bubble them">How much does video editing cost?</div>
+            <div class="au-bubble us typing-sim">
+              Hello! 👋 Creavix offers cinematic editing with selected packages delivered in 24–48 hours.
+              Which platform is this for — YouTube, Meta or a brand film?
             </div>
-          ))}
-          <svg class="au-connectors" viewBox="0 0 600 420" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M300 210 C220 150 170 105 92 72" />
-            <path d="M300 210 C380 150 430 105 508 72" />
-            <path d="M300 210 C190 215 135 210 68 210" />
-            <path d="M300 210 C410 215 465 210 532 210" />
-            <path d="M300 210 C220 280 170 330 92 350" />
-            <path d="M300 210 C380 280 430 330 508 350" />
-          </svg>
-          <div class="au-event au-event-one"><span>01</span><b>New lead captured</b></div>
-          <div class="au-event au-event-two"><span>02</span><b>Reply + CRM synced</b></div>
+            <div class="au-bubble them">For a Meta ad.</div>
+            <div class="au-bubble us">
+              Great. Send a short brief or book a discovery call —
+              <span class="au-cta-chip">📞 Call request</span>
+            </div>
+          </div>
+          <div class="au-phone-foot">AI · Human-like · Instant</div>
         </div>
-        <div class="au-command-foot">
-          <span><i></i> Response &lt; 3 sec</span><span>99.9% workflow uptime</span><span>Human handoff ready</span>
-        </div>
+        <div class="au-float au-float-1">FB Page</div>
+        <div class="au-float au-float-2">IG DM</div>
+        <div class="au-float au-float-3">24/7</div>
       </div>
     </div>
   </section>
@@ -288,10 +261,10 @@ const integrations = [
         <h2>Where automation runs</h2>
         <p class="au-lead">Messenger-first for Bangladesh marketplaces — expandable worldwide.</p>
       </div>
-      <div class="au-cards3 au-channel-grid">
-        {channels.map((c) => (
-          <article class="au-card au-channel-card reveal">
-            <img class="au-brand-logo" src={c.logo} width="42" height="42" alt={`${c.title} official logo`} loading="lazy" decoding="async" />
+      <div class="au-cards4">
+        {channels.map((c, i) => (
+          <article class="au-card reveal">
+            <span class="au-svg-icon" aria-hidden="true"><ServiceIcons name={channelIcons[i]} size={34} /></span>
             <h3>{c.title}</h3>
             <p>{c.desc}</p>
           </article>
@@ -363,30 +336,24 @@ const integrations = [
     </div>
   </section>
 
-  <!-- API ORCHESTRATION VISUAL -->
+  <!-- FLOW VISUAL -->
   <section class="au-sec au-flow-sec">
     <div class="container">
       <div class="au-center reveal">
-        <p class="au-eye">API Orchestration</p>
-        <h2>Six tools. One automated growth engine.</h2>
-        <p class="au-lead">Official APIs pass secure data between conversations, AI, CRM and your team—without repetitive manual work.</p>
+        <p class="au-eye">Live flow</p>
+        <h2>From message to conversion</h2>
       </div>
-      <div class="au-api-board reveal">
-        <div class="au-api-inputs">
-          {integrations.slice(0, 3).map((item) => (
-            <div class="au-api-pill"><img src={item.logo} width="26" height="26" alt="" /><span>{item.name}</span></div>
-          ))}
-        </div>
-        <div class="au-api-arrow"><span></span></div>
-        <div class="au-api-core"><ServiceIcons name="ai" size={42} /><strong>Creavix AI Router</strong><small>Intent · Language · Priority</small></div>
-        <div class="au-api-arrow"><span></span></div>
-        <div class="au-api-outputs">
-          {integrations.slice(3).map((item) => (
-            <div class="au-api-pill"><img src={item.logo} width="26" height="26" alt="" /><span>{item.name}</span></div>
-          ))}
-        </div>
+      <div class="au-flow reveal" aria-hidden="true">
+        <div class="au-flow-node">Message in</div>
+        <span class="au-flow-arr">→</span>
+        <div class="au-flow-node">Intent detect</div>
+        <span class="au-flow-arr">→</span>
+        <div class="au-flow-node">Human-like reply</div>
+        <span class="au-flow-arr">→</span>
+        <div class="au-flow-node">Lead / FAQ</div>
+        <span class="au-flow-arr">→</span>
+        <div class="au-flow-node hi">Call or sale</div>
       </div>
-      <div class="au-api-results reveal"><span>Instant reply</span><span>Lead scored</span><span>Team notified</span><span>Follow-up scheduled</span></div>
     </div>
   </section>
 
@@ -432,7 +399,7 @@ const integrations = [
     <div class="container au-cta-inner reveal">
       <div>
         <p class="au-eye light">Start automation</p>
-        <h2>Turn every conversation into a growth opportunity</h2>
+        <h2>Stop losing Messenger leads after hours</h2>
         <p>WhatsApp {SITE.whatsapp} · {SITE.email1} · {SITE.hotline}</p>
       </div>
       <div class="au-cta-btns">
@@ -474,7 +441,7 @@ const integrations = [
     text-transform: uppercase;
     color: #2563EB;
   }
-  .au-eye.light { color: #DBEAFE !important; opacity: 1 !important; }
+  .au-eye.light { color: #93C5FD; }
   .au-hero h1 {
     margin: 0 0 0.9rem;
     font-family: Outfit, system-ui, sans-serif;
@@ -882,22 +849,18 @@ const integrations = [
     font-family: Outfit, system-ui, sans-serif;
     font-size: clamp(1.35rem, 3vw, 1.75rem);
     font-weight: 800;
-    color: #FFFFFF !important;
-    opacity: 1 !important;
   }
-  .au-cta p { margin: 0; color: #EFF6FF !important; opacity: 1 !important; font-size: 0.95rem; }
+  .au-cta p { margin: 0; opacity: 0.95; font-size: 0.95rem; }
   .au-cta-btns { display: flex; flex-wrap: wrap; gap: 0.6rem; }
   .btn-light {
-    background: #fff !important;
-    color: #1E3A8A !important;
+    background: #fff;
+    color: #1E40AF;
     border: none;
-    opacity: 1 !important;
   }
   .btn-ghost {
-    background: rgba(15, 23, 42, 0.18) !important;
-    color: #fff !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.72) !important;
-    opacity: 1 !important;
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
   }
 
   @media (max-width: 639px) {
@@ -908,60 +871,4 @@ const integrations = [
   @media (prefers-reduced-motion: reduce) {
     .au-float { animation: none; }
   }
-
-  /* Premium automation control center */
-  .au-hero h1 span { color:#2563eb; }
-  .au-command {
-    position:relative; overflow:hidden; min-width:0; border-radius:28px;
-    background:linear-gradient(150deg,#071226 0%,#0c1c3c 55%,#102c56 100%);
-    border:1px solid rgba(96,165,250,.3); color:#e5efff;
-    box-shadow:0 34px 80px rgba(15,23,42,.24), inset 0 1px 0 rgba(255,255,255,.1);
-  }
-  .au-command::before { content:''; position:absolute; width:260px; height:260px; border-radius:50%; right:-90px; top:-100px; background:#2563eb; filter:blur(90px); opacity:.27; }
-  .au-command-top,.au-command-foot { position:relative; z-index:4; display:flex; align-items:center; justify-content:space-between; gap:.65rem; padding:.8rem 1rem; font-size:.62rem; font-weight:800; letter-spacing:.12em; }
-  .au-command-top { border-bottom:1px solid rgba(148,163,184,.16); }
-  .au-command-foot { border-top:1px solid rgba(148,163,184,.14); color:#94a3b8; letter-spacing:.02em; font-weight:600; }
-  .au-command-foot span:first-child,.au-status { color:#86efac; }
-  .au-command-foot i,.au-status i { display:inline-block; width:6px; height:6px; border-radius:50%; background:#22c55e; box-shadow:0 0 0 5px rgba(34,197,94,.12); margin-right:.3rem; }
-  .au-window-dots { display:flex; gap:5px; }
-  .au-window-dots i { width:7px; height:7px; border-radius:50%; background:#fb7185; }
-  .au-window-dots i:nth-child(2){background:#fbbf24}.au-window-dots i:nth-child(3){background:#22c55e}
-  .au-command-stage { position:relative; min-height:390px; isolation:isolate; }
-  .au-connectors { position:absolute; inset:0; z-index:-1; width:100%; height:100%; }
-  .au-connectors path { fill:none; stroke:#4f8cff; stroke-width:1.4; stroke-dasharray:7 8; opacity:.55; animation:au-dash 8s linear infinite; }
-  .au-orbit { position:absolute; left:50%; top:50%; border:1px solid rgba(96,165,250,.18); border-radius:50%; transform:translate(-50%,-50%); }
-  .au-orbit-one { width:230px;height:230px;animation:au-spin 18s linear infinite; }
-  .au-orbit-two { width:310px;height:310px;border-style:dashed;animation:au-spin 28s linear infinite reverse; }
-  .au-brain { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:3; width:126px;height:126px;border-radius:34px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(145deg,rgba(30,64,175,.88),rgba(37,99,235,.96));border:1px solid rgba(147,197,253,.35);box-shadow:0 0 0 12px rgba(37,99,235,.1),0 24px 50px rgba(0,0,0,.28); }
-  .au-brain .live-icon { color:#fff; }
-  .au-brain strong { font-size:.76rem;letter-spacing:.12em;margin-top:.15rem; }
-  .au-brain small { color:#bfdbfe;font-size:.58rem; }
-  .au-brain-pulse { position:absolute;inset:-12px;border:1px solid rgba(96,165,250,.45);border-radius:42px;animation:au-pulse 2.4s ease-out infinite; }
-  .au-brand { position:absolute; z-index:2; display:flex; align-items:center; gap:.45rem; min-width:96px; padding:.55rem .65rem; border-radius:14px; color:#e2e8f0; font-size:.64rem; font-weight:700; background:rgba(15,23,42,.83); border:1px solid rgba(148,163,184,.2); box-shadow:0 12px 28px rgba(0,0,0,.2); backdrop-filter:blur(10px); animation:au-float-card 4.5s ease-in-out infinite; }
-  .au-brand img { width:26px;height:26px;object-fit:contain; }
-  .au-brand-1{left:5%;top:9%}.au-brand-2{right:5%;top:9%;animation-delay:-.7s}.au-brand-3{left:2%;top:43%;animation-delay:-1.4s}.au-brand-4{right:2%;top:43%;animation-delay:-2.1s}.au-brand-5{left:6%;bottom:9%;animation-delay:-2.8s}.au-brand-6{right:6%;bottom:9%;animation-delay:-3.5s}
-  .au-event { position:absolute; z-index:5; display:flex; align-items:center; gap:.45rem; padding:.42rem .65rem; border-radius:10px; background:#fff; color:#0f172a; box-shadow:0 10px 26px rgba(0,0,0,.18); font-size:.58rem; opacity:0; animation:au-event 6s ease-in-out infinite; }
-  .au-event span { color:#2563eb;font-weight:800; }.au-event-one{left:24%;top:27%}.au-event-two{right:20%;bottom:24%;animation-delay:3s}
-  .au-brand-logo { display:block; width:42px;height:42px;object-fit:contain;margin:0 0 1rem; }
-  .au-channel-card { position:relative;overflow:hidden; }
-  .au-channel-card::after { content:'';position:absolute;width:110px;height:110px;right:-50px;top:-55px;border-radius:50%;background:rgba(37,99,235,.06); }
-  .au-flow-sec .au-lead { color:#94a3b8; }
-  .au-api-board { display:grid;grid-template-columns:1fr 70px 1.15fr 70px 1fr;gap:1rem;align-items:center;max-width:1000px;margin:0 auto;padding:2rem;border-radius:28px;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));border:1px solid rgba(148,163,184,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.08); }
-  .au-api-inputs,.au-api-outputs { display:grid;gap:.65rem; }
-  .au-api-pill { display:flex;align-items:center;gap:.65rem;padding:.7rem .8rem;border-radius:13px;background:rgba(15,23,42,.74);border:1px solid rgba(148,163,184,.17);font-size:.75rem;font-weight:700;color:#e2e8f0; }
-  .au-api-pill img { width:26px;height:26px;object-fit:contain; }
-  .au-api-core { min-height:170px;border-radius:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(145deg,#1d4ed8,#2563eb 55%,#0891b2);box-shadow:0 22px 44px rgba(37,99,235,.28); }
-  .au-api-core .live-icon{color:#fff}.au-api-core strong{margin-top:.6rem;font-size:.95rem}.au-api-core small{margin-top:.2rem;color:#dbeafe;font-size:.66rem}
-  .au-api-arrow { height:2px;background:rgba(96,165,250,.25);position:relative;overflow:hidden; }.au-api-arrow span{position:absolute;top:-2px;width:20px;height:6px;border-radius:999px;background:#60a5fa;box-shadow:0 0 14px #60a5fa;animation:au-data 2s linear infinite;}
-  .au-api-results { display:flex;justify-content:center;flex-wrap:wrap;gap:.55rem;margin-top:1.15rem; }.au-api-results span{padding:.45rem .8rem;border-radius:999px;background:rgba(34,197,94,.1);border:1px solid rgba(74,222,128,.18);color:#bbf7d0;font-size:.7rem;font-weight:700;}
-  @keyframes au-spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-  @keyframes au-dash{to{stroke-dashoffset:-120}}
-  @keyframes au-pulse{0%{transform:scale(.92);opacity:0}35%{opacity:1}100%{transform:scale(1.24);opacity:0}}
-  @keyframes au-float-card{50%{transform:translateY(-6px)}}
-  @keyframes au-event{0%,20%,100%{opacity:0;transform:translateY(7px)}30%,70%{opacity:1;transform:none}}
-  @keyframes au-data{from{left:-20px}to{left:100%}}
-  @media(max-width:899px){.au-command-stage{min-height:360px}.au-command-foot span:nth-child(n+2){display:none}.au-api-board{grid-template-columns:1fr;max-width:480px;padding:1rem}.au-api-arrow{width:2px;height:32px;margin:auto}.au-api-arrow span{left:-2px!important;width:6px;height:16px;animation:au-data-v 2s linear infinite}.au-api-core{min-height:145px}.au-api-inputs,.au-api-outputs{grid-template-columns:repeat(3,1fr)}.au-api-pill{justify-content:center}.au-api-pill span{display:none}}
-  @keyframes au-data-v{from{top:-16px}to{top:100%}}
-  @media(max-width:520px){.au-command-stage{min-height:330px}.au-command-top{font-size:.53rem}.au-brand{min-width:0;padding:.48rem}.au-brand span{display:none}.au-brand img{width:24px;height:24px}.au-brand-1{left:7%}.au-brand-2{right:7%}.au-brand-3{left:4%}.au-brand-4{right:4%}.au-brand-5{left:8%}.au-brand-6{right:8%}.au-brain{width:112px;height:112px;border-radius:30px}.au-event{display:none}.au-command-foot{justify-content:center}.au-api-pill{padding:.6rem}.au-channel-card{padding:1.15rem}.au-brand-logo{width:38px;height:38px}}
-  @media(prefers-reduced-motion:reduce){.au-connectors path,.au-orbit,.au-brain-pulse,.au-brand,.au-event,.au-api-arrow span{animation:none!important}}
 </style>
