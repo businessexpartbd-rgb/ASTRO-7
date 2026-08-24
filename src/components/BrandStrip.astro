@@ -1,74 +1,130 @@
 ---
-const items = [
-  'AI Video Marketing',
-  'Video Editing',
-  'Web Development',
-  'App Build',
-  'Authentication',
-  'Meta Boosting',
-  'Campaigns',
-  'Human-like Content',
-];
+const logos = Array.from({ length: 40 }, (_, index) => ({
+  src: `/media/client-logos/client-${String(index + 1).padStart(2, '0')}.webp`,
+  alt: `Selected Creavix client brand ${index + 1}`,
+}));
+
+const firstRow = logos.filter((_, index) => index % 2 === 0);
+const secondRow = logos.filter((_, index) => index % 2 === 1);
 ---
-<section class="brand-strip" aria-label="Capabilities">
-  <div class="brand-strip-head">
-    <h2 class="brand-strip-title">4,300+ PROJECTS THAT CHOSE US TO GROW</h2>
+<section class="client-proof" aria-labelledby="client-proof-title">
+  <div class="client-proof-head">
+    <p class="client-proof-kicker">Selected client work</p>
+    <h2 id="client-proof-title">Trusted by Brands We’ve Helped Grow</h2>
+    <p>
+      Selected clients and businesses we’ve supported through video production,
+      branding, websites and digital growth.
+    </p>
   </div>
-  <div class="brand-strip-track-wrap">
-    <div class="brand-strip-track">
-      {[...items, ...items].map((t) => (
-        <span class="brand-chip">{t}</span>
+
+  <div class="logo-marquee" aria-label="Selected Creavix client brands">
+    <div class="logo-row logo-row--forward">
+      {[...firstRow, ...firstRow].map((logo, index) => (
+        <span class="logo-slot" aria-hidden={index >= firstRow.length ? 'true' : undefined}>
+          <img src={logo.src} alt={index >= firstRow.length ? '' : logo.alt} width="240" height="100" loading="lazy" decoding="async" />
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <div class="logo-marquee" aria-hidden="true">
+    <div class="logo-row logo-row--reverse">
+      {[...secondRow, ...secondRow].map((logo) => (
+        <span class="logo-slot">
+          <img src={logo.src} alt="" width="240" height="100" loading="lazy" decoding="async" />
+        </span>
       ))}
     </div>
   </div>
 </section>
 
 <style>
-  .brand-strip {
-    padding: 2.75rem 0 3.25rem;
-    background: #fff;
-    border-top: 1px solid rgba(15, 23, 42, 0.05);
-    border-bottom: 1px solid rgba(15, 23, 42, 0.05);
-  }
-  .brand-strip-head {
-    text-align: center;
-    margin-bottom: 1.6rem;
-    padding: 0 1.25rem;
-  }
-  .brand-strip-title {
-    margin: 0;
-    font-family: var(--font-h), system-ui, sans-serif;
-    font-size: clamp(0.9rem, 2.2vw, 1.15rem);
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #0B0F19;
-  }
-  .brand-strip-track-wrap {
+  .client-proof {
+    padding: clamp(3.25rem, 6vw, 5.25rem) 0;
     overflow: hidden;
-    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    background: #fff;
+    border-block: 1px solid rgba(15, 23, 42, 0.055);
   }
-  .brand-strip-track {
+  .client-proof-head {
+    width: min(760px, calc(100% - 2rem));
+    margin: 0 auto clamp(1.65rem, 4vw, 2.5rem);
+    text-align: center;
+  }
+  .client-proof-kicker {
+    margin: 0 0 .55rem;
+    color: #2563eb;
+    font: 800 .72rem/1.2 var(--font-h), system-ui, sans-serif;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+  .client-proof h2 {
+    margin: 0;
+    color: #0f172a;
+    font: 800 clamp(1.7rem, 4vw, 3rem)/1.06 var(--font-h), system-ui, sans-serif;
+    letter-spacing: -.035em;
+    text-wrap: balance;
+  }
+  .client-proof-head > p:last-child {
+    max-width: 650px;
+    margin: .85rem auto 0;
+    color: #64748b;
+    font-size: clamp(.9rem, 1.8vw, 1.02rem);
+    line-height: 1.65;
+    text-wrap: balance;
+  }
+  .logo-marquee {
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  }
+  .logo-marquee + .logo-marquee { margin-top: clamp(.55rem, 1.7vw, 1rem); }
+  .logo-row {
     display: flex;
-    gap: 0.75rem;
+    align-items: center;
     width: max-content;
-    animation: strip-move 32s linear infinite;
+    will-change: transform;
   }
-  .brand-chip {
-    flex-shrink: 0;
-    padding: 0.55rem 1.15rem;
-    border-radius: 999px;
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    background: #F8FAFC;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #334155;
-    white-space: nowrap;
+  .logo-row--forward { animation: client-logos-forward 38s linear infinite; }
+  .logo-row--reverse { animation: client-logos-reverse 42s linear infinite; }
+  .logo-slot {
+    display: grid;
+    width: clamp(150px, 17vw, 220px);
+    height: clamp(68px, 8vw, 94px);
+    flex: 0 0 auto;
+    place-items: center;
+    margin-inline: clamp(.45rem, 1.2vw, 1rem);
   }
-  @keyframes strip-move {
+  .logo-slot img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 9px rgba(15, 23, 42, .08));
+  }
+  .client-proof:hover .logo-row { animation-play-state: paused; }
+  @keyframes client-logos-forward {
     to { transform: translateX(-50%); }
   }
+  @keyframes client-logos-reverse {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+  @media (max-width: 640px) {
+    .client-proof { padding-block: 3rem; }
+    .client-proof-head { margin-bottom: 1.5rem; }
+    .logo-slot { width: 138px; height: 62px; margin-inline: .38rem; }
+    .logo-row--forward { animation-duration: 30s; }
+    .logo-row--reverse { animation-duration: 34s; }
+  }
   @media (prefers-reduced-motion: reduce) {
-    .brand-strip-track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; padding: 0 1rem; }
+    .logo-marquee {
+      overflow-x: auto;
+      -webkit-mask-image: none;
+      mask-image: none;
+      scrollbar-width: none;
+    }
+    .logo-marquee::-webkit-scrollbar { display: none; }
+    .logo-row { animation: none; }
   }
 </style>
