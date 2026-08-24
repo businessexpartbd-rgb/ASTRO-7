@@ -3,133 +3,59 @@ import { SITE } from '../data/site';
 const wa = SITE.whatsappLink || 'https://wa.me/8801890484355';
 const waDisplay = '01890-484355';
 ---
-<button type="button" class="back-top" id="back-top" aria-label="Back to top" hidden>
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
-</button>
-
-<a class="wa-fab" href={wa} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Creavix">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.2 17.7L2 22l4.4-1.15A11 11 0 1 0 20.5 3.5zM12 19.5a7.5 7.5 0 0 1-3.82-1.04l-.27-.16-2.85.75.76-2.78-.18-.29A7.5 7.5 0 1 1 12 19.5z"></path></svg>
-</a>
-
 <div class="support-root" id="support-root">
-  <button type="button" class="support-fab" id="support-open" aria-label="Open live support">
-    <span class="support-live-dot" aria-hidden="true"></span>
-    <span class="support-fab-text">Support</span>
-  </button>
-
+  <div class="support-actions" aria-label="Quick contact and navigation">
+    <button type="button" class="back-top" id="back-top" aria-label="Back to top" hidden>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
+    </button>
+    <a class="wa-fab" href={wa} target="_blank" rel="noopener noreferrer" aria-label="Open WhatsApp Business">
+      <svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.2 17.7L2 22l4.4-1.15A11 11 0 1 0 20.5 3.5zM12 19.5a7.5 7.5 0 0 1-3.82-1.04l-.27-.16-2.85.75.76-2.78-.18-.29A7.5 7.5 0 1 1 12 19.5z"></path></svg>
+      <span class="wa-business-mark" aria-hidden="true">B</span>
+    </a>
+    <button type="button" class="support-fab" id="support-open" aria-label="Ask Creavix support" aria-expanded="false">
+      <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3 1.7-5.1A8 8 0 1 1 21 15Z"></path><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"></path></svg>
+      <span class="support-live-dot" aria-hidden="true"></span>
+      <span class="support-fab-label">Ask</span>
+    </button>
+  </div>
   <div class="support-panel" id="support-panel" hidden aria-hidden="true">
     <div class="support-head">
-      <div class="support-brand">
-        <strong>Creavix Support</strong>
-        <span class="support-status"><span class="support-live-dot"></span> 24/7 Live</span>
-      </div>
+      <div class="support-brand"><strong>Creavix Assistant</strong><span class="support-status"><span class="support-live-dot"></span><span id="support-status-text">Online · 24/7</span></span></div>
       <button type="button" class="support-close" id="support-close" aria-label="Close">×</button>
     </div>
-    <div class="support-body" id="support-body">
-      <div class="support-msg bot">
-        Hello! Welcome to <b>Creavix iT Solution</b> support. Ask about services, pricing or delivery — or message us on
-        <a class="wa-inline" href={wa} target="_blank" rel="noopener noreferrer">WhatsApp {waDisplay}</a>.
-      </div>
-      <div class="support-quick" id="support-quick">
-        <button type="button" data-q="What services do you offer?">Services</button>
-        <button type="button" data-q="How can I contact you?">Contact</button>
-        <button type="button" data-q="How fast is delivery?">Delivery</button>
-        <button type="button" data-q="Do you build websites?">Websites</button>
+    <div class="support-body" id="support-body" aria-live="polite">
+      <div class="support-msg bot">Hello! Ask about our services, pricing or delivery — or message us on <a class="wa-inline" href={wa} target="_blank" rel="noopener noreferrer">WhatsApp {waDisplay}</a>.</div>
+      <div class="support-quick" id="support-quick" aria-label="Suggested questions">
+        <button type="button" data-q="What services do you offer?">Services</button><button type="button" data-q="How much does it cost?">Pricing</button><button type="button" data-q="How fast is delivery?">Delivery</button>
       </div>
     </div>
-    <div class="support-typing" id="support-typing" hidden>Creavix is typing…</div>
-    <form class="support-form" id="support-form">
-      <input type="text" id="support-input" placeholder="Ask a question…" maxlength="200" autocomplete="off" />
-      <button type="submit" aria-label="Send">➤</button>
-    </form>
+    <div class="support-typing" id="support-typing" hidden aria-live="polite"><span></span><span></span><span></span> Creavix is typing…</div>
+    <form class="support-form" id="support-form"><input type="text" id="support-input" placeholder="Ask a question…" maxlength="200" autocomplete="off" aria-label="Your question" /><button type="submit" aria-label="Send">➤</button></form>
   </div>
 </div>
-
 <script is:inline>
 (function () {
-  var WA = 'https://wa.me/8801890484355';
-  var WA_LABEL = '01890-484355';
-  var openBtn = document.getElementById('support-open');
-  var closeBtn = document.getElementById('support-close');
-  var panel = document.getElementById('support-panel');
-  var body = document.getElementById('support-body');
-  var form = document.getElementById('support-form');
-  var input = document.getElementById('support-input');
-  var typing = document.getElementById('support-typing');
-  var backTop = document.getElementById('back-top');
-
-  function waHtml() {
-    return '<a class="wa-inline" href="' + WA + '" target="_blank" rel="noopener noreferrer">WhatsApp ' + WA_LABEL + '</a>';
-  }
-
-  var replies = [
-    { keys: ['service', 'offer', 'what do you'], text: 'Creavix offers Web Development, Apps, Authentication, AI Video Marketing, Video Editing, Facebook Page, Boosting and Campaigns. Chat on ' },
-    { keys: ['contact', 'phone', 'email', 'whatsapp', 'number'], text: 'Tap to message us now: ' },
-    { keys: ['price', 'cost', 'budget'], text: 'Pricing depends on scope. Get a quote on ' },
-    { keys: ['deliver', 'fast', 'time'], text: 'Short videos often 24–48h. Websites follow an agreed timeline. Ask details on ' },
-    { keys: ['web', 'website'], text: 'Yes — SEO-ready websites and landing pages. Start on ' },
-    { keys: ['app', 'application'], text: 'We build custom apps and dashboards. Talk on ' },
-    { keys: ['video', 'ai', 'edit', 'gallery'], text: 'AI video & editing live in our Video Gallery. Order via ' },
-    { keys: ['hello', 'hi', 'hey'], text: 'Hello! How can Creavix help? Message ' },
+  var WA='https://wa.me/8801890484355',WA_LABEL='01890-484355';
+  var openBtn=document.getElementById('support-open'),closeBtn=document.getElementById('support-close'),panel=document.getElementById('support-panel'),body=document.getElementById('support-body'),form=document.getElementById('support-form'),input=document.getElementById('support-input'),typing=document.getElementById('support-typing'),statusText=document.getElementById('support-status-text'),backTop=document.getElementById('back-top');
+  function waHtml(){return '<a class="wa-inline" href="'+WA+'" target="_blank" rel="noopener noreferrer">WhatsApp '+WA_LABEL+'</a>';}
+  var replies=[
+    {keys:['service','offer','what do you','সেবা'],text:'We provide professional video editing, AI video marketing, web and app development, SEO, automation and digital campaigns. Continue on '},
+    {keys:['contact','phone','email','whatsapp','number','যোগাযোগ'],text:'Connect directly with our team on '},
+    {keys:['price','cost','budget','মূল্য','খরচ'],text:'Pricing is tailored to your scope, quality and delivery requirements. Request a precise quote on '},
+    {keys:['deliver','fast','time','সময়','ডেলিভারি'],text:'Short-form video delivery often starts from 24–48 hours. Project timelines are confirmed before work begins on '},
+    {keys:['web','website','ওয়েবসাইট'],text:'Yes — we build premium, responsive and SEO-ready websites, applications and landing pages. Start on '},
+    {keys:['app','application'],text:'We build fast, scalable applications and business dashboards. Discuss your idea on '},
+    {keys:['video','ai','edit','gallery','ভিডিও'],text:'We create human-like AI videos and professional edits for brands, products and campaigns. Send your brief on '},
+    {keys:['hello','hi','hey','হ্যালো'],text:'Hello! Tell us what you want to create, or contact the Creavix team on '}
   ];
-
-  function addMsg(text, who, html) {
-    if (!body) return;
-    var div = document.createElement('div');
-    div.className = 'support-msg ' + who;
-    if (html) div.innerHTML = text;
-    else div.textContent = text;
-    body.appendChild(div);
-    body.scrollTop = body.scrollHeight;
-  }
-
-  function answer(q) {
-    var lower = (q || '').toLowerCase();
-    for (var i = 0; i < replies.length; i++) {
-      for (var k = 0; k < replies[i].keys.length; k++) {
-        if (lower.indexOf(replies[i].keys[k]) !== -1) {
-          return replies[i].text + waHtml();
-        }
-      }
-    }
-    return 'Thanks! For a fast reply, open ' + waHtml() + ' — our team is available.';
-  }
-
-  function respond(q) {
-    if (!q) return;
-    addMsg(q, 'user', false);
-    if (typing) typing.hidden = false;
-    setTimeout(function () {
-      if (typing) typing.hidden = true;
-      addMsg(answer(q), 'bot', true);
-    }, 650 + Math.min(1000, q.length * 15));
-  }
-
-  if (openBtn && panel) openBtn.addEventListener('click', function () {
-    panel.hidden = false;
-    panel.setAttribute('aria-hidden', 'false');
-  });
-  if (closeBtn && panel) closeBtn.addEventListener('click', function () {
-    panel.hidden = true;
-    panel.setAttribute('aria-hidden', 'true');
-  });
-  if (form && input) form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var q = (input.value || '').trim();
-    if (!q) return;
-    input.value = '';
-    respond(q);
-  });
-  document.querySelectorAll('#support-quick [data-q]').forEach(function (b) {
-    b.addEventListener('click', function () { respond(b.getAttribute('data-q') || ''); });
-  });
-  if (backTop) {
-    window.addEventListener('scroll', function () {
-      backTop.hidden = window.scrollY <= 400;
-    }, { passive: true });
-    backTop.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
+  function addMsg(text,who,html){if(!body)return;var div=document.createElement('div');div.className='support-msg '+who;if(html)div.innerHTML=text;else div.textContent=text;body.appendChild(div);body.scrollTop=body.scrollHeight;}
+  function answer(q){var lower=(q||'').toLowerCase();for(var i=0;i<replies.length;i++){for(var k=0;k<replies[i].keys.length;k++){if(lower.indexOf(replies[i].keys[k])!==-1)return replies[i].text+waHtml();}}return 'Thanks for your question. For an accurate human response, continue on '+waHtml()+'.';}
+  function respond(q){if(!q)return;addMsg(q,'user',false);if(typing)typing.hidden=false;if(statusText)statusText.textContent='Typing…';var delay=1000+(q.length*37%1001);setTimeout(function(){if(typing)typing.hidden=true;if(statusText)statusText.textContent='Online · 24/7';addMsg(answer(q),'bot',true);},delay);}
+  if(openBtn&&panel)openBtn.addEventListener('click',function(){var willOpen=panel.hidden;panel.hidden=!willOpen;panel.setAttribute('aria-hidden',willOpen?'false':'true');openBtn.setAttribute('aria-expanded',willOpen?'true':'false');if(willOpen&&input)setTimeout(function(){input.focus();},80);});
+  if(closeBtn&&panel)closeBtn.addEventListener('click',function(){panel.hidden=true;panel.setAttribute('aria-hidden','true');if(openBtn)openBtn.setAttribute('aria-expanded','false');});
+  if(form&&input)form.addEventListener('submit',function(e){e.preventDefault();var q=(input.value||'').trim();if(!q)return;input.value='';respond(q);});
+  document.querySelectorAll('#support-quick [data-q]').forEach(function(button){button.addEventListener('click',function(){respond(button.getAttribute('data-q')||'');});});
+  if((document.documentElement.lang||'').toLowerCase().indexOf('bn')===0){var localized=[['সেবা','আপনারা কী কী সেবা দেন?'],['মূল্য','সেবার মূল্য কত?'],['সময়','ডেলিভারি কত দ্রুত?']];document.querySelectorAll('#support-quick [data-q]').forEach(function(button,i){if(!localized[i])return;button.textContent=localized[i][0];button.setAttribute('data-q',localized[i][1]);});if(input)input.placeholder='প্রশ্ন লিখুন…';}
+  if(backTop){window.addEventListener('scroll',function(){backTop.hidden=window.scrollY<=400;},{passive:true});backTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
 })();
 </script>
