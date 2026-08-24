@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-labelledby="title desc">
+  <title id="title">AI video editing</title>
+  <desc id="desc">A dimensional video player, editing timeline, film strip and AI neural spark.</desc>
+  <defs>
+    <linearGradient id="screen" x1=".12" y1=".08" x2=".9" y2=".94">
+      <stop stop-color="#243b64"/><stop offset=".5" stop-color="#101d39"/><stop offset="1" stop-color="#070d1d"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#4fd1ff"/><stop offset=".48" stop-color="#2563eb"/><stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="timeline" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#22d3ee"/><stop offset=".5" stop-color="#3b82f6"/><stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="play" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fff"/><stop offset="1" stop-color="#c7dcff"/>
+    </linearGradient>
+    <radialGradient id="spark">
+      <stop stop-color="#fff"/><stop offset=".25" stop-color="#67e8f9"/><stop offset=".7" stop-color="#2563eb" stop-opacity=".6"/><stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-35%" y="-35%" width="170%" height="190%">
+      <feDropShadow dx="0" dy="12" stdDeviation="9" flood-color="#0f172a" flood-opacity=".24"/>
+    </filter>
+    <filter id="soft" x="-70%" y="-70%" width="240%" height="240%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <g transform="translate(73 45) rotate(-7 38 34)">
+      <rect width="78" height="59" rx="13" fill="#172440" stroke="#5f78a5" stroke-width="3"/>
+      <path d="M12 0v10m14-10v10m14-10v10m14-10v10m13-10v10M12 49v10m14-10v10m14-10v10m14-10v10m13-10v10" stroke="#d9e8ff" stroke-width="5"/>
+      <path d="m34 18 22 11-22 12z" fill="url(#play)"/>
+    </g>
+
+    <g transform="translate(128 64)">
+      <path d="M16 17C26 5 44 1 59 9c10-6 25-2 30 10 14 1 23 14 19 27 8 8 5 24-6 29-1 14-16 23-29 17-10 10-29 7-34-7-14 1-24-11-21-24-11-8-8-27 5-32-1-4-4-8-7-12z" fill="#e9f5ff" stroke="url(#edge)" stroke-width="4"/>
+      <g fill="none" stroke="#438df5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M35 24c8 1 13 7 12 15-9 4-12 12-8 20m22-41c-8 8-5 18 3 23 8 5 7 15 2 23m24-37c-8 3-12 10-10 18m-48 22c8-6 18-5 24 2 7 8 18 8 26 1m-47 7c-4 8 0 16 8 20m46-37c9 4 12 14 7 22"/>
+      </g>
+      <g fill="#60a5fa"><circle cx="47" cy="39" r="4"/><circle cx="64" cy="41" r="4"/><circle cx="39" cy="59" r="4"/><circle cx="66" cy="64" r="4"/><circle cx="80" cy="45" r="4"/><circle cx="89" cy="62" r="4"/></g>
+    </g>
+
+    <g transform="translate(81 119) rotate(3 91 62)">
+      <rect x="3" y="4" width="182" height="124" rx="25" fill="#0b1327" opacity=".25"/>
+      <rect width="182" height="121" rx="24" fill="url(#screen)" stroke="#7189b2" stroke-width="4"/>
+      <circle cx="20" cy="19" r="5" fill="#fb7185"/><circle cx="36" cy="19" r="5" fill="#fbbf24"/><circle cx="52" cy="19" r="5" fill="#4ade80"/>
+      <path d="m75 43 49 26-49 28z" fill="url(#play)"/>
+      <rect x="22" y="103" width="138" height="5" rx="2.5" fill="#3b4f72"/><rect x="22" y="103" width="91" height="5" rx="2.5" fill="url(#timeline)"/><circle cx="113" cy="105.5" r="7" fill="#fff"/>
+    </g>
+
+    <g transform="translate(41 235) rotate(-4 116 27)">
+      <rect width="234" height="54" rx="15" fill="#111a30" stroke="#6d82a8" stroke-width="3"/>
+      <path d="M13 11h208M13 43h208" stroke="#dbeafe" stroke-width="7" stroke-dasharray="10 7" opacity=".82"/>
+      <rect x="27" y="20" width="74" height="13" rx="6.5" fill="#2563eb"/>
+      <rect x="87" y="20" width="89" height="13" rx="6.5" fill="#22c55e"/>
+      <rect x="159" y="20" width="58" height="13" rx="6.5" fill="#a855f7"/>
+      <path d="M128 14v27" stroke="#fb7185" stroke-width="4"/><circle cx="128" cy="14" r="5" fill="#fecdd3"/>
+    </g>
+  </g>
+
+  <g fill="none" stroke="url(#edge)" stroke-width="5" stroke-linecap="round">
+    <path d="M44 95c-17 10-25 25-27 43"/><path d="m13 126 4 13 12-7"/>
+    <path d="M246 43c19 8 34 22 41 40"/><path d="m278 78 10 6 3-12"/>
+  </g>
+  <circle cx="42" cy="88" r="25" fill="url(#spark)" opacity=".7"/>
+  <circle cx="281" cy="108" r="22" fill="url(#spark)" opacity=".55"/>
+  <g fill="#2563eb">
+    <circle cx="42" cy="88" r="5"/><circle cx="281" cy="108" r="4"/>
+  </g>
+  <g fill="none" stroke="#7488ad" stroke-width="5">
+    <path d="M48 178h-9m4.5-4.5v9M276 181h-12m6-6v12M225 292h-10m5-5v10"/>
+  </g>
+</svg>
