@@ -25,11 +25,16 @@ const waDisplay = '01890-484355';
     </div>
     <div class="support-body" id="support-body" aria-live="polite">
       <div class="support-msg bot">Hello! Ask about our services, pricing or delivery — or message us on <a class="wa-inline" href={wa} target="_blank" rel="noopener noreferrer">WhatsApp {waDisplay}</a>.</div>
-      <div class="support-quick" id="support-quick" aria-label="Suggested questions">
-        <button type="button" data-q="What services do you offer?">Services</button><button type="button" data-q="How much does it cost?">Pricing</button><button type="button" data-q="How fast is delivery?">Delivery</button>
-      </div>
     </div>
     <div class="support-typing" id="support-typing" hidden aria-live="polite"><span></span><span></span><span></span> Creavix is typing…</div>
+    <div class="support-quick" id="support-quick" aria-label="Suggested questions">
+      <div class="support-quick-track">
+        <button type="button" data-q="What services do you offer?">Services</button><button type="button" data-q="Tell me about video editing">Video Editing</button><button type="button" data-q="Tell me about AI video marketing">AI Video</button><button type="button" data-q="Do you build websites?">Websites</button><button type="button" data-q="Do you build applications?">Apps</button><button type="button" data-q="Tell me about SEO">SEO</button><button type="button" data-q="Tell me about automation">Automation</button><button type="button" data-q="Tell me about digital marketing">Marketing</button><button type="button" data-q="Can you support Facebook Pages?">Facebook</button><button type="button" data-q="Tell me about boosting">Boosting</button><button type="button" data-q="Tell me about campaigns">Campaigns</button><button type="button" data-q="Do you create branding?">Branding</button><button type="button" data-q="Show me your portfolio">Portfolio</button><button type="button" data-q="How much does it cost?">Pricing</button><button type="button" data-q="How fast is delivery?">Delivery</button><button type="button" data-q="How can I contact you?">Contact</button>
+      </div>
+      <div class="support-quick-track" aria-hidden="true">
+        <button type="button" data-q="What services do you offer?" tabindex="-1">Services</button><button type="button" data-q="Tell me about video editing" tabindex="-1">Video Editing</button><button type="button" data-q="Tell me about AI video marketing" tabindex="-1">AI Video</button><button type="button" data-q="Do you build websites?" tabindex="-1">Websites</button><button type="button" data-q="Do you build applications?" tabindex="-1">Apps</button><button type="button" data-q="Tell me about SEO" tabindex="-1">SEO</button><button type="button" data-q="Tell me about automation" tabindex="-1">Automation</button><button type="button" data-q="Tell me about digital marketing" tabindex="-1">Marketing</button><button type="button" data-q="Can you support Facebook Pages?" tabindex="-1">Facebook</button><button type="button" data-q="Tell me about boosting" tabindex="-1">Boosting</button><button type="button" data-q="Tell me about campaigns" tabindex="-1">Campaigns</button><button type="button" data-q="Do you create branding?" tabindex="-1">Branding</button><button type="button" data-q="Show me your portfolio" tabindex="-1">Portfolio</button><button type="button" data-q="How much does it cost?" tabindex="-1">Pricing</button><button type="button" data-q="How fast is delivery?" tabindex="-1">Delivery</button><button type="button" data-q="How can I contact you?" tabindex="-1">Contact</button>
+      </div>
+    </div>
     <form class="support-form" id="support-form"><input type="text" id="support-input" placeholder="Ask a question…" maxlength="200" autocomplete="off" aria-label="Your question" /><button type="submit" aria-label="Send">➤</button></form>
   </div>
 </div>
@@ -46,6 +51,12 @@ const waDisplay = '01890-484355';
     {keys:['web','website','ওয়েবসাইট'],text:'Yes — we build premium, responsive and SEO-ready websites, applications and landing pages. Start on '},
     {keys:['app','application'],text:'We build fast, scalable applications and business dashboards. Discuss your idea on '},
     {keys:['video','ai','edit','gallery','ভিডিও'],text:'We create human-like AI videos and professional edits for brands, products and campaigns. Send your brief on '},
+    {keys:['seo','search engine'],text:'We improve technical SEO, on-page structure, content signals and search visibility for sustainable organic growth. Discuss your site on '},
+    {keys:['automation','chatbot','messenger'],text:'We build Messenger, Instagram, WhatsApp and website automation flows with clear human handoff. Plan yours on '},
+    {keys:['marketing','campaign','boost'],text:'We plan digital campaigns, creative strategy, paid promotion and conversion-focused growth. Start on '},
+    {keys:['facebook','page'],text:'We support Facebook Page setup, management, content, verification guidance and campaign readiness. Ask on '},
+    {keys:['brand','branding','logo'],text:'We create brand identity, logo systems, campaign visuals and consistent digital presentation. Share your idea on '},
+    {keys:['portfolio','work','project'],text:'Explore our selected client work and request a similar production through '},
     {keys:['hello','hi','hey','হ্যালো'],text:'Hello! Tell us what you want to create, or contact the Creavix team on '}
   ];
   function addMsg(text,who,html){if(!body)return;var div=document.createElement('div');div.className='support-msg '+who;if(html)div.innerHTML=text;else div.textContent=text;body.appendChild(div);body.scrollTop=body.scrollHeight;}
@@ -55,7 +66,7 @@ const waDisplay = '01890-484355';
   if(closeBtn&&panel)closeBtn.addEventListener('click',function(){panel.hidden=true;panel.setAttribute('aria-hidden','true');if(openBtn)openBtn.setAttribute('aria-expanded','false');});
   if(form&&input)form.addEventListener('submit',function(e){e.preventDefault();var q=(input.value||'').trim();if(!q)return;input.value='';respond(q);});
   document.querySelectorAll('#support-quick [data-q]').forEach(function(button){button.addEventListener('click',function(){respond(button.getAttribute('data-q')||'');});});
-  if((document.documentElement.lang||'').toLowerCase().indexOf('bn')===0){var localized=[['সেবা','আপনারা কী কী সেবা দেন?'],['মূল্য','সেবার মূল্য কত?'],['সময়','ডেলিভারি কত দ্রুত?']];document.querySelectorAll('#support-quick [data-q]').forEach(function(button,i){if(!localized[i])return;button.textContent=localized[i][0];button.setAttribute('data-q',localized[i][1]);});if(input)input.placeholder='প্রশ্ন লিখুন…';}
+  if((document.documentElement.lang||'').toLowerCase().indexOf('bn')===0){var names=['সেবা','ভিডিও','এআই ভিডিও','ওয়েবসাইট','অ্যাপ','এসইও','অটোমেশন','মার্কেটিং','ফেসবুক','বুস্টিং','ক্যাম্পেইন','ব্র্যান্ডিং','পোর্টফোলিও','মূল্য','সময়','যোগাযোগ'];document.querySelectorAll('.support-quick-track').forEach(function(track){track.querySelectorAll('[data-q]').forEach(function(button,i){if(names[i])button.textContent=names[i];});});if(input)input.placeholder='প্রশ্ন লিখুন…';}
   if(backTop){window.addEventListener('scroll',function(){backTop.hidden=window.scrollY<=400;},{passive:true});backTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
 })();
 </script>
