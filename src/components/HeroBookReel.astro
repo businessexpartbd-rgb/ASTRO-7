@@ -5,6 +5,7 @@ const heroPosters = [
   '/media/hero-ai-product.webp',
   '/media/hero-edit-suite.webp',
 ];
+const heroSmall = (poster: string) => poster.replace('.webp', '-480.webp');
 const steps = ['Studio opening', 'AI enhancement', 'Image to video', 'Cinematic result', 'Pro editing', 'Human quality', 'Campaign ready'];
 ---
 <div class="vs" data-video-studio aria-label="Creavix AI and professional video production workflow">
@@ -12,7 +13,7 @@ const steps = ['Studio opening', 'AI enhancement', 'Image to video', 'Cinematic 
   <div class="vs-window">
     <div class="vs-titlebar">
       <div class="vs-dots" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="vs-brand"><img src="/media/creavix-original-logo.webp" alt="" width="28" height="28" /><strong>CREAVIX STUDIO</strong></div>
+      <div class="vs-brand"><img src="/media/creavix-original-logo-56.webp" alt="" width="28" height="28" /><strong>CREAVIX STUDIO</strong></div>
       <div class="vs-live"><i></i> LIVE WORKFLOW</div>
     </div>
 
@@ -21,7 +22,7 @@ const steps = ['Studio opening', 'AI enhancement', 'Image to video', 'Cinematic 
         <div class="studio-opening">
           <div class="opening-reel" aria-label="Creavix cinematic production studio">
             {heroPosters.map((poster, i) => (
-              <img src={poster} alt={i === 0 ? 'Creavix cinematic production studio' : ''} width="960" height="540" decoding="async" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'low'} />
+              <img src={poster} srcset={`${heroSmall(poster)} 480w, ${poster} 960w`} sizes="(max-width: 899px) 350px, 480px" alt={i === 0 ? 'Creavix cinematic production studio' : ''} width="960" height="540" decoding="async" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'low'} />
             ))}
           </div>
           <div class="opening-grade"></div><div class="opening-scan"></div><div class="opening-grain"></div>
@@ -35,7 +36,7 @@ const steps = ['Studio opening', 'AI enhancement', 'Image to video', 'Cinematic 
       <div class="vs-panel" data-scene="1">
         <div class="enhance-lab">
           <span class="scene-kicker">02 · AI image enhancement</span>
-          <div class="compare-stage"><div class="compare-side"><img src={heroPosters[0]} alt="" width="480" height="360" loading="lazy" /><b>ORIGINAL</b></div><div class="compare-side enhanced"><img src={heroPosters[1]} alt="" width="480" height="360" loading="lazy" /><b>ENHANCED</b></div><i class="compare-scan"></i></div>
+          <div class="compare-stage"><div class="compare-side"><img src={heroPosters[0]} srcset={`${heroSmall(heroPosters[0])} 480w, ${heroPosters[0]} 960w`} sizes="350px" alt="" width="480" height="360" loading="lazy" /><b>ORIGINAL</b></div><div class="compare-side enhanced"><img src={heroPosters[1]} srcset={`${heroSmall(heroPosters[1])} 480w, ${heroPosters[1]} 960w`} sizes="350px" alt="" width="480" height="360" loading="lazy" /><b>ENHANCED</b></div><i class="compare-scan"></i></div>
           <div class="ai-mini-tools"><span><b>ChatGPT</b> Concept</span><span><img src="/brands/googlegemini.svg" alt="" />Gemini</span><span><b>G</b> Grok</span><span><b>◆</b> Identity Lock</span></div>
         </div>
       </div>
@@ -52,9 +53,9 @@ const steps = ['Studio opening', 'AI enhancement', 'Image to video', 'Cinematic 
             <div class="core-logo">AI</div>
           </div>
           <div class="frame-stack" aria-hidden="true">
-            <i><img src={heroPosters[1]} alt="" width="480" height="360" loading="lazy" decoding="async" /></i>
-            <i><img src={heroPosters[2]} alt="" width="480" height="360" loading="lazy" decoding="async" /></i>
-            <i><img src={heroPosters[0]} alt="" width="480" height="360" loading="lazy" decoding="async" /></i>
+            <i><img src={heroSmall(heroPosters[1])} alt="" width="480" height="360" loading="lazy" decoding="async" /></i>
+            <i><img src={heroSmall(heroPosters[2])} alt="" width="480" height="360" loading="lazy" decoding="async" /></i>
+            <i><img src={heroSmall(heroPosters[0])} alt="" width="480" height="360" loading="lazy" decoding="async" /></i>
           </div>
         </div>
       </div>
@@ -63,7 +64,7 @@ const steps = ['Studio opening', 'AI enhancement', 'Image to video', 'Cinematic 
         <div class="cinema-frame">
           <div class="cinema-reel" aria-label="Original Creavix cinematic concept preview">
             {heroPosters.map((poster, i) => (
-              <img src={poster} alt={i === 0 ? 'Bangladeshi cinematic production studio' : ''} width="960" height="540" decoding="async" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'low'} />
+              <img src={poster} srcset={`${heroSmall(poster)} 480w, ${poster} 960w`} sizes="(max-width: 899px) 350px, 480px" alt={i === 0 ? 'Bangladeshi cinematic production studio' : ''} width="960" height="540" decoding="async" loading="lazy" fetchpriority="low" />
             ))}
           </div>
           <div class="cinema-light"></div>
@@ -76,7 +77,7 @@ const steps = ['Studio opening', 'AI enhancement', 'Image to video', 'Cinematic 
       <div class="vs-panel" data-scene="4">
         <div class="edit-suite">
           <div class="edit-preview">
-            <img src={heroPosters[2]} alt="" width="480" height="360" loading="lazy" decoding="async" />
+            <img src={heroSmall(heroPosters[2])} alt="" width="480" height="360" loading="lazy" decoding="async" />
             <div class="play-icon" aria-hidden="true"></div>
           </div>
           <div class="edit-controls">
@@ -94,7 +95,7 @@ const steps = ['Studio opening', 'AI enhancement', 'Image to video', 'Cinematic 
 
       <div class="vs-panel" data-scene="5">
         <div class="quality-lab">
-          <img src={heroPosters[2]} alt="Creavix team reviewing final production" width="960" height="540" loading="lazy" />
+          <img src={heroPosters[2]} srcset={`${heroSmall(heroPosters[2])} 480w, ${heroPosters[2]} 960w`} sizes="(max-width: 899px) 350px, 480px" alt="Creavix team reviewing final production" width="960" height="540" loading="lazy" />
           <div class="quality-copy"><span class="scene-kicker">06 · Human quality control</span><strong>AI Precision × Human Creativity</strong></div>
           <div class="quality-grid"><span>✓ Face consistency</span><span>✓ Product accuracy</span><span>✓ Natural motion</span><span>✓ Brand colour</span><span>✓ Sound sync</span><span>✓ Final review</span></div>
         </div>
@@ -109,8 +110,8 @@ const steps = ['Studio opening', 'AI enhancement', 'Image to video', 'Cinematic 
             <strong>One idea.<br />Every screen.</strong>
             <div class="format-row"><span>9:16</span><span>1:1</span><span>16:9</span></div>
           </div>
-          <div class="device phone" aria-hidden="true"><i style={`background-image:url('${heroPosters[1]}')`}></i></div>
-          <div class="device desktop" aria-hidden="true"><i style={`background-image:url('${heroPosters[0]}')`}></i></div>
+          <div class="device phone" aria-hidden="true"><i style={`background-image:url('${heroSmall(heroPosters[1])}')`}></i></div>
+          <div class="device desktop" aria-hidden="true"><i style={`background-image:url('${heroSmall(heroPosters[0])}')`}></i></div>
         </div>
       </div>
 
@@ -199,7 +200,7 @@ const steps = ['Studio opening', 'AI enhancement', 'Image to video', 'Cinematic 
   .vs-corner{position:absolute;width:13px;height:13px;border-color:rgba(255,255,255,.65);border-style:solid;z-index:10}.top-left{left:10px;top:10px;border-width:1px 0 0 1px}.top-right{right:10px;top:10px;border-width:1px 1px 0 0}.bottom-left{left:10px;bottom:10px;border-width:0 0 1px 1px}.bottom-right{right:10px;bottom:10px;border-width:0 1px 1px 0}
   .vs-status{padding:.65rem .8rem .7rem;background:#fff}.vs-progress{height:3px;border-radius:5px;background:#e7ebf2;overflow:hidden}.vs-progress i{display:block;height:100%;width:14.285%;border-radius:inherit;background:linear-gradient(90deg,#2563eb,#8b5cf6,#ec4899);transition:width .45s ease}
   .vs-step-copy{display:flex;align-items:baseline;gap:.45rem;margin-top:.5rem}.vs-step-copy span{color:#2563eb;font-size:.54rem;font-weight:800}.vs-step-copy strong{color:#0f172a;font-size:.64rem}.vs-quality{display:flex;gap:.35rem;margin-left:auto;justify-content:flex-end;margin-top:-.8rem}.vs-quality span{padding:.2rem .35rem;border-radius:5px;background:#f1f5f9;color:#64748b;font-size:.42rem;font-weight:800}
-  .vs-nav{display:flex;justify-content:center;gap:.4rem;margin-top:.8rem}.vs-nav-btn{width:32px;height:7px;padding:0;border:0;border-radius:99px;background:#cbd5e1;cursor:pointer;overflow:hidden;transition:width .3s,background .3s}.vs-nav-btn span{position:absolute;clip:rect(0 0 0 0)}.vs-nav-btn.is-active{width:58px;background:linear-gradient(90deg,#2563eb,#8b5cf6)}
+  .vs-nav{display:flex;justify-content:center;gap:.1rem;margin-top:.25rem}.vs-nav-btn{position:relative;width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer}.vs-nav-btn::after{content:'';position:absolute;left:50%;top:50%;width:28px;height:7px;transform:translate(-50%,-50%);border-radius:99px;background:#cbd5e1;transition:width .3s,background .3s}.vs-nav-btn span{position:absolute;clip:rect(0 0 0 0)}.vs-nav-btn.is-active::after{width:38px;background:linear-gradient(90deg,#2563eb,#8b5cf6)}
   .vs-float-chip{position:absolute;z-index:3;display:flex;align-items:center;gap:.35rem;padding:.45rem .62rem;border:1px solid rgba(255,255,255,.9);border-radius:12px;background:rgba(255,255,255,.92);box-shadow:0 10px 26px rgba(15,23,42,.12);color:#334155;font-size:.55rem;font-weight:800;backdrop-filter:blur(9px);animation:chipFloat 3s ease-in-out infinite alternate}.vs-float-chip i{width:22px;height:22px;display:grid;place-items:center;border-radius:7px;color:#fff;font-style:normal}.chip-ai{left:-4%;top:25%}.chip-ai i{background:linear-gradient(135deg,#7c3aed,#ec4899)}.chip-pro{right:-3%;bottom:20%;animation-delay:1s}.chip-pro i{background:linear-gradient(135deg,#2563eb,#06b6d4)}
   .core-logo{position:relative;animation:aiGlow 2s ease-in-out infinite alternate}.core-logo:after{content:'CREATIVE INTELLIGENCE';position:absolute;left:50%;top:108%;transform:translateX(-50%);white-space:nowrap;color:#c4b5fd;font:800 .31rem/1 Outfit;letter-spacing:.12em}
   .editor-orbit{position:absolute;z-index:6;inset:0;pointer-events:none}.editor-node{position:absolute;display:flex;align-items:center;gap:.35rem;padding:.32rem .45rem;border:1px solid rgba(255,255,255,.88);border-radius:12px;background:rgba(255,255,255,.92);box-shadow:0 12px 30px rgba(15,23,42,.14);color:#334155;font-size:.42rem;font-weight:800;backdrop-filter:blur(9px);animation:editorFloat 4s ease-in-out infinite alternate}.editor-node i{width:24px;height:24px;display:grid;place-items:center;border-radius:7px;color:#c4b5fd;background:#24165d;font-style:normal;font-size:.52rem}.editor-node b{white-space:nowrap}.node-pr{left:-8%;top:13%;animation-delay:-.3s}.node-ae{right:-9%;top:30%;animation-delay:-1.4s}.node-cap{left:-7%;bottom:19%;animation-delay:-2.2s}.node-cap i{color:#fff;background:#080d18}.node-film{right:-7%;bottom:7%;animation-delay:-3s}.node-film i{background:#fff}.node-film img{width:18px;height:18px;object-fit:contain}
@@ -207,7 +208,7 @@ const steps = ['Studio opening', 'AI enhancement', 'Image to video', 'Cinematic 
   .action-rig{position:absolute;z-index:5;right:-7%;top:9%;display:flex;align-items:center;gap:.35rem;padding:.38rem .48rem;border:1px solid rgba(255,255,255,.9);border-radius:12px;background:rgba(255,255,255,.92);box-shadow:0 12px 25px rgba(15,23,42,.12);color:#0f172a}.rig-light{width:18px;height:18px;border-radius:50%;background:#fde68a;box-shadow:0 0 18px #f59e0b;animation:rigGlow 1.6s ease-in-out infinite alternate}.rig-camera{width:26px;height:18px;border-radius:5px;background:#172033;position:relative}.rig-camera i{position:absolute;right:-6px;top:4px;width:10px;height:10px;border-radius:50%;background:#38bdf8;box-shadow:0 0 8px #38bdf8}.rig-clap{width:22px;height:18px;border:2px solid #111827;position:relative}.rig-clap i{position:absolute;left:-2px;right:-2px;top:-7px;height:5px;background:repeating-linear-gradient(135deg,#111827 0 4px,#fff 4px 8px);transform-origin:left;animation:clap 2.6s ease-in-out infinite}.action-rig strong{font-size:.38rem;letter-spacing:.08em}.action-rig b{color:#ef4444;animation:blink 1s infinite}
   @keyframes aura{to{opacity:.72;transform:scale(1.06)}}@keyframes blink{50%{opacity:.25}}@keyframes type{50%{width:35%;opacity:.6}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes frames{50%{transform:translateY(-5px) rotate(2deg)}}@keyframes heroFloat{to{transform:translateY(-4px)}}@keyframes lightSweep{50%{transform:translateX(18%)}}@keyframes scrub{to{left:90%}}@keyframes deliveryPulse{0%{transform:scale(.8);opacity:.7}100%{transform:scale(1.15);opacity:0}}@keyframes chipFloat{to{transform:translateY(-7px)}}@keyframes cinemaCut{0%,29%{opacity:1}34%,95%{opacity:0}100%{opacity:1}}@keyframes cinemaMove{to{transform:scale(1.08) translate3d(-1.5%,1%,0)}}@keyframes openingCut{0%,29%{opacity:1}33%,96%{opacity:0}100%{opacity:1}}@keyframes openingCamera{0%{transform:scale(1.01) translate3d(0,0,0)}100%{transform:scale(1.12) translate3d(-2%,1.2%,0)}}@keyframes openingScan{0%,15%{transform:translateX(0) skewX(-14deg);opacity:0}35%{opacity:1}75%,100%{transform:translateX(600%) skewX(-14deg);opacity:0}}@keyframes grainShift{50%{transform:translate3d(1px,-1px,0)}}@keyframes openingPlayhead{to{left:92%}}@keyframes editorFloat{to{transform:translate3d(7px,-9px,0) rotate(1.5deg)}}@keyframes aiGlow{to{filter:saturate(1.25);box-shadow:0 0 45px rgba(139,92,246,.8)}}@keyframes toolFlow{to{transform:translateX(-22%)}}@keyframes rigGlow{to{transform:scale(1.12);opacity:.7}}@keyframes clap{0%,68%,100%{transform:rotate(0)}78%{transform:rotate(-28deg)}}@keyframes phoneIn{to{transform:rotate(1deg) translateY(-4px)}}@keyframes transfer{from{transform:translateX(-28px);opacity:0}to{transform:translateX(0);opacity:1}}@keyframes compare{from{left:18%}to{left:82%}}@keyframes qualityMove{to{transform:scale(1.06) translateX(-1%)}}@keyframes qualityCheck{to{background:rgba(21,128,61,.82);box-shadow:0 0 12px rgba(34,197,94,.25)}}
   @media(max-width:899px){.vs{max-width:380px;padding:.25rem 0 .25rem;overflow:clip}.vs-aura{inset:8% 0 4%}.vs-window{transform:none}.vs-float-chip{display:none}.action-rig{right:7%;top:38px;padding:.2rem .3rem;gap:.2rem;border-radius:8px;transform:scale(.78);transform-origin:right top}.action-rig strong{display:none}.rig-light{width:13px;height:13px}.rig-camera{width:21px;height:14px}.rig-clap{width:18px;height:14px}.editor-orbit{inset:34px 4px auto;height:calc(100% - 95px)}.editor-node{padding:.18rem;border-radius:9px;animation-duration:3.5s}.editor-node i{width:20px;height:20px}.editor-node b{display:none}.node-pr{left:2%;top:4%}.node-ae{right:2%;top:20%}.node-cap{left:2%;bottom:13%}.node-film{right:2%;bottom:9%}.tool-orbit{width:100%;margin-top:.38rem}.tool-badge{animation-duration:12s}}
-  @media(max-width:520px){.vs{width:100%;max-width:350px;padding-inline:0}.vs-window{border-radius:15px}.vs-titlebar{height:32px;padding-inline:.58rem}.vs-brand{margin-left:.5rem}.vs-brand img{width:22px;height:22px}.vs-brand strong{font-size:.46rem}.vs-live{font-size:.38rem}.vs-screen{aspect-ratio:16/10.4}.wa-intake{padding:5%;grid-template-columns:.82fr 1.18fr;gap:5%}.wa-phone{height:86%;border-width:3px}.wa-chat p{font-size:.34rem}.intake-copy strong{font-size:.82rem}.ai-mini-tools span:nth-child(4){display:none}.brief-board{padding:9% 7%;gap:5%}.storyboard i{height:43px}.ai-console{padding:7%;grid-template-columns:1.2fr .72fr .45fr}.prompt-box{padding:.58rem}.prompt-box p{font-size:.5rem}.edit-suite{grid-template-columns:.72fr 1.28fr}.delivery-card{width:58%;padding:.7rem}.vs-status{padding:.48rem .62rem .55rem}.vs-quality span:nth-child(2){display:none}.vs-nav{gap:.22rem;margin-top:.55rem}.vs-nav-btn{width:20px;height:6px}.vs-nav-btn.is-active{width:36px}.tool-orbit{padding:.35rem;gap:.25rem}.tool-badge{padding:.24rem .32rem;font-size:.38rem}.tool-badge i{width:18px;height:18px}}
+  @media(max-width:520px){.vs{width:100%;max-width:350px;padding-inline:0}.vs-window{border-radius:15px}.vs-titlebar{height:32px;padding-inline:.58rem}.vs-brand{margin-left:.5rem}.vs-brand img{width:22px;height:22px}.vs-brand strong{font-size:.46rem}.vs-live{font-size:.38rem}.vs-screen{aspect-ratio:16/10.4}.wa-intake{padding:5%;grid-template-columns:.82fr 1.18fr;gap:5%}.wa-phone{height:86%;border-width:3px}.wa-chat p{font-size:.34rem}.intake-copy strong{font-size:.82rem}.ai-mini-tools span:nth-child(4){display:none}.brief-board{padding:9% 7%;gap:5%}.storyboard i{height:43px}.ai-console{padding:7%;grid-template-columns:1.2fr .72fr .45fr}.prompt-box{padding:.58rem}.prompt-box p{font-size:.5rem}.edit-suite{grid-template-columns:.72fr 1.28fr}.delivery-card{width:58%;padding:.7rem}.vs-status{padding:.48rem .62rem .55rem}.vs-quality span:nth-child(2){display:none}.vs-nav{gap:0;margin-top:.12rem}.vs-nav-btn{width:42px;height:42px}.vs-nav-btn::after{width:20px;height:6px}.vs-nav-btn.is-active::after{width:34px}.tool-orbit{padding:.35rem;gap:.25rem}.tool-badge{padding:.24rem .32rem;font-size:.38rem}.tool-badge i{width:18px;height:18px}}
   @media(prefers-reduced-motion:reduce){.vs *{animation:none!important;transition:none!important}.vs-panel:not(.is-active){display:none}}
 </style>
 

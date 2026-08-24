@@ -8,7 +8,7 @@ import { SITE } from '../data/site';
       <strong class="topbar-stat">4,300+</strong>
     </p>
     <p class="topbar-right">
-      <a href={`tel:${SITE.hotline.replace(/\s/g, '')}`} class="topbar-link topbar-phone" aria-label="Call hotline">
+      <a href={`tel:${SITE.hotline.replace(/\s/g, '')}`} class="topbar-link topbar-phone" aria-label={`Call ${SITE.hotline}`}>
         {SITE.hotline}
       </a>
       <span class="topbar-sep" aria-hidden="true">·</span>

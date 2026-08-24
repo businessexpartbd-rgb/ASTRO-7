@@ -46,7 +46,7 @@ const companyLinks = [
     <div class="container vx-grid">
       <div class="vx-brand">
         <a href="/" class="vx-logo">
-          <img src="/logo.png" alt="" width="40" height="40" />
+          <img src="/media/creavix-nav-logo.webp" alt="" width="40" height="40" />
           <span>CREAVIX <em>iT</em></span>
         </a>
         <p>
@@ -58,7 +58,7 @@ const companyLinks = [
       </div>
 
       <div class="vx-col">
-        <h4>Services</h4>
+        <h3>Services</h3>
         <ul>
           {serviceLinks.map((l) => (
             <li><a href={l.href}>{l.label}</a></li>
@@ -67,7 +67,7 @@ const companyLinks = [
       </div>
 
       <div class="vx-col">
-        <h4>Company</h4>
+        <h3>Company</h3>
         <ul>
           {companyLinks.map((l) => (
             <li><a href={l.href}>{l.label}</a></li>
@@ -76,7 +76,7 @@ const companyLinks = [
       </div>
 
       <div class="vx-col">
-        <h4>Contact</h4>
+        <h3>Contact</h3>
         <ul>
           <li><a href={`tel:${SITE.hotline.replace(/\s/g, '')}`}>{SITE.hotline}</a></li>
           <li><a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp {SITE.whatsapp}</a></li>
@@ -95,7 +95,7 @@ const companyLinks = [
       </div>
     </div>
 
-    <div class="vx-watermark" aria-hidden="true">CREAVIX iT</div>
+    <div class="vx-watermark" aria-hidden="true"></div>
   </div>
 </footer>
 <SiteChrome />
@@ -111,7 +111,7 @@ const companyLinks = [
   .vx-mid-inner { max-width: 640px; margin: 0 auto; }
   .vx-mid-text {
     margin: 0 0 1.25rem;
-    color: #475569;
+    color: #475569 !important;
     line-height: 1.6;
     font-size: 0.98rem;
   }
@@ -159,15 +159,15 @@ const companyLinks = [
   }
   .vx-logo em { font-style: normal; color: #60A5FA; }
   .vx-brand p {
-    margin: 0 0 0.75rem; color: #94A3B8; line-height: 1.6; font-size: 0.9rem; max-width: 280px;
+    margin: 0 0 0.75rem; color: #A8B6C9 !important; line-height: 1.6; font-size: 0.9rem; max-width: 280px;
   }
   .vx-mail {
     display: inline-block; color: #93C5FD; text-decoration: none; font-size: 0.9rem; margin-bottom: 0.5rem;
   }
   .vx-mail:hover { color: #BFDBFE; }
-  .vx-addr { font-size: 0.85rem !important; color: #64748B !important; }
+  .vx-addr { font-size: 0.85rem !important; color: #A8B6C9 !important; }
 
-  .vx-col h4 {
+  .vx-col h3 {
     margin: 0 0 1rem;
     font-size: 0.85rem; font-weight: 700;
     letter-spacing: 0.04em; text-transform: uppercase; color: #fff;
@@ -185,7 +185,7 @@ const companyLinks = [
     display: flex; flex-wrap: wrap; gap: 1rem;
     justify-content: space-between; align-items: center;
   }
-  .vx-copy { font-size: 0.82rem; color: #64748B; }
+  .vx-copy { font-size: 0.82rem; color: #A8B6C9; }
   .vx-bottom-links { display: flex; gap: 1.25rem; }
   .vx-bottom-links a {
     font-size: 0.82rem; color: #94A3B8; text-decoration: none;
@@ -200,12 +200,16 @@ const companyLinks = [
     font-size: clamp(3.5rem, 14vw, 9rem);
     font-weight: 900;
     letter-spacing: 0.06em;
-    color: rgba(148, 163, 184, 0.07);
+    color: transparent;
     white-space: nowrap;
     pointer-events: none;
     user-select: none;
     line-height: 0.85;
     z-index: 0;
+  }
+  .vx-watermark::before {
+    content: 'CREAVIX iT';
+    color: rgba(148, 163, 184, 0.07);
   }
 
   @media (max-width: 640px) {

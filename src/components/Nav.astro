@@ -8,8 +8,8 @@ const { active = '' } = Astro.props;
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="/" class="logo" aria-label="Creavix iT Solution Home">
-      <img src="/logo.png" alt="Creavix iT Solution" class="logo-img" width="40" height="40" />
-      <span class="logo-text">Creavix <span>iT</span></span>
+      <img src="/media/creavix-nav-logo.webp" alt="Creavix iT Solution" class="logo-img" width="40" height="40" />
+      <span class="logo-text">Creavix <span>iT Solution</span></span>
     </a>
 
     <div class="nav-social-bar">
@@ -124,6 +124,16 @@ const { active = '' } = Astro.props;
       -webkit-overflow-scrolling: touch;
       padding-bottom: 3rem !important;
     }
+  }
+  @media (max-width: 480px) {
+    .nav-inner { gap: .3rem; padding-inline: .45rem; }
+    .logo { gap: .3rem; }
+    .logo-img { width: 30px; height: 30px; }
+    .logo-text { font-size: clamp(.62rem, 2.6vw, .75rem); white-space: nowrap; }
+    .nav-social-bar { margin-right: 0; }
+    .nav-social-bar :global(.social-icons) { gap: .15rem; }
+    .nav-social-bar :global(.si) { width: 27px; height: 27px; }
+    .nav-menu-btn { padding: .48rem .65rem; font-size: .72rem; }
   }
   body.nav-locked {
     overflow: hidden !important;
