@@ -11,6 +11,7 @@ import ProcessFlow from '../components/ProcessFlow.astro';
 import IconBox from '../components/IconBox.astro';
 import ServiceIcons from '../components/icons/ServiceIcons.astro';
 import HeroBookReel from '../components/HeroBookReel.astro';
+import BrandingCinema from '../components/BrandingCinema.astro';
 import { SITE } from '../data/site';
 
 const services = [
@@ -30,15 +31,15 @@ const services = [
 const primaryServices = services.filter((_, index) => index < 3);
 const supportingServices = services.filter((_, index) => index >= 3);
 const aiTools = [
-  { name: 'Kling AI', role: 'Cinematic video', icon: '/ai-tools/kling-transparent.png', href: 'https://kling.ai/' },
-  { name: 'Hunyuan', role: 'AI video model', icon: '/ai-tools/hunyuan-transparent.png', href: 'https://aivideo.hunyuan.tencent.com/' },
-  { name: 'ElevenLabs', role: 'Voice & dubbing', icon: '/ai-tools/elevenlabs.svg', href: 'https://elevenlabs.io/' },
-  { name: 'Gemini', role: 'Ideas & visuals', icon: '/ai-tools/gemini.svg', href: 'https://gemini.google.com/' },
-  { name: 'ChatGPT', role: 'Creative direction', icon: '/ai-tools/openai.svg', href: 'https://chatgpt.com/' },
-  { name: 'Claude', role: 'Scripts & research', icon: '/ai-tools/claude.svg', href: 'https://claude.ai/' },
-  { name: 'Higgsfield', role: 'AI video effects', icon: '/ai-tools/higgsfield-transparent.png', href: 'https://higgsfield.ai/' },
-  { name: 'Grok', role: 'Image & video ideas', icon: '/ai-tools/grok-transparent.png', href: 'https://grok.com/' },
-  { name: 'HeyGen', role: 'Avatar video', icon: '/ai-tools/heygen-transparent.png', href: 'https://www.heygen.com/' },
+  { name: 'Kling AI', role: 'Cinematic video', icon: '/ai-tools/kling.webp', href: 'https://kling.ai/' },
+  { name: 'Hunyuan', role: 'AI video model', icon: '/ai-tools/hunyuan.webp', href: 'https://aivideo.hunyuan.tencent.com/' },
+  { name: 'ElevenLabs', role: 'Voice & dubbing', icon: '/ai-tools/elevenlabs.webp', href: 'https://elevenlabs.io/' },
+  { name: 'Gemini', role: 'Ideas & visuals', icon: '/ai-tools/gemini.webp', href: 'https://gemini.google.com/' },
+  { name: 'ChatGPT', role: 'Creative direction', icon: '/ai-tools/chatgpt.webp', href: 'https://chatgpt.com/' },
+  { name: 'Claude', role: 'Scripts & research', icon: '/ai-tools/claude.webp', href: 'https://claude.ai/' },
+  { name: 'Higgsfield', role: 'AI video effects', icon: '/ai-tools/higgsfield.webp', href: 'https://higgsfield.ai/' },
+  { name: 'Grok', role: 'Image & video ideas', icon: '/ai-tools/grok.webp', href: 'https://grok.com/' },
+  { name: 'HeyGen', role: 'Avatar video', icon: '/ai-tools/heygen.webp', href: 'https://www.heygen.com/' },
 ];
 const devToolTeaser = [
   { name: 'v0', icon: '/logos/v0.svg' },
@@ -133,69 +134,7 @@ const devToolTeaser = [
     </div>
   </section>
 
-  <section class="brand-intelligence" aria-labelledby="brand-intelligence-title">
-    <div class="brand-orb brand-orb-one" aria-hidden="true"></div>
-    <div class="brand-orb brand-orb-two" aria-hidden="true"></div>
-    <div class="container">
-      <header class="brand-intelligence-head reveal">
-        <p class="brand-kicker"><span></span>Branding, Explained Simply</p>
-        <h2 id="brand-intelligence-title">Turn Everything You Create<br /><em>Into One Recognizable Brand.</em></h2>
-        <p>A logo alone is not a brand. Branding connects your identity, niche, message and customer experience—so every video, website, application and campaign is instantly recognized as yours.</p>
-      </header>
-
-      <div class="brand-blueprint reveal">
-        <div class="brand-blueprint-top"><span>BRAND APPLICATION STORY</span><i><b></b>24-SECOND · 8-SCENE VISUAL</i></div>
-        <div class="brand-story" aria-label="Eight-scene animated portfolio showing six complete branding projects">
-          <figure class="brand-story-frame story-overview" style="--delay:0s;--zoom:1;--origin:50% 50%">
-            <div class="brand-overview-grid">
-              <img src="/media/branding/generated/datara-cinematic-v2.webp" alt="Datara brand identity preview" width="1672" height="941" loading="lazy" decoding="async" />
-              <img src="/media/branding/generated/addiba-cinematic-v2.webp" alt="Addiba brand identity preview" width="1672" height="941" loading="lazy" decoding="async" />
-              <img src="/media/branding/generated/primetalent-cinematic-v2.webp" alt="PrimeTalent brand identity preview" width="1672" height="941" loading="lazy" decoding="async" />
-              <img src="/media/branding/generated/pirate-cinematic-v2.webp" alt="Pirate brand identity preview" width="1672" height="941" loading="lazy" decoding="async" />
-            </div>
-            <figcaption><b>01</b><span>Four Brand Worlds<small>Identity across real touchpoints</small></span></figcaption>
-          </figure>
-          <figure class="brand-story-frame story-datara" style="--delay:3s;--zoom:1.18;--origin:50% 24%"><img src="/media/branding/generated/datara-cinematic-v2.webp" alt="Datara complete brand identity across digital products and merchandise" width="1672" height="941" loading="lazy" decoding="async" /><figcaption><b>02</b><span>Datara<small>Data-led brand ecosystem</small></span></figcaption></figure>
-          <figure class="brand-story-frame story-addiba" style="--delay:6s;--zoom:1.16;--origin:50% 36%"><img src="/media/branding/generated/addiba-cinematic-v2.webp" alt="Addiba complete technology brand identity" width="1672" height="941" loading="lazy" decoding="async" /><figcaption><b>03</b><span>Addiba<small>Digital product identity</small></span></figcaption></figure>
-          <figure class="brand-story-frame story-prime" style="--delay:9s;--zoom:1.17;--origin:50% 42%"><img src="/media/branding/generated/primetalent-cinematic-v2.webp" alt="PrimeTalent complete consulting brand identity" width="1672" height="941" loading="lazy" decoding="async" /><figcaption><b>04</b><span>PrimeTalent<small>People-first visual system</small></span></figcaption></figure>
-          <figure class="brand-story-frame story-pirate" style="--delay:12s;--zoom:1.2;--origin:50% 62%"><img src="/media/branding/generated/pirate-cinematic-v2.webp" alt="Pirate lifestyle brand identity applied across products" width="1672" height="941" loading="lazy" decoding="async" /><figcaption><b>05</b><span>Pirate<small>Lifestyle applications</small></span></figcaption></figure>
-          <figure class="brand-story-frame story-aurora" style="--delay:15s;--zoom:1.15;--origin:50% 54%"><img src="/media/branding/generated/aurora-cinematic-v2.webp" alt="Aurora complete green brand identity system" width="1672" height="941" loading="lazy" decoding="async" /><figcaption><b>06</b><span>Aurora<small>Complete identity direction</small></span></figcaption></figure>
-          <figure class="brand-story-frame story-valor" style="--delay:18s;--zoom:1.16;--origin:50% 50%"><img src="/media/branding/generated/valor-city-cinematic-v2.webp" alt="Valor City complete multi-product brand identity" width="1672" height="941" loading="lazy" decoding="async" /><figcaption><b>07</b><span>Valor City<small>Multi-product brand world</small></span></figcaption></figure>
-          <figure class="brand-story-frame story-complete" style="--delay:21s;--zoom:1;--origin:50% 50%">
-            <div class="brand-final-grid">
-              <img src="/media/branding/generated/datara-cinematic-v2.webp" alt="" width="1672" height="941" loading="lazy" decoding="async" />
-              <img src="/media/branding/generated/addiba-cinematic-v2.webp" alt="" width="1672" height="941" loading="lazy" decoding="async" />
-              <img src="/media/branding/generated/primetalent-cinematic-v2.webp" alt="" width="1672" height="941" loading="lazy" decoding="async" />
-              <img src="/media/branding/generated/pirate-cinematic-v2.webp" alt="" width="1672" height="941" loading="lazy" decoding="async" />
-              <img src="/media/branding/generated/aurora-cinematic-v2.webp" alt="" width="1672" height="941" loading="lazy" decoding="async" />
-              <img src="/media/branding/generated/valor-city-cinematic-v2.webp" alt="" width="1672" height="941" loading="lazy" decoding="async" />
-            </div>
-            <figcaption><b>08</b><span>One Complete Portfolio<small>Six brands · Every touchpoint</small></span></figcaption>
-            <div class="brand-story-glass"><span>BRANDING</span><small>Six identities · Built to be remembered</small></div>
-          </figure>
-          <div class="brand-story-progress" aria-hidden="true"><i></i></div>
-        </div>
-        <div class="brand-result"><span><i></i>Recognition</span><span>Trust</span><span>Consistency</span><span>Higher perceived value</span></div>
-      </div>
-
-      <div class="brand-learning-head reveal"><p>Tap each part to understand how a real brand is built.</p><span>6 essential building blocks</span></div>
-      <div class="brand-learning-grid" aria-label="Interactive branding topics">
-        <button class="brand-topic reveal" type="button" data-brand-dialog="brand-logo"><span class="brand-topic-icon"><ServiceIcons name="design" size={27}/></span><span><b>Logo System</b><small>More than one logo file</small></span><i>+</i></button>
-        <button class="brand-topic reveal" type="button" data-brand-dialog="brand-social"><span class="brand-topic-icon"><ServiceIcons name="facebook" size={27}/></span><span><b>Social Consistency</b><small>Look familiar everywhere</small></span><i>+</i></button>
-        <button class="brand-topic reveal" type="button" data-brand-dialog="brand-niche"><span class="brand-topic-icon"><ServiceIcons name="strategy" size={27}/></span><span><b>Brand Niche</b><small>Own one clear position</small></span><i>+</i></button>
-        <button class="brand-topic reveal" type="button" data-brand-dialog="brand-voice"><span class="brand-topic-icon"><ServiceIcons name="human" size={27}/></span><span><b>Brand Voice</b><small>Sound unmistakably you</small></span><i>+</i></button>
-        <button class="brand-topic reveal" type="button" data-brand-dialog="brand-marketing"><span class="brand-topic-icon"><ServiceIcons name="marketing" size={27}/></span><span><b>Marketing System</b><small>Connect every campaign</small></span><i>+</i></button>
-        <button class="brand-topic reveal" type="button" data-brand-dialog="brand-value"><span class="brand-topic-icon"><ServiceIcons name="boosting" size={27}/></span><span><b>Brand Value</b><small>Why customers choose you</small></span><i>+</i></button>
-      </div>
-    </div>
-
-    <dialog class="brand-dialog" id="brand-logo"><button class="brand-dialog-close" type="button" aria-label="Close">×</button><span class="brand-dialog-step">01 · IDENTITY</span><h3>A logo becomes powerful when it becomes a system.</h3><p>Use the same recognizable mark, colors, typography and spacing across your website, app, videos, packaging and profiles. This helps customers identify you before they even read your name.</p><ul><li>Primary, compact and icon versions</li><li>Consistent color and typography rules</li><li>Clear usage for every screen size</li></ul></dialog>
-    <dialog class="brand-dialog" id="brand-social"><button class="brand-dialog-close" type="button" aria-label="Close">×</button><span class="brand-dialog-step">02 · CONSISTENCY</span><h3>Every social platform should feel like the same business.</h3><p>Your Facebook, Instagram, YouTube, LinkedIn and WhatsApp presence should share one profile identity, visual language and message. Consistency creates familiarity—and familiarity creates trust.</p><ul><li>Matching profile and cover identity</li><li>Repeatable post and thumbnail style</li><li>One clear message across platforms</li></ul></dialog>
-    <dialog class="brand-dialog" id="brand-niche"><button class="brand-dialog-close" type="button" aria-label="Close">×</button><span class="brand-dialog-step">03 · POSITION</span><h3>A clear niche tells customers why you are the right choice.</h3><p>Strong brands do not try to mean everything to everyone. They choose a focused audience, a specific problem and a distinct promise—then reinforce that position in every customer touchpoint.</p><ul><li>Defined ideal customer</li><li>Clear problem and outcome</li><li>Memorable market position</li></ul></dialog>
-    <dialog class="brand-dialog" id="brand-voice"><button class="brand-dialog-close" type="button" aria-label="Close">×</button><span class="brand-dialog-step">04 · MESSAGE</span><h3>Your brand should sound consistent, not only look consistent.</h3><p>Brand voice controls the words, tone and personality customers experience in captions, advertisements, website copy, support messages and videos. It turns communication into recognition.</p><ul><li>Consistent tone and vocabulary</li><li>Clear value proposition</li><li>Human, audience-appropriate messaging</li></ul></dialog>
-    <dialog class="brand-dialog" id="brand-marketing"><button class="brand-dialog-close" type="button" aria-label="Close">×</button><span class="brand-dialog-step">05 · MARKETING</span><h3>Marketing performs better when every campaign strengthens the brand.</h3><p>Instead of producing disconnected ads, a brand system makes every video, landing page, application and campaign repeat the same promise and visual cues. Each campaign then builds long-term memory—not only short-term clicks.</p><ul><li>Campaigns connected by one idea</li><li>Reusable creative system</li><li>Recognition that grows over time</li></ul></dialog>
-    <dialog class="brand-dialog" id="brand-value"><button class="brand-dialog-close" type="button" aria-label="Close">×</button><span class="brand-dialog-step">06 · BUSINESS VALUE</span><h3>Branding reduces doubt and increases perceived value.</h3><p>People often choose the business they recognize and trust—even when alternatives are cheaper. Professional branding signals reliability, makes your offer easier to remember and supports stronger customer loyalty.</p><ul><li>Faster customer trust</li><li>Greater pricing confidence</li><li>Long-term loyalty and referrals</li></ul></dialog>
-  </section>
+  <BrandingCinema />
 
   <section id="services" class="section-soft">
     <div class="container">
@@ -209,7 +148,13 @@ const devToolTeaser = [
         {primaryServices.map((s, i) => (
           <a href={s.href} class="service-card service-card-primary reveal" data-magnetic style={`--card-index:${i}`}>
             <div class="service-card-top"><span class="service-priority">Core expertise</span><span class="service-index">0{i + 1}</span></div>
-            <IconBox name={s.name} tone={s.tone} size={44} />
+            {s.name === 'video' ? (
+              <span class="video-editing-visual" aria-hidden="true">
+                <img src="/media/service-icons/video-editing-3d.webp" alt="" width="320" height="320" loading="lazy" decoding="async" />
+              </span>
+            ) : (
+              <IconBox name={s.name} tone={s.tone} size={44} />
+            )}
             <div class="service-copy"><h3>{s.title}</h3><p>{s.desc}</p></div>
             <span class="svc-more"><span>Explore service</span><i aria-hidden="true">↗</i></span>
           </a>
@@ -294,32 +239,15 @@ const devToolTeaser = [
 </Layout>
 
 <style>
-  .brand-intelligence{position:relative;isolation:isolate;overflow:hidden;padding:5rem 1.25rem;background:linear-gradient(145deg,#f1f4f9 0%,#e7edf7 48%,#dce9ff 100%);color:#0f172a;border-block:1px solid rgba(37,99,235,.09)}
-  .brand-intelligence:before{content:'';position:absolute;inset:0;z-index:-2;background-image:linear-gradient(rgba(37,99,235,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.045) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 82%,transparent)}
-  .brand-orb{position:absolute;z-index:-1;border-radius:50%;filter:blur(100px);pointer-events:none}.brand-orb-one{width:380px;height:380px;left:-170px;top:-110px;background:#60a5fa;opacity:.24}.brand-orb-two{width:330px;height:330px;right:-120px;bottom:-130px;background:#2563eb;opacity:.17}
-  .brand-intelligence-head{max-width:860px;margin:0 auto 2rem;text-align:center}.brand-kicker{display:flex;align-items:center;justify-content:center;gap:.55rem;margin:0 0 1rem;color:#1d4ed8;font-size:.7rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.brand-kicker span{width:25px;height:2px;background:linear-gradient(90deg,#2563eb,#60a5fa)}
-  .brand-intelligence h2{margin:0 0 1rem;color:#0b1220;font-size:clamp(2rem,4.6vw,4rem);line-height:1.02;letter-spacing:-.05em}.brand-intelligence h2 em{color:#2563eb;font-style:normal}.brand-intelligence-head>p:last-child{max-width:760px;margin:0 auto;color:#526175;font-size:clamp(.94rem,1.6vw,1.08rem);line-height:1.75}
-  .brand-blueprint{max-width:980px;margin:0 auto;overflow:hidden;border:1px solid rgba(37,99,235,.16);border-radius:30px;background:rgba(255,255,255,.72);box-shadow:0 35px 80px rgba(37,99,235,.12),inset 0 1px 0 #fff;backdrop-filter:blur(16px)}.brand-blueprint-top,.brand-result{display:flex;align-items:center;justify-content:space-between;gap:.7rem;padding:.8rem 1rem;color:#64748b;font-size:.58rem;font-weight:800;letter-spacing:.1em}.brand-blueprint-top{border-bottom:1px solid rgba(37,99,235,.1)}.brand-blueprint-top i{display:flex;align-items:center;gap:.4rem;color:#16a34a;font-style:normal}.brand-blueprint-top b,.brand-result i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 5px rgba(34,197,94,.12)}
-  .brand-story{position:relative;isolation:isolate;overflow:hidden;aspect-ratio:16/9;min-height:0;background:#dce5f2}.brand-story:after{content:'';position:absolute;z-index:10;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(2,6,23,.15),transparent 26%,transparent 74%,rgba(2,6,23,.08));box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
-  .brand-story-frame{position:absolute;inset:0;margin:0;overflow:hidden;opacity:0;animation:brand-scene 24s linear infinite;animation-delay:var(--delay)}.brand-story-frame img{display:block;width:100%;height:100%;object-fit:cover;transform-origin:var(--origin);animation:brand-camera 3s ease-in-out infinite;animation-delay:var(--delay);will-change:transform}.brand-story-frame figcaption{position:absolute;z-index:4;left:clamp(.7rem,3vw,1.4rem);bottom:clamp(.7rem,3vw,1.25rem);display:flex;align-items:center;gap:.65rem;padding:.62rem .8rem;border:1px solid rgba(255,255,255,.6);border-radius:14px;background:rgba(255,255,255,.76);box-shadow:0 14px 32px rgba(15,23,42,.16);backdrop-filter:blur(14px);color:#0f172a;transform:perspective(500px) rotateX(2deg) rotateY(4deg)}.brand-story-frame figcaption>b{color:#2563eb;font-size:.62rem}.brand-story-frame figcaption>span{display:grid;gap:.08rem;font-size:.7rem;font-weight:800}.brand-story-frame figcaption small{color:#64748b;font-size:.54rem;font-weight:600}
-  .brand-story-glass{position:absolute;z-index:6;left:50%;top:50%;width:min(72%,560px);transform:translate(-50%,-95%) perspective(900px) rotateX(7deg) rotateY(-6deg) scale(.86);display:grid;place-items:center;padding:clamp(1rem,4vw,2.2rem);border:1px solid rgba(255,255,255,.75);border-radius:24px;background:linear-gradient(135deg,rgba(255,255,255,.44),rgba(255,255,255,.13));box-shadow:0 25px 70px rgba(2,6,23,.2),inset 0 1px 0 rgba(255,255,255,.9);backdrop-filter:blur(15px);opacity:0;animation:brand-glass-in 24s cubic-bezier(.16,1,.3,1) infinite}.brand-story-glass span{color:#05070b;font:900 clamp(1.5rem,6vw,4.2rem)/1 var(--font-h);letter-spacing:.12em;text-shadow:0 0 2px #fff,0 0 12px rgba(255,255,255,.92),0 0 28px rgba(37,99,235,.72)}.brand-story-glass small{margin-top:.45rem;color:#1e3a8a;font-size:clamp(.52rem,1.5vw,.72rem);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-  .brand-overview-grid,.brand-final-grid{position:absolute;inset:0;display:grid;gap:clamp(4px,1vw,9px);padding:clamp(7px,1.4vw,14px);background:linear-gradient(145deg,#e8eef7,#f8fbff)}.brand-overview-grid{grid-template-columns:repeat(2,1fr)}.brand-final-grid{grid-template-columns:repeat(3,1fr)}.brand-overview-grid img,.brand-final-grid img{display:block;width:100%;height:100%;min-height:0;object-fit:cover;object-position:50% 22%;border-radius:clamp(7px,1.4vw,14px);box-shadow:0 12px 30px rgba(15,23,42,.15);animation:none!important;transform:none!important}.brand-story-frame:not(.story-overview):not(.story-complete)>img{object-fit:cover;object-position:50% 23%}.story-datara>img,.story-addiba>img{object-position:50% 20%!important}.story-prime>img,.story-pirate>img{object-position:50% 36%!important}.story-aurora>img,.story-valor>img{object-position:50% 48%!important}
-  .brand-story-progress{position:absolute;z-index:12;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.3)}.brand-story-progress i{display:block;width:100%;height:100%;transform-origin:left;background:linear-gradient(90deg,#2563eb,#60a5fa,#22d3ee);animation:brand-progress 24s linear infinite}.brand-result{justify-content:center;flex-wrap:wrap;border-top:1px solid rgba(37,99,235,.1);letter-spacing:.01em}.brand-result span{display:flex;align-items:center;gap:.45rem;padding:.25rem .55rem;color:#475569}.brand-result span:first-child{color:#15803d}
-  .brand-learning-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;max-width:980px;margin:1.8rem auto .8rem}.brand-learning-head p{margin:0;color:#334155;font-size:.78rem;font-weight:700}.brand-learning-head span{color:#2563eb;font-size:.68rem;font-weight:800}.brand-learning-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;max-width:980px;margin:0 auto}.brand-topic{display:flex;align-items:center;gap:.7rem;min-width:0;padding:.75rem;border:1px solid rgba(37,99,235,.13);border-radius:18px;background:rgba(255,255,255,.82);box-shadow:0 10px 25px rgba(15,23,42,.055);color:#0f172a;text-align:left;cursor:pointer;transition:transform .3s,box-shadow .3s,border-color .3s}.brand-topic:hover,.brand-topic:focus-visible{transform:translateY(-4px);border-color:rgba(37,99,235,.35);box-shadow:0 18px 36px rgba(37,99,235,.13);outline:none}.brand-topic-icon{width:45px;height:45px;display:grid;place-items:center;flex:0 0 45px;border-radius:14px;background:linear-gradient(145deg,#eff6ff,#dbeafe)}.brand-topic>span:nth-child(2){display:grid;min-width:0;gap:.14rem}.brand-topic b{font-size:.72rem}.brand-topic small{overflow:hidden;text-overflow:ellipsis;color:#64748b;font-size:.58rem;white-space:nowrap}.brand-topic>i{width:27px;height:27px;display:grid;place-items:center;flex:0 0 27px;margin-left:auto;border-radius:50%;background:#2563eb;color:#fff;font-style:normal;font-size:1rem}
-  .brand-dialog{width:min(92vw,570px);max-height:min(78vh,680px);margin:auto;padding:1.5rem;border:1px solid rgba(37,99,235,.16);border-radius:25px;background:linear-gradient(145deg,#fff,#eff5ff);box-shadow:0 35px 100px rgba(15,23,42,.28);color:#0f172a}.brand-dialog::backdrop{background:rgba(15,23,42,.58);backdrop-filter:blur(7px)}.brand-dialog[open]{animation:brand-dialog-in .28s cubic-bezier(.16,1,.3,1)}.brand-dialog-close{position:absolute;right:.85rem;top:.85rem;width:34px;height:34px;border:0;border-radius:50%;background:#e2e8f0;color:#0f172a;font-size:1.3rem;cursor:pointer}.brand-dialog-step{display:inline-flex;margin:0 2.5rem 1rem 0;padding:.35rem .6rem;border-radius:999px;background:#dbeafe;color:#1d4ed8;font-size:.62rem;font-weight:800;letter-spacing:.09em}.brand-dialog h3{margin:0 2rem .75rem 0;font-size:clamp(1.3rem,3vw,1.8rem);line-height:1.15}.brand-dialog p{margin:0;color:#526175;font-size:.86rem;line-height:1.7}.brand-dialog ul{display:grid;gap:.5rem;margin:1rem 0 0;padding:1rem 1rem 0 1.2rem;border-top:1px solid rgba(37,99,235,.1);color:#334155;font-size:.78rem}.brand-dialog li::marker{color:#2563eb}
-  @keyframes brand-scene{0%,11.7%{opacity:1}12.5%,100%{opacity:0}}@keyframes brand-camera{0%{transform:scale(1)}100%{transform:scale(var(--zoom))}}@keyframes brand-glass-in{0%,82%{opacity:0;transform:translate(-50%,-95%) perspective(900px) rotateX(7deg) rotateY(-6deg) scale(.86)}86%,98%{opacity:1;transform:translate(-50%,-50%) perspective(900px) rotateX(7deg) rotateY(-6deg) scale(1)}100%{opacity:0;transform:translate(-50%,-48%) perspective(900px) rotateX(7deg) rotateY(-6deg) scale(1.02)}}@keyframes brand-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes brand-dialog-in{from{opacity:0;transform:translateY(18px) scale(.97)}}
-  @media(min-width:760px){.brand-learning-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-  @media(max-width:560px){.brand-intelligence{padding:4rem .85rem}.brand-intelligence h2 br{display:none}.brand-blueprint-top{font-size:.5rem}.brand-story{aspect-ratio:4/3}.brand-story-frame img{object-fit:cover}.brand-story-frame figcaption{padding:.48rem .58rem;gap:.42rem}.brand-story-frame figcaption small{display:none}.brand-story-glass{width:82%;padding:1rem .5rem}.brand-result span:nth-child(n+3){display:none}.brand-learning-head{align-items:flex-start;flex-direction:column;gap:.25rem}.brand-topic{padding:.65rem}.brand-topic-icon{width:40px;height:40px;flex-basis:40px}.brand-dialog{width:100%;max-width:none;max-height:82vh;margin:auto 0 0;padding:1.25rem;border-radius:25px 25px 0 0}.brand-dialog h3{font-size:1.3rem}}
-  @media(prefers-reduced-motion:reduce){.brand-story-frame,.brand-story-frame img,.brand-story-glass,.brand-story-progress i{animation:none!important}.brand-story-frame{display:none}.brand-story-frame:last-of-type{display:block;opacity:1}.brand-story-glass{opacity:1;transform:translate(-50%,-50%) perspective(900px) rotateX(7deg) rotateY(-6deg)}.brand-topic{transition:none}}
   .ai-stack{padding:4.25rem 1.25rem;background:linear-gradient(180deg,#fff 0%,#f6f9ff 100%);border-block:1px solid rgba(15,23,42,.06)}
   .ai-stack-head{display:grid;gap:1rem;margin-bottom:1.65rem}.ai-stack-head .eyebrow{margin:0 0 .75rem}.ai-stack-head h2{margin:0;max-width:660px;font-size:clamp(1.7rem,3.5vw,2.7rem);line-height:1.08}.ai-stack-head>p{margin:0;max-width:600px;color:#64748b;line-height:1.7}
   .ai-tools-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
   .ai-tool-card{position:relative;display:flex;align-items:center;gap:.7rem;min-width:0;padding:.72rem;border:1px solid rgba(15,23,42,.08);border-radius:18px;background:rgba(255,255,255,.92);box-shadow:0 10px 28px rgba(15,23,42,.055);color:#0b0f19;text-decoration:none;transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s,border-color .3s}
   .ai-tool-card:hover,.ai-tool-card:focus-visible{transform:translateY(-4px);border-color:rgba(37,99,235,.24);box-shadow:0 18px 38px rgba(37,99,235,.12);outline:none}
-  .ai-tool-logo{width:52px;height:52px;display:grid;place-items:center;flex:0 0 52px;overflow:visible;background:none;border:0;border-radius:0;box-shadow:none}
-  .ai-tool-logo img{display:block;width:52px;height:52px;max-width:100%;max-height:100%;object-fit:contain;background:transparent;border:0;border-radius:0;box-shadow:none}.ai-tool-copy{display:grid;min-width:0;gap:.16rem}.ai-tool-copy strong{overflow:hidden;text-overflow:ellipsis;font:800 .82rem/1.2 var(--font-h);white-space:nowrap}.ai-tool-copy small{overflow:hidden;text-overflow:ellipsis;color:#64748b;font-size:.64rem;white-space:nowrap}.ai-tool-card>i{display:none;margin-left:auto;color:#2563eb;font-style:normal;font-weight:800}.ai-stack-note{margin:1rem 0 0;color:#94a3b8;font-size:.68rem;text-align:center}
+  .ai-tool-logo{width:56px;height:56px;display:grid;place-items:center;flex:0 0 56px;overflow:visible;background:transparent}
+  .ai-tool-logo img{display:block;width:100%;height:100%;object-fit:contain}.ai-tool-copy{display:grid;min-width:0;gap:.16rem}.ai-tool-copy strong{overflow:hidden;text-overflow:ellipsis;font:800 .82rem/1.2 var(--font-h);white-space:nowrap}.ai-tool-copy small{overflow:hidden;text-overflow:ellipsis;color:#64748b;font-size:.64rem;white-space:nowrap}.ai-tool-card>i{display:none;margin-left:auto;color:#2563eb;font-style:normal;font-weight:800}.ai-stack-note{margin:1rem 0 0;color:#94a3b8;font-size:.68rem;text-align:center}
   @media(min-width:640px){.ai-tools-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.ai-tool-card>i{display:block}}
-  @media(min-width:900px){.ai-stack{padding-block:5.5rem}.ai-stack-head{grid-template-columns:1.1fr .9fr;align-items:end}.ai-tools-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:.85rem}.ai-tool-card{display:grid;justify-items:center;gap:.65rem;padding:1rem .7rem;text-align:center}.ai-tool-logo{width:58px;height:58px;flex-basis:58px}.ai-tool-logo img{width:58px;height:58px}.ai-tool-copy strong{font-size:.9rem}.ai-tool-copy small{font-size:.68rem}.ai-tool-card>i{position:absolute;right:.65rem;top:.55rem}}
+  @media(min-width:900px){.ai-stack{padding-block:5.5rem}.ai-stack-head{grid-template-columns:1.1fr .9fr;align-items:end}.ai-tools-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:.85rem}.ai-tool-card{display:grid;justify-items:center;gap:.65rem;padding:1rem .7rem;text-align:center}.ai-tool-logo{width:68px;height:68px;flex-basis:68px}.ai-tool-copy strong{font-size:.9rem}.ai-tool-copy small{font-size:.68rem}.ai-tool-card>i{position:absolute;right:.65rem;top:.55rem}}
   @media(prefers-reduced-motion:reduce){.ai-tool-card{transition:none}.ai-tool-card:hover{transform:none}}
   .section-signals{display:flex;justify-content:center;flex-wrap:wrap;gap:.45rem;margin-top:1.25rem}.section-signals span{padding:.38rem .68rem;border:1px solid rgba(37,99,235,.12);border-radius:999px;background:rgba(255,255,255,.7);color:#475569;font-size:.7rem;font-weight:700}
   .dev-stack-teaser{display:grid;gap:1.15rem;margin-top:3.3rem;padding:1.2rem;border:1px solid rgba(37,99,235,.14);border-radius:24px;background:linear-gradient(135deg,#fff 0%,#f4f8ff 62%,#eefbf8 100%);box-shadow:0 18px 45px rgba(15,23,42,.06)}.dev-stack-copy .eyebrow{margin:0 0 .55rem}.dev-stack-copy h3{margin:0 0 .4rem;font-size:1.18rem}.dev-stack-copy p{margin:0;color:#64748b;font-size:.82rem;line-height:1.55}.dev-stack-logos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.48rem}.dev-stack-chip{display:flex;align-items:center;gap:.42rem;min-width:0;padding:.45rem;border:1px solid rgba(15,23,42,.07);border-radius:13px;background:rgba(255,255,255,.88)}.dev-stack-chip>span{width:30px;height:30px;display:grid;place-items:center;flex:0 0 30px;overflow:hidden;border-radius:9px;background:#fff}.dev-stack-chip img{display:block;width:24px;height:24px;object-fit:contain}.dev-stack-chip b{overflow:hidden;text-overflow:ellipsis;font-size:.67rem;white-space:nowrap}.dev-stack-link{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;padding:.75rem 1rem;border-radius:14px;background:#0b1220;color:#fff;text-decoration:none;font-size:.78rem;font-weight:800}.dev-stack-link:hover{background:#1d4ed8;color:#fff}
@@ -333,6 +261,12 @@ const devToolTeaser = [
     background: linear-gradient(145deg, #fff 0%, #f8fbff 100%);
   }
   .service-card-primary:nth-child(2){background:linear-gradient(145deg,#fff,#faf8ff)}.service-card-primary:nth-child(3){background:linear-gradient(145deg,#fff,#f4fbff)}
+  .video-editing-visual{position:relative;display:grid;place-items:center;width:112px;height:112px;margin:.05rem 0 .7rem;background:transparent;border:0;overflow:visible;isolation:isolate;animation:video-icon-float 5.2s cubic-bezier(.45,0,.55,1) infinite}
+  .video-editing-visual:before{content:'';position:absolute;z-index:-1;width:68%;height:68%;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.2),rgba(139,92,246,.09) 45%,transparent 72%);filter:blur(10px);animation:video-icon-glow 3.8s ease-in-out infinite}
+  .video-editing-visual img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 12px 16px rgba(15,23,42,.16));transform:rotate(-1.5deg);transition:transform .55s cubic-bezier(.16,1,.3,1),filter .55s ease}
+  .service-card-primary:hover .video-editing-visual img{transform:scale(1.08) rotate(1.5deg);filter:drop-shadow(0 17px 22px rgba(37,99,235,.25))}
+  @keyframes video-icon-float{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-6px,0)}}
+  @keyframes video-icon-glow{0%,100%{opacity:.58;transform:scale(.92)}50%{opacity:1;transform:scale(1.08)}}
   .service-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}.service-index{font:800 .7rem/1 var(--font-h);letter-spacing:.12em;color:#94a3b8}.service-copy{margin-top:auto}.service-copy h3{margin:0 0 .65rem;font-size:clamp(1.1rem,2vw,1.35rem);letter-spacing:-.025em}.service-copy p{margin:0;color:#64748b;font-size:.88rem;line-height:1.65}
   .service-priority {
     display: inline-flex;
@@ -505,27 +439,9 @@ const devToolTeaser = [
     .trust-item strong{font-size:clamp(.82rem,4vw,1rem)}
     .trust-item span{font-size:clamp(.5rem,2.45vw,.62rem);letter-spacing:.025em}
     .trust-divider{height:1.65rem}
-    .section-signals span:nth-child(2){display:none}.service-card-primary{min-height:285px}.service-card-support{min-height:220px}.supporting-services .service-card-support{transform:none}.about-premium-grid,.contact-panel{grid-template-columns:1fr}.about-dashboard{padding:.7rem;border-radius:22px}.contact-panel{border-radius:24px;gap:1.35rem}.premium-contact{padding-inline:.85rem}.contact-action .btn{width:100%}
+    .section-signals span:nth-child(2){display:none}.service-card-primary{min-height:285px}.video-editing-visual{width:94px;height:94px;margin-bottom:.55rem}.service-card-support{min-height:220px}.supporting-services .service-card-support{transform:none}.about-premium-grid,.contact-panel{grid-template-columns:1fr}.about-dashboard{padding:.7rem;border-radius:22px}.contact-panel{border-radius:24px;gap:1.35rem}.premium-contact{padding-inline:.85rem}.contact-action .btn{width:100%}
   }
   .hero-cta-wa{background:#0b1220;color:#fff;border-color:#0b1220}.hero-cta-wa:hover{background:#111c30;color:#fff}.hero-cta-work{background:#0f766e;color:#fff;border:1px solid #0f766e}.hero-cta-work:hover{background:#115e59;color:#fff}
 
-  @media (prefers-reduced-motion:reduce){.service-card,.service-card:before,.svc-more i{transition:none}.service-card:hover,.service-card-support:nth-child(3n+2),.service-card-support:nth-child(3n+2):hover{transform:none}}
+  @media (prefers-reduced-motion:reduce){.service-card,.service-card:before,.svc-more i,.video-editing-visual img{transition:none}.service-card:hover,.service-card-support:nth-child(3n+2),.service-card-support:nth-child(3n+2):hover{transform:none}.video-editing-visual,.video-editing-visual:before{animation:none}}
 </style>
-
-<script>
-  const brandButtons = document.querySelectorAll<HTMLButtonElement>('[data-brand-dialog]');
-  brandButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const dialog = document.getElementById(button.dataset.brandDialog || '') as HTMLDialogElement | null;
-      dialog?.showModal();
-    });
-  });
-  document.querySelectorAll<HTMLDialogElement>('.brand-dialog').forEach((dialog) => {
-    dialog.querySelector<HTMLButtonElement>('.brand-dialog-close')?.addEventListener('click', () => dialog.close());
-    dialog.addEventListener('click', (event) => {
-      const rect = dialog.getBoundingClientRect();
-      const outside = event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom;
-      if (outside) dialog.close();
-    });
-  });
-</script>
