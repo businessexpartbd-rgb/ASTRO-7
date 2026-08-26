@@ -3,11 +3,11 @@
 export const SITE = {
   name: 'Creavix',
   brand: 'Creavix iT Solution',
-  tagline: 'Video Editing Agency in Bangladesh',
+  tagline: 'AI Video Marketing & Complete IT Solutions',
   shortDesc:
     'Cinematic Human-like AI Videos, Professional Video Editing & Full Digital Solutions | 24-48 Hours Delivery',
   seoTitle:
-    'Video Editing Agency in Bangladesh | Creavix iT Solution — AI Video, Editing & Digital Solutions',
+    'AI Video Marketing & IT Company in Bangladesh | Creavix iT Solution',
   seoDescription:
     'Creavix iT Solution is a full digital partner: professional video editing, human-like AI video marketing, web development, application build, authentication, automation, SEO, Facebook page, boosting and campaigns. Video editing agency in Bangladesh — 24–48 hours delivery.',
   seoKeywords:

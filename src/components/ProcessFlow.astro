@@ -1,559 +1,128 @@
 ---
-/** Exact recreation of reference process animation — Creavix logo only change */
 const steps = [
-  {
-    id: '01',
-    title: 'Understanding Client Requirements & Goals',
-    chips: ['Growth Strategy', 'Identifying Brand'],
-  },
-  {
-    id: '02',
-    title: 'Conducting Market Research & Planning Strategy',
-    chips: [],
-    showChart: true,
-  },
-  {
-    id: '03',
-    title: 'Campaign Setup & Content Creation',
-    chips: ['Captivating Visuals', 'Compelling Copywriting'],
-  },
-  {
-    id: '04',
-    title: 'Executing Campaigns, AI Integration & Promotion',
-    chips: ['Performance Driven SEO', 'Targeted Media Buying'],
-  },
-  {
-    id: '05',
-    title: 'Monitoring, Optimization & Improvement',
-    chips: [],
-  },
-  {
-    id: '06',
-    title: 'Reporting Results & Client Support',
-    chips: ['Final Output', 'Unstoppable Growth'],
-  },
+  { id: '01', kicker: 'Discover', title: 'Understanding Client Requirements & Goals', copy: 'We clarify the business objective, audience, scope and success criteria before production begins.', chips: ['Growth Strategy', 'Brand Direction'], tone: '#00BFFF', soft: '#E8F8FF' },
+  { id: '02', kicker: 'Research', title: 'Market Research & Strategic Planning', copy: 'Competitors, search demand and audience behaviour shape a focused roadmap for the project.', chips: ['Market Insight', 'Clear Roadmap'], tone: '#2563EB', soft: '#EEF4FF' },
+  { id: '03', kicker: 'Create', title: 'Campaign Setup & Content Creation', copy: 'Scripts, visuals, interfaces and campaign assets are built around one consistent brand direction.', chips: ['Creative Visuals', 'Conversion Copy'], tone: '#7C3AED', soft: '#F4F0FF' },
+  { id: '04', kicker: 'Launch', title: 'Execution, AI Integration & Promotion', copy: 'Our team combines human creative control with AI, development and targeted distribution.', chips: ['AI Production', 'Targeted Media'], tone: '#0F9F8F', soft: '#EAFBF7' },
+  { id: '05', kicker: 'Improve', title: 'Monitoring, Optimization & Quality Control', copy: 'Performance, accuracy, speed and presentation are reviewed and refined before final delivery.', chips: ['Performance Review', 'Human QA'], tone: '#F59E0B', soft: '#FFF7E5' },
+  { id: '06', kicker: 'Grow', title: 'Results, Reporting & Ongoing Support', copy: 'You receive the final output, clear reporting and practical support for the next stage of growth.', chips: ['Final Delivery', 'Ongoing Support'], tone: '#0A2540', soft: '#EDF3F7' },
 ];
 ---
-<section id="process" class="pf" aria-labelledby="pf-h">
-  <div class="pf-bg" aria-hidden="true">
-    <div class="pf-grid"></div>
-    <div class="pf-glow"></div>
-  </div>
 
+<section id="process" class="pf" aria-labelledby="pf-title" data-process-flow>
+  <div class="pf-orb pf-orb-a" aria-hidden="true"></div>
+  <div class="pf-orb pf-orb-b" aria-hidden="true"></div>
   <div class="pf-wrap">
-    <header class="pf-head">
-      <h2 id="pf-h" class="pf-title">
-        Transforming Brands with<br />Strategy, AI &amp; Creative Excellence
-      </h2>
-      <p class="pf-sub">
-        We unleash the power of strategy, design, SEO, ads, content, AI, and
-        development to create unstoppable campaigns.
-      </p>
+    <header class="pf-head reveal">
+      <p class="pf-eyebrow"><span></span>How Creavix Works</p>
+      <h2 id="pf-title">One Clear Journey.<br /><em>From Idea to Impact.</em></h2>
+      <p>Strategy, creative production, technology and growth—connected through one accountable workflow.</p>
     </header>
 
-    <div class="pf-stage" data-pf>
-      <!-- SVG connectors + traveling light particles -->
-      <svg class="pf-svg" viewBox="0 0 1000 640" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-        <defs>
-          <linearGradient id="gLine" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#22D3EE" stop-opacity="0" />
-            <stop offset="40%" stop-color="#22D3EE" stop-opacity="1" />
-            <stop offset="100%" stop-color="#3B82F6" stop-opacity="0" />
-          </linearGradient>
-          <filter id="gBlur" x="-40%" y="-40%" width="180%" height="180%">
-            <feGaussianBlur stdDeviation="1.8" result="b" />
-            <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-          </filter>
-          <radialGradient id="gDot" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#67E8F9" />
-            <stop offset="100%" stop-color="#22D3EE" stop-opacity="0" />
-          </radialGradient>
-        </defs>
+    <div class="pf-trust reveal" aria-label="Creavix delivery standards">
+      <span><strong>Since 2014</strong><small>Proven experience</small></span>
+      <i aria-hidden="true"></i>
+      <span><strong>4,300+ Projects</strong><small>Multi-industry work</small></span>
+      <i aria-hidden="true"></i>
+      <span><strong>24–48 Hours</strong><small>Fast delivery</small></span>
+    </div>
 
-        <path class="base" d="M210 155 C 350 155, 420 260, 500 320" />
-        <path class="base" d="M500 115 C 500 190, 500 250, 500 320" />
-        <path class="base" d="M790 155 C 650 155, 580 260, 500 320" />
-        <path class="base" d="M210 485 C 350 485, 420 380, 500 320" />
-        <path class="base" d="M500 540 C 500 460, 500 390, 500 320" />
-        <path class="base" d="M790 485 C 650 485, 580 380, 500 320" />
-
-        <path class="bolt" pathLength="100" style="--d:0s" d="M210 155 C 350 155, 420 260, 500 320" />
-        <path class="bolt" pathLength="100" style="--d:.35s" d="M500 115 C 500 190, 500 250, 500 320" />
-        <path class="bolt" pathLength="100" style="--d:.7s" d="M790 155 C 650 155, 580 260, 500 320" />
-        <path class="bolt" pathLength="100" style="--d:1.05s" d="M210 485 C 350 485, 420 380, 500 320" />
-        <path class="bolt" pathLength="100" style="--d:1.4s" d="M500 540 C 500 460, 500 390, 500 320" />
-        <path class="bolt" pathLength="100" style="--d:1.75s" d="M790 485 C 650 485, 580 380, 500 320" />
-
-        <circle r="4" fill="url(#gDot)" filter="url(#gBlur)">
-          <animateMotion dur="2.4s" repeatCount="indefinite" begin="0s" path="M500 320 C 420 260, 350 155, 210 155" />
-        </circle>
-        <circle r="3.5" fill="url(#gDot)" filter="url(#gBlur)">
-          <animateMotion dur="2.6s" repeatCount="indefinite" begin="0.4s" path="M500 320 C 500 250, 500 190, 500 115" />
-        </circle>
-        <circle r="4" fill="url(#gDot)" filter="url(#gBlur)">
-          <animateMotion dur="2.5s" repeatCount="indefinite" begin="0.8s" path="M500 320 C 580 260, 650 155, 790 155" />
-        </circle>
-        <circle r="3.5" fill="url(#gDot)" filter="url(#gBlur)">
-          <animateMotion dur="2.7s" repeatCount="indefinite" begin="1.1s" path="M500 320 C 420 380, 350 485, 210 485" />
-        </circle>
-        <circle r="4" fill="url(#gDot)" filter="url(#gBlur)">
-          <animateMotion dur="2.5s" repeatCount="indefinite" begin="1.5s" path="M500 320 C 500 390, 500 460, 500 540" />
-        </circle>
-        <circle r="3.5" fill="url(#gDot)" filter="url(#gBlur)">
-          <animateMotion dur="2.6s" repeatCount="indefinite" begin="1.9s" path="M500 320 C 580 380, 650 485, 790 485" />
-        </circle>
-      </svg>
-
-      <div class="hub">
-        <div class="hub-aura"></div>
-        <div class="hub-ring a"></div>
-        <div class="hub-ring b"></div>
-        <div class="hub-core">
-          <img src="/media/creavix-nav-logo.webp" alt="Creavix IT Solution" width="72" height="72" loading="lazy" decoding="async" />
-        </div>
-        <div class="hub-reflect" aria-hidden="true"></div>
-      </div>
-
-      {steps.map((s, i) => (
-        <article class={`card c${s.id}`} style={`--i:${i}`} data-step={s.id}>
-          <span class="corner tl"></span>
-          <span class="corner tr"></span>
-
-          <p class="lbl">Step - {s.id}</p>
-          <h3 class="ct">{s.title}</h3>
-
-          {s.showChart && (
-            <div class="chart" aria-hidden="true">
-              <i style="--h:38%"></i><i style="--h:62%"></i><i style="--h:48%"></i>
-              <i style="--h:78%"></i><i style="--h:55%"></i><i style="--h:92%"></i>
-              <i style="--h:70%"></i>
+    <div class="pf-journey">
+      <div class="pf-line" aria-hidden="true"><span data-process-line></span><b data-process-dot></b></div>
+      {steps.map((step, index) => (
+        <article class={`pf-step ${index % 2 === 0 ? 'pf-left' : 'pf-right'}`} style={`--step:${index};--tone:${step.tone};--soft:${step.soft}`} data-process-step>
+          <div class="pf-node" aria-hidden="true"><span><b>{step.id}</b></span></div>
+          <div class="pf-card">
+            <span class="pf-tab" aria-hidden="true">{step.id}</span>
+            <div class="pf-card-top">
+              <span class="pf-kicker">{step.kicker}</span>
+              <span class="pf-status"><i></i>Creavix workflow</span>
             </div>
-          )}
-
-          {s.chips.length > 0 && (
-            <div class="chips" data-chips>
-              {s.chips.map((label, ci) => (
-                <span class={`chip ${ci === 0 ? 'on' : ''}`} data-chip>
-                  <i class="dot"></i>{label}
-                </span>
-              ))}
+            <h3>{step.title}</h3>
+            <p>{step.copy}</p>
+            <div class="pf-chips" aria-label={`${step.title} highlights`}>
+              {step.chips.map((chip) => <span>{chip}</span>)}
             </div>
-          )}
+          </div>
         </article>
       ))}
     </div>
 
-    <nav class="dock" aria-label="Quick navigation">
-      <a href="/">Home</a>
-      <a href="#services">Services</a>
-      <a class="go" href="/contact">Start Project</a>
-      <a href="/portfolio">Projects</a>
-      <a href="#faq">More</a>
-    </nav>
+    <div class="pf-finish reveal">
+      <div>
+        <span class="pf-finish-label">The result</span>
+        <h3>A polished solution, ready to perform.</h3>
+        <p>Every project ends with human review, clean delivery and a clear next step.</p>
+      </div>
+      <div class="pf-actions">
+        <a class="pf-primary" href="/contact">Start a Project <span aria-hidden="true">↗</span></a>
+        <a class="pf-secondary" href="/portfolio">View Our Work <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
-  .pf {
-    position: relative;
-    padding: 4.5rem 1rem 5rem;
-    background: #050814;
-    color: #E2E8F0;
-    overflow: hidden;
-    isolation: isolate;
-  }
-  .pf-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
-  .pf-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(59,130,246,.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59,130,246,.045) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, #000 10%, transparent 75%);
-  }
-  .pf-glow {
-    position: absolute;
-    width: 520px; height: 520px;
-    left: 50%; top: 54%;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(circle, rgba(37,99,235,.32), transparent 70%);
-    filter: blur(12px);
-  }
-
-  .pf-wrap {
-    position: relative;
-    z-index: 2;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .pf-head {
-    text-align: center;
-    max-width: 740px;
-    margin: 0 auto 2.4rem;
-    position: relative;
-    z-index: 3;
-  }
-
-  /* Pure white title — forced visibility */
-  .pf-title {
-    margin: 0 0 0.95rem !important;
-    font-family: var(--font-h), system-ui, -apple-system, sans-serif !important;
-    font-size: clamp(1.7rem, 4.4vw, 2.75rem) !important;
-    font-weight: 800 !important;
-    line-height: 1.1 !important;
-    letter-spacing: -0.035em !important;
-    color: #FFFFFF !important;
-    -webkit-text-fill-color: #FFFFFF !important;
-    text-shadow: 0 2px 24px rgba(0,0,0,.45), 0 0 40px rgba(255,255,255,.08);
-  }
-  .pf-sub {
-    margin: 0 auto !important;
-    max-width: 560px;
-    color: #A8B4C8 !important;
-    -webkit-text-fill-color: #A8B4C8 !important;
-    font-size: clamp(0.9rem, 1.85vw, 1.05rem) !important;
-    line-height: 1.65 !important;
-  }
-
-  .pf-stage {
-    position: relative;
-    height: 640px;
-    margin: 0 auto 1.85rem;
-  }
-
-  .pf-svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-  }
-  .base {
-    fill: none;
-    stroke: rgba(34, 211, 238, 0.2);
-    stroke-width: 1.5;
-    stroke-linecap: round;
-  }
-  .bolt {
-    fill: none;
-    stroke: url(#gLine);
-    stroke-width: 2.4;
-    stroke-linecap: round;
-    stroke-dasharray: 18 82;
-    filter: url(#gBlur);
-    animation: boltRun 2.8s linear infinite;
-    animation-delay: var(--d, 0s);
-  }
-  @keyframes boltRun {
-    0% { stroke-dashoffset: 0; opacity: .25; }
-    18% { opacity: 1; }
-    100% { stroke-dashoffset: -100; opacity: .15; }
-  }
-
-  .hub {
-    position: absolute;
-    left: 50%; top: 50%;
-    transform: translate(-50%, -50%);
-    width: 156px;
-    height: 156px;
-    z-index: 8;
-  }
-  .hub-aura {
-    position: absolute;
-    inset: -36px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(59,130,246,.6), transparent 68%);
-    animation: auraPulse 2.5s ease-in-out infinite;
-  }
-  .hub-ring { position: absolute; border-radius: 50%; }
-  .hub-ring.a {
-    inset: 0;
-    border: 1.5px dashed rgba(34, 211, 238, 0.45);
-    animation: spin 22s linear infinite;
-  }
-  .hub-ring.b {
-    inset: 16px;
-    border: 1px solid rgba(96, 165, 250, 0.55);
-    animation: spinR 16s linear infinite;
-  }
-  .hub-core {
-    position: absolute;
-    inset: 30px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 32% 28%, #1E40AF, #0A1628 74%);
-    border: 1.5px solid rgba(96, 165, 250, 0.7);
-    box-shadow:
-      0 0 0 8px rgba(37, 99, 235, 0.14),
-      0 0 48px rgba(37, 99, 235, 0.65),
-      0 0 80px rgba(34, 211, 238, 0.25),
-      inset 0 0 22px rgba(59, 130, 246, 0.35);
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-  }
-  .hub-core img {
-    width: 64px;
-    height: 64px;
-    object-fit: contain;
-    filter: drop-shadow(0 0 12px rgba(96, 165, 250, 0.85));
-  }
-  .hub-reflect {
-    position: absolute;
-    left: 20%; right: 20%;
-    top: calc(100% + 4px);
-    height: 42px;
-    background: radial-gradient(ellipse at top, rgba(59,130,246,.35), transparent 72%);
-    filter: blur(5px);
-    opacity: 0.75;
-    pointer-events: none;
-  }
-  @keyframes auraPulse {
-    0%, 100% { opacity: .5; transform: scale(1); }
-    50% { opacity: .95; transform: scale(1.08); }
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  @keyframes spinR { to { transform: rotate(-360deg); } }
-
-  .card {
-    position: absolute;
-    width: min(270px, 27.5%);
-    padding: 1.1rem 1.15rem 1rem;
-    border-radius: 18px;
-    background: linear-gradient(165deg, rgba(30,41,59,.92), rgba(15,23,42,.88));
-    border: 1px solid rgba(148, 163, 184, 0.12);
-    box-shadow: 0 16px 40px rgba(0,0,0,.45);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    opacity: 0;
-    transform: translateY(24px) scale(.97);
-    animation: cardIn .75s cubic-bezier(.16,1,.3,1) forwards;
-    animation-delay: calc(.1s * var(--i) + .2s);
-    transition: border-color .25s, box-shadow .25s, transform .25s;
-    z-index: 5;
-  }
-  .card:hover {
-    border-color: rgba(59, 130, 246, .45);
-    box-shadow: 0 20px 48px rgba(37, 99, 235, .22);
-    z-index: 9;
-  }
-  @keyframes cardIn {
-    to { opacity: 1; transform: translateY(0) scale(1); }
-  }
-
-  .corner {
-    position: absolute;
-    width: 16px; height: 16px;
-    pointer-events: none;
-  }
-  .corner.tl {
-    top: 0; left: 0;
-    border-top: 2px solid #22D3EE;
-    border-left: 2px solid #22D3EE;
-    border-radius: 18px 0 0 0;
-  }
-  .corner.tr {
-    top: 0; right: 0;
-    border-top: 2px solid #22D3EE;
-    border-right: 2px solid #22D3EE;
-    border-radius: 0 18px 0 0;
-  }
-
-  .c01 { left: 0; top: 3%; }
-  .c02 { left: 50%; top: 0; transform: translateX(-50%); animation-name: cardInX; }
-  .c03 { right: 0; top: 3%; }
-  .c04 { left: 0; bottom: 1%; }
-  .c05 { left: 50%; bottom: 0; transform: translateX(-50%); animation-name: cardInX; }
-  .c06 { right: 0; bottom: 1%; }
-
-  @keyframes cardInX {
-    from { opacity: 0; transform: translateX(-50%) translateY(24px) scale(.97); }
-    to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
-  }
-  .c02:hover, .c05:hover { transform: translateX(-50%) translateY(-4px); }
-  .c01:hover, .c03:hover, .c04:hover, .c06:hover { transform: translateY(-4px); }
-
-  .lbl {
-    margin: 0 0 .28rem;
-    font-size: .68rem;
-    font-weight: 600;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: #64748B;
-  }
-  .ct {
-    margin: 0 0 .7rem;
-    font-family: var(--font-h), system-ui, sans-serif;
-    font-size: .93rem;
-    font-weight: 700;
-    line-height: 1.35;
-    color: #F1F5F9;
-  }
-
-  .chart {
-    display: flex;
-    align-items: flex-end;
-    gap: 3px;
-    height: 34px;
-    margin: 0 0 .55rem;
-    opacity: .4;
-  }
-  .chart i {
-    display: block;
-    flex: 1;
-    height: var(--h);
-    border-radius: 2px 2px 0 0;
-    background: linear-gradient(180deg, #60A5FA, #1E3A8A);
-  }
-
-  /* Soft light-blue chips — exact video match */
-  .chips {
-    position: relative;
-    min-height: 36px;
-    overflow: hidden;
-  }
-  .chip {
-    position: absolute;
-    left: 0; top: 0;
-    display: inline-flex;
-    align-items: center;
-    gap: .42rem;
-    padding: .42rem .85rem;
-    border-radius: 999px;
-    /* soft light blue like reference video */
-    background: linear-gradient(135deg, rgba(191, 219, 254, 0.92), rgba(147, 197, 253, 0.88));
-    border: 1px solid rgba(147, 197, 253, 0.65);
-    box-shadow: 0 2px 12px rgba(59, 130, 246, 0.18);
-    color: #1E3A8A;
-    font-size: .72rem;
-    font-weight: 600;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateX(-22px);
-    transition:
-      opacity 0.55s ease,
-      transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none;
-  }
-  .chip.on {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  .chip:not(.on) {
-    transform: translateX(18px);
-    opacity: 0;
-  }
-  .dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: #3B82F6;
-    box-shadow: 0 0 8px rgba(59, 130, 246, 0.7);
-    flex-shrink: 0;
-  }
-
-  .dock {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: .25rem;
-    margin: 0 auto;
-    padding: .4rem;
-    width: fit-content;
-    max-width: 100%;
-    background: rgba(255,255,255,.97);
-    border-radius: 999px;
-    box-shadow: 0 16px 44px rgba(0,0,0,.42);
-  }
-  .dock a {
-    padding: .55rem .95rem;
-    border-radius: 999px;
-    font-size: .8rem;
-    font-weight: 600;
-    color: #334155;
-    text-decoration: none;
-    transition: background .2s, color .2s;
-  }
-  .dock a:hover { background: #F1F5F9; color: #0F172A; }
-  .go {
-    background: #2563EB !important;
-    color: #fff !important;
-  }
-  .go:hover { background: #1D4ED8 !important; }
-
-  @media (max-width: 900px) {
-    .pf-stage {
-      height: auto;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: .85rem;
-      padding-top: .4rem;
-    }
-    .pf-svg { display: none; }
-    .hub {
-      position: relative;
-      left: auto; top: auto;
-      transform: none;
-      margin: 0 auto 1.35rem;
-      width: 120px; height: 120px;
-    }
-    .hub-core { inset: 24px; }
-    .hub-core img { width: 52px; height: 52px; }
-    .hub-reflect { display: none; }
-
-    .card {
-      position: relative !important;
-      left: auto !important;
-      right: auto !important;
-      top: auto !important;
-      bottom: auto !important;
-      width: 100% !important;
-      transform: none !important;
-      animation: cardInM .55s cubic-bezier(.16,1,.3,1) forwards;
-      animation-delay: calc(.07s * var(--i));
-    }
-    .card:hover { transform: translateY(-2px) !important; }
-    @keyframes cardInM {
-      from { opacity: 0; transform: translateY(14px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .chip {
-      position: static;
-      opacity: 1;
-      transform: none;
-      margin: 0 .35rem .28rem 0;
-    }
-    .chips { display: flex; flex-wrap: wrap; min-height: 0; overflow: visible; }
-  }
-
-  @media (min-width: 641px) and (max-width: 900px) {
-    .pf-stage { grid-template-columns: 1fr 1fr; }
-    .hub { grid-column: 1 / -1; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .bolt, .hub-ring, .hub-aura, .card, .chip {
-      animation: none !important;
-      opacity: 1 !important;
-      transform: none !important;
-    }
-  }
+  .pf{position:relative;padding:clamp(4.5rem,8vw,7rem) 1rem;overflow:clip;color:#0A2540;background:linear-gradient(180deg,#fff 0%,#f7fbff 44%,#fff 100%);border-block:1px solid rgba(10,37,64,.06);isolation:isolate}
+  .pf:before{content:'';position:absolute;inset:0;z-index:-2;background-image:linear-gradient(rgba(0,191,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,191,255,.035) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(to bottom,transparent,#000 16%,#000 84%,transparent)}
+  .pf-orb{position:absolute;z-index:-1;width:420px;height:420px;border-radius:50%;filter:blur(8px);pointer-events:none}.pf-orb-a{left:-250px;top:17%;background:radial-gradient(circle,rgba(0,191,255,.14),transparent 68%)}.pf-orb-b{right:-250px;bottom:12%;background:radial-gradient(circle,rgba(37,99,235,.12),transparent 68%)}
+  .pf-wrap{width:min(1120px,100%);margin:auto}.pf-head{max-width:760px;margin:0 auto 1.7rem;text-align:center}.pf-eyebrow{display:inline-flex;align-items:center;gap:.5rem;margin:0 0 .9rem!important;padding:.42rem .72rem;border:1px solid rgba(0,191,255,.2);border-radius:999px;background:rgba(255,255,255,.82);color:#0879a2!important;font-size:.72rem!important;font-weight:800;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 8px 22px rgba(10,37,64,.045)}.pf-eyebrow span{width:7px;height:7px;border-radius:50%;background:#00BFFF;box-shadow:0 0 0 5px rgba(0,191,255,.12)}
+  .pf-head h2{margin:0;color:#0A2540!important;font-size:clamp(2rem,5vw,3.6rem);line-height:1.04;letter-spacing:-.05em}.pf-head h2 em{color:#0799cc;font-style:normal}.pf-head>p:last-child{max-width:620px;margin:1rem auto 0!important;color:#607287!important;font-size:clamp(.92rem,1.8vw,1.08rem)!important;line-height:1.7}
+  .pf-trust{display:flex;align-items:center;justify-content:center;width:min(760px,100%);margin:0 auto clamp(2.7rem,6vw,4.8rem);padding:.9rem 1rem;border:1px solid rgba(10,37,64,.08);border-radius:20px;background:rgba(255,255,255,.86);box-shadow:0 18px 45px rgba(10,37,64,.06)}.pf-trust span{display:grid;gap:.17rem;flex:1;text-align:center}.pf-trust strong{color:#0A2540;font:800 clamp(.75rem,1.6vw,.95rem)/1.2 var(--font-h)}.pf-trust small{color:#7c8da0;font-size:.64rem}.pf-trust>i{width:1px;height:30px;background:rgba(10,37,64,.1)}
+  .pf-journey{position:relative;padding:1rem 0}.pf-line{position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);border-radius:99px;background:#dbe9f2;overflow:visible}.pf-line>span{position:absolute;inset:0;background:linear-gradient(#00BFFF,#2563EB,#0F9F8F);border-radius:inherit;transform:scaleY(0);transform-origin:top;will-change:transform}.pf-line>b{position:absolute;left:50%;top:0;width:14px;height:14px;transform:translate(-50%,-50%);border:3px solid #fff;border-radius:50%;background:#00BFFF;box-shadow:0 0 0 5px rgba(0,191,255,.13),0 6px 18px rgba(0,106,148,.3);will-change:top}
+  .pf-step{position:relative;display:grid;grid-template-columns:1fr 88px 1fr;align-items:center;min-height:205px;margin-bottom:clamp(1rem,3vw,2rem);opacity:0;transition:opacity .55s ease,transform .7s cubic-bezier(.16,1,.3,1)}.pf-step.pf-left{transform:translate3d(-42px,24px,0)}.pf-step.pf-right{transform:translate3d(42px,24px,0)}.pf-step.is-active{opacity:1;transform:translate3d(0,0,0)}
+  .pf-card{position:relative;min-width:0;padding:1.45rem 1.5rem 1.35rem;border:1px solid rgba(10,37,64,.09);border-radius:24px;background:rgba(255,255,255,.96);box-shadow:0 16px 44px rgba(10,37,64,.075),inset 0 1px 0 #fff;overflow:hidden;transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,border-color .35s}.pf-card:before{content:'';position:absolute;width:155px;height:155px;right:-80px;top:-85px;border-radius:50%;background:radial-gradient(circle,var(--soft),transparent 70%)}.pf-card:after{content:'';position:absolute;left:0;top:20%;bottom:20%;width:3px;border-radius:99px;background:var(--tone)}
+  .pf-left .pf-card{grid-column:1}.pf-right .pf-card{grid-column:3}.pf-right .pf-card:after{left:auto;right:0}.pf-card:hover{transform:translateY(-6px);border-color:color-mix(in srgb,var(--tone) 26%,transparent);box-shadow:0 25px 58px rgba(10,37,64,.115)}
+  .pf-tab{position:absolute;right:-1px;top:-1px;display:grid;place-items:center;width:64px;height:48px;border-radius:0 24px 0 24px;background:var(--soft);color:var(--tone);font:800 .82rem/1 var(--font-h);letter-spacing:.08em}.pf-right .pf-tab{right:auto;left:-1px;border-radius:24px 0 24px 0}.pf-card-top{position:relative;display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:.75rem;padding-right:3.7rem}.pf-right .pf-card-top{padding-right:0;padding-left:3.7rem}.pf-kicker{color:var(--tone);font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.pf-status{display:flex;align-items:center;gap:.35rem;color:#91a0b0;font-size:.6rem;font-weight:700}.pf-status i{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.1)}
+  .pf-card h3{position:relative;max-width:430px;margin:0 0 .6rem;color:#0A2540!important;font-size:clamp(1.08rem,2vw,1.35rem);line-height:1.24;letter-spacing:-.025em}.pf-card p{position:relative;margin:0!important;color:#687b8f!important;font-size:.82rem!important;line-height:1.65}.pf-chips{position:relative;display:flex;flex-wrap:wrap;gap:.42rem;margin-top:1rem}.pf-chips span{padding:.36rem .62rem;border:1px solid color-mix(in srgb,var(--tone) 16%,transparent);border-radius:999px;background:var(--soft);color:#42576d;font-size:.62rem;font-weight:750}
+  .pf-node{position:relative;z-index:3;grid-column:2;display:grid;place-items:center}.pf-node:before,.pf-node:after{content:'';position:absolute;top:50%;width:45px;height:1px;background:linear-gradient(90deg,rgba(0,191,255,.12),rgba(0,191,255,.45))}.pf-node:before{right:50%}.pf-node:after{left:50%;transform:scaleX(-1)}.pf-node span{position:relative;z-index:1;display:grid;place-items:center;width:48px;height:48px;border:7px solid #f7fbff;border-radius:16px;background:linear-gradient(145deg,#fff,var(--soft));color:var(--tone);box-shadow:0 8px 22px rgba(10,37,64,.13),inset 0 0 0 1px color-mix(in srgb,var(--tone) 18%,transparent);transform:rotate(45deg)}.pf-node b{font:800 .72rem/1 var(--font-h);transform:rotate(-45deg)}
+  .pf-left .pf-node{grid-column:2}.pf-right .pf-node{grid-column:2;grid-row:1}.pf-right .pf-card{grid-row:1}
+  .pf-finish{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:2rem;margin-top:clamp(2.5rem,6vw,4.5rem);padding:clamp(1.5rem,4vw,2.6rem);border:1px solid rgba(0,191,255,.16);border-radius:30px;background:radial-gradient(circle at 92% 12%,rgba(0,191,255,.13),transparent 34%),linear-gradient(135deg,#fff,#f2faff);box-shadow:0 24px 65px rgba(10,37,64,.09)}.pf-finish-label{display:inline-block;margin-bottom:.55rem;color:#0799cc;font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.pf-finish h3{margin:0 0 .5rem;color:#0A2540!important;font-size:clamp(1.35rem,3vw,2rem)}.pf-finish p{margin:0!important;color:#687b8f!important;line-height:1.65}.pf-actions{display:flex;flex-direction:column;gap:.6rem}.pf-actions a{display:flex;align-items:center;justify-content:space-between;min-height:48px;padding:.72rem 1rem;border-radius:14px;text-decoration:none;font-size:.78rem;font-weight:800;transition:transform .25s,box-shadow .25s}.pf-primary{background:#0A2540;color:#fff;box-shadow:0 10px 24px rgba(10,37,64,.2)}.pf-secondary{border:1px solid rgba(10,37,64,.1);background:#fff;color:#0A2540}.pf-actions a:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(10,37,64,.14)}
+  @media(max-width:760px){.pf{padding-inline:.85rem}.pf-head h2 br{display:none}.pf-trust{padding:.78rem .4rem;border-radius:16px}.pf-trust small{display:none}.pf-trust strong{font-size:clamp(.65rem,3.2vw,.78rem)}.pf-journey{padding-left:34px}.pf-line{left:12px;transform:none}.pf-step{display:block;min-height:0;margin-bottom:1rem}.pf-step.pf-left,.pf-step.pf-right{transform:translate3d(0,26px,0)}.pf-step.is-active{transform:none}.pf-node{position:absolute!important;left:-44px;top:50%;display:grid!important;transform:translateY(-50%)}.pf-node:before{display:none}.pf-node:after{left:26px;width:28px}.pf-node span{width:34px;height:34px;border-width:5px;border-radius:11px;font-size:.56rem;line-height:34px}.pf-card,.pf-left .pf-card,.pf-right .pf-card{width:100%;padding:1.15rem 1.05rem 1.05rem;border-radius:20px}.pf-tab{width:50px;height:40px;border-radius:0 20px 0 20px}.pf-right .pf-tab{left:auto;right:-1px;border-radius:0 20px 0 20px}.pf-card-top,.pf-right .pf-card-top{padding-left:0;padding-right:3rem}.pf-status{display:none}.pf-card h3{font-size:1rem}.pf-card p{font-size:.76rem!important}.pf-chips{margin-top:.8rem}.pf-finish{grid-template-columns:1fr;gap:1.25rem;border-radius:23px}.pf-actions{display:grid;grid-template-columns:1fr 1fr}.pf-actions a{padding:.65rem .7rem;font-size:.68rem}}
+  @media(max-width:380px){.pf-actions{grid-template-columns:1fr}.pf-trust{gap:.2rem}.pf-trust>i{height:23px}.pf-chips span{font-size:.57rem}}
+  @media(prefers-reduced-motion:reduce){.pf-step{opacity:1;transform:none!important;transition:none}.pf-line>span{transform:scaleY(1)!important}.pf-line>b{top:100%!important}.pf-card,.pf-actions a{transition:none}.pf-card:hover,.pf-actions a:hover{transform:none}}
 </style>
 
 <script is:inline>
-(function () {
-  var root = document.querySelector('[data-pf]');
+(() => {
+  const root = document.querySelector('[data-process-flow]');
   if (!root) return;
-  root.querySelectorAll('[data-chips]').forEach(function (rail) {
-    var chips = rail.querySelectorAll('[data-chip]');
-    if (chips.length < 2) return;
-    var i = 0;
-    setInterval(function () {
-      chips[i].classList.remove('on');
-      i = (i + 1) % chips.length;
-      chips[i].classList.add('on');
-    }, 2200 + Math.floor(Math.random() * 400));
-  });
+  const steps = root.querySelectorAll('[data-process-step]');
+  const line = root.querySelector('[data-process-line]');
+  const dot = root.querySelector('[data-process-dot]');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced || !('IntersectionObserver' in window)) {
+    steps.forEach((step) => step.classList.add('is-active'));
+    return;
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
+  steps.forEach((step) => observer.observe(step));
+  let ticking = false;
+  const paintProgress = () => {
+    const journey = root.querySelector('.pf-journey');
+    if (!journey || !line || !dot) return;
+    const rect = journey.getBoundingClientRect();
+    const viewportPoint = window.innerHeight * 0.58;
+    const progress = Math.max(0, Math.min(1, (viewportPoint - rect.top) / rect.height));
+    line.style.transform = `scaleY(${progress})`;
+    dot.style.top = `${progress * 100}%`;
+    ticking = false;
+  };
+  const requestPaint = () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(paintProgress);
+    }
+  };
+  paintProgress();
+  addEventListener('scroll', requestPaint, { passive: true });
+  addEventListener('resize', requestPaint, { passive: true });
 })();
 </script>
