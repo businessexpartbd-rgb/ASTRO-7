@@ -1,0 +1,43 @@
+name: Deploy Creavix to Cloudflare
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: creavix-production
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Build and deploy existing Worker
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      ASTRO_TELEMETRY_DISABLED: "1"
+      WRANGLER_SEND_METRICS: "false"
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.19.0
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Build Astro production assets
+        run: npm run build
+
+      - name: Deploy existing Creavix Worker
+        run: npx wrangler@4.125.0 deploy
