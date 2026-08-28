@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 28 28" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Digital marketing</title>
+  <desc id="desc">Blue, navy and brand-accent line icon on a genuinely transparent canvas.</desc>
+  <!-- Adapted from Lucide megaphone (ISC). See lucide-LICENSE.txt. -->
+  <defs>
+    <linearGradient id="edge" x1="3" y1="3" x2="21" y2="21" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#66c8ff"/><stop offset=".48" stop-color="#2673e8"/><stop offset="1" stop-color="#1750b4"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(2 2)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
+    <g transform="translate(.25 .4)" stroke="#0a2540" stroke-width="2.2" opacity=".18"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" /></g>
+    <g stroke="url(#edge)">
+      <path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" />
+      <path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14" stroke="#c44b0b" />
+      <path d="M8 6v8" stroke="#0a2540" />
+      
+    </g>
+  </g>
+</svg>

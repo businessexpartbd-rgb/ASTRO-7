@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 28 28" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Search engine optimization</title>
+  <desc id="desc">Blue, navy and brand-accent line icon on a genuinely transparent canvas.</desc>
+  <!-- Adapted from Lucide search-check (ISC). See lucide-LICENSE.txt. -->
+  <defs>
+    <linearGradient id="edge" x1="3" y1="3" x2="21" y2="21" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#66c8ff"/><stop offset=".48" stop-color="#2673e8"/><stop offset="1" stop-color="#1750b4"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(2 2)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
+    <g transform="translate(.25 .4)" stroke="#0a2540" stroke-width="2.2" opacity=".18"><path d="m8 11 2 2 4-4" /></g>
+    <g stroke="url(#edge)">
+      <path d="m8 11 2 2 4-4" stroke="#137849" />
+      <circle cx="11" cy="11" r="8" />
+      <path d="m21 21-4.3-4.3" stroke="#0a2540" />
+      
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 28 28" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Facebook page services</title>
+  <desc id="desc">The site's existing Facebook mark with a green check, on a transparent canvas.</desc>
+  <!-- Reuses the existing Facebook path in SocialIcons.astro, Feather-derived. See lucide-LICENSE.txt. -->
+  <defs><linearGradient id="edge" x1="3" y1="3" x2="21" y2="21" gradientUnits="userSpaceOnUse"><stop stop-color="#66c8ff"/><stop offset=".48" stop-color="#2673e8"/><stop offset="1" stop-color="#1750b4"/></linearGradient></defs>
+  <g transform="translate(2 2)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="url(#edge)"/>
+    <path d="m18 20 2 2 3-4" stroke="#137849"/>
+  </g>
+</svg>

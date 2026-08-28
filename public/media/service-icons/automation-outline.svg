@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 28 28" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Workflow automation</title>
+  <desc id="desc">Blue, navy and brand-accent line icon on a genuinely transparent canvas.</desc>
+  <!-- Adapted from Lucide workflow (ISC). See lucide-LICENSE.txt. -->
+  <defs>
+    <linearGradient id="edge" x1="3" y1="3" x2="21" y2="21" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#66c8ff"/><stop offset=".48" stop-color="#2673e8"/><stop offset="1" stop-color="#1750b4"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(2 2)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
+    <g transform="translate(.25 .4)" stroke="#0a2540" stroke-width="2.2" opacity=".18"><rect width="8" height="8" x="3" y="3" rx="2" /></g>
+    <g stroke="url(#edge)">
+      <rect width="8" height="8" x="3" y="3" rx="2" stroke="#c44b0b" />
+      <path d="M7 11v4a2 2 0 0 0 2 2h4" stroke="#0a2540" />
+      <rect width="8" height="8" x="13" y="13" rx="2" stroke="#137849" />
+      
+    </g>
+  </g>
+</svg>

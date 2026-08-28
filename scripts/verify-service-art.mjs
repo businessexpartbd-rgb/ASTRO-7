@@ -29,6 +29,31 @@ assert(!component.includes('size?:'), 'No per-artwork size overrides');
 const module = { exports: {} };
 vm.runInNewContext(transformSync(read('src/data/serviceArtwork.ts'), { loader: 'ts', format: 'cjs' }).code, { module, exports: module.exports });
 const sources = Object.values(module.exports.serviceArtwork);
+assert.equal(sources.length, 12, 'All twelve homepage cards must use shared artwork');
+const serviceSlugs = {
+  video: 'video-editing', ai: 'ai-video-marketing', human: 'human-like-content',
+  web: 'web-development', app: 'application-build', auth: 'authentication',
+  automation: 'automation', marketing: 'digital-marketing', seo: 'seo',
+  facebook: 'facebook-page', boosting: 'boosting', campaign: 'campaign',
+};
+assert.deepEqual(Object.keys(module.exports.serviceArtwork).sort(), Object.keys(serviceSlugs).sort());
+let outlineBytes = 0;
+for (const [key, src] of Object.entries(module.exports.serviceArtwork)) {
+  if (key === 'video' || key === 'web') continue;
+  const buffer = fs.readFileSync(new URL('../public' + src, import.meta.url));
+  outlineBytes += buffer.length;
+  const svg = buffer.toString('utf8');
+  assert(svg.includes('viewBox="0 0 28 28"'), key + ': consistent icon canvas');
+  assert(!/<(?:image|script|foreignObject|animate)\b/.test(svg), key + ': native vector, no embedded bitmap or private motion');
+  const { data, info } = await sharp(buffer).resize(112, 112).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const alpha = (x, y) => data[(y * info.width + x) * info.channels + info.channels - 1];
+  for (const [x, y] of [[0, 0], [111, 0], [0, 111], [111, 111]]) assert.equal(alpha(x, y), 0, key + ': transparent corners');
+  let clear = 0;
+  for (let i = info.channels - 1; i < data.length; i += info.channels) if (data[i] === 0) clear++;
+  assert(clear > 112 * 112 * .5, key + ': no painted background panel');
+  assert(clear < 112 * 112 * .95, key + ': visible icon geometry');
+}
+assert(outlineBytes < 20000, 'Ten SVGs must stay below 20 KB combined');
 // Render the actual vector pixels: a painted white/checkerboard canvas must fail.
 const webPath = new URL('../public' + module.exports.serviceArtwork.web, import.meta.url);
 const { data: webPixels, info: webInfo } = await sharp(fs.readFileSync(webPath)).resize(112, 112).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
@@ -48,10 +73,14 @@ for (const src of sources) {
   assert(fs.existsSync(new URL('../public' + src, import.meta.url)));
 }
 const cards = [...html.matchAll(/<a\b([^>]*class="[^"]*\bservice-card\b[^"]*"[^>]*)>([\s\S]*?)<\/a>/g)];
-for (const [slug, src] of [['video-editing', module.exports.serviceArtwork.video], ['web-development', module.exports.serviceArtwork.web]]) {
+for (const [key, slug] of Object.entries(serviceSlugs)) {
+  const src = module.exports.serviceArtwork[key];
   const card = cards.find(m => m[1].includes(`href="/services/${slug}"`));
   assert(card && card[2].includes(`src="${src}"`), 'Correct service card: ' + slug);
 }
 const oldVideo = fs.readFileSync(new URL('../public/media/service-icons/video-editing-ai.svg', import.meta.url));
 assert.equal(crypto.createHash('sha1').update('blob ' + oldVideo.length + '\0').update(oldVideo).digest('hex'), '7033c0282a1b57cb2382cc50a9eabe12393ffffd', 'Existing Video Editing artwork unchanged');
+const oldWeb = fs.readFileSync(webPath);
+assert.equal(crypto.createHash('sha1').update('blob ' + oldWeb.length + '\0').update(oldWeb).digest('hex'), 'a1a77c53c050c956942c2e18bb696bd32ecd8860', 'Existing Web Development artwork unchanged');
+console.log(`PASS: 10 new transparent native SVGs, ${outlineBytes} bytes combined; all twelve card mappings checked.`);
 console.log(`PASS: ${sources.length} artworks share 112px/94px frames, original float/glow/hover, reduced motion, lazy loading and correct service links. Original Video Editing asset unchanged.`);
