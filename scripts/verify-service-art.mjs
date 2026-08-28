@@ -5,6 +5,7 @@ import crypto from 'node:crypto';
 import vm from 'node:vm';
 import { transformSync } from 'esbuild';
 import postcss from 'postcss';
+import sharp from 'sharp';
 
 const read = path => fs.readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const component = read('src/components/ServiceCardArt.astro');
@@ -28,6 +29,15 @@ assert(!component.includes('size?:'), 'No per-artwork size overrides');
 const module = { exports: {} };
 vm.runInNewContext(transformSync(read('src/data/serviceArtwork.ts'), { loader: 'ts', format: 'cjs' }).code, { module, exports: module.exports });
 const sources = Object.values(module.exports.serviceArtwork);
+// Render the actual vector pixels: a painted white/checkerboard canvas must fail.
+const webPath = new URL('../public' + module.exports.serviceArtwork.web, import.meta.url);
+const { data: webPixels, info: webInfo } = await sharp(fs.readFileSync(webPath)).resize(112, 112).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+const alphaAt = (x, y) => webPixels[(y * webInfo.width + x) * webInfo.channels + webInfo.channels - 1];
+for (const [x, y] of [[0, 0], [111, 0], [0, 111], [111, 111], [55, 52]]) assert.equal(alphaAt(x, y), 0, 'Web icon background must be transparent');
+let clearPixels = 0;
+for (let i = webInfo.channels - 1; i < webPixels.length; i += webInfo.channels) if (webPixels[i] === 0) clearPixels++;
+assert(clearPixels > 112 * 112 * .6, 'No filled background panel');
+assert(clearPixels < 112 * 112 * .95, 'Icon strokes must remain visible');
 const html = read('dist/index.html');
 const art = [...html.matchAll(/<span\b[^>]*data-service-card-art[^>]*>([\s\S]*?)<\/span>/g)].map(m => m[1]);
 assert.equal(art.length, sources.length, 'Every registered artwork renders once');
