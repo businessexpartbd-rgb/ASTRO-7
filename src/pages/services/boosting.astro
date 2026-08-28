@@ -1,4 +1,6 @@
 ---
+import MetaTargeting from '../../components/MetaTargeting.astro';
+import RelatedServices from '../../components/RelatedServices.astro';
 /**
  * Boosting & Campaign service page
  * Boost vs Campaign, Facebook + YouTube, live USD→BDT service rate
@@ -136,13 +138,14 @@ const faqs = [
 <Layout title={seoTitle} description={seoDescription}>
   <TopBar />
   <Nav active="services" />
+  <main id="main-content" tabindex="-1">
 
   <!-- HERO -->
   <section class="bo-hero">
     <div class="container bo-hero-grid">
       <div class="bo-copy reveal">
         <p class="bo-eye">Boosting &amp; Campaigns</p>
-        <h1>Facebook Boosting, Full Campaigns &amp; YouTube Ads</h1>
+        <h1>Facebook &amp; YouTube ads.<br /><span class="brand-accent">Make every test count.</span></h1>
         <p class="bo-sub">
           Know the difference. Start from about $5. See a transparent USD → BDT service rate
           (market-linked, tax &amp; bank costs included). Magnetic growth creative — not random spend.
@@ -160,19 +163,7 @@ const faqs = [
         </ul>
       </div>
 
-      <div class="bo-visual reveal" aria-hidden="true">
-        <div class="bo-magnet">
-          <div class="bo-core">
-            <span class="bo-core-label">Your offer</span>
-            <strong>Pulls clients</strong>
-          </div>
-          <div class="bo-orbit bo-o1">Reach</div>
-          <div class="bo-orbit bo-o2">Inbox</div>
-          <div class="bo-orbit bo-o3">Calls</div>
-          <div class="bo-orbit bo-o4">Orders</div>
-          <div class="bo-ring"></div>
-        </div>
-      </div>
+      <MetaTargeting compact />
     </div>
   </section>
 
@@ -381,6 +372,8 @@ const faqs = [
     </div>
   </section>
 
+  <RelatedServices />
+  </main>
   <Footer />
 </Layout>
 

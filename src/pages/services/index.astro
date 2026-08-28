@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TopBar from '../../components/TopBar.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ServiceIcons from '../../components/icons/ServiceIcons.astro';
+import { SERVICE_CATALOG } from '../../data/services';
+import { SITE } from '../../data/site';
+const groups = [
+  { name: 'Creative', lead: 'Make your brand worth watching.', description: 'Video production and human-led AI creative for your next story, launch or campaign.' },
+  { name: 'Technology', lead: 'Build the experience behind the brand.', description: 'Websites, applications, secure accounts and useful automation, connected to your business.' },
+  { name: 'Growth', lead: 'Connect great work with the right people.', description: 'Search, social and paid media with a clear objective, a sensible plan and transparent reporting.' },
+];
+const schema = { '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: SERVICE_CATALOG.map((s, index) => ({ '@type': 'ListItem', position: index + 1, name: s.title, url: `${SITE.url}/services/${s.slug}/` })) };
+---
+<Layout>
+  <TopBar /><Nav active="services" />
+  <main id="main-content" tabindex="-1">
+    <section class="hub-hero">
+      <div class="container">
+        <p class="eyebrow">Creative / Technology / Growth</p>
+        <h1>One team.<br /><span class="brand-accent">Your next advantage.</span></h1>
+        <p>From the first video to the platform behind your business, find the expertise you need—and a clear path to the next step.</p>
+        <nav class="hub-nav" aria-label="Service categories">{groups.map(group => <a href={`#${group.name.toLowerCase()}`}>{group.name} <span aria-hidden="true">↘</span></a>)}</nav>
+        <div class="brand-assurance"><span>Since 2014</span><span>4,300+ projects</span><span>Bangladesh & worldwide</span></div>
+      </div>
+    </section>
+    {groups.map((group, groupIndex) => <section class="hub-group" id={group.name.toLowerCase()} aria-labelledby={`hub-${group.name}`}>
+      <div class="container">
+        <header><span class="hub-number">0{groupIndex + 1}</span><div><p class="eyebrow">{group.name}</p><h2 id={`hub-${group.name}`}>{group.lead}</h2><p>{group.description}</p></div></header>
+        <div class="hub-grid">{SERVICE_CATALOG.filter(service => service.group === group.name).map(service => <a class="brand-service-card" href={`/services/${service.slug}`}>
+          <ServiceIcons name={service.icon} size={34} /><h3>{service.title}</h3><p>{service.description}</p><span>Explore service <b aria-hidden="true">↗</b></span>
+        </a>)}</div>
+      </div>
+    </section>)}
+    <section class="hub-contact"><div class="container"><h2>Not sure where <span class="brand-accent">to start?</span></h2><p>Tell us your goal. We’ll help define the scope, delivery schedule and the right combination of services.</p><a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Discuss your project ↗</a></div></section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</Layout>
+<style>
+  .hub-hero{padding:8rem 1.25rem 4rem;background:radial-gradient(ellipse at 10% 10%,#fff1e4,transparent 60%),#f8fafc}.hub-hero h1{margin:1rem 0}.hub-hero .container>p:not(.eyebrow){max-width:53ch;color:#536478;font-size:1.08rem;line-height:1.8}.hub-nav{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.7rem}.hub-nav a{display:flex;gap:2rem;justify-content:space-between;padding:.7rem 1rem;background:#fff;border:1px solid #dfe6ec;border-radius:11px;color:#0a2540;font:700 .8rem var(--font-h)}.hub-nav a:hover{border-color:#c44b0b}.hub-group{padding:4rem 1.25rem;scroll-margin-top:110px}.hub-group:nth-of-type(odd){background:#f7f9fb}.hub-group header{display:flex;gap:1.4rem;align-items:start;margin-bottom:2rem;max-width:790px}.hub-number{font:800 clamp(2rem,5vw,3.5rem)/1 var(--font-h);color:#c44b0b}.hub-group:nth-of-type(3) .hub-number{color:#175cd3}.hub-group:nth-of-type(4) .hub-number{color:#137849}.hub-group header h2{margin:.4rem 0 .75rem;font-size:clamp(1.5rem,3vw,2.25rem)}.hub-group header p:last-child{color:#536478;line-height:1.75}.hub-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}.brand-service-card{padding:1.7rem;display:flex;flex-direction:column;align-items:start}.brand-service-card h3{margin:1.3rem 0 .6rem;font-size:1.15rem}.brand-service-card p{color:#536478;line-height:1.75;font-size:.9rem;flex:1}.brand-service-card>span{display:flex;justify-content:space-between;width:100%;margin-top:1.5rem;color:#175cd3;font:700 .78rem var(--font-h)}.hub-contact{padding:4rem 1.25rem;background:#fff7ef}.hub-contact h2{font-size:clamp(1.7rem,3vw,2.6rem)}.hub-contact p{max-width:55ch;margin:1rem 0 1.5rem;color:#536478;line-height:1.8}@media(max-width:850px){.hub-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:550px){.hub-grid{grid-template-columns:1fr}.hub-group header{gap:.8rem}.hub-hero{padding-top:7rem}.hub-group{padding-block:3rem}}
+</style>

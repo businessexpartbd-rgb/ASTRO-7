@@ -1,9 +1,10 @@
 ---
+import MetaTargeting from '../../components/MetaTargeting.astro';
+import RelatedServices from '../../components/RelatedServices.astro';
 import Layout from '../../layouts/Layout.astro';
 import TopBar from '../../components/TopBar.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import ServiceHeroVisual from '../../components/ServiceHeroVisual.astro';
 import ServiceIcons from '../../components/icons/ServiceIcons.astro';
 import { SITE } from '../../data/site';
 
@@ -41,12 +42,13 @@ const faqs = [
 <Layout title={seoTitle} description={seoDescription}>
   <TopBar />
   <Nav active="services" />
+  <main id="main-content" tabindex="-1">
 
   <section class="sv-hero">
     <div class="container sv-grid">
       <div class="reveal">
         <p class="sv-eye">Campaign Management</p>
-        <h1>Campaigns with a plan — not random spend</h1>
+        <h1>Meta campaigns.<br /><span class="brand-accent">A clearer path to growth.</span></h1>
         <p class="sv-sub">Strategy, creative tests, Meta &amp; YouTube delivery and weekly optimization.</p>
         <div class="sv-actions">
           <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">Plan a campaign</a>
@@ -54,7 +56,7 @@ const faqs = [
         </div>
       </div>
       <div class="reveal">
-        <ServiceHeroVisual variant="campaign" />
+        <MetaTargeting compact />
       </div>
     </div>
   </section>
@@ -89,6 +91,8 @@ const faqs = [
       </div>
     </div>
   </section>
+  <RelatedServices />
+  </main>
   <Footer />
 </Layout>
 

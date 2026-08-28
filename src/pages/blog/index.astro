@@ -16,11 +16,12 @@ const sorted = [...BLOG_POSTS].sort((a, b) => (a.date < b.date ? 1 : -1));
 <Layout title={seoTitle} description={seoDescription}>
   <TopBar />
   <Nav active="blog" />
+  <main id="main-content" tabindex="-1">
 
   <section class="bl-hero">
     <div class="container bl-hero-inner reveal">
       <p class="bl-eye">Blog · Insights</p>
-      <h1>Learn growth, AI video &amp; digital systems</h1>
+      <h1>Fresh thinking.<br /><span class="brand-accent">Practical digital insights.</span></h1>
       <p class="bl-sub">
         Practical guides for Bangladesh businesses and global brands — how AI is moving creative work forward,
         and how Creavix delivers video, web, SEO and Meta growth without the jargon wall.
@@ -66,6 +67,7 @@ const sorted = [...BLOG_POSTS].sort((a, b) => (a.date < b.date ? 1 : -1));
       <a class="btn btn-light" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
     </div>
   </section>
+  </main>
   <Footer />
 </Layout>
 

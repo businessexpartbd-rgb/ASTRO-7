@@ -1,4 +1,6 @@
 ---
+import MetaTargeting from '../../components/MetaTargeting.astro';
+import RelatedServices from '../../components/RelatedServices.astro';
 /**
  * Digital Marketing — complete service page
  * SEO, paid ads, social, content, video, email, analytics
@@ -154,13 +156,14 @@ const faqs = [
 <Layout title={seoTitle} description={seoDescription}>
   <TopBar />
   <Nav active="services" />
+  <main id="main-content" tabindex="-1">
 
   <!-- HERO -->
   <section class="dm-hero">
     <div class="container dm-hero-grid">
       <div class="dm-copy reveal">
         <p class="dm-eye">Digital Marketing</p>
-        <h1>Get Found. Get Chosen. Get Customers Online.</h1>
+        <h1>Get found. Get chosen.<br /><span class="brand-accent">Connect with customers.</span></h1>
         <p class="dm-sub">
           SEO, ads, social, content and video — one clear growth system for Bangladesh businesses
           and international brands. No jargon walls. Just channels that move leads and sales.
@@ -178,29 +181,7 @@ const faqs = [
         </ul>
       </div>
 
-      <div class="dm-visual reveal" aria-hidden="true">
-        <div class="dm-board">
-          <div class="dm-board-top">
-            <span>Growth board</span>
-            <span class="dm-live">Live mix</span>
-          </div>
-          <div class="dm-bars">
-            <div class="dm-bar" style="--h:45%"><span>SEO</span></div>
-            <div class="dm-bar on" style="--h:78%"><span>Ads</span></div>
-            <div class="dm-bar" style="--h:58%"><span>Social</span></div>
-            <div class="dm-bar on" style="--h:88%"><span>Video</span></div>
-            <div class="dm-bar" style="--h:52%"><span>Email</span></div>
-          </div>
-          <div class="dm-board-foot">
-            <div><strong>+Leads</strong><small>This month</small></div>
-            <div><strong>ROAS</strong><small>Tracked</small></div>
-            <div><strong>SEO</strong><small>Compounding</small></div>
-          </div>
-        </div>
-        <div class="dm-chip dm-chip-1">Google</div>
-        <div class="dm-chip dm-chip-2">Meta</div>
-        <div class="dm-chip dm-chip-3">YouTube</div>
-      </div>
+      <MetaTargeting compact />
     </div>
   </section>
 
@@ -351,6 +332,8 @@ const faqs = [
     </div>
   </section>
 
+  <RelatedServices />
+  </main>
   <Footer />
 </Layout>
 

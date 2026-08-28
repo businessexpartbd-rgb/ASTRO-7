@@ -1,0 +1,141 @@
+/* Creavix editorial system. Loaded by Layout on every route.
+   Legacy theme rules use !important; scoped specificity here is intentional. */
+:root:root {
+  --brand-ink: #131922;
+  --brand-navy: #0a2540;
+  --brand-orange: #c44b0b;
+  --brand-orange-bright: #f47721;
+  --brand-blue: #175cd3;
+  --brand-green: #137849;
+  --brand-muted: #536478;
+  --brand-border: #dfe6ec;
+  --font-h: "Manrope", "Segoe UI", sans-serif !important;
+  --font-heading: var(--font-h) !important;
+  --font-b: "Inter", "Segoe UI", sans-serif !important;
+  --primary: #175cd3 !important;
+  --accent: #c44b0b !important;
+  --emerald: #137849 !important;
+  --text-2: #536478 !important;
+  --text-3: #627185 !important;
+}
+body.creavix-brand { background: #fff !important; color: var(--brand-ink) !important; text-rendering: optimizeLegibility; }
+.creavix-brand main { min-width: 0; }
+.creavix-brand :is(h1,h2,h3,h4) { font-family: var(--font-h) !important; text-wrap: balance; }
+.creavix-brand main h1 {
+  color: var(--brand-ink) !important; -webkit-text-fill-color: var(--brand-ink);
+  font-size: clamp(2.05rem, 4.5vw, 4.25rem) !important;
+  line-height: 1.1 !important; font-weight: 800 !important;
+  letter-spacing: -.045em !important; max-width: 19ch;
+  overflow-wrap: break-word; margin-bottom: 1.15rem;
+}
+.creavix-brand .hero-content h1 { max-width: 19ch; }
+.creavix-brand :is(.ct-hero,.bl-hero,.seo-head) h1 { max-width: 24ch; margin-inline: auto; }
+.creavix-brand .bp-hero h1 { max-width: 25ch; font-size: clamp(2rem,4vw,3.35rem) !important; }
+.creavix-brand main :is(h1,h2,h3) .brand-accent,
+.creavix-brand main .brand-accent { color: var(--brand-orange) !important; -webkit-text-fill-color: var(--brand-orange) !important; background: none !important; font-style: normal; }
+.creavix-brand main .brand-blue { color: var(--brand-blue) !important; -webkit-text-fill-color: var(--brand-blue) !important; }
+.creavix-brand main .brand-green { color: var(--brand-green) !important; -webkit-text-fill-color: var(--brand-green) !important; }
+.creavix-brand main h2 { line-height: 1.2; letter-spacing: -.035em !important; }
+.creavix-brand main h3 { letter-spacing: -.022em; line-height: 1.3; }
+.creavix-brand main p { text-wrap: pretty; }
+.creavix-brand :is(.hero-lead,.sv-sub,.dm-sub,.fb-sub,.bo-sub,.au-sub,.app-sub,.wd-lead,.ab-sub,.ct-sub,.seo-lead) {
+  color: var(--brand-muted) !important; font-size: clamp(1rem,1.2vw,1.12rem) !important; line-height: 1.8 !important;
+}
+.creavix-brand :is(.eyebrow,.sv-eye,.dm-eye,.fb-eye,.bo-eye,.au-eye,.ab-eye,.ct-eye,.bl-eye,.pf-eye,.seo-eyebrow) {
+  color: var(--brand-orange) !important; font-size: .72rem; font-weight: 700; letter-spacing: .12em; line-height: 1.6;
+}
+.creavix-brand :is(.section-soft,.sv-muted,.dm-muted,.fb-muted,.bo-muted,.au-muted,.ab-muted) { background: #f7f9fb !important; }
+.creavix-brand .hero-premium { background: radial-gradient(ellipse at 6% 18%,#fff1e5,transparent 48%),linear-gradient(120deg,#fff 55%,#f1f7fc) !important; }
+.creavix-brand :is(.sv-hero,.dm-hero,.fb-hero,.bo-hero,.au-hero,.app-hero,.ab-hero,.ct-hero,.bl-hero,.pf-hero) {
+  background: radial-gradient(ellipse at 5% 15%,#fff2e7,transparent 52%),linear-gradient(130deg,#fff,#f5f9fc) !important;
+}
+.creavix-brand .btn { min-height: 46px; font-size: .88rem; font-weight: 700; letter-spacing: -.01em; }
+.creavix-brand .btn.btn-primary { background: var(--brand-navy) !important; color: #fff !important; border-radius: 12px !important; box-shadow: 0 8px 22px #0a254018 !important; }
+.creavix-brand .btn.btn-primary:hover { background: #123e62 !important; }
+.creavix-brand .btn.btn-outline { background: #fff !important; color: var(--brand-navy) !important; border: 1px solid #cbd6e0 !important; border-radius: 12px !important; }
+.creavix-brand .hero-cta.hero-cta-watch { background: var(--brand-orange) !important; }
+.creavix-brand .hero-cta.hero-cta-wa { background: var(--brand-green) !important; color: #fff !important; border-radius: 12px !important; }
+.creavix-brand .hero-cta.hero-cta-work { background: var(--brand-navy) !important; color: #fff !important; border-radius: 12px !important; }
+.creavix-brand .navbar .logo-text { color: var(--brand-navy) !important; -webkit-text-fill-color: var(--brand-navy) !important; }
+.creavix-brand .navbar .logo-text span { color: var(--brand-orange) !important; -webkit-text-fill-color: var(--brand-orange) !important; }
+.creavix-brand :is(.service-card,.sv-card,.sv-step,.dm-card,.dm-pillar,.dm-step,.fb-service,.fb-step,.bo-card,.au-card,.ab-card,.bl-card,.glass-card,.seo-card,.brand-service-card) {
+  --card-accent: var(--brand-blue); position: relative; min-width: 0;
+  border: 1px solid var(--brand-border) !important; border-radius: 22px !important;
+  background: #fff !important; box-shadow: 0 8px 28px #0a254007 !important;
+  transition: transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.creavix-brand :is(.service-card,.sv-card,.sv-step,.dm-card,.dm-step,.ab-card,.brand-service-card):nth-child(3n + 1) { --card-accent: var(--brand-orange); }
+.creavix-brand :is(.service-card,.sv-card,.sv-step,.dm-card,.dm-step,.ab-card,.brand-service-card):nth-child(3n) { --card-accent: var(--brand-green); }
+.creavix-brand :is(.service-card,.sv-card,.sv-step,.dm-card,.dm-step,.ab-card,.brand-service-card)::before {
+  content: ''; position: absolute; width: 42px; height: 3px; top: -1px; left: 24px; border-radius: 4px; background: var(--card-accent);
+}
+.creavix-brand :is(.service-card,.sv-card,.dm-card,.ab-card,.brand-service-card) h3 { color: var(--brand-navy) !important; font-weight: 800; }
+.creavix-brand .service-card-primary { padding: clamp(1.4rem,3vw,2rem); border-radius: 26px !important; }
+.creavix-brand .service-card-primary .service-priority { color: var(--brand-orange); }
+.creavix-brand .service-card-support { padding: 1.4rem; }
+.creavix-brand .service-index { color: var(--card-accent); font-variant-numeric: tabular-nums; }
+.creavix-brand .svc-more { color: var(--card-accent) !important; }
+.creavix-brand .sv-step { padding: 1.6rem 1.3rem; border-left: 4px solid var(--card-accent) !important; }
+.creavix-brand :is(.sv-card p,.sv-step p,.service-copy p,.dm-card p,.dm-step p,.ab-card p) { color: var(--brand-muted) !important; font-size: .94rem !important; line-height: 1.75 !important; }
+.creavix-brand .pf-head h2 em { color: var(--brand-orange); }
+.creavix-brand .pf-step { opacity: 1; transform: none !important; }
+.creavix-brand [data-process-flow] .pf-node,.creavix-brand [data-process-flow] .pf-card { grid-row: 1; }
+.creavix-brand .pf-kicker,.creavix-brand .pf-tab { color: var(--brand-navy); }
+.creavix-brand .pf-card p { font-size: .94rem !important; }
+.creavix-brand .pf-card .pf-status { color: #627185; }
+.creavix-brand .brand-copy h2 em { color: var(--brand-orange); }
+.creavix-brand .live-icon:is(.li-video,.li-human,.li-production,.li-strategy) { color: var(--brand-orange); --accent: var(--brand-navy); }
+.creavix-brand .live-icon:is(.li-ai,.li-web,.li-app,.li-facebook) { color: var(--brand-blue); --accent: var(--brand-navy); }
+.creavix-brand .live-icon:is(.li-campaign,.li-seo,.li-auth,.li-automation) { color: var(--brand-green); --accent: var(--brand-blue); }
+/* Readable by default: no JS, delayed JS or a blocked script never hides content. */
+.creavix-brand :is(.reveal,.mag-card,.title-rise,.motion-hero-title,.motion-copy,.motion-action) { opacity: 1 !important; transform: none; filter: none; will-change: auto; }
+.creavix-brand :is(.hero-premium,.sv-hero,.dm-hero,.fb-hero,.bo-hero,.au-hero,.app-hero,.wd-hero,.ab-hero,.ct-hero,.bl-hero,.pf-hero,.bp,.seo-page) { content-visibility: visible; contain: none; }
+.creavix-brand :is(.sv-grid,.dm-hero-grid,.fb-hero-grid,.bo-hero-grid,.app-hero-grid) { gap: clamp(1.5rem,4vw,4rem); }
+.creavix-brand :is(.sv-grid,.dm-hero-grid,.fb-hero-grid,.bo-hero-grid,.app-hero-grid)>* { min-width: 0; }
+.creavix-brand :is(.dm-faq-item,.sv-faq-item,.fb-faq-item,.faq-item) { border-color: var(--brand-border); }
+.creavix-brand :is(.dm-faq-item,.sv-faq-item,.fb-faq-item)[open] { border-color: var(--brand-orange); }
+.skip-to-content { position: fixed; top: 8px; left: 12px; z-index: 10000; padding: .8rem 1.1rem; background: #fff; color: #0a2540; border: 2px solid #c44b0b; border-radius: 10px; transform: translateY(-160%); }
+.skip-to-content:focus { transform: none; }
+.creavix-brand :focus-visible { outline: 3px solid #175cd3 !important; outline-offset: 4px !important; }
+.brand-assurance { display: flex; flex-wrap: wrap; gap: .55rem 1rem; padding-top: 1.2rem; color: var(--brand-navy); font-size: .75rem; font-weight: 600; }
+.brand-assurance span { display: inline-flex; align-items: center; gap: .4rem; }
+.brand-assurance span::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--brand-green); }
+.brand-link { display: inline-flex; align-items: center; gap: .6rem; min-height: 44px; color: var(--brand-blue); font-weight: 700; }
+.brand-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.footer-assurance { display: flex; justify-content: center; flex-wrap: wrap; gap: .7rem 2rem; padding: 1.3rem 1.25rem; background: #f2f6fa; color: #0a2540; font: 700 .73rem/1.6 var(--font-h); border-block: 1px solid #dfe6ec; }
+.creavix-brand :is(.sv-cta,.dm-cta,.fb-cta,.bo-cta,.au-cta,.seo-cta) { background: #fff5eb !important; color: var(--brand-navy) !important; border-block: 1px solid #f0dfcd; }
+.creavix-brand :is(.sv-cta,.dm-cta,.fb-cta,.bo-cta,.au-cta,.seo-cta) h2 { color: var(--brand-navy) !important; }
+.creavix-brand :is(.sv-cta,.dm-cta,.fb-cta,.bo-cta,.au-cta,.seo-cta) p { color: var(--brand-muted) !important; }
+.creavix-brand :is(.sv-cta,.dm-cta,.fb-cta,.bo-cta,.au-cta,.seo-cta) .btn-light { color: #fff !important; background: var(--brand-navy) !important; border-radius: 12px; }
+.creavix-brand :is(.btn-ghost,.btn-outline-light) { color: var(--brand-navy) !important; background: #fff !important; border: 1px solid #cbd6e0 !important; border-radius: 12px; }
+.creavix-brand .live-icon * { animation-play-state: paused !important; }
+.creavix-brand .live-icon.brand-icon-active * { animation-play-state: running !important; }
+html[data-page-hidden] .creavix-brand .live-icon * { animation-play-state: paused !important; }
+@media (hover:hover) and (prefers-reduced-motion:no-preference) {
+  .creavix-brand :is(.service-card,.sv-card,.sv-step,.dm-card,.ab-card,.bl-card,.brand-service-card):hover {
+    transform: translateY(-5px) !important; border-color: var(--card-accent) !important; box-shadow: 0 18px 40px #0a254010 !important;
+  }
+}
+@media (prefers-reduced-motion:no-preference) {
+  .creavix-brand .brand-enter { animation: brand-arrive .55s cubic-bezier(.2,.7,.3,1) both; animation-delay: var(--brand-delay,0ms); }
+  .creavix-brand h1 .brand-accent { animation: brand-underline .9s ease-out both; text-decoration: underline; text-decoration-color: #f4772133; text-decoration-thickness: .06em; text-underline-offset: .12em; }
+  @keyframes brand-arrive { from { translate: 0 14px; } to { translate: 0 0; } }
+  @keyframes brand-underline { from { text-decoration-color: transparent; } to { text-decoration-color: #f4772133; } }
+}
+@media (max-width:767px) {
+  .creavix-brand main h1 { font-size: clamp(1.9rem,7.8vw,3rem) !important; line-height: 1.14 !important; letter-spacing: -.035em !important; }
+  .creavix-brand .hero-premium { padding-top: 7.2rem !important; padding-bottom: 2.5rem !important; }
+  .creavix-brand :is(.sv-hero,.dm-hero,.fb-hero,.bo-hero,.au-hero,.app-hero,.ab-hero,.ct-hero,.bl-hero,.pf-hero) { padding-top: 7rem; }
+  .creavix-brand .hero-content { text-align: left; }
+  .creavix-brand .hero-content .flex-btns { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .4rem; }
+  .creavix-brand .hero-content .hero-cta { width: 100%; min-width: 0; min-height: 46px; padding: .7rem .25rem; font-size: clamp(.64rem,2.7vw,.85rem); white-space: normal; }
+  .creavix-brand .pf-card p { font-size: .87rem !important; }
+  .creavix-brand .hero-lead { max-width: 42ch !important; }
+  .creavix-brand .pf-node { grid-row: auto; }
+  .creavix-brand .ai-tool-copy small { font-size: .72rem; }
+  .brand-assurance { font-size: .7rem; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .creavix-brand .brand-enter { animation: none !important; translate: none !important; }
+  .creavix-brand .video-card { opacity: 1 !important; transform: none !important; }
+}

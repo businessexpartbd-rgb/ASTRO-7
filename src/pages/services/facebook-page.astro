@@ -1,4 +1,5 @@
 ---
+import RelatedServices from '../../components/RelatedServices.astro';
 /**
  * Facebook Page Services — setup, blue verification support, growth, branding,
  * restrictions recovery guidance, full page checkup. BD marketplace focus.
@@ -159,13 +160,14 @@ const faqs = [
 <Layout title={seoTitle} description={seoDescription}>
   <TopBar />
   <Nav active="services" />
+  <main id="main-content" tabindex="-1">
 
   <!-- HERO -->
   <section class="fb-hero">
     <div class="container fb-hero-grid">
       <div class="fb-copy reveal">
         <p class="fb-eye">Facebook Page Services</p>
-        <h1>Business Page Setup, Blue Verify &amp; Real Growth</h1>
+        <h1>Your Facebook presence.<br /><span class="brand-accent">Built on trust.</span></h1>
         <p class="fb-sub">
           From first setup to blue badge guidance, branding, follower strategy, page SEO,
           restriction checkup and Messenger-ready pages — so your Facebook presence looks
@@ -386,6 +388,8 @@ const faqs = [
     </div>
   </section>
 
+  <RelatedServices />
+  </main>
   <Footer />
 </Layout>
 

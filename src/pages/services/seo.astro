@@ -1,4 +1,5 @@
 ---
+import RelatedServices from '../../components/RelatedServices.astro';
 import Layout from '../../layouts/Layout.astro';
 import TopBar from '../../components/TopBar.astro';
 import Nav from '../../components/Nav.astro';
@@ -10,7 +11,7 @@ const services = [
   {
     id: 'seo-service',
     title: 'SEO Service',
-    desc: 'Boost your online visibility with our top-notch SEO services. Enhance your website rankings, drive traffic, and increase website authority with us. So, maximize your digital presence and reach your target audience right now!',
+    desc: 'A practical search strategy built on crawlable pages, useful content and clear service intent. We prioritize the technical and editorial work that helps customers discover your business.',
     href: '#seo-overview',
     layout: 'full' as const,
     tone: 'purple' as const,
@@ -19,7 +20,7 @@ const services = [
   {
     id: 'ecommerce-seo',
     title: 'E-Commerce SEO',
-    desc: 'Creavix iT specializes in E-commerce SEO, optimizing online stores for higher visibility, increased traffic, and improved sales conversions. Elevate your e-commerce business today!',
+    desc: 'Make products easier to discover with clear categories, useful product content, structured data and a technically sound store. Measure organic visits against business outcomes.',
     href: '#ecommerce',
     layout: 'half' as const,
     tone: 'pink' as const,
@@ -28,7 +29,7 @@ const services = [
   {
     id: 'local-seo',
     title: 'Local SEO',
-    desc: 'Creavix iT offers custom-fit Local SEO solutions to boost your business visibility. Dominate local searches, attract nearby customers, and effectively grow your brand’s presence in your community.',
+    desc: 'Help nearby customers understand where you work and what you offer. Align your business details, local service pages and Google Business Profile with real customer needs.',
     href: '#local',
     layout: 'half' as const,
     tone: 'blue' as const,
@@ -37,7 +38,7 @@ const services = [
   {
     id: 'guest-post',
     title: 'Guest Post Service',
-    desc: 'Expand your brand’s horizons with our strategic Guest Post Service. Unlock high-traffic platforms, boost authority, and amplify your online presence.',
+    desc: 'Develop useful editorial contributions and relevant outreach. We focus on genuine expertise and appropriate sponsorship disclosure—not bulk links or guaranteed placements.',
     href: '#guest-post',
     layout: 'full' as const,
     tone: 'purple' as const,
@@ -46,7 +47,7 @@ const services = [
   {
     id: 'seo-audit',
     title: 'SEO Audit Service',
-    desc: 'Creavix iT conducts comprehensive SEO Audit Services to enhance your website’s performance. Unlock potential, optimize strategies, and dominate search rankings.',
+    desc: 'Understand crawlability, indexing, page experience and content gaps. Receive a prioritized action plan that separates urgent fixes from longer-term opportunities.',
     href: '#audit',
     layout: 'half' as const,
     tone: 'pink' as const,
@@ -78,12 +79,13 @@ const services = [
 >
   <TopBar />
   <Nav active="services" />
+  <main id="main-content" tabindex="-1">
 
   <section class="seo-page">
     <div class="container seo-wrap">
       <header class="seo-head">
         <p class="seo-eyebrow">Digital Marketing · SEO</p>
-        <h1 class="seo-h1">SEO That Builds Visibility, Authority &amp; Revenue</h1>
+        <h1 class="seo-h1">Be found for what you do.<br /><span class="brand-accent">Build lasting visibility.</span></h1>
         <p class="seo-lead">
           Build qualified organic traffic with technical SEO, search-led content and measurable
           authority growth for businesses in Bangladesh and competitive global markets.
@@ -94,7 +96,7 @@ const services = [
         {services.map((s) => (
           <article
             class={`seo-card seo-card--${s.layout} seo-card--${s.tone}`}
-            id={s.id}
+            id={`overview-${s.id}`}
           >
             <div class="seo-card-art" aria-hidden="true" data-art={s.art}>
               {s.art === 'seo' && (
@@ -287,6 +289,8 @@ const services = [
     </div>
   </section>
 
+  <RelatedServices />
+  </main>
   <Footer />
 </Layout>
 

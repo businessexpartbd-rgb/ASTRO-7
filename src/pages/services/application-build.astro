@@ -1,4 +1,5 @@
 ---
+import RelatedServices from '../../components/RelatedServices.astro';
 import Layout from '../../layouts/Layout.astro';
 import TopBar from '../../components/TopBar.astro';
 import Nav from '../../components/Nav.astro';
@@ -101,12 +102,13 @@ const faqs = [
 >
   <TopBar />
   <Nav active="services" />
+  <main id="main-content" tabindex="-1">
 
   <!-- HERO -->
   <section class="app-hero">
     <div class="container app-hero-grid">
       <div class="app-hero-copy">
-        <h1>High-Performance Apps Built for Real Business Growth</h1>
+        <h1>High-performance apps.<br /><span class="brand-accent">Built around your business.</span></h1>
         <p>
           We design and engineer fast mobile and web applications with clear user journeys,
           secure architecture and scalable workflows — from focused MVPs to production-ready
@@ -389,6 +391,8 @@ const faqs = [
     </div>
   </section>
 
+  <RelatedServices />
+  </main>
   <Footer />
 </Layout>
 

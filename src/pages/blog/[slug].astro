@@ -30,12 +30,13 @@ const related = BLOG_POSTS.filter((p) => p.slug !== post.slug).slice(0, 3);
 >
   <TopBar />
   <Nav active="blog" />
+  <main id="main-content" tabindex="-1">
 
   <article class="bp">
     <header class="bp-hero">
       <div class="container bp-hero-inner reveal">
         <p class="bp-eye">{post.category} · {post.readMin} min read</p>
-        <h1>{post.title}</h1>
+        <h1>{post.title.split(' ').slice(0, -3).join(' ')} <span class="brand-accent">{post.title.split(' ').slice(-3).join(' ')}</span></h1>
         <p class="bp-desc">{post.description}</p>
         <div class="bp-meta">
           <time datetime={post.date}>{post.date}</time>
@@ -76,6 +77,7 @@ const related = BLOG_POSTS.filter((p) => p.slug !== post.slug).slice(0, 3);
     </div>
   </article>
 
+  </main>
   <Footer />
 </Layout>
 

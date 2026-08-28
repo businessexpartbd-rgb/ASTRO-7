@@ -41,7 +41,7 @@ const leaders = [
     role: 'Director, Operations',
     name: 'Tanni Aktar',
     size: 'sm',
-    photo: '/team/tanni.jpg',
+    photo: null,
     initial: 'T',
     experience: '5 years as Director',
     bio: 'Supports operational governance, internal coordination and consistent project execution across the company’s creative and technology services.',
@@ -96,11 +96,12 @@ const faqs = [
 >
   <TopBar />
   <Nav active="contact" />
+  <main id="main-content" tabindex="-1">
 
   <section class="ct-hero">
     <div class="container ct-hero-inner reveal">
       <p class="ct-eye">Contact</p>
-      <h1>Talk to a partner that delivers</h1>
+      <h1>Let’s make your<br /><span class="brand-accent">next move matter.</span></h1>
       <p class="ct-sub">
         Video, AI, web and growth — Bangladesh studio with global-ready communication.
         Meet the leadership below, then reach us on WhatsApp.
@@ -117,7 +118,7 @@ const faqs = [
     <div class="container">
       <div class="ct-center reveal">
         <p class="ct-eye">Leadership</p>
-        <h2>Executive Leadership</h2>
+        <h2>Meet the <span class="brand-accent">Management Team</span></h2>
         <p class="ct-lead">Meet the management team responsible for vision, executive operations and dependable delivery.</p>
       </div>
 
@@ -126,7 +127,7 @@ const faqs = [
           <article class={`lead-card lead-${p.size} reveal`}>
             <div class="lead-photo-wrap">
               <div class="lead-photo" data-initial={p.initial}>
-                <img
+                {p.photo && <img
                   src={p.photo}
                   alt={p.name}
                   width="640"
@@ -134,7 +135,7 @@ const faqs = [
                   loading="lazy"
                   decoding="async"
                   onerror="this.style.display='none'"
-                />
+                />}
                 <span class="lead-fallback" aria-hidden="true">{p.initial}</span>
               </div>
               <span class="lead-badge">{p.role}</span>
@@ -218,6 +219,7 @@ const faqs = [
       </div>
     </div>
   </section>
+  </main>
   <Footer />
 </Layout>
 

@@ -1,0 +1,15 @@
+---
+import { SERVICE_CATALOG } from '../data/services';
+const slug = Astro.url.pathname.replace(/\/$/, '').split('/').pop();
+const current = SERVICE_CATALOG.find(service => service.slug === slug);
+const items = current ? SERVICE_CATALOG.filter(service => (current.related as readonly string[]).includes(service.slug)) : [];
+---
+{items.length > 0 && <section class="related-services" aria-labelledby="related-services-title">
+  <div class="container">
+    <div class="related-services-head"><div><p class="eyebrow">The next connection</p><h2 id="related-services-title">Build a <span class="brand-accent">complete solution.</span></h2></div><a class="brand-link" href="/services">Explore all services →</a></div>
+    <div class="related-services-grid">{items.map(item => <a class="brand-service-card" href={`/services/${item.slug}`}><small>{item.group}</small><h3>{item.title}</h3><p>{item.description}</p><span>Explore service <b aria-hidden="true">↗</b></span></a>)}</div>
+  </div>
+</section>}
+<style>
+  .related-services{padding:3.5rem 1.25rem;background:#f7f9fb;border-top:1px solid #e3e9ef}.related-services-head{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:1.8rem}.related-services-head h2{font-size:clamp(1.5rem,3vw,2.2rem)}.related-services-head .eyebrow{margin-bottom:.6rem}.related-services-head>a{font-size:.8rem}.related-services-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.brand-service-card{display:flex;flex-direction:column;padding:1.6rem}.brand-service-card>small{color:#536478;font-size:.67rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase}.brand-service-card h3{margin:.8rem 0 .6rem;font-size:1.07rem}.brand-service-card p{color:#536478;line-height:1.75;font-size:.88rem;flex:1}.brand-service-card>span{display:flex;justify-content:space-between;margin-top:1.3rem;color:#175cd3;font-size:.78rem;font-weight:700}.brand-service-card b{font-size:1rem}@media(max-width:700px){.related-services-head{display:block}.related-services-grid{grid-template-columns:1fr}.related-services-head>a{margin-top:.7rem}}
+</style>

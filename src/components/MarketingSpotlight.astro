@@ -1,0 +1,30 @@
+---
+import MetaTargeting from './MetaTargeting.astro';
+---
+<section class="marketing-spotlight" aria-labelledby="marketing-spotlight-title">
+  <div class="container marketing-spotlight-grid">
+    <div class="marketing-spotlight-copy">
+      <p class="eyebrow">Meta & Facebook Marketing</p>
+      <h2 id="marketing-spotlight-title">Connect your brand.<br /><span class="brand-accent">Reach the right people.</span></h2>
+      <p>Great creative deserves a clear strategy. We connect video, Facebook and Instagram campaigns, landing pages and measurement around your business goals.</p>
+      <ol class="marketing-path">
+        <li><span>01</span><div><h3>Your business</h3><p>A clear offer, a defined objective and an audience worth reaching.</p></div></li>
+        <li><span>02</span><div><h3>The right connection</h3><p>Relevant video, precise campaign setup and a consistent brand message.</p></div></li>
+        <li><span>03</span><div><h3>Meaningful next steps</h3><p>Track enquiries and outcomes. Test, learn and improve the next campaign.</p></div></li>
+      </ol>
+      <div class="marketing-links"><a class="btn btn-primary" href="/services/campaign">Explore Meta campaigns ↗</a><a class="brand-link" href="/services/facebook-page">Facebook page services →</a></div>
+      <small class="marketing-disclaimer">Independent agency services. Meta does not endorse Creavix. Results depend on your offer, budget and market.</small>
+    </div>
+    <MetaTargeting />
+  </div>
+</section>
+<style>
+  .marketing-spotlight{padding:clamp(3.5rem,7vw,6.5rem) 1.25rem;background:linear-gradient(125deg,#fff9f3,#fff 50%,#f3f9f6);border-block:1px solid #e7eced}
+  .marketing-spotlight-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,5vw,5rem);align-items:center}
+  .marketing-spotlight-copy h2{font-size:clamp(2rem,3.5vw,3rem);margin-bottom:1.25rem;line-height:1.15;letter-spacing:-.04em}
+  .marketing-spotlight-copy>p:not(.eyebrow){max-width:52ch;color:#536478;line-height:1.8;font-size:1rem}
+  .marketing-path{list-style:none;padding:0;margin:1.8rem 0;display:grid;gap:1.15rem}.marketing-path li{display:flex;gap:1rem;align-items:flex-start}.marketing-path li>span{display:grid;place-items:center;flex:0 0 36px;height:36px;border:1px solid #f2d8c4;border-radius:12px;background:#fff0e4;color:#b34408;font:800 .73rem var(--font-h)}
+  .marketing-path li:nth-child(2)>span{color:#175cd3;background:#edf4ff;border-color:#d4e2f5}.marketing-path li:nth-child(3)>span{color:#137849;background:#eef8f2;border-color:#cde5d6}
+  .marketing-path h3{margin-bottom:.25rem;font-size:.94rem;color:#0a2540}.marketing-path p{font-size:.86rem;line-height:1.7;color:#536478;max-width:45ch}.marketing-links{display:flex;align-items:center;flex-wrap:wrap;gap:.75rem 1.25rem}.marketing-links a{font-size:.8rem}.marketing-disclaimer{display:block;max-width:62ch;margin-top:1rem;color:#64748b;font-size:.66rem;line-height:1.7}
+  @media(max-width:850px){.marketing-spotlight-grid{grid-template-columns:1fr}.marketing-spotlight-copy{max-width:620px;margin:auto}.marketing-spotlight-copy h2{font-size:clamp(1.8rem,6vw,2.5rem)}}
+</style>

@@ -1,4 +1,5 @@
 ---
+import RelatedServices from '../../components/RelatedServices.astro';
 /**
  * Automation Service — Facebook / Instagram Messenger AI
  * Human-like replies · multi-service bots · call conversion
@@ -174,13 +175,14 @@ const faqs = [
 <Layout title={seoTitle} description={seoDescription}>
   <TopBar />
   <Nav active="services" />
+  <main id="main-content" tabindex="-1">
 
   <!-- HERO -->
   <section class="au-hero">
     <div class="container au-hero-grid">
       <div class="au-hero-copy reveal">
         <p class="au-eye">Automation Service</p>
-        <h1>Messenger Automation that Replies Like a Real Human</h1>
+        <h1>Smarter Messenger automation.<br /><span class="brand-accent">More human connections.</span></h1>
         <p class="au-sub">
           Facebook &amp; Instagram inbox on autopilot — authentic Bangla/English replies,
           multi-service routing, lead capture and call conversion. Built for Bangladesh shops
@@ -409,6 +411,8 @@ const faqs = [
     </div>
   </section>
 
+  <RelatedServices />
+  </main>
   <Footer />
 </Layout>
 

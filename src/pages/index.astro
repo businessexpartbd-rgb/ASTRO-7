@@ -1,4 +1,5 @@
 ---
+import MarketingSpotlight from '../components/MarketingSpotlight.astro';
 import Layout from '../layouts/Layout.astro';
 import TopBar from '../components/TopBar.astro';
 import Nav from '../components/Nav.astro';
@@ -53,6 +54,7 @@ const devToolTeaser = [
 <Layout title={SITE.seoTitle} description={SITE.seoDescription}>
   <TopBar />
   <Nav active="home" />
+  <main id="main-content" tabindex="-1">
 
   <section id="home" class="hero-premium">
     <div class="hero-bg">
@@ -68,13 +70,11 @@ const devToolTeaser = [
           <span class="rating-label">Client Rated · BD &amp; Global</span>
         </div>
 
-        <h1 class="hero-title">
-          AI Video Marketing &amp;<br />Complete IT Solutions
-        </h1>
+        <h1 class="hero-title">AI Video Marketing &amp;<br /><span class="brand-accent">Complete IT Solutions</span></h1>
 
         <p class="hero-lead">
-          Professional video editing, human-like AI production, web, apps, SEO and digital growth—one expert team for Bangladesh and global brands. |
-          <strong class="hero-delivery">24–48 Hours Delivery</strong>
+          Since 2014, our team has brought together professional video editing, human-like AI production, web, apps, SEO and digital marketing for businesses in Bangladesh and beyond.
+          <strong class="hero-delivery">24–48h for scoped video projects</strong>
         </p>
 
         <div class="hero-capabilities" aria-label="Video production capabilities">
@@ -109,6 +109,7 @@ const devToolTeaser = [
   </section>
 
   <BrandStrip />
+  <MarketingSpotlight />
 
   <FeaturedVideoStack />
 
@@ -117,7 +118,7 @@ const devToolTeaser = [
       <div class="ai-stack-head reveal">
         <div>
           <p class="eyebrow">Our AI Production Stack</p>
-          <h2 id="ai-stack-title">Professional Tools. Human Creative Direction.</h2>
+          <h2 id="ai-stack-title">Professional Tools. <span class="brand-accent">Human Creative Direction.</span></h2>
         </div>
         <p>We combine leading AI platforms with professional editing to produce human-like videos, voices and campaign-ready visuals.</p>
       </div>
@@ -140,7 +141,7 @@ const devToolTeaser = [
     <div class="container">
       <div class="text-center mb-8 reveal">
         <p class="eyebrow" style="margin:0 auto 1rem">Our Services</p>
-        <h2 class="mb-4">Everything Your Brand Needs to Grow</h2>
+        <h2 class="mb-4">Everything Your Brand Needs <span class="brand-accent">to Grow</span></h2>
         <p style="max-width:40rem;margin:0 auto">Video, AI, web, apps, SEO, automation and Meta growth — one professional partner for Bangladesh and global brands.</p>
         <div class="section-signals" aria-label="Service standards"><span>12 capabilities</span><span>One accountable team</span><span>Global-ready delivery</span></div>
       </div>
@@ -162,7 +163,7 @@ const devToolTeaser = [
       </div>
       <div class="supporting-heading reveal">
         <p class="eyebrow">Complete IT Solutions</p>
-        <h3>Development, SEO, Automation &amp; Growth</h3>
+        <h3>Development, SEO, Automation &amp; <span class="brand-green">Growth</span></h3>
       </div>
       <div class="grid-3 supporting-services" aria-label="Supporting digital services">
         {supportingServices.map((s, i) => (
@@ -176,7 +177,7 @@ const devToolTeaser = [
       <aside class="dev-stack-teaser reveal" aria-labelledby="dev-stack-teaser-title">
         <div class="dev-stack-copy">
           <p class="eyebrow">AI-Assisted Development</p>
-          <h3 id="dev-stack-teaser-title">AI speed. Expert engineering.</h3>
+          <h3 id="dev-stack-teaser-title">AI speed. <span class="brand-blue">Expert engineering.</span></h3>
           <p>We use leading builders for faster iteration, then complete the code, security, performance and deployment manually.</p>
         </div>
         <div class="dev-stack-logos" aria-label="Selected AI development platforms">
@@ -195,7 +196,7 @@ const devToolTeaser = [
     <div class="container about-premium-grid">
       <div class="about-story reveal">
         <p class="eyebrow">Why Creavix</p>
-        <h2 class="mb-6">IT &amp; Video Agency · Since {SITE.servingSince}</h2>
+        <h2 class="mb-6">IT &amp; Video Agency · <span class="brand-accent">Since {SITE.servingSince}</span></h2>
         <p class="lead mb-8">{SITE.shortDesc}</p>
         <ul class="about-checks">
           <li><ServiceIcons name="check" size={22} /><span>Cinematic &amp; AI video production</span></li>
@@ -209,7 +210,7 @@ const devToolTeaser = [
         </div>
       </div>
       <div class="about-dashboard reveal">
-        <div class="about-dashboard-head"><span>Creavix performance</span><i>Live</i></div>
+        <div class="about-dashboard-head"><span>Creavix at a glance</span><i>Since 2014</i></div>
         <div class="about-stat-card">
           <h3>At a glance</h3>
           <div class="stat-grid">
@@ -230,11 +231,12 @@ const devToolTeaser = [
   <section id="contact" class="section-warm premium-contact">
     <div class="container reveal">
       <div class="contact-panel">
-        <div class="contact-copy"><span class="contact-kicker"><i></i>Accepting selected projects</span><h2>Ready to Grow With Creavix?</h2><p>Tell us what you want to build. We’ll turn the idea into a clear, high-performance production plan.</p></div>
+        <div class="contact-copy"><span class="contact-kicker"><i></i>Accepting selected projects</span><h2>Ready to Grow <span class="brand-accent">With Creavix?</span></h2><p>Tell us what you want to build. We’ll turn the idea into a clear, high-performance production plan.</p></div>
         <div class="contact-action"><a href={SITE.whatsappLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Start on WhatsApp <span>↗</span></a><a href="/contact" class="btn btn-outline">Contact page</a><small>{SITE.whatsapp} · {SITE.email1}</small></div>
       </div>
     </div>
   </section>
+  </main>
   <Footer />
 </Layout>
 

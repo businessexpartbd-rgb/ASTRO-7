@@ -1,0 +1,83 @@
+---
+import ServiceIcons from './icons/ServiceIcons.astro';
+interface Props { compact?: boolean; }
+const { compact = false } = Astro.props;
+const stages = [
+  { icon: 'search', title: 'Find the right audience', label: 'Audience & intent', detail: 'Business goals · location · relevance' },
+  { icon: 'production', title: 'Create a reason to connect', label: 'Creative & message', detail: 'Video hooks · clear offers · landing pages' },
+  { icon: 'campaign', title: 'Measure. Learn. Refine.', label: 'Testing & improvement', detail: 'Results · cost per outcome · next steps' },
+];
+---
+<figure class:list={['mt-studio', { 'mt-compact': compact }]} data-meta-studio>
+  <div class="mt-toolbar"><span><i></i>CREAVIX / CAMPAIGN STUDIO</span><button type="button" data-meta-toggle aria-pressed="false" hidden>Pause animation</button></div>
+  <div class="mt-diagram">
+    <div class="mt-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="mt-platform">
+      <div class="mt-platform-logo"><img src="/brands/meta.svg" alt="Meta" width="112" height="76" loading="lazy" decoding="async" /></div>
+      <strong>Right people.<br /><span>Relevant creative.</span></strong>
+      <p>Facebook + Instagram</p>
+    </div>
+    <ol class="mt-stages">
+      {stages.map((stage, i) => <li class="mt-stage" style={`--stage:${i}`}>
+        <span class="mt-number">0{i + 1}</span>
+        <span class="mt-stage-icon"><ServiceIcons name={stage.icon} size={26} /></span>
+        <div><small>{stage.label}</small><strong>{stage.title}</strong><p>{stage.detail}</p></div>
+        <span class="mt-signal" aria-hidden="true"></span>
+      </li>)}
+    </ol>
+  </div>
+  <figcaption><span>Illustrative campaign workflow</span><span>Strategy → Creative → Learning</span></figcaption>
+</figure>
+<style>
+  .mt-studio{width:100%;max-width:620px;margin:0 auto;overflow:hidden;isolation:isolate;border:1px solid #dbe5ee;border-radius:28px;background:#fff;box-shadow:0 24px 64px #0a254012;color:#0a2540}
+  .mt-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 20px;background:#f8fafc;border-bottom:1px solid #e4eaf0}
+  .mt-toolbar>span{display:flex;align-items:center;gap:7px;font:700 .59rem/1.5 var(--font-h);letter-spacing:.08em}
+  .mt-toolbar i{width:7px;height:7px;border-radius:50%;background:#137849}
+  .mt-toolbar button{flex-shrink:0;min-height:32px;padding:4px 7px;border:1px solid #d3dfeb;border-radius:7px;color:#31455c;background:#fff;font:600 .61rem/1.3 var(--font-b);cursor:pointer}
+  .mt-toolbar button[hidden]{display:none}
+  .mt-diagram{position:relative;padding:28px 24px 24px;background:radial-gradient(ellipse at 50% 0%,#edf5ff,transparent 55%)}
+  .mt-platform{position:relative;z-index:1;text-align:center;margin-bottom:25px}
+  .mt-platform-logo{width:128px;height:98px;display:grid;place-items:center;margin:0 auto 12px;background:#fff;border:1px solid #e4edf5;border-radius:26px;box-shadow:0 10px 25px #175cd30b}
+  .mt-platform-logo img{width:96px;height:72px;object-fit:contain}
+  .mt-platform>strong{display:block;font:800 clamp(1.3rem,2.4vw,1.7rem)/1.22 var(--font-h);letter-spacing:-.04em}
+  .mt-platform>strong span{color:#137849}
+  .mt-platform>p{margin-top:8px;color:#536478;font:600 .72rem/1.5 var(--font-b)}
+  .mt-orbit{position:absolute;width:260px;height:200px;border:1px dashed #bcd4e9;border-radius:50%;left:50%;top:12px;transform:translateX(-50%);pointer-events:none}
+  .mt-orbit i{position:absolute;width:10px;height:10px;border:3px solid #fff;border-radius:50%;background:#175cd3;box-shadow:0 0 0 4px #e4effa}
+  .mt-orbit i:nth-child(1){left:9%;top:19%}.mt-orbit i:nth-child(2){right:2%;top:53%;background:#137849}.mt-orbit i:nth-child(3){left:21%;bottom:4%;background:#c44b0b}
+  .mt-stages{position:relative;z-index:1;display:grid;gap:10px;list-style:none;margin:0;padding:0}
+  .mt-stages::before{content:'';position:absolute;left:22px;top:15px;bottom:15px;width:2px;background:#cfdae3}
+  .mt-stage{position:relative;display:grid;grid-template-columns:26px 34px 1fr 8px;align-items:center;gap:10px;padding:13px 14px;border:1px solid #dde6ef;border-radius:15px;background:#fff;box-shadow:0 6px 14px #0a254004}
+  .mt-number{display:grid;place-items:center;width:25px;height:25px;background:#fff1e8;border-radius:8px;color:#b34408;font:800 .65rem/1 var(--font-h)}
+  .mt-stage:nth-child(2) .mt-number{background:#edf4ff;color:#175cd3}.mt-stage:nth-child(3) .mt-number{background:#edf8f0;color:#137849}
+  .mt-stage-icon{display:grid;place-items:center}.mt-stage small{display:block;color:#64748b;font:600 .57rem/1.5 var(--font-b);letter-spacing:.045em;text-transform:uppercase}
+  .mt-stage strong{display:block;color:#0a2540;font:800 clamp(.78rem,1.3vw,.94rem)/1.45 var(--font-h)}
+  .mt-stage p{margin:3px 0 0;color:#536478;font:400 .66rem/1.55 var(--font-b)}
+  .mt-signal{width:6px;height:6px;background:#137849;border-radius:50%}
+  figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:5px;padding:13px 20px;border-top:1px solid #e4eaf0;color:#627185;font:500 .59rem/1.5 var(--font-b)}
+  @media(prefers-reduced-motion:no-preference){
+    .mt-studio.is-running .mt-stage{animation:mt-stage-focus 7.2s ease-in-out infinite;animation-delay:calc(var(--stage)*2.4s)}
+    .mt-studio.is-running .mt-orbit i{animation:mt-signal 3.6s ease-in-out infinite}.mt-studio.is-running .mt-orbit i:nth-child(2){animation-delay:1.2s}.mt-studio.is-running .mt-orbit i:nth-child(3){animation-delay:2.4s}
+    @keyframes mt-stage-focus{0%,33%,100%{translate:0 0}8%,25%{translate:4px 0}}
+    @keyframes mt-signal{0%,100%{transform:scale(1);opacity:.65}50%{transform:scale(1.45);opacity:1}}
+  }
+  @media(max-width:480px){.mt-studio{border-radius:22px}.mt-toolbar{padding:11px 12px}.mt-toolbar>span{font-size:.5rem;letter-spacing:.035em}.mt-toolbar button{font-size:.55rem;min-height:36px}.mt-diagram{padding:23px 12px 16px}.mt-stage{gap:7px;grid-template-columns:23px 25px 1fr 6px;padding:11px 9px}.mt-stage p{font-size:.62rem}.mt-platform>strong{font-size:1.4rem}figcaption{padding:11px 13px;font-size:.55rem}}
+  .mt-compact .mt-diagram{padding-block:20px}.mt-compact .mt-platform-logo{height:80px}.mt-compact .mt-platform{margin-bottom:18px}
+</style>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-meta-studio]').forEach((root) => {
+    const toggle = root.querySelector<HTMLButtonElement>('[data-meta-toggle]');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    let paused = false;
+    let visible = false;
+    const sync = () => root.classList.toggle('is-running', visible && !paused && !reduced.matches && !document.hidden);
+    const mediaChange = () => { if (toggle) toggle.hidden = reduced.matches; sync(); };
+    if ('IntersectionObserver' in window) new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }, { threshold: .1 }).observe(root);
+    if (toggle) {
+      toggle.addEventListener('click', () => { paused = !paused; toggle.setAttribute('aria-pressed', String(paused)); toggle.textContent = paused ? 'Play animation' : 'Pause animation'; sync(); });
+      toggle.hidden = reduced.matches;
+    }
+    reduced.addEventListener('change', mediaChange);
+    document.addEventListener('visibilitychange', sync);
+  });
+</script>

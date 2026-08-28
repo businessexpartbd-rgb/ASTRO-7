@@ -31,12 +31,13 @@ const faqs = [
 >
   <TopBar />
   <Nav active="about" />
+  <main id="main-content" tabindex="-1">
 
   <section class="ab-hero">
     <div class="container ab-grid">
       <div class="reveal">
         <p class="ab-eye">About · Since {SITE.servingSince}</p>
-        <h1>Video &amp; IT agency built for Bangladesh and beyond</h1>
+        <h1>Creative thinking. Technical depth.<br /><span class="brand-accent">One accountable team.</span></h1>
         <p class="ab-sub">{SITE.shortDesc}</p>
         <div class="ab-actions">
           <a class="btn btn-primary" href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>
@@ -53,7 +54,7 @@ const faqs = [
     <div class="container">
       <div class="ab-center reveal">
         <p class="ab-eye">What we stand for</p>
-        <h2>One partner. Full digital stack.</h2>
+        <h2>One partner. <span class="brand-accent">Full digital stack.</span></h2>
       </div>
       <div class="ab-cards">
         {pillars.map((p) => (
@@ -101,7 +102,7 @@ const faqs = [
     <div class="container">
       <div class="ab-center reveal">
         <p class="ab-eye">Markets</p>
-        <h2>Local depth · Global standard</h2>
+        <h2>Bangladesh roots. <span class="brand-green">Global ambition.</span></h2>
       </div>
       <div class="ab-markets">
         {markets.map((m) => (
@@ -151,6 +152,7 @@ const faqs = [
       </div>
     </div>
   </section>
+  </main>
   <Footer />
 </Layout>
 
