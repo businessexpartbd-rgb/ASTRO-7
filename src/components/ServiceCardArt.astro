@@ -1,0 +1,18 @@
+---
+interface Props { src: string; }
+const { src } = Astro.props;
+---
+<!-- One artwork standard, copied from the original Video Editing card. -->
+<span class="service-card-art" data-service-card-art aria-hidden="true">
+  <img src={src} alt="" width="320" height="320" loading="lazy" decoding="async" />
+</span>
+<style>
+  .service-card-art{position:relative;display:grid;place-items:center;flex-shrink:0;width:112px;height:112px;margin:.05rem 0 .7rem;background:transparent;border:0;overflow:visible;isolation:isolate;animation:service-art-float 5.2s cubic-bezier(.45,0,.55,1) infinite}
+  .service-card-art:before{content:'';position:absolute;z-index:-1;width:68%;height:68%;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.2),rgba(139,92,246,.09) 45%,transparent 72%);filter:blur(10px);animation:service-art-glow 3.8s ease-in-out infinite}
+  .service-card-art img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 12px 16px rgba(15,23,42,.16));transform:rotate(-1.5deg);transition:transform .55s cubic-bezier(.16,1,.3,1),filter .55s ease}
+  :global(.service-card:hover) .service-card-art img,:global(.service-card:focus-visible) .service-card-art img{transform:scale(1.08) rotate(1.5deg);filter:drop-shadow(0 17px 22px rgba(37,99,235,.25))}
+  @keyframes service-art-float{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-6px,0)}}
+  @keyframes service-art-glow{0%,100%{opacity:.58;transform:scale(.92)}50%{opacity:1;transform:scale(1.08)}}
+  @media(max-width:639px){.service-card-art{width:94px;height:94px;margin-bottom:.55rem}}
+  @media(prefers-reduced-motion:reduce){.service-card-art,.service-card-art:before{animation:none}.service-card-art img{transition:none}}
+</style>

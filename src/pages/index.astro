@@ -10,6 +10,8 @@ import BrandStrip from '../components/BrandStrip.astro';
 import FAQ from '../components/FAQ.astro';
 import ProcessFlow from '../components/ProcessFlow.astro';
 import IconBox from '../components/IconBox.astro';
+import ServiceCardArt from '../components/ServiceCardArt.astro';
+import { serviceArtwork } from '../data/serviceArtwork';
 import ServiceIcons from '../components/icons/ServiceIcons.astro';
 import HeroBookReel from '../components/HeroBookReel.astro';
 import BrandingCinema from '../components/BrandingCinema.astro';
@@ -149,10 +151,8 @@ const devToolTeaser = [
         {primaryServices.map((s, i) => (
           <a href={s.href} class="service-card service-card-primary reveal" data-magnetic style={`--card-index:${i}`}>
             <div class="service-card-top"><span class="service-priority">Core expertise</span><span class="service-index">0{i + 1}</span></div>
-            {s.name === 'video' ? (
-              <span class="video-editing-visual" aria-hidden="true">
-                <img src="/media/service-icons/video-editing-ai.svg" alt="" width="320" height="320" loading="lazy" decoding="async" />
-              </span>
+            {serviceArtwork[s.name] ? (
+              <ServiceCardArt src={serviceArtwork[s.name]} />
             ) : (
               <IconBox name={s.name} tone={s.tone} size={44} />
             )}
@@ -168,7 +168,7 @@ const devToolTeaser = [
       <div class="grid-3 supporting-services" aria-label="Supporting digital services">
         {supportingServices.map((s, i) => (
           <a href={s.href} class="service-card service-card-support reveal" style={`--card-index:${i + 3}`}>
-            <div class="service-card-top"><IconBox name={s.name} tone={s.tone} size={38} /><span class="service-index">{String(i + 4).padStart(2, '0')}</span></div>
+            <div class="service-card-top">{serviceArtwork[s.name] ? <ServiceCardArt src={serviceArtwork[s.name]} /> : <IconBox name={s.name} tone={s.tone} size={38} />}<span class="service-index">{String(i + 4).padStart(2, '0')}</span></div>
             <div class="service-copy"><h3>{s.title}</h3><p>{s.desc}</p></div>
             <span class="svc-more"><span>Discover</span><i aria-hidden="true">→</i></span>
           </a>
@@ -263,12 +263,6 @@ const devToolTeaser = [
     background: linear-gradient(145deg, #fff 0%, #f8fbff 100%);
   }
   .service-card-primary:nth-child(2){background:linear-gradient(145deg,#fff,#faf8ff)}.service-card-primary:nth-child(3){background:linear-gradient(145deg,#fff,#f4fbff)}
-  .video-editing-visual{position:relative;display:grid;place-items:center;width:112px;height:112px;margin:.05rem 0 .7rem;background:transparent;border:0;overflow:visible;isolation:isolate;animation:video-icon-float 5.2s cubic-bezier(.45,0,.55,1) infinite}
-  .video-editing-visual:before{content:'';position:absolute;z-index:-1;width:68%;height:68%;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.2),rgba(139,92,246,.09) 45%,transparent 72%);filter:blur(10px);animation:video-icon-glow 3.8s ease-in-out infinite}
-  .video-editing-visual img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 12px 16px rgba(15,23,42,.16));transform:rotate(-1.5deg);transition:transform .55s cubic-bezier(.16,1,.3,1),filter .55s ease}
-  .service-card-primary:hover .video-editing-visual img{transform:scale(1.08) rotate(1.5deg);filter:drop-shadow(0 17px 22px rgba(37,99,235,.25))}
-  @keyframes video-icon-float{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-6px,0)}}
-  @keyframes video-icon-glow{0%,100%{opacity:.58;transform:scale(.92)}50%{opacity:1;transform:scale(1.08)}}
   .service-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}.service-index{font:800 .7rem/1 var(--font-h);letter-spacing:.12em;color:#94a3b8}.service-copy{margin-top:auto}.service-copy h3{margin:0 0 .65rem;font-size:clamp(1.1rem,2vw,1.35rem);letter-spacing:-.025em}.service-copy p{margin:0;color:#64748b;font-size:.88rem;line-height:1.65}
   .service-priority {
     display: inline-flex;
@@ -441,9 +435,9 @@ const devToolTeaser = [
     .trust-item strong{font-size:clamp(.82rem,4vw,1rem)}
     .trust-item span{font-size:clamp(.5rem,2.45vw,.62rem);letter-spacing:.025em}
     .trust-divider{height:1.65rem}
-    .section-signals span:nth-child(2){display:none}.service-card-primary{min-height:285px}.video-editing-visual{width:94px;height:94px;margin-bottom:.55rem}.service-card-support{min-height:220px}.supporting-services .service-card-support{transform:none}.about-premium-grid,.contact-panel{grid-template-columns:1fr}.about-dashboard{padding:.7rem;border-radius:22px}.contact-panel{border-radius:24px;gap:1.35rem}.premium-contact{padding-inline:.85rem}.contact-action .btn{width:100%}
+    .section-signals span:nth-child(2){display:none}.service-card-primary{min-height:285px}.service-card-support{min-height:220px}.supporting-services .service-card-support{transform:none}.about-premium-grid,.contact-panel{grid-template-columns:1fr}.about-dashboard{padding:.7rem;border-radius:22px}.contact-panel{border-radius:24px;gap:1.35rem}.premium-contact{padding-inline:.85rem}.contact-action .btn{width:100%}
   }
   .hero-cta-wa{background:#0b1220;color:#fff;border-color:#0b1220}.hero-cta-wa:hover{background:#111c30;color:#fff}.hero-cta-work{background:#0f766e;color:#fff;border:1px solid #0f766e}.hero-cta-work:hover{background:#115e59;color:#fff}
 
-  @media (prefers-reduced-motion:reduce){.service-card,.service-card:before,.svc-more i,.video-editing-visual img{transition:none}.service-card:hover,.service-card-support:nth-child(3n+2),.service-card-support:nth-child(3n+2):hover{transform:none}.video-editing-visual,.video-editing-visual:before{animation:none}}
+  @media (prefers-reduced-motion:reduce){.service-card,.service-card:before,.svc-more i{transition:none}.service-card:hover,.service-card-support:nth-child(3n+2),.service-card-support:nth-child(3n+2):hover{transform:none}}
 </style>
