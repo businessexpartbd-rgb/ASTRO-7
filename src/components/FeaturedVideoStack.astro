@@ -1,549 +1,154 @@
 ---
-/**
- * Homepage only — 6 cinematic videos
- * Sticky stack + deferred YouTube iframe (poster first, play on tap)
- */
 import { SHOWCASES, ytThumb } from '../data/site';
 
-const cinematic = SHOWCASES.find((s) => s.id === 'cinematic')!;
-const videos = cinematic.ids.map((id, i) => ({
-  id,
-  thumb: ytThumb(id, i < 2 ? 'hq' : 'mq'),
-  n: i + 1,
+// Preserve the six original films and their order.
+const videos = SHOWCASES.find(s => s.id === 'cinematic')!.ids.map((id, i) => ({
+  id, n: i + 1, thumb: ytThumb(id, 'hq'),
 }));
-const total = videos.length;
+const youtubeMark = 'M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.5C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z M9.75 15.02V8.98L15.5 12l-5.75 3.02z';
 ---
-
-<section id="featured-videos" class="fvs" data-fvs>
+<section id="featured-videos" class="fvs" data-fvs aria-labelledby="fvs-heading">
   <div class="fvs-head">
     <p class="eyebrow">Featured Work</p>
-    <h2>Cinematic Videos</h2>
-    <p class="fvs-lead">Scroll — each film locks into a cinematic stack. Only the front film plays when you choose.</p>
+    <h2 id="fvs-heading">Cinematic Videos</h2>
+    <p>Six films. One cinematic experience.</p>
+    <span class="fvs-hint">Scroll to explore · Tap any film to watch</span>
   </div>
 
-  <div class="fvs-list" data-list>
+  <ol class="fvs-list" data-list aria-label="Six featured cinematic videos">
     {videos.map((v, i) => (
-      <div class="fvs-panel" data-panel data-i={String(i)} style={`--i:${i}`}>
-        <div class="fvs-pin">
-          <article
-            class:list={['fvs-card', i === 0 && 'is-front']}
-            data-card
-            data-vid={v.id}
-            data-i={String(i)}
-          >
-            <div class="fvs-frame">
-              <img
-                class="fvs-poster"
-                src={v.thumb}
-                alt={`Cinematic video ${v.n}`}
-                width="640"
-                height="360"
-                loading={i === 0 ? 'eager' : 'lazy'}
-                decoding="async"
-                fetchpriority={i === 0 ? 'high' : 'low'}
-              />
-              <div class="fvs-player" data-player></div>
-
-              <button type="button" class="fvs-pause" data-pause aria-label={`Pause video ${v.n}`}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
-                <span>Pause</span>
-              </button>
-
-              <button type="button" class="fvs-play" data-play aria-label={`Play with sound — video ${v.n}`}>
-                <span class="fvs-play-ic" aria-hidden="true">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                </span>
-                <span class="fvs-play-txt">Play with sound</span>
-              </button>
-
-              <div class="fvs-meta">
-                <span class="fvs-num">{String(v.n).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
-                <span class="fvs-tag">16:9 · Cinematic</span>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
+      <li class="fvs-item" data-item style={`--i:${i};--angle:${i % 2 ? 1.5 : -1.5}deg`}>
+        <article class="fvs-card" data-card>
+          <a class="fvs-watch" data-watch data-vid={v.id} href={`https://www.youtube.com/watch?v=${v.id}`}
+            target="_blank" rel="noopener noreferrer" aria-label={`Play cinematic video ${v.n}`}>
+            <img class="fvs-poster" src={v.thumb} alt="" width="480" height="360"
+              loading="lazy" decoding="async" />
+            <span class="fvs-shade" aria-hidden="true"></span>
+            <span class="fvs-play" aria-hidden="true">
+              <span class="fvs-play-glass">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="#ff3434" fill-rule="evenodd"><path d={youtubeMark}/></svg>
+              </span>
+              <span class="fvs-play-label">Watch film</span>
+            </span>
+            <span class="fvs-meta" aria-hidden="true"><span>CREAVIX / FILM {String(v.n).padStart(2, '0')}</span><span>16:9 · Cinematic ↗</span></span>
+          </a>
+          <div class="fvs-card-foot" aria-hidden="true"><span>Cinematic storytelling</span><span>{String(v.n).padStart(2, '0')} / 06</span></div>
+        </article>
+      </li>
     ))}
-  </div>
+  </ol>
+  <div class="fvs-more"><a href="/portfolio" class="btn btn-outline">View full portfolio →</a></div>
 
-  <div class="fvs-more">
-    <a href="/portfolio" class="btn btn-outline">View full portfolio →</a>
-  </div>
+  <dialog class="fvs-dialog" data-dialog aria-labelledby="fvs-player-title" aria-describedby="fvs-player-help">
+    <div class="fvs-viewer">
+      <header class="fvs-toolbar">
+        <h3 id="fvs-player-title" data-title>Cinematic video</h3>
+        <div class="fvs-actions">
+          <button type="button" data-fullscreen aria-label="Enter fullscreen">⛶ <span>Fullscreen</span></button>
+          <button type="button" data-close autofocus aria-label="Close video player">✕ <span>Close</span></button>
+        </div>
+      </header>
+      <div class="fvs-screen" data-screen><div class="fvs-mount" data-mount></div></div>
+      <nav class="fvs-picker" aria-label="Choose a featured film">
+        <button type="button" data-prev aria-label="Play previous film">←</button>
+        {videos.map(v => <button type="button" data-select={String(v.n - 1)} aria-label={`Play cinematic video ${v.n}`} aria-pressed="false">{String(v.n).padStart(2, '0')}</button>)}
+        <button type="button" data-next aria-label="Play next film">→</button>
+      </nav>
+      <p id="fvs-player-help" class="fvs-help">One film at a time · Sound, captions and playback controls inside the player.</p>
+      <div class="fvs-viewer-foot"><span data-status role="status" aria-live="polite"></span><a data-external href={`https://www.youtube.com/watch?v=${videos[0].id}`} target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a></div>
+    </div>
+  </dialog>
 </section>
 
+<script>
+  import { enhanceVideoGallery } from '../scripts/video-gallery';
+  let dispose: (() => void) | undefined;
+  const init = () => {
+    dispose?.();
+    const root = document.querySelector<HTMLElement>('[data-fvs]');
+    dispose = root ? enhanceVideoGallery(root) : undefined;
+  };
+  init();
+  document.addEventListener('astro:page-load', init);
+  document.addEventListener('astro:before-swap', () => { dispose?.(); dispose = undefined; });
+</script>
+
 <style>
-  .fvs {
-    padding: 1.75rem 0 0;
-    background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 40%);
+  /* One shared containing block keeps all six sticky films in the same stack.
+     Disable inherited content-visibility containment only for this section. */
+  #featured-videos.fvs{padding:3rem 0 0;background:linear-gradient(180deg,#f8fafc,#fff);content-visibility:visible;contain:none;--pin:clamp(6.5rem,16svh,10rem)}
+  .fvs-head{text-align:center;max-width:42rem;margin:0 auto;padding:0 1.25rem 3rem}
+  .fvs-head h2{margin:.4rem 0 .75rem;font-size:clamp(1.8rem,4vw,3rem);color:#0a2540}
+  .fvs-head p:not(.eyebrow){color:#475569;margin:0 0 .5rem}
+  .fvs-hint{font-size:.8rem;color:#64748b}
+  .fvs-list{list-style:none;width:min(100% - 3rem,1000px,calc((100svh - 14rem)*1.7778));margin:0 auto;padding:1rem 0 12svh}
+  .fvs-item{position:sticky;top:var(--pin);z-index:calc(1 + var(--i));margin:0 0 clamp(7rem,24svh,16rem);padding:0}
+  .fvs-item:last-child{margin-bottom:0}
+  .fvs-card{padding:10px 10px 0;border:1px solid rgba(255,255,255,.95);border-radius:22px;background:rgba(231,240,250,.48);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 22px 52px #0a254024,inset 0 1px 0 #fff;transform:rotate(var(--angle));transform-origin:50% 80%;transition:transform .3s ease,opacity .3s ease}
+  .fvs-item.is-under .fvs-card{transform:translateY(calc(var(--depth)*-9px)) scale(calc(1 - var(--depth)*.018)) rotate(var(--angle));opacity:.86}
+  .fvs-item.is-under .fvs-watch{pointer-events:none}
+  .fvs-watch{display:block;position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#0a2540;color:#fff;isolation:isolate}
+  .fvs-watch:focus-visible{outline:3px solid #f47721;outline-offset:4px}
+  .fvs-poster{position:absolute;width:100%;height:100%;inset:0;object-fit:cover}
+  .fvs-shade{position:absolute;inset:0;background:linear-gradient(0deg,#061426a6,transparent 45%)}
+  .fvs-play{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem}
+  .fvs-play-glass{position:relative;display:grid;place-items:center;width:68px;height:52px;border:1px solid #ffffffb3;border-radius:17px;background:#ffffff38;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 #ffffff80,0 6px 25px #0003;transition:transform .2s ease}
+  .fvs-play-glass:before,.fvs-play-glass:after{content:'';position:absolute;inset:-3px;border:1px solid #ff5555a6;border-radius:20px;box-shadow:0 0 12px #ff333333;animation:fvs-wave 3s ease-out infinite;animation-play-state:paused;pointer-events:none}
+  .fvs-play-glass:after{animation-delay:1.5s}
+  .fvs.is-in-view .fvs-item:not(.is-under) .fvs-play-glass:before,.fvs.is-in-view .fvs-item:not(.is-under) .fvs-play-glass:after{animation-play-state:running}
+  .fvs-watch:hover .fvs-play-glass{transform:scale(1.06)}
+  .fvs-play-label{padding:.3rem .65rem;border-radius:20px;background:#0a2540b3;color:#fff;font-size:.72rem;font-weight:700}
+  .fvs-meta{position:absolute;bottom:1rem;left:1rem;right:1rem;display:flex;justify-content:space-between;gap:1rem;color:#fff;font-size:.66rem;font-weight:700;letter-spacing:.06em}
+  .fvs-card-foot{display:flex;justify-content:space-between;gap:1rem;padding:.6rem .35rem;color:#0a2540;font-size:.7rem;font-weight:700;letter-spacing:.04em}
+  .fvs-more{text-align:center;padding:1rem 1rem 3rem}
+  @keyframes fvs-wave{0%{transform:scale(.94);opacity:.7}85%,100%{transform:scale(1.65);opacity:0}}
+  .fvs-dialog{position:fixed;inset:0;width:100%;max-width:none;height:100vh;height:100dvh;max-height:none;border:0;margin:0;padding:max(1rem,env(safe-area-inset-top)) max(1rem,env(safe-area-inset-right)) max(1rem,env(safe-area-inset-bottom)) max(1rem,env(safe-area-inset-left));background:transparent;color:#fff;overflow:auto;overscroll-behavior:contain}
+  .fvs-dialog[open]{display:grid;place-items:center}
+  .fvs-dialog::backdrop{background:#071525ad;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+  .fvs-dialog:fullscreen{background:#071525}
+  .fvs-viewer{width:min(100%,1280px);min-width:0;animation:fvs-open .22s ease-out}
+  .fvs-toolbar{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:.75rem}
+  .fvs-toolbar h3{color:#fff;margin:0;font-size:clamp(.85rem,2vw,1.2rem)}
+  .fvs-actions{display:flex;gap:.5rem}
+  .fvs-actions button,.fvs-picker button{min-width:44px;min-height:44px;padding:.5rem .75rem;border:1px solid #ffffff40;border-radius:12px;background:#ffffff17;color:#fff;cursor:pointer;font:inherit}
+  .fvs-actions button:hover,.fvs-picker button:hover{background:#ffffff30}
+  .fvs-screen{position:relative;aspect-ratio:16/9;width:min(100%,calc((100dvh - 14rem)*1.7778));margin:0 auto;background:#000;border:1px solid #ffffff38;border-radius:14px;overflow:hidden;box-shadow:0 24px 80px #0006}
+  .fvs-mount,.fvs-mount :global(iframe){position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+  .fvs-picker{display:flex;gap:.35rem;justify-content:center;flex-wrap:wrap;margin:.75rem auto}
+  .fvs-picker button{font-size:.8rem;padding:.35rem}
+  .fvs-picker button[aria-pressed=true]{background:#fff;color:#0a2540;border-color:#fff;font-weight:800}
+  .fvs-help{text-align:center;color:#e2e8f0;font-size:.75rem;margin:0}
+  .fvs-viewer-foot{display:flex;justify-content:space-between;gap:.75rem;flex-wrap:wrap;font-size:.72rem;color:#dbeafe;margin-top:.5rem}
+  .fvs-viewer-foot a{text-decoration:underline;min-height:44px;display:inline-flex;align-items:center}
+  .fvs-viewer-foot [data-status]{align-self:center}
+  @keyframes fvs-open{from{opacity:0;transform:translateY(10px) scale(.99)}to{opacity:1;transform:none}}
+  @media(max-width:639px){
+    .fvs-card{padding:6px 6px 0;border-radius:16px}
+    .fvs-watch{border-radius:11px}
+    .fvs-meta{font-size:.53rem;bottom:.65rem;left:.65rem;right:.65rem;letter-spacing:.025em}
+    .fvs-card-foot{font-size:.6rem}
+    .fvs-play-glass{width:58px;height:46px;border-radius:14px}
+    .fvs-play-label{font-size:.65rem}
+    .fvs-actions button span{display:none}
+    .fvs-dialog{padding-inline:.65rem}
+    .fvs-picker{display:grid;grid-template-columns:repeat(6,minmax(44px,1fr));max-width:22rem;gap:.2rem}
+    .fvs-picker [data-prev]{grid-column:1/4;grid-row:2}
+    .fvs-picker [data-next]{grid-column:4/7;grid-row:2}
   }
-
-  .fvs-head {
-    text-align: center;
-    padding: 0 1rem 1rem;
-    max-width: 36rem;
-    margin: 0 auto;
+  @media(max-height:500px){
+    .fvs-list{width:min(100% - 3rem,1000px)}
+    .fvs-item{position:relative;top:auto;margin-bottom:2rem}
+    .fvs-card{transform:none!important;opacity:1!important}
+    .fvs-dialog{padding:.5rem}
+    .fvs-screen{width:min(100%,calc((100dvh - 8rem)*1.7778))}
+    .fvs-help,.fvs-viewer-foot{display:none}
+    .fvs-toolbar,.fvs-picker{margin:.25rem 0}
   }
-  .fvs-head h2 {
-    margin: 0 0 0.35rem;
-    font-size: clamp(1.45rem, 3vw, 1.95rem);
-  }
-  .fvs-lead {
-    margin: 0;
-    color: #475569;
-    font-size: 0.92rem;
-  }
-
-  .fvs-list {
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 0.75rem;
-    box-sizing: border-box;
-  }
-
-  .fvs-panel {
-    position: relative;
-    height: 92vh;
-    height: 92dvh;
-    max-height: 860px;
-    min-height: 420px;
-  }
-  .fvs-panel:last-child {
-    height: auto;
-    max-height: none;
-    min-height: 0;
-    padding-bottom: 1.25rem;
-  }
-
-  .fvs-pin {
-    position: -webkit-sticky;
-    position: sticky;
-    top: max(4.75rem, calc((100vh - 56.25vw) / 2));
-    top: max(4.75rem, calc((100dvh - 56.25vw) / 2));
-    z-index: calc(10 + var(--i, 0));
-    width: 100%;
-  }
-
-  .fvs-card {
-    width: 100%;
-    border-radius: 14px;
-    overflow: hidden;
-    background: #0B0F19;
-    box-shadow:
-      0 20px 48px rgba(15, 23, 42, 0.16),
-      0 0 0 1px rgba(15, 23, 42, 0.07);
-    line-height: 0;
-    transform: translateZ(0);
-    filter: none;
-    opacity: 1;
-    transition:
-      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      filter 0.35s ease,
-      opacity 0.35s ease,
-      box-shadow 0.25s ease;
-  }
-
-  .fvs-card.is-under {
-    filter: brightness(calc(0.9 - (var(--depth, 1) * 0.035)));
-    opacity: calc(0.94 - (var(--depth, 1) * 0.08));
-    transform:
-      translate3d(0, calc(var(--depth, 1) * -9px), 0)
-      scale(calc(1 - (var(--depth, 1) * 0.012)));
-    pointer-events: none;
-  }
-
-  .fvs-card.is-next {
-    filter: none;
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-
-  .fvs-card.is-front {
-    filter: none;
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
-  }
-
-  .fvs-card.is-front::before {
-    content: '';
-    position: absolute;
-    z-index: 5;
-    inset: 0;
-    border-radius: inherit;
-    pointer-events: none;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
-  }
-
-  .fvs-card.is-front.is-playing {
-    box-shadow:
-      0 26px 52px rgba(37, 99, 235, 0.28),
-      0 0 0 2px rgba(37, 99, 235, 0.5);
-  }
-
-  .fvs-frame {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #0B0F19;
-    overflow: hidden;
-    contain: layout paint;
-  }
-
-  .fvs-poster,
-  .fvs-player,
-  .fvs-player iframe {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none !important;
-    max-height: none !important;
-    border: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: block !important;
-  }
-  .fvs-poster {
-    object-fit: cover;
-    z-index: 1;
-  }
-  .fvs-player {
-    z-index: 2;
-    opacity: 0;
-    pointer-events: none;
-    background: #000;
-  }
-  .fvs-player.is-on {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .fvs-play {
-    position: absolute;
-    z-index: 4;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.35rem;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    color: #fff;
-    padding: 0;
-    touch-action: manipulation;
-  }
-  .fvs-play-ic {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(37, 99, 235, 0.94);
-    border: 2px solid rgba(255, 255, 255, 0.55);
-    box-shadow: 0 10px 28px rgba(37, 99, 235, 0.4);
-    transition: transform 0.15s ease, background 0.15s ease;
-  }
-  .fvs-play:hover .fvs-play-ic,
-  .fvs-play:active .fvs-play-ic {
-    transform: scale(1.06);
-    background: #1D4ED8;
-  }
-  .fvs-play-txt {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  }
-
-  .fvs-card.is-playing .fvs-play { display: none !important; }
-  .fvs-card.is-playing .fvs-poster { opacity: 0; pointer-events: none; }
-  .fvs-card.is-under .fvs-play { display: none !important; }
-  .fvs-pause {
-    position: absolute;
-    z-index: 5;
-    top: 10px;
-    right: 10px;
-    display: none;
-    align-items: center;
-    gap: .3rem;
-    min-height: 38px;
-    padding: .45rem .65rem;
-    border: 1px solid rgba(255,255,255,.32);
-    border-radius: 999px;
-    color: #fff;
-    background: rgba(2,6,23,.72);
-    box-shadow: 0 8px 24px rgba(0,0,0,.22);
-    backdrop-filter: blur(8px);
-    font: 800 .62rem/1 Outfit,system-ui,sans-serif;
-    cursor: pointer;
-    touch-action: manipulation;
-  }
-  .fvs-card.is-playing .fvs-pause { display: inline-flex; }
-
-  .fvs-meta {
-    position: absolute;
-    z-index: 4;
-    left: 10px;
-    bottom: 10px;
-    display: flex;
-    gap: 0.35rem;
-    pointer-events: none;
-  }
-  .fvs-num {
-    font-family: Outfit, system-ui, sans-serif;
-    font-weight: 800;
-    font-size: 0.78rem;
-    color: #fff;
-    background: rgba(15, 23, 42, 0.55);
-    padding: 0.18rem 0.45rem;
-    border-radius: 7px;
-  }
-  .fvs-tag {
-    font-size: 0.6rem;
-    font-weight: 600;
-    color: #fff;
-    background: rgba(37, 99, 235, 0.85);
-    padding: 0.18rem 0.45rem;
-    border-radius: 7px;
-  }
-  .fvs-card.is-playing .fvs-meta,
-  .fvs-card.is-under .fvs-meta { opacity: 0; }
-
-  .fvs-more {
-    text-align: center;
-    padding: 1.25rem 1rem 2.5rem;
-  }
-
-  @media (max-width: 767px) {
-    .fvs-list { padding: 0 0.4rem; max-width: 100%; }
-    .fvs-panel {
-      height: 88vh;
-      height: 88dvh;
-      max-height: none;
-      min-height: 360px;
-    }
-    .fvs-pin { top: max(4.5rem, 14dvh); }
-    .fvs-card { border-radius: 12px; }
-    .fvs-play-ic { width: 56px; height: 56px; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .fvs-panel {
-      height: auto !important;
-      min-height: 0 !important;
-      margin-bottom: 1rem;
-    }
-    .fvs-pin {
-      position: relative !important;
-      top: auto !important;
-    }
-    .fvs-card {
-      filter: none !important;
-      opacity: 1 !important;
-      transform: none !important;
-      transition: none !important;
-    }
+  @media(max-width:639px) and (max-height:500px){.fvs-screen{width:min(100%,calc((100dvh - 10rem)*1.7778))}}
+  @media(prefers-reduced-motion:reduce){
+    .fvs-item{position:relative;top:auto;margin-bottom:1.5rem}
+    .fvs-card{transform:none!important;opacity:1!important;transition:none}
+    .fvs-play-glass:before,.fvs-play-glass:after{animation:none;display:none}
+    .fvs-viewer{animation:none}
   }
 </style>
-
-<script is:inline>
-(function () {
-  var root = document.querySelector('[data-fvs]');
-  if (!root) return;
-
-  var panels = Array.prototype.slice.call(root.querySelectorAll('[data-panel]'));
-  var cards = Array.prototype.slice.call(root.querySelectorAll('[data-card]'));
-  if (!cards.length) return;
-
-  var reduced =
-    window.matchMedia &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  var frontIdx = -1;
-  var playing = null;
-
-  function command(card, func) {
-    if (!card) return;
-    var iframe = card.querySelector('[data-player] iframe');
-    if (!iframe || !iframe.contentWindow) return;
-    iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: [] }), '*');
-  }
-
-  function stopCard(card, unload) {
-    if (!card) return;
-    var p = card.querySelector('[data-player]');
-    command(card, 'pauseVideo');
-    if (p) {
-      p.classList.remove('is-on');
-      if (unload) {
-        p.innerHTML = '';
-        var resetLabel = card.querySelector('[data-play] .fvs-play-txt');
-        if (resetLabel) resetLabel.textContent = 'Play with sound';
-      }
-    }
-    card.classList.remove('is-playing');
-    if (playing === card) playing = null;
-  }
-
-  function stopAll(except) {
-    cards.forEach(function (card) {
-      if (card !== except) stopCard(card, true);
-    });
-  }
-
-  function play(card) {
-    if (!card || (!reduced && Number(card.getAttribute('data-i')) !== frontIdx)) return;
-    var id = card.getAttribute('data-vid');
-    var player = card.querySelector('[data-player]');
-    if (!id || !player) return;
-
-    stopAll(card);
-    playing = card;
-    card.classList.add('is-playing');
-
-    var existing = player.querySelector('iframe');
-    if (existing) {
-      player.classList.add('is-on');
-      command(card, 'playVideo');
-      return;
-    }
-
-    /* Poster-first loading; the iframe is created only after a real user tap. */
-    var src =
-      'https://www.youtube-nocookie.com/embed/' + id +
-      '?autoplay=1&controls=1&rel=0&playsinline=1&modestbranding=1&iv_load_policy=3&enablejsapi=1&fs=1' +
-      '&origin=' + encodeURIComponent(location.origin || '');
-
-    var iframe = document.createElement('iframe');
-    iframe.src = src;
-    iframe.title = 'Video';
-    iframe.width = '1280';
-    iframe.height = '720';
-    iframe.setAttribute('allowfullscreen', '');
-    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-    iframe.setAttribute('loading', 'eager');
-    iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0';
-    player.innerHTML = '';
-    player.appendChild(iframe);
-    player.classList.add('is-on');
-  }
-
-  function updateFront() {
-    if (reduced) {
-      cards.forEach(function (c) {
-        c.classList.add('is-front');
-        c.classList.remove('is-under', 'is-next');
-        c.setAttribute('aria-hidden', 'false');
-        var reducedBtn = c.querySelector('[data-play]');
-        if (reducedBtn) reducedBtn.removeAttribute('tabindex');
-      });
-      return;
-    }
-
-    var pin = 80;
-    var sample = root.querySelector('.fvs-pin');
-    if (sample) {
-      var t = parseFloat(window.getComputedStyle(sample).top);
-      if (!isNaN(t)) pin = t;
-    }
-
-    var idx = 0;
-    panels.forEach(function (panel, i) {
-      if (panel.getBoundingClientRect().top <= pin + 6) idx = i;
-    });
-
-    if (idx === frontIdx) return;
-    if (playing && playing !== cards[idx]) stopCard(playing, true);
-    frontIdx = idx;
-
-    cards.forEach(function (card, i) {
-      card.classList.remove('is-front', 'is-under', 'is-next');
-      card.style.removeProperty('--depth');
-      if (i < idx) {
-        card.classList.add('is-under');
-        card.style.setProperty('--depth', String(Math.min(idx - i, 4)));
-        card.setAttribute('aria-hidden', 'true');
-      } else if (i === idx) {
-        card.classList.add('is-front');
-        card.setAttribute('aria-hidden', 'false');
-      } else {
-        card.classList.add('is-next');
-        card.setAttribute('aria-hidden', 'true');
-      }
-      var cardBtn = card.querySelector('[data-play]');
-      if (cardBtn) cardBtn.setAttribute('tabindex', i === idx ? '0' : '-1');
-    });
-  }
-
-  var ticking = false;
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function () {
-      updateFront();
-      ticking = false;
-    });
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
-  updateFront();
-
-  cards.forEach(function (card) {
-    var btn = card.querySelector('[data-play]');
-    var pauseBtn = card.querySelector('[data-pause]');
-    if (btn) {
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        play(card);
-      }, { passive: false });
-    }
-    if (pauseBtn) {
-      pauseBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        command(card, 'pauseVideo');
-        var player = card.querySelector('[data-player]');
-        if (player) player.classList.remove('is-on');
-        card.classList.remove('is-playing');
-        playing = null;
-        var resume = card.querySelector('[data-play] .fvs-play-txt');
-        if (resume) resume.textContent = 'Resume video';
-      }, { passive: false });
-    }
-    card.addEventListener('click', function (e) {
-      if (card.classList.contains('is-playing')) return;
-      if (card.classList.contains('is-under')) return;
-      if (e.target.closest('iframe') || e.target.closest('[data-play]')) return;
-      play(card);
-    });
-  });
-
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (en) {
-          if (!en.isIntersecting && en.target.classList.contains('is-playing')) {
-            stopCard(en.target, true);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
-    cards.forEach(function (c) { io.observe(c); });
-  }
-
-  document.addEventListener('visibilitychange', function () {
-    if (document.hidden) stopAll(null);
-  });
-})();
-</script>
