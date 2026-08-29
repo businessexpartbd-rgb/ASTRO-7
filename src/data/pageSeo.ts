@@ -1,6 +1,6 @@
 /** Unique search intent per page. No ranking promises or keyword stuffing. */
 export const PAGE_SEO: Record<string, { title: string; description: string }> = {
-  '/': { title: 'AI Video Marketing & IT Solutions | Creavix iT Solution', description: 'Creavix iT Solution: AI video marketing, professional editing, websites, apps and digital marketing. Based in Bangladesh, working with brands worldwide since 2014.' },
+  '/': { title: 'IT Company in Bangladesh | AI Video, Web, App & SEO | Creavix', description: 'Since 2014, Creavix iT Solution has delivered AI video, professional editing, web and app development, SEO, automation and digital marketing worldwide.' },
   '/services': { title: 'Creative, IT & Digital Marketing Services | Creavix', description: 'Explore 12 Creavix services: video editing, AI production, websites, apps, SEO, Meta advertising and automation. Find the right team for your next project.' },
   '/services/ai-video-marketing': { title: 'AI Video Marketing Agency in Bangladesh | Creavix', description: 'Human-like AI video ads, product stories and platform-ready creative for Meta, YouTube and TikTok. Expert editing and brand direction from Creavix.' },
   '/services/video-editing': { title: 'Professional Video Editing in Bangladesh | Creavix', description: 'Professional editing for ads, Reels, YouTube and brand films. Colour, sound, subtitles and platform-ready exports, with scoped 24–48h delivery options.' },

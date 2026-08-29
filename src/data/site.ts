@@ -7,9 +7,9 @@ export const SITE = {
   shortDesc:
     'Cinematic Human-like AI Videos, Professional Video Editing & Full Digital Solutions | 24-48 Hours Delivery',
   seoTitle:
-    'AI Video Marketing & IT Company in Bangladesh | Creavix iT Solution',
+    'IT Company in Bangladesh | AI Video, Web, App & SEO | Creavix',
   seoDescription:
-    'Creavix iT Solution is a full digital partner: professional video editing, human-like AI video marketing, web development, application build, authentication, automation, SEO, Facebook page, boosting and campaigns. Video editing agency in Bangladesh — 24–48 hours delivery.',
+    'Since 2014, Creavix iT Solution has delivered AI video, professional editing, web and app development, SEO, automation and digital marketing in Bangladesh and worldwide.',
   seoKeywords:
     'video editing agency Bangladesh, AI video Bangladesh, human-like AI video, professional video editing Dhaka, Creavix iT, video marketing agency, 24 hour video delivery, web development, digital marketing Savar, Facebook boosting Bangladesh',
   url: 'https://www.creavixit.com',

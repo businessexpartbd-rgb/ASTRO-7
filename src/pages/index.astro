@@ -13,6 +13,7 @@ import IconBox from '../components/IconBox.astro';
 import ServiceCardArt from '../components/ServiceCardArt.astro';
 import { serviceArtwork } from '../data/serviceArtwork';
 import ServiceIcons from '../components/icons/ServiceIcons.astro';
+import ServiceCompass from '../components/ServiceCompass.astro';
 import HeroBookReel from '../components/HeroBookReel.astro';
 import BrandingCinema from '../components/BrandingCinema.astro';
 import { SITE } from '../data/site';
@@ -45,6 +46,18 @@ const aiTools = [
   { name: 'HeyGen', role: 'Avatar video', icon: '/ai-tools/heygen-official.ico', href: 'https://www.heygen.com/' },
   { name: 'Luma AI', role: 'Generative video', icon: '/ai-tools/luma-official.svg', href: 'https://lumalabs.ai/dream-machine' },
 ];
+const homeServiceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Creavix iT Solution services',
+  numberOfItems: services.length,
+  itemListElement: services.map((service, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: service.title,
+    url: new URL(service.href, SITE.url).href,
+  })),
+};
 const devToolTeaser = [
   { name: 'v0', icon: '/logos/v0.svg' },
   { name: 'Lovable', icon: 'https://lovable.dev/favicon.ico' },
@@ -73,23 +86,23 @@ const devToolTeaser = [
           <span class="rating-label">Client Rated · BD &amp; Global</span>
         </div>
 
-        <h1 class="hero-title">AI Video Marketing &amp;<br /><span class="brand-accent">Complete IT Solutions</span></h1>
+        <h1 class="hero-title">AI Video Marketing &amp;<br /><span class="brand-accent">Full-Service IT Solutions</span></h1>
 
         <p class="hero-lead">
-          Since 2014, our team has brought together professional video editing, human-like AI production, web, apps, SEO and digital marketing for businesses in Bangladesh and beyond.
+          Creavix iT Solution is a Bangladesh-based IT company serving brands worldwide. Since 2014, we have delivered AI video, professional editing, websites, applications, SEO, automation and digital marketing.
           <strong class="hero-delivery">24–48h for scoped video projects</strong>
         </p>
 
-        <div class="hero-capabilities" aria-label="Video production capabilities">
-          <span><i></i>Human-like AI</span>
-          <span><i></i>Camera Footage</span>
-          <span><i></i>Pro Post-Production</span>
+        <div class="hero-capabilities" aria-label="Creavix core capabilities">
+          <span><i></i>Video &amp; AI</span>
+          <span><i></i>Web &amp; Apps</span>
+          <span><i></i>SEO &amp; Growth</span>
         </div>
 
         <div class="flex-btns">
-          <a href="#featured-videos" class="btn btn-primary hero-cta hero-cta-watch">Watch Videos</a>
+          <a href="/services" class="btn btn-primary hero-cta hero-cta-watch">Explore Services</a>
+          <a href="/portfolio" class="btn hero-cta hero-cta-work">View Portfolio</a>
           <a href={SITE.whatsappLink} class="btn hero-cta hero-cta-wa" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          <a href="/portfolio" class="btn hero-cta hero-cta-work">Portfolio</a>
         </div>
 
         <div class="trust-row">
@@ -112,6 +125,7 @@ const devToolTeaser = [
   </section>
 
   <BrandStrip />
+  <ServiceCompass />
   <MarketingSpotlight />
 
   <FeaturedVideoStack />
@@ -144,8 +158,8 @@ const devToolTeaser = [
     <div class="container">
       <div class="text-center mb-8 reveal">
         <p class="eyebrow" style="margin:0 auto 1rem">Our Services</p>
-        <h2 class="mb-4">Everything Your Brand Needs <span class="brand-accent">to Grow</span></h2>
-        <p style="max-width:40rem;margin:0 auto">Video, AI, web, apps, SEO, automation and Meta growth — one professional partner for Bangladesh and global brands.</p>
+        <h2 class="mb-4">Complete IT Services, <span class="brand-accent">Built Around Your Business</span></h2>
+        <p style="max-width:43rem;margin:0 auto">Explore every Creavix capability in detail—from creative production and software engineering to search, automation and paid growth.</p>
         <div class="section-signals" aria-label="Service standards"><span>12 capabilities</span><span>One accountable team</span><span>Global-ready delivery</span></div>
       </div>
       <div class="primary-services grid-3" aria-label="Primary services">
@@ -197,7 +211,7 @@ const devToolTeaser = [
     <div class="container about-premium-grid">
       <div class="about-story reveal">
         <p class="eyebrow">Why Creavix</p>
-        <h2 class="mb-6">IT &amp; Video Agency · <span class="brand-accent">Since {SITE.servingSince}</span></h2>
+        <h2 class="mb-6">Video Marketing &amp; IT Company · <span class="brand-accent">Since {SITE.servingSince}</span></h2>
         <p class="lead mb-8">{SITE.shortDesc}</p>
         <ul class="about-checks">
           <li><ServiceIcons name="check" size={22} /><span>Cinematic &amp; AI video production</span></li>
@@ -239,6 +253,7 @@ const devToolTeaser = [
   </section>
   </main>
   <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(homeServiceSchema)} />
 </Layout>
 
 <style>
