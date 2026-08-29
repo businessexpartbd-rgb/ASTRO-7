@@ -31,6 +31,9 @@ check(slugs.length === 12 && new Set(slugs).size === 12, 'service catalog contai
 check(compass.includes("key: 'Creative'") && compass.includes("key: 'Technology'") && compass.includes("key: 'Growth'"), 'service compass groups work into three clear disciplines');
 check(compass.includes('SERVICE_CATALOG.filter') && compass.includes('href={`/services/${service.slug}`}'), 'service compass creates crawlable links from the canonical catalog');
 check(compass.includes('min-height:43px'), 'service links provide a mobile-friendly touch target');
+check(compass.includes('class="compass-stage reveal"') && compass.includes('12 specialized services'), 'service cards sit inside a premium unified white stage');
+check(compass.includes("count: '03 services'") && compass.includes("count: '04 services'") && compass.includes("count: '05 services'"), 'each discipline displays an accurate service count');
+check(compass.includes('box-shadow:0 32px 80px') && compass.includes('inset 0 1px 0 #fff'), 'white surfaces use layered elevation and highlight');
 check(compass.includes('@media(prefers-reduced-motion:reduce)'), 'service compass respects reduced-motion preferences');
 
 check(seo.includes("IT Company in Bangladesh | AI Video, Web, App & SEO | Creavix"), 'homepage SEO title targets company and core service intent');

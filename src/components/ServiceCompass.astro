@@ -9,6 +9,7 @@ const groups = [
     label: 'Creative Production',
     headline: 'Stories people choose to watch.',
     description: 'AI video, professional editing and human-led content for campaigns, products and brands.',
+    count: '03 services',
     icon: 'video',
     accent: '#C44B0B',
     wash: 'rgba(234,88,12,.09)',
@@ -19,6 +20,7 @@ const groups = [
     label: 'Web & Software',
     headline: 'Digital products built to perform.',
     description: 'Fast websites, mobile and web applications, secure access and useful business automation.',
+    count: '04 services',
     icon: 'web',
     accent: '#175CD3',
     wash: 'rgba(37,99,235,.09)',
@@ -29,6 +31,7 @@ const groups = [
     label: 'Digital Growth',
     headline: 'Visibility connected to outcomes.',
     description: 'SEO, digital marketing, Meta services, boosting and campaigns with a clear objective.',
+    count: '05 services',
     icon: 'marketing',
     accent: '#137849',
     wash: 'rgba(22,163,74,.09)',
@@ -52,41 +55,48 @@ const groups = [
       </div>
     </header>
 
-    <div class="compass-grid" aria-label="Creavix service categories">
-      {groups.map((group, index) => (
-        <article class="compass-card reveal" style={`--compass-accent:${group.accent};--compass-wash:${group.wash};--compass-index:${index}`}>
-          <div class="compass-card-top">
-            <span class="compass-icon"><ServiceIcons name={group.icon} size={30} /></span>
-            <span class="compass-number">{group.number}</span>
-          </div>
-          <p class="compass-label">{group.label}</p>
-          <h3>{group.headline}</h3>
-          <p class="compass-description">{group.description}</p>
-          <nav aria-label={`${group.label} services`}>
-            {SERVICE_CATALOG.filter((service) => service.group === group.key).map((service) => (
-              <a href={`/services/${service.slug}`}>
-                <span>{service.title}</span><b aria-hidden="true">↗</b>
-              </a>
-            ))}
-          </nav>
-        </article>
-      ))}
+    <div class="compass-stage reveal">
+      <div class="compass-stage-bar" aria-hidden="true">
+        <span><i></i>Creavix service architecture</span>
+        <span>12 specialized services</span>
+      </div>
+      <div class="compass-grid" aria-label="Creavix service categories">
+        {groups.map((group, index) => (
+          <article class="compass-card" style={`--compass-accent:${group.accent};--compass-wash:${group.wash};--compass-index:${index}`}>
+            <div class="compass-card-top">
+              <span class="compass-icon"><ServiceIcons name={group.icon} size={30} /></span>
+              <span class="compass-meta"><b>{group.number}</b><small>{group.count}</small></span>
+            </div>
+            <p class="compass-label">{group.label}</p>
+            <h3>{group.headline}</h3>
+            <p class="compass-description">{group.description}</p>
+            <nav aria-label={`${group.label} services`}>
+              {SERVICE_CATALOG.filter((service) => service.group === group.key).map((service) => (
+                <a href={`/services/${service.slug}`}>
+                  <span>{service.title}</span><b aria-hidden="true">↗</b>
+                </a>
+              ))}
+            </nav>
+          </article>
+        ))}
+      </div>
+      <p class="compass-note"><strong>Need several services?</strong> We can connect strategy, production, development and growth under one project plan.</p>
     </div>
-
-    <p class="compass-note reveal"><strong>Need several services?</strong> We can connect strategy, production, development and growth under one project plan.</p>
   </div>
 </section>
 
 <style>
-  .service-compass{position:relative;padding:4.5rem 1.25rem 5rem;overflow:hidden;background:linear-gradient(180deg,#fff 0%,#f8fafc 56%,#fff 100%);border-bottom:1px solid rgba(15,23,42,.06)}
-  .service-compass:before{content:'';position:absolute;width:520px;height:520px;right:-260px;top:-260px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.08),transparent 68%);pointer-events:none}
+  .service-compass{position:relative;padding:4.5rem 1.25rem 5rem;overflow:hidden;background:radial-gradient(circle at 8% 14%,rgba(234,88,12,.07),transparent 24%),radial-gradient(circle at 92% 8%,rgba(37,99,235,.085),transparent 26%),linear-gradient(180deg,#fbfcfe 0%,#f4f7fb 52%,#fbfcfe 100%);border-bottom:1px solid rgba(15,23,42,.06)}
+  .service-compass:before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(15,23,42,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(15,23,42,.018) 1px,transparent 1px);background-size:52px 52px;mask-image:linear-gradient(to bottom,transparent,black 24%,black 76%,transparent)}
   .compass-head{position:relative;display:grid;gap:1.25rem;margin-bottom:2rem}.compass-head .eyebrow{margin:0 0 .8rem}.compass-head h2{max-width:660px;margin:0;font-size:clamp(1.8rem,4vw,3rem);line-height:1.08}.compass-intro>p{max-width:610px;margin:0;color:#536478;font-size:.98rem;line-height:1.75}.compass-actions{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1rem}.compass-actions a{display:inline-flex;align-items:center;gap:.55rem;min-height:42px;padding:.62rem .86rem;border:1px solid rgba(15,23,42,.1);border-radius:12px;background:#fff;color:#0a2540;font:800 .72rem/1 var(--font-h);text-decoration:none}.compass-actions a:first-child{border-color:#0a2540;background:#0a2540;color:#fff}.compass-actions a:hover,.compass-actions a:focus-visible{border-color:#175cd3;color:#175cd3;outline:3px solid rgba(37,99,235,.16);outline-offset:2px}.compass-actions a:first-child:hover,.compass-actions a:first-child:focus-visible{background:#175cd3;color:#fff}
-  .compass-grid{position:relative;display:grid;gap:1rem}.compass-card{position:relative;display:flex;flex-direction:column;min-width:0;padding:1.35rem;border:1px solid rgba(15,23,42,.085);border-radius:24px;background:linear-gradient(150deg,#fff 0%,rgba(255,255,255,.9) 58%,var(--compass-wash) 150%);box-shadow:0 16px 42px rgba(15,23,42,.06),inset 0 1px 0 #fff;overflow:hidden;transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,border-color .35s}.compass-card:before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:var(--compass-accent)}.compass-card:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--compass-accent) 28%,transparent);box-shadow:0 24px 55px rgba(15,23,42,.1)}
-  .compass-card-top{display:flex;align-items:center;justify-content:space-between}.compass-icon{width:54px;height:54px;display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--compass-accent) 16%,transparent);border-radius:16px;background:var(--compass-wash);color:var(--compass-accent)}.compass-number{font:800 1.05rem/1 var(--font-h);letter-spacing:.08em;color:var(--compass-accent)}.compass-label{margin:1.2rem 0 .48rem;color:var(--compass-accent);font:800 .68rem/1 var(--font-h);letter-spacing:.12em;text-transform:uppercase}.compass-card h3{margin:0;font-size:clamp(1.18rem,2vw,1.42rem);line-height:1.2}.compass-description{margin:.65rem 0 1.15rem;color:#607086;font-size:.82rem;line-height:1.65}
-  .compass-card nav{display:grid;gap:.42rem;margin-top:auto}.compass-card nav a{display:flex;align-items:center;justify-content:space-between;gap:.75rem;min-height:43px;padding:.62rem .72rem;border:1px solid rgba(15,23,42,.07);border-radius:12px;background:rgba(255,255,255,.82);color:#20344b;font:700 .73rem/1.3 var(--font-h);text-decoration:none;transition:border-color .2s,background .2s,color .2s,transform .2s}.compass-card nav a b{color:var(--compass-accent)}.compass-card nav a:hover,.compass-card nav a:focus-visible{transform:translateX(3px);border-color:color-mix(in srgb,var(--compass-accent) 30%,transparent);background:#fff;color:var(--compass-accent);outline:none}
-  .compass-note{margin:1.25rem 0 0;padding:.85rem 1rem;border:1px solid rgba(37,99,235,.1);border-radius:14px;background:rgba(255,255,255,.76);color:#64748b;font-size:.78rem;line-height:1.55;text-align:center}.compass-note strong{color:#0a2540}
-  @media(min-width:720px){.compass-head{grid-template-columns:1.05fr .95fr;align-items:end}.compass-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.compass-card{padding:1.35rem 1.15rem}}
-  @media(min-width:1050px){.service-compass{padding-block:5.5rem 6rem}.compass-grid{gap:1.2rem}.compass-card{padding:1.55rem}.compass-description{min-height:4.1rem}}
-  @media(max-width:380px){.service-compass{padding-inline:.8rem}.compass-card{padding:1.15rem}.compass-actions{display:grid;grid-template-columns:1fr}.compass-actions a{justify-content:center}}
-  @media(prefers-reduced-motion:reduce){.compass-card,.compass-card nav a{transition:none}.compass-card:hover,.compass-card nav a:hover{transform:none}}
+  .compass-stage{position:relative;padding:.62rem;border:1px solid rgba(15,23,42,.085);border-radius:30px;background:rgba(255,255,255,.84);box-shadow:0 32px 80px rgba(15,23,42,.09),0 4px 14px rgba(15,23,42,.035),inset 0 1px 0 #fff;backdrop-filter:blur(12px)}.compass-stage:before{content:'';position:absolute;inset:6px;border:1px solid rgba(255,255,255,.94);border-radius:24px;pointer-events:none}.compass-stage-bar{position:relative;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.48rem .62rem .72rem;color:#738196;font:800 .59rem/1 var(--font-h);letter-spacing:.09em;text-transform:uppercase}.compass-stage-bar span{display:flex;align-items:center;gap:.4rem}.compass-stage-bar i{width:7px;height:7px;border-radius:50%;background:#16a34a;box-shadow:0 0 0 4px rgba(22,163,74,.1)}
+  .compass-grid{position:relative;display:grid;gap:.72rem}.compass-card{position:relative;display:flex;flex-direction:column;min-width:0;padding:1.3rem;border:1px solid rgba(15,23,42,.075);border-radius:22px;background:linear-gradient(155deg,#fff 0%,#fdfefe 55%,color-mix(in srgb,var(--compass-wash) 72%,#fff) 145%);box-shadow:0 14px 34px rgba(15,23,42,.055),inset 0 1px 0 #fff;overflow:hidden;isolation:isolate;transition:transform .38s cubic-bezier(.16,1,.3,1),box-shadow .38s,border-color .38s}.compass-card:before{content:'';position:absolute;z-index:-1;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--compass-accent),color-mix(in srgb,var(--compass-accent) 18%,transparent) 72%,transparent)}.compass-card:after{content:'';position:absolute;z-index:-1;width:150px;height:150px;right:-88px;top:-82px;border-radius:50%;background:var(--compass-wash);border:1px solid color-mix(in srgb,var(--compass-accent) 12%,transparent);transition:transform .45s cubic-bezier(.16,1,.3,1)}.compass-card:hover{transform:translateY(-7px);border-color:color-mix(in srgb,var(--compass-accent) 24%,rgba(15,23,42,.07));box-shadow:0 26px 58px rgba(15,23,42,.1),0 8px 18px color-mix(in srgb,var(--compass-accent) 8%,transparent),inset 0 1px 0 #fff}.compass-card:hover:after{transform:scale(1.16)}
+  .compass-card-top{display:flex;align-items:center;justify-content:space-between;gap:1rem}.compass-icon{width:58px;height:58px;display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--compass-accent) 14%,rgba(15,23,42,.04));border-radius:17px;background:linear-gradient(145deg,#fff,var(--compass-wash));color:var(--compass-accent);box-shadow:0 10px 24px rgba(15,23,42,.07),inset 0 1px 0 #fff}.compass-meta{display:grid;justify-items:end;gap:.28rem}.compass-meta b{font:800 1.55rem/1 var(--font-h);letter-spacing:-.04em;color:var(--compass-accent)}.compass-meta small{padding:.28rem .45rem;border:1px solid color-mix(in srgb,var(--compass-accent) 13%,transparent);border-radius:999px;background:rgba(255,255,255,.76);color:#738196;font:800 .54rem/1 var(--font-h);letter-spacing:.07em;text-transform:uppercase}.compass-label{margin:1.25rem 0 .5rem;color:var(--compass-accent);font:800 .67rem/1 var(--font-h);letter-spacing:.13em;text-transform:uppercase}.compass-card h3{max-width:15ch;margin:0;font-size:clamp(1.2rem,2vw,1.48rem);line-height:1.17;letter-spacing:-.025em}.compass-description{margin:.72rem 0 1.2rem;color:#607086;font-size:.82rem;line-height:1.68}
+  .compass-card nav{display:grid;gap:.46rem;margin-top:auto}.compass-card nav a{position:relative;display:flex;align-items:center;justify-content:space-between;gap:.75rem;min-height:43px;padding:.66rem .72rem .66rem .92rem;border:1px solid rgba(15,23,42,.065);border-radius:12px;background:rgba(255,255,255,.88);box-shadow:0 4px 12px rgba(15,23,42,.025),inset 0 1px 0 #fff;color:#20344b;font:700 .73rem/1.3 var(--font-h);text-decoration:none;transition:border-color .2s,background .2s,color .2s,transform .2s,box-shadow .2s}.compass-card nav a:before{content:'';position:absolute;left:.46rem;width:3px;height:13px;border-radius:99px;background:var(--compass-accent);opacity:.58}.compass-card nav a b{color:var(--compass-accent)}.compass-card nav a:hover,.compass-card nav a:focus-visible{transform:translateX(3px);border-color:color-mix(in srgb,var(--compass-accent) 25%,transparent);background:#fff;color:var(--compass-accent);box-shadow:0 9px 22px color-mix(in srgb,var(--compass-accent) 8%,rgba(15,23,42,.03));outline:3px solid color-mix(in srgb,var(--compass-accent) 13%,transparent);outline-offset:1px}
+  .compass-note{position:relative;margin:.72rem 0 0;padding:.88rem 1rem;border:1px solid rgba(15,23,42,.065);border-radius:15px;background:linear-gradient(90deg,rgba(255,255,255,.96),rgba(247,250,255,.92));color:#64748b;font-size:.78rem;line-height:1.55;text-align:center}.compass-note strong{color:#0a2540}
+  @media(min-width:720px){.compass-head{grid-template-columns:1.05fr .95fr;align-items:end}.compass-stage{padding:.72rem}.compass-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:.78rem}.compass-card{padding:1.3rem 1.1rem}}
+  @media(min-width:1050px){.service-compass{padding-block:5.5rem 6rem}.compass-stage{padding:.88rem;border-radius:34px}.compass-grid{gap:.95rem}.compass-card{padding:1.55rem}.compass-description{min-height:4.2rem}.compass-stage-bar{padding:.38rem .72rem .85rem}}
+  @media(max-width:719px){.compass-stage-bar span:last-child{display:none}.compass-card h3{max-width:none}}
+  @media(max-width:380px){.service-compass{padding-inline:.75rem}.compass-stage{padding:.5rem;border-radius:24px}.compass-card{padding:1.1rem}.compass-actions{display:grid;grid-template-columns:1fr}.compass-actions a{justify-content:center}.compass-icon{width:52px;height:52px}.compass-meta b{font-size:1.35rem}}
+  @media(prefers-reduced-motion:reduce){.compass-card,.compass-card:after,.compass-card nav a{transition:none}.compass-card:hover,.compass-card nav a:hover{transform:none}}
 </style>
