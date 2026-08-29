@@ -1,0 +1,140 @@
+/* Route-aware premium finish. This layer keeps Creavix consistent while giving
+   every service a recognizable visual identity without adding runtime JS. */
+body.creavix-brand {
+  --page-accent: #175cd3;
+  --page-accent-2: #c44b0b;
+  --page-wash: #f4f8fc;
+  --page-ink: #0a2540;
+  --page-accent-soft: color-mix(in srgb, var(--page-accent) 11%, white);
+  --page-accent-line: color-mix(in srgb, var(--page-accent) 24%, white);
+  --page-shadow: 0 18px 55px rgb(10 37 64 / 9%);
+}
+
+.creavix-brand[data-page-kind]:not([data-page-kind='home']) main {
+  isolation: isolate;
+  background: linear-gradient(180deg, #fff 0%, #fff 38%, color-mix(in srgb, var(--page-wash) 52%, white) 100%);
+}
+
+.creavix-brand[data-page-kind]:not([data-page-kind='home']) main > section:first-child {
+  position: relative;
+  overflow: clip;
+  background:
+    radial-gradient(circle at 8% 16%, var(--page-wash) 0 13%, transparent 38%),
+    radial-gradient(circle at 92% 8%, color-mix(in srgb, var(--page-accent-2) 9%, white) 0 8%, transparent 32%),
+    linear-gradient(135deg, #fff 38%, color-mix(in srgb, var(--page-wash) 66%, white)) !important;
+}
+
+.creavix-brand[data-page-kind]:not([data-page-kind='home']) main > section:first-child::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: clamp(180px, 28vw, 430px);
+  aspect-ratio: 1;
+  right: clamp(-150px, -8vw, -50px);
+  bottom: clamp(-220px, -15vw, -90px);
+  border: 1px solid var(--page-accent-line);
+  border-radius: 42% 58% 66% 34% / 48% 36% 64% 52%;
+  box-shadow: 0 0 0 24px color-mix(in srgb, var(--page-accent) 4%, transparent), 0 0 0 58px color-mix(in srgb, var(--page-accent-2) 3%, transparent);
+  rotate: -12deg;
+  pointer-events: none;
+}
+
+.creavix-brand[data-page-kind]:not([data-page-kind='home']) main h1 .brand-accent,
+.creavix-brand[data-page-kind]:not([data-page-kind='home']) main .brand-accent {
+  color: var(--page-accent) !important;
+  -webkit-text-fill-color: var(--page-accent) !important;
+}
+
+.creavix-brand[data-page-kind='service'] :is(.eyebrow,.sv-eye,.dm-eye,.fb-eye,.bo-eye,.au-eye,.app-eye,.wd-eyebrow,.seo-eyebrow),
+.creavix-brand[data-page-kind='hub'] :is(.eyebrow,.hub-eye),
+.creavix-brand[data-page-kind='proof'] .pf-eye,
+.creavix-brand[data-page-kind='company'] .ab-eye,
+.creavix-brand[data-page-kind='contact'] .ct-eye,
+.creavix-brand[data-page-kind='editorial'] :is(.bl-eye,.bp-eye) {
+  color: var(--page-accent) !important;
+}
+
+.creavix-brand[data-page-kind]:not([data-page-kind='home']) :is(
+  .sv-card,.sv-step,.dm-card,.dm-pillar,.dm-step,.dm-who-card,
+  .fb-service,.fb-gcard,.fb-step,.bo-card,.bo-bcard,.bo-acard,.bo-rate-card,
+  .au-card,.au-step,.ab-card,.ct-card,.seo-card,.brand-service-card,
+  .sol-card,.feat-card,.plat-card,.ai-builder-card,.manual-engineering-card,
+  .pf-card,.bl-card,.blog-card
+) {
+  border-color: color-mix(in srgb, var(--page-accent) 15%, #dfe6ec) !important;
+  background:
+    linear-gradient(145deg, rgb(255 255 255 / 99%), rgb(255 255 255 / 94%)),
+    var(--page-wash) !important;
+  box-shadow: 0 10px 34px rgb(10 37 64 / 7%), inset 0 1px 0 rgb(255 255 255 / 90%) !important;
+}
+
+.creavix-brand[data-page-kind]:not([data-page-kind='home']) :is(
+  .sv-card,.sv-step,.dm-card,.dm-step,.ab-card,.brand-service-card,
+  .sol-card,.feat-card,.pf-card,.bl-card,.blog-card
+)::before {
+  background: linear-gradient(90deg, var(--page-accent), var(--page-accent-2)) !important;
+}
+
+.creavix-brand[data-page-kind='service'] :is(.sv-card-icon,.dm-icon,.au-svg-icon) {
+  color: var(--page-accent) !important;
+  background: var(--page-accent-soft) !important;
+  border-color: var(--page-accent-line) !important;
+}
+
+.creavix-brand[data-page-kind]:not([data-page-kind='home']) :is(.sv-cta,.dm-cta,.fb-cta,.bo-cta,.au-cta,.seo-cta,.wd-cta,.app-cta,.ab-cta,.pf-cta) {
+  background:
+    radial-gradient(circle at 90% 20%, color-mix(in srgb, var(--page-accent-2) 10%, transparent), transparent 36%),
+    linear-gradient(125deg, color-mix(in srgb, var(--page-wash) 74%, white), #fff) !important;
+  border-block-color: var(--page-accent-line) !important;
+}
+
+.creavix-brand[data-page-kind]:not([data-page-kind='home']) :is(.btn-primary,.hero-cta-work,.sv-cta .btn-light,.dm-cta .btn-light,.fb-cta .btn-light,.bo-cta .btn-light,.au-cta .btn-light,.seo-cta .btn-light) {
+  background: var(--page-ink) !important;
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--page-accent) 18%, transparent) !important;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .creavix-brand[data-page-kind]:not([data-page-kind='home']) :is(
+    .sv-card,.sv-step,.dm-card,.dm-pillar,.dm-step,.dm-who-card,
+    .fb-service,.fb-gcard,.bo-card,.bo-bcard,.bo-acard,.au-card,.ab-card,
+    .ct-card,.seo-card,.brand-service-card,.sol-card,.feat-card,.plat-card,
+    .ai-builder-card,.manual-engineering-card,.pf-card,.bl-card,.blog-card
+  ):hover {
+    transform: translateY(-6px) !important;
+    border-color: var(--page-accent) !important;
+    box-shadow: 0 22px 58px color-mix(in srgb, var(--page-accent) 13%, transparent) !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .creavix-brand[data-page-kind]:not([data-page-kind='home']) main > section:first-child::after {
+    animation: page-orbit 14s ease-in-out infinite alternate;
+  }
+  @keyframes page-orbit {
+    to { translate: -12px -9px; rotate: 2deg; border-radius: 57% 43% 36% 64% / 38% 55% 45% 62%; }
+  }
+}
+
+@media (max-width: 767px) {
+  .creavix-brand[data-page-kind]:not([data-page-kind='home']) main > section:first-child::after {
+    width: 190px;
+    right: -112px;
+    bottom: -105px;
+    opacity: .72;
+  }
+  .creavix-brand[data-page-kind]:not([data-page-kind='home']) :is(
+    .sv-card,.sv-step,.dm-card,.dm-pillar,.dm-step,.dm-who-card,
+    .fb-service,.fb-gcard,.bo-card,.bo-bcard,.bo-acard,.au-card,.ab-card,
+    .ct-card,.seo-card,.brand-service-card,.sol-card,.feat-card,.plat-card,
+    .ai-builder-card,.manual-engineering-card,.pf-card,.bl-card,.blog-card
+  ) {
+    border-radius: 18px !important;
+    box-shadow: 0 8px 24px rgb(10 37 64 / 6%) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .creavix-brand[data-page-kind]:not([data-page-kind='home']) main > section:first-child::after {
+    animation: none !important;
+  }
+}

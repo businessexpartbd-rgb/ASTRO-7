@@ -1,8 +1,10 @@
 ---
 import CookieBanner from '../components/CookieBanner.astro';
 import '../styles/brand-system.css';
+import '../styles/page-quality.css';
 import { SITE } from '../data/site';
 import { PAGE_SEO } from '../data/pageSeo';
+import { getPageVisual } from '../data/pageVisuals';
 
 interface Props {
   title?: string;
@@ -28,6 +30,8 @@ const {
 const canonical = new URL(Astro.url.pathname || '/', SITE.url).href;
 const socialImage = new URL(image, SITE.url).href;
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const pageVisual = getPageVisual(pathname);
+const pageVisualStyle = `--page-accent:${pageVisual.accent};--page-accent-2:${pageVisual.accent2};--page-wash:${pageVisual.wash};--page-ink:${pageVisual.ink}`;
 const title = PAGE_SEO[pathname]?.title || suppliedTitle;
 const description = PAGE_SEO[pathname]?.description || suppliedDescription;
 const segments = pathname.split('/').filter(Boolean);
@@ -286,7 +290,12 @@ const jsonLd = {
       }
     </style>
   </head>
-  <body class="creavix-brand">
+  <body
+    class="creavix-brand"
+    data-page-profile={pageVisual.profile}
+    data-page-kind={pageVisual.kind}
+    style={pageVisualStyle}
+  >
     <a class="skip-to-content" href="#main-content">Skip to content</a>
     <slot />
     <CookieBanner />
