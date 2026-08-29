@@ -12,6 +12,13 @@ const SEED_REVIEWS = [
   { id: 'seed_5', name: 'Tanvir Ahmed', stars: 5, text: 'Application UI and authentication flow were clean, fast and secure.', createdAt: '2026-02-09T11:05:00.000Z', service: 'App Development' },
 ];
 
+const REVIEW_SERVICES = new Set([
+  'Professional Video Editing', 'AI Video Marketing', 'Human-like Content',
+  'Web Development', 'App Development', 'Authentication Systems',
+  'Business Automation', 'Digital Marketing', 'SEO', 'Facebook Page Services',
+  'Facebook Boosting', 'Meta & YouTube Campaigns', 'Other Service',
+]);
+
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), { status, headers: JSON_HEADERS });
 }
@@ -77,13 +84,13 @@ async function reviewsApi(request, env) {
   let input;
   try { input = await request.json(); } catch { return json({ ok: false, error: 'Invalid request' }, 400); }
   if (String(input.company || '').trim()) return json({ ok: true });
-  const name = String(input.name || '').trim().replace(/\s+/g, ' ');
+  const name = String(input.name || '').trim().replace(/\s+/g, ' ') || 'Guest Client';
   const text = String(input.text || '').trim().replace(/\s+/g, ' ');
   const service = String(input.service || 'Creavix Service').trim().replace(/\s+/g, ' ');
   const stars = Number.parseInt(input.stars, 10);
   if (name.length < 2 || name.length > 60) return json({ ok: false, error: 'Name must be 2–60 characters.' }, 400);
-  if (text.length < 3 || text.length > 600) return json({ ok: false, error: 'Review must be 3–600 characters.' }, 400);
-  if (service.length > 50 || !Number.isInteger(stars) || stars < 1 || stars > 5) return json({ ok: false, error: 'Invalid review.' }, 400);
+  if (text.length < 10 || text.length > 600) return json({ ok: false, error: 'Review must be 10–600 characters.' }, 400);
+  if (!REVIEW_SERVICES.has(service) || !Number.isInteger(stars) || stars < 1 || stars > 5) return json({ ok: false, error: 'Invalid review.' }, 400);
   if (!(await verifyTurnstile(request, input.turnstileToken, env))) return json({ ok: false, error: 'Human verification failed.' }, 403);
 
   await ensureReviewsTable(env.DB);
@@ -97,8 +104,8 @@ async function reviewsApi(request, env) {
 
   const review = { id: crypto.randomUUID(), name, stars, text, service: service || 'Creavix Service', createdAt: new Date().toISOString() };
   await env.DB.prepare(`INSERT INTO reviews (id, user_id, name, email, picture, stars, body, service, visitor_hash, status, created_at)
-    VALUES (?, ?, ?, NULL, NULL, ?, ?, ?, ?, 'approved', ?)`).bind(review.id, visitorHash + ':' + review.id, review.name, review.stars, review.text, review.service, visitorHash, review.createdAt).run();
-  return json({ ok: true, storage: 'd1', review }, 201);
+    VALUES (?, ?, ?, NULL, NULL, ?, ?, ?, ?, 'pending', ?)`).bind(review.id, visitorHash + ':' + review.id, review.name, review.stars, review.text, review.service, visitorHash, review.createdAt).run();
+  return json({ ok: true, storage: 'd1', status: 'pending' }, 202);
 }
 
 /** Cloudflare Worker: review API plus optimized Astro static assets. */
