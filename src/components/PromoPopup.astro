@@ -1,0 +1,34 @@
+---
+import { SITE } from '../data/site';
+---
+<div id="project-popup" class="project-popup" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="project-popup-title">
+  <button class="project-popup-backdrop" type="button" data-popup-close aria-label="Close project invitation"></button>
+  <section class="project-popup-card">
+    <button class="project-popup-close" type="button" data-popup-close aria-label="Close">×</button>
+    <span class="project-popup-icon" aria-hidden="true">↗</span>
+    <p class="project-popup-kicker">Planning your next move?</p>
+    <h2 id="project-popup-title">Get a clear project direction—before you commit.</h2>
+    <p>Tell us the service and result you need. We’ll recommend a practical scope, timeline and next step.</p>
+    <div class="project-popup-points"><span>Creative</span><i></i><span>Technology</span><i></i><span>Growth</span></div>
+    <div class="project-popup-actions"><a href="#project-brief" data-popup-action>Send a brief</a><a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer" data-popup-action>WhatsApp</a></div>
+    <small>No forced signup · No generic package</small>
+  </section>
+</div>
+<style>
+  .project-popup{position:fixed;inset:0;z-index:12000;padding:1rem;display:grid;place-items:center}.project-popup[hidden]{display:none}.project-popup-backdrop{position:absolute;inset:0;border:0;background:#071728a6;backdrop-filter:blur(8px)}.project-popup-card{position:relative;width:min(470px,100%);padding:clamp(1.35rem,5vw,2.2rem);border:1px solid #ffffff8a;border-radius:28px;background:radial-gradient(circle at 0 0,#fff1e4,transparent 42%),#fff;box-shadow:0 30px 100px #0000004d;overflow:hidden}.project-popup-card:after{content:'';position:absolute;width:140px;height:140px;right:-75px;bottom:-75px;border:1px solid #175cd32d;border-radius:50%;box-shadow:0 0 0 22px #175cd308,0 0 0 44px #c44b0b07}.project-popup-close{position:absolute;z-index:2;right:14px;top:14px;width:44px;height:44px;border:1px solid #dfe6ed;border-radius:14px;background:#f7f9fb;color:#0a2540;font-size:1.45rem;cursor:pointer}.project-popup-icon{width:48px;height:48px;margin-bottom:1.1rem;display:grid;place-items:center;border-radius:50%;background:#0a2540;color:#fff;font-size:1.25rem}.project-popup-kicker{margin:0 0 .5rem;color:#c44b0b!important;font-size:.69rem!important;font-weight:800;text-transform:uppercase;letter-spacing:.1em}.project-popup-card h2{max-width:13ch;margin:0;color:#0b0f19;font-size:clamp(1.65rem,5vw,2.35rem);line-height:1.13;letter-spacing:-.045em}.project-popup-card>p:not(.project-popup-kicker){margin:.8rem 0;color:#5e7084!important;line-height:1.7}.project-popup-points{display:flex;align-items:center;gap:.5rem;color:#53687c;font-size:.67rem;font-weight:800}.project-popup-points i{width:4px;height:4px;border-radius:50%;background:#137849}.project-popup-actions{position:relative;z-index:1;margin:1.2rem 0 .75rem;display:grid;grid-template-columns:1fr 1fr;gap:.55rem}.project-popup-actions a{min-height:46px;padding:.7rem;display:grid;place-items:center;border-radius:12px;background:#0a2540;color:#fff;font-size:.76rem;font-weight:800}.project-popup-actions a:last-child{background:#137849}.project-popup-card small{color:#7c8b9c;font-size:.64rem}
+  @media(max-width:520px){.project-popup{padding:0;place-items:end center}.project-popup-card{width:100%;border-radius:26px 26px 0 0;padding:1.35rem 1.05rem calc(1.35rem + env(safe-area-inset-bottom,0px))}.project-popup-card h2{max-width:15ch}}
+  @media(prefers-reduced-motion:no-preference){.project-popup:not([hidden]) .project-popup-card{animation:popup-in .36s cubic-bezier(.2,.8,.3,1) both}@keyframes popup-in{from{opacity:0;transform:translateY(20px) scale(.98)}}}
+  @media(prefers-reduced-motion:reduce){.project-popup-card{animation:none!important}}
+</style>
+<script is:inline>
+(() => {
+  const popup=document.getElementById('project-popup');if(!popup)return;let lastFocus=null,shown=false;
+  const dismissed=()=>{try{return sessionStorage.getItem('creavix-project-popup')==='dismissed'}catch{return false}};
+  const open=()=>{if(shown||dismissed()||document.visibilityState==='hidden')return;shown=true;lastFocus=document.activeElement;popup.hidden=false;popup.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';popup.querySelector('.project-popup-close')?.focus()};
+  const close=()=>{if(popup.hidden)return;popup.hidden=true;popup.setAttribute('aria-hidden','true');document.body.style.overflow='';try{sessionStorage.setItem('creavix-project-popup','dismissed')}catch{}lastFocus?.focus?.()};
+  popup.querySelectorAll('[data-popup-close],[data-popup-action]').forEach(element=>element.addEventListener('click',close));
+  document.addEventListener('keydown',event=>{if(popup.hidden)return;if(event.key==='Escape'){event.preventDefault();close()}if(event.key==='Tab'){const focusable=[...popup.querySelectorAll('button,a[href]')];const first=focusable[0],last=focusable.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}}});
+  let timer=setTimeout(open,18000);if(matchMedia('(hover:hover) and (pointer:fine)').matches){document.addEventListener('mouseout',event=>{if(event.clientY<=0&&!event.relatedTarget){clearTimeout(timer);open()}},{once:true})}
+  addEventListener('pagehide',()=>clearTimeout(timer),{once:true});
+})();
+</script>

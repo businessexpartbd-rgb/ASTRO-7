@@ -24,11 +24,11 @@ const waDisplay = '01890-484355';
   </div>
   <div class="support-panel" id="support-panel" hidden aria-hidden="true" role="dialog" aria-labelledby="support-title">
     <div class="support-head">
-      <div class="support-identity"><img src="/brands/help-robot.webp" alt="" width="42" height="42" decoding="async" /><div class="support-brand"><strong id="support-title">Creavix Help Center</strong><span class="support-status"><span id="support-status-text">Automated assistant</span></span></div></div>
+      <div class="support-identity"><img src="/brands/help-robot.webp" alt="" width="42" height="42" decoding="async" /><div class="support-brand"><strong id="support-title">Creavix Help Center</strong><span class="support-status"><span id="support-status-text">Instant service guide</span></span></div></div>
       <button type="button" class="support-close" id="support-close" aria-label="Close Help Center">×</button>
     </div>
     <div class="support-body" id="support-body" aria-live="polite">
-      <div class="support-msg bot">Hello! I'm Creavix's automated helper. Ask about services, pricing or delivery. To speak with our team, use <a class="wa-inline" href={wa} target="_blank" rel="noopener noreferrer">WhatsApp {waDisplay}</a>.</div>
+      <div class="support-msg bot">Hello! I can guide you to the right Creavix service, engagement model or delivery path. For a human response, use <a class="wa-inline" href={wa} target="_blank" rel="noopener noreferrer">WhatsApp {waDisplay}</a>.</div>
     </div>
     <div class="support-typing" id="support-typing" hidden aria-live="polite"><span></span><span></span><span></span> Preparing a reply…</div>
     <div class="support-quick" id="support-quick" aria-label="Suggested questions">
@@ -141,10 +141,10 @@ const waDisplay = '01890-484355';
   ];
   function addMsg(text,who,html){if(!body)return;var div=document.createElement('div');div.className='support-msg '+who;if(html)div.innerHTML=text;else div.textContent=text;body.appendChild(div);body.scrollTop=body.scrollHeight;}
   function answer(q){var lower=(q||'').toLowerCase();for(var i=0;i<replies.length;i++){for(var k=0;k<replies[i].keys.length;k++){if(lower.indexOf(replies[i].keys[k])!==-1)return replies[i].text+waHtml();}}return 'Thanks for your question. For an accurate human response, continue on '+waHtml()+'.';}
-  function respond(q){if(!q)return;pending++;addMsg(q,'user',false);if(typing)typing.hidden=false;if(statusText)statusText.textContent='Preparing a reply…';var delay=1000+(q.length*37%1001);setTimeout(function(){pending--;if(typing)typing.hidden=pending===0;if(statusText&&pending===0)statusText.textContent='Automated assistant';addMsg(answer(q),'bot',true);},delay);}
+  function respond(q){if(!q)return;pending++;addMsg(q,'user',false);if(typing)typing.hidden=false;if(statusText)statusText.textContent='Preparing a reply…';var delay=1000+(q.length*37%1001);setTimeout(function(){pending--;if(typing)typing.hidden=pending===0;if(statusText&&pending===0)statusText.textContent='Instant service guide';addMsg(answer(q),'bot',true);},delay);}
   [openBtn,inviteBtn].forEach(function(btn){if(btn&&panel)btn.addEventListener('click',function(){setPanel(panel.hidden,btn);});});
   if(closeBtn&&panel)closeBtn.addEventListener('click',function(){setPanel(false);});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&panel&&!panel.hidden){e.preventDefault();setPanel(false);}});
+  document.addEventListener('keydown',function(e){if(!panel||panel.hidden)return;if(e.key==='Escape'){e.preventDefault();setPanel(false);return;}if(e.key==='Tab'){var focusable=Array.prototype.slice.call(panel.querySelectorAll('button:not([disabled]),a[href],input:not([disabled])'));if(!focusable.length)return;var first=focusable[0],last=focusable[focusable.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
   if(form&&input)form.addEventListener('submit',function(e){e.preventDefault();var q=(input.value||'').trim();if(!q)return;input.value='';respond(q);});
   document.querySelectorAll('#support-quick [data-q]').forEach(function(button){button.addEventListener('click',function(){respond(button.getAttribute('data-q')||'');});});
   if((document.documentElement.lang||'').toLowerCase().indexOf('bn')===0){var names=['সেবা','ভিডিও','এআই ভিডিও','ওয়েবসাইট','অ্যাপ','এসইও','অটোমেশন','মার্কেটিং','ফেসবুক','বুস্টিং','ক্যাম্পেইন','ব্র্যান্ডিং','পোর্টফোলিও','মূল্য','সময়','যোগাযোগ'];document.querySelectorAll('.support-quick-track').forEach(function(track){track.querySelectorAll('[data-q]').forEach(function(button,i){if(names[i])button.textContent=names[i];});});if(input)input.placeholder='প্রশ্ন লিখুন…';}

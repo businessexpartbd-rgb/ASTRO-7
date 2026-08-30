@@ -12,12 +12,12 @@ const rendered = readFileSync(join(root, 'dist/index.html'), 'utf8');
 const failures = [];
 const check = (condition, message) => condition ? console.log(`PASS: ${message}`) : failures.push(message);
 
-check(home.includes('AI Video Marketing &amp;<br /><span class="brand-accent">Full-Service IT Solutions</span>'), 'H1 states the primary offer and full IT scope');
-check(home.includes('Bangladesh-based IT company serving brands worldwide'), 'hero identifies company type, location and global market');
+check(home.includes('AI Video Marketing, SEO &amp;<br /><span class="brand-accent">Complete IT Solutions</span>'), 'H1 states the primary offer and full IT scope');
+check(home.includes('Bangladesh-based technology and video marketing company') && home.includes('grow worldwide'), 'hero identifies company type and global market');
 check(['Video &amp; AI', 'Web &amp; Apps', 'SEO &amp; Growth'].every((label) => home.includes(label)), 'hero exposes three core capabilities');
 check(home.includes('href="/services"') && home.includes('href="/portfolio"') && home.includes('href={SITE.whatsappLink}'), 'hero offers service, proof and contact paths');
 
-const sectionOrder = ['<BrandStrip />', '<ServiceCompass />', '<MarketingSpotlight />', '<FeaturedVideoStack />', 'id="services"', '<ProcessFlow />', 'id="about"', '<Reviews />', '<FAQ />', 'id="contact"'];
+const sectionOrder = ['<BrandStrip />', '<ServiceCompass />', '<MarketingSpotlight />', '<FeaturedVideoStack />', 'id="services"', '<ProcessFlow />', 'id="about"', '<Reviews />', '<FAQ />', '<EngagementModels />', '<ProjectBrief />'];
 let previous = -1;
 for (const marker of sectionOrder) {
   const current = home.indexOf(marker);
@@ -44,6 +44,7 @@ const renderedServiceLinks = new Set([...rendered.matchAll(/href="\/services\/([
 check(slugs.every((slug) => renderedServiceLinks.has(slug)), 'production homepage links to every service page');
 check((rendered.match(/<h1\b/g) || []).length === 1, 'production homepage has exactly one H1');
 check(rendered.includes('id="what-we-do"') && rendered.includes('id="featured-videos"'), 'production homepage exposes service and video anchors');
+check(rendered.includes('id="contact"') && rendered.includes('id="project-brief"'), 'production homepage exposes secure contact anchors');
 
 if (failures.length) {
   for (const failure of failures) console.error(`FAIL: ${failure}`);

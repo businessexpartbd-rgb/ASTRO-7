@@ -1,6 +1,7 @@
 /* Creavix editorial system. Loaded by Layout on every route.
    Legacy theme rules use !important; scoped specificity here is intentional. */
 :root:root {
+  --brand-black: #0b0f19;
   --brand-ink: #131922;
   --brand-navy: #0a2540;
   --brand-orange: #c44b0b;
@@ -9,9 +10,9 @@
   --brand-green: #137849;
   --brand-muted: #536478;
   --brand-border: #dfe6ec;
-  --font-h: "Manrope", "Segoe UI", sans-serif !important;
+  --font-h: "Segoe UI Variable Display", "Segoe UI", ui-sans-serif, system-ui, sans-serif !important;
   --font-heading: var(--font-h) !important;
-  --font-b: "Inter", "Segoe UI", sans-serif !important;
+  --font-b: "Segoe UI Variable Text", "Segoe UI", Roboto, "Noto Sans Bengali", Arial, sans-serif !important;
   --primary: #175cd3 !important;
   --accent: #c44b0b !important;
   --emerald: #137849 !important;
@@ -22,7 +23,7 @@ body.creavix-brand { background: #fff !important; color: var(--brand-ink) !impor
 .creavix-brand main { min-width: 0; }
 .creavix-brand :is(h1,h2,h3,h4) { font-family: var(--font-h) !important; text-wrap: balance; }
 .creavix-brand main h1 {
-  color: var(--brand-ink) !important; -webkit-text-fill-color: var(--brand-ink);
+  color: var(--brand-black) !important; -webkit-text-fill-color: var(--brand-black);
   font-size: clamp(2.05rem, 4.5vw, 4.25rem) !important;
   line-height: 1.1 !important; font-weight: 800 !important;
   letter-spacing: -.045em !important; max-width: 19ch;

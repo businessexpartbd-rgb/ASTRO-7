@@ -10,6 +10,7 @@
     "build": "astro build && node scripts/generate-sitemap.mjs",
     "verify:routes": "node scripts/verify-route-quality.mjs",
     "verify:reviews": "node scripts/verify-reviews.mjs",
+    "verify:premium": "node scripts/verify-premium-upgrade.mjs",
     "preview": "astro preview",
     "cf-deploy": "wrangler deploy --assets=./dist",
     "astro": "astro"

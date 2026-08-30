@@ -1,6 +1,6 @@
 ---
 import ServiceIcons from './icons/ServiceIcons.astro';
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import targetingArtwork from '../assets/meta-targeting-3d.webp';
 interface Props { compact?: boolean; }
 const { compact = false } = Astro.props;
@@ -17,7 +17,7 @@ const stages = [
       <div class="mt-scene" data-meta-scene>
         <div class="mt-tilt" data-meta-tilt>
           <div class="mt-art">
-            <Image src={targetingArtwork} alt="Three glossy green darts targeting a sculpted blue Meta logo" widths={[360, 640, 960]} sizes="(max-width: 680px) calc(100vw - 64px), (max-width: 850px) 580px, (max-width: 1200px) 43vw, 580px" width={960} format="webp" quality={82} loading={compact ? 'eager' : 'lazy'} decoding="async" draggable="false" />
+            <Picture src={targetingArtwork} alt="Three glossy green darts targeting a sculpted blue Meta logo" widths={[360, 640, 960]} sizes="(max-width: 680px) calc(100vw - 64px), (max-width: 850px) 580px, (max-width: 1200px) 43vw, 580px" formats={['avif', 'webp']} quality={82} loading={compact ? 'eager' : 'lazy'} decoding="async" draggable="false" />
           </div>
         </div>
       </div>

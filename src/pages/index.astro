@@ -16,6 +16,9 @@ import ServiceIcons from '../components/icons/ServiceIcons.astro';
 import ServiceCompass from '../components/ServiceCompass.astro';
 import HeroBookReel from '../components/HeroBookReel.astro';
 import BrandingCinema from '../components/BrandingCinema.astro';
+import EngagementModels from '../components/EngagementModels.astro';
+import ProjectBrief from '../components/ProjectBrief.astro';
+import PromoPopup from '../components/PromoPopup.astro';
 import { SITE } from '../data/site';
 
 const services = [
@@ -86,10 +89,10 @@ const devToolTeaser = [
           <span class="rating-label">Client Rated · BD &amp; Global</span>
         </div>
 
-        <h1 class="hero-title">AI Video Marketing &amp;<br /><span class="brand-accent">Full-Service IT Solutions</span></h1>
+        <h1 class="hero-title">AI Video Marketing, SEO &amp;<br /><span class="brand-accent">Complete IT Solutions</span></h1>
 
         <p class="hero-lead">
-          Creavix iT Solution is a Bangladesh-based IT company serving brands worldwide. Since 2014, we have delivered AI video, professional editing, websites, applications, SEO, automation and digital marketing.
+          Creavix iT Solution is a Bangladesh-based technology and video marketing company helping brands look better, rank on Google and grow worldwide through AI video, professional editing, websites, applications, SEO, automation and digital campaigns.
           <strong class="hero-delivery">24–48h for scoped video projects</strong>
         </p>
 
@@ -242,15 +245,9 @@ const devToolTeaser = [
 
   <Reviews />
   <FAQ />
-
-  <section id="contact" class="section-warm premium-contact">
-    <div class="container reveal">
-      <div class="contact-panel">
-        <div class="contact-copy"><span class="contact-kicker"><i></i>Accepting selected projects</span><h2>Ready to Grow <span class="brand-accent">With Creavix?</span></h2><p>Tell us what you want to build. We’ll turn the idea into a clear, high-performance production plan.</p></div>
-        <div class="contact-action"><a href={SITE.whatsappLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Start on WhatsApp <span>↗</span></a><a href="/contact" class="btn btn-outline">Contact page</a><small>{SITE.whatsapp} · {SITE.email1}</small></div>
-      </div>
-    </div>
-  </section>
+  <EngagementModels />
+  <ProjectBrief />
+  <PromoPopup />
   </main>
   <Footer />
   <script type="application/ld+json" set:html={JSON.stringify(homeServiceSchema)} />

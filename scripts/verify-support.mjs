@@ -67,7 +67,7 @@ f.timers.shift().callback(); assert(!n['support-typing'].hidden, 'parallel repli
 f.timers.shift().callback(); assert(n['support-typing'].hidden);
 assert(n['support-body'].children.at(-1).innerHTML.includes('technical SEO'));
 assert(n['support-body'].children.at(-1).innerHTML.includes('https://wa.me/8801890484355'));
-assert.equal(n['support-status-text'].textContent, 'Automated assistant');
+assert.equal(n['support-status-text'].textContent, 'Instant service guide');
 f.emit('support-close', 'click'); assert(n['support-panel'].hidden); assert(n['support-open'].focused);
 const stopped = setup({ paused: true }); assert(!stopped.nodes['support-root'].classes.has('is-helper-running'));
 const calm = setup({ reduced: true }); assert(!calm.nodes['support-root'].classes.has('is-helper-running'));

@@ -18,6 +18,18 @@ const REVIEW_SERVICES = new Set([
   'Business Automation', 'Digital Marketing', 'SEO', 'Facebook Page Services',
   'Facebook Boosting', 'Meta & YouTube Campaigns', 'Other Service',
 ]);
+const CONTACT_BUDGETS = new Set(['Need a recommendation', 'Focused starter scope', 'Growth project scope', 'Long-term partnership']);
+const CONTACT_TIMELINES = new Set(['As soon as practical', 'Within 1–2 weeks', 'Within 1 month', 'Planning ahead']);
+
+const SECURITY_HEADERS = {
+  'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.youtube.com https://www.youtube-nocookie.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://challenges.cloudflare.com https://www.youtube.com https://www.youtube-nocookie.com; frame-src https://challenges.cloudflare.com https://www.youtube.com https://www.youtube-nocookie.com; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me; frame-ancestors 'self'; upgrade-insecure-requests",
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+  'X-Frame-Options': 'SAMEORIGIN',
+  'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
+  'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+};
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), { status, headers: JSON_HEADERS });
@@ -108,6 +120,54 @@ async function reviewsApi(request, env) {
   return json({ ok: true, storage: 'd1', status: 'pending' }, 202);
 }
 
+async function ensureLeadsTable(db) {
+  await db.prepare(`CREATE TABLE IF NOT EXISTS leads (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    service TEXT NOT NULL,
+    budget TEXT NOT NULL,
+    timeline TEXT NOT NULL,
+    goal TEXT NOT NULL,
+    visitor_hash TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'new' CHECK (status IN ('new','contacted','qualified','closed','spam')),
+    created_at TEXT NOT NULL
+  )`).run();
+  await db.prepare('CREATE INDEX IF NOT EXISTS idx_leads_status_created ON leads(status, created_at DESC)').run();
+  await db.prepare('CREATE INDEX IF NOT EXISTS idx_leads_visitor_created ON leads(visitor_hash, created_at DESC)').run();
+}
+
+async function contactApi(request, env) {
+  if (request.method !== 'POST') return json({ ok: false, error: 'Method not allowed' }, 405);
+  if (!env.DB) return json({ ok: false, error: 'Secure project storage is not connected.' }, 503);
+  const fetchSite = request.headers.get('Sec-Fetch-Site');
+  if (fetchSite && !['same-origin', 'same-site', 'none'].includes(fetchSite)) return json({ ok: false, error: 'Request origin rejected.' }, 403);
+
+  let input;
+  try { input = await request.json(); } catch { return json({ ok: false, error: 'Invalid request' }, 400); }
+  if (String(input.company || '').trim()) return json({ ok: true, status: 'received' }, 201);
+  const clean = (value) => String(value || '').trim().replace(/\s+/g, ' ');
+  const name = clean(input.name);
+  const phone = clean(input.phone);
+  const service = clean(input.service);
+  const budget = clean(input.budget);
+  const timeline = clean(input.timeline);
+  const goal = clean(input.goal);
+  if (name.length < 2 || name.length > 60) return json({ ok: false, error: 'Name must be 2–60 characters.' }, 400);
+  if (phone.length < 6 || phone.length > 25 || !/^[+()\d\s.-]+$/.test(phone)) return json({ ok: false, error: 'Enter a valid phone or WhatsApp number.' }, 400);
+  if (!REVIEW_SERVICES.has(service) || !CONTACT_BUDGETS.has(budget) || !CONTACT_TIMELINES.has(timeline)) return json({ ok: false, error: 'Choose a valid project option.' }, 400);
+  if (goal.length < 10 || goal.length > 1000) return json({ ok: false, error: 'Project goal must be 10–1000 characters.' }, 400);
+
+  await ensureLeadsTable(env.DB);
+  const visitorHash = await hashVisitor(request, '', env.REVIEW_HASH_SECRET);
+  const recent = await env.DB.prepare(`SELECT COUNT(*) AS count FROM leads
+    WHERE visitor_hash = ? AND created_at >= datetime('now', '-1 hour')`).bind(visitorHash).first();
+  if (Number(recent?.count || 0) >= 2) return json({ ok: false, error: 'Please wait before sending another project brief.' }, 429);
+  await env.DB.prepare(`INSERT INTO leads (id, name, phone, service, budget, timeline, goal, visitor_hash, status, created_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'new', ?)`).bind(crypto.randomUUID(), name, phone, service, budget, timeline, goal, visitorHash, new Date().toISOString()).run();
+  return json({ ok: true, storage: 'd1', status: 'received' }, 201);
+}
+
 /** Cloudflare Worker: review API plus optimized Astro static assets. */
 export default {
   async fetch(request, env) {
@@ -115,6 +175,10 @@ export default {
     if (url.pathname === '/api/reviews') {
       try { return await reviewsApi(request, env); }
       catch (error) { return json({ ok: false, error: 'Unable to process reviews.', detail: String(error?.message || '') }, 500); }
+    }
+    if (url.pathname === '/api/contact') {
+      try { return await contactApi(request, env); }
+      catch (error) { return json({ ok: false, error: 'Unable to save the project brief.', detail: String(error?.message || '') }, 500); }
     }
     const response = await env.ASSETS.fetch(request);
     const path = url.pathname;
@@ -133,9 +197,7 @@ export default {
       headers.set('CDN-Cache-Control', 'public, max-age=3600');
     } else if (path.endsWith('.json')) headers.set('Cache-Control', 'public, max-age=300, must-revalidate');
     else headers.set('Cache-Control', 'public, max-age=3600, must-revalidate');
-    headers.set('X-Content-Type-Options', 'nosniff');
-    headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
-    headers.set('Permissions-Policy', 'interest-cohort=()');
+    for (const [name, value] of Object.entries(SECURITY_HEADERS)) headers.set(name, value);
     headers.set('X-Creavix-Cache', 'optimized');
     return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
   },

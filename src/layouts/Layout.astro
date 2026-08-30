@@ -132,6 +132,7 @@ const jsonLd = {
       logo: `${SITE.url}/favicon-512.png`,
       image: `${SITE.url}/og-creavix.png`,
       description: SITE.seoDescription,
+      alternateName: ['Creavix IT', 'Creavix'],
       email: SITE.email1,
       telephone: SITE.hotline,
       areaServed: ['Bangladesh', 'Worldwide'],
@@ -154,6 +155,19 @@ const jsonLd = {
       ],
       foundingDate: String(SITE.servingSince),
       founder: { '@type': 'Person', name: SITE.founder.name },
+      contactPoint: [{
+        '@type': 'ContactPoint',
+        telephone: SITE.hotline,
+        contactType: 'customer service',
+        email: SITE.email1,
+        availableLanguage: ['English', 'Bengali'],
+        areaServed: ['BD', 'Worldwide'],
+      }],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Creative, Technology and Growth Services',
+        itemListElement: ['AI Video Marketing', 'Professional Video Editing', 'Web Development', 'Application Development', 'SEO', 'Digital Marketing', 'Business Automation'].map((name) => ({ '@type': 'OfferCatalog', name })),
+      },
     },
     {
       '@type': 'WebSite',
@@ -189,19 +203,18 @@ const jsonLd = {
     <meta name="description" content={searchDescription} />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="author" content={SITE.brand} />
+    <meta name="application-name" content={SITE.brand} />
+    <meta name="generator" content="Astro 7.2.4" />
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="x-default" href={canonical} />
     <link rel="alternate" hreflang="en-BD" href={canonical} />
 
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="dns-prefetch" href="https://i.ytimg.com" />
     <link rel="dns-prefetch" href="https://www.youtube-nocookie.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
+    {pathname === '/' && <link rel="preload" as="image" href="/media/hero-studio-bangladesh-480.webp" fetchpriority="high" />}
 
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
@@ -232,11 +245,6 @@ const jsonLd = {
     <meta name="twitter:image:alt" content={`${SITE.brand} — Video Editing and Digital Solutions`} />
     <link rel="image_src" href={socialImage} />
 
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-    </noscript>
-
     <link rel="stylesheet" href={`/perf.css?v=${perfV}`} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script src={`/js/perf.js?v=${perfV}`} defer></script>
@@ -250,14 +258,15 @@ const jsonLd = {
         --rose: #F43F5E;
         --amber: #F59E0B;
         --emerald: #10B981;
-        --text: #0B0F19;
+        --black: #0B0F19;
+        --text: var(--black);
         --text-2: #64748B;
         --text-3: #94A3B8;
         --bg: #FFFFFF;
         --white: #FFFFFF;
         --radius: 22px;
-        --font-h: "Outfit", system-ui, sans-serif;
-        --font-b: "Inter", system-ui, sans-serif;
+        --font-h: "Segoe UI Variable Display", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+        --font-b: "Segoe UI Variable Text", "Segoe UI", Roboto, "Noto Sans Bengali", Arial, sans-serif;
       }
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       html {
