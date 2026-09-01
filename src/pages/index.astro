@@ -6,6 +6,11 @@ const lead = news.find(n => n.featured) ?? news[0];
 const latest = news.filter(n => n.slug !== lead.slug).slice(0,4);
 const rural = news.filter(n => n.rural).slice(0,4);
 const top = news.slice(0,5);
+const categoryColumns = [
+  { title:'অর্থনীতি', items:news.filter(n=>n.category==='অর্থনীতি').slice(0,2) },
+  { title:'খেলাধুলা', items:news.filter(n=>n.category==='খেলাধুলা').slice(0,2) },
+  { title:'পরিবেশ ও আবহাওয়া', items:news.filter(n=>['পরিবেশ','আবহাওয়া'].includes(n.category)).slice(0,2) }
+];
 const jsonLd = { '@context':'https://schema.org','@type':'NewsMediaOrganization',name:'দৈনিক নিউজ',url:Astro.url.origin,logo:new URL('/logo.png',Astro.url.origin).href };
 ---
 <Layout>
@@ -19,6 +24,7 @@ const jsonLd = { '@context':'https://schema.org','@type':'NewsMediaOrganization'
     <section class="content-section"><div class="section-heading"><div><span class="kicker">বাংলাদেশের শিকড়</span><h2>গ্রামবাংলার খবর</h2></div><a href="/archive/?category=গ্রামবাংলা">আরও দেখুন</a></div><div class="card-grid">{rural.map(item => <NewsCard item={item} />)}</div></section>
     <section class="district-promo"><div><span class="kicker">দেশজুড়ে প্রতিনিধি</span><h2>৬৪ জেলার সংবাদ</h2><p>বিভাগ, জেলা ও প্রকাশের তারিখ ধরে স্থানীয় সংবাদ খুঁজুন। গ্রামের সমস্যা, সম্ভাবনা ও মানুষের না-বলা কথাই এখানে বিশেষ গুরুত্ব পাবে।</p><a class="button" href="/districts/">জেলা নির্বাচন করুন</a></div><div class="district-stat"><strong>৬৪</strong><span>জেলা</span><strong>৮</strong><span>বিভাগ</span></div></section>
     <section class="content-section"><div class="section-heading"><h2>আরও সংবাদ</h2><a href="/archive/">নিউজ আর্কাইভ</a></div><div class="card-grid">{news.slice(4,8).map(item => <NewsCard item={item} />)}</div></section>
+    <section class="category-columns" aria-label="বিষয়ভিত্তিক সংবাদ">{categoryColumns.map(column => <div class="category-column"><div class="section-heading"><h2>{column.title}</h2><a href={`/archive/?category=${encodeURIComponent(column.title.split(' ও ')[0])}`}>সব দেখুন</a></div>{column.items.map(item => <NewsCard item={item} compact />)}</div>)}</section>
     <section class="weather-panel"><div><span class="kicker">আবহাওয়া</span><h2>আপনার জেলার আবহাওয়া ও সতর্কতা</h2><p>দৈনিক পূর্বাভাসের সঙ্গে নদী, বৃষ্টি ও স্থানীয় ঝুঁকির গুরুত্বপূর্ণ তথ্য আলাদা বিভাগে পাওয়া যাবে।</p></div><a class="button light" href="/weather/">আবহাওয়া দেখুন</a></section>
   </div>
 </Layout>

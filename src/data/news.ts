@@ -97,6 +97,56 @@ export const news: NewsItem[] = [
     excerptEn: 'Regular school and union-level competitions support physical and social development.',
     image: '/images/rural-football-small.webp', publishedAt: '2026-08-28T17:15:00+06:00', updatedAt: '2026-08-28T19:20:00+06:00', author: 'ক্রীড়া ডেস্ক',
     content: ['নিয়মিত খেলাধুলা শুধু প্রতিযোগিতা নয়, শৃঙ্খলা, দলগত কাজ ও আত্মবিশ্বাস তৈরিতেও ভূমিকা রাখে। স্থানীয় আয়োজনগুলো নিরাপদ ও অন্তর্ভুক্তিমূলক হলে আরও বেশি তরুণ যুক্ত হতে পারে।', 'এটি প্রাথমিক নমুনা প্রতিবেদন।']
+  },
+  {
+    slug: 'public-services-district-access',
+    category: 'জাতীয়', categoryEn: 'National', district: 'বাংলাদেশ',
+    title: 'জেলা পর্যায়ে জনসেবা সহজ করতে সমন্বিত তথ্যের প্রয়োজন',
+    titleEn: 'Integrated information can make district public services easier to access',
+    excerpt: 'সেবার সময়, প্রয়োজনীয় কাগজপত্র ও অভিযোগের পথ এক জায়গায় থাকলে মানুষের ভোগান্তি কমতে পারে।',
+    excerptEn: 'Clear service times, document lists and complaint channels can reduce public hardship.',
+    image: '/images/rural-bangladesh-small.webp', publishedAt: '2026-08-28T10:15:00+06:00', updatedAt: '2026-08-28T12:20:00+06:00', author: 'জাতীয় ডেস্ক',
+    content: ['সরকারি সেবা কোথায়, কখন এবং কীভাবে পাওয়া যাবে—এই তথ্য সহজ ভাষায় প্রকাশ করা হলে নাগরিকদের সময় ও ব্যয় কমে। জেলা ও উপজেলা পর্যায়ের তথ্য নিয়মিত হালনাগাদ রাখাও জরুরি।', 'এটি কাঠামো প্রদর্শনের জন্য রাখা নমুনা প্রতিবেদন।']
+  },
+  {
+    slug: 'local-democracy-public-participation',
+    category: 'রাজনীতি', categoryEn: 'Politics', district: 'সারাদেশ',
+    title: 'স্থানীয় সিদ্ধান্তে নাগরিক অংশগ্রহণ বাড়ানোর সুযোগ',
+    titleEn: 'Opportunities to increase citizen participation in local decisions',
+    excerpt: 'উন্মুক্ত সভা, তথ্য প্রকাশ ও জবাবদিহি স্থানীয় গণতান্ত্রিক প্রক্রিয়াকে আরও কার্যকর করতে পারে।',
+    excerptEn: 'Open meetings, public information and accountability can strengthen local democracy.',
+    image: '/images/rural-market-small.webp', publishedAt: '2026-08-27T14:00:00+06:00', updatedAt: '2026-08-27T16:10:00+06:00', author: 'রাজনীতি ডেস্ক',
+    content: ['স্থানীয় উন্নয়ন পরিকল্পনায় নাগরিকদের মতামত নেওয়া এবং সিদ্ধান্তের তথ্য প্রকাশ করা হলে আস্থা বাড়ে। সংবাদমাধ্যমের দায়িত্ব হচ্ছে দলীয় প্রচারণার বাইরে জনস্বার্থের প্রশ্নগুলো স্পষ্টভাবে তুলে ধরা।', 'এটি কোনো চলমান রাজনৈতিক ঘটনার প্রতিবেদন নয়; সাইটের নমুনা কনটেন্ট।']
+  },
+  {
+    slug: 'south-asia-rural-climate-cooperation',
+    category: 'আন্তর্জাতিক', categoryEn: 'International', district: 'দক্ষিণ এশিয়া',
+    title: 'জলবায়ু ঝুঁকিতে দক্ষিণ এশিয়ার গ্রামীণ জনগোষ্ঠীর অভিন্ন চ্যালেঞ্জ',
+    titleEn: 'South Asian rural communities share common climate challenges',
+    excerpt: 'সীমান্ত অতিক্রম করা নদী, আবহাওয়া ও কৃষির তথ্য বিনিময় আঞ্চলিক প্রস্তুতিকে শক্তিশালী করতে পারে।',
+    excerptEn: 'Sharing river, weather and agriculture data can strengthen regional preparedness.',
+    image: '/images/river-weather-small.webp', publishedAt: '2026-08-26T12:00:00+06:00', updatedAt: '2026-08-26T13:25:00+06:00', author: 'আন্তর্জাতিক ডেস্ক',
+    content: ['দক্ষিণ এশিয়ার বহু মানুষের জীবন নদী, কৃষি ও মৌসুমি আবহাওয়ার ওপর নির্ভরশীল। তথ্য বিনিময় ও স্থানীয় অভিজ্ঞতা থেকে শেখা দুর্যোগ প্রস্তুতিতে কার্যকর ভূমিকা রাখতে পারে।', 'এটি একটি নমুনা বিশ্লেষণ।']
+  },
+  {
+    slug: 'folk-culture-digital-archive',
+    category: 'বিনোদন', categoryEn: 'Entertainment', district: 'সারাদেশ',
+    title: 'লোকসংস্কৃতির গান ও গল্প নিয়ে ডিজিটাল আর্কাইভের সম্ভাবনা',
+    titleEn: 'A digital archive can preserve folk songs and stories',
+    excerpt: 'স্থানীয় শিল্পী ও প্রবীণদের অংশগ্রহণে হারিয়ে যাওয়া সাংস্কৃতিক উপাদান সংরক্ষণ করা সম্ভব।',
+    excerptEn: 'Local artists and elders can help preserve cultural traditions at risk of disappearing.',
+    image: '/images/rural-bangladesh-small.webp', publishedAt: '2026-08-25T17:30:00+06:00', updatedAt: '2026-08-25T18:40:00+06:00', author: 'বিনোদন ডেস্ক',
+    content: ['বাংলাদেশের প্রতিটি অঞ্চলের গান, গল্প, উৎসব ও অভিনয়ের নিজস্ব ধারা রয়েছে। শিল্পীর সম্মতি, সঠিক পরিচিতি ও উৎস উল্লেখ করে ডিজিটালভাবে সংরক্ষণ করলে নতুন প্রজন্ম এগুলো জানতে পারে।', 'এটি প্রাথমিক নমুনা ফিচার।']
+  },
+  {
+    slug: 'rural-reporting-public-interest',
+    category: 'মতামত', categoryEn: 'Opinion', district: 'সম্পাদকীয়',
+    title: 'কেন গ্রাম পর্যায়ের সাংবাদিকতা জনস্বার্থের জন্য গুরুত্বপূর্ণ',
+    titleEn: 'Why village-level journalism matters for the public interest',
+    excerpt: 'জাতীয় আলোচনার বাইরে থাকা মানুষের অভিজ্ঞতা তুলে ধরলে উন্নয়ন ও জবাবদিহির বাস্তব চিত্র পাওয়া যায়।',
+    excerptEn: 'Reporting overlooked experiences gives a clearer picture of development and accountability.',
+    image: '/images/rural-market-small.webp', publishedAt: '2026-08-24T09:30:00+06:00', updatedAt: '2026-08-24T11:00:00+06:00', author: 'সম্পাদকীয় বিভাগ',
+    content: ['সংবাদ শুধু বড় শহর বা কেন্দ্রীয় প্রতিষ্ঠানের ঘটনাকে ঘিরে নয়। গ্রামে শিক্ষা, স্বাস্থ্য, যোগাযোগ, কৃষি ও পরিবেশের পরিবর্তন দেশের সামগ্রিক অবস্থাকে প্রভাবিত করে।', 'মতামতধর্মী লেখা সংবাদ থেকে আলাদাভাবে চিহ্নিত রাখা হবে।']
   }
 ];
 

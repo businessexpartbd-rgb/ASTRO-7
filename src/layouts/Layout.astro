@@ -5,6 +5,7 @@ import { categories } from '../data/news';
 interface Props { title?: string; description?: string; image?: string; type?: string; }
 const { title = 'দৈনিক নিউজ — বাংলাদেশের জাতীয় সংবাদপত্র', description = 'বাংলাদেশের ৬৪ জেলা, গ্রামবাংলা ও জাতীয় গুরুত্বপূর্ণ খবরের নির্ভরযোগ্য ডিজিটাল ঠিকানা।', image, type = 'website' } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const categoryEnglish: Record<string,string> = { 'জাতীয়':'National','রাজনীতি':'Politics','অর্থনীতি':'Economy','সারাদেশ':'Nationwide','গ্রামবাংলা':'Rural','আন্তর্জাতিক':'International','খেলাধুলা':'Sports','বিনোদন':'Entertainment','প্রযুক্তি':'Technology','পরিবেশ':'Environment','আবহাওয়া':'Weather','মতামত':'Opinion' };
 ---
 <!doctype html>
 <html lang="bn" data-lang="bn">
@@ -23,6 +24,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
     <meta name="twitter:card" content="summary_large_image" />
     <title>{title}</title>
     <link rel="icon" href="/logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Noto+Serif+Bengali:wght@600;700;800&display=swap" rel="stylesheet" />
   </head>
   <body>
     <a class="skip-link" href="#main">মূল সংবাদে যান</a>
@@ -47,7 +51,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
         <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">মেনু</button>
       </div>
       <nav id="primary-nav" class="primary-nav" aria-label="প্রধান নেভিগেশন">
-        <div class="container nav-scroll"><a href="/" class="home-link">প্রচ্ছদ</a>{categories.map((category) => <a href={`/archive/?category=${encodeURIComponent(category)}`}>{category}</a>)}<a href="/districts/">৬৪ জেলা</a><a href="/archive/">আর্কাইভ</a></div>
+        <div class="container nav-scroll"><a href="/" class="home-link" data-bn="প্রচ্ছদ" data-en="Home">প্রচ্ছদ</a>{categories.map((category) => <a href={`/archive/?category=${encodeURIComponent(category)}`} data-bn={category} data-en={categoryEnglish[category]}>{category}</a>)}<a href="/districts/" data-bn="৬৪ জেলা" data-en="64 Districts">৬৪ জেলা</a><a href="/archive/" data-bn="আর্কাইভ" data-en="Archive">আর্কাইভ</a></div>
       </nav>
     </header>
     <main id="main"><slot /></main>
