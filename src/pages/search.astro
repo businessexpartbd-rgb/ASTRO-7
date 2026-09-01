@@ -1,6 +1,0 @@
----
-import Layout from '../layouts/Layout.astro';
-import NewsCard from '../components/NewsCard.astro';
-import { news } from '../data/news';
----
-<Layout title="সংবাদ অনুসন্ধান | দৈনিক নিউজ"><div class="container listing-page"><div class="page-intro"><span class="kicker">দ্রুত অনুসন্ধান</span><h1>সংবাদ খুঁজুন</h1></div><div class="search-large"><input id="search-page-input" type="search" placeholder="শিরোনাম, জেলা বা ক্যাটাগরি লিখুন" autofocus /></div><p id="result-count" class="result-count"></p><div id="search-grid" class="card-grid">{news.map(item => <NewsCard item={item} />)}</div><div id="search-empty" class="empty-state" hidden>কোনো মিল পাওয়া যায়নি। বানান পরিবর্তন করে আবার চেষ্টা করুন।</div></div><script is:inline>const p=new URLSearchParams(location.search);const i=document.getElementById('search-page-input');i.value=p.get('q')||'';function f(){const q=i.value.trim().toLowerCase();let n=0;document.querySelectorAll('#search-grid .news-card').forEach(c=>{const ok=!q||c.dataset.search.includes(q);c.hidden=!ok;if(ok)n++});document.getElementById('result-count').textContent=`${n}টি সংবাদ পাওয়া গেছে`;document.getElementById('search-empty').hidden=n>0}i.addEventListener('input',f);f();</script></Layout>
