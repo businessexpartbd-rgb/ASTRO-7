@@ -1,24 +1,17 @@
 {
-  "name": "astro-7-creavixit",
+  "name": "dainik-news-bangladesh",
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "engines": {
     "node": ">=22.19.0"
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/generate-sitemap.mjs",
-    "verify:routes": "node scripts/verify-route-quality.mjs",
-    "verify:reviews": "node scripts/verify-reviews.mjs",
-    "verify:premium": "node scripts/verify-premium-upgrade.mjs",
+    "build": "astro build",
     "preview": "astro preview",
-    "cf-deploy": "wrangler deploy --assets=./dist",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.2.4"
-  },
-  "devDependencies": {
-    "wrangler": "^4.125.0"
+    "astro": "7.2.4"
   }
 }

@@ -1,0 +1,5 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { divisions } from '../data/districts';
+---
+<Layout title="৬৪ জেলার সংবাদ | দৈনিক নিউজ" description="বাংলাদেশের ৮ বিভাগ ও ৬৪ জেলার স্থানীয় সংবাদ খুঁজুন।"><div class="container listing-page"><div class="page-intro"><span class="kicker">সারাদেশ</span><h1>৬৪ জেলার সংবাদ</h1><p>নিজের বিভাগ ও জেলা নির্বাচন করে স্থানীয় খবর দেখুন। গ্রাম পর্যায়ের প্রতিবেদন এখানে বিশেষ গুরুত্ব পাবে।</p></div><div class="division-grid">{Object.entries(divisions).map(([division,districts])=><section class="division-card"><h2>{division} বিভাগ</h2><div class="district-links">{districts.map(d=><a href={`/archive/?q=${encodeURIComponent(d)}`}>{d}</a>)}</div></section>)}</div></div></Layout>
