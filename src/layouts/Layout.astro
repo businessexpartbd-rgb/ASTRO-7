@@ -1,334 +1,78 @@
 ---
-import CookieBanner from '../components/CookieBanner.astro';
-import '../styles/brand-system.css';
-import '../styles/page-quality.css';
-import { SITE } from '../data/site';
-import { PAGE_SEO } from '../data/pageSeo';
-import { getPageVisual } from '../data/pageVisuals';
+import '../styles/global.css';
+import { categories } from '../data/news';
 
-interface Props {
-  title?: string;
-  description?: string;
-  image?: string;
-  pageType?: 'website' | 'article';
-  publishedTime?: string;
-  modifiedTime?: string;
-  articleSection?: string;
-  articleTags?: string[];
-}
-const {
-  title: suppliedTitle = SITE.seoTitle,
-  description: suppliedDescription = SITE.seoDescription,
-  image = '/og-creavix-share-v2.png',
-  pageType = 'website',
-  publishedTime,
-  modifiedTime,
-  articleSection,
-  articleTags = [],
-} = Astro.props;
-
-const canonical = new URL(Astro.url.pathname || '/', SITE.url).href;
-const socialImage = new URL(image, SITE.url).href;
-const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
-const pageVisual = getPageVisual(pathname);
-const pageVisualStyle = `--page-accent:${pageVisual.accent};--page-accent-2:${pageVisual.accent2};--page-wash:${pageVisual.wash};--page-ink:${pageVisual.ink}`;
-const title = PAGE_SEO[pathname]?.title || suppliedTitle;
-const description = PAGE_SEO[pathname]?.description || suppliedDescription;
-const segments = pathname.split('/').filter(Boolean);
-const pageId = `${canonical}#webpage`;
-const perfV = '20260828brand1';
-
-const compact = (value: string, limit: number) => {
-  if (value.length <= limit) return value;
-  const shortened = value.slice(0, limit + 1);
-  const boundary = shortened.lastIndexOf(' ');
-  return `${shortened.slice(0, boundary > limit * 0.72 ? boundary : limit).replace(/[\s,;:|—-]+$/, '')}…`;
-};
-
-const titleWithoutLongBrand = title
-  .replace(/\s*[|—]\s*Creavix iT Solution Blog$/i, '')
-  .replace(/\s*[|—]\s*Creavix iT Solution$/i, '')
-  .replace(/\s*[|—]\s*Creavix iT$/i, '');
-const searchTitle = compact(title.length > 68 ? titleWithoutLongBrand : title, 68);
-const searchDescription = compact(description, 165);
-
-const labelFor = (segment: string) => segment
-  .replaceAll('-', ' ')
-  .replace(/\b\w/g, (letter) => letter.toUpperCase());
-
-const breadcrumbItems = [
-  { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
-  ...segments.map((segment, index) => ({
-    '@type': 'ListItem',
-    position: index + 2,
-    name: index === segments.length - 1 ? searchTitle : labelFor(segment),
-    item: new URL(`/${segments.slice(0, index + 1).join('/')}/`, SITE.url).href,
-  })),
-];
-
-const webPageType = pathname === '/about'
-  ? 'AboutPage'
-  : pathname === '/contact'
-    ? 'ContactPage'
-    : pathname === '/portfolio' || pathname === '/blog' || pathname === '/services'
-      ? 'CollectionPage'
-      : pageType === 'article'
-        ? 'BlogPosting'
-        : 'WebPage';
-
-const pageSchema: Record<string, unknown> = {
-  '@type': webPageType,
-  '@id': pageId,
-  url: canonical,
-  name: searchTitle,
-  description: searchDescription,
-  isPartOf: { '@id': `${SITE.url}/#website` },
-  about: { '@id': `${SITE.url}/#organization` },
-  primaryImageOfPage: { '@type': 'ImageObject', url: socialImage },
-  inLanguage: 'en-BD',
-  breadcrumb: { '@id': `${canonical}#breadcrumb` },
-};
-
-if (pageType === 'article') {
-  Object.assign(pageSchema, {
-    headline: title.split('|')[0].trim(),
-    image: [socialImage],
-    datePublished: publishedTime,
-    dateModified: modifiedTime || publishedTime,
-    articleSection,
-    keywords: articleTags.join(', '),
-    author: { '@id': `${SITE.url}/#organization` },
-    publisher: { '@id': `${SITE.url}/#organization` },
-    mainEntityOfPage: { '@id': pageId },
-  });
-}
-
-const serviceSchema = pathname.startsWith('/services/') ? {
-  '@type': 'Service',
-  '@id': `${canonical}#service`,
-  name: title.split('|')[0].trim(),
-  description: searchDescription,
-  url: canonical,
-  provider: { '@id': `${SITE.url}/#organization` },
-  areaServed: [
-    { '@type': 'Country', name: 'Bangladesh' },
-    { '@type': 'Place', name: 'Worldwide' },
-  ],
-  availableChannel: {
-    '@type': 'ServiceChannel',
-    serviceUrl: canonical,
-    servicePhone: SITE.hotline,
-  },
-} : null;
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': ['Organization', 'ProfessionalService'],
-      '@id': `${SITE.url}/#organization`,
-      name: SITE.brand,
-      url: SITE.url,
-      logo: `${SITE.url}/favicon-512.png`,
-      image: `${SITE.url}/og-creavix.png`,
-      description: SITE.seoDescription,
-      alternateName: ['Creavix IT', 'Creavix'],
-      email: SITE.email1,
-      telephone: SITE.hotline,
-      areaServed: ['Bangladesh', 'Worldwide'],
-      knowsAbout: ['Professional Video Editing', 'AI Video Marketing', 'Human-like Content', 'Web Development', 'Mobile and Web Application Development', 'Authentication Systems', 'Business Automation', 'Digital Marketing', 'Search Engine Optimization', 'Facebook Page Services', 'Facebook Boosting', 'Meta and YouTube Campaigns'],
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'Hemayetpur',
-        addressLocality: 'Savar',
-        addressRegion: 'Dhaka',
-        postalCode: '1340',
-        addressCountry: 'BD',
-      },
-      sameAs: [
-        'https://www.facebook.com/CreavixITSolution',
-        'https://www.instagram.com/creavixitsolution',
-        'https://www.youtube.com/@CreavixiTsolution',
-        'https://www.tiktok.com/@creavixitsolution',
-        'https://www.linkedin.com/in/creavix-it-solution',
-        'https://x.com/creavixit',
-      ],
-      foundingDate: String(SITE.servingSince),
-      founder: { '@type': 'Person', name: SITE.founder.name },
-      contactPoint: [{
-        '@type': 'ContactPoint',
-        telephone: SITE.hotline,
-        contactType: 'customer service',
-        email: SITE.email1,
-        availableLanguage: ['English', 'Bengali'],
-        areaServed: ['BD', 'Worldwide'],
-      }],
-      hasOfferCatalog: {
-        '@type': 'OfferCatalog',
-        name: 'Creative, Technology and Growth Services',
-        itemListElement: ['AI Video Marketing', 'Professional Video Editing', 'Web Development', 'Application Development', 'SEO', 'Digital Marketing', 'Business Automation'].map((name) => ({ '@type': 'OfferCatalog', name })),
-      },
-    },
-    {
-      '@type': 'WebSite',
-      '@id': `${SITE.url}/#website`,
-      url: SITE.url,
-      name: SITE.brand,
-      publisher: { '@id': `${SITE.url}/#organization` },
-      inLanguage: 'en-BD',
-    },
-    pageSchema,
-    {
-      '@type': 'BreadcrumbList',
-      '@id': `${canonical}#breadcrumb`,
-      itemListElement: breadcrumbItems,
-    },
-    ...(serviceSchema ? [serviceSchema] : []),
-  ],
-};
+interface Props { title?: string; description?: string; image?: string; type?: string; }
+const { title = 'দৈনিক নিউজ — বাংলাদেশের জাতীয় সংবাদপত্র', description = 'বাংলাদেশের ৬৪ জেলা, গ্রামবাংলা ও জাতীয় গুরুত্বপূর্ণ খবরের নির্ভরযোগ্য ডিজিটাল ঠিকানা।', image, type = 'website' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
 ---
 <!doctype html>
-<html lang="en">
+<html lang="bn" data-lang="bn">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      id="viewport-meta"
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
-    />
-    <meta name="theme-color" content="#0A2540" />
-    <meta name="color-scheme" content="light" />
-    <meta name="format-detection" content="telephone=no" />
-    <title>{searchTitle}</title>
-    <meta name="description" content={searchDescription} />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="author" content={SITE.brand} />
-    <meta name="application-name" content={SITE.brand} />
-    <meta name="generator" content="Astro 7.2.4" />
-    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0f5132" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="x-default" href={canonical} />
-    <link rel="alternate" hreflang="en-BD" href={canonical} />
-
-    <link rel="dns-prefetch" href="https://i.ytimg.com" />
-    <link rel="dns-prefetch" href="https://www.youtube-nocookie.com" />
-    <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
-    {pathname === '/' && <link rel="preload" as="image" href="/media/hero-studio-bangladesh-480.webp" fetchpriority="high" />}
-
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-
-    <meta property="og:type" content={pageType} />
-    <meta property="og:site_name" content={SITE.brand} />
-    <meta property="og:title" content={searchTitle} />
-    <meta property="og:description" content={searchDescription} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content="en_BD" />
-    <meta property="og:image" content={socialImage} />
-    <meta property="og:image:secure_url" content={socialImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:alt" content={`${SITE.brand} — Video Editing and Digital Solutions`} />
-    {pageType === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime} />}
-    {pageType === 'article' && (modifiedTime || publishedTime) && <meta property="article:modified_time" content={modifiedTime || publishedTime} />}
-    {pageType === 'article' && articleSection && <meta property="article:section" content={articleSection} />}
-    {pageType === 'article' && articleTags.map((tag) => <meta property="article:tag" content={tag} />)}
+    <meta property="og:type" content={type} />
+    <meta property="og:locale" content="bn_BD" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {image && <meta property="og:image" content={new URL(image, Astro.site ?? Astro.url.origin)} />}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={searchTitle} />
-    <meta name="twitter:description" content={searchDescription} />
-    <meta name="twitter:image" content={socialImage} />
-    <meta name="twitter:image:alt" content={`${SITE.brand} — Video Editing and Digital Solutions`} />
-    <link rel="image_src" href={socialImage} />
-
-    <link rel="stylesheet" href={`/perf.css?v=${perfV}`} />
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    <script src={`/js/perf.js?v=${perfV}`} defer></script>
-
-    <style is:global>
-      :root {
-        --primary: #2563EB;
-        --primary-light: #3B82F6;
-        --violet: #1D4ED8;
-        --accent: #F59E0B;
-        --rose: #F43F5E;
-        --amber: #F59E0B;
-        --emerald: #10B981;
-        --black: #0B0F19;
-        --text: var(--black);
-        --text-2: #64748B;
-        --text-3: #94A3B8;
-        --bg: #FFFFFF;
-        --white: #FFFFFF;
-        --radius: 22px;
-        --font-h: "Segoe UI Variable Display", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
-        --font-b: "Segoe UI Variable Text", "Segoe UI", Roboto, "Noto Sans Bengali", Arial, sans-serif;
-      }
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      html {
-        scroll-behavior: smooth;
-        -webkit-text-size-adjust: 100%;
-        text-size-adjust: 100%;
-        touch-action: manipulation;
-      }
-      body {
-        font-family: var(--font-b);
-        background: #FFFFFF;
-        color: var(--text);
-        -webkit-font-smoothing: antialiased;
-        line-height: 1.6;
-        overflow-x: clip;
-        touch-action: manipulation;
-        overscroll-behavior-y: none;
-      }
-      a, button, input, textarea, select { touch-action: manipulation; }
-      a { color: inherit; text-decoration: none; }
-      :focus-visible { outline: 3px solid #F59E0B; outline-offset: 3px; }
-      img { max-width: 100%; height: auto; display: block; }
-      @media (prefers-reduced-motion: reduce) {
-        html { scroll-behavior: auto; }
-        *, *::before, *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
-    </style>
+    <title>{title}</title>
+    <link rel="icon" href="/logo.png" type="image/png" />
   </head>
-  <body
-    class="creavix-brand"
-    data-page-profile={pageVisual.profile}
-    data-page-kind={pageVisual.kind}
-    style={pageVisualStyle}
-  >
-    <a class="skip-to-content" href="#main-content">Skip to content</a>
-    <slot />
-    <CookieBanner />
+  <body>
+    <a class="skip-link" href="#main">মূল সংবাদে যান</a>
+    <header class="site-header">
+      <div class="utility-bar">
+        <div class="container utility-inner">
+          <div class="date-cluster" aria-label="আজকের তারিখ">
+            <span id="date-bn">তারিখ লোড হচ্ছে…</span><span class="dot">•</span>
+            <span id="date-en"></span><span class="dot">•</span><span id="date-hijri"></span>
+          </div>
+          <div class="utility-actions">
+            <span id="weather-chip" class="weather-chip">ঢাকা · আবহাওয়া</span>
+            <button class="lang-btn active" data-set-lang="bn" aria-label="বাংলা ভাষা">বাংলা</button>
+            <button class="lang-btn" data-set-lang="en" aria-label="English language">English</button>
+          </div>
+        </div>
+      </div>
+      <div class="container brand-row">
+        <a href="/" class="brand" aria-label="দৈনিক নিউজ হোমপেজ"><img src="/logo.png" alt="দৈনিক নিউজ" width="500" height="500" /></a>
+        <div class="brand-note"><strong data-bn="জাতীয় সংবাদ · মানুষের কথা" data-en="National news · People's voice">জাতীয় সংবাদ · মানুষের কথা</strong><span data-bn="৬৪ জেলা ও গ্রামবাংলার খবর" data-en="News from 64 districts and rural Bangladesh">৬৪ জেলা ও গ্রামবাংলার খবর</span></div>
+        <form class="header-search" action="/search/" role="search"><label class="sr-only" for="site-search">সংবাদ খুঁজুন</label><input id="site-search" name="q" placeholder="সংবাদ খুঁজুন…" autocomplete="off" /><button type="submit" aria-label="খুঁজুন">⌕</button></form>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">মেনু</button>
+      </div>
+      <nav id="primary-nav" class="primary-nav" aria-label="প্রধান নেভিগেশন">
+        <div class="container nav-scroll"><a href="/" class="home-link">প্রচ্ছদ</a>{categories.map((category) => <a href={`/archive/?category=${encodeURIComponent(category)}`}>{category}</a>)}<a href="/districts/">৬৪ জেলা</a><a href="/archive/">আর্কাইভ</a></div>
+      </nav>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="site-footer">
+      <div class="container footer-grid"><div><img src="/logo.png" alt="দৈনিক নিউজ" width="500" height="500" class="footer-logo" /><p>জাতীয় সংবাদ, ৬৪ জেলা ও গ্রামবাংলার মানুষের কথা তুলে ধরার স্বাধীন ডিজিটাল প্ল্যাটফর্ম।</p></div><div><h2>গুরুত্বপূর্ণ</h2><a href="/districts/">জেলা সংবাদ</a><a href="/archive/">নিউজ আর্কাইভ</a><a href="/search/">সংবাদ অনুসন্ধান</a></div><div><h2>সম্পাদকীয়</h2><a href="#">আমাদের সম্পর্কে</a><a href="#">যোগাযোগ</a><a href="#">গোপনীয়তা নীতি</a></div></div>
+      <div class="copyright">© <span id="copyright-year"></span> দৈনিক নিউজ। সর্বস্বত্ব সংরক্ষিত।</div>
+    </footer>
     <script is:inline>
-      (function () {
-        'use strict';
-        try {
-          var nav = document.getElementById('navbar');
-          var ticking = false;
-          function onScroll() {
-            if (!nav) return;
-            if (window.scrollY > 20) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
-            ticking = false;
-          }
-          window.addEventListener('scroll', function () {
-            if (!ticking) {
-              ticking = true;
-              requestAnimationFrame(onScroll);
-            }
-          }, { passive: true });
-          onScroll();
-        } catch (err) {}
-      })();
+      const bnDigits = n => String(n).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+      const now = new Date();
+      const opts = { timeZone:'Asia/Dhaka', year:'numeric', month:'long', day:'numeric', weekday:'long' };
+      const bnEl = document.getElementById('date-bn');
+      const enEl = document.getElementById('date-en');
+      const hijriEl = document.getElementById('date-hijri');
+      if (bnEl) bnEl.textContent = new Intl.DateTimeFormat('bn-BD', opts).format(now);
+      if (enEl) enEl.textContent = new Intl.DateTimeFormat('en-GB', {timeZone:'Asia/Dhaka',day:'2-digit',month:'long',year:'numeric'}).format(now);
+      if (hijriEl) { try { hijriEl.textContent = new Intl.DateTimeFormat('bn-BD-u-ca-islamic', {timeZone:'Asia/Dhaka',day:'numeric',month:'long',year:'numeric'}).format(now) + ' হিজরি'; } catch(e) { hijriEl.textContent='হিজরি তারিখ'; } }
+      const year = document.getElementById('copyright-year'); if(year) year.textContent = bnDigits(now.getFullYear());
+      const menu = document.querySelector('.menu-toggle'); const nav = document.getElementById('primary-nav');
+      menu?.addEventListener('click', () => { const open = menu.getAttribute('aria-expanded') === 'true'; menu.setAttribute('aria-expanded', String(!open)); nav?.classList.toggle('open', !open); });
+      function setLanguage(lang) { document.documentElement.dataset.lang=lang; document.documentElement.lang=lang; localStorage.setItem('dainik-lang',lang); document.querySelectorAll('[data-bn][data-en]').forEach(el => { el.textContent = el.dataset[lang]; }); document.querySelectorAll('[data-set-lang]').forEach(b=>b.classList.toggle('active',b.dataset.setLang===lang)); }
+      document.querySelectorAll('[data-set-lang]').forEach(b=>b.addEventListener('click',()=>setLanguage(b.dataset.setLang)));
+      setLanguage(localStorage.getItem('dainik-lang') || 'bn');
+      const weather = document.getElementById('weather-chip');
+      fetch('https://api.open-meteo.com/v1/forecast?latitude=23.81&longitude=90.41&current=temperature_2m,weather_code&timezone=Asia%2FDhaka').then(r=>r.json()).then(d=>{ if(weather && d.current) weather.textContent=`ঢাকা · ${bnDigits(Math.round(d.current.temperature_2m))}°সে`; }).catch(()=>{});
     </script>
   </body>
 </html>
