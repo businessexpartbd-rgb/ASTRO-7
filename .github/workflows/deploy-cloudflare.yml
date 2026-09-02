@@ -45,3 +45,9 @@ jobs:
 
       - name: Verify premium upgrade
         run: npm run verify:premium
+
+      - name: Verify Creavix recovery integrity
+        run: npm run verify:integrity
+
+      - name: Validate Cloudflare Worker bundle
+        run: npm run verify:cloudflare
