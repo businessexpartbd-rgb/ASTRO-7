@@ -1,4 +1,4 @@
-name: Deploy Creavix to Cloudflare
+name: Validate Creavix build
 
 on:
   push:
@@ -7,20 +7,18 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: creavix-production
+  group: creavix-validation
   cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-  deploy:
-    name: Build and deploy existing Worker
+  validate:
+    name: Build and verify Creavix
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       ASTRO_TELEMETRY_DISABLED: "1"
       WRANGLER_SEND_METRICS: "false"
     steps:
@@ -39,5 +37,11 @@ jobs:
       - name: Build Astro production assets
         run: npm run build
 
-      - name: Deploy existing Creavix Worker
-        run: npx wrangler@4.125.0 deploy
+      - name: Verify routes
+        run: npm run verify:routes
+
+      - name: Verify reviews
+        run: npm run verify:reviews
+
+      - name: Verify premium upgrade
+        run: npm run verify:premium
