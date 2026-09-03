@@ -2,6 +2,9 @@
 (function () {
   'use strict';
   try {
+    var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var saveData = Boolean(connection && connection.saveData);
+    var slowConnection = Boolean(connection && /(^|-)2g$/.test(connection.effectiveType || ''));
     var meta = document.getElementById('viewport-meta');
     function isDesktopMode() {
       var w = window.innerWidth || document.documentElement.clientWidth || 0;
@@ -60,6 +63,7 @@
         if (img.closest('header, .navbar, .logo, .topbar')) continue;
         img.setAttribute('loading', 'lazy');
         if (!img.getAttribute('decoding')) img.setAttribute('decoding', 'async');
+        if (!img.getAttribute('fetchpriority')) img.setAttribute('fetchpriority', 'low');
       }
     }
     markLazyImages();
@@ -99,6 +103,7 @@
 
     var prefetched = Object.create(null);
     function prefetch(href) {
+      if (saveData || slowConnection) return;
       if (!href || prefetched[href]) return;
       if (href.indexOf('http') === 0 && href.indexOf(location.origin) !== 0) return;
       if (href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0 || href.indexOf('wa.me') !== -1)
@@ -276,9 +281,23 @@
       });
     }
 
+    /* Pause decorative work outside the viewport without changing its visible motion. */
+    function pauseOffscreenMotion() {
+      if (!('IntersectionObserver' in window)) return;
+      var areas = document.querySelectorAll('main > section, main section[data-motion-region], .fvs-panel, .brand-cinema');
+      if (!areas.length) return;
+      var motionObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          entry.target.classList.toggle('perf-offscreen', !entry.isIntersecting);
+        });
+      }, { rootMargin: '160px 0px', threshold: 0 });
+      areas.forEach(function (area) { motionObserver.observe(area); });
+    }
+
     function boot() {
       runCountUps();
       initMagnetCards();
+      pauseOffscreenMotion();
     }
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', boot, { once: true });
@@ -286,18 +305,31 @@
       boot();
     }
 
+    var videoHostsWarmed = false;
     function warmVideoHosts() {
+      if (videoHostsWarmed) return;
+      videoHostsWarmed = true;
       ['https://www.youtube-nocookie.com', 'https://i.ytimg.com'].forEach(function (origin) {
         var l = document.createElement('link');
-        l.rel = 'dns-prefetch';
+        l.rel = 'preconnect';
         l.href = origin;
+        l.crossOrigin = 'anonymous';
         document.head.appendChild(l);
       });
     }
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(warmVideoHosts, { timeout: 2500 });
-    } else {
-      setTimeout(warmVideoHosts, 1800);
+    var videoArea = document.querySelector('.fvs-panel, .video-gallery, .svc-videos, [data-video-gallery]');
+    if (videoArea && !saveData && 'IntersectionObserver' in window) {
+      var videoHostObserver = new IntersectionObserver(function (entries) {
+        if (entries.some(function (entry) { return entry.isIntersecting; })) {
+          warmVideoHosts();
+          videoHostObserver.disconnect();
+        }
+      }, { rootMargin: '360px 0px', threshold: 0 });
+      videoHostObserver.observe(videoArea);
+    }
+    if (videoArea) {
+      videoArea.addEventListener('pointerdown', warmVideoHosts, { passive: true, once: true });
+      videoArea.addEventListener('focusin', warmVideoHosts, { passive: true, once: true });
     }
 
     document.documentElement.classList.add('js-ready');

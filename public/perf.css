@@ -7,7 +7,7 @@ section:not(.hero-premium):not(.topbar),
 .ct-sec,
 .bl-sec {
   content-visibility: auto;
-  contain-intrinsic-size: 1px 720px;
+  contain-intrinsic-size: auto 720px;
 }
 
 .navbar,
@@ -20,6 +20,19 @@ img {
 }
 img[loading='lazy'] {
   decoding: async;
+}
+
+/* Decorative animation keeps its exact timing, but consumes no frames off-screen. */
+.perf-offscreen *,
+.perf-offscreen *::before,
+.perf-offscreen *::after {
+  animation-play-state: paused !important;
+}
+
+html[data-page-hidden] *,
+html[data-page-hidden] *::before,
+html[data-page-hidden] *::after {
+  animation-play-state: paused !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {

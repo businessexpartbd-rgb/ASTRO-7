@@ -4,7 +4,7 @@ const { src } = Astro.props;
 ---
 <!-- One artwork standard, copied from the original Video Editing card. -->
 <span class="service-card-art" data-service-card-art aria-hidden="true">
-  <img src={src} alt="" width="320" height="320" loading="lazy" decoding="async" />
+  <img src={src} alt="" width="320" height="320" loading="lazy" decoding="async" fetchpriority="low" />
 </span>
 <style>
   .service-card-art{position:relative;display:grid;place-items:center;flex-shrink:0;width:112px;height:112px;margin:.05rem 0 .7rem;background:transparent;border:0;overflow:visible;isolation:isolate;animation:service-art-float 5.2s cubic-bezier(.45,0,.55,1) infinite}

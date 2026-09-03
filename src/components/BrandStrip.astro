@@ -21,7 +21,7 @@ const secondRow = logos.filter((_, index) => index % 2 === 1);
     <div class="logo-row logo-row--forward" data-logo-row>
       {[...firstRow, ...firstRow].map((logo, index) => (
         <span class="logo-slot" aria-hidden={index >= firstRow.length ? 'true' : undefined} data-logo-slot>
-          <img src={logo.src} alt={index >= firstRow.length ? '' : logo.alt} width="240" height="100" loading="lazy" decoding="async" />
+          <img src={logo.src} alt={index >= firstRow.length ? '' : logo.alt} width="240" height="100" loading="lazy" decoding="async" fetchpriority="low" />
         </span>
       ))}
     </div>
@@ -31,7 +31,7 @@ const secondRow = logos.filter((_, index) => index % 2 === 1);
     <div class="logo-row logo-row--reverse" data-logo-row>
       {[...secondRow, ...secondRow].map((logo) => (
         <span class="logo-slot" data-logo-slot>
-          <img src={logo.src} alt="" width="240" height="100" loading="lazy" decoding="async" />
+          <img src={logo.src} alt="" width="240" height="100" loading="lazy" decoding="async" fetchpriority="low" />
         </span>
       ))}
     </div>

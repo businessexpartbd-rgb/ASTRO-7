@@ -11,6 +11,7 @@
     "verify:routes": "node scripts/verify-route-quality.mjs",
     "verify:reviews": "node scripts/verify-reviews.mjs",
     "verify:premium": "node scripts/verify-premium-upgrade.mjs",
+    "verify:performance": "node scripts/verify-performance.mjs",
     "verify:integrity": "node scripts/verify-creavix-integrity.mjs",
     "verify:cloudflare": "wrangler deploy --dry-run --outdir .wrangler/verification",
     "preview": "astro preview",

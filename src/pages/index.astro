@@ -145,7 +145,7 @@ const devToolTeaser = [
       <div class="ai-tools-grid" aria-label="AI platforms used by Creavix iT Solution">
         {aiTools.map((tool, i) => (
           <a class="ai-tool-card reveal" href={tool.href} target="_blank" rel="noopener noreferrer" aria-label={`Open the official ${tool.name} website`} style={`--tool-index:${i}`}>
-            <span class="ai-tool-logo"><img src={tool.icon} alt={`${tool.name} official logo`} width="64" height="64" loading="lazy" decoding="async" /></span>
+            <span class="ai-tool-logo"><img src={tool.icon} alt={`${tool.name} official logo`} width="64" height="64" loading="lazy" decoding="async" fetchpriority="low" /></span>
             <span class="ai-tool-copy"><strong>{tool.name}</strong><small>{tool.role}</small></span>
             <span class="ai-tool-arrow" aria-hidden="true">↗</span>
           </a>
@@ -200,7 +200,7 @@ const devToolTeaser = [
         </div>
         <div class="dev-stack-logos" aria-label="Selected AI development platforms">
           {devToolTeaser.map((tool) => (
-            <span class="dev-stack-chip"><span><img src={tool.icon} alt={`${tool.name} official logo`} width="30" height="30" loading="lazy" decoding="async" /></span><b>{tool.name}</b></span>
+            <span class="dev-stack-chip"><span><img src={tool.icon} alt={`${tool.name} official logo`} width="30" height="30" loading="lazy" decoding="async" fetchpriority="low" /></span><b>{tool.name}</b></span>
           ))}
         </div>
         <a class="dev-stack-link" href="/services/web-development#ai-builders">Explore our development stack <span aria-hidden="true">→</span></a>

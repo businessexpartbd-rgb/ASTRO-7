@@ -36,7 +36,7 @@ const title = PAGE_SEO[pathname]?.title || suppliedTitle;
 const description = PAGE_SEO[pathname]?.description || suppliedDescription;
 const segments = pathname.split('/').filter(Boolean);
 const pageId = `${canonical}#webpage`;
-const perfV = '20260828brand1';
+const perfV = '20260903speed1';
 
 const compact = (value: string, limit: number) => {
   if (value.length <= limit) return value;
@@ -213,7 +213,6 @@ const jsonLd = {
 
     <link rel="dns-prefetch" href="https://i.ytimg.com" />
     <link rel="dns-prefetch" href="https://www.youtube-nocookie.com" />
-    <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
     {pathname === '/' && <link rel="preload" as="image" href="/media/hero-studio-bangladesh-480.webp" fetchpriority="high" />}
 
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />

@@ -32,7 +32,7 @@ const seoDescription =
       <div class="pf-hero-mosaic reveal" aria-hidden="true">
         {SHOWCASES[0].ids.slice(0, 4).map((id, i) => (
           <div class={`pf-mosaic-item m${i + 1}`}>
-            <img src={ytThumb(id)} alt="" loading="lazy" width="320" height="180" />
+            <img src={ytThumb(id)} alt="" loading="lazy" decoding="async" fetchpriority="low" width="320" height="180" />
           </div>
         ))}
       </div>
@@ -76,7 +76,7 @@ const seoDescription =
                 aria-label={`Play ${cat.title} video`}
               >
                 <div class="pf-thumb">
-                  <img src={ytThumb(id)} alt={`${cat.title} sample`} loading="lazy" width="480" height="360" />
+                  <img src={ytThumb(id)} alt={`${cat.title} sample`} loading="lazy" decoding="async" fetchpriority="low" width="480" height="360" />
                   <span class="pf-play" aria-hidden="true">▶</span>
                 </div>
                 <div class="pf-card-meta">

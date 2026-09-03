@@ -46,6 +46,9 @@ jobs:
       - name: Verify premium upgrade
         run: npm run verify:premium
 
+      - name: Verify mobile and desktop performance safeguards
+        run: npm run verify:performance
+
       - name: Verify Creavix recovery integrity
         run: npm run verify:integrity
 

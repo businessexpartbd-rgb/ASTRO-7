@@ -100,7 +100,7 @@ const showVideos = videoIds.length > 0;
               data-format={videoFormat}
               aria-label="Play portfolio video"
             >
-              <img src={ytThumb(vid)} alt="" width="480" height="270" loading="lazy" decoding="async" class="svc-video-thumb" />
+              <img src={ytThumb(vid)} alt="" width="480" height="270" loading="lazy" decoding="async" fetchpriority="low" class="svc-video-thumb" />
               <span class="svc-play" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
               </span>

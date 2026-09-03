@@ -227,7 +227,7 @@ const floatIcons = [
         {aiBuilders.map((tool, i) => (
           <a class="ai-builder-card" href={tool.href} target="_blank" rel="noopener noreferrer" aria-label={`View official ${tool.name} pricing`} style={`--builder-tone:${tool.tone};--builder-index:${i}`}>
             <span class="ai-builder-logo">
-              <img src={tool.icon} alt={`${tool.name} logo`} width="48" height="48" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" />
+              <img src={tool.icon} alt={`${tool.name} logo`} width="48" height="48" loading="lazy" decoding="async" fetchpriority="low" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" />
               <b class="ai-builder-fallback" style="display:none">{tool.name.charAt(0)}</b>
             </span>
             <span class="ai-builder-copy"><strong>{tool.name}</strong><small>{tool.desc}</small></span>
@@ -292,7 +292,7 @@ const floatIcons = [
       <div class="plat-grid top">
         {platformsTop.map((p) => (
           <a class="plat-card top" href={p.href} target="_blank" rel="noopener noreferrer">
-            <img class="plat-img" src={p.icon} alt="" width="36" height="36" loading="lazy" />
+            <img class="plat-img" src={p.icon} alt="" width="36" height="36" loading="lazy" decoding="async" fetchpriority="low" />
             <div>
               <strong>{p.name}</strong>
               <span>{p.desc}</span>
@@ -304,7 +304,7 @@ const floatIcons = [
       <div class="plat-grid more">
         {platformsMore.map((p) => (
           <a class="plat-card" href={p.href} target="_blank" rel="noopener noreferrer">
-            <img class="plat-img sm" src={p.icon} alt="" width="28" height="28" loading="lazy" />
+            <img class="plat-img sm" src={p.icon} alt="" width="28" height="28" loading="lazy" decoding="async" fetchpriority="low" />
             <div>
               <strong>{p.name}</strong>
               <span>{p.desc}</span>
@@ -334,6 +334,8 @@ const floatIcons = [
                 width="36"
                 height="36"
                 loading="lazy"
+                decoding="async"
+                fetchpriority="low"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
               />
               <span class="plat-letter fallback" style="display:none">{d.name.charAt(0)}</span>

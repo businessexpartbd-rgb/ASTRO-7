@@ -185,10 +185,10 @@ export default {
     const headers = new Headers(response.headers);
     const isHashedAstro = path.startsWith('/_astro/');
     const isVersionedCode = /\.(css|js)$/i.test(path) && url.searchParams.has('v');
-    const isStaticMedia = /\.(png|jpg|jpeg|webp|avif|svg|woff2?|ico|gif)$/i.test(path);
+    const isStaticMedia = /\.(png|jpg|jpeg|webp|avif|svg|woff2?|ico|gif|mp4|webm|mov|m4v|mp3|ogg|wav)$/i.test(path);
     const isDocument = path === '/' || path.endsWith('.html') || !path.includes('.');
     if (isHashedAstro || isVersionedCode) headers.set('Cache-Control', 'public, max-age=31536000, immutable');
-    else if (isStaticMedia) headers.set('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
+    else if (isStaticMedia) headers.set('Cache-Control', 'public, max-age=604800, stale-while-revalidate=2592000');
     else if (isDocument) {
       headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
       headers.set('CDN-Cache-Control', 'public, max-age=600, stale-while-revalidate=86400');

@@ -211,7 +211,7 @@ const faqs = [
       <div class="tech-grid">
         {tech.map((t) => (
           <div class="tech-item">
-            <img src={t.icon} alt="" width="36" height="36" loading="lazy" />
+            <img src={t.icon} alt="" width="36" height="36" loading="lazy" decoding="async" fetchpriority="low" />
             <span>{t.name}</span>
           </div>
         ))}

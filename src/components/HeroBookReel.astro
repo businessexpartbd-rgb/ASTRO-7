@@ -13,7 +13,7 @@ const steps = ['Studio opening', 'AI enhancement', 'Image to video', 'Cinematic 
   <div class="vs-window">
     <div class="vs-titlebar">
       <div class="vs-dots" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="vs-brand"><img src="/media/creavix-original-logo-56.webp" alt="" width="28" height="28" /><strong>CREAVIX STUDIO</strong></div>
+      <div class="vs-brand"><img src="/media/creavix-original-logo-56.webp" alt="" width="28" height="28" loading="eager" decoding="async" fetchpriority="high" /><strong>CREAVIX STUDIO</strong></div>
       <div class="vs-live"><i></i> LIVE WORKFLOW</div>
     </div>
 
@@ -36,8 +36,8 @@ const steps = ['Studio opening', 'AI enhancement', 'Image to video', 'Cinematic 
       <div class="vs-panel" data-scene="1">
         <div class="enhance-lab">
           <span class="scene-kicker">02 · AI image enhancement</span>
-          <div class="compare-stage"><div class="compare-side"><img src={heroPosters[0]} srcset={`${heroSmall(heroPosters[0])} 480w, ${heroPosters[0]} 960w`} sizes="350px" alt="" width="480" height="360" loading="lazy" /><b>ORIGINAL</b></div><div class="compare-side enhanced"><img src={heroPosters[1]} srcset={`${heroSmall(heroPosters[1])} 480w, ${heroPosters[1]} 960w`} sizes="350px" alt="" width="480" height="360" loading="lazy" /><b>ENHANCED</b></div><i class="compare-scan"></i></div>
-          <div class="ai-mini-tools"><span><b>ChatGPT</b> Concept</span><span><img src="/brands/googlegemini.svg" alt="" />Gemini</span><span><b>G</b> Grok</span><span><b>◆</b> Identity Lock</span></div>
+          <div class="compare-stage"><div class="compare-side"><img src={heroPosters[0]} srcset={`${heroSmall(heroPosters[0])} 480w, ${heroPosters[0]} 960w`} sizes="350px" alt="" width="480" height="360" loading="lazy" decoding="async" fetchpriority="low" /><b>ORIGINAL</b></div><div class="compare-side enhanced"><img src={heroPosters[1]} srcset={`${heroSmall(heroPosters[1])} 480w, ${heroPosters[1]} 960w`} sizes="350px" alt="" width="480" height="360" loading="lazy" decoding="async" fetchpriority="low" /><b>ENHANCED</b></div><i class="compare-scan"></i></div>
+          <div class="ai-mini-tools"><span><b>ChatGPT</b> Concept</span><span><img src="/brands/googlegemini.svg" alt="" loading="lazy" decoding="async" fetchpriority="low" />Gemini</span><span><b>G</b> Grok</span><span><b>◆</b> Identity Lock</span></div>
         </div>
       </div>
 
@@ -53,9 +53,9 @@ const steps = ['Studio opening', 'AI enhancement', 'Image to video', 'Cinematic 
             <div class="core-logo">AI</div>
           </div>
           <div class="frame-stack" aria-hidden="true">
-            <i><img src={heroSmall(heroPosters[1])} alt="" width="480" height="360" loading="lazy" decoding="async" /></i>
-            <i><img src={heroSmall(heroPosters[2])} alt="" width="480" height="360" loading="lazy" decoding="async" /></i>
-            <i><img src={heroSmall(heroPosters[0])} alt="" width="480" height="360" loading="lazy" decoding="async" /></i>
+            <i><img src={heroSmall(heroPosters[1])} alt="" width="480" height="360" loading="lazy" decoding="async" fetchpriority="low" /></i>
+            <i><img src={heroSmall(heroPosters[2])} alt="" width="480" height="360" loading="lazy" decoding="async" fetchpriority="low" /></i>
+            <i><img src={heroSmall(heroPosters[0])} alt="" width="480" height="360" loading="lazy" decoding="async" fetchpriority="low" /></i>
           </div>
         </div>
       </div>
@@ -77,7 +77,7 @@ const steps = ['Studio opening', 'AI enhancement', 'Image to video', 'Cinematic 
       <div class="vs-panel" data-scene="4">
         <div class="edit-suite">
           <div class="edit-preview">
-            <img src={heroSmall(heroPosters[2])} alt="" width="480" height="360" loading="lazy" decoding="async" />
+            <img src={heroSmall(heroPosters[2])} alt="" width="480" height="360" loading="lazy" decoding="async" fetchpriority="low" />
             <div class="play-icon" aria-hidden="true"></div>
           </div>
           <div class="edit-controls">
@@ -95,7 +95,7 @@ const steps = ['Studio opening', 'AI enhancement', 'Image to video', 'Cinematic 
 
       <div class="vs-panel" data-scene="5">
         <div class="quality-lab">
-          <img src={heroPosters[2]} srcset={`${heroSmall(heroPosters[2])} 480w, ${heroPosters[2]} 960w`} sizes="(max-width: 899px) 350px, 480px" alt="Creavix team reviewing final production" width="960" height="540" loading="lazy" />
+          <img src={heroPosters[2]} srcset={`${heroSmall(heroPosters[2])} 480w, ${heroPosters[2]} 960w`} sizes="(max-width: 899px) 350px, 480px" alt="Creavix team reviewing final production" width="960" height="540" loading="lazy" decoding="async" fetchpriority="low" />
           <div class="quality-copy"><span class="scene-kicker">06 · Human quality control</span><strong>AI Precision × Human Creativity</strong></div>
           <div class="quality-grid"><span>✓ Face consistency</span><span>✓ Product accuracy</span><span>✓ Natural motion</span><span>✓ Brand colour</span><span>✓ Sound sync</span><span>✓ Final review</span></div>
         </div>
@@ -139,15 +139,15 @@ const steps = ['Studio opening', 'AI enhancement', 'Image to video', 'Cinematic 
     <span class="editor-node node-pr"><i>Pr</i><b>Premiere Pro</b></span>
     <span class="editor-node node-ae"><i>Ae</i><b>After Effects</b></span>
     <span class="editor-node node-cap"><i>✂</i><b>CapCut</b></span>
-    <span class="editor-node node-film"><i><img src="/brands/wondersharefilmora.svg" alt="" width="20" height="20" /></i><b>Filmora</b></span>
+    <span class="editor-node node-film"><i><img src="/brands/wondersharefilmora.svg" alt="" width="20" height="20" loading="lazy" decoding="async" fetchpriority="low" /></i><b>Filmora</b></span>
   </div>
   <div class="tool-orbit" aria-label="Creative production tools">
-    <span class="tool-badge wa"><i><img src="/brands/whatsapp.svg" alt="" /></i>WhatsApp</span>
+    <span class="tool-badge wa"><i><img src="/brands/whatsapp.svg" alt="" loading="lazy" decoding="async" fetchpriority="low" /></i>WhatsApp</span>
     <span class="tool-badge pr"><i>Pr</i>Premiere Pro</span>
     <span class="tool-badge ae"><i>Ae</i>After Effects</span>
     <span class="tool-badge cap"><i>✂</i>CapCut</span>
-    <span class="tool-badge film"><i><img src="/brands/wondersharefilmora.svg" alt="" /></i>Filmora</span>
-    <span class="tool-badge gem"><i><img src="/brands/googlegemini.svg" alt="" /></i>Gemini</span>
+    <span class="tool-badge film"><i><img src="/brands/wondersharefilmora.svg" alt="" loading="lazy" decoding="async" fetchpriority="low" /></i>Filmora</span>
+    <span class="tool-badge gem"><i><img src="/brands/googlegemini.svg" alt="" loading="lazy" decoding="async" fetchpriority="low" /></i>Gemini</span>
     <span class="tool-badge grok"><i>G</i>Grok</span>
     <span class="tool-badge kling"><i>K</i>Kling</span>
     <span class="tool-badge veo"><i>V</i>Veo</span>

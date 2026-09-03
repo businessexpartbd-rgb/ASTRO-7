@@ -27,18 +27,18 @@ const brands = [
       <div class="stage-viewport">
         <div class="brand-mosaic is-active" data-brand-mosaic>
           {brands.slice(0, 4).map((brand, index) => (
-            <figure style={`--mosaic-index:${index};--accent:${brand.accent}`}><img src={brand.image} alt={`${brand.name} brand identity preview`} width="900" height="1350" loading={index < 2 ? 'eager' : 'lazy'} decoding="async" /><figcaption>{brand.name}</figcaption></figure>
+            <figure style={`--mosaic-index:${index};--accent:${brand.accent}`}><img src={brand.image} alt={`${brand.name} brand identity preview`} width="900" height="1350" loading="lazy" decoding="async" fetchpriority="low" /><figcaption>{brand.name}</figcaption></figure>
           ))}
           <div class="mosaic-title"><span>Selected identities</span><strong>Four brands. Four visual worlds.</strong></div>
         </div>
 
         <figure class="brand-focus" data-brand-focus>
-          <div class="focus-frame"><img data-brand-image src={brands[0].image} alt="Datara complete brand identity" width="900" height="1350" decoding="async" /></div>
+          <div class="focus-frame"><img data-brand-image src={brands[0].image} alt="Datara complete brand identity" width="900" height="1350" loading="lazy" decoding="async" fetchpriority="low" /></div>
           <figcaption><span data-brand-label>{brands[0].label}</span><strong data-brand-caption>{brands[0].name}</strong></figcaption>
         </figure>
 
         <div class="brand-finale" data-brand-finale>
-          {brands.map((brand) => <img src={brand.image} alt="" width="900" height="1350" loading="lazy" decoding="async" />)}
+          {brands.map((brand) => <img src={brand.image} alt="" width="900" height="1350" loading="lazy" decoding="async" fetchpriority="low" />)}
           <div><small>Complete brand universe</small><strong>Built to be remembered.</strong></div>
         </div>
         <div class="stage-scan"></div>

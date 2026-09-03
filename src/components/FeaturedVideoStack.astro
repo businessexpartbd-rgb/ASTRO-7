@@ -22,7 +22,7 @@ const youtubeMark = 'M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.
           <a class="fvs-watch" data-watch data-vid={v.id} href={`https://www.youtube.com/watch?v=${v.id}`}
             target="_blank" rel="noopener noreferrer" aria-label={`Play cinematic video ${v.n}`}>
             <img class="fvs-poster" src={v.thumb} alt="" width="480" height="360"
-              loading="lazy" decoding="async" />
+              loading="lazy" decoding="async" fetchpriority="low" />
             <span class="fvs-shade" aria-hidden="true"></span>
             <span class="fvs-play" aria-hidden="true">
               <span class="fvs-play-glass">

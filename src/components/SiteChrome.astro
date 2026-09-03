@@ -18,13 +18,13 @@ const waDisplay = '01890-484355';
         <button type="button" id="support-motion-toggle" aria-label="Pause helper animation" aria-pressed="false" title="Pause helper animation" hidden><span class="support-pause-icon" aria-hidden="true">Ⅱ</span><span class="support-play-icon" aria-hidden="true">▶</span></button>
       </div>
       <button type="button" class="support-fab" id="support-open" aria-label="Open Creavix Help Center — automated assistant" aria-controls="support-panel" aria-expanded="false">
-        <span class="support-robot-look" id="support-robot-look"><span class="support-robot-float"><img src="/brands/help-robot.webp" alt="" width="64" height="64" decoding="async" draggable="false" /></span></span>
+        <span class="support-robot-look" id="support-robot-look"><span class="support-robot-float"><img src="/brands/help-robot.webp" alt="" width="64" height="64" loading="lazy" decoding="async" fetchpriority="low" draggable="false" /></span></span>
       </button>
     </div>
   </div>
   <div class="support-panel" id="support-panel" hidden aria-hidden="true" role="dialog" aria-labelledby="support-title">
     <div class="support-head">
-      <div class="support-identity"><img src="/brands/help-robot.webp" alt="" width="42" height="42" decoding="async" /><div class="support-brand"><strong id="support-title">Creavix Help Center</strong><span class="support-status"><span id="support-status-text">Instant service guide</span></span></div></div>
+      <div class="support-identity"><img src="/brands/help-robot.webp" alt="" width="42" height="42" loading="lazy" decoding="async" fetchpriority="low" /><div class="support-brand"><strong id="support-title">Creavix Help Center</strong><span class="support-status"><span id="support-status-text">Instant service guide</span></span></div></div>
       <button type="button" class="support-close" id="support-close" aria-label="Close Help Center">×</button>
     </div>
     <div class="support-body" id="support-body" aria-live="polite">
