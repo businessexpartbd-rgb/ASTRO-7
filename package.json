@@ -12,6 +12,7 @@
     "verify:reviews": "node scripts/verify-reviews.mjs",
     "verify:premium": "node scripts/verify-premium-upgrade.mjs",
     "verify:performance": "node scripts/verify-performance.mjs",
+    "verify:ai-tools": "node scripts/verify-ai-tool-explorer.mjs",
     "verify:integrity": "node scripts/verify-creavix-integrity.mjs",
     "verify:cloudflare": "wrangler deploy --dry-run --outdir .wrangler/verification",
     "preview": "astro preview",

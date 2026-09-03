@@ -1,0 +1,226 @@
+---
+const tools = [
+  {
+    name: 'Kling AI', role: 'Cinematic video', icon: '/ai-tools/kling-official.svg', href: 'https://app.klingai.com/global/',
+    label: 'AI FILM PRODUCTION', accent: '#2563eb', accent2: '#06b6d4', glow: 'rgba(37,99,235,.22)',
+    summary: 'Turns prompts and reference images into cinematic video with controlled motion, framing and visual continuity.',
+    capabilities: ['Text, image and reference-to-video', 'Multi-shot scenes with camera direction', 'Character consistency and native audio'],
+    bestFor: 'Product films, story-driven ads and cinematic social content.',
+    workflow: 'We use Kling for realistic motion, product accuracy and directed multi-shot sequences.'
+  },
+  {
+    name: 'Hunyuan', role: 'AI video model', icon: '/ai-tools/hunyuan-official.svg', href: 'https://aivideo.hunyuan.tencent.com/',
+    label: 'GENERATIVE VIDEO MODEL', accent: '#1677ff', accent2: '#38bdf8', glow: 'rgba(22,119,255,.22)',
+    summary: 'Tencent’s generative video model creates moving scenes from text or image guidance with strong visual detail.',
+    capabilities: ['Prompt-to-video generation', 'Image-guided movement and scene creation', 'Complex subjects and cinematic dynamics'],
+    bestFor: 'Concept shots, atmospheric scenes and visual experimentation.',
+    workflow: 'We use Hunyuan when a campaign needs rich environments, natural motion or alternate visual concepts.'
+  },
+  {
+    name: 'ElevenLabs', role: 'Voice & dubbing', icon: '/ai-tools/elevenlabs-official.svg', href: 'https://elevenlabs.io/',
+    label: 'VOICE & AUDIO', accent: '#0b0f19', accent2: '#f97316', glow: 'rgba(249,115,22,.2)',
+    summary: 'Creates natural speech and multilingual dubbing with control over voice, emotion, timing and delivery.',
+    capabilities: ['Human-like text-to-speech', 'Consent-based voice cloning and design', 'Translation, dubbing and sound generation'],
+    bestFor: 'Commercial voiceovers, localization, explainers and narration.',
+    workflow: 'We pair approved voices with human direction, pronunciation checks and final audio mastering.'
+  },
+  {
+    name: 'Gemini', role: 'Ideas & visuals', icon: '/ai-tools/gemini-official.svg', href: 'https://gemini.google.com/',
+    label: 'MULTIMODAL IDEATION', accent: '#3b82f6', accent2: '#d946ef', glow: 'rgba(59,130,246,.2)',
+    summary: 'Works across text, images and files to develop ideas, understand references and create visual directions.',
+    capabilities: ['Concept and campaign ideation', 'Image understanding and visual generation', 'Writing, research and coding assistance'],
+    bestFor: 'Moodboards, visual planning, creative alternatives and research.',
+    workflow: 'We use Gemini to explore references, refine visual language and build stronger creative options.'
+  },
+  {
+    name: 'ChatGPT', role: 'Creative direction', icon: '/ai-tools/openai-official.svg', href: 'https://chatgpt.com/',
+    label: 'CREATIVE INTELLIGENCE', accent: '#10a37f', accent2: '#2563eb', glow: 'rgba(16,163,127,.21)',
+    summary: 'Supports strategy, writing, research, image creation and technical work in one collaborative workspace.',
+    capabilities: ['Scripts, hooks and campaign strategy', 'Image generation, editing and analysis', 'Research, data and coding workflows'],
+    bestFor: 'Creative direction, production planning and problem solving.',
+    workflow: 'We use ChatGPT to connect the brief, story, shot plan, prompts and production quality checks.'
+  },
+  {
+    name: 'Claude', role: 'Scripts & research', icon: '/ai-tools/claude-official.svg', href: 'https://claude.ai/',
+    label: 'WRITING & ANALYSIS', accent: '#d97745', accent2: '#f59e0b', glow: 'rgba(217,119,69,.22)',
+    summary: 'Helps analyze long documents and develop clear, structured writing, research and technical solutions.',
+    capabilities: ['Long-form script development', 'Document analysis and research synthesis', 'Reasoning, planning and coding support'],
+    bestFor: 'Detailed scripts, research-heavy briefs and structured documents.',
+    workflow: 'We use Claude to strengthen narrative structure, review long material and clarify complex messages.'
+  },
+  {
+    name: 'Higgsfield', role: 'AI video effects', icon: '/ai-tools/higgsfield-official.ico', href: 'https://higgsfield.ai/',
+    label: 'CAMERA & EFFECTS', accent: '#84cc16', accent2: '#0b0f19', glow: 'rgba(132,204,22,.22)',
+    summary: 'An AI-native creative suite focused on cinematic video, virtual camera language and high-impact effects.',
+    capabilities: ['Camera, lens and focal-length control', 'Layered cinematic movement and VFX', 'Consistent characters across shots'],
+    bestFor: 'Scroll-stopping ads, fashion visuals and dynamic hero shots.',
+    workflow: 'We use Higgsfield for intentional camera moves and premium effects that support the story.'
+  },
+  {
+    name: 'Grok', role: 'Image & video ideas', icon: '/ai-tools/grok-official.svg', href: 'https://grok.com/',
+    label: 'REAL-TIME & IMAGINE', accent: '#0b0f19', accent2: '#3b82f6', glow: 'rgba(59,130,246,.2)',
+    summary: 'Combines real-time research and reasoning with conversational image and video generation and editing.',
+    capabilities: ['Current-topic research and analysis', 'Image generation, restyling and editing', 'Text or reference-led video creation'],
+    bestFor: 'Fast concept exploration, topical content and visual variations.',
+    workflow: 'We use Grok to test timely ideas and create alternative visual directions before final production.'
+  },
+  {
+    name: 'HeyGen', role: 'Avatar video', icon: '/ai-tools/heygen-official.ico', href: 'https://www.heygen.com/',
+    label: 'AVATAR & LOCALIZATION', accent: '#ec4899', accent2: '#06b6d4', glow: 'rgba(236,72,153,.2)',
+    summary: 'Creates presenter-style avatar videos and localizes existing videos with translated voice and lip sync.',
+    capabilities: ['AI avatars and talking presenters', 'Voice cloning and video translation', 'Multilingual dubbing with lip sync'],
+    bestFor: 'Explainers, training, spokesperson videos and localization.',
+    workflow: 'We use HeyGen when a brand needs consistent presenters or localized versions without reshooting.'
+  },
+  {
+    name: 'Luma AI', role: 'Generative video', icon: '/ai-tools/luma-official.svg', href: 'https://lumalabs.ai/dream-machine',
+    label: 'DREAM MACHINE', accent: '#2563eb', accent2: '#7c3aed', glow: 'rgba(124,58,237,.2)',
+    summary: 'Generates and transforms expressive video from text and images with cinematic movement and scene control.',
+    capabilities: ['Text-to-video and image-to-video', 'Creative camera motion and visual variation', 'Scene transformation and video modification'],
+    bestFor: 'Stylized brand films, concept scenes and motion experiments.',
+    workflow: 'We use Luma for expressive transitions, imaginative environments and polished visual variations.'
+  }
+];
+---
+<div class="ai-explorer-root" data-ai-explorer>
+  <section id="ai-production-stack" class="ai-stack" aria-labelledby="ai-stack-title">
+    <div class="container">
+    <div class="ai-stack-head reveal">
+      <div>
+        <p class="eyebrow">Our AI Production Stack</p>
+        <h2 id="ai-stack-title">Professional Tools. <span class="brand-accent">Human Creative Direction.</span></h2>
+      </div>
+      <p>Tap any tool to see what it does, where it fits and how Creavix uses it in a professional workflow.</p>
+    </div>
+    <div class="ai-tools-grid" aria-label="Explore AI platforms used by Creavix iT Solution">
+      {tools.map((tool, index) => (
+        <button
+          class="ai-tool-card reveal"
+          type="button"
+          data-ai-open={index}
+          aria-haspopup="dialog"
+          aria-controls="ai-tool-dialog"
+          aria-label={`Learn what ${tool.name} does`}
+          style={`--tool-index:${index};--tool-accent:${tool.accent};--tool-accent-2:${tool.accent2};--tool-glow:${tool.glow}`}
+        >
+          <span class="ai-tool-logo"><img src={tool.icon} alt="" width="64" height="64" loading="lazy" decoding="async" fetchpriority="low" /></span>
+          <span class="ai-tool-copy"><strong>{tool.name}</strong><small>{tool.role}</small></span>
+          <span class="ai-tool-info" aria-hidden="true">i</span>
+          <span class="ai-tool-hint" aria-hidden="true">Tap to explore</span>
+        </button>
+      ))}
+    </div>
+    <p class="ai-stack-note">Explore each platform · Official links are available inside every guide.</p>
+    </div>
+  </section>
+
+  <div class="ai-modal" data-ai-modal hidden aria-hidden="true">
+    <div class="ai-modal-backdrop" data-ai-close></div>
+    <div class="ai-dialog" id="ai-tool-dialog" role="dialog" aria-modal="true" aria-labelledby="ai-dialog-title" aria-describedby="ai-dialog-summary" tabindex="-1">
+      <div class="ai-dialog-beam"></div>
+      <button class="ai-dialog-close" type="button" data-ai-close aria-label="Close tool guide">×</button>
+      <header class="ai-dialog-head">
+        <span class="ai-dialog-logo"><img data-ai-icon alt="" width="76" height="76" loading="lazy" decoding="async" fetchpriority="low" /></span>
+        <div><span class="ai-dialog-label" data-ai-label></span><h3 id="ai-dialog-title" data-ai-name></h3><p data-ai-role></p></div>
+      </header>
+      <div class="ai-dialog-body">
+        <section class="ai-dialog-intro" aria-labelledby="ai-what-title">
+          <span id="ai-what-title">What it does</span>
+          <p id="ai-dialog-summary" data-ai-summary></p>
+        </section>
+        <section class="ai-capability-panel" aria-labelledby="ai-core-title">
+          <span id="ai-core-title">Core capabilities</span>
+          <ul data-ai-capabilities></ul>
+        </section>
+        <div class="ai-use-grid">
+          <section><span>Best for</span><p data-ai-best></p></section>
+          <section><span>Creavix workflow</span><p data-ai-workflow></p></section>
+        </div>
+      </div>
+      <footer class="ai-dialog-actions">
+        <span>Human direction remains at the center.</span>
+        <a data-ai-link href="#" target="_blank" rel="noopener noreferrer">Visit official website <b aria-hidden="true">↗</b></a>
+      </footer>
+    </div>
+  </div>
+  <script type="application/json" data-ai-data set:html={JSON.stringify(tools)}></script>
+</div>
+
+<script is:inline>
+  (function () {
+    'use strict';
+    var root = document.querySelector('[data-ai-explorer]');
+    if (!root || root.dataset.ready) return;
+    root.dataset.ready = '1';
+    var source = root.querySelector('[data-ai-data]');
+    var modal = root.querySelector('[data-ai-modal]');
+    var dialog = root.querySelector('.ai-dialog');
+    if (!source || !modal || !dialog) return;
+    var tools;
+    try { tools = JSON.parse(source.textContent || '[]'); } catch (error) { return; }
+    var previousFocus = null;
+    var previousOverflow = '';
+    var previousRootOverflow = '';
+    var fields = {
+      icon: root.querySelector('[data-ai-icon]'), label: root.querySelector('[data-ai-label]'),
+      name: root.querySelector('[data-ai-name]'), role: root.querySelector('[data-ai-role]'),
+      summary: root.querySelector('[data-ai-summary]'), list: root.querySelector('[data-ai-capabilities]'),
+      best: root.querySelector('[data-ai-best]'), workflow: root.querySelector('[data-ai-workflow]'),
+      link: root.querySelector('[data-ai-link]')
+    };
+    function focusable() { return Array.from(dialog.querySelectorAll('button:not([disabled]),a[href]')); }
+    function open(index, trigger) {
+      var tool = tools[index];
+      if (!tool) return;
+      fields.icon.src = tool.icon; fields.label.textContent = tool.label; fields.name.textContent = tool.name;
+      fields.role.textContent = tool.role; fields.summary.textContent = tool.summary; fields.best.textContent = tool.bestFor;
+      fields.workflow.textContent = tool.workflow; fields.link.href = tool.href;
+      fields.link.setAttribute('aria-label', 'Visit the official ' + tool.name + ' website');
+      fields.list.replaceChildren.apply(fields.list, tool.capabilities.map(function (item, itemIndex) {
+        var li = document.createElement('li'); var mark = document.createElement('b'); var text = document.createElement('span');
+        mark.textContent = String(itemIndex + 1).padStart(2, '0'); text.textContent = item; li.append(mark, text); return li;
+      }));
+      dialog.style.setProperty('--dialog-accent', tool.accent); dialog.style.setProperty('--dialog-accent-2', tool.accent2);
+      dialog.style.setProperty('--dialog-glow', tool.glow); previousFocus = trigger; previousOverflow = document.body.style.overflow;
+      previousRootOverflow = document.documentElement.style.overflow;
+      modal.hidden = false; modal.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; document.documentElement.style.overflow = 'hidden';
+      requestAnimationFrame(function () { modal.classList.add('is-open'); dialog.focus({ preventScroll: true }); });
+    }
+    function close() {
+      if (modal.hidden) return;
+      modal.classList.remove('is-open'); modal.setAttribute('aria-hidden', 'true'); document.body.style.overflow = previousOverflow; document.documentElement.style.overflow = previousRootOverflow;
+      window.setTimeout(function () { modal.hidden = true; if (previousFocus) previousFocus.focus({ preventScroll: true }); }, 240);
+    }
+    root.addEventListener('click', function (event) {
+      var opener = event.target.closest('[data-ai-open]');
+      if (opener) { open(Number(opener.getAttribute('data-ai-open')), opener); return; }
+      if (event.target.closest('[data-ai-close]')) close();
+    });
+    document.addEventListener('keydown', function (event) {
+      if (modal.hidden) return;
+      if (event.key === 'Escape') { event.preventDefault(); close(); return; }
+      if (event.key !== 'Tab') return;
+      var items = focusable(); if (!items.length) return; var first = items[0]; var last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    });
+  })();
+</script>
+
+<style>
+  .ai-stack{position:relative;overflow:hidden;padding:4.25rem 1.25rem;background:radial-gradient(circle at 8% 4%,rgba(234,88,12,.075),transparent 25%),radial-gradient(circle at 92% 12%,rgba(37,99,235,.095),transparent 27%),radial-gradient(circle at 74% 92%,rgba(22,163,74,.065),transparent 23%),linear-gradient(180deg,#fff 0%,#f7faff 52%,#fff 100%);border-block:1px solid rgba(15,23,42,.06)}
+  .ai-stack:before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(15,23,42,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(15,23,42,.018) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,transparent,black 28%,black 72%,transparent)}
+  .ai-stack>.container{position:relative}.ai-stack-head{display:grid;gap:1rem;margin-bottom:1.65rem}.ai-stack-head .eyebrow{margin:0 0 .75rem}.ai-stack-head h2{margin:0;max-width:660px;font-size:clamp(1.7rem,3.5vw,2.7rem);line-height:1.08}.ai-stack-head>p{margin:0;max-width:600px;color:#64748b;line-height:1.7}
+  .ai-tools-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:.72rem}.ai-tool-card{--tool-accent:#2563eb;position:relative;display:grid;width:100%;justify-items:center;align-content:center;gap:.62rem;min-width:0;min-height:158px;padding:1rem .55rem .82rem;-webkit-appearance:none;appearance:none;border:1px solid rgba(15,23,42,.085);border-radius:20px;background:linear-gradient(145deg,rgba(255,255,255,.99),rgba(248,251,255,.93));box-shadow:0 12px 30px rgba(15,23,42,.06),inset 0 1px 0 #fff;color:#0b0f19;text-align:center;font:inherit;cursor:pointer;isolation:isolate;overflow:hidden;transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s,border-color .3s}
+  .ai-tool-card:before{content:'';position:absolute;z-index:-1;inset:0;border-radius:inherit;background:radial-gradient(circle at 50% 16%,var(--tool-glow),transparent 46%),linear-gradient(180deg,transparent 68%,color-mix(in srgb,var(--tool-accent) 6%,transparent));opacity:.48;transition:opacity .3s}.ai-tool-card:after{content:'';position:absolute;left:16%;right:16%;bottom:0;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--tool-accent),var(--tool-accent-2),transparent);opacity:.65}
+  .ai-tool-card:hover,.ai-tool-card:focus-visible{transform:translateY(-5px);border-color:color-mix(in srgb,var(--tool-accent) 38%,white);box-shadow:0 20px 44px var(--tool-glow),inset 0 1px 0 #fff;outline:3px solid transparent}.ai-tool-card:hover:before,.ai-tool-card:focus-visible:before{opacity:.85}.ai-tool-card:focus-visible{outline-color:color-mix(in srgb,var(--tool-accent) 42%,transparent);outline-offset:3px}
+  .ai-tool-logo{width:62px;height:62px;display:grid;place-items:center;overflow:hidden;border:1px solid rgba(15,23,42,.065);border-radius:18px;background:#fff;box-shadow:0 9px 22px rgba(15,23,42,.085),inset 0 1px 0 #fff}.ai-tool-logo img{display:block;width:48px;height:48px;object-fit:contain;transition:transform .35s cubic-bezier(.16,1,.3,1)}.ai-tool-card:hover .ai-tool-logo img,.ai-tool-card:focus-visible .ai-tool-logo img{transform:scale(1.07) rotate(-2deg)}
+  .ai-tool-copy{display:grid;min-width:0;gap:.22rem}.ai-tool-copy strong{font:800 .86rem/1.2 var(--font-h)}.ai-tool-copy small{color:#64748b;font-size:.67rem;line-height:1.32}.ai-tool-info{position:absolute;right:.55rem;top:.55rem;width:25px;height:25px;display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--tool-accent) 22%,white);border-radius:999px;background:rgba(255,255,255,.9);color:var(--tool-accent);font:.85rem/1 Georgia,serif;font-weight:900}.ai-tool-hint{color:var(--tool-accent);font-size:.56rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;opacity:.75}.ai-stack-note{margin:1.1rem 0 0;color:#7c8ba1;font-size:.7rem;line-height:1.55;text-align:center}
+  .ai-modal[hidden]{display:none}.ai-modal{position:fixed;z-index:4000;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:0}.ai-modal-backdrop{position:absolute;inset:0;background:rgba(4,8,18,.68);backdrop-filter:blur(10px);opacity:0;transition:opacity .24s ease}.ai-dialog{--dialog-accent:#2563eb;--dialog-accent-2:#06b6d4;--dialog-glow:rgba(37,99,235,.2);position:relative;width:100%;max-height:90svh;overflow:auto;overscroll-behavior:contain;border:1px solid rgba(255,255,255,.72);border-radius:26px 26px 0 0;background:radial-gradient(circle at 92% 4%,var(--dialog-glow),transparent 34%),linear-gradient(145deg,rgba(255,255,255,.995),rgba(245,249,255,.98));box-shadow:0 -22px 70px rgba(2,6,23,.28);color:#0b0f19;opacity:0;transform:translateY(36px);transition:opacity .24s ease,transform .34s cubic-bezier(.16,1,.3,1);outline:none}.ai-modal.is-open .ai-modal-backdrop,.ai-modal.is-open .ai-dialog{opacity:1}.ai-modal.is-open .ai-dialog{transform:none}.ai-dialog-beam{position:absolute;top:0;left:8%;right:8%;height:3px;border-radius:0 0 5px 5px;background:linear-gradient(90deg,transparent,var(--dialog-accent),var(--dialog-accent-2),transparent)}
+  .ai-dialog-close{position:absolute;z-index:2;top:14px;right:14px;width:44px;height:44px;border:1px solid rgba(15,23,42,.1);border-radius:50%;background:rgba(255,255,255,.88);color:#0b0f19;font:400 1.65rem/1 var(--font-b);cursor:pointer;box-shadow:0 8px 24px rgba(15,23,42,.08)}.ai-dialog-close:hover{color:#fff;background:#0b0f19}.ai-dialog-close:focus-visible{outline:3px solid var(--dialog-accent);outline-offset:2px}
+  .ai-dialog-head{display:grid;grid-template-columns:72px 1fr;align-items:center;gap:1rem;padding:1.65rem 4.3rem 1.2rem 1.25rem;border-bottom:1px solid rgba(15,23,42,.075)}.ai-dialog-logo{display:grid;place-items:center;width:72px;height:72px;border:1px solid rgba(15,23,42,.08);border-radius:21px;background:#fff;box-shadow:0 14px 32px var(--dialog-glow),inset 0 1px 0 #fff}.ai-dialog-logo img{width:54px;height:54px;object-fit:contain}.ai-dialog-label,.ai-dialog-intro>span,.ai-capability-panel>span,.ai-use-grid section>span{display:block;color:var(--dialog-accent);font-size:.6rem;font-weight:900;letter-spacing:.11em;text-transform:uppercase}.ai-dialog-head h3{margin:.16rem 0 .12rem;font:850 clamp(1.45rem,6vw,2rem)/1.08 var(--font-h);letter-spacing:-.045em}.ai-dialog-head p{margin:0;color:#64748b;font-size:.78rem}.ai-dialog-body{display:grid;gap:.9rem;padding:1.05rem 1.25rem 1.2rem}.ai-dialog-intro p{margin:.4rem 0 0;color:#334155;font-size:.86rem;line-height:1.65}.ai-capability-panel{padding:1rem;border:1px solid color-mix(in srgb,var(--dialog-accent) 16%,white);border-radius:18px;background:rgba(255,255,255,.76)}.ai-capability-panel ul{display:grid;gap:.62rem;margin:.7rem 0 0;padding:0;list-style:none}.ai-capability-panel li{display:grid;grid-template-columns:29px 1fr;align-items:center;gap:.68rem}.ai-capability-panel li b{display:grid;place-items:center;width:29px;height:29px;border-radius:9px;background:linear-gradient(135deg,var(--dialog-accent),var(--dialog-accent-2));color:#fff;font-size:.58rem;box-shadow:0 6px 14px var(--dialog-glow)}.ai-capability-panel li span{color:#1e293b;font-size:.78rem;font-weight:700;line-height:1.4}.ai-use-grid{display:grid;gap:.7rem}.ai-use-grid section{padding:.9rem;border:1px solid rgba(15,23,42,.07);border-radius:16px;background:rgba(255,255,255,.66)}.ai-use-grid section:nth-child(2)>span{color:var(--dialog-accent-2)}.ai-use-grid p{margin:.4rem 0 0;color:#475569;font-size:.76rem;line-height:1.55}.ai-dialog-actions{display:grid;gap:.75rem;padding:1rem 1.25rem calc(1rem + env(safe-area-inset-bottom));border-top:1px solid rgba(15,23,42,.075);background:rgba(255,255,255,.64)}.ai-dialog-actions>span{color:#64748b;font-size:.64rem;text-align:center}.ai-dialog-actions a{display:flex;align-items:center;justify-content:center;gap:.55rem;min-height:48px;padding:.75rem 1rem;border-radius:14px;background:linear-gradient(120deg,var(--dialog-accent),var(--dialog-accent-2));color:#fff;font-size:.78rem;font-weight:850;text-decoration:none;box-shadow:0 12px 26px var(--dialog-glow)}.ai-dialog-actions a:hover{filter:saturate(1.1) brightness(.96)}.ai-dialog-actions a:focus-visible{outline:3px solid #0b0f19;outline-offset:3px}
+  @media(min-width:640px){.ai-tools-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:.78rem}.ai-tool-card{min-height:172px;padding:1.05rem .6rem .9rem}.ai-tool-logo{width:66px;height:66px}.ai-tool-logo img{width:51px;height:51px}.ai-use-grid{grid-template-columns:1fr 1fr}.ai-modal{align-items:center;padding:1.5rem}.ai-dialog{max-width:670px;max-height:min(88vh,760px);border-radius:30px;box-shadow:0 30px 100px rgba(2,6,23,.32)}.ai-dialog-head{grid-template-columns:84px 1fr;padding:1.9rem 5rem 1.35rem 1.7rem}.ai-dialog-logo{width:84px;height:84px}.ai-dialog-logo img{width:62px;height:62px}.ai-dialog-body{padding:1.25rem 1.7rem 1.4rem}.ai-dialog-actions{grid-template-columns:1fr auto;align-items:center;padding:1.1rem 1.7rem}.ai-dialog-actions>span{text-align:left}.ai-dialog-actions a{min-width:205px}}
+  @media(min-width:900px){.ai-stack{padding-block:5.5rem}.ai-stack-head{grid-template-columns:1.1fr .9fr;align-items:end}.ai-tools-grid{gap:.9rem}.ai-tool-card{min-height:184px;padding:1.15rem .7rem .95rem}.ai-tool-logo{width:70px;height:70px}.ai-tool-logo img{width:54px;height:54px}.ai-tool-copy strong{font-size:.92rem}.ai-tool-copy small{font-size:.7rem}}
+  @media(max-width:359px){.ai-tools-grid{gap:.55rem}.ai-tool-card{min-height:150px;padding-inline:.35rem}.ai-tool-logo{width:56px;height:56px}.ai-tool-logo img{width:44px;height:44px}.ai-tool-info{width:24px;height:24px;right:.4rem;top:.4rem}.ai-dialog-head{grid-template-columns:62px 1fr;padding-left:1rem}.ai-dialog-logo{width:62px;height:62px}.ai-dialog-logo img{width:46px;height:46px}.ai-dialog-body,.ai-dialog-actions{padding-inline:1rem}}
+  @media(prefers-reduced-motion:reduce){.ai-tool-card,.ai-tool-card:before,.ai-tool-logo img,.ai-modal-backdrop,.ai-dialog{transition:none}.ai-tool-card:hover{transform:none}.ai-tool-card:hover .ai-tool-logo img{transform:none}}
+</style>

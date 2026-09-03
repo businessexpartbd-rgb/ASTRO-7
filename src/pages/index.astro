@@ -19,6 +19,7 @@ import BrandingCinema from '../components/BrandingCinema.astro';
 import EngagementModels from '../components/EngagementModels.astro';
 import ProjectBrief from '../components/ProjectBrief.astro';
 import PromoPopup from '../components/PromoPopup.astro';
+import AIToolExplorer from '../components/AIToolExplorer.astro';
 import { SITE } from '../data/site';
 
 const services = [
@@ -37,18 +38,6 @@ const services = [
 ];
 const primaryServices = services.filter((_, index) => index < 3);
 const supportingServices = services.filter((_, index) => index >= 3);
-const aiTools = [
-  { name: 'Kling AI', role: 'Cinematic video', icon: '/ai-tools/kling-official.svg', href: 'https://kling.ai/' },
-  { name: 'Hunyuan', role: 'AI video model', icon: '/ai-tools/hunyuan-official.svg', href: 'https://aivideo.hunyuan.tencent.com/' },
-  { name: 'ElevenLabs', role: 'Voice & dubbing', icon: '/ai-tools/elevenlabs-official.svg', href: 'https://elevenlabs.io/' },
-  { name: 'Gemini', role: 'Ideas & visuals', icon: '/ai-tools/gemini-official.svg', href: 'https://gemini.google.com/' },
-  { name: 'ChatGPT', role: 'Creative direction', icon: '/ai-tools/openai-official.svg', href: 'https://chatgpt.com/' },
-  { name: 'Claude', role: 'Scripts & research', icon: '/ai-tools/claude-official.svg', href: 'https://claude.ai/' },
-  { name: 'Higgsfield', role: 'AI video effects', icon: '/ai-tools/higgsfield-official.ico', href: 'https://higgsfield.ai/' },
-  { name: 'Grok', role: 'Image & video ideas', icon: '/ai-tools/grok-official.svg', href: 'https://grok.com/' },
-  { name: 'HeyGen', role: 'Avatar video', icon: '/ai-tools/heygen-official.ico', href: 'https://www.heygen.com/' },
-  { name: 'Luma AI', role: 'Generative video', icon: '/ai-tools/luma-official.svg', href: 'https://lumalabs.ai/dream-machine' },
-];
 const homeServiceSchema = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
@@ -133,27 +122,7 @@ const devToolTeaser = [
 
   <FeaturedVideoStack />
 
-  <section id="ai-production-stack" class="ai-stack" aria-labelledby="ai-stack-title">
-    <div class="container">
-      <div class="ai-stack-head reveal">
-        <div>
-          <p class="eyebrow">Our AI Production Stack</p>
-          <h2 id="ai-stack-title">Professional Tools. <span class="brand-accent">Human Creative Direction.</span></h2>
-        </div>
-        <p>We combine leading AI platforms with professional editing to produce human-like videos, voices and campaign-ready visuals.</p>
-      </div>
-      <div class="ai-tools-grid" aria-label="AI platforms used by Creavix iT Solution">
-        {aiTools.map((tool, i) => (
-          <a class="ai-tool-card reveal" href={tool.href} target="_blank" rel="noopener noreferrer" aria-label={`Open the official ${tool.name} website`} style={`--tool-index:${i}`}>
-            <span class="ai-tool-logo"><img src={tool.icon} alt={`${tool.name} official logo`} width="64" height="64" loading="lazy" decoding="async" fetchpriority="low" /></span>
-            <span class="ai-tool-copy"><strong>{tool.name}</strong><small>{tool.role}</small></span>
-            <span class="ai-tool-arrow" aria-hidden="true">↗</span>
-          </a>
-        ))}
-      </div>
-      <p class="ai-stack-note">Official platform links · Account availability and plans are managed by each provider.</p>
-    </div>
-  </section>
+  <AIToolExplorer />
 
   <BrandingCinema />
 
@@ -254,21 +223,6 @@ const devToolTeaser = [
 </Layout>
 
 <style>
-  .ai-stack{position:relative;overflow:hidden;padding:4.25rem 1.25rem;background:radial-gradient(circle at 8% 4%,rgba(234,88,12,.075),transparent 25%),radial-gradient(circle at 92% 12%,rgba(37,99,235,.095),transparent 27%),radial-gradient(circle at 74% 92%,rgba(22,163,74,.065),transparent 23%),linear-gradient(180deg,#fff 0%,#f7faff 52%,#fff 100%);border-block:1px solid rgba(15,23,42,.06)}
-  .ai-stack:before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(15,23,42,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(15,23,42,.018) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,transparent,black 28%,black 72%,transparent)}
-  .ai-stack .container{position:relative}.ai-stack-head{display:grid;gap:1rem;margin-bottom:1.65rem}.ai-stack-head .eyebrow{margin:0 0 .75rem}.ai-stack-head h2{margin:0;max-width:660px;font-size:clamp(1.7rem,3.5vw,2.7rem);line-height:1.08}.ai-stack-head>p{margin:0;max-width:600px;color:#64748b;line-height:1.7}
-  .ai-tools-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:.72rem}
-  .ai-tool-card{position:relative;display:grid;justify-items:center;align-content:center;gap:.65rem;min-width:0;min-height:152px;padding:1rem .55rem;border:1px solid rgba(15,23,42,.085);border-radius:20px;background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(248,251,255,.92));box-shadow:0 12px 30px rgba(15,23,42,.06),inset 0 1px 0 #fff;color:#0b0f19;text-align:center;text-decoration:none;isolation:isolate;transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s,border-color .3s}
-  .ai-tool-card:before{content:'';position:absolute;z-index:-1;inset:0;border-radius:inherit;background:radial-gradient(circle at 50% 18%,rgba(37,99,235,.075),transparent 45%);opacity:0;transition:opacity .3s}
-  .ai-tool-card:hover,.ai-tool-card:focus-visible{transform:translateY(-5px);border-color:rgba(37,99,235,.25);box-shadow:0 20px 44px rgba(37,99,235,.13),inset 0 1px 0 #fff;outline:3px solid transparent}.ai-tool-card:hover:before,.ai-tool-card:focus-visible:before{opacity:1}
-  .ai-tool-card:focus-visible{outline-color:rgba(37,99,235,.35);outline-offset:3px}
-  .ai-tool-logo{width:62px;height:62px;display:grid;place-items:center;overflow:hidden;border:1px solid rgba(15,23,42,.065);border-radius:18px;background:#fff;box-shadow:0 9px 22px rgba(15,23,42,.085),inset 0 1px 0 #fff}
-  .ai-tool-logo img{display:block;width:48px;height:48px;object-fit:contain;transition:transform .35s cubic-bezier(.16,1,.3,1)}.ai-tool-card:hover .ai-tool-logo img,.ai-tool-card:focus-visible .ai-tool-logo img{transform:scale(1.07) rotate(-2deg)}
-  .ai-tool-copy{display:grid;min-width:0;gap:.22rem}.ai-tool-copy strong{font:800 .86rem/1.2 var(--font-h)}.ai-tool-copy small{color:#64748b;font-size:.67rem;line-height:1.32}.ai-tool-arrow{position:absolute;right:.55rem;top:.55rem;width:25px;height:25px;display:grid;place-items:center;border:1px solid rgba(37,99,235,.12);border-radius:999px;background:rgba(255,255,255,.88);color:#2563eb;font-size:.7rem;font-weight:900}.ai-stack-note{margin:1.1rem 0 0;color:#7c8ba1;font-size:.7rem;line-height:1.55;text-align:center}
-  @media(min-width:640px){.ai-tools-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:.78rem}.ai-tool-card{min-height:166px;padding:1.05rem .6rem}.ai-tool-logo{width:66px;height:66px}.ai-tool-logo img{width:51px;height:51px}}
-  @media(min-width:900px){.ai-stack{padding-block:5.5rem}.ai-stack-head{grid-template-columns:1.1fr .9fr;align-items:end}.ai-tools-grid{gap:.9rem}.ai-tool-card{min-height:178px;padding:1.15rem .7rem}.ai-tool-logo{width:70px;height:70px}.ai-tool-logo img{width:54px;height:54px}.ai-tool-copy strong{font-size:.92rem}.ai-tool-copy small{font-size:.7rem}}
-  @media(max-width:359px){.ai-tools-grid{gap:.55rem}.ai-tool-card{min-height:144px;padding-inline:.35rem}.ai-tool-logo{width:56px;height:56px}.ai-tool-logo img{width:44px;height:44px}.ai-tool-arrow{width:22px;height:22px;right:.4rem;top:.4rem}}
-  @media(prefers-reduced-motion:reduce){.ai-tool-card,.ai-tool-card:before,.ai-tool-logo img{transition:none}.ai-tool-card:hover{transform:none}.ai-tool-card:hover .ai-tool-logo img{transform:none}}
   .section-signals{display:flex;justify-content:center;flex-wrap:wrap;gap:.45rem;margin-top:1.25rem}.section-signals span{padding:.38rem .68rem;border:1px solid rgba(37,99,235,.12);border-radius:999px;background:rgba(255,255,255,.7);color:#475569;font-size:.7rem;font-weight:700}
   .dev-stack-teaser{display:grid;gap:1.15rem;margin-top:3.3rem;padding:1.2rem;border:1px solid rgba(37,99,235,.14);border-radius:24px;background:linear-gradient(135deg,#fff 0%,#f4f8ff 62%,#eefbf8 100%);box-shadow:0 18px 45px rgba(15,23,42,.06)}.dev-stack-copy .eyebrow{margin:0 0 .55rem}.dev-stack-copy h3{margin:0 0 .4rem;font-size:1.18rem}.dev-stack-copy p{margin:0;color:#64748b;font-size:.82rem;line-height:1.55}.dev-stack-logos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.48rem}.dev-stack-chip{display:flex;align-items:center;gap:.42rem;min-width:0;padding:.45rem;border:1px solid rgba(15,23,42,.07);border-radius:13px;background:rgba(255,255,255,.88)}.dev-stack-chip>span{width:30px;height:30px;display:grid;place-items:center;flex:0 0 30px;overflow:hidden;border-radius:9px;background:#fff}.dev-stack-chip img{display:block;width:24px;height:24px;object-fit:contain}.dev-stack-chip b{overflow:hidden;text-overflow:ellipsis;font-size:.67rem;white-space:nowrap}.dev-stack-link{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;padding:.75rem 1rem;border-radius:14px;background:#0b1220;color:#fff;text-decoration:none;font-size:.78rem;font-weight:800}.dev-stack-link:hover{background:#1d4ed8;color:#fff}
   @media(min-width:900px){.dev-stack-teaser{grid-template-columns:1.15fr 1fr auto;align-items:center;padding:1.35rem 1.5rem}.dev-stack-link{white-space:nowrap}.dev-stack-logos{grid-template-columns:repeat(3,minmax(0,1fr))}}

@@ -49,6 +49,9 @@ jobs:
       - name: Verify mobile and desktop performance safeguards
         run: npm run verify:performance
 
+      - name: Verify interactive AI tool explorer
+        run: npm run verify:ai-tools
+
       - name: Verify Creavix recovery integrity
         run: npm run verify:integrity
 
