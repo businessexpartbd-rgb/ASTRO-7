@@ -2,7 +2,7 @@
    every service a recognizable visual identity without adding runtime JS. */
 body.creavix-brand {
   --page-accent: #175cd3;
-  --page-accent-2: #c44b0b;
+  --page-accent-2: #EA580C;
   --page-wash: #f4f8fc;
   --page-ink: #0a2540;
   --page-accent-soft: color-mix(in srgb, var(--page-accent) 11%, white);
