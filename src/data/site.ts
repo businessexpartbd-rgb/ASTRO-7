@@ -9,7 +9,7 @@ export const SITE = {
   seoTitle:
     'AI Video Marketing & SEO Agency | Creavix IT Solution',
   seoDescription:
-    'Grow with cinematic AI video production, video marketing, technical SEO, local SEO and AI search optimization from Creavix IT Solution.',
+    'AI video marketing agency for cinematic AI video production, technical SEO, local SEO and AI search optimization in Bangladesh and worldwide.',
   seoKeywords:
     'AI video marketing agency, AI video production, video marketing services, SEO services, technical SEO, local SEO Bangladesh, AI search optimization, video editing agency Bangladesh, Creavix IT Solution',
   url: 'https://www.creavixit.com',
