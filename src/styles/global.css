@@ -28,7 +28,7 @@
   --color-violet: #7C3AED;
   --color-violet-soft: #A78BFA;
   --color-rose: #F43F5E;
-  --color-amber: #F59E0B;
+  --color-amber: #EA580C;
   --color-emerald: #10B981;
 
   --font-display: "Playfair Display", Georgia, serif;
@@ -92,7 +92,7 @@ details[class*="faq"] > p {
   --accent: #06B6D4;
   --violet: #7C3AED;
   --rose: #F43F5E;
-  --amber: #F59E0B;
+  --amber: #EA580C;
   --emerald: #10B981;
 
   --glass-bg: rgba(255, 255, 255, 0.65);
@@ -165,7 +165,7 @@ body {
 }
 
 .text-gradient-warm {
-  background: linear-gradient(135deg, #F59E0B 0%, #F43F5E 50%, #7C3AED 100%);
+  background: linear-gradient(135deg, #F97316 0%, #F43F5E 50%, #7C3AED 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -517,7 +517,7 @@ body {
 
 .section-warm {
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(245, 158, 11, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(249, 115, 22, 0.07) 0%, transparent 55%),
     #FFFFFF;
   padding: 5rem 0;
 }
@@ -899,7 +899,7 @@ footer .logo span {
   --brand-cyan: #06b6d4;
   --brand-violet: #7c3aed;
   --brand-green: #10b981;
-  --brand-orange: #f59e0b;
+  --brand-orange: #EA580C;
   --brand-ink: #101828;
 }
 
