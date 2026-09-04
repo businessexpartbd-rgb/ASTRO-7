@@ -14,21 +14,21 @@ const waDisplay = '01890-484355';
     </a>
     <div class="support-launcher">
       <div class="support-invite" id="support-invite">
-        <button type="button" id="support-invite-open" aria-controls="support-panel" aria-expanded="false"><strong>Help Center</strong><span>How can I help?</span></button>
+        <button type="button" id="support-invite-open" aria-controls="support-panel" aria-expanded="false"><strong>Creavix AI Assistant</strong><span>Ask about any service</span></button>
         <button type="button" id="support-motion-toggle" aria-label="Pause helper animation" aria-pressed="false" title="Pause helper animation" hidden><span class="support-pause-icon" aria-hidden="true">Ⅱ</span><span class="support-play-icon" aria-hidden="true">▶</span></button>
       </div>
-      <button type="button" class="support-fab" id="support-open" aria-label="Open Creavix Help Center — automated assistant" aria-controls="support-panel" aria-expanded="false">
+      <button type="button" class="support-fab" id="support-open" aria-label="Open Creavix AI Assistant — ask about services" aria-controls="support-panel" aria-expanded="false">
         <span class="support-robot-look" id="support-robot-look"><span class="support-robot-float"><img src="/brands/help-robot.webp" alt="" width="64" height="64" loading="lazy" decoding="async" fetchpriority="low" draggable="false" /></span></span>
       </button>
     </div>
   </div>
   <div class="support-panel" id="support-panel" hidden aria-hidden="true" role="dialog" aria-labelledby="support-title">
     <div class="support-head">
-      <div class="support-identity"><img src="/brands/help-robot.webp" alt="" width="42" height="42" loading="lazy" decoding="async" fetchpriority="low" /><div class="support-brand"><strong id="support-title">Creavix Help Center</strong><span class="support-status"><span id="support-status-text">Instant service guide</span></span></div></div>
+      <div class="support-identity"><img src="/brands/help-robot.webp" alt="" width="42" height="42" loading="lazy" decoding="async" fetchpriority="low" /><div class="support-brand"><strong id="support-title">Creavix AI Assistant</strong><span class="support-status"><span id="support-status-text">Online · instant answers</span></span></div></div>
       <button type="button" class="support-close" id="support-close" aria-label="Close Help Center">×</button>
     </div>
     <div class="support-body" id="support-body" aria-live="polite">
-      <div class="support-msg bot">Hello! I can guide you to the right Creavix service, engagement model or delivery path. For a human response, use <a class="wa-inline" href={wa} target="_blank" rel="noopener noreferrer">WhatsApp {waDisplay}</a>.</div>
+      <div class="support-msg bot">Hello! I’m the Creavix AI Assistant. Ask me about AI video, SEO, websites, pricing or delivery. For a human response, use <a class="wa-inline" href={wa} target="_blank" rel="noopener noreferrer">WhatsApp {waDisplay}</a>.</div>
     </div>
     <div class="support-typing" id="support-typing" hidden aria-live="polite"><span></span><span></span><span></span> Preparing a reply…</div>
     <div class="support-quick" id="support-quick" aria-label="Suggested questions">
@@ -44,18 +44,22 @@ const waDisplay = '01890-484355';
 </div>
 <style>
   .support-root .support-actions{bottom:calc(1rem + env(safe-area-inset-bottom,0px));right:calc(1rem + env(safe-area-inset-right,0px))}
-  .support-launcher{position:relative;width:64px;height:64px}
-  .support-root .support-fab{width:64px;height:64px;border-radius:22px;background:#ebedfa;border:1px solid #ccd9f3;box-shadow:0 8px 28px #0a25401f;overflow:hidden;perspective:400px}
-  .support-root .support-fab:hover{transform:none;box-shadow:0 8px 28px #175cd32a}
-  .support-robot-look{display:block;transform:rotateY(var(--helper-y,0deg)) rotateX(var(--helper-x,0deg));transition:transform .35s ease;pointer-events:none}
-  .support-robot-float{display:block;transform-origin:50% 65%}
+  .support-launcher{position:relative;width:64px;height:64px;filter:drop-shadow(0 12px 24px rgba(37,99,235,.2))}
+  .support-launcher::after{content:'';position:absolute;z-index:-1;inset:-7px;border-radius:27px;background:radial-gradient(circle,rgba(34,211,238,.25),rgba(124,58,237,.09) 48%,transparent 72%);animation:assistant-breathe 2.4s ease-in-out infinite alternate;pointer-events:none}
+  .support-root .support-fab{position:relative;width:64px;height:64px;padding:0;border:0!important;border-radius:22px;background:#071d35!important;box-shadow:0 11px 30px rgba(8,47,73,.25),0 0 0 1px rgba(255,255,255,.72);overflow:hidden;perspective:600px;isolation:isolate}
+  .support-root .support-fab::before{content:'';position:absolute;z-index:0;inset:-55%;background:conic-gradient(from 0deg,#f97316,#fbbf24,#22d3ee,#2563eb,#7c3aed,#f97316);animation:assistant-ring 3s linear infinite}
+  .support-root .support-fab::after{content:'';position:absolute;z-index:1;inset:3px;border-radius:19px;background:radial-gradient(circle at 50% 28%,#f8fbff 0%,#e7efff 46%,#dbeafe 100%);box-shadow:inset 0 1px 0 #fff}
+  .support-root .support-fab:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(37,99,235,.3),0 0 0 1px rgba(255,255,255,.8)}
+  .support-robot-look{position:relative;z-index:2;display:block;transform:rotateY(var(--helper-y,0deg)) rotateX(var(--helper-x,0deg));transition:transform .35s ease;transform-style:preserve-3d;pointer-events:none}
+  .support-robot-float{display:block;transform-origin:50% 55%;transform-style:preserve-3d;backface-visibility:visible}
   .support-robot-float img{display:block;width:64px;height:64px;object-fit:contain;user-select:none;-webkit-user-drag:none}
-  .support-invite{position:absolute;right:74px;bottom:5px;display:flex;align-items:center;border:1px solid #dce5f1;background:#fff;box-shadow:0 5px 20px #0a254010;border-radius:15px;white-space:nowrap}
+  .support-invite{position:absolute;right:74px;bottom:5px;display:flex;align-items:center;border:1px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(110deg,#f97316,#2563eb 55%,#22c55e) border-box;box-shadow:0 9px 28px rgba(15,23,42,.11),0 0 24px rgba(37,99,235,.08);border-radius:15px;white-space:nowrap}
   .support-invite[hidden]{display:none}
   .support-invite button{border:0;background:transparent;cursor:pointer;color:#0a2540;font-family:var(--font-b,system-ui,sans-serif);min-height:44px}
-  #support-invite-open{padding:8px 12px;text-align:left;border-radius:14px}
-  #support-invite-open strong{display:block;font-size:12px;line-height:1.5;font-weight:800}
-  #support-invite-open span{display:block;font-size:10px;line-height:1.5;color:#536478}
+  #support-invite-open{position:relative;padding:8px 12px 8px 34px;text-align:left;border-radius:14px}
+  #support-invite-open::before{content:'✦';position:absolute;left:11px;top:50%;transform:translateY(-50%);width:17px;height:17px;display:grid;place-items:center;border-radius:6px;background:linear-gradient(135deg,#f97316,#7c3aed);color:#fff;font-size:9px;box-shadow:0 4px 10px rgba(124,58,237,.2)}
+  #support-invite-open strong{display:block;color:#0a2540;font-size:12px;line-height:1.45;font-weight:800}
+  #support-invite-open span{display:block;font-size:10px;line-height:1.45;color:#536478}
   #support-motion-toggle{width:44px;min-width:44px;border-left:1px solid #e5eaf2;border-radius:0 14px 14px 0;font-size:17px;color:#536478}
   #support-motion-toggle[hidden]{display:none}
   .support-play-icon{display:none;font-size:12px}
@@ -64,8 +68,11 @@ const waDisplay = '01890-484355';
   .support-invite button:hover{background:#f1f6ff}
   .support-root button:focus-visible{outline:3px solid #175cd3;outline-offset:3px}
   .support-root .support-panel{bottom:calc(92px + env(safe-area-inset-bottom,0px));max-height:min(70dvh,520px)}
+  .support-root .support-head{background:linear-gradient(110deg,#f8fbff 0%,#eef5ff 55%,#fff7ed 100%);border-bottom-color:rgba(37,99,235,.13)}
   .support-identity{display:flex;align-items:center;gap:10px;min-width:0}
-  .support-identity>img{width:42px;height:42px;border-radius:14px;flex:none}
+  .support-identity>img{width:42px;height:42px;padding:2px;border:1px solid rgba(37,99,235,.14);border-radius:14px;background:#fff;box-shadow:0 6px 15px rgba(37,99,235,.12);flex:none}
+  .support-brand strong{font-family:'Li Ador Noirrit'!important;letter-spacing:-.015em}
+  .support-status::before{background:#22c55e!important;box-shadow:0 0 0 4px rgba(34,197,94,.13),0 0 12px rgba(34,197,94,.35)!important}
   .support-root .support-close{width:44px;height:44px;flex:none}
   .support-root .support-body{min-height:0;overscroll-behavior:contain}
   .support-root .support-form input{font-size:16px}
@@ -74,16 +81,18 @@ const waDisplay = '01890-484355';
   .support-root.is-chat-visible:not(.helper-motion-paused) .support-quick-track,.support-root.is-chat-visible:not(.helper-motion-paused) .support-typing span{animation-play-state:running}
   .support-root .support-quick:hover .support-quick-track,.support-root .support-quick:focus-within .support-quick-track{animation-play-state:paused}
   @media(prefers-reduced-motion:no-preference){
-    .support-robot-float{animation:helper-curious 7.5s ease-in-out infinite;animation-play-state:paused}
+    .support-robot-float{animation:assistant-360 3s cubic-bezier(.45,0,.2,1) infinite;animation-play-state:paused}
     .support-root.is-helper-running .support-robot-float{animation-play-state:running;will-change:transform}
     .support-root .support-fab:focus-visible .support-robot-float{animation-play-state:paused}
-    @keyframes helper-curious{0%,100%{transform:translateY(0) rotate(0)}18%{transform:translateY(-2px) rotate(-5deg)}32%{transform:translateY(-1px) rotate(3deg)}46%{transform:translateY(0) rotate(0)}68%{transform:translateY(-2px) rotate(4deg)}80%{transform:translateY(1px) rotate(-2deg)}}
+    @keyframes assistant-360{0%,8%{transform:translateY(0) rotateY(0deg) scale(1)}45%{transform:translateY(-3px) rotateY(180deg) scale(1.04)}82%,100%{transform:translateY(0) rotateY(360deg) scale(1)}}
   }
+  @keyframes assistant-ring{to{transform:rotate(360deg)}}
+  @keyframes assistant-breathe{to{opacity:.55;transform:scale(1.16)}}
   @media(prefers-reduced-motion:reduce){.support-robot-float{animation:none!important}.support-robot-look{transform:none;transition:none}.support-root .support-fab{transition:none}}
   @media(max-width:767px){
     .support-root .support-actions{right:calc(.72rem + env(safe-area-inset-right,0px));bottom:calc(.72rem + env(safe-area-inset-bottom,0px))}
-    .support-launcher,.support-root .support-fab{width:60px;height:60px}.support-root .support-fab{border-radius:20px}.support-robot-float img{width:60px;height:60px}
-    .support-invite{right:68px;bottom:7px}#support-invite-open{padding:7px 10px}#support-invite-open span{display:none}#support-invite-open strong{font-size:11px}
+    .support-launcher,.support-root .support-fab{width:60px;height:60px}.support-root .support-fab{border-radius:20px}.support-root .support-fab::after{border-radius:17px}.support-robot-float img{width:60px;height:60px}
+    .support-invite{right:68px;bottom:7px}#support-invite-open{padding:7px 10px 7px 31px}#support-invite-open::before{left:9px}#support-invite-open span{display:none}#support-invite-open strong{font-size:11px}
     .support-root .support-panel{bottom:calc(83px + env(safe-area-inset-bottom,0px));max-height:min(68dvh,500px)}
   }
 </style>
@@ -141,7 +150,7 @@ const waDisplay = '01890-484355';
   ];
   function addMsg(text,who,html){if(!body)return;var div=document.createElement('div');div.className='support-msg '+who;if(html)div.innerHTML=text;else div.textContent=text;body.appendChild(div);body.scrollTop=body.scrollHeight;}
   function answer(q){var lower=(q||'').toLowerCase();for(var i=0;i<replies.length;i++){for(var k=0;k<replies[i].keys.length;k++){if(lower.indexOf(replies[i].keys[k])!==-1)return replies[i].text+waHtml();}}return 'Thanks for your question. For an accurate human response, continue on '+waHtml()+'.';}
-  function respond(q){if(!q)return;pending++;addMsg(q,'user',false);if(typing)typing.hidden=false;if(statusText)statusText.textContent='Preparing a reply…';var delay=1000+(q.length*37%1001);setTimeout(function(){pending--;if(typing)typing.hidden=pending===0;if(statusText&&pending===0)statusText.textContent='Instant service guide';addMsg(answer(q),'bot',true);},delay);}
+  function respond(q){if(!q)return;pending++;addMsg(q,'user',false);if(typing)typing.hidden=false;if(statusText)statusText.textContent='Preparing a reply…';var delay=1000+(q.length*37%1001);setTimeout(function(){pending--;if(typing)typing.hidden=pending===0;if(statusText&&pending===0)statusText.textContent='Online · instant answers';addMsg(answer(q),'bot',true);},delay);}
   [openBtn,inviteBtn].forEach(function(btn){if(btn&&panel)btn.addEventListener('click',function(){setPanel(panel.hidden,btn);});});
   if(closeBtn&&panel)closeBtn.addEventListener('click',function(){setPanel(false);});
   document.addEventListener('keydown',function(e){if(!panel||panel.hidden)return;if(e.key==='Escape'){e.preventDefault();setPanel(false);return;}if(e.key==='Tab'){var focusable=Array.prototype.slice.call(panel.querySelectorAll('button:not([disabled]),a[href],input:not([disabled])'));if(!focusable.length)return;var first=focusable[0],last=focusable[focusable.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
