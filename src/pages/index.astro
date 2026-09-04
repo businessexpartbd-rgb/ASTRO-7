@@ -78,11 +78,20 @@ const devToolTeaser = [
           <span class="rating-label">Client Rated · BD &amp; Global</span>
         </div>
 
-        <h1 class="hero-title">AI Video Marketing, SEO &amp;<br /><span class="brand-accent">Complete IT Solutions</span></h1>
+        <h1 class="hero-title">
+          <span class="hero-title-line">
+            <span class="hero-title-piece hero-title-ai">AI-Powered</span>
+            <span class="hero-title-piece hero-title-video">Video Marketing</span>
+          </span>
+          <span class="hero-title-line">
+            <span class="hero-title-piece hero-title-data">&amp; Data-Driven</span>
+            <span class="hero-title-piece hero-title-seo">SEO</span>
+            <span class="hero-title-piece hero-title-solutions">Solutions</span>
+          </span>
+        </h1>
 
-        <p class="hero-lead">
-          Creavix iT Solution is a Bangladesh-based technology and video marketing company helping brands look better, rank on Google and grow worldwide through AI video, professional editing, websites, applications, SEO, automation and digital campaigns.
-          <strong class="hero-delivery">24–48h for scoped video projects</strong>
+        <p class="hero-lead hero-subtitle">
+          Dominate search rankings and captivate your audience with cinematic AI videos, high-performance web architecture, and complete IT solutions designed for global scale.
         </p>
 
         <div class="hero-capabilities" aria-label="Creavix core capabilities">
@@ -222,7 +231,159 @@ const devToolTeaser = [
   <script type="application/ld+json" set:html={JSON.stringify(homeServiceSchema)} />
 </Layout>
 
+<script>
+  const hero = document.getElementById('home');
+
+  if (hero) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      hero.classList.add('hero-motion-active');
+    } else {
+      hero.classList.add('hero-motion-ready');
+
+      const replayHeroEntrance = () => {
+        hero.classList.remove('hero-motion-active');
+        void hero.offsetWidth;
+        hero.classList.add('hero-motion-active');
+      };
+
+      const heroObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            replayHeroEntrance();
+          } else {
+            hero.classList.remove('hero-motion-active');
+          }
+        },
+        {
+          threshold: 0.28,
+          rootMargin: '-4% 0px -12% 0px',
+        },
+      );
+
+      heroObserver.observe(hero);
+    }
+  }
+</script>
+
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.cdnfonts.com/css/li-ador-noirrit');
+
+  .hero-title {
+    font-family: 'Li Ador Noirrit', var(--font-h), system-ui, sans-serif !important;
+    letter-spacing: -0.045em !important;
+  }
+  .hero-title-line {
+    display: block;
+    overflow: hidden;
+    padding: 0.025em 0 0.075em;
+  }
+  .hero-title-piece {
+    display: inline-block;
+    margin-right: 0.12em;
+  }
+  :global(.creavix-brand) .hero-title .hero-title-ai {
+    color: #c44b0b !important;
+    -webkit-text-fill-color: #c44b0b !important;
+  }
+  :global(.creavix-brand) .hero-title .hero-title-video {
+    color: #53258f !important;
+    background: linear-gradient(110deg, #53258f 0%, #4438a7 52%, #175cd3 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+  :global(.creavix-brand) .hero-title .hero-title-data {
+    color: #0a3f78 !important;
+    -webkit-text-fill-color: #0a3f78 !important;
+  }
+  :global(.creavix-brand) .hero-title .hero-title-seo {
+    color: #137849 !important;
+    -webkit-text-fill-color: #137849 !important;
+  }
+  :global(.creavix-brand) .hero-title .hero-title-solutions {
+    color: #0b0f19 !important;
+    -webkit-text-fill-color: #0b0f19 !important;
+  }
+  :global(.creavix-brand) .hero-subtitle {
+    max-width: 55ch;
+    color: #64748b !important;
+    font-family: 'Hind Siliguri', var(--font-b), system-ui, sans-serif !important;
+  }
+  .hero-motion-ready .hero-title-piece,
+  .hero-motion-ready .hero-subtitle {
+    opacity: 0;
+    transform: translateY(1.15rem);
+    filter: blur(5px);
+    will-change: opacity, transform, filter;
+  }
+  .hero-motion-ready.hero-motion-active .hero-title-piece {
+    animation: hero-word-reveal 720ms cubic-bezier(.16, 1, .3, 1) both;
+  }
+  .hero-motion-ready.hero-motion-active .hero-title-line:first-child .hero-title-piece:nth-child(1) {
+    animation-delay: 60ms;
+  }
+  .hero-motion-ready.hero-motion-active .hero-title-line:first-child .hero-title-piece:nth-child(2) {
+    animation-delay: 130ms;
+  }
+  .hero-motion-ready.hero-motion-active .hero-title-line:nth-child(2) .hero-title-piece:nth-child(1) {
+    animation-delay: 200ms;
+  }
+  .hero-motion-ready.hero-motion-active .hero-title-line:nth-child(2) .hero-title-piece:nth-child(2) {
+    animation-delay: 270ms;
+  }
+  .hero-motion-ready.hero-motion-active .hero-title-line:nth-child(2) .hero-title-piece:nth-child(3) {
+    animation-delay: 340ms;
+  }
+  .hero-motion-ready.hero-motion-active .hero-subtitle {
+    animation: hero-subtitle-reveal 780ms 430ms cubic-bezier(.16, 1, .3, 1) both;
+  }
+  @keyframes hero-word-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(1.15rem);
+      filter: blur(5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+  @keyframes hero-subtitle-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(0.9rem);
+      filter: blur(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+  @media (max-width: 639px) {
+    .hero-title-line {
+      overflow: visible;
+      padding-bottom: 0.04em;
+    }
+    .hero-title-piece {
+      margin-right: 0.08em;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-motion-ready .hero-title-piece,
+    .hero-motion-ready .hero-subtitle,
+    .hero-motion-ready.hero-motion-active .hero-title-piece,
+    .hero-motion-ready.hero-motion-active .hero-subtitle {
+      opacity: 1;
+      transform: none;
+      filter: none;
+      animation: none;
+    }
+  }
   .section-signals{display:flex;justify-content:center;flex-wrap:wrap;gap:.45rem;margin-top:1.25rem}.section-signals span{padding:.38rem .68rem;border:1px solid rgba(37,99,235,.12);border-radius:999px;background:rgba(255,255,255,.7);color:#475569;font-size:.7rem;font-weight:700}
   .dev-stack-teaser{display:grid;gap:1.15rem;margin-top:3.3rem;padding:1.2rem;border:1px solid rgba(37,99,235,.14);border-radius:24px;background:linear-gradient(135deg,#fff 0%,#f4f8ff 62%,#eefbf8 100%);box-shadow:0 18px 45px rgba(15,23,42,.06)}.dev-stack-copy .eyebrow{margin:0 0 .55rem}.dev-stack-copy h3{margin:0 0 .4rem;font-size:1.18rem}.dev-stack-copy p{margin:0;color:#64748b;font-size:.82rem;line-height:1.55}.dev-stack-logos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.48rem}.dev-stack-chip{display:flex;align-items:center;gap:.42rem;min-width:0;padding:.45rem;border:1px solid rgba(15,23,42,.07);border-radius:13px;background:rgba(255,255,255,.88)}.dev-stack-chip>span{width:30px;height:30px;display:grid;place-items:center;flex:0 0 30px;overflow:hidden;border-radius:9px;background:#fff}.dev-stack-chip img{display:block;width:24px;height:24px;object-fit:contain}.dev-stack-chip b{overflow:hidden;text-overflow:ellipsis;font-size:.67rem;white-space:nowrap}.dev-stack-link{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;padding:.75rem 1rem;border-radius:14px;background:#0b1220;color:#fff;text-decoration:none;font-size:.78rem;font-weight:800}.dev-stack-link:hover{background:#1d4ed8;color:#fff}
   @media(min-width:900px){.dev-stack-teaser{grid-template-columns:1.15fr 1fr auto;align-items:center;padding:1.35rem 1.5rem}.dev-stack-link{white-space:nowrap}.dev-stack-logos{grid-template-columns:repeat(3,minmax(0,1fr))}}

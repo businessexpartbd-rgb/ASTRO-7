@@ -20,7 +20,7 @@ const headers = read('public/_headers');
 expect('External Google Fonts removed', !/fonts\.(googleapis|gstatic)\.com/.test(layout));
 expect('System-local font stack is configured', /Segoe UI Variable/.test(brand) && /Noto Sans Bengali/.test(brand));
 expect('Premium black brand token exists', /--brand-black:\s*#0b0f19/.test(brand));
-expect('SEO-focused IT-company H1 exists', /AI Video Marketing, SEO &amp;/.test(home) && /Complete IT Solutions/.test(home));
+expect('Updated AI-powered video and SEO H1 exists', /AI-Powered/.test(home) && /Video Marketing/.test(home) && /Data-Driven/.test(home) && /hero-title-seo">SEO</.test(home) && /Solutions/.test(home));
 expect('Astro Picture outputs AVIF and WebP', /<Picture/.test(meta) && /formats=\{\['avif',\s*'webp'\]\}/.test(meta));
 expect('Six-video stack component stays in place once', (home.match(/<FeaturedVideoStack\s*\/>/g) || []).length === 1);
 expect('Three honest engagement models exist', /Focused Sprint/.test(pricing) && /Project Partnership/.test(pricing) && /Ongoing Support/.test(pricing) && /Custom scope/.test(pricing));
