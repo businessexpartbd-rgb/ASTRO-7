@@ -121,9 +121,9 @@ html[data-page-hidden] .creavix-brand .live-icon * { animation-play-state: pause
 }
 @media (prefers-reduced-motion:no-preference) {
   .creavix-brand .brand-enter { animation: brand-arrive .55s cubic-bezier(.2,.7,.3,1) both; animation-delay: var(--brand-delay,0ms); }
-  .creavix-brand h1 .brand-accent { animation: brand-underline .9s ease-out both; text-decoration: underline; text-decoration-color: #f4772133; text-decoration-thickness: .06em; text-underline-offset: .12em; }
+  .creavix-brand h1 .brand-accent { animation: brand-underline .9s ease-out both; text-decoration: underline; text-decoration-color: #FB923C33; text-decoration-thickness: .06em; text-underline-offset: .12em; }
   @keyframes brand-arrive { from { translate: 0 14px; } to { translate: 0 0; } }
-  @keyframes brand-underline { from { text-decoration-color: transparent; } to { text-decoration-color: #f4772133; } }
+  @keyframes brand-underline { from { text-decoration-color: transparent; } to { text-decoration-color: #FB923C33; } }
 }
 @media (max-width:767px) {
   .creavix-brand main h1 { font-size: clamp(1.9rem,7.8vw,3rem) !important; line-height: 1.14 !important; letter-spacing: -.035em !important; }
