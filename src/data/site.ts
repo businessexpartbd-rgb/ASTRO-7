@@ -3,15 +3,15 @@
 export const SITE = {
   name: 'Creavix',
   brand: 'Creavix iT Solution',
-  tagline: 'AI Video Marketing & Complete IT Solutions',
+  tagline: 'AI Video Marketing Agency & Data-Driven SEO Services',
   shortDesc:
     'Cinematic Human-like AI Videos, Professional Video Editing & Full Digital Solutions | 24-48 Hours Delivery',
   seoTitle:
-    'IT Company in Bangladesh | AI Video, Web, App & SEO | Creavix',
+    'AI Video Marketing & SEO Agency | Creavix IT Solution',
   seoDescription:
-    'Since 2014, Creavix iT Solution has delivered AI video, professional editing, web and app development, SEO, automation and digital marketing in Bangladesh and worldwide.',
+    'Grow with cinematic AI video production, video marketing, technical SEO, local SEO and AI search optimization from Creavix IT Solution.',
   seoKeywords:
-    'video editing agency Bangladesh, AI video Bangladesh, human-like AI video, professional video editing Dhaka, Creavix iT, video marketing agency, 24 hour video delivery, web development, digital marketing Savar, Facebook boosting Bangladesh',
+    'AI video marketing agency, AI video production, video marketing services, SEO services, technical SEO, local SEO Bangladesh, AI search optimization, video editing agency Bangladesh, Creavix IT Solution',
   url: 'https://www.creavixit.com',
   hotline: '+880 9611-132835',
   whatsapp: '+8801890484355',
