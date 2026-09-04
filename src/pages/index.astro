@@ -288,11 +288,21 @@ const devToolTeaser = [
     margin-right: 0.1em;
     transform-origin: 50% 100%;
   }
-  :global(.creavix-brand) .hero-title :is(.hero-title-video, .hero-title-marketing) {
+  :global(.creavix-brand) .hero-title .hero-title-video {
+    color: var(--brand-orange) !important;
+    font-size: 1.06em;
+    font-weight: 800;
+    background: var(--brand-orange-gradient) !important;
+    background-size: 260% 260% !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+  :global(.creavix-brand) .hero-title .hero-title-marketing {
     color: #1d4ed8 !important;
     font-size: 1.06em;
     font-weight: 800;
-    background: linear-gradient(110deg, #1d4ed8 0%, #2563eb 25%, #06b6d4 52%, #7c3aed 76%, #1d4ed8 100%) !important;
+    background: linear-gradient(110deg, #1d4ed8 0%, #2563eb 28%, #06b6d4 54%, #7c3aed 78%, #1d4ed8 100%) !important;
     background-size: 260% 260% !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
@@ -316,11 +326,29 @@ const devToolTeaser = [
     -webkit-text-fill-color: transparent !important;
   }
   :global(.creavix-brand) .hero-subtitle {
+    position: relative;
     max-width: 58ch;
+    padding-top: 1.05rem;
     color: #526075 !important;
     font-family: 'Hind Siliguri' !important;
     font-size: clamp(1rem, 1.45vw, 1.18rem);
+    font-weight: 500;
     line-height: 1.72;
+    letter-spacing: -0.006em;
+    text-wrap: pretty;
+  }
+  :global(.creavix-brand) .hero-subtitle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3.25rem;
+    height: 3px;
+    border-radius: 999px;
+    background: var(--brand-orange-gradient);
+    background-size: 220% 220%;
+    box-shadow: 0 4px 14px rgba(249, 115, 22, 0.24);
+    animation: hero-gradient-flow 7s ease-in-out infinite;
   }
   .hero-motion-ready .hero-title-piece,
   .hero-motion-ready .hero-subtitle {
@@ -403,8 +431,12 @@ const devToolTeaser = [
     }
     :global(.creavix-brand) .hero-subtitle {
       max-width: 100%;
+      padding-top: 0.95rem;
       font-size: 1rem;
       line-height: 1.68;
+    }
+    :global(.creavix-brand) .hero-subtitle::before {
+      width: 2.75rem;
     }
   }
   @media (min-width: 640px) and (max-width: 899px) {
@@ -504,7 +536,7 @@ const devToolTeaser = [
     font-weight: 600;
   }
   .rating-score { color: #0B0F19; }
-  .rating-stars { color: #F59E0B; letter-spacing: 1px; font-size: 0.75rem; }
+  .rating-stars { color: var(--brand-orange-bright); letter-spacing: 1px; font-size: 0.75rem; }
   .rating-label { color: #64748B; font-weight: 500; }
   .hero-delivery { color: #2563EB; font-weight: 700; }
   .hero-capabilities {
