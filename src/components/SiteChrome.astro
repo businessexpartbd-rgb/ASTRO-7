@@ -23,19 +23,16 @@ const waDisplay = '01890-484355';
   </div>
   <div class="support-panel" id="support-panel" hidden aria-hidden="true" role="dialog" aria-labelledby="support-title">
     <div class="support-head">
-      <div class="support-identity"><img src="/brands/help-robot.webp" alt="" width="42" height="42" loading="lazy" decoding="async" fetchpriority="low" /><div class="support-brand"><strong id="support-title">Ask Me</strong><span class="support-status"><span id="support-status-text">Online · instant answers</span></span></div></div>
+      <div class="support-identity"><img src="/brands/help-robot.webp" alt="" width="42" height="42" loading="lazy" decoding="async" fetchpriority="low" /><div class="support-brand"><strong id="support-title">Creavix Support</strong><span class="support-status"><span id="support-status-text">Online now</span></span></div></div>
       <button type="button" class="support-close" id="support-close" aria-label="Close Help Center">×</button>
     </div>
     <div class="support-body" id="support-body" aria-live="polite">
-      <div class="support-msg bot">Hello! Ask me about AI video, SEO, websites, pricing or delivery. For a human response, use <a class="wa-inline" href={wa} target="_blank" rel="noopener noreferrer">WhatsApp {waDisplay}</a>.</div>
+      <div class="support-msg bot" data-support-greeting>Assalamu Alaikum 👋 Welcome to Creavix IT Solution. How can we help you today?</div>
     </div>
-    <div class="support-typing" id="support-typing" hidden aria-live="polite"><span></span><span></span><span></span> Preparing a reply…</div>
+    <div class="support-typing" id="support-typing" hidden aria-live="polite"><strong>Typing</strong><span></span><span></span><span></span></div>
     <div class="support-quick" id="support-quick" aria-label="Suggested questions">
       <div class="support-quick-track">
         <button type="button" data-q="What services do you offer?">Services</button><button type="button" data-q="Tell me about video editing">Video Editing</button><button type="button" data-q="Tell me about AI video marketing">AI Video</button><button type="button" data-q="Do you build websites?">Websites</button><button type="button" data-q="Do you build applications?">Apps</button><button type="button" data-q="Tell me about SEO">SEO</button><button type="button" data-q="Tell me about automation">Automation</button><button type="button" data-q="Tell me about digital marketing">Marketing</button><button type="button" data-q="Can you support Facebook Pages?">Facebook</button><button type="button" data-q="Tell me about boosting">Boosting</button><button type="button" data-q="Tell me about campaigns">Campaigns</button><button type="button" data-q="Do you create branding?">Branding</button><button type="button" data-q="Show me your portfolio">Portfolio</button><button type="button" data-q="How much does it cost?">Pricing</button><button type="button" data-q="How fast is delivery?">Delivery</button><button type="button" data-q="How can I contact you?">Contact</button>
-      </div>
-      <div class="support-quick-track" aria-hidden="true">
-        <button type="button" data-q="What services do you offer?" tabindex="-1">Services</button><button type="button" data-q="Tell me about video editing" tabindex="-1">Video Editing</button><button type="button" data-q="Tell me about AI video marketing" tabindex="-1">AI Video</button><button type="button" data-q="Do you build websites?" tabindex="-1">Websites</button><button type="button" data-q="Do you build applications?" tabindex="-1">Apps</button><button type="button" data-q="Tell me about SEO" tabindex="-1">SEO</button><button type="button" data-q="Tell me about automation" tabindex="-1">Automation</button><button type="button" data-q="Tell me about digital marketing" tabindex="-1">Marketing</button><button type="button" data-q="Can you support Facebook Pages?" tabindex="-1">Facebook</button><button type="button" data-q="Tell me about boosting" tabindex="-1">Boosting</button><button type="button" data-q="Tell me about campaigns" tabindex="-1">Campaigns</button><button type="button" data-q="Do you create branding?" tabindex="-1">Branding</button><button type="button" data-q="Show me your portfolio" tabindex="-1">Portfolio</button><button type="button" data-q="How much does it cost?" tabindex="-1">Pricing</button><button type="button" data-q="How fast is delivery?" tabindex="-1">Delivery</button><button type="button" data-q="How can I contact you?" tabindex="-1">Contact</button>
       </div>
     </div>
     <form class="support-form" id="support-form"><input type="text" id="support-input" placeholder="Ask a question…" maxlength="200" autocomplete="off" aria-label="Your question" /><button type="submit" aria-label="Send">➤</button></form>
@@ -88,68 +85,154 @@ const waDisplay = '01890-484355';
     .support-invite{right:68px;bottom:7px}#support-invite-open{padding:7px 11px}#support-invite-open strong{font-size:11px}
     .support-root .support-panel{bottom:calc(83px + env(safe-area-inset-bottom,0px));max-height:min(68dvh,500px)}
   }
+  .support-root .support-panel{
+    width:min(394px,calc(100vw - 1.4rem));
+    overflow:hidden;
+    border:1px solid transparent;
+    border-radius:24px;
+    background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#f97316 0%,#2563eb 52%,#22c55e 100%) border-box;
+    box-shadow:0 26px 70px rgba(15,23,42,.2),0 10px 30px rgba(37,99,235,.13);
+    backdrop-filter:blur(16px);
+  }
+  .support-root .support-panel::before{content:'';position:absolute;z-index:3;top:0;left:18px;right:18px;height:3px;border-radius:0 0 999px 999px;background:linear-gradient(90deg,#f97316,#2563eb 52%,#22c55e);box-shadow:0 4px 18px rgba(37,99,235,.32);pointer-events:none}
+  .support-root .support-head{position:relative;padding:14px 15px;background:radial-gradient(circle at 8% 0,rgba(249,115,22,.12),transparent 36%),radial-gradient(circle at 92% 0,rgba(34,197,94,.1),transparent 34%),linear-gradient(120deg,#f8fbff,#f5f3ff 55%,#f0fdf4);border-bottom:1px solid rgba(37,99,235,.12)}
+  .support-root .support-body{padding:14px;background:linear-gradient(180deg,#fbfdff 0%,#fff 100%);scroll-behavior:smooth}
+  .support-root .support-msg{max-width:88%;border-radius:17px;font-size:14px;line-height:1.58;box-shadow:0 7px 18px rgba(15,23,42,.06)}
+  .support-root .support-msg.bot{border:1px solid rgba(37,99,235,.1);border-bottom-left-radius:6px;background:linear-gradient(135deg,#fff,#eff6ff);color:#1e293b}
+  .support-root .support-msg.user{border-bottom-right-radius:6px;background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff}
+  .support-root .support-typing{align-items:center;gap:5px;padding:9px 14px;color:#475569;background:#f8fbff;border-top:1px solid rgba(37,99,235,.08);font-size:12px}
+  .support-root .support-typing:not([hidden]){display:flex}
+  .support-root .support-typing strong{margin-right:3px;color:#2563eb;font-size:12px}
+  .support-root .support-typing span{width:6px;height:6px;border-radius:50%;background:#2563eb;animation-duration:1s!important}
+  .support-root .support-quick{display:block;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scrollbar-width:none;padding:10px 12px;background:linear-gradient(90deg,#fff7ed,#eff6ff 55%,#f0fdf4);touch-action:pan-x}
+  .support-root .support-quick::-webkit-scrollbar{display:none}
+  .support-root .support-quick-track{display:flex;width:max-content;gap:7px;animation:none!important;transform:none!important}
+  .support-root .support-quick button{flex:0 0 auto;min-height:38px;padding:8px 12px;scroll-snap-align:start;border:1px solid rgba(37,99,235,.13);border-radius:999px;background:rgba(255,255,255,.92);color:#1e3a5f;font-size:12px;font-weight:700;box-shadow:0 5px 14px rgba(15,23,42,.05)}
+  .support-root .support-quick button:active{transform:scale(.97);background:#eff6ff}
+  .support-root .support-form{padding:11px 12px calc(11px + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(37,99,235,.1);background:#fff}
+  .support-root .support-form input{min-height:46px;border-color:rgba(37,99,235,.15);background:#f8fafc}
+  .support-root .support-form button{width:44px;height:44px;background:linear-gradient(135deg,#f97316,#2563eb 62%,#16a34a);box-shadow:0 8px 20px rgba(37,99,235,.22)}
+  @media(max-width:767px){.support-root .support-panel{width:calc(100vw - 1rem);right:calc(.5rem + env(safe-area-inset-right,0px));border-radius:21px}.support-root .support-body{padding:12px}.support-root .support-msg{max-width:92%;font-size:13px}.support-root .support-quick{padding-inline:10px}}
 </style>
 <script is:inline>
 (function () {
   var WA='https://wa.me/8801890484355',WA_LABEL='01890-484355';
   var openBtn=document.getElementById('support-open'),closeBtn=document.getElementById('support-close'),panel=document.getElementById('support-panel'),body=document.getElementById('support-body'),form=document.getElementById('support-form'),input=document.getElementById('support-input'),typing=document.getElementById('support-typing'),statusText=document.getElementById('support-status-text'),backTop=document.getElementById('back-top');
-  var root=document.getElementById('support-root'),invite=document.getElementById('support-invite'),inviteBtn=document.getElementById('support-invite-open'),motionBtn=document.getElementById('support-motion-toggle'),look=document.getElementById('support-robot-look');
-  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)'),paused=false,frame=0,rx=0,ry=0,lastTrigger=openBtn,pending=0;
-  try{paused=localStorage.getItem('creavix-helper-motion-paused-v3')==='1';}catch(e){}
+  var root=document.getElementById('support-root'),invite=document.getElementById('support-invite'),inviteBtn=document.getElementById('support-invite-open'),look=document.getElementById('support-robot-look'),quick=document.getElementById('support-quick');
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)'),frame=0,rx=0,ry=0,lastTrigger=openBtn,pending=0,slideTimer=0,slideResumeTimer=0,slideIndex=0;
+  var bnPage=(document.documentElement.lang||'').toLowerCase().indexOf('bn')===0;
+  var bnChars=/[\u0980-\u09ff]/;
+  var quickButtons=quick?Array.prototype.slice.call(quick.querySelectorAll('.support-quick-track:first-child [data-q]')):[];
+  var stopWords=['about','your','what','when','where','which','with','this','that','from','have','does','tell','please','আমার','আপনার','কীভাবে','কি','কেন','কোথায়','সম্পর্কে'];
+
+  var knowledge=[
+    {keys:['hello','hi','hey','salam','assalamu','আসসালামু','হ্যালো','সালাম'],en:'Wa Alaikum Assalam 👋 How can we help with your project today?',bn:'ওয়ালাইকুম আসসালাম 👋 আজ আপনার প্রজেক্টে কীভাবে সাহায্য করতে পারি?'},
+    {keys:['service','offer','সেবা','সার্ভিস'],en:'We provide AI video marketing, professional video editing, websites, apps, SEO, automation, branding and digital campaigns.',bn:'আমরা AI ভিডিও মার্কেটিং, প্রফেশনাল ভিডিও এডিটিং, ওয়েবসাইট, অ্যাপ, SEO, অটোমেশন, ব্র্যান্ডিং ও ডিজিটাল ক্যাম্পেইন সেবা দিই।'},
+    {keys:['ai video','ai film','এআই ভিডিও','ai marketing'],en:'We create human-like AI video ads, product promos and campaign films for Meta, YouTube and TikTok—with human creative direction.',bn:'আমরা মানবসুলভ AI ভিডিও বিজ্ঞাপন, প্রোডাক্ট প্রোমো ও ক্যাম্পেইন ফিল্ম তৈরি করি—Meta, YouTube ও TikTok-এর জন্য।'},
+    {keys:['video edit','editing','reel','youtube video','ভিডিও এডিট','রিল'],en:'Yes. We edit ads, Reels, YouTube videos and brand films, including pacing, color, audio, subtitles and platform-ready delivery.',bn:'হ্যাঁ। বিজ্ঞাপন, Reels, YouTube ভিডিও ও ব্র্যান্ড ফিল্ম—পেসিং, কালার, অডিও, সাবটাইটেলসহ সম্পূর্ণ এডিট করি।'},
+    {keys:['website','web development','landing page','ওয়েবসাইট','ওয়েব ডেভেলপমেন্ট'],en:'We build fast, responsive and SEO-ready websites and landing pages for mobile, tablet and desktop.',bn:'আমরা মোবাইল, ট্যাবলেট ও ডেস্কটপের জন্য দ্রুত, রেসপনসিভ ও SEO-ready ওয়েবসাইট এবং ল্যান্ডিং পেজ তৈরি করি।'},
+    {keys:['app','application','software','অ্যাপ','অ্যাপ্লিকেশন','সফটওয়্যার'],en:'We build scalable web and mobile applications, business dashboards and custom software based on your workflow.',bn:'আপনার কাজের ধরন অনুযায়ী স্কেলযোগ্য ওয়েব ও মোবাইল অ্যাপ, বিজনেস ড্যাশবোর্ড এবং কাস্টম সফটওয়্যার তৈরি করি।'},
+    {keys:['seo','search engine','rank','ranking','এসইও','র‍্যাংক'],en:'Our SEO service covers technical SEO, on-page structure, local SEO, content signals and search visibility. Ranking time depends on competition and site condition.',bn:'আমাদের SEO সেবায় technical SEO, on-page structure, local SEO, content signal ও search visibility অন্তর্ভুক্ত। র‍্যাংকিংয়ের সময় competition ও সাইটের অবস্থার ওপর নির্ভর করে।'},
+    {keys:['automation','chatbot','messenger','অটোমেশন','চ্যাটবট'],en:'We create website and messaging automation with clear workflows and human handoff when needed.',bn:'আমরা ওয়েবসাইট ও মেসেজিং অটোমেশন তৈরি করি, প্রয়োজন হলে সরাসরি মানব সহায়তায় পাঠানোর ব্যবস্থাসহ।'},
+    {keys:['marketing','campaign','ads','digital marketing','মার্কেটিং','ক্যাম্পেইন','বিজ্ঞাপন'],en:'We plan creative strategy, paid campaigns and conversion-focused digital marketing for Meta, YouTube and other relevant channels.',bn:'আমরা Meta, YouTube ও প্রয়োজনীয় অন্যান্য চ্যানেলের জন্য creative strategy, paid campaign এবং conversion-focused digital marketing করি।'},
+    {keys:['facebook','meta','page','ফেসবুক','পেজ'],en:'We support Facebook Page setup, optimization, content structure, campaign readiness and verification guidance.',bn:'আমরা Facebook Page setup, optimization, content structure, campaign readiness ও verification guidance দিই।'},
+    {keys:['boost','boosting','বুস্ট','বুস্টিং'],en:'Yes. We manage targeted Meta boosting and ad campaigns based on your goal, audience and budget.',bn:'হ্যাঁ। আপনার লক্ষ্য, audience ও budget অনুযায়ী targeted Meta boosting এবং ad campaign পরিচালনা করি।'},
+    {keys:['brand','branding','logo','ব্র্যান্ড','লোগো'],en:'We create logos, brand identity systems, campaign visuals and consistent digital presentation.',bn:'আমরা logo, brand identity system, campaign visual এবং consistent digital presentation তৈরি করি।'},
+    {keys:['auth','authentication','login','security','অথেন্টিকেশন','লগইন','নিরাপত্তা'],en:'We build secure login, role-based access and authentication flows for websites and applications.',bn:'ওয়েবসাইট ও অ্যাপের জন্য secure login, role-based access এবং authentication flow তৈরি করি।'},
+    {keys:['portfolio','work','sample','project','পোর্টফোলিও','কাজ','নমুনা'],en:'You can view selected work on our Portfolio page. Tell us your industry and we’ll guide you to the closest examples.',bn:'আমাদের Portfolio পেজে নির্বাচিত কাজ দেখতে পারবেন। আপনার industry বললে কাছাকাছি উদাহরণ দেখাতে পারব।'},
+    {keys:['price','pricing','cost','budget','quote','মূল্য','খরচ','বাজেট','কোটেশন'],en:'Pricing depends on scope, quality and delivery time. Share your goal and references for an accurate quote.',bn:'মূল্য কাজের পরিধি, মান ও delivery time-এর ওপর নির্ভর করে। সঠিক quotation-এর জন্য আপনার লক্ষ্য ও reference জানান।'},
+    {keys:['delivery','time','fast','deadline','ডেলিভারি','সময়','ডেডলাইন'],en:'Short-form video delivery often starts from 24–48 hours. Larger projects receive a confirmed timeline before work begins.',bn:'Short-form ভিডিও সাধারণত ২৪–৪৮ ঘণ্টা থেকে delivery শুরু হয়। বড় প্রজেক্টের timeline কাজ শুরুর আগে নিশ্চিত করা হয়।'},
+    {keys:['contact','phone','email','whatsapp','number','যোগাযোগ','ফোন','ইমেইল','হোয়াটসঅ্যাপ'],en:'You can contact our team on WhatsApp '+WA_LABEL+' for the fastest response.',bn:'দ্রুত যোগাযোগের জন্য WhatsApp '+WA_LABEL+' নম্বরে আমাদের টিমকে মেসেজ করুন।'},
+    {keys:['location','address','office','studio','ঠিকানা','অফিস','স্টুডিও'],en:'Our studio is in Hemayetpur, Savar, Dhaka, Bangladesh. We also work with clients remotely.',bn:'আমাদের স্টুডিও হেমায়েতপুর, সাভার, ঢাকা, বাংলাদেশে। আমরা remote client-এর সঙ্গেও কাজ করি।'},
+    {keys:['creavix','company','about','কোম্পানি','ক্রিয়াভিক্স'],en:'Creavix IT Solution is a Bangladesh-based video marketing and IT agency serving local and global clients.',bn:'Creavix IT Solution একটি বাংলাদেশভিত্তিক video marketing ও IT agency, যা দেশি ও আন্তর্জাতিক client-এর সঙ্গে কাজ করে।'}
+  ];
+
+  function isBn(q){return bnPage||bnChars.test(q||'');}
   function resetLook(){if(frame)cancelAnimationFrame(frame);frame=0;rx=ry=0;if(look){look.style.setProperty('--helper-x','0deg');look.style.setProperty('--helper-y','0deg');}}
-  function syncMotion(){
-    var active=!paused&&!reduced.matches&&!document.hidden;
-    if(root){root.classList.toggle('is-helper-running',active&&panel.hidden);root.classList.toggle('is-chat-visible',!document.hidden&&!panel.hidden);root.classList.toggle('helper-motion-paused',paused||reduced.matches);}
-    if(motionBtn){motionBtn.hidden=reduced.matches;motionBtn.setAttribute('aria-pressed',String(paused));motionBtn.setAttribute('aria-label',paused?'Play helper animation':'Pause helper animation');motionBtn.title=paused?'Play helper animation':'Pause helper animation';}
-    if(!active||!panel.hidden)resetLook();
+  function stopSlider(){if(slideTimer)clearInterval(slideTimer);slideTimer=0;}
+  function startSlider(){
+    stopSlider();
+    if(!quick||panel.hidden||document.hidden||reduced.matches||quickButtons.length<2)return;
+    slideTimer=window.setInterval(function(){
+      slideIndex=(slideIndex+1)%quickButtons.length;
+      var button=quickButtons[slideIndex];
+      quick.scrollTo({left:Math.max(0,button.offsetLeft-quick.offsetLeft-10),behavior:'smooth'});
+    },1000);
   }
-  if(motionBtn)motionBtn.addEventListener('click',function(){paused=!paused;try{localStorage.setItem('creavix-helper-motion-paused-v3',paused?'1':'0');}catch(e){}syncMotion();});
+  function pauseSlider(){
+    stopSlider();
+    if(slideResumeTimer)clearTimeout(slideResumeTimer);
+    slideResumeTimer=window.setTimeout(startSlider,3500);
+  }
+  if(quick){
+    ['pointerdown','touchstart','mouseenter','focusin'].forEach(function(type){quick.addEventListener(type,pauseSlider,{passive:type!=='focusin'});});
+    ['mouseleave','focusout'].forEach(function(type){quick.addEventListener(type,function(){if(slideResumeTimer)clearTimeout(slideResumeTimer);slideResumeTimer=window.setTimeout(startSlider,1800);});});
+  }
+  function syncMotion(){
+    var active=!reduced.matches&&!document.hidden;
+    if(root){root.classList.toggle('is-helper-running',active&&panel.hidden);root.classList.toggle('is-chat-visible',active&&!panel.hidden);root.classList.toggle('helper-motion-paused',reduced.matches);}
+    if(!active||!panel.hidden)resetLook();
+    if(active&&!panel.hidden)startSlider();else stopSlider();
+  }
   reduced.addEventListener('change',syncMotion);document.addEventListener('visibilitychange',syncMotion);
   if(openBtn){
     openBtn.addEventListener('pointermove',function(e){
-      if(e.pointerType==='touch'||!e.isPrimary||paused||reduced.matches||document.hidden||!panel.hidden)return;
+      if(e.pointerType==='touch'||!e.isPrimary||reduced.matches||document.hidden||!panel.hidden)return;
       var rect=openBtn.getBoundingClientRect();if(!rect.width||!rect.height)return;
       ry=Math.max(-8,Math.min(8,((e.clientX-rect.left)/rect.width-.5)*16));rx=Math.max(-6,Math.min(6,(.5-(e.clientY-rect.top)/rect.height)*12));
       if(!frame)frame=requestAnimationFrame(function(){frame=0;look.style.setProperty('--helper-x',rx.toFixed(2)+'deg');look.style.setProperty('--helper-y',ry.toFixed(2)+'deg');});
     },{passive:true});
     ['pointerleave','pointercancel','blur'].forEach(function(type){openBtn.addEventListener(type,resetLook);});
   }
+  function applyLanguage(){
+    bnPage=(document.documentElement.lang||'').toLowerCase().indexOf('bn')===0||bnChars.test(document.body.innerText.slice(0,900));
+    var greeting=document.querySelector('[data-support-greeting]');
+    if(greeting)greeting.textContent=bnPage?'আসসালামু আলাইকুম 👋 Creavix IT Solution-এর পক্ষ থেকে স্বাগতম। আমরা কীভাবে আপনাকে সাহায্য করতে পারি?':'Assalamu Alaikum 👋 Welcome to Creavix IT Solution. How can we help you today?';
+    if(input)input.placeholder=bnPage?'আপনার প্রশ্ন লিখুন…':'Ask a question…';
+    var namesBn=['সেবা','ভিডিও এডিটিং','AI ভিডিও','ওয়েবসাইট','অ্যাপ','SEO','অটোমেশন','মার্কেটিং','ফেসবুক','বুস্টিং','ক্যাম্পেইন','ব্র্যান্ডিং','পোর্টফোলিও','মূল্য','ডেলিভারি','যোগাযোগ'];
+    var namesEn=['Services','Video Editing','AI Video','Websites','Apps','SEO','Automation','Marketing','Facebook','Boosting','Campaigns','Branding','Portfolio','Pricing','Delivery','Contact'];
+    quickButtons.forEach(function(button,i){button.textContent=(bnPage?namesBn:namesEn)[i]||button.textContent;});
+  }
   function setPanel(willOpen,trigger){
     if(willOpen)lastTrigger=trigger||openBtn;
     panel.hidden=!willOpen;panel.setAttribute('aria-hidden',String(!willOpen));
     [openBtn,inviteBtn].forEach(function(btn){if(btn)btn.setAttribute('aria-expanded',String(willOpen));});
     if(invite)invite.hidden=willOpen;
+    if(willOpen)applyLanguage();
     syncMotion();
     if(willOpen&&input)setTimeout(function(){if(!panel.hidden)input.focus();},80);
     else if(lastTrigger)lastTrigger.focus();
   }
-  syncMotion();
   function waHtml(){return '<a class="wa-inline" href="'+WA+'" target="_blank" rel="noopener noreferrer">WhatsApp '+WA_LABEL+'</a>';}
-  var replies=[
-    {keys:['service','offer','what do you','সেবা'],text:'We provide professional video editing, AI video marketing, web and app development, SEO, automation and digital campaigns. Continue on '},
-    {keys:['contact','phone','email','whatsapp','number','যোগাযোগ'],text:'Connect directly with our team on '},
-    {keys:['price','cost','budget','মূল্য','খরচ'],text:'Pricing is tailored to your scope, quality and delivery requirements. Request a precise quote on '},
-    {keys:['deliver','fast','time','সময়','ডেলিভারি'],text:'Short-form video delivery often starts from 24–48 hours. Project timelines are confirmed before work begins on '},
-    {keys:['web','website','ওয়েবসাইট'],text:'Yes — we build premium, responsive and SEO-ready websites, applications and landing pages. Start on '},
-    {keys:['app','application'],text:'We build fast, scalable applications and business dashboards. Discuss your idea on '},
-    {keys:['video','ai','edit','gallery','ভিডিও'],text:'We create human-like AI videos and professional edits for brands, products and campaigns. Send your brief on '},
-    {keys:['seo','search engine'],text:'We improve technical SEO, on-page structure, content signals and search visibility for sustainable organic growth. Discuss your site on '},
-    {keys:['automation','chatbot','messenger'],text:'We build Messenger, Instagram, WhatsApp and website automation flows with clear human handoff. Plan yours on '},
-    {keys:['marketing','campaign','boost'],text:'We plan digital campaigns, creative strategy, paid promotion and conversion-focused growth. Start on '},
-    {keys:['facebook','page'],text:'We support Facebook Page setup, management, content, verification guidance and campaign readiness. Ask on '},
-    {keys:['brand','branding','logo'],text:'We create brand identity, logo systems, campaign visuals and consistent digital presentation. Share your idea on '},
-    {keys:['portfolio','work','project'],text:'Explore our selected client work and request a similar production through '},
-    {keys:['hello','hi','hey','হ্যালো'],text:'Hello! Tell us what you want to create, or contact the Creavix team on '}
-  ];
+  function pageAnswer(q,bn){
+    var tokens=(q.toLowerCase().match(/[a-z0-9\u0980-\u09ff]+/g)||[]).filter(function(t){return t.length>2&&stopWords.indexOf(t)===-1;});
+    if(!tokens.length)return '';
+    var candidates=Array.prototype.slice.call(document.querySelectorAll('main h1,main h2,main h3,main p,main li')).filter(function(el){return !el.closest('#support-root');}).map(function(el){return (el.textContent||'').replace(/\s+/g,' ').trim();}).filter(function(t){return t.length>=35&&t.length<=260;});
+    var best='',score=0;
+    candidates.forEach(function(text){var low=text.toLowerCase(),next=0;tokens.forEach(function(token){if(low.indexOf(token)!==-1)next++;});if(next>score){score=next;best=text;}});
+    if(score<2||!best)return '';
+    return (bn?'এই পেজের তথ্য অনুযায়ী: ':'From this page: ')+best;
+  }
+  function answer(q){
+    var lower=(q||'').toLowerCase(),bn=isBn(q);
+    var best=null,bestScore=0;
+    knowledge.forEach(function(item){var score=0;item.keys.forEach(function(key){if(lower.indexOf(key)!==-1)score+=key.indexOf(' ')>-1?3:1;});if(score>bestScore){bestScore=score;best=item;}});
+    if(best&&bestScore>0)return best[bn?'bn':'en'];
+    var contextual=pageAnswer(q,bn);if(contextual)return contextual;
+    return bn?'ধন্যবাদ 🙂 সঠিক উত্তর দিতে আপনার প্রয়োজনটি আরেকটু বিস্তারিত লিখুন। চাইলে আমাদের টিমের সঙ্গে '+waHtml()+'-এ কথা বলতে পারেন।':'Thanks 🙂 Please share a little more detail so we can answer accurately. You can also talk with our team on '+waHtml()+'.';
+  }
   function addMsg(text,who,html){if(!body)return;var div=document.createElement('div');div.className='support-msg '+who;if(html)div.innerHTML=text;else div.textContent=text;body.appendChild(div);body.scrollTop=body.scrollHeight;}
-  function answer(q){var lower=(q||'').toLowerCase();for(var i=0;i<replies.length;i++){for(var k=0;k<replies[i].keys.length;k++){if(lower.indexOf(replies[i].keys[k])!==-1)return replies[i].text+waHtml();}}return 'Thanks for your question. For an accurate human response, continue on '+waHtml()+'.';}
-  function respond(q){if(!q)return;pending++;addMsg(q,'user',false);if(typing)typing.hidden=false;if(statusText)statusText.textContent='Preparing a reply…';var delay=1000+(q.length*37%1001);setTimeout(function(){pending--;if(typing)typing.hidden=pending===0;if(statusText&&pending===0)statusText.textContent='Online · instant answers';addMsg(answer(q),'bot',true);},delay);}
+  function respond(q){
+    if(!q)return;pending++;addMsg(q,'user',false);
+    if(typing)typing.hidden=false;if(statusText)statusText.textContent=isBn(q)?'টাইপিং…':'Typing…';
+    window.setTimeout(function(){pending--;if(typing)typing.hidden=pending===0;if(statusText&&pending===0)statusText.textContent=bnPage?'অনলাইনে আছি':'Online now';var reply=answer(q);addMsg(reply,'bot',reply.indexOf('<a ')!==-1);},1000);
+  }
   [openBtn,inviteBtn].forEach(function(btn){if(btn&&panel)btn.addEventListener('click',function(){setPanel(panel.hidden,btn);});});
   if(closeBtn&&panel)closeBtn.addEventListener('click',function(){setPanel(false);});
   document.addEventListener('keydown',function(e){if(!panel||panel.hidden)return;if(e.key==='Escape'){e.preventDefault();setPanel(false);return;}if(e.key==='Tab'){var focusable=Array.prototype.slice.call(panel.querySelectorAll('button:not([disabled]),a[href],input:not([disabled])'));if(!focusable.length)return;var first=focusable[0],last=focusable[focusable.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
   if(form&&input)form.addEventListener('submit',function(e){e.preventDefault();var q=(input.value||'').trim();if(!q)return;input.value='';respond(q);});
-  document.querySelectorAll('#support-quick [data-q]').forEach(function(button){button.addEventListener('click',function(){respond(button.getAttribute('data-q')||'');});});
-  if((document.documentElement.lang||'').toLowerCase().indexOf('bn')===0){var names=['সেবা','ভিডিও','এআই ভিডিও','ওয়েবসাইট','অ্যাপ','এসইও','অটোমেশন','মার্কেটিং','ফেসবুক','বুস্টিং','ক্যাম্পেইন','ব্র্যান্ডিং','পোর্টফোলিও','মূল্য','সময়','যোগাযোগ'];document.querySelectorAll('.support-quick-track').forEach(function(track){track.querySelectorAll('[data-q]').forEach(function(button,i){if(names[i])button.textContent=names[i];});});if(input)input.placeholder='প্রশ্ন লিখুন…';}
+  quickButtons.forEach(function(button){button.addEventListener('click',function(){respond(button.getAttribute('data-q')||'');pauseSlider();});});
   if(backTop){window.addEventListener('scroll',function(){backTop.hidden=window.scrollY<=400;},{passive:true});backTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:reduced.matches?'auto':'smooth'});});}
+  applyLanguage();syncMotion();
 })();
 </script>
