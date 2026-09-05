@@ -88,15 +88,15 @@ const scenes = [
     <div class="scene-progress" aria-hidden="true"><span></span><span></span><i></i></div>
   </div>
 
-  <div class="glass-card glass-identity">
+  <div class="ai-glass-card glass-identity">
     <span class="card-icon purple" aria-hidden="true">◉</span>
     <span><small>BRAND MEMORY</small><b>Identity Locked</b></span>
   </div>
-  <div class="glass-card glass-motion">
+  <div class="ai-glass-card glass-motion">
     <span class="card-icon cyan" aria-hidden="true">↗</span>
     <span><small>HUMAN REALISM</small><b>Natural Motion</b></span>
   </div>
-  <div class="glass-card glass-scale">
+  <div class="ai-glass-card glass-scale">
     <span class="card-icon orange" aria-hidden="true">◆</span>
     <span><small>GLOBAL CAMPAIGN</small><b>Every Screen</b></span>
   </div>
@@ -189,7 +189,7 @@ const scenes = [
     animation:livePulse 1.8s ease-in-out infinite;
   }
 
-  .prompt-console,.glass-card {
+  .prompt-console,.ai-glass-card {
     border:1px solid rgba(255,255,255,.25);
     background:linear-gradient(135deg,rgba(15,23,42,.72),rgba(30,41,59,.38));
     box-shadow:0 18px 44px rgba(2,6,23,.2),inset 0 1px 0 rgba(255,255,255,.16);
@@ -278,13 +278,13 @@ const scenes = [
     background:#fff; box-shadow:0 0 12px #fff,0 0 22px var(--cyan); animation:progressTravel 14s linear infinite;
   }
 
-  .glass-card {
+  .ai-glass-card {
     position:absolute; z-index:9; display:flex; align-items:center; gap:.48rem; padding:.48rem .66rem;
     border-radius:17px 17px 17px 7px; color:#fff; animation:cardFloat 4.4s ease-in-out infinite alternate;
   }
-  .glass-card>span:last-child { display:grid; line-height:1.05; }
-  .glass-card small { color:#94a3b8; font-size:.42rem; font-weight:900; letter-spacing:.09em; }
-  .glass-card b { margin-top:.18rem; font-size:.56rem; white-space:nowrap; }
+  .ai-glass-card>span:last-child { display:grid; line-height:1.05; }
+  .ai-glass-card small { color:#94a3b8; font-size:.42rem; font-weight:900; letter-spacing:.09em; }
+  .ai-glass-card b { margin-top:.18rem; font-size:.56rem; white-space:nowrap; }
   .card-icon { display:grid; place-items:center; width:28px; height:28px; flex:0 0 28px; border-radius:10px; font-size:.7rem; font-weight:900; }
   .card-icon.purple { background:linear-gradient(135deg,var(--purple),var(--pink)); box-shadow:0 8px 20px rgba(124,58,237,.35); }
   .card-icon.cyan { background:linear-gradient(135deg,var(--blue),var(--cyan)); box-shadow:0 8px 20px rgba(34,211,238,.28); }
@@ -297,9 +297,9 @@ const scenes = [
   .future-note span { color:var(--purple); animation:noteTwinkle 2s ease-in-out infinite; }
 
   .is-paused * { animation-play-state:paused !important; }
-  .motion-ready .film-shell,.motion-ready .glass-card,.motion-ready .future-note { opacity:0; }
+  .motion-ready .film-shell,.motion-ready .ai-glass-card,.motion-ready .future-note { opacity:0; }
   .motion-ready.is-visible .film-shell { animation:stageReveal .72s cubic-bezier(.16,1,.3,1) both; }
-  .motion-ready.is-visible .glass-card {
+  .motion-ready.is-visible .ai-glass-card {
     animation:cardReveal .58s cubic-bezier(.16,1,.3,1) both;
   }
   .motion-ready.is-visible .glass-identity { animation-delay:.16s; }
@@ -396,13 +396,13 @@ const scenes = [
     .campaign-flow em { width:13px; }
     .format-deck { right:4%; bottom:8%; width:31%; }
 
-    .glass-card {
+    .ai-glass-card {
       gap:.34rem; padding:.37rem .48rem; border-radius:14px 14px 14px 6px;
       backdrop-filter:blur(6px) saturate(1.14); -webkit-backdrop-filter:blur(6px) saturate(1.14);
     }
     .card-icon { width:23px; height:23px; flex-basis:23px; border-radius:8px; font-size:.58rem; }
-    .glass-card small { font-size:.34rem; }
-    .glass-card b { font-size:.46rem; }
+    .ai-glass-card small { font-size:.34rem; }
+    .ai-glass-card b { font-size:.46rem; }
     .glass-identity { right:0; top:20%; }
     .glass-motion { right:-.5%; top:52%; }
     .glass-scale { left:0; bottom:7.5%; }
@@ -411,7 +411,7 @@ const scenes = [
     .light-scan { display:none; }
     .film-grain { opacity:.045; }
 
-    .motion-ready.is-visible .glass-card {
+    .motion-ready.is-visible .ai-glass-card {
       animation-name:cardReveal; animation-duration:.5s;
       animation-timing-function:cubic-bezier(.16,1,.3,1); animation-fill-mode:both;
       animation-iteration-count:1;
@@ -422,8 +422,8 @@ const scenes = [
     .brand-copy small { display:none; }
     .prompt-console { min-width:58%; }
     .prompt-console b { font-size:.44rem; }
-    .glass-card small { display:none; }
-    .glass-card b { margin-top:0; font-size:.49rem; }
+    .ai-glass-card small { display:none; }
+    .ai-glass-card b { margin-top:0; font-size:.49rem; }
     .glass-motion { top:53%; }
   }
 
@@ -431,7 +431,7 @@ const scenes = [
     .cinematic-hero *,.cinematic-hero *::before,.cinematic-hero *::after { animation:none !important; transition:none !important; }
     .film-scene-1 { opacity:1; transform:scale(1.04); }
     .film-scene-2 { opacity:0; }
-    .motion-ready .film-shell,.motion-ready .glass-card,.motion-ready .future-note { opacity:1; }
+    .motion-ready .film-shell,.motion-ready .ai-glass-card,.motion-ready .future-note { opacity:1; }
   }
 </style>
 
