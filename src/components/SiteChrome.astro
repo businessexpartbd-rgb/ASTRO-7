@@ -156,7 +156,7 @@ const waDisplay = '01890-484355';
     slideTimer=window.setInterval(function(){
       slideIndex=(slideIndex+1)%quickButtons.length;
       var button=quickButtons[slideIndex];
-      quick.scrollTo({left:Math.max(0,button.offsetLeft-quick.offsetLeft-10),behavior:'smooth'});
+      quick.scrollTo({left:Math.max(0,button.offsetLeft-10),behavior:'smooth'});
     },1000);
   }
   function pauseSlider(){
@@ -223,9 +223,9 @@ const waDisplay = '01890-484355';
   }
   function addMsg(text,who,html){if(!body)return;var div=document.createElement('div');div.className='support-msg '+who;if(html)div.innerHTML=text;else div.textContent=text;body.appendChild(div);body.scrollTop=body.scrollHeight;}
   function respond(q){
-    if(!q)return;pending++;addMsg(q,'user',false);
-    if(typing)typing.hidden=false;if(statusText)statusText.textContent=isBn(q)?'টাইপিং…':'Typing…';
-    window.setTimeout(function(){pending--;if(typing)typing.hidden=pending===0;if(statusText&&pending===0)statusText.textContent=bnPage?'অনলাইনে আছি':'Online now';var reply=answer(q);addMsg(reply,'bot',reply.indexOf('<a ')!==-1);},1000);
+    if(!q)return;var replyBn=isBn(q);pending++;addMsg(q,'user',false);
+    if(typing)typing.hidden=false;if(statusText)statusText.textContent=replyBn?'টাইপিং…':'Typing…';
+    window.setTimeout(function(){pending--;if(typing)typing.hidden=pending===0;if(statusText&&pending===0)statusText.textContent=replyBn?'অনলাইনে আছি':'Online now';var reply=answer(q);addMsg(reply,'bot',reply.indexOf('<a ')!==-1);},1000);
   }
   [openBtn,inviteBtn].forEach(function(btn){if(btn&&panel)btn.addEventListener('click',function(){setPanel(panel.hidden,btn);});});
   if(closeBtn&&panel)closeBtn.addEventListener('click',function(){setPanel(false);});
