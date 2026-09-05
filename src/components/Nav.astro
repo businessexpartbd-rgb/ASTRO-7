@@ -162,11 +162,18 @@ const { active = '' } = Astro.props;
     .nav-language-toggle i { height:11px; }
     .nav-menu-btn { padding: .48rem .65rem; font-size: .72rem; }
   }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .nav-social-bar { display:none; }
+  }
   @media (max-width: 390px) {
     .nav-inner { gap:.2rem;padding-inline:.3rem; }
     .nav-social-bar :global(.si) { width:25px;height:25px; }
     .nav-language-toggle { min-width:48px;padding-inline:.28rem;font-size:.56rem; }
     .nav-menu-btn { padding-inline:.52rem; }
+  }
+  @media (max-width: 360px) {
+    .nav-social-bar { display:none; }
+    .logo-text { font-size:.68rem; }
   }
   body.nav-locked {
     overflow: hidden !important;
