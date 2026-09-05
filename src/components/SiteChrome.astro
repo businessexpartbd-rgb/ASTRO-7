@@ -23,7 +23,7 @@ const waDisplay = '01890-484355';
   </div>
   <div class="support-panel" id="support-panel" hidden aria-hidden="true" role="dialog" aria-labelledby="support-title">
     <div class="support-head">
-      <div class="support-identity"><img src="/brands/help-robot.webp" alt="" width="42" height="42" loading="lazy" decoding="async" fetchpriority="low" /><div class="support-brand"><strong id="support-title">Creavix Support</strong><span class="support-status"><span id="support-status-text">Online now</span></span></div></div>
+      <div class="support-identity"><img src="/brands/help-robot.webp" alt="Creavix Support" width="42" height="42" loading="lazy" decoding="async" fetchpriority="low" /><div class="support-brand"><strong id="support-title">Creavix Support</strong><span class="support-status"><span id="support-status-text">24/7 Support · Live</span></span></div></div>
       <button type="button" class="support-close" id="support-close" aria-label="Close Help Center">×</button>
     </div>
     <div class="support-body" id="support-body" aria-live="polite">
@@ -113,6 +113,30 @@ const waDisplay = '01890-484355';
   .support-root .support-form input{min-height:46px;border-color:rgba(37,99,235,.15);background:#f8fafc}
   .support-root .support-form button{width:44px;height:44px;background:linear-gradient(135deg,#f97316,#2563eb 62%,#16a34a);box-shadow:0 8px 20px rgba(37,99,235,.22)}
   @media(max-width:767px){.support-root .support-panel{width:calc(100vw - 1rem);right:calc(.5rem + env(safe-area-inset-right,0px));border-radius:21px}.support-root .support-body{padding:12px}.support-root .support-msg{max-width:92%;font-size:13px}.support-root .support-quick{padding-inline:10px}}
+  .support-root .support-head{
+    position:relative!important;padding:13px 14px!important;
+    background:linear-gradient(125deg,#f97316 0%,#ea580c 58%,#c2410c 100%)!important;
+    border-bottom:1px solid rgba(255,255,255,.3)!important;
+    box-shadow:0 9px 24px rgba(234,88,12,.18)!important;
+  }
+  .support-root .support-identity>img{
+    width:44px!important;height:44px!important;padding:2px!important;
+    border:1px solid rgba(255,255,255,.78)!important;border-radius:14px!important;
+    background:#fff!important;box-shadow:0 6px 17px rgba(124,45,18,.22),0 0 0 3px rgba(255,255,255,.15)!important;
+  }
+  .support-root .support-brand strong{display:block;color:#fff!important;-webkit-text-fill-color:#fff!important;text-shadow:0 1px 2px rgba(124,45,18,.22)!important;font-size:1rem!important}
+  .support-root .support-status{display:inline-flex!important;align-items:center!important;gap:7px!important;color:#fff!important;-webkit-text-fill-color:#fff!important;font-weight:700!important;font-size:.72rem!important;opacity:1!important}
+  .support-root .support-status::before{content:''!important;width:8px!important;height:8px!important;display:block!important;flex:none!important;border-radius:50%!important;background:#22c55e!important;box-shadow:0 0 0 4px rgba(255,255,255,.18),0 0 13px #22c55e!important;animation:support-live-pulse 1.7s ease-in-out infinite!important}
+  .support-root .support-close{
+    width:44px!important;height:44px!important;display:grid!important;place-items:center!important;flex:none!important;
+    border:1px solid rgba(255,255,255,.55)!important;border-radius:14px!important;
+    background:rgba(255,255,255,.16)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+    font-size:1.55rem!important;font-weight:500!important;line-height:1!important;cursor:pointer!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.24)!important;
+  }
+  .support-root .support-close:hover{background:#fff!important;color:#ea580c!important;-webkit-text-fill-color:#ea580c!important;transform:scale(1.04)}
+  @keyframes support-live-pulse{50%{opacity:.72;box-shadow:0 0 0 7px rgba(255,255,255,.08),0 0 18px #22c55e}}
+  @media(max-width:480px){.support-root .support-head{padding:11px 12px!important}.support-root .support-brand strong{font-size:.94rem!important}.support-root .support-status{font-size:.68rem!important}}
 </style>
 <script is:inline>
 (function () {
@@ -225,7 +249,7 @@ const waDisplay = '01890-484355';
   function respond(q){
     if(!q)return;var replyBn=isBn(q);pending++;addMsg(q,'user',false);
     if(typing)typing.hidden=false;if(statusText)statusText.textContent=replyBn?'টাইপিং…':'Typing…';
-    window.setTimeout(function(){pending--;if(typing)typing.hidden=pending===0;if(statusText&&pending===0)statusText.textContent=replyBn?'অনলাইনে আছি':'Online now';var reply=answer(q);addMsg(reply,'bot',reply.indexOf('<a ')!==-1);},1000);
+    window.setTimeout(function(){pending--;if(typing)typing.hidden=pending===0;if(statusText&&pending===0)statusText.textContent=replyBn?'২৪/৭ সাপোর্ট · লাইভ':'24/7 Support · Live';var reply=answer(q);addMsg(reply,'bot',reply.indexOf('<a ')!==-1);},1000);
   }
   [openBtn,inviteBtn].forEach(function(btn){if(btn&&panel)btn.addEventListener('click',function(){setPanel(panel.hidden,btn);});});
   if(closeBtn&&panel)closeBtn.addEventListener('click',function(){setPanel(false);});
