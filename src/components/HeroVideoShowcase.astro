@@ -1,0 +1,136 @@
+<div class="hero-video-showcase" data-hero-video-showcase>
+  <div class="hero-video-glow hero-video-glow-orange" aria-hidden="true"></div>
+  <div class="hero-video-glow hero-video-glow-blue" aria-hidden="true"></div>
+  <video
+    class="hero-showcase-video"
+    data-creavix-hero-video
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    poster="/media/hero-ai-marketing-poster.webp"
+    disablepictureinpicture
+    disableremoteplayback
+    aria-label="Creavix AI video marketing workflow showcase"
+  >
+    <source src="/media/hero-ai-marketing.mp4" type="video/mp4" />
+  </video>
+</div>
+
+<script>
+  const heroVideos = document.querySelectorAll<HTMLVideoElement>('[data-creavix-hero-video]');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  heroVideos.forEach((video) => {
+    video.muted = true;
+    video.defaultMuted = true;
+
+    if (reduceMotion) {
+      video.pause();
+      return;
+    }
+
+    const playVideo = () => video.play().catch(() => {});
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting && !document.hidden) playVideo();
+        else video.pause();
+      }, { threshold: 0.08, rootMargin: '80px 0px' });
+
+      observer.observe(video);
+    } else {
+      playVideo();
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) video.pause();
+      else if (video.getBoundingClientRect().bottom > 0 && video.getBoundingClientRect().top < window.innerHeight) playVideo();
+    });
+  });
+</script>
+
+<style>
+  .hero-video-showcase {
+    position: relative;
+    isolation: isolate;
+    width: min(100%, 520px);
+    aspect-ratio: 1;
+    margin-inline: auto;
+    overflow: hidden;
+    background: transparent;
+    contain: layout paint;
+  }
+
+  .hero-showcase-video {
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    background: transparent;
+    -webkit-mask-image: radial-gradient(ellipse 99% 97% at 50% 50%, #000 78%, rgba(0,0,0,.98) 90%, transparent 100%);
+    mask-image: radial-gradient(ellipse 99% 97% at 50% 50%, #000 78%, rgba(0,0,0,.98) 90%, transparent 100%);
+    filter: saturate(1.03) contrast(1.015);
+    transform: translateZ(0);
+  }
+
+  .hero-video-glow {
+    position: absolute;
+    z-index: 1;
+    border-radius: 999px;
+    pointer-events: none;
+    filter: blur(34px);
+    opacity: .16;
+  }
+
+  .hero-video-glow-orange {
+    top: 6%;
+    right: 3%;
+    width: 38%;
+    height: 38%;
+    background: #f97316;
+  }
+
+  .hero-video-glow-blue {
+    left: 5%;
+    bottom: 5%;
+    width: 44%;
+    height: 44%;
+    background: #2563eb;
+  }
+
+  @media (min-width: 640px) and (max-width: 899px) {
+    .hero-video-showcase { width: min(76vw, 500px); }
+  }
+
+  @media (min-width: 900px) {
+    .hero-video-showcase { width: min(100%, 520px); }
+  }
+
+  @media (max-width: 639px) {
+    .hero-video-showcase {
+      width: min(100%, 390px);
+      margin-top: -.35rem;
+      margin-bottom: -.65rem;
+    }
+
+    .hero-showcase-video {
+      -webkit-mask-image: radial-gradient(ellipse 100% 98% at 50% 50%, #000 80%, rgba(0,0,0,.98) 91%, transparent 100%);
+      mask-image: radial-gradient(ellipse 100% 98% at 50% 50%, #000 80%, rgba(0,0,0,.98) 91%, transparent 100%);
+    }
+
+    .hero-video-glow { filter: blur(24px); opacity: .12; }
+  }
+
+  @media (max-width: 380px) {
+    .hero-video-showcase { width: min(100%, 345px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-showcase-video { transform: none; }
+  }
+</style>
