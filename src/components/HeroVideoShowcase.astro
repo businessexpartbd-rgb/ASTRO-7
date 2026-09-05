@@ -114,21 +114,23 @@
 
   @media (max-width: 639px) {
     .hero-video-showcase {
-      width: min(100%, 390px);
+      width: 100%;
+      max-width: none;
       margin-top: -.35rem;
-      margin-bottom: -.65rem;
+      margin-bottom: -.15rem;
     }
 
     .hero-showcase-video {
+      object-fit: cover;
       -webkit-mask-image:
-        linear-gradient(to bottom, #000 0%, #000 76%, rgba(0,0,0,.94) 83%, rgba(0,0,0,.52) 92%, transparent 100%),
-        radial-gradient(circle at 0 0, transparent 0%, rgba(0,0,0,.16) 7%, #000 24%),
-        radial-gradient(circle at 100% 0, transparent 0%, rgba(0,0,0,.16) 7%, #000 24%);
+        linear-gradient(to bottom, #000 0%, #000 88%, rgba(0,0,0,.97) 92%, rgba(0,0,0,.62) 97%, transparent 100%),
+        radial-gradient(circle at 0 0, transparent 0%, rgba(0,0,0,.28) 3%, #000 14%),
+        radial-gradient(circle at 100% 0, transparent 0%, rgba(0,0,0,.28) 3%, #000 14%);
       -webkit-mask-composite: source-in, source-in;
       mask-image:
-        linear-gradient(to bottom, #000 0%, #000 76%, rgba(0,0,0,.94) 83%, rgba(0,0,0,.52) 92%, transparent 100%),
-        radial-gradient(circle at 0 0, transparent 0%, rgba(0,0,0,.16) 7%, #000 24%),
-        radial-gradient(circle at 100% 0, transparent 0%, rgba(0,0,0,.16) 7%, #000 24%);
+        linear-gradient(to bottom, #000 0%, #000 88%, rgba(0,0,0,.97) 92%, rgba(0,0,0,.62) 97%, transparent 100%),
+        radial-gradient(circle at 0 0, transparent 0%, rgba(0,0,0,.28) 3%, #000 14%),
+        radial-gradient(circle at 100% 0, transparent 0%, rgba(0,0,0,.28) 3%, #000 14%);
       mask-composite: intersect, intersect;
     }
 
@@ -136,7 +138,7 @@
   }
 
   @media (max-width: 380px) {
-    .hero-video-showcase { width: min(100%, 345px); }
+    .hero-video-showcase { width: 100%; }
   }
 
   @media (prefers-reduced-motion: reduce) {
