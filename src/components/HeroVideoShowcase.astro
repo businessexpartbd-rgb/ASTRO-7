@@ -20,16 +20,9 @@
 
 <script>
   const heroVideos = document.querySelectorAll<HTMLVideoElement>('[data-creavix-hero-video]');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   heroVideos.forEach((video) => {
     video.muted = true;
     video.defaultMuted = true;
-
-    if (reduceMotion) {
-      video.pause();
-      return;
-    }
 
     const playVideo = () => video.play().catch(() => {});
 
