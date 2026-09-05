@@ -16,6 +16,11 @@ const { active = '' } = Astro.props;
       <SocialIcons size="xs" compact={true} />
     </div>
 
+    <button type="button" class="nav-language-toggle notranslate" data-language-toggle aria-label="ওয়েবসাইট বাংলায় পড়ুন" aria-pressed="false" translate="no">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0c2.2-2.4 3.3-5.4 3.3-9S14.2 5.4 12 3m0 18c-2.2-2.4-3.3-5.4-3.3-9S9.8 5.4 12 3M3.4 9h17.2M3.4 15h17.2"/></svg>
+      <span class="nav-lang-en">EN</span><i></i><span class="nav-lang-bn">বাংলা</span>
+    </button>
+
     <button type="button" class="nav-menu-btn" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
       <span class="nav-menu-label" id="nav-menu-label">Menu</span>
     </button>
@@ -64,6 +69,23 @@ const { active = '' } = Astro.props;
     display: flex; align-items: center; margin-left: auto; margin-right: 0.25rem;
     flex-shrink: 0; z-index: 102;
   }
+  .nav-language-toggle {
+    order: 3; min-width: 88px; min-height: 42px; padding: .4rem .58rem;
+    display: inline-flex; align-items: center; justify-content: center; gap: .27rem;
+    flex: none; z-index: 102; border: 1px solid rgba(249,115,22,.36);
+    border-radius: 999px; background: linear-gradient(135deg,#fff7ed,#fff);
+    color: #0a2540; box-shadow: 0 0 0 3px rgba(249,115,22,.07),0 6px 18px rgba(234,88,12,.12);
+    font-family: "Hind Siliguri", sans-serif; font-size: .7rem; font-weight: 800;
+    cursor: pointer; transition: transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+  }
+  .nav-language-toggle:hover { transform: translateY(-1px); border-color:#f97316; box-shadow:0 0 0 4px rgba(249,115,22,.1),0 9px 22px rgba(234,88,12,.16); }
+  .nav-language-toggle svg { width:15px;height:15px;fill:none;stroke:#f97316;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round; }
+  .nav-language-toggle i { width:1px;height:13px;background:#cbd5e1; }
+  .nav-language-toggle[data-active-language="en"] .nav-lang-en,
+  .nav-language-toggle[data-active-language="bn"] .nav-lang-bn { color:#ea580c; }
+  .nav-language-toggle[data-active-language="en"] .nav-lang-bn,
+  .nav-language-toggle[data-active-language="bn"] .nav-lang-en { color:#64748b; }
+
   .nav-menu-btn {
     display: inline-flex; align-items: center; justify-content: center;
     z-index: 102; border: 1.5px solid rgba(15,23,42,.1);
@@ -81,6 +103,7 @@ const { active = '' } = Astro.props;
   @media (min-width: 768px) {
     .nav-menu-btn { display: none; }
     .nav-social-bar { order: 2; margin-right: 0.35rem; }
+    .nav-language-toggle { order: 3; }
     .nav-panel { order: 1; flex: 1; }
     .nav-links > li > a,
     .nav-drop-btn {
@@ -134,7 +157,16 @@ const { active = '' } = Astro.props;
     .nav-social-bar { margin-right: 0; }
     .nav-social-bar :global(.social-icons) { gap: .15rem; }
     .nav-social-bar :global(.si) { width: 27px; height: 27px; }
+    .nav-language-toggle { min-width:54px;min-height:40px;padding:.34rem .38rem;gap:.18rem;font-size:.6rem;box-shadow:0 0 0 2px rgba(249,115,22,.07),0 5px 14px rgba(234,88,12,.1); }
+    .nav-language-toggle svg { display:none; }
+    .nav-language-toggle i { height:11px; }
     .nav-menu-btn { padding: .48rem .65rem; font-size: .72rem; }
+  }
+  @media (max-width: 390px) {
+    .nav-inner { gap:.2rem;padding-inline:.3rem; }
+    .nav-social-bar :global(.si) { width:25px;height:25px; }
+    .nav-language-toggle { min-width:48px;padding-inline:.28rem;font-size:.56rem; }
+    .nav-menu-btn { padding-inline:.52rem; }
   }
   body.nav-locked {
     overflow: hidden !important;
