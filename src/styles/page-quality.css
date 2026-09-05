@@ -138,3 +138,39 @@ body.creavix-brand {
     animation: none !important;
   }
 }
+
+
+/* Readable service/FAQ surfaces: prevent white text from disappearing on white cards. */
+.creavix-brand[data-page-kind]:not([data-page-kind='home']) :is(
+  .sv-card,.sv-step,.dm-card,.dm-pillar,.dm-step,.dm-who-card,
+  .fb-service,.fb-gcard,.fb-step,.bo-card,.bo-bcard,.bo-acard,.bo-rate-card,
+  .au-card,.au-step,.ab-card,.ct-card,.seo-card,.brand-service-card,
+  .sol-card,.feat-card,.plat-card,.ai-builder-card,.manual-engineering-card,
+  .pf-card,.bl-card,.blog-card
+) :is(h2,h3,h4,h5,summary) {
+  color: #0a2540 !important;
+  -webkit-text-fill-color: #0a2540 !important;
+  text-shadow: none !important;
+}
+
+.creavix-brand[data-page-kind]:not([data-page-kind='home']) :is(
+  .sv-card,.sv-step,.dm-card,.dm-pillar,.dm-step,.dm-who-card,
+  .fb-service,.fb-gcard,.fb-step,.bo-card,.bo-bcard,.bo-acard,.bo-rate-card,
+  .au-card,.au-step,.ab-card,.ct-card,.seo-card,.brand-service-card,
+  .sol-card,.feat-card,.plat-card,.ai-builder-card,.manual-engineering-card,
+  .pf-card,.bl-card,.blog-card
+) :is(p,li) {
+  color: #475569 !important;
+  -webkit-text-fill-color: #475569 !important;
+}
+
+.creavix-brand[data-page-kind]:not([data-page-kind='home']) main details {
+  color: #475569;
+  background: #fff;
+}
+
+.creavix-brand[data-page-kind]:not([data-page-kind='home']) main details summary,
+.creavix-brand[data-page-kind]:not([data-page-kind='home']) main details summary * {
+  color: #0a2540 !important;
+  -webkit-text-fill-color: #0a2540 !important;
+}
