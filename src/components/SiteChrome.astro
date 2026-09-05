@@ -47,8 +47,8 @@ const waDisplay = '01890-484355';
   .support-launcher{position:relative;width:64px;height:64px;filter:drop-shadow(0 12px 24px rgba(37,99,235,.2))}
   .support-launcher::after{content:'';position:absolute;z-index:-1;inset:-7px;border-radius:27px;background:radial-gradient(circle,rgba(34,211,238,.25),rgba(124,58,237,.09) 48%,transparent 72%);animation:assistant-breathe 2.4s ease-in-out infinite alternate;pointer-events:none}
   .support-root .support-fab{position:relative;width:64px;height:64px;padding:0;border:0!important;border-radius:22px;background:#071d35!important;box-shadow:0 11px 30px rgba(8,47,73,.25),0 0 0 1px rgba(255,255,255,.72);overflow:hidden;perspective:600px;isolation:isolate}
-  .support-root .support-fab::before{content:'';position:absolute;z-index:0;inset:-55%;background:conic-gradient(from 0deg,#f97316,#fbbf24,#22d3ee,#2563eb,#7c3aed,#f97316);animation:assistant-ring 3s linear infinite}
-  .support-root .support-fab::after{content:'';position:absolute;z-index:1;inset:3px;border-radius:19px;background:radial-gradient(circle at 50% 28%,#f8fbff 0%,#e7efff 46%,#dbeafe 100%);box-shadow:inset 0 1px 0 #fff}
+  .support-root .support-fab::before{content:'';position:absolute;z-index:0;inset:-58%;background:conic-gradient(from 0deg,#ff6a00 0 12%,#ffd166 20%,#22d3ee 38%,#2563eb 56%,#8b5cf6 74%,#ff4d8d 88%,#ff6a00 100%);filter:saturate(1.25);animation:assistant-ring 3s linear infinite}
+  .support-root .support-fab::after{content:'';position:absolute;z-index:1;inset:4px;border-radius:18px;background:radial-gradient(circle at 50% 28%,#fff 0%,#eaf2ff 47%,#dbeafe 100%);box-shadow:inset 0 1px 0 #fff,0 0 16px rgba(37,99,235,.28)}
   .support-root .support-fab:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(37,99,235,.3),0 0 0 1px rgba(255,255,255,.8)}
   .support-robot-look{position:relative;z-index:2;display:block;transform:rotateY(var(--helper-y,0deg)) rotateX(var(--helper-x,0deg));transition:transform .35s ease;transform-style:preserve-3d;pointer-events:none}
   .support-robot-float{display:block;transform-origin:50% 55%;transform-style:preserve-3d;backface-visibility:visible}
@@ -84,14 +84,14 @@ const waDisplay = '01890-484355';
     .support-robot-float{animation:assistant-360 3s cubic-bezier(.45,0,.2,1) infinite;animation-play-state:paused}
     .support-root.is-helper-running .support-robot-float{animation-play-state:running;will-change:transform}
     .support-root .support-fab:focus-visible .support-robot-float{animation-play-state:paused}
-    @keyframes assistant-360{0%,8%{transform:translateY(0) rotateY(0deg) scale(1)}45%{transform:translateY(-3px) rotateY(180deg) scale(1.04)}82%,100%{transform:translateY(0) rotateY(360deg) scale(1)}}
+    @keyframes assistant-360{0%,52%{transform:translateY(0) rotateZ(0deg) rotateY(0deg) scale(1)}70%{transform:translateY(-3px) rotateZ(180deg) rotateY(16deg) scale(1.06)}88%,100%{transform:translateY(0) rotateZ(360deg) rotateY(0deg) scale(1)}}
   }
   @keyframes assistant-ring{to{transform:rotate(360deg)}}
   @keyframes assistant-breathe{to{opacity:.55;transform:scale(1.16)}}
   @media(prefers-reduced-motion:reduce){.support-robot-float{animation:none!important}.support-robot-look{transform:none;transition:none}.support-root .support-fab{transition:none}}
   @media(max-width:767px){
     .support-root .support-actions{right:calc(.72rem + env(safe-area-inset-right,0px));bottom:calc(.72rem + env(safe-area-inset-bottom,0px))}
-    .support-launcher,.support-root .support-fab{width:60px;height:60px}.support-root .support-fab{border-radius:20px}.support-root .support-fab::after{border-radius:17px}.support-robot-float img{width:60px;height:60px}
+    .support-launcher,.support-root .support-fab{width:60px;height:60px}.support-root .support-fab{border-radius:20px}.support-root .support-fab::after{inset:4px;border-radius:16px}.support-robot-float img{width:60px;height:60px}
     .support-invite{right:68px;bottom:7px}#support-invite-open{padding:7px 10px 7px 31px}#support-invite-open::before{left:9px}#support-invite-open span{display:none}#support-invite-open strong{font-size:11px}
     .support-root .support-panel{bottom:calc(83px + env(safe-area-inset-bottom,0px));max-height:min(68dvh,500px)}
   }
@@ -102,7 +102,7 @@ const waDisplay = '01890-484355';
   var openBtn=document.getElementById('support-open'),closeBtn=document.getElementById('support-close'),panel=document.getElementById('support-panel'),body=document.getElementById('support-body'),form=document.getElementById('support-form'),input=document.getElementById('support-input'),typing=document.getElementById('support-typing'),statusText=document.getElementById('support-status-text'),backTop=document.getElementById('back-top');
   var root=document.getElementById('support-root'),invite=document.getElementById('support-invite'),inviteBtn=document.getElementById('support-invite-open'),motionBtn=document.getElementById('support-motion-toggle'),look=document.getElementById('support-robot-look');
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)'),paused=false,frame=0,rx=0,ry=0,lastTrigger=openBtn,pending=0;
-  try{paused=localStorage.getItem('creavix-helper-motion-paused')==='1';}catch(e){}
+  try{paused=localStorage.getItem('creavix-helper-motion-paused-v2')==='1';}catch(e){}
   function resetLook(){if(frame)cancelAnimationFrame(frame);frame=0;rx=ry=0;if(look){look.style.setProperty('--helper-x','0deg');look.style.setProperty('--helper-y','0deg');}}
   function syncMotion(){
     var active=!paused&&!reduced.matches&&!document.hidden;
@@ -110,7 +110,7 @@ const waDisplay = '01890-484355';
     if(motionBtn){motionBtn.hidden=reduced.matches;motionBtn.setAttribute('aria-pressed',String(paused));motionBtn.setAttribute('aria-label',paused?'Play helper animation':'Pause helper animation');motionBtn.title=paused?'Play helper animation':'Pause helper animation';}
     if(!active||!panel.hidden)resetLook();
   }
-  if(motionBtn)motionBtn.addEventListener('click',function(){paused=!paused;try{localStorage.setItem('creavix-helper-motion-paused',paused?'1':'0');}catch(e){}syncMotion();});
+  if(motionBtn)motionBtn.addEventListener('click',function(){paused=!paused;try{localStorage.setItem('creavix-helper-motion-paused-v2',paused?'1':'0');}catch(e){}syncMotion();});
   reduced.addEventListener('change',syncMotion);document.addEventListener('visibilitychange',syncMotion);
   if(openBtn){
     openBtn.addEventListener('pointermove',function(e){
