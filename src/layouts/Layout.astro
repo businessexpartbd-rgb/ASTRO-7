@@ -288,6 +288,21 @@ const jsonLd = {
       a { color: inherit; text-decoration: none; }
       :focus-visible { outline: 3px solid #F59E0B; outline-offset: 3px; }
       img { max-width: 100%; height: auto; display: block; }
+      .creavix-translate-engine {
+        position: fixed !important;
+        width: 1px !important;
+        height: 1px !important;
+        left: -9999px !important;
+        overflow: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+      .goog-te-banner-frame.skiptranslate,
+      .goog-te-gadget-icon,
+      #goog-gt-tt,
+      .goog-te-balloon-frame { display: none !important; }
+      body { top: 0 !important; }
+      html[data-site-language="bn"] body { font-family: "Hind Siliguri", sans-serif; }
       @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto; }
         *, *::before, *::after {
@@ -306,7 +321,120 @@ const jsonLd = {
   >
     <a class="skip-to-content" href="#main-content">Skip to content</a>
     <slot />
+    <div id="creavix-translate-engine" class="creavix-translate-engine notranslate" aria-hidden="true"></div>
     <CookieBanner />
+    <script is:inline>
+      (function () {
+        'use strict';
+        var STORAGE_KEY = 'creavix-language';
+        var SCRIPT_ID = 'creavix-google-translate';
+        var desiredLanguage = 'en';
+
+        function readLanguage() {
+          try { return localStorage.getItem(STORAGE_KEY) === 'bn' ? 'bn' : 'en'; }
+          catch (error) { return 'en'; }
+        }
+
+        function rememberLanguage(language) {
+          try { localStorage.setItem(STORAGE_KEY, language); } catch (error) {}
+        }
+
+        function setTranslateCookie(value, expires) {
+          var suffix = ';path=/;SameSite=Lax' + (expires ? ';expires=' + expires : '');
+          document.cookie = 'googtrans=' + value + suffix;
+          if (location.hostname.indexOf('.') !== -1) {
+            document.cookie = 'googtrans=' + value + suffix + ';domain=.' + location.hostname;
+          }
+        }
+
+        function clearTranslateCookie() {
+          var past = 'Thu, 01 Jan 1970 00:00:00 GMT';
+          setTranslateCookie('', past);
+        }
+
+        function protectNonTranslatableContent() {
+          document.querySelectorAll('.hero-premium, a[href^="tel:"], a[href^="mailto:"], [data-public-rating], .hero-counter').forEach(function (element) {
+            element.classList.add('notranslate');
+            element.setAttribute('translate', 'no');
+          });
+        }
+
+        function paintControls(language) {
+          document.documentElement.lang = language === 'bn' ? 'bn' : 'en';
+          document.documentElement.dataset.siteLanguage = language;
+          document.querySelectorAll('[data-language-toggle]').forEach(function (button) {
+            button.dataset.activeLanguage = language;
+            button.setAttribute('aria-pressed', language === 'bn' ? 'true' : 'false');
+            button.setAttribute('aria-label', language === 'bn' ? 'Switch website to English' : 'ওয়েবসাইট বাংলায় পড়ুন');
+          });
+        }
+
+        function applyBengali() {
+          var combo = document.querySelector('.goog-te-combo');
+          if (!combo) {
+            window.setTimeout(applyBengali, 80);
+            return;
+          }
+          if (combo.value !== 'bn') {
+            combo.value = 'bn';
+            combo.dispatchEvent(new Event('change'));
+          }
+        }
+
+        window.creavixGoogleTranslateInit = function () {
+          if (!window.google || !window.google.translate) return;
+          new window.google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'bn',
+            autoDisplay: false,
+            multilanguagePage: true
+          }, 'creavix-translate-engine');
+          if (desiredLanguage === 'bn') applyBengali();
+        };
+
+        function loadTranslator() {
+          if (document.getElementById(SCRIPT_ID)) {
+            if (window.google && window.google.translate) window.creavixGoogleTranslateInit();
+            return;
+          }
+          var script = document.createElement('script');
+          script.id = SCRIPT_ID;
+          script.src = 'https://translate.google.com/translate_a/element.js?cb=creavixGoogleTranslateInit';
+          script.async = true;
+          script.defer = true;
+          document.head.appendChild(script);
+        }
+
+        window.creavixSetLanguage = function (language) {
+          desiredLanguage = language === 'bn' ? 'bn' : 'en';
+          rememberLanguage(desiredLanguage);
+          paintControls(desiredLanguage);
+          protectNonTranslatableContent();
+          if (desiredLanguage === 'bn') {
+            setTranslateCookie('/en/bn');
+            loadTranslator();
+          } else {
+            clearTranslateCookie();
+            location.reload();
+          }
+        };
+
+        desiredLanguage = readLanguage();
+        protectNonTranslatableContent();
+        paintControls(desiredLanguage);
+        document.addEventListener('click', function (event) {
+          var button = event.target.closest('[data-language-toggle]');
+          if (!button) return;
+          event.preventDefault();
+          window.creavixSetLanguage(readLanguage() === 'bn' ? 'en' : 'bn');
+        });
+        if (desiredLanguage === 'bn') {
+          setTranslateCookie('/en/bn');
+          if ('requestIdleCallback' in window) requestIdleCallback(loadTranslator, { timeout: 1200 });
+          else setTimeout(loadTranslator, 250);
+        }
+      })();
+    </script>
     <script is:inline>
       (function () {
         'use strict';
