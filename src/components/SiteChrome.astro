@@ -14,21 +14,20 @@ const waDisplay = '01890-484355';
     </a>
     <div class="support-launcher">
       <div class="support-invite" id="support-invite">
-        <button type="button" id="support-invite-open" aria-controls="support-panel" aria-expanded="false"><strong>Creavix AI Assistant</strong><span>Ask about any service</span></button>
-        <button type="button" id="support-motion-toggle" aria-label="Pause helper animation" aria-pressed="false" title="Pause helper animation" hidden><span class="support-pause-icon" aria-hidden="true">Ⅱ</span><span class="support-play-icon" aria-hidden="true">▶</span></button>
+        <button type="button" id="support-invite-open" aria-controls="support-panel" aria-expanded="false"><span class="support-live-light" aria-hidden="true"></span><strong>Ask Me</strong></button>
       </div>
-      <button type="button" class="support-fab" id="support-open" aria-label="Open Creavix AI Assistant — ask about services" aria-controls="support-panel" aria-expanded="false">
+      <button type="button" class="support-fab" id="support-open" aria-label="Open Ask Me support" aria-controls="support-panel" aria-expanded="false">
         <span class="support-robot-look" id="support-robot-look"><span class="support-robot-float"><img src="/brands/help-robot.webp" alt="" width="64" height="64" loading="lazy" decoding="async" fetchpriority="low" draggable="false" /></span></span>
       </button>
     </div>
   </div>
   <div class="support-panel" id="support-panel" hidden aria-hidden="true" role="dialog" aria-labelledby="support-title">
     <div class="support-head">
-      <div class="support-identity"><img src="/brands/help-robot.webp" alt="" width="42" height="42" loading="lazy" decoding="async" fetchpriority="low" /><div class="support-brand"><strong id="support-title">Creavix AI Assistant</strong><span class="support-status"><span id="support-status-text">Online · instant answers</span></span></div></div>
+      <div class="support-identity"><img src="/brands/help-robot.webp" alt="" width="42" height="42" loading="lazy" decoding="async" fetchpriority="low" /><div class="support-brand"><strong id="support-title">Ask Me</strong><span class="support-status"><span id="support-status-text">Online · instant answers</span></span></div></div>
       <button type="button" class="support-close" id="support-close" aria-label="Close Help Center">×</button>
     </div>
     <div class="support-body" id="support-body" aria-live="polite">
-      <div class="support-msg bot">Hello! I’m the Creavix AI Assistant. Ask me about AI video, SEO, websites, pricing or delivery. For a human response, use <a class="wa-inline" href={wa} target="_blank" rel="noopener noreferrer">WhatsApp {waDisplay}</a>.</div>
+      <div class="support-msg bot">Hello! Ask me about AI video, SEO, websites, pricing or delivery. For a human response, use <a class="wa-inline" href={wa} target="_blank" rel="noopener noreferrer">WhatsApp {waDisplay}</a>.</div>
     </div>
     <div class="support-typing" id="support-typing" hidden aria-live="polite"><span></span><span></span><span></span> Preparing a reply…</div>
     <div class="support-quick" id="support-quick" aria-label="Suggested questions">
@@ -47,7 +46,7 @@ const waDisplay = '01890-484355';
   .support-launcher{position:relative;width:64px;height:64px;filter:drop-shadow(0 12px 24px rgba(37,99,235,.2))}
   .support-launcher::after{content:'';position:absolute;z-index:-1;inset:-7px;border-radius:27px;background:radial-gradient(circle,rgba(34,211,238,.25),rgba(124,58,237,.09) 48%,transparent 72%);animation:assistant-breathe 2.4s ease-in-out infinite alternate;pointer-events:none}
   .support-root .support-fab{position:relative;width:64px;height:64px;padding:0;border:0!important;border-radius:22px;background:#071d35!important;box-shadow:0 11px 30px rgba(8,47,73,.25),0 0 0 1px rgba(255,255,255,.72);overflow:hidden;perspective:600px;isolation:isolate}
-  .support-root .support-fab::before{content:'';position:absolute;z-index:0;inset:-58%;background:conic-gradient(from 0deg,#ff6a00 0 12%,#ffd166 20%,#22d3ee 38%,#2563eb 56%,#8b5cf6 74%,#ff4d8d 88%,#ff6a00 100%);filter:saturate(1.25);animation:assistant-ring 3s linear infinite}
+  .support-root .support-fab::before{content:'';position:absolute;z-index:0;inset:0;background:linear-gradient(135deg,rgba(249,115,22,.2),rgba(37,99,235,.16) 48%,rgba(34,197,94,.18));opacity:.72;pointer-events:none}
   .support-root .support-fab::after{content:'';position:absolute;z-index:1;inset:4px;border-radius:18px;background:radial-gradient(circle at 50% 28%,#fff 0%,#eaf2ff 47%,#dbeafe 100%);box-shadow:inset 0 1px 0 #fff,0 0 16px rgba(37,99,235,.28)}
   .support-root .support-fab:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(37,99,235,.3),0 0 0 1px rgba(255,255,255,.8)}
   .support-robot-look{position:relative;z-index:2;display:block;transform:rotateY(var(--helper-y,0deg)) rotateX(var(--helper-x,0deg));transition:transform .35s ease;transform-style:preserve-3d;pointer-events:none}
@@ -56,15 +55,9 @@ const waDisplay = '01890-484355';
   .support-invite{position:absolute;right:74px;bottom:5px;display:flex;align-items:center;border:1px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(110deg,#f97316,#2563eb 55%,#22c55e) border-box;box-shadow:0 9px 28px rgba(15,23,42,.11),0 0 24px rgba(37,99,235,.08);border-radius:15px;white-space:nowrap}
   .support-invite[hidden]{display:none}
   .support-invite button{border:0;background:transparent;cursor:pointer;color:#0a2540;font-family:var(--font-b,system-ui,sans-serif);min-height:44px}
-  #support-invite-open{position:relative;padding:8px 12px 8px 34px;text-align:left;border-radius:14px}
-  #support-invite-open::before{content:'✦';position:absolute;left:11px;top:50%;transform:translateY(-50%);width:17px;height:17px;display:grid;place-items:center;border-radius:6px;background:linear-gradient(135deg,#f97316,#7c3aed);color:#fff;font-size:9px;box-shadow:0 4px 10px rgba(124,58,237,.2)}
+  #support-invite-open{position:relative;display:flex;align-items:center;gap:8px;padding:8px 13px;text-align:left;border-radius:14px}
   #support-invite-open strong{display:block;color:#0a2540;font-size:12px;line-height:1.45;font-weight:800}
-  #support-invite-open span{display:block;font-size:10px;line-height:1.45;color:#536478}
-  #support-motion-toggle{width:44px;min-width:44px;border-left:1px solid #e5eaf2;border-radius:0 14px 14px 0;font-size:17px;color:#536478}
-  #support-motion-toggle[hidden]{display:none}
-  .support-play-icon{display:none;font-size:12px}
-  #support-motion-toggle[aria-pressed="true"] .support-pause-icon{display:none}
-  #support-motion-toggle[aria-pressed="true"] .support-play-icon{display:inline}
+  .support-live-light{width:9px;height:9px;flex:0 0 9px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.13),0 0 14px rgba(34,197,94,.65);animation:ask-light-pulse 1.8s ease-in-out infinite alternate}
   .support-invite button:hover{background:#f1f6ff}
   .support-root button:focus-visible{outline:3px solid #175cd3;outline-offset:3px}
   .support-root .support-panel{bottom:calc(92px + env(safe-area-inset-bottom,0px));max-height:min(70dvh,520px)}
@@ -81,18 +74,18 @@ const waDisplay = '01890-484355';
   .support-root.is-chat-visible:not(.helper-motion-paused) .support-quick-track,.support-root.is-chat-visible:not(.helper-motion-paused) .support-typing span{animation-play-state:running}
   .support-root .support-quick:hover .support-quick-track,.support-root .support-quick:focus-within .support-quick-track{animation-play-state:paused}
   @media(prefers-reduced-motion:no-preference){
-    .support-robot-float{animation:assistant-360 3s cubic-bezier(.45,0,.2,1) infinite;animation-play-state:paused}
+    .support-robot-float{animation:assistant-slide-swivel 3s cubic-bezier(.45,0,.2,1) infinite;animation-play-state:paused}
     .support-root.is-helper-running .support-robot-float{animation-play-state:running;will-change:transform}
     .support-root .support-fab:focus-visible .support-robot-float{animation-play-state:paused}
-    @keyframes assistant-360{0%,52%{transform:translateY(0) rotateZ(0deg) rotateY(0deg) scale(1)}70%{transform:translateY(-3px) rotateZ(180deg) rotateY(16deg) scale(1.06)}88%,100%{transform:translateY(0) rotateZ(360deg) rotateY(0deg) scale(1)}}
+    @keyframes assistant-slide-swivel{0%,52%,100%{transform:translate3d(0,0,0) rotateY(0deg) scale(1)}66%{transform:translate3d(-5px,-2px,0) rotateY(-20deg) scale(1.04)}80%{transform:translate3d(5px,-1px,0) rotateY(20deg) scale(1.04)}92%{transform:translate3d(0,0,0) rotateY(0deg) scale(1)}}
   }
-  @keyframes assistant-ring{to{transform:rotate(360deg)}}
+  @keyframes ask-light-pulse{to{opacity:.55;box-shadow:0 0 0 6px rgba(34,197,94,.08),0 0 20px rgba(34,197,94,.8)}}
   @keyframes assistant-breathe{to{opacity:.55;transform:scale(1.16)}}
   @media(prefers-reduced-motion:reduce){.support-robot-float{animation:none!important}.support-robot-look{transform:none;transition:none}.support-root .support-fab{transition:none}}
   @media(max-width:767px){
     .support-root .support-actions{right:calc(.72rem + env(safe-area-inset-right,0px));bottom:calc(.72rem + env(safe-area-inset-bottom,0px))}
     .support-launcher,.support-root .support-fab{width:60px;height:60px}.support-root .support-fab{border-radius:20px}.support-root .support-fab::after{inset:4px;border-radius:16px}.support-robot-float img{width:60px;height:60px}
-    .support-invite{right:68px;bottom:7px}#support-invite-open{padding:7px 10px 7px 31px}#support-invite-open::before{left:9px}#support-invite-open span{display:none}#support-invite-open strong{font-size:11px}
+    .support-invite{right:68px;bottom:7px}#support-invite-open{padding:7px 11px}#support-invite-open strong{font-size:11px}
     .support-root .support-panel{bottom:calc(83px + env(safe-area-inset-bottom,0px));max-height:min(68dvh,500px)}
   }
 </style>
@@ -102,7 +95,7 @@ const waDisplay = '01890-484355';
   var openBtn=document.getElementById('support-open'),closeBtn=document.getElementById('support-close'),panel=document.getElementById('support-panel'),body=document.getElementById('support-body'),form=document.getElementById('support-form'),input=document.getElementById('support-input'),typing=document.getElementById('support-typing'),statusText=document.getElementById('support-status-text'),backTop=document.getElementById('back-top');
   var root=document.getElementById('support-root'),invite=document.getElementById('support-invite'),inviteBtn=document.getElementById('support-invite-open'),motionBtn=document.getElementById('support-motion-toggle'),look=document.getElementById('support-robot-look');
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)'),paused=false,frame=0,rx=0,ry=0,lastTrigger=openBtn,pending=0;
-  try{paused=localStorage.getItem('creavix-helper-motion-paused-v2')==='1';}catch(e){}
+  try{paused=localStorage.getItem('creavix-helper-motion-paused-v3')==='1';}catch(e){}
   function resetLook(){if(frame)cancelAnimationFrame(frame);frame=0;rx=ry=0;if(look){look.style.setProperty('--helper-x','0deg');look.style.setProperty('--helper-y','0deg');}}
   function syncMotion(){
     var active=!paused&&!reduced.matches&&!document.hidden;
@@ -110,7 +103,7 @@ const waDisplay = '01890-484355';
     if(motionBtn){motionBtn.hidden=reduced.matches;motionBtn.setAttribute('aria-pressed',String(paused));motionBtn.setAttribute('aria-label',paused?'Play helper animation':'Pause helper animation');motionBtn.title=paused?'Play helper animation':'Pause helper animation';}
     if(!active||!panel.hidden)resetLook();
   }
-  if(motionBtn)motionBtn.addEventListener('click',function(){paused=!paused;try{localStorage.setItem('creavix-helper-motion-paused-v2',paused?'1':'0');}catch(e){}syncMotion();});
+  if(motionBtn)motionBtn.addEventListener('click',function(){paused=!paused;try{localStorage.setItem('creavix-helper-motion-paused-v3',paused?'1':'0');}catch(e){}syncMotion();});
   reduced.addEventListener('change',syncMotion);document.addEventListener('visibilitychange',syncMotion);
   if(openBtn){
     openBtn.addEventListener('pointermove',function(e){
