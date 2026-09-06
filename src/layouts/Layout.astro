@@ -353,7 +353,7 @@ const jsonLd = {
         }
 
         function protectNonTranslatableContent() {
-          document.querySelectorAll('.hero-premium, a[href^="tel:"], a[href^="mailto:"], [data-public-rating], .hero-counter').forEach(function (element) {
+          document.querySelectorAll('.hero-premium, .logo, .support-brand, a[href^="tel:"], a[href^="mailto:"], [data-public-rating], .hero-counter').forEach(function (element) {
             element.classList.add('notranslate');
             element.setAttribute('translate', 'no');
           });
@@ -432,6 +432,10 @@ const jsonLd = {
           setTranslateCookie('/en/bn');
           if ('requestIdleCallback' in window) requestIdleCallback(loadTranslator, { timeout: 1200 });
           else setTimeout(loadTranslator, 250);
+        } else {
+          /* Pre-warm after the critical render so the first Bangla tap feels immediate. */
+          if ('requestIdleCallback' in window) requestIdleCallback(loadTranslator, { timeout: 3500 });
+          else setTimeout(loadTranslator, 2200);
         }
       })();
     </script>
