@@ -213,6 +213,7 @@ const waDisplay = '01890-484355';
     var greeting=document.querySelector('[data-support-greeting]');
     if(greeting)greeting.textContent=bnPage?'আসসালামু আলাইকুম 👋 Creavix IT Solution-এর পক্ষ থেকে স্বাগতম। আমরা কীভাবে আপনাকে সাহায্য করতে পারি?':'Assalamu Alaikum 👋 Welcome to Creavix IT Solution. How can we help you today?';
     if(input)input.placeholder=bnPage?'আপনার প্রশ্ন লিখুন…':'Ask a question…';
+    if(statusText)statusText.textContent=bnPage?'২৪/৭ সাপোর্ট · লাইভ':'24/7 Support · Live';
     var namesBn=['সেবা','ভিডিও এডিটিং','AI ভিডিও','ওয়েবসাইট','অ্যাপ','SEO','অটোমেশন','মার্কেটিং','ফেসবুক','বুস্টিং','ক্যাম্পেইন','ব্র্যান্ডিং','পোর্টফোলিও','মূল্য','ডেলিভারি','যোগাযোগ'];
     var namesEn=['Services','Video Editing','AI Video','Websites','Apps','SEO','Automation','Marketing','Facebook','Boosting','Campaigns','Branding','Portfolio','Pricing','Delivery','Contact'];
     quickButtons.forEach(function(button,i){button.textContent=(bnPage?namesBn:namesEn)[i]||button.textContent;});
@@ -257,6 +258,7 @@ const waDisplay = '01890-484355';
   if(form&&input)form.addEventListener('submit',function(e){e.preventDefault();var q=(input.value||'').trim();if(!q)return;input.value='';respond(q);});
   quickButtons.forEach(function(button){button.addEventListener('click',function(){respond(button.getAttribute('data-q')||'');pauseSlider();});});
   if(backTop){window.addEventListener('scroll',function(){backTop.hidden=window.scrollY<=400;},{passive:true});backTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:reduced.matches?'auto':'smooth'});});}
+  document.addEventListener('creavix:language-change',function(){applyLanguage();});
   applyLanguage();syncMotion();
 })();
 </script>
