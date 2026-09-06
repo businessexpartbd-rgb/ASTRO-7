@@ -361,7 +361,7 @@ const jsonLd = {
         }
 
         function protectNonTranslatableContent() {
-          document.querySelectorAll('.hero-premium, .logo, .support-brand, a[href^="tel:"], a[href^="mailto:"], [data-public-rating], .hero-counter').forEach(function (element) {
+          document.querySelectorAll('.hero-premium, .logo, .support-root, a[href^="tel:"], a[href^="mailto:"], [data-public-rating], .hero-counter').forEach(function (element) {
             element.classList.add('notranslate');
             element.setAttribute('translate', 'no');
           });
