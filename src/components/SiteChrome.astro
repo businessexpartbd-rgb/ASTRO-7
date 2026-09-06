@@ -209,7 +209,7 @@ const waDisplay = '01890-484355';
     ['pointerleave','pointercancel','blur'].forEach(function(type){openBtn.addEventListener(type,resetLook);});
   }
   function applyLanguage(){
-    bnPage=(document.documentElement.lang||'').toLowerCase().indexOf('bn')===0||bnChars.test(document.body.innerText.slice(0,900));
+    bnPage=(document.documentElement.lang||'').toLowerCase().indexOf('bn')===0;
     var greeting=document.querySelector('[data-support-greeting]');
     if(greeting)greeting.textContent=bnPage?'আসসালামু আলাইকুম 👋 Creavix IT Solution-এর পক্ষ থেকে স্বাগতম। আমরা কীভাবে আপনাকে সাহায্য করতে পারি?':'Assalamu Alaikum 👋 Welcome to Creavix IT Solution. How can we help you today?';
     if(input)input.placeholder=bnPage?'আপনার প্রশ্ন লিখুন…':'Ask a question…';
